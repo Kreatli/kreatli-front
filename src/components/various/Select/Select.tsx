@@ -6,7 +6,7 @@ import { Control, FieldPath, FieldValues, useController, UseControllerProps } fr
 interface Props<T extends FieldValues> extends InputProps {
   control?: Control<T>;
   name: FieldPath<T>;
-  options?: {
+  options?: readonly {
     label: string;
     value: string;
   }[];
