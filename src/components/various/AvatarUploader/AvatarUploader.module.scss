@@ -1,0 +1,83 @@
+.wrapper {
+  position: relative;
+  overflow: hidden;
+  display: block;
+  width: 100px;
+  height: 100px;
+  background-color: var(--nextui-colors-accents0);
+  color: var(--nextui-colors-accents6);
+  border-radius: 50%;
+  border: 2px dashed var(--nextui-colors-accents0);
+  cursor: pointer;
+
+  &:active {
+    transform: scale(0.98);
+  }
+
+  &.dragActive {
+    background-color: transparent;
+    border-color: var(--nextui-colors-accents6);
+  }
+}
+
+.placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--nextui-colors-accents0);
+  transition: 0.3s ease-in-out opacity;
+}
+
+.image {
+  object-fit: cover;
+  transition: 0.3s ease-in-out filter;
+}
+
+.wrapper:hover {
+  .image {
+    filter: blur(3px);
+  }
+
+  .image + .placeholder {
+    opacity: 0.75;
+  }
+}
+
+.image + .placeholder {
+  opacity: 0;
+}
+
+.wrapper.loading {
+  .placeholder {
+    opacity: 0.75;
+  }
+
+  .image {
+    filter: blur(3px);
+  }
+}
+
+.imagePreview {
+  width: 100%;
+  height: auto;
+}
+
+.previewButtons {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  display: flex;
+  gap: 10px;
+}
+
+.wrapper.error {
+  border-color: var(--nextui-colors-errorLight);
+
+  .placeholder {
+    background-color: var(--nextui-colors-errorLight);
+    color: var(--nextui-colors-error);
+  }
+}
