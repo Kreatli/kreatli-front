@@ -15,7 +15,7 @@ interface Props {
 
 export const SignUpCreatorStep1: React.FC<Props> = ({ control, errors, register }) => {
   return (
-    <Grid.Container gap={1}>
+    <Grid.Container gap={1} alignItems="flex-start">
       <Grid xs={12} sm={6}>
         <Input
           type="email"
@@ -24,6 +24,7 @@ export const SignUpCreatorStep1: React.FC<Props> = ({ control, errors, register 
           placeholder="john.doe@domain.com"
           fullWidth
           status={errors.email && 'error'}
+          helperText={errors.email?.message}
           {...register('email', VALIDATIONS.email)}
         />
       </Grid>
@@ -35,6 +36,7 @@ export const SignUpCreatorStep1: React.FC<Props> = ({ control, errors, register 
           visibleIcon={<Icon icon="show" />}
           hiddenIcon={<Icon icon="hide" />}
           status={errors.password && 'error'}
+          helperText={errors.password?.message}
           {...register('password', VALIDATIONS.password)}
         />
       </Grid>
@@ -45,6 +47,7 @@ export const SignUpCreatorStep1: React.FC<Props> = ({ control, errors, register 
           placeholder="John Doe"
           fullWidth
           status={errors.name && 'error'}
+          helperText={errors.name?.message}
           {...register('name', VALIDATIONS.name)}
         />
       </Grid>
@@ -59,6 +62,7 @@ export const SignUpCreatorStep1: React.FC<Props> = ({ control, errors, register 
           name="country"
           control={control}
           rules={VALIDATIONS.country}
+          helperText={errors.country?.message}
         />
       </Grid>
     </Grid.Container>

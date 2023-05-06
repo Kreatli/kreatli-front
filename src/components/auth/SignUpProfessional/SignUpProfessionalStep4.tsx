@@ -51,6 +51,7 @@ export const SignUpProfessionalStep4: React.FC<Props> = ({ control, errors, regi
                     labelLeft={<Icon icon="building" />}
                     fullWidth
                     status={errors.experiences?.[index]?.companyName && 'error'}
+                    helperText={errors.experiences?.[index]?.companyName?.message}
                     {...register(`experiences.${index}.companyName`, VALIDATIONS['experiences.0.companyName'])}
                   />
                   <Input
@@ -59,6 +60,7 @@ export const SignUpProfessionalStep4: React.FC<Props> = ({ control, errors, regi
                     labelLeft={<Icon icon="link" />}
                     fullWidth
                     status={errors.experiences?.[index]?.companyUrl && 'error'}
+                    helperText={errors.experiences?.[index]?.companyUrl?.message}
                     {...register(`experiences.${index}.companyUrl`, VALIDATIONS['experiences.0.companyUrl'])}
                   />
                 </Grid>
@@ -68,6 +70,7 @@ export const SignUpProfessionalStep4: React.FC<Props> = ({ control, errors, regi
                     aria-label="Description"
                     fullWidth
                     status={errors.experiences?.[index]?.description && 'error'}
+                    helperText={errors.experiences?.[index]?.description?.message}
                     {...register(`experiences.${index}.description`, VALIDATIONS['experiences.0.description'])}
                   />
                 </Grid>

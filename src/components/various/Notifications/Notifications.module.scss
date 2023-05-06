@@ -1,0 +1,29 @@
+.wrapper {
+  position: fixed;
+  inset: 1.5rem;
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-end;
+  pointer-events: none;
+}
+
+.card {
+  width: min(100%, 400px);
+  animation-name: notification;
+  animation-duration: 5s;
+  animation-fill-mode: forwards;
+}
+
+.content {
+  display: inline-flex;
+  gap: 0.5rem;
+}
+
+@keyframes notification {
+  0% { opacity: 0; margin-bottom: -4rem; }
+  10% { opacity: 1; margin-bottom: 0; }
+  90% { opacity: 1; margin-bottom: 0; }
+  100% { opacity: 0; margin-bottom: -4rem; }
+}

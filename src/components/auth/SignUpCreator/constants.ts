@@ -1,5 +1,7 @@
 import { RegisterOptions } from 'react-hook-form';
 
+import { VALIDATION_RULES } from '../../../constants/validationRules';
+
 export const DEFAULT_VALUES = {
   email: '',
   password: '',
@@ -15,17 +17,17 @@ export const DEFAULT_VALUES = {
 };
 
 export const VALIDATIONS: Record<keyof typeof DEFAULT_VALUES, RegisterOptions> = {
-  email: { required: true, maxLength: 200, pattern: /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i },
-  password: { required: true, maxLength: 200 },
-  name: { required: true, maxLength: 50 },
-  country: { required: true },
-  category: { required: true, maxLength: 200 },
-  description: { required: true, minLength: 50, maxLength: 500 },
-  socialMediaUrl: { required: true, pattern: /^https?:\/\/(?:www\.)?youtube\.com\/(?:channel|c|user\/\S+|@[\w-]+)\/?[a-zA-Z0-9_-]{0,}$/ },
-  socialMediaUrlOther: { pattern: /^https?:\/\/(?:www\.)?youtube\.com\/(?:channel|c|user\/\S+|@[\w-]+)\/?[a-zA-Z0-9_-]{0,}$/ },
-  discordUsername: { pattern: /^.{3,32}#[0-9]{4}$/ },
-  twitterUrl: { pattern: /(https:\/\/twitter.com\/(?![a-zA-Z0-9_]+\/)([a-zA-Z0-9_]+))/g },
-  interestSkills: { required: true },
+  email: VALIDATION_RULES.EMAIL,
+  password: VALIDATION_RULES.PASSWORD,
+  name: VALIDATION_RULES.SHORT_TEXT,
+  country: VALIDATION_RULES.REQUIRED,
+  category: VALIDATION_RULES.REQUIRED,
+  description: VALIDATION_RULES.DESCRIPTION.MIN_50,
+  socialMediaUrl: VALIDATION_RULES.YOUTUBE_CHANNEL.REQUIRED,
+  socialMediaUrlOther: VALIDATION_RULES.YOUTUBE_CHANNEL.OPTIONAL,
+  discordUsername: VALIDATION_RULES.DISCORD_USERNAME,
+  twitterUrl: VALIDATION_RULES.TWITTER_ACCOUNT_URL,
+  interestSkills: VALIDATION_RULES.REQUIRED,
 };
 
 export type DefaultValues = typeof DEFAULT_VALUES;

@@ -30,11 +30,13 @@ export const SignUpProfessionalStep2: React.FC<Props> = ({ control, errors, regi
             aria-label="Description"
             fullWidth
             status={errors.description && 'error'}
+            helperText={errors.description?.message}
+            helperColor="error"
             {...register('description', VALIDATIONS.description)}
           />
         </Grid>
       </Grid.Container>
-      <Grid.Container gap={1}>
+      <Grid.Container gap={1} alignItems="flex-start">
         <Grid xs={12} sm={6}>
           <Input
             labelLeft={<Icon icon="link" />}
@@ -43,6 +45,7 @@ export const SignUpProfessionalStep2: React.FC<Props> = ({ control, errors, regi
             placeholder="https://myportflio.com"
             fullWidth
             status={errors.portfolioUrl && 'error'}
+            helperText={errors.portfolioUrl?.message}
             {...register('portfolioUrl', VALIDATIONS.portfolioUrl)}
           />
         </Grid>
@@ -54,6 +57,7 @@ export const SignUpProfessionalStep2: React.FC<Props> = ({ control, errors, regi
             placeholder="https://twitter.com/myaccount"
             fullWidth
             status={errors.twitterUrl && 'error'}
+            helperText={errors.twitterUrl?.message}
             {...register('twitterUrl', VALIDATIONS.twitterUrl)}
           />
         </Grid>
@@ -65,6 +69,7 @@ export const SignUpProfessionalStep2: React.FC<Props> = ({ control, errors, regi
             placeholder="username#0000"
             fullWidth
             status={errors.discordUsername && 'error'}
+            helperText={errors.discordUsername?.message}
             {...register('discordUsername', VALIDATIONS.discordUsername)}
           />
         </Grid>
@@ -76,6 +81,7 @@ export const SignUpProfessionalStep2: React.FC<Props> = ({ control, errors, regi
             placeholder="@myusername"
             fullWidth
             status={errors.instagramUsername && 'error'}
+            helperText={errors.instagramUsername?.message}
             {...register('instagramUsername', VALIDATIONS.instagramUsername)}
           />
         </Grid>

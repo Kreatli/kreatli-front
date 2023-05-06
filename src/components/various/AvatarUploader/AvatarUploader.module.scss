@@ -2,8 +2,8 @@
   position: relative;
   overflow: hidden;
   display: block;
-  width: 100px;
-  height: 100px;
+  width: 6.25rem;
+  height: 6.25rem;
   background-color: var(--nextui-colors-accents0);
   color: var(--nextui-colors-accents6);
   border-radius: 50%;
@@ -67,10 +67,10 @@
 
 .previewButtons {
   position: absolute;
-  right: 10px;
-  bottom: 10px;
+  right: 0.625rem;
+  bottom: 0.625rem;
   display: flex;
-  gap: 10px;
+  gap: 0.625rem;
 }
 
 .wrapper.error {

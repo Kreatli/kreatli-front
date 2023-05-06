@@ -46,6 +46,7 @@ export const SignUpProfessionalStep3: React.FC<Props> = ({ errors, control }) =>
                 control={control}
                 color="primary"
                 rules={VALIDATIONS.skillLevels}
+                helperText={errors.skillLevels?.[skill]?.message}
               />
             </Grid>
           ))}

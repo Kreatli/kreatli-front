@@ -15,7 +15,7 @@ interface Props {
 
 export const SignUpCreatorStep2: React.FC<Props> = ({ control, errors, register }) => {
   return (
-    <Grid.Container gap={1}>
+    <Grid.Container gap={1} alignItems="flex-start">
       <Grid xs={12} sm={6}>
         <Select
           labelLeft="Category"
@@ -27,6 +27,7 @@ export const SignUpCreatorStep2: React.FC<Props> = ({ control, errors, register 
           options={CATEGORIES}
           control={control}
           rules={VALIDATIONS.category}
+          helperText={errors.category?.message}
         />
       </Grid>
       <Grid xs={12}>
@@ -35,6 +36,7 @@ export const SignUpCreatorStep2: React.FC<Props> = ({ control, errors, register 
           aria-label="Description"
           fullWidth
           status={errors.description && 'error'}
+          helperText={errors.description?.message}
           {...register('description', VALIDATIONS.description)}
         />
       </Grid>
@@ -46,6 +48,7 @@ export const SignUpCreatorStep2: React.FC<Props> = ({ control, errors, register 
           placeholder="https://youtube.com/@mychannel"
           fullWidth
           status={errors.socialMediaUrl && 'error'}
+          helperText={errors.socialMediaUrl?.message}
           {...register('socialMediaUrl', VALIDATIONS.socialMediaUrl)}
         />
       </Grid>
@@ -57,6 +60,7 @@ export const SignUpCreatorStep2: React.FC<Props> = ({ control, errors, register 
           placeholder="https://youtube.com/@mysecondchannel"
           fullWidth
           status={errors.socialMediaUrlOther && 'error'}
+          helperText={errors.socialMediaUrlOther?.message}
           {...register('socialMediaUrlOther', VALIDATIONS.socialMediaUrlOther)}
         />
       </Grid>
@@ -68,6 +72,7 @@ export const SignUpCreatorStep2: React.FC<Props> = ({ control, errors, register 
           placeholder="username#0000"
           fullWidth
           status={errors.discordUsername && 'error'}
+          helperText={errors.discordUsername?.message}
           {...register('discordUsername', VALIDATIONS.discordUsername)}
         />
       </Grid>
@@ -79,6 +84,7 @@ export const SignUpCreatorStep2: React.FC<Props> = ({ control, errors, register 
           placeholder="https://twitter.com/myaccount"
           fullWidth
           status={errors.twitterUrl && 'error'}
+          helperText={errors.twitterUrl?.message}
           {...register('twitterUrl', VALIDATIONS.twitterUrl)}
         />
       </Grid>

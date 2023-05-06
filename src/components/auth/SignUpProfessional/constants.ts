@@ -1,6 +1,7 @@
 import { nanoid } from 'nanoid';
 import { FieldPath, RegisterOptions } from 'react-hook-form';
 
+import { VALIDATION_RULES } from '../../../constants/validationRules';
 import { Skill, SkillLevel } from '../../../typings/skill';
 
 export const DEFAULT_EXPERIENCE = {
@@ -43,22 +44,22 @@ export const DEFAULT_VALUES = {
 export type DefaultValues = typeof DEFAULT_VALUES;
 
 export const VALIDATIONS: Partial<Record<FieldPath<DefaultValues>, RegisterOptions>> = {
-  email: { required: true, maxLength: 200, pattern: /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i },
-  password: { required: true, maxLength: 200 },
-  name: { required: true, maxLength: 50 },
-  avatarUrl: { required: true },
-  country: { required: true },
-  description: { required: true, minLength: 50, maxLength: 500 },
-  skills: { required: true },
-  skillLevels: { required: true },
-  portfolioUrl: { pattern: /^(http(s)?:\/\/)[\w.-]+(?:\.[\w.-]+)+[\w\-._~:/?#[\]@!$&'()*+,;=.]+$/ },
-  discordUsername: { pattern: /^.{3,32}#[0-9]{4}$/ },
-  twitterUrl: { pattern: /(https:\/\/twitter.com\/(?![a-zA-Z0-9_]+\/)([a-zA-Z0-9_]+))/g },
-  instagramUsername: { pattern: /^@[\w.\d-]{1,30}$/ },
-  experiences: { required: true },
-  'experiences.0.companyName': { required: true },
-  'experiences.0.companyUrl': { required: true, pattern: /^(http(s)?:\/\/)[\w.-]+(?:\.[\w.-]+)+[\w\-._~:/?#[\]@!$&'()*+,;=.]+$/ },
-  'experiences.0.description': { required: true, minLength: 50, maxLength: 500 },
-  'certificates.0.name': { required: true },
-  'certificates.0.fileUrl': { required: true },
+  email: VALIDATION_RULES.EMAIL,
+  password: VALIDATION_RULES.PASSWORD,
+  name: VALIDATION_RULES.SHORT_TEXT,
+  avatarUrl: VALIDATION_RULES.REQUIRED,
+  country: VALIDATION_RULES.REQUIRED,
+  description: VALIDATION_RULES.DESCRIPTION.MIN_50,
+  skills: VALIDATION_RULES.REQUIRED,
+  skillLevels: VALIDATION_RULES.REQUIRED,
+  portfolioUrl: VALIDATION_RULES.URL.OPTIONAL,
+  discordUsername: VALIDATION_RULES.DISCORD_USERNAME,
+  twitterUrl: VALIDATION_RULES.TWITTER_ACCOUNT_URL,
+  instagramUsername: VALIDATION_RULES.INSTAGRAM_USERNAME,
+  experiences: VALIDATION_RULES.REQUIRED,
+  'experiences.0.companyName': VALIDATION_RULES.REQUIRED,
+  'experiences.0.companyUrl': VALIDATION_RULES.URL.REQUIRED,
+  'experiences.0.description': VALIDATION_RULES.DESCRIPTION.MIN_10,
+  'certificates.0.name': VALIDATION_RULES.REQUIRED,
+  'certificates.0.fileUrl': VALIDATION_RULES.REQUIRED,
 };

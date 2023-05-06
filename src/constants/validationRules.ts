@@ -1,4 +1,87 @@
+const EMAIL_PATTERN = /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i;
+const URL_PATTERN = /^(http(s)?:\/\/)[\w.-]+(?:\.[\w.-]+)+[\w\-._~:/?#[\]@!$&'()*+,;=.]+$/;
+const YOUTUBE_CHANNEL_URL_PATTERN = /^https?:\/\/(?:www\.)?youtube\.com\/(?:channel|c|user\/\S+|@[\w-]+)\/?[a-zA-Z0-9_-]{0,}$/;
+const DISCORD_USERNAME_PATTERN = /^.{3,32}#[0-9]{4}$/;
+const INSTAGRAM_USERNAME_PATTERN = /^@[\w.\d-]{1,30}$/;
+const TWITTER_ACCOUNT_URL_PATTERN = /(https:\/\/twitter.com\/(?![a-zA-Z0-9_]+\/)([a-zA-Z0-9_]+))/g;
+
+const getDescriptionRulesByMinLength = (minLength: number) => ({
+  required: true,
+  minLength: {
+    message: `C'mon, let's at least ${minLength} characters 😉`,
+    value: minLength,
+  },
+  maxLength: {
+    message: 'Description must not exceed 500 characters',
+    value: 200,
+  },
+});
+
+const URL_RULES = {
+  pattern: {
+    message: 'The provided URL is incorrect',
+    value: URL_PATTERN,
+  },
+};
+
+const YOUTUBE_CHANNEL_RULES = {
+  pattern: {
+    message: 'The URL must point to your YouTube channel',
+    value: YOUTUBE_CHANNEL_URL_PATTERN,
+  },
+};
+
 export const VALIDATION_RULES = {
-  EMAIL: { required: true, maxLength: 200, pattern: /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i },
-  PASSWORD: { required: true, maxLength: 200 },
+  REQUIRED: {
+    required: true,
+  },
+  EMAIL: {
+    required: true,
+    maxLength: 200,
+    pattern: {
+      value: EMAIL_PATTERN,
+      message: 'Email is not valid 😞',
+    },
+  },
+  PASSWORD: {
+    required: true,
+    minLength: {
+      message: 'Password must contain at least 8 characters',
+      value: 8,
+    },
+    maxLength: 200,
+    validate: (password: string) => {
+      if (!/[A-Z]/.test(password)) {
+        return 'Password must contain at least 1 capital letter';
+      }
+
+      if (!/[0-9]/.test(password)) {
+        return 'Password must contain at least 1 digit character';
+      }
+
+      return undefined;
+    },
+  },
+  SHORT_TEXT: {
+    required: true,
+    maxLength: {
+      message: 'This field must not exceed 200 characters',
+      value: 200,
+    },
+  },
+  DESCRIPTION: {
+    MIN_10: getDescriptionRulesByMinLength(10),
+    MIN_50: getDescriptionRulesByMinLength(50),
+  },
+  URL: {
+    REQUIRED: { required: true, ...URL_RULES },
+    OPTIONAL: URL_RULES,
+  },
+  YOUTUBE_CHANNEL: {
+    REQUIRED: { required: true, ...YOUTUBE_CHANNEL_RULES },
+    OPTIONAL: YOUTUBE_CHANNEL_RULES,
+  },
+  INSTAGRAM_USERNAME: { pattern: { value: INSTAGRAM_USERNAME_PATTERN, message: 'Incorrect Instagram username' } },
+  DISCORD_USERNAME: { pattern: { value: DISCORD_USERNAME_PATTERN, message: 'Incorrect Discord username' } },
+  TWITTER_ACCOUNT_URL: { pattern: { value: TWITTER_ACCOUNT_URL_PATTERN, message: 'The URL must point to your Twitter account' } },
 };

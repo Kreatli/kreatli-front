@@ -99,7 +99,7 @@ export const SignUpCreator: React.FC = () => {
           <Progress value={progressValue} size="sm" color="gradient" />
           <Spacer y={1} />
           <form noValidate onSubmit={handleSubmit(onSubmit)}>
-            <Collapse.Group splitted onChange={handleChange}>
+            <Collapse.Group splitted onChange={handleChange} css={{ padding: 0 }}>
               {steps.map(({ title, subtitle, render }, index) => (
                 <Collapse
                   key={title}

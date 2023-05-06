@@ -7,6 +7,7 @@ import { Control, FieldPath, FieldValues, useController, UseControllerProps } fr
 import ReactCrop, { centerCrop, Crop, makeAspectCrop } from 'react-image-crop';
 import { useMutation } from 'react-query';
 
+import { useNotifications } from '../../../hooks/useNotifications';
 import { requestImageUpload } from '../../../services/upload';
 import { Icon } from '../Icon';
 import styles from './AvatarUploader.module.scss';
@@ -45,6 +46,7 @@ export const AvatarUploader = <T extends FieldValues>({ control, name, rules, st
   const [imageDimensions, setImageDimensions] = React.useState({ width: 0, height: 0 });
   const [isLoading, setIsLoading] = React.useState(false);
 
+  const { pushNotification } = useNotifications();
   const { field } = useController({ control, name, rules });
 
   React.useEffect(() => {
@@ -61,13 +63,25 @@ export const AvatarUploader = <T extends FieldValues>({ control, name, rules, st
   }, [selectedFile]);
 
   const onDrop = React.useCallback((selectedFiles: File[]) => {
-    if (selectedFiles.length === 0) {
+    const file = selectedFiles[0];
+
+    if (!file) {
       return;
     }
 
+    if ((file.size / (1024 * 1024)) >= 5) {
+      pushNotification({
+        color: 'warning',
+        icon: 'warning',
+        message: 'The maximum file size for images is 5 MB',
+      });
+
+      return;
+    }
+
+    setSelectedFile(file);
     setIsCropperVisible(true);
-    setSelectedFile(selectedFiles[0]);
-  }, []);
+  }, [pushNotification]);
 
   const handleImageLoad = React.useCallback((event: React.SyntheticEvent<HTMLImageElement>) => {
     const { naturalWidth: width, naturalHeight: height } = event.currentTarget;

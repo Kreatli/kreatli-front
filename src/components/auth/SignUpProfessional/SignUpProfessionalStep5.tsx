@@ -42,6 +42,7 @@ export const SignUpProfessionalStep5: React.FC<Props> = ({ control, errors, regi
                 placeholder="Adobe Certified Expert in Premiere Pro"
                 fullWidth
                 status={errors.certificates?.[index]?.name && 'error'}
+                helperText={errors.certificates?.[index]?.name?.message}
                 {...register(`certificates.${index}.name`, VALIDATIONS['certificates.0.name'])}
               />
             </Grid>

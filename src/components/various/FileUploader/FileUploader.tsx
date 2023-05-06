@@ -4,6 +4,7 @@ import { useDropzone } from 'react-dropzone';
 import { Control, FieldPath, FieldValues, useController, UseControllerProps } from 'react-hook-form';
 import { useMutation } from 'react-query';
 
+import { useNotifications } from '../../../hooks/useNotifications';
 import { requestFileUpload } from '../../../services/upload';
 import { Icon } from '../Icon';
 import styles from './FileUploader.module.scss';
@@ -18,6 +19,7 @@ interface Props<T extends FieldValues> {
 export const FileUploader = <T extends FieldValues>({ control, name, status, rules }: Props<T>) => {
   const [selectedFile, setSelectedFile] = React.useState<File | null>(null);
   const { field } = useController({ control, name, rules });
+  const { pushNotification } = useNotifications();
 
   const { isLoading, mutate } = useMutation(requestFileUpload, {
     onSuccess: (data) => {
@@ -27,17 +29,29 @@ export const FileUploader = <T extends FieldValues>({ control, name, status, rul
   });
 
   const onDrop = React.useCallback((files: File[]) => {
-    if (files.length === 0) {
+    const file = files[0];
+
+    if (!file) {
       return;
     }
 
-    setSelectedFile(files[0]);
+    if ((file.size / (1024 * 1024)) >= 5) {
+      pushNotification({
+        color: 'error',
+        icon: 'error',
+        message: 'The maximum file size is 5 MB',
+      });
+
+      return;
+    }
+
+    setSelectedFile(file);
 
     const formData = new FormData();
-    formData.append('file', files[0]);
+    formData.append('file', file);
 
     mutate(formData);
-  }, [mutate]);
+  }, [mutate, pushNotification]);
 
   const { isDragActive, getRootProps, getInputProps } = useDropzone({
     accept: {

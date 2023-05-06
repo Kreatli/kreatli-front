@@ -95,7 +95,7 @@ export const SignUpProfessional: React.FC = () => {
     },
     {
       title: 'Step 5 - Certifications and Licenses (optional)',
-      subtitle: 'Provide information about any relevant certifications or licenses you hold. This information helps YouTube creators understand your level of expertise. Keep in mind that Kreatli team is manually verifying information you provide',
+      subtitle: 'Provide information about any relevant certifications or licenses you hold. This information helps YouTube creators understand your level of expertise. Keep in mind that we manually verify information you provide!',
       render: <SignUpProfessionalStep5 control={control} register={register} errors={errors} />,
     },
   ];
@@ -113,7 +113,7 @@ export const SignUpProfessional: React.FC = () => {
           <Progress value={progressValue} size="sm" color="gradient" />
           <Spacer y={1} />
           <form noValidate onSubmit={handleSubmit(onSubmit)}>
-            <Collapse.Group splitted onChange={handleChange}>
+            <Collapse.Group splitted onChange={handleChange} css={{ padding: 0 }}>
               {steps.map(({ title, subtitle, render }, index) => (
                 <Collapse
                   key={title}
