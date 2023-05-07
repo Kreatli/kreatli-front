@@ -14,7 +14,6 @@ export const useSession = () => {
       localStorage.setItem('token', token);
       queryClient.setQueryData('user', user);
     },
-    // add error handler
   });
 
   const signOut = React.useCallback(() => {

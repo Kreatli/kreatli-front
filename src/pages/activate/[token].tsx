@@ -4,13 +4,22 @@ import { useRouter } from 'next/router';
 import React from 'react';
 import { useMutation } from 'react-query';
 
+import { useNotifications } from '../../hooks/useNotifications';
 import { Layout } from '../../layouts/default';
 import { requestUserActivation } from '../../services/auth';
+import { getErrorMessage } from '../../utils/getErrorMessage';
 
 const AccountActivation: React.FC = () => {
   const router = useRouter();
+  const { pushNotification } = useNotifications();
   const { mutate, isLoading } = useMutation(requestUserActivation, {
-    // TODO: show notification on error
+    onError: (error) => {
+      pushNotification({
+        message: getErrorMessage(error),
+        color: 'error',
+        icon: 'error',
+      });
+    },
   });
 
   React.useEffect(() => {

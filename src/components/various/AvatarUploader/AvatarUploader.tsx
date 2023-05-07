@@ -9,6 +9,7 @@ import { useMutation } from 'react-query';
 
 import { useNotifications } from '../../../hooks/useNotifications';
 import { requestImageUpload } from '../../../services/upload';
+import { getErrorMessage } from '../../../utils/getErrorMessage';
 import { Icon } from '../Icon';
 import styles from './AvatarUploader.module.scss';
 
@@ -107,7 +108,13 @@ export const AvatarUploader = <T extends FieldValues>({ control, name, rules, st
       field.onChange(data.secure_url);
       field.onBlur();
     },
-    // TODO: add error handler
+    onError: (error) => {
+      pushNotification({
+        message: getErrorMessage(error),
+        color: 'error',
+        icon: 'error',
+      });
+    },
   });
 
   const uploadImage = React.useCallback(() => {

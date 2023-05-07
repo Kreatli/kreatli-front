@@ -4,7 +4,9 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 
 import { VALIDATION_RULES } from '../../../constants/validationRules';
+import { useNotifications } from '../../../hooks/useNotifications';
 import { useSession } from '../../../hooks/useSession';
+import { getErrorMessage } from '../../../utils/getErrorMessage';
 import { Icon } from '../../various/Icon';
 
 interface Props {
@@ -21,14 +23,31 @@ type DefaultValues = typeof DEFAULT_VALUES;
 
 export const SignInModal: React.FC<Props> = ({ isVisible, onClose }) => {
   const router = useRouter();
-  const { register, handleSubmit } = useForm({ defaultValues: DEFAULT_VALUES, mode: 'onBlur' });
+  const { register, handleSubmit, formState: { errors }, setError } = useForm({ defaultValues: DEFAULT_VALUES, mode: 'onBlur' });
   const { signInMutation: { mutate, isLoading } } = useSession();
+  const { pushNotification } = useNotifications();
 
   const onSubmit = (data: DefaultValues) => {
     mutate(data, {
       onSuccess: ({ user }) => {
         onClose();
         router.push(`/profile/${user._id}`);
+      },
+      onError: (error: any) => {
+        const status = error?.response?.status;
+        if (status === 404) {
+          setError('email', {});
+        }
+
+        if (status === 401) {
+          setError('password', {});
+        }
+
+        pushNotification({
+          message: getErrorMessage(error),
+          color: 'error',
+          icon: 'error',
+        });
       },
     });
   };
@@ -53,8 +72,9 @@ export const SignInModal: React.FC<Props> = ({ isVisible, onClose }) => {
                 placeholder="Email"
                 aria-label="Email"
                 disabled={isLoading}
+                status={errors.email && 'error'}
                 fullWidth
-                {...register('email', VALIDATION_RULES.EMAIL)}
+                {...register('email', VALIDATION_RULES.REQUIRED)}
               />
             </Grid>
             <Grid xs={12}>
@@ -63,9 +83,10 @@ export const SignInModal: React.FC<Props> = ({ isVisible, onClose }) => {
                 aria-label="Password"
                 disabled={isLoading}
                 fullWidth
+                status={errors.password && 'error'}
                 visibleIcon={<Icon icon="show" />}
                 hiddenIcon={<Icon icon="hide" />}
-                {...register('password', VALIDATION_RULES.PASSWORD)}
+                {...register('password', VALIDATION_RULES.REQUIRED)}
               />
             </Grid>
           </Grid.Container>

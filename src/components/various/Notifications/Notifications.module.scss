@@ -7,6 +7,7 @@
   align-items: flex-end;
   justify-content: flex-end;
   pointer-events: none;
+  z-index: 100000;
 }
 
 .card {
@@ -19,6 +20,10 @@
 .content {
   display: inline-flex;
   gap: 0.5rem;
+
+  svg {
+    flex: 0 0 24px;
+  }
 }
 
 @keyframes notification {

@@ -3,7 +3,9 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useMutation } from 'react-query';
 
+import { useNotifications } from '../../../hooks/useNotifications';
 import { requestSignUpCreator } from '../../../services/auth';
+import { getErrorMessage } from '../../../utils/getErrorMessage';
 import { Icon } from '../../various/Icon';
 import { DEFAULT_VALUES, DefaultValues } from './constants';
 import { SignUpCreatorStep1 } from './SignUpCreatorStep1';
@@ -20,6 +22,7 @@ export const SignUpCreator: React.FC = () => {
   const [activeStep, setActiveStep] = React.useState(0);
   const [isFilledByStep, setIsFilledByStep] = React.useState([false, false, false]);
 
+  const { pushNotification } = useNotifications();
   const { theme } = useTheme();
   const {
     control,
@@ -58,10 +61,20 @@ export const SignUpCreator: React.FC = () => {
 
   const { mutate, isLoading, isSuccess } = useMutation(requestSignUpCreator, {
     onSuccess: () => {
-      // TODO: show notification
+      pushNotification({
+        message: 'Cool! Now all you have to do is check your email to complete the registration',
+        color: 'success',
+        icon: 'success',
+      });
       handleNext();
     },
-    // TODO: add error handler
+    onError: (error) => {
+      pushNotification({
+        message: getErrorMessage(error),
+        color: 'error',
+        icon: 'error',
+      });
+    },
   });
 
   const onSubmit = (data: DefaultValues) => {

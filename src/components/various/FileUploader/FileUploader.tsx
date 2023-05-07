@@ -6,6 +6,7 @@ import { useMutation } from 'react-query';
 
 import { useNotifications } from '../../../hooks/useNotifications';
 import { requestFileUpload } from '../../../services/upload';
+import { getErrorMessage } from '../../../utils/getErrorMessage';
 import { Icon } from '../Icon';
 import styles from './FileUploader.module.scss';
 
@@ -25,6 +26,13 @@ export const FileUploader = <T extends FieldValues>({ control, name, status, rul
     onSuccess: (data) => {
       field.onChange(data.secure_url);
       field.onBlur();
+    },
+    onError: (error) => {
+      pushNotification({
+        message: getErrorMessage(error),
+        color: 'error',
+        icon: 'error',
+      });
     },
   });
 

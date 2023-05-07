@@ -3,7 +3,9 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useMutation } from 'react-query';
 
+import { useNotifications } from '../../../hooks/useNotifications';
 import { requestSignUpProfessional } from '../../../services/auth';
+import { getErrorMessage } from '../../../utils/getErrorMessage';
 import { Icon } from '../../various/Icon';
 import { DEFAULT_VALUES, DefaultValues } from './constants';
 import { SignUpProfessionalStep1 } from './SignUpProfessionalStep1';
@@ -24,6 +26,7 @@ export const SignUpProfessional: React.FC = () => {
   const [activeStep, setActiveStep] = React.useState(0);
   const [isFilledByStep, setIsFilledByStep] = React.useState([false, false, false]);
 
+  const { pushNotification } = useNotifications();
   const { theme } = useTheme();
   const {
     control,
@@ -62,10 +65,20 @@ export const SignUpProfessional: React.FC = () => {
 
   const { mutate, isLoading, isSuccess } = useMutation(requestSignUpProfessional, {
     onSuccess: () => {
-      // TODO: show notification
+      pushNotification({
+        message: 'Great! Check your email to complete the registration',
+        color: 'primary',
+        icon: 'success',
+      });
       handleNext();
     },
-    // TODO: add error handler
+    onError: (error) => {
+      pushNotification({
+        message: getErrorMessage(error),
+        color: 'error',
+        icon: 'error',
+      });
+    },
   });
 
   const onSubmit = (data: DefaultValues) => {
