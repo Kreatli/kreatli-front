@@ -2,9 +2,10 @@ import { Grid, Input, Textarea } from '@nextui-org/react';
 import React from 'react';
 import { Control, FieldErrors, UseFormRegister } from 'react-hook-form';
 
+import { VALIDATION_RULES } from '../../../constants/validationRules';
 import { AvatarUploader } from '../../various/AvatarUploader';
 import { Icon } from '../../various/Icon';
-import { DefaultValues, VALIDATIONS } from './constants';
+import { DefaultValues } from './constants';
 
 interface Props {
   control: Control<DefaultValues>;
@@ -21,18 +22,18 @@ export const SignUpProfessionalStep2: React.FC<Props> = ({ control, errors, regi
             status={errors.avatarUrl && 'error'}
             name="avatarUrl"
             control={control}
-            rules={VALIDATIONS.avatarUrl}
+            rules={VALIDATION_RULES.REQUIRED}
           />
         </Grid>
         <Grid css={{ flexGrow: 1 }}>
           <Textarea
-            placeholder="Describe yourself"
+            placeholder="Describe your background and make your profile stand out!"
             aria-label="Description"
             fullWidth
             status={errors.description && 'error'}
             helperText={errors.description?.message}
             helperColor="error"
-            {...register('description', VALIDATIONS.description)}
+            {...register('description', VALIDATION_RULES.DESCRIPTION.MIN_50)}
           />
         </Grid>
       </Grid.Container>
@@ -46,7 +47,8 @@ export const SignUpProfessionalStep2: React.FC<Props> = ({ control, errors, regi
             fullWidth
             status={errors.portfolioUrl && 'error'}
             helperText={errors.portfolioUrl?.message}
-            {...register('portfolioUrl', VALIDATIONS.portfolioUrl)}
+            helperColor="error"
+            {...register('portfolioUrl', VALIDATION_RULES.URL.OPTIONAL)}
           />
         </Grid>
         <Grid xs={12} sm={6}>
@@ -58,7 +60,8 @@ export const SignUpProfessionalStep2: React.FC<Props> = ({ control, errors, regi
             fullWidth
             status={errors.twitterUrl && 'error'}
             helperText={errors.twitterUrl?.message}
-            {...register('twitterUrl', VALIDATIONS.twitterUrl)}
+            helperColor="error"
+            {...register('twitterUrl', VALIDATION_RULES.TWITTER_ACCOUNT_URL)}
           />
         </Grid>
         <Grid xs={12} sm={6}>
@@ -70,7 +73,8 @@ export const SignUpProfessionalStep2: React.FC<Props> = ({ control, errors, regi
             fullWidth
             status={errors.discordUsername && 'error'}
             helperText={errors.discordUsername?.message}
-            {...register('discordUsername', VALIDATIONS.discordUsername)}
+            helperColor="error"
+            {...register('discordUsername', VALIDATION_RULES.DISCORD_USERNAME)}
           />
         </Grid>
         <Grid xs={12} sm={6}>
@@ -82,7 +86,8 @@ export const SignUpProfessionalStep2: React.FC<Props> = ({ control, errors, regi
             fullWidth
             status={errors.instagramUsername && 'error'}
             helperText={errors.instagramUsername?.message}
-            {...register('instagramUsername', VALIDATIONS.instagramUsername)}
+            helperColor="error"
+            {...register('instagramUsername', VALIDATION_RULES.INSTAGRAM_USERNAME)}
           />
         </Grid>
       </Grid.Container>

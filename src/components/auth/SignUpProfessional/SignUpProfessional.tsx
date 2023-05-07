@@ -14,7 +14,7 @@ import { SignUpProfessionalStep5 } from './SignUpProfessionalStep5';
 
 const FIELDS_BY_STEP = [
   ['email', 'password', 'name', 'country'],
-  ['avatarUrl', 'description'],
+  ['avatarUrl', 'description', 'portfolioUrl', 'twitterUrl', 'discordUsername', 'instagramUsername'],
   ['skills', 'skillLevels'],
   ['experiences'],
   ['certificates'],

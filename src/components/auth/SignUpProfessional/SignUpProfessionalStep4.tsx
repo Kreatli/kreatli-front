@@ -4,9 +4,10 @@ import { remove } from 'ramda';
 import React from 'react';
 import { Control, FieldErrors, useController, UseFormRegister } from 'react-hook-form';
 
+import { VALIDATION_RULES } from '../../../constants/validationRules';
 import { AvatarUploader } from '../../various/AvatarUploader';
 import { Icon } from '../../various/Icon';
-import { DEFAULT_EXPERIENCE, DefaultValues, VALIDATIONS } from './constants';
+import { DEFAULT_EXPERIENCE, DefaultValues } from './constants';
 
 interface Props {
   control: Control<DefaultValues>;
@@ -15,7 +16,7 @@ interface Props {
 }
 
 export const SignUpProfessionalStep4: React.FC<Props> = ({ control, errors, register }) => {
-  const { field } = useController({ control, name: 'experiences', rules: VALIDATIONS.experiences });
+  const { field } = useController({ control, name: 'experiences', rules: VALIDATION_RULES.REQUIRED });
 
   const handleAddMore = () => {
     field.onChange([
@@ -52,7 +53,8 @@ export const SignUpProfessionalStep4: React.FC<Props> = ({ control, errors, regi
                     fullWidth
                     status={errors.experiences?.[index]?.companyName && 'error'}
                     helperText={errors.experiences?.[index]?.companyName?.message}
-                    {...register(`experiences.${index}.companyName`, VALIDATIONS['experiences.0.companyName'])}
+                    helperColor="error"
+                    {...register(`experiences.${index}.companyName`, VALIDATION_RULES.SHORT_TEXT)}
                   />
                   <Input
                     placeholder="Channel/Company link"
@@ -61,7 +63,8 @@ export const SignUpProfessionalStep4: React.FC<Props> = ({ control, errors, regi
                     fullWidth
                     status={errors.experiences?.[index]?.companyUrl && 'error'}
                     helperText={errors.experiences?.[index]?.companyUrl?.message}
-                    {...register(`experiences.${index}.companyUrl`, VALIDATIONS['experiences.0.companyUrl'])}
+                    helperColor="error"
+                    {...register(`experiences.${index}.companyUrl`, VALIDATION_RULES.URL.REQUIRED)}
                   />
                 </Grid>
                 <Grid xs={12}>
@@ -71,7 +74,8 @@ export const SignUpProfessionalStep4: React.FC<Props> = ({ control, errors, regi
                     fullWidth
                     status={errors.experiences?.[index]?.description && 'error'}
                     helperText={errors.experiences?.[index]?.description?.message}
-                    {...register(`experiences.${index}.description`, VALIDATIONS['experiences.0.description'])}
+                    helperColor="error"
+                    {...register(`experiences.${index}.description`, VALIDATION_RULES.DESCRIPTION.MIN_100)}
                   />
                 </Grid>
               </Grid.Container>

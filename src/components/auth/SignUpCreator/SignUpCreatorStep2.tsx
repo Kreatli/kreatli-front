@@ -3,9 +3,10 @@ import React from 'react';
 import { Control, FieldErrors, UseFormRegister } from 'react-hook-form';
 
 import { CATEGORIES } from '../../../constants/categories';
+import { VALIDATION_RULES } from '../../../constants/validationRules';
 import { Icon } from '../../various/Icon';
 import { Select } from '../../various/Select';
-import { DefaultValues, VALIDATIONS } from './constants';
+import { DefaultValues } from './constants';
 
 interface Props {
   control: Control<DefaultValues>;
@@ -26,8 +27,7 @@ export const SignUpCreatorStep2: React.FC<Props> = ({ control, errors, register 
           name="category"
           options={CATEGORIES}
           control={control}
-          rules={VALIDATIONS.category}
-          helperText={errors.category?.message}
+          rules={VALIDATION_RULES.REQUIRED}
         />
       </Grid>
       <Grid xs={12}>
@@ -37,7 +37,8 @@ export const SignUpCreatorStep2: React.FC<Props> = ({ control, errors, register 
           fullWidth
           status={errors.description && 'error'}
           helperText={errors.description?.message}
-          {...register('description', VALIDATIONS.description)}
+          helperColor="error"
+          {...register('description', VALIDATION_RULES.DESCRIPTION.MIN_50)}
         />
       </Grid>
       <Grid xs={12} sm={6}>
@@ -49,7 +50,8 @@ export const SignUpCreatorStep2: React.FC<Props> = ({ control, errors, register 
           fullWidth
           status={errors.socialMediaUrl && 'error'}
           helperText={errors.socialMediaUrl?.message}
-          {...register('socialMediaUrl', VALIDATIONS.socialMediaUrl)}
+          helperColor="error"
+          {...register('socialMediaUrl', VALIDATION_RULES.YOUTUBE_CHANNEL.REQUIRED)}
         />
       </Grid>
       <Grid xs={12} sm={6}>
@@ -61,7 +63,8 @@ export const SignUpCreatorStep2: React.FC<Props> = ({ control, errors, register 
           fullWidth
           status={errors.socialMediaUrlOther && 'error'}
           helperText={errors.socialMediaUrlOther?.message}
-          {...register('socialMediaUrlOther', VALIDATIONS.socialMediaUrlOther)}
+          helperColor="error"
+          {...register('socialMediaUrlOther', VALIDATION_RULES.YOUTUBE_CHANNEL.OPTIONAL)}
         />
       </Grid>
       <Grid xs={12} sm={6}>
@@ -73,7 +76,8 @@ export const SignUpCreatorStep2: React.FC<Props> = ({ control, errors, register 
           fullWidth
           status={errors.discordUsername && 'error'}
           helperText={errors.discordUsername?.message}
-          {...register('discordUsername', VALIDATIONS.discordUsername)}
+          helperColor="error"
+          {...register('discordUsername', VALIDATION_RULES.DISCORD_USERNAME)}
         />
       </Grid>
       <Grid xs={12} sm={6}>
@@ -85,7 +89,8 @@ export const SignUpCreatorStep2: React.FC<Props> = ({ control, errors, register 
           fullWidth
           status={errors.twitterUrl && 'error'}
           helperText={errors.twitterUrl?.message}
-          {...register('twitterUrl', VALIDATIONS.twitterUrl)}
+          helperColor="error"
+          {...register('twitterUrl', VALIDATION_RULES.TWITTER_ACCOUNT_URL)}
         />
       </Grid>
     </Grid.Container>

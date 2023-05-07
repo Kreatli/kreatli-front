@@ -3,8 +3,9 @@ import React from 'react';
 import { Control, FieldErrors } from 'react-hook-form';
 
 import { SKILL_OPTIONS_FOR_CREATOR } from '../../../constants/skills';
+import { VALIDATION_RULES } from '../../../constants/validationRules';
 import { Tag } from '../../various/Tag';
-import { DefaultValues, VALIDATIONS } from './constants';
+import { DefaultValues } from './constants';
 
 interface Props {
   control: Control<DefaultValues>;
@@ -13,7 +14,7 @@ interface Props {
 
 export const SignUpCreatorStep3: React.FC<Props> = ({ control, errors }) => {
   return (
-    <Tag.Group name="interestSkills" control={control} rules={VALIDATIONS.interestSkills}>
+    <Tag.Group name="interestSkills" control={control} rules={VALIDATION_RULES.REQUIRED}>
       <Grid.Container gap={1}>
         {SKILL_OPTIONS_FOR_CREATOR.map((area) => (
           <Grid key={area.value}>

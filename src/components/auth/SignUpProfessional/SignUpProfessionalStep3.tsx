@@ -3,10 +3,11 @@ import React from 'react';
 import { Control, FieldErrors } from 'react-hook-form';
 
 import { SKILL_LABELS_FOR_PROFESSIONAL, SKILL_LEVEL_OPTIONS, SKILL_OPTIONS_FOR_PROFESSIONAL } from '../../../constants/skills';
+import { VALIDATION_RULES } from '../../../constants/validationRules';
 import { Skill } from '../../../typings/skill';
 import { Select } from '../../various/Select';
 import { Tag } from '../../various/Tag';
-import { DefaultValues, VALIDATIONS } from './constants';
+import { DefaultValues } from './constants';
 
 interface Props {
   control: Control<DefaultValues>;
@@ -17,7 +18,7 @@ export const SignUpProfessionalStep3: React.FC<Props> = ({ errors, control }) =>
   const [selectedSkills, setSelectedSkills] = React.useState<Skill[]>([]);
 
   return (
-    <Tag.Group name="skills" control={control} rules={VALIDATIONS.skills} onChange={setSelectedSkills}>
+    <Tag.Group name="skills" control={control} rules={VALIDATION_RULES.REQUIRED} onChange={setSelectedSkills}>
       <Grid.Container gap={1}>
         {SKILL_OPTIONS_FOR_PROFESSIONAL.map((area) => (
           <Grid key={area.value}>
@@ -45,8 +46,7 @@ export const SignUpProfessionalStep3: React.FC<Props> = ({ errors, control }) =>
                 options={SKILL_LEVEL_OPTIONS}
                 control={control}
                 color="primary"
-                rules={VALIDATIONS.skillLevels}
-                helperText={errors.skillLevels?.[skill]?.message}
+                rules={VALIDATION_RULES.REQUIRED}
               />
             </Grid>
           ))}

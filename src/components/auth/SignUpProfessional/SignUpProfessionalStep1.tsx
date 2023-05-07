@@ -3,9 +3,10 @@ import React from 'react';
 import { Control, FieldErrors, UseFormRegister } from 'react-hook-form';
 
 import { COUNTRIES } from '../../../constants/countries';
+import { VALIDATION_RULES } from '../../../constants/validationRules';
 import { Icon } from '../../various/Icon';
 import { Select } from '../../various/Select';
-import { DefaultValues, VALIDATIONS } from './constants';
+import { DefaultValues } from './constants';
 
 interface Props {
   control: Control<DefaultValues>;
@@ -25,7 +26,8 @@ export const SignUpProfessionalStep1: React.FC<Props> = ({ control, errors, regi
           fullWidth
           status={errors.email && 'error'}
           helperText={errors.email?.message}
-          {...register('email', VALIDATIONS.email)}
+          helperColor="error"
+          {...register('email', VALIDATION_RULES.EMAIL)}
         />
       </Grid>
       <Grid xs={12} sm={6}>
@@ -37,7 +39,8 @@ export const SignUpProfessionalStep1: React.FC<Props> = ({ control, errors, regi
           hiddenIcon={<Icon icon="hide" />}
           status={errors.password && 'error'}
           helperText={errors.password?.message}
-          {...register('password', VALIDATIONS.password)}
+          helperColor="error"
+          {...register('password', VALIDATION_RULES.PASSWORD)}
         />
       </Grid>
       <Grid xs={12} sm={6}>
@@ -48,7 +51,8 @@ export const SignUpProfessionalStep1: React.FC<Props> = ({ control, errors, regi
           fullWidth
           status={errors.name && 'error'}
           helperText={errors.name?.message}
-          {...register('name', VALIDATIONS.name)}
+          helperColor="error"
+          {...register('name', VALIDATION_RULES.SHORT_TEXT)}
         />
       </Grid>
       <Grid xs={12} sm={6}>
@@ -61,8 +65,7 @@ export const SignUpProfessionalStep1: React.FC<Props> = ({ control, errors, regi
           options={COUNTRIES}
           name="country"
           control={control}
-          rules={VALIDATIONS.country}
-          helperText={errors.country?.message}
+          rules={VALIDATION_RULES.REQUIRED}
         />
       </Grid>
     </Grid.Container>

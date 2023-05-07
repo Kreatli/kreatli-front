@@ -4,9 +4,10 @@ import { remove } from 'ramda';
 import React from 'react';
 import { Control, FieldErrors, useController, UseFormRegister } from 'react-hook-form';
 
+import { VALIDATION_RULES } from '../../../constants/validationRules';
 import { FileUploader } from '../../various/FileUploader';
 import { Icon } from '../../various/Icon';
-import { DEFAULT_CERTIFICATE, DefaultValues, VALIDATIONS } from './constants';
+import { DEFAULT_CERTIFICATE, DefaultValues } from './constants';
 
 interface Props {
   control: Control<DefaultValues>;
@@ -15,7 +16,7 @@ interface Props {
 }
 
 export const SignUpProfessionalStep5: React.FC<Props> = ({ control, errors, register }) => {
-  const { field } = useController({ control, name: 'certificates', rules: VALIDATIONS.certificates });
+  const { field } = useController({ control, name: 'certificates' });
 
   const handleAddMore = () => {
     field.onChange([
@@ -43,7 +44,8 @@ export const SignUpProfessionalStep5: React.FC<Props> = ({ control, errors, regi
                 fullWidth
                 status={errors.certificates?.[index]?.name && 'error'}
                 helperText={errors.certificates?.[index]?.name?.message}
-                {...register(`certificates.${index}.name`, VALIDATIONS['certificates.0.name'])}
+                helperColor="error"
+                {...register(`certificates.${index}.name`, VALIDATION_RULES.SHORT_TEXT)}
               />
             </Grid>
             <Grid>
@@ -51,7 +53,7 @@ export const SignUpProfessionalStep5: React.FC<Props> = ({ control, errors, regi
                 control={control}
                 name={`certificates.${index}.fileUrl`}
                 status={errors.certificates?.[index]?.fileUrl && 'error'}
-                rules={VALIDATIONS['certificates.0.fileUrl']}
+                rules={VALIDATION_RULES.REQUIRED}
               />
             </Grid>
             <Grid>
