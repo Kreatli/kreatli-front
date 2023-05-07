@@ -41,7 +41,7 @@ export namespace User {
       companyUrl: string;
       description: string;
     }[];
-    certificates?: {
+    certificates: {
       _id: string;
       name: string;
       fileUrl: string;

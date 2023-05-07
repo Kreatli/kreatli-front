@@ -72,7 +72,7 @@ export const SignUpProfessionalStep5: React.FC<Props> = ({ control, errors, regi
       <Spacer />
       <Grid xs={12}>
         <Button size="sm" auto rounded flat icon={<Icon icon="plus" />} onClick={handleAddMore}>
-          Add more
+          Add certificate
         </Button>
       </Grid>
     </Grid.Container>

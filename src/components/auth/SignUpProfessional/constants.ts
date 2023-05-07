@@ -36,7 +36,7 @@ export const DEFAULT_VALUES = {
   // Step 4
   experiences: [DEFAULT_EXPERIENCE],
   // Step 5
-  certificates: [DEFAULT_CERTIFICATE],
+  certificates: [] as typeof DEFAULT_CERTIFICATE[],
 };
 
 export type DefaultValues = typeof DEFAULT_VALUES;
