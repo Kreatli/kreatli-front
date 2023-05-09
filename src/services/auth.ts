@@ -16,3 +16,11 @@ export const requestSignUpProfessional = (data: Api.PostPayload['/auth/signup-pr
 export const requestUserActivation = (data: Api.PostPayload['/auth/activate']) => {
   return api.post('/auth/activate', data).then((res) => res.data);
 };
+
+export const requestResetPassword = (data: Api.PostPayload['/auth/reset-password']) => {
+  return api.post('/auth/reset-password', data).then((res) => res.data);
+};
+
+export const requestChangePassword = (data: Api.PostPayload['/auth/change-password']) => {
+  return api.post('/auth/change-password', data).then((res) => res.data);
+};

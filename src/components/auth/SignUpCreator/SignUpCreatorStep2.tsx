@@ -38,7 +38,7 @@ export const SignUpCreatorStep2: React.FC<Props> = ({ control, errors, register 
           status={errors.description && 'error'}
           helperText={errors.description?.message}
           helperColor="error"
-          {...register('description', VALIDATION_RULES.DESCRIPTION.MIN_50)}
+          {...register('description', VALIDATION_RULES.DESCRIPTION.MIN_100)}
         />
       </Grid>
       <Grid xs={12} sm={6}>

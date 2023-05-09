@@ -22,7 +22,7 @@ export const SignUpCreator: React.FC = () => {
   const [activeStep, setActiveStep] = React.useState(0);
   const [isFilledByStep, setIsFilledByStep] = React.useState([false, false, false]);
 
-  const { pushNotification } = useNotifications();
+  const pushNotification = useNotifications((state) => state.pushNotification);
   const { theme } = useTheme();
   const {
     control,
@@ -103,7 +103,6 @@ export const SignUpCreator: React.FC = () => {
 
   return (
     <Container>
-      <Spacer y={2} />
       <Grid.Container justify="center">
         <Grid xs={12} md={8} direction="column">
           <Text as="h2" weight="bold" color="secondary">Sign up</Text>

@@ -5,7 +5,11 @@ import { NextUIProvider } from '@nextui-org/react';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import React from 'react';
-import { Hydrate, QueryClient, QueryClientProvider } from 'react-query';
+import { QueryClient, QueryClientProvider } from 'react-query';
+
+import { ApplicationLoader } from '../components/app/ApplicationLoader';
+import { Header } from '../components/layout/Header';
+import { Notifications } from '../components/various/Notifications';
 
 export default function App({ Component, pageProps }: AppProps) {
   const [queryClient] = React.useState(
@@ -13,6 +17,7 @@ export default function App({ Component, pageProps }: AppProps) {
       defaultOptions: {
         queries: {
           refetchOnWindowFocus: false,
+          refetchOnMount: false,
           retry: false,
         },
       },
@@ -27,11 +32,16 @@ export default function App({ Component, pageProps }: AppProps) {
         <meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1.0, user-scalable=no" />
       </Head>
       <QueryClientProvider client={queryClient}>
-        <Hydrate state={pageProps.dehydratedState}>
-          <NextUIProvider>
-            <Component {...pageProps} />
-          </NextUIProvider>
-        </Hydrate>
+        <NextUIProvider>
+          <ApplicationLoader>
+            <Header />
+            <main>
+              <Component {...pageProps} />
+            </main>
+            <footer />
+            <Notifications />
+          </ApplicationLoader>
+        </NextUIProvider>
       </QueryClientProvider>
     </>
   );

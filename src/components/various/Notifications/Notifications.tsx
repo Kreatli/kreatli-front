@@ -7,7 +7,7 @@ import { Icon } from '../Icon';
 import styles from './Notifications.module.scss';
 
 export const Notifications = () => {
-  const { notifications } = useNotifications();
+  const notifications = useNotifications((state) => state.notifications);
 
   const getCardCss = (color: Notification['color']) => {
     if (color === 'default') {

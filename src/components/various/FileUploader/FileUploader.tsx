@@ -20,7 +20,7 @@ interface Props<T extends FieldValues> {
 export const FileUploader = <T extends FieldValues>({ control, name, status, rules }: Props<T>) => {
   const [selectedFile, setSelectedFile] = React.useState<File | null>(null);
   const { field } = useController({ control, name, rules });
-  const { pushNotification } = useNotifications();
+  const pushNotification = useNotifications((state) => state.pushNotification);
 
   const { isLoading, mutate } = useMutation(requestFileUpload, {
     onSuccess: (data) => {

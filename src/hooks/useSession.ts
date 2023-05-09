@@ -4,10 +4,12 @@ import { useMutation, useQuery, useQueryClient } from 'react-query';
 
 import { requestSignIn } from '../services/auth';
 import { requestUser } from '../services/user';
+import { useApplicationLoader } from './useApplicationLoader';
 
 export const useSession = () => {
   const queryClient = useQueryClient();
   const router = useRouter();
+  const setIsLoading = useApplicationLoader((state) => state.setIsLoading);
 
   const signInMutation = useMutation(requestSignIn, {
     onSuccess: ({ token, user }) => {
@@ -22,8 +24,10 @@ export const useSession = () => {
     router.push('/');
   }, [queryClient, router]);
 
-  const { data, isLoading } = useQuery('user', requestUser, {
-    refetchOnMount: false,
+  const { data } = useQuery('user', requestUser, {
+    onSettled: () => {
+      setIsLoading(false);
+    },
     onError: () => {
       localStorage.removeItem('token');
     },
@@ -31,7 +35,6 @@ export const useSession = () => {
 
   return {
     isSignedIn: !!data,
-    isLoading,
     signInMutation,
     signOut,
     user: data,

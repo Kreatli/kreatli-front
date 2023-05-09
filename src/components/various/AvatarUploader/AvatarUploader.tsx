@@ -47,7 +47,7 @@ export const AvatarUploader = <T extends FieldValues>({ control, name, rules, st
   const [imageDimensions, setImageDimensions] = React.useState({ width: 0, height: 0 });
   const [isLoading, setIsLoading] = React.useState(false);
 
-  const { pushNotification } = useNotifications();
+  const pushNotification = useNotifications((state) => state.pushNotification);
   const { field } = useController({ control, name, rules });
 
   React.useEffect(() => {

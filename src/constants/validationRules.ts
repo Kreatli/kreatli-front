@@ -8,7 +8,7 @@ const TWITTER_ACCOUNT_URL_PATTERN = /(https:\/\/twitter.com\/(?![a-zA-Z0-9_]+\/)
 const getDescriptionRulesByMinLength = (minLength: number) => ({
   required: true,
   minLength: {
-    message: `C'mon, let's at least ${minLength} characters 😉`,
+    message: `C'mon, make it at least ${minLength} characters 😉`,
     value: minLength,
   },
   maxLength: {
@@ -50,13 +50,17 @@ export const VALIDATION_RULES = {
       value: 8,
     },
     maxLength: 200,
-    validate: (password: string) => {
+    validate: (password: string, { password: passwordRepeat }: { password: string }) => {
       if (!/[A-Z]/.test(password)) {
         return 'Password must contain at least 1 capital letter';
       }
 
       if (!/[0-9]/.test(password)) {
         return 'Password must contain at least 1 digit character';
+      }
+
+      if (password !== passwordRepeat) {
+        return 'Passwords should match';
       }
 
       return undefined;
@@ -70,7 +74,6 @@ export const VALIDATION_RULES = {
     },
   },
   DESCRIPTION: {
-    MIN_50: getDescriptionRulesByMinLength(50),
     MIN_100: getDescriptionRulesByMinLength(100),
   },
   URL: {

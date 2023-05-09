@@ -20,7 +20,7 @@ interface DropdownItem extends Partial<DropdownItemProps> {
 export const Header: React.FC = () => {
   const router = useRouter();
   const { isVisible, openModal, closeModal } = useModalVisibility();
-  const { isSignedIn, isLoading, user, signOut } = useSession();
+  const { isSignedIn, user, signOut } = useSession();
 
   const navigationItems = [
     ...(isSignedIn ? [{
@@ -94,7 +94,7 @@ export const Header: React.FC = () => {
         ))}
       </Navbar.Content>
       <Navbar.Content>
-        {!isSignedIn && !isLoading && (
+        {!isSignedIn && (
           <Navbar.Item>
             <Dropdown>
               <Dropdown.Button auto flat color="secondary">Sign up</Dropdown.Button>

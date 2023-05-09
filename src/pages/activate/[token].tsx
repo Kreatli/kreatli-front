@@ -1,19 +1,27 @@
-import { Container, Loading, Spacer, Text } from '@nextui-org/react';
+import { Container, Loading } from '@nextui-org/react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { useMutation } from 'react-query';
 
 import { useNotifications } from '../../hooks/useNotifications';
-import { Layout } from '../../layouts/default';
 import { requestUserActivation } from '../../services/auth';
 import { getErrorMessage } from '../../utils/getErrorMessage';
 
 const AccountActivation: React.FC = () => {
   const router = useRouter();
-  const { pushNotification } = useNotifications();
-  const { mutate, isLoading } = useMutation(requestUserActivation, {
+  const pushNotification = useNotifications((state) => state.pushNotification);
+  const { mutate } = useMutation(requestUserActivation, {
+    onSettled: () => {
+      router.push('/');
+      pushNotification({
+        message: 'Your account has been activated! You can sign in now.',
+        color: 'success',
+        icon: 'success',
+      });
+    },
     onError: (error) => {
+      router.push('/');
       pushNotification({
         message: getErrorMessage(error),
         color: 'error',
@@ -41,17 +49,12 @@ const AccountActivation: React.FC = () => {
   return (
     <>
       <Head>
-        <title>Kreali | Activate your account</title>
+        <title>Kreatli | Activate your account</title>
         <meta name="description" content="Kreatli" />
       </Head>
-      <Layout>
-        <Container css={{ textAlign: 'center' }}>
-          <Spacer y={2} />
-          {isLoading
-            ? <Loading size="lg" />
-            : <Text h3>Your account has been activated! You can sign in now.</Text>}
-        </Container>
-      </Layout>
+      <Container css={{ textAlign: 'center' }}>
+        <Loading size="lg" />
+      </Container>
     </>
   );
 };

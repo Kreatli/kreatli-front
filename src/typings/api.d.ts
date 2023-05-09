@@ -32,7 +32,6 @@ export namespace Api {
     | '/auth/signin'
     | '/auth/activate'
     | '/auth/reset-password'
-    | '/auth/reset-password'
     | '/auth/change-password'
     | '/upload/image'
     | '/upload/file';
