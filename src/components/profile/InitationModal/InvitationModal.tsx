@@ -1,0 +1,32 @@
+import { Modal, Text } from '@nextui-org/react';
+import React from 'react';
+
+import { InvitationForm } from './InvitationForm';
+
+interface Props {
+  inviteeId: string;
+  inviteeName: string;
+  isVisible: boolean;
+  onClose: () => void;
+}
+
+export const InvitationModal: React.FC<Props> = ({ inviteeId, inviteeName, isVisible, onClose }) => {
+  return (
+    <Modal
+      closeButton
+      blur
+      aria-labelledby="modal-title"
+      open={isVisible}
+      onClose={onClose}
+    >
+      <Modal.Header>
+        <Text h3>
+          Invite {inviteeName} to connect
+        </Text>
+      </Modal.Header>
+      <Modal.Body>
+        <InvitationForm inviteeId={inviteeId} onSuccess={onClose} onCancel={onClose} />
+      </Modal.Body>
+    </Modal>
+  );
+};

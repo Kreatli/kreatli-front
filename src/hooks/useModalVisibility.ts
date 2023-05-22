@@ -12,7 +12,7 @@ export const useModalVisibility = () => {
   };
 
   return {
-    isVisible,
+    isModalVisible: isVisible,
     openModal,
     closeModal,
   };

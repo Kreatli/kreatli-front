@@ -1,3 +1,4 @@
+import { Invitation } from './invitation';
 import { User } from './user';
 
 export interface UploadApiResponse {
@@ -25,7 +26,11 @@ export interface UploadApiResponse {
 }
 
 export namespace Api {
-  export type Get = '/user';
+  export type Get =
+    | '/user'
+    | `/user/${string}`
+    | `/user/${string}/connections`;
+
   export type Post =
     | '/auth/signup-creator'
     | '/auth/signup-professional'
@@ -34,11 +39,18 @@ export namespace Api {
     | '/auth/reset-password'
     | '/auth/change-password'
     | '/upload/image'
-    | '/upload/file';
+    | '/upload/file'
+    | `/user/${string}/invitation`;
+
   export type Put = '';
 
   export interface GetResponse {
     '/user': User.Type;
+    [userById: `/user/${string}`]: User.Type;
+    [userConnections: `/user/${string}/connections`]: {
+      connections: User.Base[];
+      invitations: Invitation[];
+    };
   }
 
   export interface PostPayload {
@@ -60,6 +72,10 @@ export namespace Api {
     };
     '/upload/image': FormData;
     '/upload/file': FormData;
+    [userInvitation: `/user/${string}/invitation`]: {
+      message: string;
+      inviter: string;
+    };
   }
 
   export interface PostResponse {
@@ -78,6 +94,7 @@ export namespace Api {
     '/auth/change-password': User.Type;
     '/upload/image': UploadApiResponse;
     '/upload/file': UploadApiResponse;
+    [userInvitation: `/user/${string}/invitation`]: {};
   }
 
   export interface PutPayload {

@@ -50,12 +50,12 @@ export const ChangePasswordForm = ({ token, onSuccess, onError }: Props) => {
 
   return (
     <form noValidate onSubmit={handleSubmit(onSubmit)} style={{ width: '100%' }}>
-      <Text h3>Change your password</Text>
+      <Text h3>Create a new password</Text>
       <Grid.Container gap={2}>
         <Grid xs={12}>
           <Input.Password
-            placeholder="Password"
-            aria-label="Password"
+            placeholder="New password"
+            aria-label="New password"
             disabled={isLoading}
             fullWidth
             status={errors.password && 'error'}
@@ -68,8 +68,8 @@ export const ChangePasswordForm = ({ token, onSuccess, onError }: Props) => {
         </Grid>
         <Grid xs={12}>
           <Input.Password
-            placeholder="Repeat password"
-            aria-label="Repeat password"
+            placeholder="Repeat new password"
+            aria-label="Repeat new password"
             disabled={isLoading}
             fullWidth
             status={errors.passwordRepeat && 'error'}

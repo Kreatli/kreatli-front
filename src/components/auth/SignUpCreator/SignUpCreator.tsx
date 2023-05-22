@@ -14,7 +14,7 @@ import { SignUpCreatorStep3 } from './SignUpCreatorStep3';
 
 const FIELDS_BY_STEP = [
   ['email', 'password', 'name', 'country'],
-  ['category', 'description', 'socialMediaUrl', 'socialMediaUrlOther', 'discordUsername', 'twitterUrl'],
+  ['description', 'youtubeUrl', 'youtubeUrlOther', 'discordUsername', 'twitterUrl'],
   ['interestSkills'],
 ] as const;
 
@@ -90,7 +90,7 @@ export const SignUpCreator: React.FC = () => {
     {
       title: 'Step 2 - Channel Details',
       subtitle: 'Provide your YouTube channel link and describe it for professionals to know your content and background',
-      render: <SignUpCreatorStep2 control={control} register={register} errors={errors} />,
+      render: <SignUpCreatorStep2 register={register} errors={errors} />,
     },
     {
       title: 'Step 3 - Professionals Needed',
@@ -102,54 +102,50 @@ export const SignUpCreator: React.FC = () => {
   const description = 'Kreatli will help you find professionals to create high-quality content that resonates with your audience. The registration process only takes 3 minutes, so join today and take your YouTube channel to the next level!';
 
   return (
-    <Container>
-      <Grid.Container justify="center">
-        <Grid xs={12} md={8} direction="column">
-          <Text as="h2" weight="bold" color="secondary">Sign up</Text>
-          <Text>{description}</Text>
-          <Spacer y={1} />
-          <Progress value={progressValue} size="sm" color="gradient" />
-          <Spacer y={1} />
-          <form noValidate onSubmit={handleSubmit(onSubmit)}>
-            <Collapse.Group splitted onChange={handleChange} css={{ padding: 0 }}>
-              {steps.map(({ title, subtitle, render }, index) => (
-                <Collapse
-                  key={title}
-                  title={title}
-                  subtitle={subtitle}
-                  shadow
-                  contentLeft={!isValidByStep[index] && <Icon icon="error" fill={theme?.colors.error.value} />}
-                  expanded={activeStep === index && !isSuccess}
-                  disabled={isSuccess || isLoading || (index > 0 && !isFilledByStep[index - 1])}
-                >
-                  {render}
-                  <Spacer />
-                  <Grid.Container gap={1}>
-                    {index > 0 && (
-                      <Grid>
-                        <Button auto light color="primary" onClick={handleBack}>Back</Button>
-                      </Grid>
-                    )}
-                    {index !== steps.length - 1 && (
-                      <Grid>
-                        <Button auto flat onClick={handleNext}>Next</Button>
-                      </Grid>
-                    )}
-                    {index === steps.length - 1 && (
-                      <Grid>
-                        <Button type="submit" auto color="gradient" disabled={isLoading}>
-                          {isLoading && <Loading size="xs" css={{ paddingRight: '$4' }} />}
-                          Create profile
-                        </Button>
-                      </Grid>
-                    )}
-                  </Grid.Container>
-                </Collapse>
-              ))}
-            </Collapse.Group>
-          </form>
-        </Grid>
-      </Grid.Container>
+    <Container sm>
+      <Text as="h2" weight="bold" color="secondary">Sign up</Text>
+      <Text>{description}</Text>
+      <Spacer y={1} />
+      <Progress value={progressValue} size="sm" color="gradient" />
+      <Spacer y={1} />
+      <form noValidate onSubmit={handleSubmit(onSubmit)}>
+        <Collapse.Group splitted onChange={handleChange} css={{ padding: 0 }}>
+          {steps.map(({ title, subtitle, render }, index) => (
+            <Collapse
+              key={title}
+              title={title}
+              subtitle={subtitle}
+              shadow
+              contentLeft={!isValidByStep[index] && <Icon icon="error" fill={theme?.colors.error.value} />}
+              expanded={activeStep === index && !isSuccess}
+              disabled={isSuccess || isLoading || (index > 0 && !isFilledByStep[index - 1])}
+            >
+              {render}
+              <Spacer />
+              <Grid.Container gap={1}>
+                {index > 0 && (
+                  <Grid>
+                    <Button auto light color="primary" onClick={handleBack}>Back</Button>
+                  </Grid>
+                )}
+                {index !== steps.length - 1 && (
+                  <Grid>
+                    <Button auto flat onClick={handleNext}>Next</Button>
+                  </Grid>
+                )}
+                {index === steps.length - 1 && (
+                  <Grid>
+                    <Button type="submit" auto color="gradient" disabled={isLoading}>
+                      {isLoading && <Loading size="xs" css={{ paddingRight: '$4' }} />}
+                      Create profile
+                    </Button>
+                  </Grid>
+                )}
+              </Grid.Container>
+            </Collapse>
+          ))}
+        </Collapse.Group>
+      </form>
     </Container>
   );
 };

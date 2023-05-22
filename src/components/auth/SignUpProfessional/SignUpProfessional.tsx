@@ -116,54 +116,50 @@ export const SignUpProfessional: React.FC = () => {
   const description = 'Kreatli will help you find the best YouTube creators to collaborate and network with. The registration process only takes 7 minutes, so join today and become a part of our community';
 
   return (
-    <Container>
-      <Grid.Container justify="center">
-        <Grid xs={12} md={8} direction="column">
-          <Text as="h2" weight="bold" color="secondary">Sign up</Text>
-          <Text>{description}</Text>
-          <Spacer y={1} />
-          <Progress value={progressValue} size="sm" color="gradient" />
-          <Spacer y={1} />
-          <form noValidate onSubmit={handleSubmit(onSubmit)}>
-            <Collapse.Group splitted onChange={handleChange} css={{ padding: 0 }}>
-              {steps.map(({ title, subtitle, render }, index) => (
-                <Collapse
-                  key={title}
-                  title={title}
-                  subtitle={subtitle}
-                  shadow
-                  contentLeft={!isValidByStep[index] && <Icon icon="error" fill={theme?.colors.error.value} />}
-                  expanded={activeStep === index && !isSuccess}
-                  disabled={isSuccess || isLoading || (index > 0 && !isFilledByStep[index - 1])}
-                >
-                  {render}
-                  <Spacer />
-                  <Grid.Container gap={1}>
-                    {index > 0 && (
-                      <Grid>
-                        <Button auto light color="primary" onClick={handleBack}>Back</Button>
-                      </Grid>
-                    )}
-                    {index !== steps.length - 1 && (
-                      <Grid>
-                        <Button auto flat onClick={handleNext}>Next</Button>
-                      </Grid>
-                    )}
-                    {index === steps.length - 1 && (
-                      <Grid>
-                        <Button type="submit" auto color="gradient" disabled={isLoading}>
-                          {isLoading && <Loading size="xs" css={{ paddingRight: '$4' }} />}
-                          Create profile
-                        </Button>
-                      </Grid>
-                    )}
-                  </Grid.Container>
-                </Collapse>
-              ))}
-            </Collapse.Group>
-          </form>
-        </Grid>
-      </Grid.Container>
+    <Container sm>
+      <Text as="h2" weight="bold" color="secondary">Sign up</Text>
+      <Text>{description}</Text>
+      <Spacer y={1} />
+      <Progress value={progressValue} size="sm" color="gradient" />
+      <Spacer y={1} />
+      <form noValidate onSubmit={handleSubmit(onSubmit)}>
+        <Collapse.Group splitted onChange={handleChange} css={{ padding: 0 }}>
+          {steps.map(({ title, subtitle, render }, index) => (
+            <Collapse
+              key={title}
+              title={title}
+              subtitle={subtitle}
+              shadow
+              contentLeft={!isValidByStep[index] && <Icon icon="error" fill={theme?.colors.error.value} />}
+              expanded={activeStep === index && !isSuccess}
+              disabled={isSuccess || isLoading || (index > 0 && !isFilledByStep[index - 1])}
+            >
+              {render}
+              <Spacer />
+              <Grid.Container gap={1}>
+                {index > 0 && (
+                  <Grid>
+                    <Button auto light color="primary" onClick={handleBack}>Back</Button>
+                  </Grid>
+                )}
+                {index !== steps.length - 1 && (
+                  <Grid>
+                    <Button auto flat onClick={handleNext}>Next</Button>
+                  </Grid>
+                )}
+                {index === steps.length - 1 && (
+                  <Grid>
+                    <Button type="submit" auto color="gradient" disabled={isLoading}>
+                      {isLoading && <Loading size="xs" css={{ paddingRight: '$4' }} />}
+                      Create profile
+                    </Button>
+                  </Grid>
+                )}
+              </Grid.Container>
+            </Collapse>
+          ))}
+        </Collapse.Group>
+      </form>
     </Container>
   );
 };

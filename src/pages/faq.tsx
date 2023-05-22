@@ -9,7 +9,7 @@ const Faq: React.FC = () => {
         <title>Kreatli | FAQ</title>
         <meta name="description" content="Kreatli" />
       </Head>
-      <Container>
+      <Container sm>
         <Text h2>FAQ</Text>
       </Container>
     </>

@@ -1,35 +1,19 @@
 import { Grid, Input, Textarea } from '@nextui-org/react';
 import React from 'react';
-import { Control, FieldErrors, UseFormRegister } from 'react-hook-form';
+import { FieldErrors, UseFormRegister } from 'react-hook-form';
 
-import { CATEGORIES } from '../../../constants/categories';
 import { VALIDATION_RULES } from '../../../constants/validationRules';
 import { Icon } from '../../various/Icon';
-import { Select } from '../../various/Select';
 import { DefaultValues } from './constants';
 
 interface Props {
-  control: Control<DefaultValues>;
   errors: FieldErrors<DefaultValues>;
   register: UseFormRegister<DefaultValues>;
 }
 
-export const SignUpCreatorStep2: React.FC<Props> = ({ control, errors, register }) => {
+export const SignUpCreatorStep2: React.FC<Props> = ({ errors, register }) => {
   return (
     <Grid.Container gap={1} alignItems="flex-start">
-      <Grid xs={12} sm={6}>
-        <Select
-          labelLeft="Category"
-          aria-label="Category"
-          placeholder="Select..."
-          fullWidth
-          status={errors.category && 'error'}
-          name="category"
-          options={CATEGORIES}
-          control={control}
-          rules={VALIDATION_RULES.REQUIRED}
-        />
-      </Grid>
       <Grid xs={12}>
         <Textarea
           placeholder="Introduce yourself and describe your channel. Get creative!"
@@ -48,10 +32,10 @@ export const SignUpCreatorStep2: React.FC<Props> = ({ control, errors, register 
           aria-label="Youtube Link"
           placeholder="https://youtube.com/@mychannel"
           fullWidth
-          status={errors.socialMediaUrl && 'error'}
-          helperText={errors.socialMediaUrl?.message}
+          status={errors.youtubeUrl && 'error'}
+          helperText={errors.youtubeUrl?.message}
           helperColor="error"
-          {...register('socialMediaUrl', VALIDATION_RULES.YOUTUBE_CHANNEL.REQUIRED)}
+          {...register('youtubeUrl', VALIDATION_RULES.YOUTUBE_CHANNEL.REQUIRED)}
         />
       </Grid>
       <Grid xs={12} sm={6}>
@@ -61,10 +45,10 @@ export const SignUpCreatorStep2: React.FC<Props> = ({ control, errors, register 
           aria-label="Second Youtube Link"
           placeholder="https://youtube.com/@mysecondchannel"
           fullWidth
-          status={errors.socialMediaUrlOther && 'error'}
-          helperText={errors.socialMediaUrlOther?.message}
+          status={errors.youtubeUrlOther && 'error'}
+          helperText={errors.youtubeUrlOther?.message}
           helperColor="error"
-          {...register('socialMediaUrlOther', VALIDATION_RULES.YOUTUBE_CHANNEL.OPTIONAL)}
+          {...register('youtubeUrlOther', VALIDATION_RULES.YOUTUBE_CHANNEL.OPTIONAL)}
         />
       </Grid>
       <Grid xs={12} sm={6}>

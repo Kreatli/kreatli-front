@@ -1,12 +1,10 @@
-import { Avatar, Dropdown, DropdownItemProps, Navbar } from '@nextui-org/react';
-import Image from 'next/image';
+import { Avatar, Button, Dropdown, DropdownItemProps, Navbar, useTheme } from '@nextui-org/react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { useTheme as useNextTheme } from 'next-themes';
 import React from 'react';
 
-// TODO: get rid of ts-ignore
-// @ts-ignore
-import logoImage from '../../../assets/images/logo.svg?url';
+import LogoIcon from '../../../assets/images/logo.svg';
 import { useModalVisibility } from '../../../hooks/useModalVisibility';
 import { useSession } from '../../../hooks/useSession';
 import { SignInModal } from '../../auth/SignInModal';
@@ -19,8 +17,10 @@ interface DropdownItem extends Partial<DropdownItemProps> {
 
 export const Header: React.FC = () => {
   const router = useRouter();
-  const { isVisible, openModal, closeModal } = useModalVisibility();
-  const { isSignedIn, user, signOut } = useSession();
+  const { isModalVisible, openModal, closeModal } = useModalVisibility();
+  const { isSignedIn, currentUser, signOut } = useSession();
+  const { setTheme } = useNextTheme();
+  const { isDark } = useTheme();
 
   const navigationItems = [
     ...(isSignedIn ? [{
@@ -39,6 +39,10 @@ export const Header: React.FC = () => {
       color: 'primary' as const,
       key: 'myAccount',
     },
+    ...(isSignedIn ? [{
+      label: 'Connections',
+      key: 'connections',
+    }] : []),
     {
       label: 'FAQ',
       key: 'faq',
@@ -59,7 +63,8 @@ export const Header: React.FC = () => {
   const dropdownActions = {
     contact: () => router.push('/contact'),
     faq: () => router.push('/faq'),
-    myAccount: () => router.push(`/profile/${user?._id}`),
+    myAccount: () => router.push(`/profile/${currentUser?._id}`),
+    connections: () => router.push(`/profile/${currentUser?._id}/connections`),
     signIn: openModal,
     signOut,
   };
@@ -75,16 +80,16 @@ export const Header: React.FC = () => {
   };
 
   const userInitials = React.useMemo(() => {
-    return user?.name?.split(' ').map((part: string) => part[0]).join('') ?? '';
-  }, [user]);
+    return currentUser?.name?.split(' ').map((part: string) => part[0]).join('') ?? '';
+  }, [currentUser?.name]);
 
   return (
-    <Navbar variant="sticky">
+    <Navbar variant="sticky" css={{ zIndex: '$3' }}>
       <Navbar.Content>
         <Navbar.Toggle aria-label="Toggle navigation" showIn="sm" />
         <Navbar.Brand>
           <Link href="/">
-            <Image src={logoImage} alt="Kreatli" />
+            <LogoIcon viewBox="0 0 90 22" />
           </Link>
         </Navbar.Brand>
       </Navbar.Content>
@@ -94,6 +99,15 @@ export const Header: React.FC = () => {
         ))}
       </Navbar.Content>
       <Navbar.Content>
+        <Navbar.Item>
+          <Button
+            icon={<Icon icon={isDark ? 'sun' : 'moon'} />}
+            light
+            rounded
+            auto
+            onClick={() => setTheme(isDark ? 'light' : 'dark')}
+          />
+        </Navbar.Item>
         {!isSignedIn && (
           <Navbar.Item>
             <Dropdown>
@@ -109,7 +123,7 @@ export const Header: React.FC = () => {
           <Dropdown.Trigger>
             <Avatar
               as="button"
-              src={user?.avatarUrl}
+              src={currentUser?.avatarUrl}
               text={userInitials}
               textColor="primary"
               icon={!isSignedIn && <Icon icon="user" size={20} />}
@@ -132,7 +146,7 @@ export const Header: React.FC = () => {
         ))}
       </Navbar.Collapse>
       {!isSignedIn && (
-        <SignInModal isVisible={isVisible} onClose={closeModal} />
+        <SignInModal isVisible={isModalVisible} onClose={closeModal} />
       )}
     </Navbar>
   );

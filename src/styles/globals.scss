@@ -4,22 +4,17 @@
   margin: 0;
 }
 
-body {
-  background: #fff
-}
-
 main {
   min-height: 100vh;
-  padding: 2rem 0;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
+  padding: 3rem 0;
 }
 
 :root {
   --nextui-fonts-sans: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+}
+
+.nextui-user-info {
+  white-space: inherit;
 }
 
 .nextui-input-helper-text-container {

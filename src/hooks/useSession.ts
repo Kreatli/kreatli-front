@@ -37,6 +37,7 @@ export const useSession = () => {
     isSignedIn: !!data,
     signInMutation,
     signOut,
-    user: data,
+    currentUser: data,
+    currentUserId: data?._id ?? '',
   };
 };

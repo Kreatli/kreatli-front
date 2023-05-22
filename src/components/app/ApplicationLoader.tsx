@@ -1,11 +1,8 @@
 import { Loading } from '@nextui-org/react';
 import cx from 'classnames';
-import Image from 'next/image';
 import React from 'react';
 
-// TODO: get rid of ts-ignore
-// @ts-ignore
-import logoImage from '../../assets/images/logo.svg?url';
+import LogoIcon from '../../assets/images/logo.svg';
 import { useApplicationLoader } from '../../hooks/useApplicationLoader';
 import styles from './ApplicationLoader.module.scss';
 
@@ -20,7 +17,7 @@ export const ApplicationLoader = ({ children }: Props) => {
     <>
       {children}
       <div className={cx(styles.wrapper, { [styles.hidden]: !isLoading })}>
-        <Image src={logoImage} className={styles.logo} loading="eager" alt="Kreatli" />
+        <LogoIcon className={styles.logo} viewBox="0 0 90 22" />
         <Loading size="lg" color="secondary" className={styles.loader} />
       </div>
     </>

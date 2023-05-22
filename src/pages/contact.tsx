@@ -9,7 +9,7 @@ const Contact: React.FC = () => {
         <title>Kreatli | Contact</title>
         <meta name="description" content="Kreatli" />
       </Head>
-      <Container>
+      <Container sm>
         <Text h2>Contact</Text>
       </Container>
     </>

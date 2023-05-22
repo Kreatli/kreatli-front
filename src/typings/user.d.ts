@@ -1,33 +1,34 @@
-import { Category } from './category';
 import { Skill, SkillLevel } from './skill';
 
 export namespace User {
   export interface Base {
     _id: string;
+    avatarUrl: string;
     email: string;
-    name?: string;
-    country?: string;
+    name: string;
+    country: string;
     description: string;
+    connectionsCount: number;
     registrationDate: Date;
     isEmailVerified: boolean;
     isVerified: boolean;
     isActive: boolean;
+    hasInvitation?: boolean;
+    hasConnection?: boolean;
   }
 
   export interface Creator extends Base {
     role: 'creator';
-    avatarUrl?: string;
-    category: Category;
-    socialMediaUrl: string;
-    socialMediaUrlOther: string;
-    discordUsername: string;
-    twitterUrl: string;
+    youtubeUrl: string;
+    youtubeUrlOther?: string;
+    discordUsername?: string;
+    twitterUrl?: string;
     interestSkills: Skill[];
+    youtube: YoutubeInfo;
   }
 
   export interface Professional extends Base {
     role: 'professional';
-    avatarUrl: string;
     portfolioUrl?: string;
     twitterUrl?: string;
     discordUsername?: string;
@@ -47,6 +48,21 @@ export namespace User {
       fileUrl: string;
       share: boolean;
     }[];
+  }
+
+  export interface YoutubeInfo {
+    channelId: string;
+    title: string;
+    description: string;
+    customUrl: string;
+    publishedAt: Date;
+    thumbnail: string;
+    country: string;
+    viewCount: number;
+    subscriberCount: number;
+    videoCount: number;
+    topics: string[];
+    bannerUrl: string;
   }
 
   export type Type = Professional | Creator;
