@@ -46,7 +46,7 @@ export namespace Api {
 
   export interface GetResponse {
     '/user': User.Type;
-    [userById: `/user/${string}`]: User.Type;
+    [userById: `/user/${string}/`]: User.Type;
     [userConnections: `/user/${string}/connections`]: {
       connections: User.Base[];
       invitations: Invitation[];
@@ -94,7 +94,7 @@ export namespace Api {
     '/auth/change-password': User.Type;
     '/upload/image': UploadApiResponse;
     '/upload/file': UploadApiResponse;
-    [userInvitation: `/user/${string}/invitation`]: {};
+    [userInvitation: `/user/${string}/invitation`]: User.Type;
   }
 
   export interface PutPayload {

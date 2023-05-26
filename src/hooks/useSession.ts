@@ -25,6 +25,7 @@ export const useSession = () => {
   }, [queryClient, router]);
 
   const { data } = useQuery('user', requestUser, {
+    refetchOnMount: false,
     onSettled: () => {
       setIsLoading(false);
     },

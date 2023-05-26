@@ -30,8 +30,8 @@ export const SignInForm: React.FC<Props> = ({ onClick, onSuccess }) => {
   const onSubmit = (data: DefaultValues) => {
     mutate(data, {
       onSuccess: ({ user }) => {
-        router.push(`/profile/${user._id}`);
         onSuccess();
+        router.push(`/profile/${user._id}`);
       },
       onError: (error: any) => {
         const status = error?.response?.status;

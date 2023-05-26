@@ -5,7 +5,7 @@ import { CardCTA } from './CardCTA';
 
 export const Hero: React.FC = () => {
   return (
-    <Container>
+    <Container lg>
       <Grid.Container alignItems="center">
         <Grid lg={6}>
           <Text h1 size={60} weight="bold" css={{ textGradient: '45deg, $blue600 -20%, $pink600 50%' }}>

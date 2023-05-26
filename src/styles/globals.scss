@@ -4,8 +4,13 @@
   margin: 0;
 }
 
+body {
+  margin-right: calc(100% - 100vw);
+  overflow: hidden auto;
+}
+
 main {
-  min-height: 100vh;
+  min-height: calc(100vh - var(--nextui--navbarHeight));
   padding: 3rem 0;
 }
 
@@ -15,6 +20,13 @@ main {
 
 .nextui-user-info {
   white-space: inherit;
+
+  .nextui-user-desc {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
 }
 
 .nextui-input-helper-text-container {

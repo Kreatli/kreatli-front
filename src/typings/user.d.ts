@@ -13,8 +13,12 @@ export namespace User {
     isEmailVerified: boolean;
     isVerified: boolean;
     isActive: boolean;
-    hasInvitation?: boolean;
     hasConnection?: boolean;
+    invitations: {
+      _id: string;
+      inviter: string;
+      message?: string;
+    }[];
   }
 
   export interface Creator extends Base {

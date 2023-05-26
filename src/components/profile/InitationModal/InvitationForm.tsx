@@ -1,7 +1,7 @@
 import { Button, Grid, Loading, Spacer, Textarea } from '@nextui-org/react';
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { useMutation } from 'react-query';
+import { useMutation, useQueryClient } from 'react-query';
 
 import { useNotifications } from '../../../hooks/useNotifications';
 import { useSession } from '../../../hooks/useSession';
@@ -25,12 +25,13 @@ export const InvitationForm: React.FC<Props> = ({ inviteeId, onCancel, onSuccess
   const { currentUserId } = useSession();
   const { register, handleSubmit, formState: { errors } } = useForm({ defaultValues: DEFAULT_VALUES, mode: 'onBlur' });
   const { mutate, isLoading } = useMutation(requestUserInvitation);
+  const queryClient = useQueryClient();
   const pushNotification = useNotifications((state) => state.pushNotification);
 
   const onSubmit = (data: DefaultValues) => {
     mutate([inviteeId, { ...data, inviter: currentUserId }], {
-      onSuccess: () => {
-        // TODO: push notification
+      onSuccess: (user) => {
+        queryClient.setQueryData(['user', inviteeId], user);
         onSuccess();
       },
       onError: (error: any) => {

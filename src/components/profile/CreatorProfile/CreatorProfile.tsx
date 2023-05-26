@@ -52,7 +52,7 @@ export const CreatorProfile = ({ userId }: Props) => {
         <Grid>
           <Grid.Container direction="column" css={{ gap: '$2' }}>
             {socials.map(({ href, icon }) => (
-              <Grid>
+              <Grid key={href}>
                 <NextLink href={href} target="_blank">
                   <Icon icon={icon} size={30} fill={theme?.colors.accents8.value} />
                 </NextLink>

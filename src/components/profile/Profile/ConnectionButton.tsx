@@ -1,4 +1,4 @@
-import { Button } from '@nextui-org/react';
+import { Button, Row } from '@nextui-org/react';
 import React from 'react';
 
 import { useModalVisibility } from '../../../hooks/useModalVisibility';
@@ -10,9 +10,10 @@ interface Props {
   inviteeName: string;
   hasConnection: boolean;
   hasInvitation: boolean;
+  wasInvited?: boolean;
 }
 
-export const ConnectionButton = ({ inviteeId, inviteeName, hasConnection, hasInvitation }: Props) => {
+export const ConnectionButton = ({ inviteeId, inviteeName, hasConnection, hasInvitation, wasInvited }: Props) => {
   const { isModalVisible, openModal, closeModal } = useModalVisibility();
 
   if (hasConnection) {
@@ -20,6 +21,17 @@ export const ConnectionButton = ({ inviteeId, inviteeName, hasConnection, hasInv
       <Button href="/" rounded auto icon={<Icon icon="chat" />}>
         Message
       </Button>
+    );
+  }
+
+  if (wasInvited) {
+    return (
+      <Row css={{ gap: '$4' }}>
+        <Button rounded flat auto icon={<Icon icon="check" />}>
+          Accept invitation
+        </Button>
+        <Button rounded flat auto icon={<Icon icon="cross" />} color="error" />
+      </Row>
     );
   }
 

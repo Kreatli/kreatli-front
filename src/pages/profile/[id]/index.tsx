@@ -10,7 +10,7 @@ const Profile: React.FC = () => {
   const router = useRouter();
   const userId = router.query.id as string | undefined;
 
-  const { user } = useUser(userId);
+  const { user } = useUser(userId, true);
 
   const pageTitle = `Kreatli | ${user?.name ?? ''}`;
 

@@ -13,7 +13,7 @@ interface Props {
 
 export const ProfileHeader = ({ user }: Props) => {
   const { _id: userId, connectionsCount, role, name, avatarUrl, isVerified } = user;
-  const { currentUserId } = useSession();
+  const { currentUserId, currentUser } = useSession();
 
   const isMyAccount = currentUserId === userId;
   const youtubeUsername = role === 'creator'
@@ -62,7 +62,8 @@ export const ProfileHeader = ({ user }: Props) => {
                 <ConnectionButton
                   inviteeId={user._id}
                   inviteeName={user.name}
-                  hasInvitation={user.hasInvitation ?? false}
+                  hasInvitation={user?.invitations.some(({ inviter }) => inviter === currentUserId)}
+                  wasInvited={currentUser?.invitations.some(({ inviter }) => inviter === user._id)}
                   hasConnection={user.hasConnection ?? false}
                 />
               )}

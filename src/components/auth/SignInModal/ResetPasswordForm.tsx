@@ -24,12 +24,12 @@ export const ResetPasswordForm: React.FC<Props> = ({ onClick, onSuccess }) => {
   const pushNotification = useNotifications((state) => state.pushNotification);
   const { mutate, isLoading } = useMutation(requestResetPassword, {
     onSuccess: () => {
+      onSuccess();
       pushNotification({
         message: 'Follow the link sent to your email to reset your password',
         color: 'success',
         icon: 'success',
       });
-      onSuccess();
     },
     onError: (error: any) => {
       const status = error?.response?.status;

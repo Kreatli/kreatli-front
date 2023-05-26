@@ -145,9 +145,7 @@ export const Header: React.FC = () => {
           </Navbar.CollapseItem>
         ))}
       </Navbar.Collapse>
-      {!isSignedIn && (
-        <SignInModal isVisible={isModalVisible} onClose={closeModal} />
-      )}
+      <SignInModal isVisible={isModalVisible} onClose={closeModal} />
     </Navbar>
   );
 };

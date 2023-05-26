@@ -11,7 +11,7 @@ const Professionals: React.FC = () => {
         <title>Kreatli | Find professionals</title>
         <meta name="description" content="Kreatli" />
       </Head>
-      <Container>
+      <Container lg>
         <Text h2>Find professionals</Text>
       </Container>
       <Spacer y={1} />

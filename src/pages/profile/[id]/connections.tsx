@@ -1,5 +1,6 @@
-import { Button, Card, Container, Grid, Row, Spacer, Text, User } from '@nextui-org/react';
+import { Button, Card, Container, Grid, Spacer, Text, User } from '@nextui-org/react';
 import Head from 'next/head';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { useQuery } from 'react-query';
@@ -44,8 +45,8 @@ const Connections: React.FC = () => {
           {invitations?.map(({ _id, message, inviter }) => (
             <Grid xs={12}>
               <Card key={_id} variant="bordered">
-                <Card.Header>
-                  <Row justify="space-between" align="center">
+                <Card.Header css={{ justifyContent: 'space-between' }}>
+                  <Link href={`/profile/${inviter._id}`} style={{ maxWidth: 'calc(100% - 5.5rem)' }}>
                     <User
                       src={inviter.avatarUrl}
                       description={inviter.description}
@@ -53,11 +54,11 @@ const Connections: React.FC = () => {
                       bordered
                       name={inviter.name}
                     />
-                    <div style={{ display: 'flex', gap: '0.5rem' }}>
-                      <Button icon={<Icon icon="check" />} auto rounded flat />
-                      <Button icon={<Icon icon="cross" />} auto rounded flat />
-                    </div>
-                  </Row>
+                  </Link>
+                  <div style={{ display: 'flex', gap: '0.5rem' }}>
+                    <Button icon={<Icon icon="check" />} auto rounded flat />
+                    <Button icon={<Icon icon="cross" />} auto rounded flat color="error" />
+                  </div>
                 </Card.Header>
                 {message && (
                   <Card.Body css={{ p: '$0 $10 $6' }}>
