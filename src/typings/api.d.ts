@@ -27,8 +27,8 @@ export interface UploadApiResponse {
 
 export namespace Api {
   export type Get =
-    | '/user'
-    | `/user/${string}`
+    | '/user/'
+    | `/user/${string}/`
     | `/user/${string}/connections`;
 
   export type Post =
@@ -45,7 +45,7 @@ export namespace Api {
   export type Put = '';
 
   export interface GetResponse {
-    '/user': User.Type;
+    '/user/': User.Type;
     [userById: `/user/${string}/`]: User.Type;
     [userConnections: `/user/${string}/connections`]: {
       connections: User.Base[];
