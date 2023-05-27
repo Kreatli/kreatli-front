@@ -22,6 +22,6 @@ export const requestUserInvitationReject = ([id, data]: [Common.Id, Api.PostPayl
   return api.post(`/user/${id}/invitation/reject`, data).then((res) => res.data);
 };
 
-export const requestUserConnections = (id: Common.Id) => {
-  return api.get(`/user/${id}/connections`).then((res) => res.data);
+export const requestUserConnections = (id: Common.Id, params?: { limit: number; offset: number; }) => {
+  return api.get(`/user/${id}/connections`, params).then((res) => res.data);
 };

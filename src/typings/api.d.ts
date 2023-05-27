@@ -53,6 +53,7 @@ export namespace Api {
     '/user/:id': User.Type;
     '/user/:id/connections': {
       connections: User.Base[];
+      connectionsCount: number;
       invitations: Invitation[];
     };
     '/creators': User.Creator[];

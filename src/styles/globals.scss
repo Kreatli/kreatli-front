@@ -4,11 +4,6 @@
   margin: 0;
 }
 
-body {
-  margin-right: calc(100% - 100vw);
-  overflow: hidden auto;
-}
-
 main {
   min-height: calc(100vh - var(--nextui--navbarHeight));
   padding: 3rem 0;
