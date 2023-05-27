@@ -14,6 +14,14 @@ export const requestUserInvitation = ([id, data]: [Common.Id, Api.PostPayload['/
   return api.post(`/user/${id}/invitation`, data).then((res) => res.data);
 };
 
+export const requestUserInvitationAccept = ([id, data]: [Common.Id, Api.PostPayload['/user/:id/invitation/accept']]) => {
+  return api.post(`/user/${id}/invitation/accept`, data).then((res) => res.data);
+};
+
+export const requestUserInvitationReject = ([id, data]: [Common.Id, Api.PostPayload['/user/:id/invitation/reject']]) => {
+  return api.post(`/user/${id}/invitation/reject`, data).then((res) => res.data);
+};
+
 export const requestUserConnections = (id: Common.Id) => {
   return api.get(`/user/${id}/connections`).then((res) => res.data);
 };

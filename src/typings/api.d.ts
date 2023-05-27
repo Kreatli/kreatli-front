@@ -29,7 +29,9 @@ export namespace Api {
   export type Get =
     | '/user'
     | '/user/:id'
-    | '/user/:id/connections';
+    | '/user/:id/connections'
+    | '/creators'
+    | '/professionals';
 
   export type Post =
     | '/auth/signup-creator'
@@ -40,7 +42,9 @@ export namespace Api {
     | '/auth/change-password'
     | '/upload/image'
     | '/upload/file'
-    | '/user/:id/invitation';
+    | '/user/:id/invitation'
+    | '/user/:id/invitation/accept'
+    | '/user/:id/invitation/reject';
 
   export type Put = '';
 
@@ -51,6 +55,8 @@ export namespace Api {
       connections: User.Base[];
       invitations: Invitation[];
     };
+    '/creators': User.Creator[];
+    '/professionals': User.Professional[];
   }
 
   export interface PostPayload {
@@ -74,7 +80,13 @@ export namespace Api {
     '/upload/file': FormData;
     '/user/:id/invitation': {
       message: string;
-      inviter: string;
+      inviter: Id;
+    };
+    '/user/:id/invitation/accept': {
+      invitationId: Id;
+    };
+    '/user/:id/invitation/reject': {
+      invitationId: Id;
     };
   }
 
@@ -95,6 +107,14 @@ export namespace Api {
     '/upload/image': UploadApiResponse;
     '/upload/file': UploadApiResponse;
     '/user/:id/invitation': User.Type;
+    '/user/:id/invitation/accept': {
+      inviter: User.Type;
+      invitee: User.Type;
+    };
+    '/user/:id/invitation/reject': {
+      inviter: User.Type;
+      invitee: User.Type;
+    };
   }
 
   export interface PutPayload {

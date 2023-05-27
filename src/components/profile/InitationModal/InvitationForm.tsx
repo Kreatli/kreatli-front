@@ -10,7 +10,7 @@ import { Common } from '../../../typings/common';
 import { getErrorMessage } from '../../../utils/getErrorMessage';
 
 interface Props {
-  inviteeId: Common.Id;
+  userId: Common.Id;
   onCancel: () => void;
   onSuccess: () => void;
 }
@@ -22,27 +22,29 @@ const DEFAULT_VALUES = {
 
 type DefaultValues = typeof DEFAULT_VALUES;
 
-export const InvitationForm: React.FC<Props> = ({ inviteeId, onCancel, onSuccess }) => {
-  const { currentUserId } = useSession();
+export const InvitationForm: React.FC<Props> = ({ userId, onCancel, onSuccess }) => {
   const { register, handleSubmit, formState: { errors } } = useForm({ defaultValues: DEFAULT_VALUES, mode: 'onBlur' });
-  const { mutate, isLoading } = useMutation(requestUserInvitation);
-  const queryClient = useQueryClient();
   const pushNotification = useNotifications((state) => state.pushNotification);
 
+  const { currentUserId } = useSession();
+  const queryClient = useQueryClient();
+  const { mutate, isLoading } = useMutation(requestUserInvitation, {
+    onSuccess: (user) => {
+      queryClient.setQueryData(['user', userId], user);
+      queryClient.refetchQueries('user');
+      onSuccess();
+    },
+    onError: (error: any) => {
+      pushNotification({
+        message: getErrorMessage(error),
+        color: 'error',
+        icon: 'error',
+      });
+    },
+  });
+
   const onSubmit = (data: DefaultValues) => {
-    mutate([inviteeId, { ...data, inviter: currentUserId }], {
-      onSuccess: (user) => {
-        queryClient.setQueryData(['user', inviteeId], user);
-        onSuccess();
-      },
-      onError: (error: any) => {
-        pushNotification({
-          message: getErrorMessage(error),
-          color: 'error',
-          icon: 'error',
-        });
-      },
-    });
+    mutate([userId, { ...data, inviter: currentUserId }]);
   };
 
   return (

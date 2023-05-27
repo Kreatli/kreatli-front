@@ -4,20 +4,20 @@ import Link from 'next/link';
 import React from 'react';
 import { useQuery } from 'react-query';
 
-import { requestProfessionals } from '../services/users';
+import { requestCreators } from '../services/users';
 
-const Professionals: React.FC = () => {
-  const { data } = useQuery('professionals', requestProfessionals);
+const Creators: React.FC = () => {
+  const { data } = useQuery('creators', requestCreators);
 
   return (
     <>
       <Head>
-        <title>Kreatli | Find professionals</title>
+        <title>Kreatli | Find creators</title>
         <meta name="description" content="Kreatli" />
       </Head>
       <Container lg>
-        <Text h2>Find professionals</Text>
-        <Grid.Container>
+        <Text h2>Find creators</Text>
+        <Grid.Container gap={1}>
           {data?.map((user) => (
             <Grid key={user._id} xs={4} sm={3} md={2}>
               <Link href={`/profile/${user._id}`}>
@@ -36,4 +36,4 @@ const Professionals: React.FC = () => {
   );
 };
 
-export default Professionals;
+export default Creators;

@@ -5,13 +5,13 @@ import { Common } from '../../../typings/common';
 import { InvitationForm } from './InvitationForm';
 
 interface Props {
-  inviteeId: Common.Id;
+  userId: Common.Id;
   inviteeName: string;
   isVisible: boolean;
   onClose: () => void;
 }
 
-export const InvitationModal: React.FC<Props> = ({ inviteeId, inviteeName, isVisible, onClose }) => {
+export const InvitationModal: React.FC<Props> = ({ userId, inviteeName, isVisible, onClose }) => {
   return (
     <Modal
       closeButton
@@ -27,7 +27,7 @@ export const InvitationModal: React.FC<Props> = ({ inviteeId, inviteeName, isVis
         </Text>
       </Modal.Header>
       <Modal.Body>
-        <InvitationForm inviteeId={inviteeId} onSuccess={onClose} onCancel={onClose} />
+        <InvitationForm userId={userId} onSuccess={onClose} onCancel={onClose} />
       </Modal.Body>
     </Modal>
   );

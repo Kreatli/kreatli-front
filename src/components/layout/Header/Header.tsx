@@ -23,10 +23,16 @@ export const Header: React.FC = () => {
   const { isDark } = useTheme();
 
   const navigationItems = [
-    ...(isSignedIn ? [{
-      label: 'Professionals',
-      href: '/professionals',
-    }] : []),
+    ...(isSignedIn ? [
+      {
+        label: 'Professionals',
+        href: '/professionals',
+      },
+      {
+        label: 'Creators',
+        href: '/creators',
+      },
+    ] : []),
   ];
 
   const dropdownItems: DropdownItem[] = [

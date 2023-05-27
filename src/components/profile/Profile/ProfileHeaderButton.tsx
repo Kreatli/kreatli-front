@@ -2,20 +2,29 @@ import { Button, Row } from '@nextui-org/react';
 import React from 'react';
 
 import { useModalVisibility } from '../../../hooks/useModalVisibility';
+import { useSession } from '../../../hooks/useSession';
+import { useUserInvitation } from '../../../hooks/useUserInvitation';
 import { Common } from '../../../typings/common';
 import { Icon } from '../../various/Icon';
 import { InvitationModal } from '../InitationModal/InvitationModal';
 
 interface Props {
-  inviteeId: Common.Id;
+  userId: Common.Id;
   inviteeName: string;
   hasConnection: boolean;
   hasInvitation: boolean;
-  wasInvited?: boolean;
 }
 
-export const ConnectionButton = ({ inviteeId, inviteeName, hasConnection, hasInvitation, wasInvited }: Props) => {
+export const ProfileHeaderButton = ({ userId, inviteeName, hasConnection, hasInvitation }: Props) => {
   const { isModalVisible, openModal, closeModal } = useModalVisibility();
+  const { currentUser } = useSession();
+
+  const invitation = currentUser?.invitations.find(({ inviter }) => inviter === userId);
+  const wasInvited = !!invitation;
+  const { isLoading, handleAccept, handleReject } = useUserInvitation({
+    invitationId: invitation?._id,
+    userId,
+  });
 
   if (hasConnection) {
     return (
@@ -28,10 +37,10 @@ export const ConnectionButton = ({ inviteeId, inviteeName, hasConnection, hasInv
   if (wasInvited) {
     return (
       <Row css={{ gap: '$4' }}>
-        <Button rounded flat auto icon={<Icon icon="check" />}>
+        <Button rounded flat auto icon={<Icon icon="check" />} disabled={isLoading} onClick={handleAccept}>
           Accept invitation
         </Button>
-        <Button rounded flat auto icon={<Icon icon="cross" />} color="error" />
+        <Button rounded flat auto icon={<Icon icon="cross" />} disabled={isLoading} color="error" onClick={handleReject} />
       </Row>
     );
   }
@@ -49,7 +58,7 @@ export const ConnectionButton = ({ inviteeId, inviteeName, hasConnection, hasInv
         {hasInvitation ? 'Invitation sent' : 'Connect'}
       </Button>
       <InvitationModal
-        inviteeId={inviteeId}
+        userId={userId}
         inviteeName={inviteeName}
         isVisible={isModalVisible}
         onClose={closeModal}

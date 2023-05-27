@@ -5,7 +5,7 @@ import React from 'react';
 import { useSession } from '../../../hooks/useSession';
 import { User } from '../../../typings/user';
 import { Icon } from '../../various/Icon';
-import { ConnectionButton } from './ConnectionButton';
+import { ProfileHeaderButton } from './ProfileHeaderButton';
 
 interface Props {
   user: User.Type;
@@ -13,7 +13,7 @@ interface Props {
 
 export const ProfileHeader = ({ user }: Props) => {
   const { _id: userId, connectionsCount, role, name, avatarUrl, isVerified } = user;
-  const { currentUserId, currentUser } = useSession();
+  const { currentUserId } = useSession();
 
   const isMyAccount = currentUserId === userId;
   const youtubeUsername = role === 'creator'
@@ -45,8 +45,8 @@ export const ProfileHeader = ({ user }: Props) => {
         <div>
           {youtubeUsername && <Text color="$accents6">{youtubeUsername}</Text>}
           <Text h2 size="$3xl" css={{ margin: 0 }}>{name}</Text>
-          <NextLink href={`/profile/${currentUserId}/connections`}>
-            {`${connectionsCount} connections`}
+          <NextLink href={`/profile/${userId}/connections`}>
+            {`${connectionsCount} connection${connectionsCount === 1 ? '' : 's'}`}
           </NextLink>
         </div>
       </Grid>
@@ -59,11 +59,10 @@ export const ProfileHeader = ({ user }: Props) => {
                   Edit profile
                 </Button>
               ) : (
-                <ConnectionButton
-                  inviteeId={user._id}
+                <ProfileHeaderButton
+                  userId={user._id}
                   inviteeName={user.name}
                   hasInvitation={user?.invitations.some(({ inviter }) => inviter === currentUserId)}
-                  wasInvited={currentUser?.invitations.some(({ inviter }) => inviter === user._id)}
                   hasConnection={user.hasConnection ?? false}
                 />
               )}
