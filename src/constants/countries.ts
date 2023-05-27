@@ -51,3 +51,8 @@ export const COUNTRIES = [
   { label: 'United States', value: 'US' },
   { label: 'Other', value: 'OT' },
 ];
+
+export const COUNTRY_LABELS = COUNTRIES.reduce((acc, { label, value }) => ({
+  ...acc,
+  [value]: label,
+}), {} as Record<string, string>);
