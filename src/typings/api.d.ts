@@ -27,9 +27,9 @@ export interface UploadApiResponse {
 
 export namespace Api {
   export type Get =
-    | '/user/'
-    | `/user/${string}/`
-    | `/user/${string}/connections`;
+    | '/user'
+    | '/user/:id'
+    | '/user/:id/connections';
 
   export type Post =
     | '/auth/signup-creator'
@@ -40,14 +40,14 @@ export namespace Api {
     | '/auth/change-password'
     | '/upload/image'
     | '/upload/file'
-    | `/user/${string}/invitation`;
+    | '/user/:id/invitation';
 
   export type Put = '';
 
   export interface GetResponse {
-    '/user/': User.Type;
-    [userById: `/user/${string}/`]: User.Type;
-    [userConnections: `/user/${string}/connections`]: {
+    '/user': User.Type;
+    '/user/:id': User.Type;
+    '/user/:id/connections': {
       connections: User.Base[];
       invitations: Invitation[];
     };
@@ -72,7 +72,7 @@ export namespace Api {
     };
     '/upload/image': FormData;
     '/upload/file': FormData;
-    [userInvitation: `/user/${string}/invitation`]: {
+    '/user/:id/invitation': {
       message: string;
       inviter: string;
     };
@@ -94,7 +94,7 @@ export namespace Api {
     '/auth/change-password': User.Type;
     '/upload/image': UploadApiResponse;
     '/upload/file': UploadApiResponse;
-    [userInvitation: `/user/${string}/invitation`]: User.Type;
+    '/user/:id/invitation': User.Type;
   }
 
   export interface PutPayload {

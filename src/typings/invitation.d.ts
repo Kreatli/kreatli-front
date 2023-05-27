@@ -1,7 +1,8 @@
+import { Common } from './common';
 import { User } from './user';
 
 export interface Invitation {
-  _id: string;
+  _id: Common.Id;
   inviter: User.Base;
   message?: string;
 }

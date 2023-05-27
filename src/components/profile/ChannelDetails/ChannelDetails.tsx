@@ -2,11 +2,12 @@ import { Button, Card, Col, Row, Text, Tooltip, User } from '@nextui-org/react';
 import React from 'react';
 
 import { useSession } from '../../../hooks/useSession';
+import { Common } from '../../../typings/common';
 import { User as IUser } from '../../../typings/user';
 import { Icon } from '../../various/Icon';
 
 interface Props {
-  id: string;
+  id: Common.Id;
   youtubeUrl: string;
   details: IUser.YoutubeInfo;
 }

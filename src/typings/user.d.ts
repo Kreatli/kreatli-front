@@ -1,8 +1,9 @@
+import { Common } from './common';
 import { Skill, SkillLevel } from './skill';
 
 export namespace User {
   export interface Base {
-    _id: string;
+    _id: Common.Id;
     avatarUrl: string;
     email: string;
     name: string;
@@ -15,7 +16,7 @@ export namespace User {
     isActive: boolean;
     hasConnection?: boolean;
     invitations: {
-      _id: string;
+      _id: Common.Id;
       inviter: string;
       message?: string;
     }[];
@@ -40,14 +41,14 @@ export namespace User {
     skills: Skill[];
     skillLevels: Partial<Record<Skill, SkillLevel>>;
     experiences: {
-      _id: string;
+      _id: Common.Id;
       imageUrl?: string;
       companyName: string;
       companyUrl: string;
       description: string;
     }[];
     certificates: {
-      _id: string;
+      _id: Common.Id;
       name: string;
       fileUrl: string;
       share: boolean;

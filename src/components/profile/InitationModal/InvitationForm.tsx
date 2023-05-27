@@ -6,10 +6,11 @@ import { useMutation, useQueryClient } from 'react-query';
 import { useNotifications } from '../../../hooks/useNotifications';
 import { useSession } from '../../../hooks/useSession';
 import { requestUserInvitation } from '../../../services/user';
+import { Common } from '../../../typings/common';
 import { getErrorMessage } from '../../../utils/getErrorMessage';
 
 interface Props {
-  inviteeId: string;
+  inviteeId: Common.Id;
   onCancel: () => void;
   onSuccess: () => void;
 }

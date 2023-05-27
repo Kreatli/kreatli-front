@@ -4,6 +4,7 @@ import React from 'react';
 
 import { SKILL_LABELS_FOR_CREATOR } from '../../../constants/skills';
 import { useUser } from '../../../hooks/useUser';
+import { Common } from '../../../typings/common';
 import { User } from '../../../typings/user';
 import { Icon, IconType } from '../../various/Icon';
 import { Tag } from '../../various/Tag';
@@ -11,7 +12,7 @@ import { ChannelDetails } from '../ChannelDetails/ChannelDetails';
 import { ProfileHeader } from '../Profile/ProfileHeader';
 
 interface Props {
-  userId: string;
+  userId: Common.Id;
 }
 
 export const CreatorProfile = ({ userId }: Props) => {

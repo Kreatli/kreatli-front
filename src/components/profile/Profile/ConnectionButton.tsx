@@ -2,11 +2,12 @@ import { Button, Row } from '@nextui-org/react';
 import React from 'react';
 
 import { useModalVisibility } from '../../../hooks/useModalVisibility';
+import { Common } from '../../../typings/common';
 import { Icon } from '../../various/Icon';
 import { InvitationModal } from '../InitationModal/InvitationModal';
 
 interface Props {
-  inviteeId: string;
+  inviteeId: Common.Id;
   inviteeName: string;
   hasConnection: boolean;
   hasInvitation: boolean;

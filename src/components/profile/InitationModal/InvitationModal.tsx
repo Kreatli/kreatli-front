@@ -1,10 +1,11 @@
 import { Modal, Text } from '@nextui-org/react';
 import React from 'react';
 
+import { Common } from '../../../typings/common';
 import { InvitationForm } from './InvitationForm';
 
 interface Props {
-  inviteeId: string;
+  inviteeId: Common.Id;
   inviteeName: string;
   isVisible: boolean;
   onClose: () => void;

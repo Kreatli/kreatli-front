@@ -5,10 +5,11 @@ import React from 'react';
 import { CreatorProfile } from '../../../components/profile/CreatorProfile';
 import { ProfessionalProfile } from '../../../components/profile/ProfessionalProfile';
 import { useUser } from '../../../hooks/useUser';
+import { Common } from '../../../typings/common';
 
 const Profile: React.FC = () => {
   const router = useRouter();
-  const userId = router.query.id as string | undefined;
+  const userId = router.query.id as Common.MaybeId;
 
   const { user } = useUser(userId, true);
 

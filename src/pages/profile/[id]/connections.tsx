@@ -8,10 +8,11 @@ import { useQuery } from 'react-query';
 import { Icon } from '../../../components/various/Icon';
 import { useUser } from '../../../hooks/useUser';
 import { requestUserConnections } from '../../../services/user';
+import { Common } from '../../../typings/common';
 
 const Connections: React.FC = () => {
   const router = useRouter();
-  const userId = router.query.id as string | undefined;
+  const userId = router.query.id as Common.MaybeId;
 
   const fetchUserConnections = () => {
     if (userId) {

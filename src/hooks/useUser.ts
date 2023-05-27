@@ -1,9 +1,10 @@
 import { useQuery } from 'react-query';
 
 import { requestUserById } from '../services/user';
+import { Common } from '../typings/common';
 import { User } from '../typings/user';
 
-export const useUser = <T extends User.Type = User.Type>(userId: string | undefined, refetch = false) => {
+export const useUser = <T extends User.Type = User.Type>(userId: Common.MaybeId, refetch = false) => {
   const fetchUser = () => {
     if (userId) {
       return requestUserById(userId);
