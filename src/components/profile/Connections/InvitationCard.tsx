@@ -2,10 +2,12 @@ import { Button, Card, Text, User } from '@nextui-org/react';
 import Link from 'next/link';
 import React from 'react';
 
+import { useSession } from '../../../hooks/useSession';
 import { useUserInvitation } from '../../../hooks/useUserInvitation';
 import { Invitation } from '../../../typings/invitation';
 import { getUserShortDescription } from '../../../utils/user';
 import { Icon } from '../../various/Icon';
+import { ProfileUnverifiedTooltip } from '../Profile/ProfileUnverifiedTooltip';
 
 interface Props {
   invitation: Invitation;
@@ -13,6 +15,7 @@ interface Props {
 
 export const InvitationCard = ({ invitation }: Props) => {
   const { inviter, message } = invitation;
+  const { currentUser } = useSession();
   const { isLoading, handleAccept, handleReject } = useUserInvitation({
     invitationId: invitation._id,
     userId: inviter._id,
@@ -31,8 +34,12 @@ export const InvitationCard = ({ invitation }: Props) => {
           />
         </Link>
         <div style={{ display: 'flex', gap: '0.5rem' }}>
-          <Button icon={<Icon icon="check" />} auto rounded flat disabled={isLoading} onClick={handleAccept} />
-          <Button icon={<Icon icon="cross" />} auto rounded flat disabled={isLoading} color="error" onClick={handleReject} />
+          <ProfileUnverifiedTooltip>
+            <Button icon={<Icon icon="check" />} auto rounded flat disabled={isLoading || !currentUser?.isVerified} onClick={handleAccept} />
+          </ProfileUnverifiedTooltip>
+          <ProfileUnverifiedTooltip>
+            <Button icon={<Icon icon="cross" />} auto rounded flat disabled={isLoading || !currentUser?.isVerified} color="error" onClick={handleReject} />
+          </ProfileUnverifiedTooltip>
         </div>
       </Card.Header>
       {message && (

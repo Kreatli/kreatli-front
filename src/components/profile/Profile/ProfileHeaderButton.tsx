@@ -7,6 +7,7 @@ import { useUserInvitation } from '../../../hooks/useUserInvitation';
 import { Common } from '../../../typings/common';
 import { Icon } from '../../various/Icon';
 import { InvitationModal } from '../InitationModal/InvitationModal';
+import { ProfileUnverifiedTooltip } from './ProfileUnverifiedTooltip';
 
 interface Props {
   userId: Common.Id;
@@ -25,6 +26,14 @@ export const ProfileHeaderButton = ({ userId, inviteeName, hasConnection, hasInv
     invitationId: invitation?._id,
     userId,
   });
+
+  if (!currentUser?.isVerified) {
+    return (
+      <ProfileUnverifiedTooltip>
+        <Button disabled rounded auto>Connect</Button>
+      </ProfileUnverifiedTooltip>
+    );
+  }
 
   if (hasConnection) {
     return (
