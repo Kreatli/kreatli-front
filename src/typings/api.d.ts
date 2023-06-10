@@ -30,6 +30,7 @@ export namespace Api {
     | '/user'
     | '/user/:id'
     | '/user/:id/connections'
+    | '/users'
     | '/creators'
     | '/professionals';
 
@@ -57,6 +58,7 @@ export namespace Api {
       connectionsCount: number;
       invitations: Invitation[];
     };
+    '/users': User.ShortInfo[];
     '/creators': User.Creator[];
     '/professionals': User.Professional[];
   }

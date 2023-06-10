@@ -29,6 +29,7 @@ export const InvitationCard = ({ invitation }: Props) => {
             src={inviter.avatarUrl}
             description={getUserShortDescription(inviter)}
             size="xl"
+            pointer
             bordered
             name={inviter.name}
           />

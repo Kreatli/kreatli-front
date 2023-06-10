@@ -23,7 +23,7 @@ export const ConnectionCard = ({ user }: Props) => {
           <Grid.Container css={{ gap: '$10' }} alignItems="center">
             <Grid>
               <ProfileBadge isVerified={user.isVerified}>
-                <Avatar src={user.avatarUrl} css={{ size: '$20' }} />
+                <Avatar src={user.avatarUrl} pointer css={{ size: '$20' }} />
               </ProfileBadge>
             </Grid>
             <Grid xs>

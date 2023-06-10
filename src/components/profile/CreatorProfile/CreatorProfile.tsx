@@ -9,6 +9,7 @@ import { User } from '../../../typings/user';
 import { Icon, IconType } from '../../various/Icon';
 import { Tag } from '../../various/Tag';
 import { ProfileHeader } from '../Profile/ProfileHeader';
+import { RecentConnections } from '../RecentConnections';
 import { ChannelDetails } from './ChannelDetails';
 
 interface Props {
@@ -68,7 +69,10 @@ export const CreatorProfile = ({ userId }: Props) => {
         <ChannelDetails id={user._id} youtubeUrl={user.youtubeUrl} details={user.youtube} />
       )}
       <Spacer y={2} />
-      <Text h3>Resent connections</Text>
+      <Text h3>Recent connections</Text>
+      {user && (
+        <RecentConnections ids={user.connections} />
+      )}
     </Container>
   );
 };

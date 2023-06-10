@@ -30,6 +30,7 @@ export namespace User {
     email: string;
     description: string;
     registrationDate: Date;
+    connections: Common.Id[];
     isEmailVerified: boolean;
     isActive: boolean;
     hasConnection?: boolean;
