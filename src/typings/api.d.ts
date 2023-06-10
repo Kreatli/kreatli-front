@@ -42,6 +42,7 @@ export namespace Api {
     | '/auth/change-password'
     | '/upload/image'
     | '/upload/file'
+    | '/user/update-youtube-info'
     | '/user/:id/invitation'
     | '/user/:id/invitation/accept'
     | '/user/:id/invitation/reject';
@@ -79,6 +80,7 @@ export namespace Api {
     };
     '/upload/image': FormData;
     '/upload/file': FormData;
+    '/user/update-youtube-info': {};
     '/user/:id/invitation': {
       message: string;
       inviter: Id;
@@ -107,6 +109,7 @@ export namespace Api {
     '/auth/change-password': User.Type;
     '/upload/image': UploadApiResponse;
     '/upload/file': UploadApiResponse;
+    '/user/update-youtube-info': User.Creator;
     '/user/:id/invitation': User.Type;
     '/user/:id/invitation/accept': {
       inviter: User.Type;

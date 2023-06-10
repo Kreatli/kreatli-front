@@ -1,9 +1,13 @@
 import { Button, Card, Col, Row, Text, Tooltip, User } from '@nextui-org/react';
 import React from 'react';
+import { useMutation, useQueryClient } from 'react-query';
 
+import { useNotifications } from '../../../hooks/useNotifications';
 import { useSession } from '../../../hooks/useSession';
+import { requestYoutubeInfoUpdate } from '../../../services/user';
 import { Common } from '../../../typings/common';
 import { User as IUser } from '../../../typings/user';
+import { getErrorMessage } from '../../../utils/getErrorMessage';
 import { Icon } from '../../various/Icon';
 
 interface Props {
@@ -12,14 +16,35 @@ interface Props {
   details: IUser.YoutubeInfo;
 }
 
-export const ChannelDetails = ({ id, youtubeUrl, details }: Props) => {
-  const { currentUserId } = useSession();
+const DAY_IN_MSEC = 24 * 1000 * 60 * 60;
 
-  const isMyaccount = currentUserId === id;
+export const ChannelDetails = ({ id, youtubeUrl, details }: Props) => {
+  const queryClient = useQueryClient();
+  const { currentUserId } = useSession();
+  const { pushNotification } = useNotifications();
+  const { mutate } = useMutation(requestYoutubeInfoUpdate, {
+    onError: (error) => {
+      pushNotification({
+        message: getErrorMessage(error),
+        color: 'error',
+        icon: 'error',
+      });
+    },
+    onSuccess: (user) => {
+      queryClient.setQueryData(['user', currentUserId], user);
+    },
+  });
+
+  const isMyAccount = currentUserId === id;
   const subscribers = new Intl.NumberFormat().format(details.subscriberCount);
   const videos = new Intl.NumberFormat().format(details.videoCount);
   const views = new Intl.NumberFormat().format(details.viewCount);
   const topics = details.topics.join(', ').toLowerCase();
+  const lastUpdateAt = new Date(details.lastUpdateAt);
+  const canUpdateYoutubeInfo = Date.now() - lastUpdateAt.getTime() > DAY_IN_MSEC;
+  const tooltipContent = canUpdateYoutubeInfo
+    ? 'Update YouTube info'
+    : <>Update limit: Once daily <br />Last update: {lastUpdateAt.toLocaleString()}</>;
 
   return (
     <Card variant="shadow" isPressable>
@@ -36,9 +61,20 @@ export const ChannelDetails = ({ id, youtubeUrl, details }: Props) => {
             <br />
             {videos} videos • {subscribers} subscribers • {views} views
           </User>
-          {isMyaccount && (
-            <Tooltip content="Update YouTube info" color="primary">
-              <Button icon={<Icon icon="update" />} auto rounded flat color="primary" />
+          {isMyAccount && (
+            <Tooltip
+              content={tooltipContent}
+              color={canUpdateYoutubeInfo ? 'primary' : 'default'}
+            >
+              <Button
+                icon={<Icon icon="update" />}
+                auto
+                rounded
+                flat
+                disabled={!canUpdateYoutubeInfo}
+                color="primary"
+                onClick={() => mutate()}
+              />
             </Tooltip>
           )}
         </Row>

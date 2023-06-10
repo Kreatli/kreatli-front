@@ -2,28 +2,35 @@ import { Avatar, Card, Col, Grid, Text } from '@nextui-org/react';
 import Link from 'next/link';
 import React from 'react';
 
-import { COUNTRY_LABELS } from '../../../constants/countries';
 import { User as UserType } from '../../../typings/user';
 import { maxNLinesStyles } from '../../../utils/styles';
+import { getUserSkills } from '../../../utils/user';
+import { ProfileBadge } from '../Profile/ProfileBadge';
 
 interface Props {
-  user: UserType.Base;
+  user: UserType.ShortInfo;
 }
 
 export const ConnectionCard = ({ user }: Props) => {
+  const maxLines = user.role === 'creator'
+    ? 1
+    : 2;
+
   return (
     <Card isHoverable>
       <Link href={`/profile/${user._id}`}>
         <Card.Body>
-          <Grid.Container css={{ gap: '$8' }}>
+          <Grid.Container css={{ gap: '$10' }} alignItems="center">
             <Grid>
-              <Avatar src={user.avatarUrl} css={{ size: '$20' }} />
+              <ProfileBadge isVerified={user.isVerified}>
+                <Avatar src={user.avatarUrl} css={{ size: '$20' }} />
+              </ProfileBadge>
             </Grid>
             <Grid xs>
               <Col>
                 <Text size="$lg" weight="medium">{user.name}</Text>
-                <Text size="$sm" color="$accents6">{COUNTRY_LABELS[user.country]}</Text>
-                <Text size="$sm" css={maxNLinesStyles(1)}>{user.description}</Text>
+                {user.role === 'creator' && <Text size="$sm" color="$accents6">{user.youtube.customUrl}</Text>}
+                <Text size="$sm" css={maxNLinesStyles(maxLines)}>{getUserSkills(user)}</Text>
               </Col>
             </Grid>
           </Grid.Container>

@@ -3,6 +3,6 @@ import { User } from './user';
 
 export interface Invitation {
   _id: Common.Id;
-  inviter: User.Base;
+  inviter: User.ShortInfo;
   message?: string;
 }

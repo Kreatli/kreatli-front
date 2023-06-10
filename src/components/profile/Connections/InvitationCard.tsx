@@ -4,6 +4,7 @@ import React from 'react';
 
 import { useUserInvitation } from '../../../hooks/useUserInvitation';
 import { Invitation } from '../../../typings/invitation';
+import { getUserShortDescription } from '../../../utils/user';
 import { Icon } from '../../various/Icon';
 
 interface Props {
@@ -23,7 +24,7 @@ export const InvitationCard = ({ invitation }: Props) => {
         <Link href={`/profile/${inviter._id}`} style={{ maxWidth: 'calc(100% - 5.5rem)' }}>
           <User
             src={inviter.avatarUrl}
-            description={inviter.description}
+            description={getUserShortDescription(inviter)}
             size="xl"
             bordered
             name={inviter.name}
@@ -36,7 +37,7 @@ export const InvitationCard = ({ invitation }: Props) => {
       </Card.Header>
       {message && (
         <Card.Body css={{ p: '$0 $10 $6' }}>
-          <Text>{message}</Text>
+          <Text size="$sm">{message}</Text>
         </Card.Body>
       )}
     </Card>

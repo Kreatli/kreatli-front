@@ -25,3 +25,7 @@ export const requestUserInvitationReject = ([id, data]: [Common.Id, Api.PostPayl
 export const requestUserConnections = (id: Common.Id, params?: { limit: number; offset: number; }) => {
   return api.get(`/user/${id}/connections`, params).then((res) => res.data);
 };
+
+export const requestYoutubeInfoUpdate = () => {
+  return api.post('/user/update-youtube-info', {}).then((res) => res.data);
+};

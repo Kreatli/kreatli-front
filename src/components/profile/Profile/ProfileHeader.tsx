@@ -1,10 +1,11 @@
-import { Avatar, Badge, Button, Grid, Text } from '@nextui-org/react';
+import { Avatar, Button, Grid, Text } from '@nextui-org/react';
 import NextLink from 'next/link';
 import React from 'react';
 
 import { useSession } from '../../../hooks/useSession';
 import { User } from '../../../typings/user';
 import { Icon } from '../../various/Icon';
+import { ProfileBadge } from './ProfileBadge';
 import { ProfileHeaderButton } from './ProfileHeaderButton';
 
 interface Props {
@@ -27,19 +28,14 @@ export const ProfileHeader = ({ user }: Props) => {
   return (
     <Grid.Container alignItems="center" css={{ gap: '$12' }}>
       <Grid>
-        <Badge
-          content={isVerified ? 'verified' : 'unverified'}
-          variant={isVerified ? 'flat' : 'bordered'}
-          color={isVerified ? 'success' : 'default'}
-          size="xs"
-        >
+        <ProfileBadge isVerified={isVerified}>
           <Avatar
             text={userInitials}
             textColor="primary"
             css={{ size: '$28' }}
             src={avatarUrl}
           />
-        </Badge>
+        </ProfileBadge>
       </Grid>
       <Grid xs>
         <div>

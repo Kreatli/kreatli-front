@@ -2,17 +2,35 @@ import { Common } from './common';
 import { Skill, SkillLevel } from './skill';
 
 export namespace User {
-  export interface Base {
+  export interface ShortInfoBase {
     _id: Common.Id;
     avatarUrl: string;
-    email: string;
-    name: string;
-    country: string;
-    description: string;
     connectionsCount: number;
+    country: string;
+    isVerified: boolean;
+    name: string;
+  }
+
+  export interface ShortInfoCreator extends ShortInfoBase {
+    role: 'creator';
+    youtube: {
+      customUrl: string;
+      topics: string[];
+    };
+  }
+
+  export interface ShortInfoProfessional extends ShortInfoBase {
+    role: 'professional';
+    skills: Skill[];
+  }
+
+  export type ShortInfo = ShortInfoProfessional | ShortInfoCreator;
+
+  export interface Base extends ShortInfoBase {
+    email: string;
+    description: string;
     registrationDate: Date;
     isEmailVerified: boolean;
-    isVerified: boolean;
     isActive: boolean;
     hasConnection?: boolean;
     invitations: {
@@ -68,6 +86,7 @@ export namespace User {
     videoCount: number;
     topics: string[];
     bannerUrl: string;
+    lastUpdateAt: Date;
   }
 
   export type Type = Professional | Creator;
