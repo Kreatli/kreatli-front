@@ -1,5 +1,5 @@
 import { Avatar, Button, Grid, Text } from '@nextui-org/react';
-import NextLink from 'next/link';
+import Link from 'next/link';
 import React from 'react';
 
 import { useSession } from '../../../hooks/useSession';
@@ -20,6 +20,9 @@ export const ProfileHeader = ({ user }: Props) => {
   const youtubeUsername = role === 'creator'
     ? user.youtube.customUrl
     : undefined;
+  const portfolioUrl = role === 'professional'
+    ? user.portfolioUrl
+    : undefined;
 
   const userInitials = React.useMemo(() => {
     return name.split(' ').map((part: string) => part[0]).join('') ?? '';
@@ -39,11 +42,20 @@ export const ProfileHeader = ({ user }: Props) => {
       </Grid>
       <Grid xs>
         <div>
+          {portfolioUrl && (
+            <Text size="$sm">
+              <Link href={portfolioUrl} target="_blank" style={{ display: 'flex', alignItems: 'center', gap: '0.2rem', color: 'var(--nextui-colors-accents6)' }}>
+                <Icon icon="link" size={16} />
+                portfolio
+              </Link>
+            </Text>
+          )}
           {youtubeUsername && <Text color="$accents6">{youtubeUsername}</Text>}
           <Text h2 size="$3xl" css={{ margin: 0 }}>{name}</Text>
-          <NextLink href={`/profile/${userId}/connections`}>
+          <Link href={`/profile/${userId}/connections`}>
             {`${connectionsCount} connection${connectionsCount === 1 ? '' : 's'}`}
-          </NextLink>
+            {user.invitations.length > 0 && isMyAccount ? ` • ${user.invitations.length} invite${connectionsCount === 1 ? '' : 's'}` : ''}
+          </Link>
         </div>
       </Grid>
       <Grid>

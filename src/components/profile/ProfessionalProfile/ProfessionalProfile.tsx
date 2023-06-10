@@ -1,5 +1,5 @@
 import { Badge, Container, Grid, Spacer, Text, useTheme } from '@nextui-org/react';
-import NextLink from 'next/link';
+import Link from 'next/link';
 import React from 'react';
 
 import { SKILL_LABELS_FOR_PROFESSIONAL, SKILL_LEVEL_LABELS } from '../../../constants/skills';
@@ -57,9 +57,9 @@ export const ProfessionalProfile = ({ userId }: Props) => {
           <Grid.Container direction="column" css={{ gap: '$2' }}>
             {socials.map(({ href, icon }) => (
               <Grid key={href}>
-                <NextLink href={href} target="_blank">
+                <Link href={href} target="_blank">
                   <Icon icon={icon} size={30} fill={theme?.colors.accents8.value} />
-                </NextLink>
+                </Link>
               </Grid>
             ))}
           </Grid.Container>
