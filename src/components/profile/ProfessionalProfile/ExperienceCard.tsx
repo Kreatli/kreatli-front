@@ -31,7 +31,7 @@ export const ExperienceCard = ({ description, companyName, companyUrl, imageUrl 
             </Grid.Container>
           </Grid>
           <Grid>
-            <Link href={companyUrl} style={{ display: 'flex', alignItems: 'center', gap: '0.2rem' }}>
+            <Link href={companyUrl} target="_blank" style={{ display: 'flex', alignItems: 'center', gap: '0.2rem' }}>
               <Icon icon="link" size={20} />
               website
             </Link>
