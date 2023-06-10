@@ -17,7 +17,11 @@ export const ProfileUnverifiedTooltip = ({ children }: Props) => {
   }
 
   return (
-    <Tooltip content={<>Your profile is under verification<br />No actions are allowed until it&apos;s verified</>}>
+    <Tooltip
+      content={
+        <>Your profile is being verified.<br />You will have full access to the platform once it&apos;s completed.</>
+      }
+    >
       {children}
     </Tooltip>
   );
