@@ -9,6 +9,7 @@ import { User } from '../../../typings/user';
 import { Icon, IconType } from '../../various/Icon';
 import { Tag } from '../../various/Tag';
 import { ProfileHeader } from '../Profile/ProfileHeader';
+import { ExperienceCard } from './ExperienceCard';
 
 interface Props {
   userId: Common.Id;
@@ -64,7 +65,21 @@ export const ProfessionalProfile = ({ userId }: Props) => {
         </Grid>
       </Grid.Container>
       <Spacer y={2} />
-      <Text h3>Resent connections</Text>
+      <Text h3>Experience</Text>
+      <Grid.Container gap={1}>
+        {user?.experiences.map((experience) => (
+          <Grid key={experience._id} xs={12} sm={12}>
+            <ExperienceCard
+              imageUrl={experience.imageUrl}
+              description={experience.description}
+              companyName={experience.companyName}
+              companyUrl={experience.companyUrl}
+            />
+          </Grid>
+        ))}
+      </Grid.Container>
+      <Spacer y={2} />
+      <Text h3>Recent connections</Text>
     </Container>
   );
 };

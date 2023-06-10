@@ -8,8 +8,8 @@ import { Common } from '../../../typings/common';
 import { User } from '../../../typings/user';
 import { Icon, IconType } from '../../various/Icon';
 import { Tag } from '../../various/Tag';
-import { ChannelDetails } from '../ChannelDetails/ChannelDetails';
 import { ProfileHeader } from '../Profile/ProfileHeader';
+import { ChannelDetails } from './ChannelDetails';
 
 interface Props {
   userId: Common.Id;

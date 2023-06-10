@@ -47,7 +47,7 @@ export const ChannelDetails = ({ id, youtubeUrl, details }: Props) => {
     : <>Update limit: Once daily <br />Last update: {lastUpdateAt.toLocaleString()}</>;
 
   return (
-    <Card variant="shadow" isPressable>
+    <Card variant="shadow">
       <Card.Header>
         <Row justify="space-between" align="center">
           <User
