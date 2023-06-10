@@ -44,7 +44,7 @@ export const ChannelDetails = ({ id, youtubeUrl, details }: Props) => {
   const canUpdateYoutubeInfo = Date.now() - lastUpdateAt.getTime() > DAY_IN_MSEC;
   const tooltipContent = canUpdateYoutubeInfo
     ? 'Update YouTube info'
-    : <>Update limit: Once daily <br />Last update: {lastUpdateAt.toLocaleString()}</>;
+    : <>Update limit: Once a day <br />Last update: {lastUpdateAt.toLocaleString()}</>;
 
   return (
     <Card variant="shadow">
