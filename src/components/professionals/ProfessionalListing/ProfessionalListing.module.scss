@@ -59,6 +59,11 @@
 
     .card {
       filter: none;
+
+      &,
+      & * {
+        pointer-events: none;
+      }
     }
   }
 }

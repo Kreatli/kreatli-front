@@ -60,7 +60,7 @@ export const ProfessionalListing = () => {
   }, [handleCloseFilters, isMobile]);
 
   const shouldShowSkeleton = isFetching && cards.length === 0;
-  const shouldShowEmptyState = !isFetching && cards.length === 0;
+  const shouldShowEmptyState = !isFetching && !data?.length;
 
   return (
     <div className={styles.wrapper}>
@@ -77,6 +77,7 @@ export const ProfessionalListing = () => {
             <Input
               value={search}
               labelLeft={<Icon icon="search" />}
+              aria-label="Search"
               fullWidth
               clearable
               placeholder="Type here to search..."
@@ -85,7 +86,14 @@ export const ProfessionalListing = () => {
           </Grid>
           {isMobile && (
             <Grid>
-              <Button icon={<Icon icon="filter" />} rounded auto color="primary" onClick={handleOpenFilters} />
+              <Button
+                icon={<Icon icon="filter" />}
+                rounded
+                auto
+                color="primary"
+                aria-label="Filters"
+                onClick={handleOpenFilters}
+              />
             </Grid>
           )}
         </Grid.Container>

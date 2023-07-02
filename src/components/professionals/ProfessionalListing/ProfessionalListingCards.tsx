@@ -16,7 +16,7 @@ export const ProfessionalListingCards = ({ cards }: Props) => {
     <>
       {cards.map((user) => (
         <Card key={user._id} className={styles.card} isHoverable>
-          <Card.Image src={user.avatarUrl} />
+          <Card.Image src={user.avatarUrl} width="250" height="250" />
           <Card.Body className={styles.cardBody}>
             <Text h5 className={styles.cardTitle}>{user.name}</Text>
             <Text size="$xs" color="$accents6">{`${COUNTRY_LABELS[user.country]} • Tier ${user.tier}`}</Text>
