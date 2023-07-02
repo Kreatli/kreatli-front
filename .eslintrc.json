@@ -36,7 +36,8 @@
     "react/jsx-one-expression-per-line": "off",
     "no-underscore-dangle": ["error", {
       "allow": ["_id"]
-    }]
+    }],
+    "react/no-array-index-key": "warn"
   },
   "parserOptions": {
     "project": "./tsconfig.json"

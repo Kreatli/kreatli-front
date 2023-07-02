@@ -1,4 +1,5 @@
 import { Invitation } from './invitation';
+import { Skill, SkillLevel } from './skill';
 import { User } from './user';
 
 export interface UploadApiResponse {
@@ -49,6 +50,16 @@ export namespace Api {
     | '/user/:id/invitation/reject';
 
   export type Put = '';
+
+  export interface GetParams {
+    '/professionals': {
+      skills?: Skill[];
+      skillLevel?: SkillLevel;
+      tier?: string[];
+      country?: string[];
+      search?: string;
+    };
+  }
 
   export interface GetResponse {
     '/user': User.Type;

@@ -4,7 +4,7 @@ import { User } from '../typings/user';
 export const getUserSkills = (user: User.ShortInfo) => {
   return user.role === 'creator'
     ? user.youtube.topics.join(' • ')
-    : user.skills.map((skill) => SKILL_LABELS_FOR_PROFESSIONAL[skill]).join('\xa0\xa0\xa0');
+    : user.skills.map((skill) => SKILL_LABELS_FOR_PROFESSIONAL[skill]).join(' ');
 };
 
 export const getUserShortDescription = (user: User.ShortInfo) => {

@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Kreatli | Home</title>
+        <title>Home | Kreatli</title>
         <meta name="description" content="Kreatli" />
       </Head>
       <Hero />

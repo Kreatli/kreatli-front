@@ -13,7 +13,7 @@ const Profile: React.FC = () => {
 
   const { user } = useUser(userId, true);
 
-  const pageTitle = `Kreatli | ${user?.name ?? ''}`;
+  const pageTitle = `${user?.name ?? ''} | Kreatli`;
 
   return (
     <>

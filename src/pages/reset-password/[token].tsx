@@ -26,7 +26,7 @@ const ResetPassword: React.FC = () => {
   return (
     <>
       <Head>
-        <title>Kreatli | Reset password</title>
+        <title>Reset password | Kreatli</title>
         <meta name="description" content="Kreatli" />
       </Head>
       <Container css={{ textAlign: 'center' }}>

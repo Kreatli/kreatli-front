@@ -1,0 +1,39 @@
+$breakpoints: (
+  "xs": 650px,
+  "sm": 960px,
+  "md": 960px,
+  "lg": 1280px,
+  "xl": 1400px,
+);
+
+@mixin screen-size($breakpoint, $min-max) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    @media (#{$min-max}: map-get($breakpoints, $breakpoint)) {
+      @content;
+    }
+  }
+
+  @else {
+    @error "#{$breakpoint} does not exist. Available values: #{map-keys($breakpoints)}";
+  }
+}
+
+@mixin screen-max($breakpoint) {
+  @include screen-size($breakpoint, max-width) {
+    @content;
+  }
+}
+
+@mixin screen-min($breakpoint) {
+  @include screen-size($breakpoint, min-width) {
+    @content;
+  }
+}
+
+@mixin screen-between($min-breakpoint, $max-breakpoint) {
+  @include screen-size($min-breakpoint, min-width) {
+    @include screen-size($max-breakpoint, max-width) {
+      @content;
+    }
+  }
+}

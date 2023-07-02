@@ -12,7 +12,7 @@ const Creators: React.FC = () => {
   return (
     <>
       <Head>
-        <title>Kreatli | Find creators</title>
+        <title>Creators | Kreatli</title>
         <meta name="description" content="Kreatli" />
       </Head>
       <Container lg>

@@ -34,6 +34,8 @@ export namespace User {
     isEmailVerified: boolean;
     isActive: boolean;
     hasConnection?: boolean;
+    tier: number;
+    tierPoints: number;
     invitations: {
       _id: Common.Id;
       inviter: string;

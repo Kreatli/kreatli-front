@@ -37,6 +37,8 @@ export const ProfileHeader = ({ user }: Props) => {
             textColor="primary"
             css={{ size: '$28' }}
             src={avatarUrl}
+            squared
+            bordered
           />
         </ProfileBadge>
       </Grid>

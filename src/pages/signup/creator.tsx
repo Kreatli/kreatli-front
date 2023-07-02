@@ -7,7 +7,7 @@ const Creator: React.FC = () => {
   return (
     <>
       <Head>
-        <title>Kreatli | Sign up</title>
+        <title>Sign up | Kreatli</title>
         <meta name="description" content="Kreatli" />
       </Head>
       <SignUpCreator />

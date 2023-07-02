@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 export const SKILLS = {
   ANIMATION: 'animation',
   GRAPHIC_DESIGNER: 'graphic-design',
@@ -23,32 +24,65 @@ export const SKILL_LEVEL_LABELS = {
   [SKILL_LEVELS.INTERMEDIATE]: 'Intermediate',
 };
 
-export const SKILL_LABELS_FOR_CREATOR = {
-  [SKILLS.ANIMATION]: '🪄 Animation Specialists',
-  [SKILLS.GRAPHIC_DESIGNER]: '🎨 Graphic Designers',
-  [SKILLS.SCRIPT_WRITING]: '✍ Script Writers',
-  [SKILLS.SEO]: '🔍 SEO Specialists',
-  [SKILLS.SOCIAL_MEDIA_MARKETING]: '📱 Social Media Specialists',
-  [SKILLS.SOUND_EDITING]: '🎤 Voiceover Artists',
-  [SKILLS.VIDEO_EDITING]: '🎞 Video Editors',
-  [SKILLS.VIDEO_PRODUCTION]: '🎬 Producers',
+export const SKILL_EMOJIS = {
+  [SKILLS.ANIMATION]: '💫',
+  [SKILLS.GRAPHIC_DESIGNER]: '🎨',
+  [SKILLS.SCRIPT_WRITING]: '🖋',
+  [SKILLS.SEO]: '🔍',
+  [SKILLS.SOCIAL_MEDIA_MARKETING]: '📱',
+  [SKILLS.SOUND_EDITING]: '🎧',
+  [SKILLS.VIDEO_EDITING]: '🎞',
+  [SKILLS.VIDEO_PRODUCTION]: '🎬',
+} as const;
+
+export const SKILL_LABELS = {
+  [SKILLS.ANIMATION]: 'Animation',
+  [SKILLS.GRAPHIC_DESIGNER]: 'Graphic Design',
+  [SKILLS.SCRIPT_WRITING]: 'Script Writing',
+  [SKILLS.SEO]: 'Search engine optimization',
+  [SKILLS.SOCIAL_MEDIA_MARKETING]: 'Social Media Marketing',
+  [SKILLS.SOUND_EDITING]: 'Sound editing',
+  [SKILLS.VIDEO_EDITING]: 'Video Editing',
+  [SKILLS.VIDEO_PRODUCTION]: 'Video production',
+} as const;
+
+export const SKILL_DESCRIPTIONS = {
+  [SKILLS.ANIMATION]: '2D Animation, 3D Animation, Stop Motion',
+  [SKILLS.GRAPHIC_DESIGNER]: 'Logo Design, Branding, Print Design',
+  [SKILLS.SCRIPT_WRITING]: 'Film Scripts, TV Scripts, Commercial Scripts',
+  [SKILLS.SEO]: 'Keyword Research, On-Page Optimization',
+  [SKILLS.SOCIAL_MEDIA_MARKETING]: 'Content Creation, Social Media Strategy',
+  [SKILLS.SOUND_EDITING]: 'Dialogue Editing, Foley Editing, Music Editing',
+  [SKILLS.VIDEO_EDITING]: 'Film Editing, Commercial Editing',
+  [SKILLS.VIDEO_PRODUCTION]: 'Pre-production, Production, Post-production',
 } as const;
 
 export const SKILL_LABELS_FOR_PROFESSIONAL = {
-  [SKILLS.ANIMATION]: '🪄 Animation',
-  [SKILLS.GRAPHIC_DESIGNER]: '🎨 Graphic Design',
-  [SKILLS.SCRIPT_WRITING]: '✍ Script Writing',
-  [SKILLS.SEO]: '🔍 Search engine optimization',
-  [SKILLS.SOCIAL_MEDIA_MARKETING]: '📱 Social Media Marketing',
-  [SKILLS.SOUND_EDITING]: '🎤 Sound editing',
-  [SKILLS.VIDEO_EDITING]: '🎞 Video Editing',
-  [SKILLS.VIDEO_PRODUCTION]: '🎬 Video production',
+  [SKILLS.ANIMATION]: `${SKILL_EMOJIS[SKILLS.ANIMATION]}\xa0${SKILL_LABELS[SKILLS.ANIMATION]}`,
+  [SKILLS.GRAPHIC_DESIGNER]: `${SKILL_EMOJIS[SKILLS.GRAPHIC_DESIGNER]}\xa0${SKILL_LABELS[SKILLS.GRAPHIC_DESIGNER]}`,
+  [SKILLS.SCRIPT_WRITING]: `${SKILL_EMOJIS[SKILLS.SCRIPT_WRITING]}\xa0${SKILL_LABELS[SKILLS.SCRIPT_WRITING]}`,
+  [SKILLS.SEO]: `${SKILL_EMOJIS[SKILLS.SEO]}\xa0${SKILL_LABELS[SKILLS.SEO]}`,
+  [SKILLS.SOCIAL_MEDIA_MARKETING]: `${SKILL_EMOJIS[SKILLS.SOCIAL_MEDIA_MARKETING]}\xa0${SKILL_LABELS[SKILLS.SOCIAL_MEDIA_MARKETING]}`,
+  [SKILLS.SOUND_EDITING]: `${SKILL_EMOJIS[SKILLS.SOUND_EDITING]}\xa0${SKILL_LABELS[SKILLS.SOUND_EDITING]}`,
+  [SKILLS.VIDEO_EDITING]: `${SKILL_EMOJIS[SKILLS.VIDEO_EDITING]}\xa0${SKILL_LABELS[SKILLS.VIDEO_EDITING]}`,
+  [SKILLS.VIDEO_PRODUCTION]: `${SKILL_EMOJIS[SKILLS.VIDEO_PRODUCTION]}\xa0${SKILL_LABELS[SKILLS.VIDEO_PRODUCTION]}`,
+} as const;
+
+export const SKILL_LABELS_FOR_CREATOR = {
+  [SKILLS.ANIMATION]: `${SKILL_EMOJIS[SKILLS.ANIMATION]} Animation Specialists`,
+  [SKILLS.GRAPHIC_DESIGNER]: `${SKILL_EMOJIS[SKILLS.GRAPHIC_DESIGNER]} Graphic Designers`,
+  [SKILLS.SCRIPT_WRITING]: `${SKILL_EMOJIS[SKILLS.SCRIPT_WRITING]} Script Writers`,
+  [SKILLS.SEO]: `${SKILL_EMOJIS[SKILLS.SEO]} SEO Specialists`,
+  [SKILLS.SOCIAL_MEDIA_MARKETING]: `${SKILL_EMOJIS[SKILLS.SOCIAL_MEDIA_MARKETING]} Social Media Specialists`,
+  [SKILLS.SOUND_EDITING]: `${SKILL_EMOJIS[SKILLS.SOUND_EDITING]} Voiceover Artists`,
+  [SKILLS.VIDEO_EDITING]: `${SKILL_EMOJIS[SKILLS.VIDEO_EDITING]} Video Editors`,
+  [SKILLS.VIDEO_PRODUCTION]: `${SKILL_EMOJIS[SKILLS.VIDEO_PRODUCTION]} Producers`,
 } as const;
 
 export const SKILL_OPTIONS_FOR_CREATOR = Object.entries(SKILL_LABELS_FOR_CREATOR)
   .map(([value, label]) => ({ label, value: value as keyof typeof SKILLS }));
 
-export const SKILL_OPTIONS_FOR_PROFESSIONAL = Object.entries(SKILL_LABELS_FOR_PROFESSIONAL)
+export const SKILL_OPTIONS = Object.entries(SKILL_LABELS_FOR_PROFESSIONAL)
   .map(([value, label]) => ({ label, value: value as keyof typeof SKILLS }));
 
 export const SKILL_LEVEL_OPTIONS = [

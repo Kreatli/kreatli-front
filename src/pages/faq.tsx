@@ -6,7 +6,7 @@ const Faq: React.FC = () => {
   return (
     <>
       <Head>
-        <title>Kreatli | FAQ</title>
+        <title>FAQ | Kreatli</title>
         <meta name="description" content="Kreatli" />
       </Head>
       <Container sm>

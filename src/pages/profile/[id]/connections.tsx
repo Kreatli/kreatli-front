@@ -11,7 +11,7 @@ const ConnectionsPage: React.FC = () => {
   const userId = router.query.id as Common.MaybeId;
   const { user } = useUser(userId);
 
-  const pageTitle = `Kreatli | ${user?.name ?? ''}`;
+  const pageTitle = `${user?.name ?? ''} | Kreatli`;
 
   return (
     <>

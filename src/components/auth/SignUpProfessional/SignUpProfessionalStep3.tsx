@@ -2,7 +2,7 @@ import { Grid, Text } from '@nextui-org/react';
 import React from 'react';
 import { Control, FieldErrors } from 'react-hook-form';
 
-import { SKILL_LABELS_FOR_PROFESSIONAL, SKILL_LEVEL_OPTIONS, SKILL_OPTIONS_FOR_PROFESSIONAL } from '../../../constants/skills';
+import { SKILL_LABELS_FOR_PROFESSIONAL, SKILL_LEVEL_OPTIONS, SKILL_OPTIONS } from '../../../constants/skills';
 import { VALIDATION_RULES } from '../../../constants/validationRules';
 import { Skill } from '../../../typings/skill';
 import { Select } from '../../various/Select';
@@ -20,7 +20,7 @@ export const SignUpProfessionalStep3: React.FC<Props> = ({ errors, control }) =>
   return (
     <Tag.Group name="skills" control={control} rules={VALIDATION_RULES.REQUIRED} onChange={setSelectedSkills}>
       <Grid.Container gap={1}>
-        {SKILL_OPTIONS_FOR_PROFESSIONAL.map((area) => (
+        {SKILL_OPTIONS.map((area) => (
           <Grid key={area.value}>
             <Tag value={area.value} status={errors.skills && 'error'}>
               {area.label}

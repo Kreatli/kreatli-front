@@ -49,7 +49,7 @@ const AccountActivation: React.FC = () => {
   return (
     <>
       <Head>
-        <title>Kreatli | Activate your account</title>
+        <title>Activate your account | Kreatli</title>
         <meta name="description" content="Kreatli" />
       </Head>
       <Container css={{ textAlign: 'center' }}>

@@ -6,7 +6,7 @@ const Contact: React.FC = () => {
   return (
     <>
       <Head>
-        <title>Kreatli | Contact</title>
+        <title>Contact | Kreatli</title>
         <meta name="description" content="Kreatli" />
       </Head>
       <Container sm>

@@ -4,22 +4,31 @@ import AddImageIcon from '../../../assets/icons/add-image.svg';
 import BuildingIcon from '../../../assets/icons/building.svg';
 import ChatIcon from '../../../assets/icons/chat.svg';
 import CheckIcon from '../../../assets/icons/check.svg';
+import CheckShieldIcon from '../../../assets/icons/check-shield.svg';
 import CrossIcon from '../../../assets/icons/cross.svg';
+import DiamondIcon from '../../../assets/icons/diamond.svg';
 import DiscordIcon from '../../../assets/icons/discord.svg';
 import EditIcon from '../../../assets/icons/edit.svg';
+import EmojiSadIcon from '../../../assets/icons/emoji/sad.svg';
 import ErrorIcon from '../../../assets/icons/error.svg';
 import FileIcon from '../../../assets/icons/file.svg';
+import FilterIcon from '../../../assets/icons/filter.svg';
+import GroupIcon from '../../../assets/icons/group.svg';
 import HideIcon from '../../../assets/icons/hide.svg';
 import InfoIcon from '../../../assets/icons/info.svg';
 import InstagramIcon from '../../../assets/icons/instagram.svg';
 import LinkIcon from '../../../assets/icons/link.svg';
+import LocationIcon from '../../../assets/icons/location.svg';
 import MailIcon from '../../../assets/icons/mail.svg';
 import MoonIcon from '../../../assets/icons/moon.svg';
 import PlusIcon from '../../../assets/icons/plus.svg';
+import RankingIcon from '../../../assets/icons/ranking.svg';
 import SearchIcon from '../../../assets/icons/search.svg';
 import ShowIcon from '../../../assets/icons/show.svg';
 import SuccessIcon from '../../../assets/icons/success.svg';
+import SuitcaseIcon from '../../../assets/icons/suitcase.svg';
 import SunIcon from '../../../assets/icons/sun.svg';
+import TimerIcon from '../../../assets/icons/timer.svg';
 import TrashIcon from '../../../assets/icons/trash.svg';
 import TwitterIcon from '../../../assets/icons/twitter.svg';
 import UpdateIcon from '../../../assets/icons/update.svg';
@@ -33,22 +42,31 @@ const ICONS = {
   building: BuildingIcon,
   chat: ChatIcon,
   check: CheckIcon,
+  checkShield: CheckShieldIcon,
   cross: CrossIcon,
+  diamond: DiamondIcon,
   discord: DiscordIcon,
   edit: EditIcon,
+  emojiSad: EmojiSadIcon,
   error: ErrorIcon,
   file: FileIcon,
+  filter: FilterIcon,
+  group: GroupIcon,
   hide: HideIcon,
   info: InfoIcon,
   instagram: InstagramIcon,
   link: LinkIcon,
+  location: LocationIcon,
   mail: MailIcon,
   moon: MoonIcon,
   plus: PlusIcon,
+  ranking: RankingIcon,
   search: SearchIcon,
   show: ShowIcon,
   success: SuccessIcon,
+  suitcase: SuitcaseIcon,
   sun: SunIcon,
+  timer: TimerIcon,
   trash: TrashIcon,
   twitter: TwitterIcon,
   update: UpdateIcon,
@@ -60,17 +78,17 @@ const ICONS = {
 
 export type IconType = keyof typeof ICONS;
 
-interface Props {
+interface Props extends React.SVGProps<SVGElement> {
   size?: number;
-  fill?: string;
   icon: IconType;
 }
 
-export const Icon: React.FC<Props> = ({ icon, size = 24, fill = 'currentcolor' }) => {
+export const Icon = ({ icon, size = 24, fill = 'currentcolor', className }: Props) => {
   const IconToRender = ICONS[icon];
 
   return (
     <IconToRender
+      className={className}
       width={`${size}px`}
       height={`${size}px`}
       viewBox="0 0 24 24"

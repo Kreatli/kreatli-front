@@ -1,0 +1,18 @@
+.wrapper {
+  text-align: center;
+  height: 100%;
+  padding: 2rem 0;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.icon {
+  margin: 0 auto 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 75px;
+  height: 75px;
+  background-color: var(--nextui-colors-gray50);
+  border-radius: 50%;
+}

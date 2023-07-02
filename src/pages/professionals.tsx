@@ -1,36 +1,18 @@
-import { Card, Container, Grid, Text } from '@nextui-org/react';
+import { Container } from '@nextui-org/react';
 import Head from 'next/head';
-import Link from 'next/link';
 import React from 'react';
-import { useQuery } from 'react-query';
 
-import { requestProfessionals } from '../services/users';
+import { ProfessionalListing } from '../components/professionals/ProfessionalListing';
 
-const Professionals: React.FC = () => {
-  const { data } = useQuery('professionals', requestProfessionals);
-
+const Professionals = () => {
   return (
     <>
       <Head>
-        <title>Kreatli | Find professionals</title>
+        <title>Professionals | Kreatli</title>
         <meta name="description" content="Kreatli" />
       </Head>
       <Container lg>
-        <Text h2>Find professionals</Text>
-        <Grid.Container>
-          {data?.map((user) => (
-            <Grid key={user._id} xs={4} sm={3} md={2}>
-              <Link href={`/profile/${user._id}`}>
-                <Card isHoverable>
-                  <Card.Image src={user.avatarUrl} />
-                  <Card.Footer>
-                    {user.name}
-                  </Card.Footer>
-                </Card>
-              </Link>
-            </Grid>
-          ))}
-        </Grid.Container>
+        <ProfessionalListing />
       </Container>
     </>
   );

@@ -4,9 +4,14 @@
   margin: 0;
 }
 
+html,
+body {
+  overscroll-behavior-y: none;
+}
+
 main {
   min-height: calc(100vh - var(--nextui--navbarHeight));
-  padding: 3rem 0;
+  padding: var(--nextui-space-12) 0;
 }
 
 :root {
@@ -24,11 +29,19 @@ main {
   }
 }
 
+.nextui-button-icon {
+  z-index: unset;
+}
+
+.nextui-input-clear-button {
+  right: 10px;
+}
+
 .nextui-input-helper-text-container {
   position: static;
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 960px) {
   html {
     font-size: 14px;
   }
