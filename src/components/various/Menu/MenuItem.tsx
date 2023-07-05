@@ -92,10 +92,7 @@ export const MenuItem = ({ href, label, description, icon, emoji, options, selec
             onSelectionChange={handleSelectChange}
           >
             {options.map((option) => (
-              <Dropdown.Item
-                key={option.value}
-                css={{}}
-              >
+              <Dropdown.Item key={option.value}>
                 {option.label}
               </Dropdown.Item>
             ))}

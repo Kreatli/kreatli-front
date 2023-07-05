@@ -8,6 +8,7 @@ import CheckShieldIcon from '../../../assets/icons/check-shield.svg';
 import CrossIcon from '../../../assets/icons/cross.svg';
 import DiamondIcon from '../../../assets/icons/diamond.svg';
 import DiscordIcon from '../../../assets/icons/discord.svg';
+import DollarIcon from '../../../assets/icons/dollar.svg';
 import EditIcon from '../../../assets/icons/edit.svg';
 import EmojiSadIcon from '../../../assets/icons/emoji/sad.svg';
 import ErrorIcon from '../../../assets/icons/error.svg';
@@ -28,6 +29,7 @@ import ShowIcon from '../../../assets/icons/show.svg';
 import SuccessIcon from '../../../assets/icons/success.svg';
 import SuitcaseIcon from '../../../assets/icons/suitcase.svg';
 import SunIcon from '../../../assets/icons/sun.svg';
+import TimeIcon from '../../../assets/icons/time.svg';
 import TimerIcon from '../../../assets/icons/timer.svg';
 import TrashIcon from '../../../assets/icons/trash.svg';
 import TwitterIcon from '../../../assets/icons/twitter.svg';
@@ -46,6 +48,7 @@ const ICONS = {
   cross: CrossIcon,
   diamond: DiamondIcon,
   discord: DiscordIcon,
+  dollar: DollarIcon,
   edit: EditIcon,
   emojiSad: EmojiSadIcon,
   error: ErrorIcon,
@@ -66,6 +69,7 @@ const ICONS = {
   success: SuccessIcon,
   suitcase: SuitcaseIcon,
   sun: SunIcon,
+  time: TimeIcon,
   timer: TimerIcon,
   trash: TrashIcon,
   twitter: TwitterIcon,

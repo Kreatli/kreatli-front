@@ -36,9 +36,10 @@ export const ChannelDetails = ({ id, youtubeUrl, details }: Props) => {
   });
 
   const isMyAccount = currentUserId === id;
-  const subscribers = new Intl.NumberFormat().format(details.subscriberCount);
-  const videos = new Intl.NumberFormat().format(details.videoCount);
-  const views = new Intl.NumberFormat().format(details.viewCount);
+  const numberFormatter = new Intl.NumberFormat();
+  const subscribers = numberFormatter.format(details.subscriberCount);
+  const videos = numberFormatter.format(details.videoCount);
+  const views = numberFormatter.format(details.viewCount);
   const topics = details.topics.join(', ').toLowerCase();
   const lastUpdateAt = new Date(details.lastUpdateAt);
   const canUpdateYoutubeInfo = Date.now() - lastUpdateAt.getTime() > DAY_IN_MSEC;

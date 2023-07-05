@@ -29,8 +29,14 @@ main {
   }
 }
 
+.nextui-input-label--right,
+.nextui-input-label--left {
+  white-space: nowrap;
+}
+
+.nextui-button-text,
 .nextui-button-icon {
-  z-index: unset;
+  z-index: unset !important;
 }
 
 .nextui-input-clear-button {

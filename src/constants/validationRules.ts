@@ -13,7 +13,7 @@ const getDescriptionRulesByMinLength = (minLength: number) => ({
   },
   maxLength: {
     message: 'Description must not exceed 1000 characters',
-    value: 1000,
+    value: 5000,
   },
 });
 
@@ -65,6 +65,11 @@ export const VALIDATION_RULES = {
 
       return undefined;
     },
+  },
+  NUMBER: {
+    required: true,
+    min: 1,
+    max: 999999999,
   },
   SHORT_TEXT: {
     required: true,

@@ -25,12 +25,20 @@ export const Header: React.FC = () => {
   const navigationItems = [
     ...(isSignedIn ? [
       {
+        label: 'Dashboard',
+        href: '/dashboard',
+      },
+      {
+        label: 'Jobs',
+        href: '/jobs',
+      },
+      {
         label: 'Professionals',
         href: '/professionals',
       },
       {
-        label: 'Creators',
-        href: '/creators',
+        label: 'Messages',
+        href: '/messages',
       },
     ] : []),
   ];

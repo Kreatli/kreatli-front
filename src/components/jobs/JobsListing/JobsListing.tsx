@@ -1,32 +1,34 @@
 import { Button, Grid, Input, Spacer } from '@nextui-org/react';
 import cx from 'classnames';
+import Link from 'next/link';
 import React from 'react';
 import { useInfiniteQuery } from 'react-query';
 
 import { useBodyScroll } from '../../../hooks/useBodyScroll';
 import { useBreakpointValue } from '../../../hooks/useBreakpointValue';
 import { useDebounce } from '../../../hooks/useDebounce';
-import { requestProfessionals } from '../../../services/users';
+import { useSession } from '../../../hooks/useSession';
+import { requestJobOffers } from '../../../services/job';
 import { Api } from '../../../typings/api';
 import { EmptyState } from '../../various/EmptyState';
 import { Icon } from '../../various/Icon';
 import { LazyList } from '../../various/LazyList';
-import styles from './ProfessionalListing.module.scss';
-import { ProfessionalListingCards } from './ProfessionalListingCards';
-import { ProfessionalListingFilters } from './ProfessionalListingFilters';
-import { ProfessionalListingSkeleton } from './ProfessionalListingSkeleton';
+import { JobCard } from '../JobCard';
+import styles from './JobsListing.module.scss';
+import { JobsListingFilters } from './JobsListingFilters';
+import { JobsListingSkeleton } from './JobsListingSkeleton';
 
 const MINUTE_IN_MILLISECONDS = 60 * 1000;
-const LIMIT = 12;
+const LIMIT = 10;
 
-export const ProfessionalListing = () => {
-  const [selectedFilters, setSelectedFilters] = React.useState<Api.GetParams['/professionals']>({});
+export const JobsListing = () => {
+  const [selectedFilters, setSelectedFilters] = React.useState<Api.GetParams['/job-offers']>({});
   const [search, setSearch] = React.useState('');
   const [isFiltersOpen, setIsFilersOpen] = React.useState(false);
 
   const searchDebounced = useDebounce(search);
 
-  const requestProfessionalsQuery = {
+  const requestJobOffersQuery = {
     limit: LIMIT,
     ...selectedFilters,
     ...(searchDebounced && { search: searchDebounced }),
@@ -36,25 +38,25 @@ export const ProfessionalListing = () => {
     keepPreviousData: true,
     refetchOnMount: true,
     staleTime: 5 * MINUTE_IN_MILLISECONDS,
-    queryKey: ['professionals', requestProfessionalsQuery],
-    queryFn: ({ pageParam = 1 }) => (
-      requestProfessionals({ ...requestProfessionalsQuery, offset: (pageParam - 1) * LIMIT })
-    ),
+    queryKey: ['job-offers', requestJobOffersQuery],
+    queryFn: ({ pageParam = 1 }) => requestJobOffers({ ...requestJobOffersQuery, offset: (pageParam - 1) * LIMIT }),
     getNextPageParam: (lastPage, allPages) => (
-      lastPage.professionalsCount > allPages.length * LIMIT
+      lastPage.jobOffersCount > allPages.length * LIMIT
         ? allPages.length + 1
         : undefined
     ),
   });
 
   const cards = React.useMemo(() => {
-    return data?.pages.flatMap((page) => page.professionals) ?? [];
+    return data?.pages.flatMap((page) => page.jobOffers) ?? [];
   }, [data?.pages]);
 
   const { setIsScrollDisabled } = useBodyScroll();
+  const { currentUser } = useSession();
+  const isCreator = currentUser?.role === 'creator';
   const isMobile = useBreakpointValue({ SM: false }, true);
 
-  const handleFiltersChange = (filters: Api.GetParams['/professionals']) => {
+  const handleFiltersChange = (filters: Api.GetParams['/job-offers']) => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
     setSelectedFilters(filters);
   };
@@ -86,7 +88,7 @@ export const ProfessionalListing = () => {
 
   return (
     <div className={styles.wrapper}>
-      <ProfessionalListingFilters
+      <JobsListingFilters
         isMobile={isMobile}
         isOpen={isFiltersOpen}
         filters={selectedFilters}
@@ -106,6 +108,11 @@ export const ProfessionalListing = () => {
               onChange={handleSearchChange}
             />
           </Grid>
+          {isCreator && (
+            <Grid>
+              <Button as={Link} href="/jobs/create" color="gradient" rounded icon={<Icon icon="plus" />} auto aria-label="Create a job offer" />
+            </Grid>
+          )}
           {isMobile && (
             <Grid>
               <Button
@@ -125,8 +132,10 @@ export const ProfessionalListing = () => {
           : (
             <LazyList isLoading={isFetchingNextPage} hasMore={hasNextPage} onLoadMore={fetchNextPage}>
               <div className={cx(styles.cards, { [styles.loading]: shouldShowLoader })}>
-                <ProfessionalListingCards cards={cards} />
-                {shouldShowSkeleton && <ProfessionalListingSkeleton />}
+                {cards.map((card) => (
+                  <JobCard key={card._id} className={styles.card} {...card} />
+                ))}
+                {shouldShowSkeleton && <JobsListingSkeleton />}
               </div>
             </LazyList>
           )}

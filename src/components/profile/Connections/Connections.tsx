@@ -18,7 +18,7 @@ const LIMIT = 10;
 export const Connections = ({ userId }: Props) => {
   const { currentUserId } = useSession();
 
-  const { isLoading, data, hasNextPage, fetchNextPage } = useInfiniteQuery(
+  const { isFetchingNextPage, data, hasNextPage, fetchNextPage } = useInfiniteQuery(
     ['user', userId, 'connections'],
     ({ pageParam = 1 }) => userId && requestUserConnections(userId, { limit: LIMIT, offset: (pageParam - 1) * LIMIT }),
     {
@@ -32,14 +32,6 @@ export const Connections = ({ userId }: Props) => {
       },
     },
   );
-
-  const handleLoadMore = () => {
-    if (isLoading) {
-      return;
-    }
-
-    fetchNextPage();
-  };
 
   const connections = React.useMemo(() => {
     return data?.pages.flatMap((page) => page?.connections ?? []) ?? [];
@@ -76,7 +68,7 @@ export const Connections = ({ userId }: Props) => {
       <Text h3>
         Connections ({connectionsCount})
       </Text>
-      <LazyList hasMore={hasNextPage ?? false} onLoadMore={handleLoadMore}>
+      <LazyList isLoading={isFetchingNextPage} hasMore={hasNextPage} onLoadMore={fetchNextPage}>
         <Grid.Container gap={2} css={{ mx: '-$10' }}>
           {connections?.map((connection) => (
             <Grid xs={12} sm={6}>

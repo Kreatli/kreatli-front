@@ -12,18 +12,22 @@ interface Props<T extends FieldValues> extends InputProps {
   }[];
   color?: DropdownMenuProps['color'];
   rules?: UseControllerProps<T>['rules'];
+  selectionMode?: DropdownMenuProps['selectionMode'];
 }
 
 export const Select = <T extends FieldValues>(props: Props<T>) => {
-  const { control, color, name, rules, options = [], ...rest } = props;
+  const { control, color, name, selectionMode = 'single', rules, options = [], ...rest } = props;
   const [selected, setSelected] = React.useState<Set<string | number>>(new Set([]));
   const { field } = useController({ control, name, rules });
+  const isSingleMode = selectionMode === 'single';
 
   React.useEffect(() => {
     if (!selected.has(field.value)) {
-      setSelected(new Set([field.value]));
+      setSelected(isSingleMode
+        ? new Set([field.value])
+        : new Set(field.value));
     }
-  }, [field.value, selected]);
+  }, []);
 
   const handleChange = React.useCallback((keys: 'all' | Set<React.Key>) => {
     if (keys === 'all') {
@@ -32,14 +36,16 @@ export const Select = <T extends FieldValues>(props: Props<T>) => {
 
     setSelected(keys);
 
-    field.onChange(Array.from(keys).join(''));
+    field.onChange(isSingleMode
+      ? Array.from(keys).join('')
+      : Array.from(keys));
     field.onBlur();
-  }, [field]);
+  }, [field, isSingleMode]);
 
   const selectedValue = React.useMemo(() => {
-    const value = Array.from(selected).join('');
-
-    return options.find((option) => option.value === value)?.label || '';
+    return Array.from(selected)
+      .map((value) => options.find((option) => option.value === value)?.label ?? '')
+      .join(', ');
   }, [options, selected]);
 
   return (
@@ -56,7 +62,7 @@ export const Select = <T extends FieldValues>(props: Props<T>) => {
       </Dropdown.Trigger>
       <Dropdown.Menu
         aria-label={rest['aria-label']}
-        selectionMode="single"
+        selectionMode={selectionMode}
         color={color}
         selectedKeys={selected}
         onSelectionChange={handleChange}

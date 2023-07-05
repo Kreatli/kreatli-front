@@ -2,12 +2,13 @@ import { Loading } from '@nextui-org/react';
 import React from 'react';
 
 interface Props {
-  hasMore: boolean;
+  isLoading: boolean;
+  hasMore: boolean | undefined;
   children: React.ReactNode;
   onLoadMore: () => void;
 }
 
-export const LazyList = ({ children, hasMore, onLoadMore }: Props) => {
+export const LazyList = ({ children, isLoading, hasMore = false, onLoadMore }: Props) => {
   const ref = React.useRef<HTMLDivElement>(null);
 
   React.useEffect(() => {
@@ -18,7 +19,7 @@ export const LazyList = ({ children, hasMore, onLoadMore }: Props) => {
     const handleObserver = (entries: IntersectionObserverEntry[]) => {
       const { isIntersecting } = entries[0];
 
-      if (isIntersecting) {
+      if (isIntersecting && !isLoading) {
         onLoadMore();
       }
     };
@@ -31,7 +32,7 @@ export const LazyList = ({ children, hasMore, onLoadMore }: Props) => {
     return () => {
       observer.unobserve(loader);
     };
-  }, [ref, hasMore]);
+  }, [ref, hasMore, isLoading]);
 
   return (
     <div>

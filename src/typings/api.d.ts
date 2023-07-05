@@ -1,4 +1,5 @@
 import { Invitation } from './invitation';
+import { Job } from './job';
 import { Skill, SkillLevel } from './skill';
 import { User } from './user';
 
@@ -33,7 +34,8 @@ export namespace Api {
     | '/user/:id/connections'
     | '/users'
     | '/creators'
-    | '/professionals';
+    | '/professionals'
+    | '/job-offers';
 
   export type Post =
     | '/auth/signup-creator'
@@ -47,7 +49,8 @@ export namespace Api {
     | '/user/update-youtube-info'
     | '/user/:id/invitation'
     | '/user/:id/invitation/accept'
-    | '/user/:id/invitation/reject';
+    | '/user/:id/invitation/reject'
+    | '/job-offer';
 
   export type Put = '';
 
@@ -58,6 +61,15 @@ export namespace Api {
       tier?: string[];
       country?: string[];
       search?: string;
+      limit?: number;
+      offset?: number;
+    };
+    '/job-offers': {
+      skills?: Skill[];
+      country?: string[];
+      search?: string;
+      limit?: number;
+      offset?: number;
     };
   }
 
@@ -71,7 +83,14 @@ export namespace Api {
     };
     '/users': User.ShortInfo[];
     '/creators': User.Creator[];
-    '/professionals': User.Professional[];
+    '/professionals': {
+      professionals: User.Professional[];
+      professionalsCount: number;
+    };
+    '/job-offers': {
+      jobOffers: Job.Offer[];
+      jobOffersCount: number;
+    };
   }
 
   export interface PostPayload {
@@ -104,6 +123,7 @@ export namespace Api {
     '/user/:id/invitation/reject': {
       invitationId: Id;
     };
+    '/job-offer': Job.OfferPayload;
   }
 
   export interface PostResponse {
@@ -132,6 +152,7 @@ export namespace Api {
       inviter: User.Type;
       invitee: User.Type;
     };
+    '/job-offer': Job.Offer;
   }
 
   export interface PutPayload {
