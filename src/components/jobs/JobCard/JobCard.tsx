@@ -56,7 +56,7 @@ export const JobCard = (props: Props) => {
           >
             <User.Link href={creator.youtubeUrl}>{creator.youtube.customUrl}</User.Link>
           </User>
-          <Button auto size="sm">Apply for job</Button>
+          <Button auto size="sm">Apply</Button>
         </Row>
         <div className={styles.content}>
           <Text h4 className={styles.title}>{title} {skillEmojis}</Text>
