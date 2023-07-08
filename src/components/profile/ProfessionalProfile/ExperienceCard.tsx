@@ -13,7 +13,7 @@ interface Props {
 
 export const ExperienceCard = ({ description, companyName, companyUrl, imageUrl }: Props) => {
   return (
-    <Card>
+    <Card css={{ overflow: 'unset' }}>
       <Card.Header>
         <Grid.Container css={{ gap: '$4' }}>
           <Grid xs>

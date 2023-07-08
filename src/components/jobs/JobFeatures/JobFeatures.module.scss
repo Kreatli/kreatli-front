@@ -1,0 +1,15 @@
+.features {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1rem;
+}
+
+.feature {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+
+  .icon {
+    flex: 0 0 20px;
+  }
+}

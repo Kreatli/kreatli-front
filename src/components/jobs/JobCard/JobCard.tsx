@@ -3,15 +3,12 @@ import cx from 'classnames';
 import Link from 'next/link';
 import React from 'react';
 
-import { COUNTRY_LABELS } from '../../../constants/countries';
-import { DURATION_LABELS } from '../../../constants/duration';
-import { PAYMENT_TYPE_SHORTS } from '../../../constants/payment';
 import { SKILL_EMOJIS } from '../../../constants/skills';
 import { Common } from '../../../typings/common';
 import { Job } from '../../../typings/job';
 import { formatRelativeTime } from '../../../utils/dates';
+import { JobFeatures } from '../JobFeatures';
 import styles from './JobCard.module.scss';
-import { JobCardFeature } from './JobCardFeature';
 
 interface Props
   extends Omit<Job.Offer, '_id' | 'hiredApplication' | 'applications'> {
@@ -42,8 +39,6 @@ export const JobCard = (props: Props) => {
     return skills.map((skill) => SKILL_EMOJIS[skill]).join(' ');
   }, [skills]);
 
-  const paymentValueFormatter = new Intl.NumberFormat('en', { style: 'currency', currency: 'USD' });
-
   const card = (
     <Card className={cx(styles.card, className)} isHoverable isPressable>
       <Card.Body>
@@ -52,22 +47,18 @@ export const JobCard = (props: Props) => {
             className={styles.user}
             name={creator.name}
             src={creator.avatarUrl}
+            description={creator.youtube.customUrl}
+            pointer
             size="lg"
-          >
-            <User.Link href={creator.youtubeUrl}>{creator.youtube.customUrl}</User.Link>
-          </User>
-          <Button auto size="sm">Apply</Button>
+          />
+          <Button as="div" className={styles.applyButton} auto size="sm">Apply</Button>
         </Row>
         <div className={styles.content}>
           <Text h4 className={styles.title}>{title} {skillEmojis}</Text>
           <Text className={styles.text}>{shortDescription}</Text>
         </div>
         <div className={styles.footer}>
-          <div className={styles.features}>
-            <JobCardFeature icon="location" title={COUNTRY_LABELS[location] ?? 'Remote'} />
-            <JobCardFeature icon="dollar" title={`${paymentValueFormatter.format(paymentValue)} ${PAYMENT_TYPE_SHORTS[paymentType]}`} />
-            <JobCardFeature icon="time" title={DURATION_LABELS[duration]} />
-          </div>
+          <JobFeatures location={location} duration={duration} paymentType={paymentType} paymentValue={paymentValue} />
           <Text size="$sm" color="$accents6">Posted {relativeCreationDate}</Text>
         </div>
       </Card.Body>

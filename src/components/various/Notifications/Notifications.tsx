@@ -11,10 +11,13 @@ export const Notifications = () => {
 
   const getCardCss = (color: Notification['color']) => {
     if (color === 'default') {
-      return;
+      return {
+        oveflow: 'unset',
+      };
     }
 
     return {
+      oveflow: 'unset',
       $$cardColor: `$colors$${color}Light`,
       color: `$colors$${color}`,
     };

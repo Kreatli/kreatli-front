@@ -1,0 +1,13 @@
+.methods {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0 var(--nextui-space-sm);
+}
+
+.method {
+  display: flex;
+  align-items: center;
+  gap: var(--nextui-space-xs);
+  white-space: nowrap;
+}

@@ -17,7 +17,7 @@ export const ConnectionCard = ({ user }: Props) => {
     : 2;
 
   return (
-    <Card isHoverable>
+    <Card isHoverable css={{ overflow: 'unset' }}>
       <Link href={`/profile/${user._id}`}>
         <Card.Body>
           <Grid.Container css={{ gap: '$10' }} alignItems="center">

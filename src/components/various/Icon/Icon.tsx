@@ -1,10 +1,14 @@
 import React from 'react';
 
 import AddImageIcon from '../../../assets/icons/add-image.svg';
+import BankIcon from '../../../assets/icons/bank.svg';
+import BitcoinIcon from '../../../assets/icons/bitcoin.svg';
 import BuildingIcon from '../../../assets/icons/building.svg';
+import CashIcon from '../../../assets/icons/cash.svg';
 import ChatIcon from '../../../assets/icons/chat.svg';
 import CheckIcon from '../../../assets/icons/check.svg';
 import CheckShieldIcon from '../../../assets/icons/check-shield.svg';
+import CreditCardIcon from '../../../assets/icons/credit-card.svg';
 import CrossIcon from '../../../assets/icons/cross.svg';
 import DiamondIcon from '../../../assets/icons/diamond.svg';
 import DiscordIcon from '../../../assets/icons/discord.svg';
@@ -22,6 +26,7 @@ import LinkIcon from '../../../assets/icons/link.svg';
 import LocationIcon from '../../../assets/icons/location.svg';
 import MailIcon from '../../../assets/icons/mail.svg';
 import MoonIcon from '../../../assets/icons/moon.svg';
+import PaypalIcon from '../../../assets/icons/paypal.svg';
 import PlusIcon from '../../../assets/icons/plus.svg';
 import RankingIcon from '../../../assets/icons/ranking.svg';
 import SearchIcon from '../../../assets/icons/search.svg';
@@ -41,10 +46,14 @@ import YoutubeIcon from '../../../assets/icons/youtube.svg';
 
 const ICONS = {
   addImage: AddImageIcon,
+  bank: BankIcon,
+  bitcoin: BitcoinIcon,
   building: BuildingIcon,
+  cash: CashIcon,
   chat: ChatIcon,
   check: CheckIcon,
   checkShield: CheckShieldIcon,
+  creditCard: CreditCardIcon,
   cross: CrossIcon,
   diamond: DiamondIcon,
   discord: DiscordIcon,
@@ -62,6 +71,7 @@ const ICONS = {
   location: LocationIcon,
   mail: MailIcon,
   moon: MoonIcon,
+  paypal: PaypalIcon,
   plus: PlusIcon,
   ranking: RankingIcon,
   search: SearchIcon,

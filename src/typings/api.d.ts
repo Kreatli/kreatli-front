@@ -35,6 +35,7 @@ export namespace Api {
     | '/users'
     | '/creators'
     | '/professionals'
+    | '/job-offer/:id'
     | '/job-offers';
 
   export type Post =
@@ -87,6 +88,7 @@ export namespace Api {
       professionals: User.Professional[];
       professionalsCount: number;
     };
+    '/job-offer/:id': Job.Offer;
     '/job-offers': {
       jobOffers: Job.Offer[];
       jobOffersCount: number;

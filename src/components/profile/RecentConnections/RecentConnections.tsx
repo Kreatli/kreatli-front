@@ -6,6 +6,7 @@ import { useQuery } from 'react-query';
 import { COUNTRY_LABELS } from '../../../constants/countries';
 import { requestUsersByIds } from '../../../services/users';
 import { Common } from '../../../typings/common';
+import { ProfileBadge } from '../Profile/ProfileBadge';
 
 interface Props {
   ids: Common.Id[];
@@ -22,7 +23,9 @@ export const RecentConnections = ({ ids }: Props) => {
         <Grid key={user._id} xs={4} sm={2}>
           <Link href={`/profile/${user._id}`} style={{ display: 'block', width: '100%' }}>
             <Row justify="center">
-              <Avatar src={user.avatarUrl} pointer size="xl" />
+              <ProfileBadge isVerified={user.isVerified} size="sm">
+                <Avatar src={user.avatarUrl} pointer size="xl" />
+              </ProfileBadge>
             </Row>
             <Row justify="center">
               <Text size="$sm" color="$accents6" css={{ textAlign: 'center' }}>{COUNTRY_LABELS[user.country]}</Text>
