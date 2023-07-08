@@ -21,7 +21,6 @@ interface Props
 
 export const JobPage = (props: Props) => {
   const {
-    _id: jobOfferId,
     applicationsCount,
     creationDate,
     creator,
