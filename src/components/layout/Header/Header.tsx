@@ -5,6 +5,7 @@ import { useTheme as useNextTheme } from 'next-themes';
 import React from 'react';
 
 import LogoIcon from '../../../assets/images/logo.svg';
+import { useBodyScroll } from '../../../hooks/useBodyScroll';
 import { useModalVisibility } from '../../../hooks/useModalVisibility';
 import { useSession } from '../../../hooks/useSession';
 import { SignInModal } from '../../auth/SignInModal';
@@ -17,10 +18,19 @@ interface DropdownItem extends Partial<DropdownItemProps> {
 
 export const Header: React.FC = () => {
   const router = useRouter();
+  const [isNavbarOpen, setIsNavbarOpen] = React.useState(false);
   const { isModalVisible, openModal, closeModal } = useModalVisibility();
   const { isSignedIn, currentUser, signOut } = useSession();
   const { setTheme } = useNextTheme();
   const { isDark } = useTheme();
+  const { setIsScrollDisabled } = useBodyScroll();
+
+  React.useEffect(() => {
+    if (isNavbarOpen) {
+      setIsNavbarOpen(false);
+      setIsScrollDisabled(false);
+    }
+  }, [router.asPath]);
 
   const navigationItems = [
     ...(isSignedIn ? [
@@ -93,6 +103,10 @@ export const Header: React.FC = () => {
     router.push(`/signup/${key}`);
   };
 
+  const handleToggleChange = () => {
+    setIsNavbarOpen((isOpen) => !isOpen);
+  };
+
   const userInitials = React.useMemo(() => {
     return currentUser?.name?.split(' ').map((part: string) => part[0]).join('') ?? '';
   }, [currentUser?.name]);
@@ -100,7 +114,7 @@ export const Header: React.FC = () => {
   return (
     <Navbar variant="sticky" css={{ zIndex: '$3' }}>
       <Navbar.Content>
-        <Navbar.Toggle aria-label="Toggle navigation" showIn="sm" />
+        <Navbar.Toggle isSelected={isNavbarOpen} aria-label="Toggle navigation" showIn="sm" onChange={handleToggleChange} />
         <Navbar.Brand>
           <Link href="/">
             <LogoIcon viewBox="0 0 90 22" />
@@ -150,7 +164,7 @@ export const Header: React.FC = () => {
           </Dropdown.Menu>
         </Dropdown>
       </Navbar.Content>
-      <Navbar.Collapse>
+      <Navbar.Collapse isOpen={isNavbarOpen}>
         {navigationItems.map(({ label, ...props }) => (
           <Navbar.CollapseItem key={label}>
             <Link {...props}>

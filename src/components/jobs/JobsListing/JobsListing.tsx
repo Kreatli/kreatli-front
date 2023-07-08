@@ -56,6 +56,10 @@ export const JobsListing = () => {
   const isCreator = currentUser?.role === 'creator';
   const isMobile = useBreakpointValue({ SM: false }, true);
 
+  React.useEffect(() => () => {
+    setIsScrollDisabled(false);
+  }, [setIsScrollDisabled]);
+
   const handleFiltersChange = (filters: Api.GetParams['/job-offers']) => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
     setSelectedFilters(filters);

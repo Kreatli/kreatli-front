@@ -54,6 +54,10 @@ export const ProfessionalListing = () => {
   const { setIsScrollDisabled } = useBodyScroll();
   const isMobile = useBreakpointValue({ SM: false }, true);
 
+  React.useEffect(() => () => {
+    setIsScrollDisabled(false);
+  }, [setIsScrollDisabled]);
+
   const handleFiltersChange = (filters: Api.GetParams['/professionals']) => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
     setSelectedFilters(filters);
