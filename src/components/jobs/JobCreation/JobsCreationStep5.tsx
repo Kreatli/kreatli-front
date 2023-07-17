@@ -2,7 +2,7 @@ import { Grid, Textarea } from '@nextui-org/react';
 import React from 'react';
 import { FieldErrors, UseFormRegister } from 'react-hook-form';
 
-import { DefaultValues } from './constants';
+import { ADDITIONAL_INFORMATION_PLACEHOLDER, DefaultValues } from './constants';
 
 interface Props {
   errors: FieldErrors<DefaultValues>;
@@ -14,7 +14,7 @@ export const JobsCreationStep5: React.FC<Props> = ({ errors, register }) => {
     <Grid.Container gap={1} alignItems="flex-start">
       <Grid xs={12}>
         <Textarea
-          placeholder="Gosha, here should be a real example of additional information copy, what creators can write here?"
+          placeholder={ADDITIONAL_INFORMATION_PLACEHOLDER}
           aria-label="Additional information"
           fullWidth
           status={errors.additionalInformation && 'error'}

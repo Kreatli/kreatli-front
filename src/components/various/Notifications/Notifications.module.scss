@@ -2,7 +2,7 @@
   position: fixed;
   inset: 1.5rem;
   display: flex;
-  gap: 1rem;
+  gap: var(--nextui-space-md);
   flex-direction: column;
   align-items: flex-end;
   justify-content: flex-end;

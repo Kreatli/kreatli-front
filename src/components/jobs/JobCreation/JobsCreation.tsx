@@ -18,7 +18,7 @@ const FIELDS_BY_STEP = [
   ['title', 'shortDescription', 'description'],
   ['skills'],
   ['paymentType', 'paymentPreferences', 'paymentValue'],
-  ['duration', 'location'],
+  ['availability', 'availabilityDuration', 'location'],
   ['additionalInformation'],
 ] as const;
 
@@ -89,27 +89,27 @@ export const JobsCreation = () => {
   const steps = [
     {
       title: 'Step 1 - Job title and description',
-      subtitle: 'The title and short description are displayed in Jobs listing on the offer card. Keep them descriptive but concise. The description provides more details and is shown on the offer page',
+      subtitle: 'Clearly describe the job you\'re hiring for and the responsibilities that come with it. Be specific about the skills and experience you\'re looking for',
       render: <JobsCreationStep1 register={register} errors={errors} />,
     },
     {
       title: 'Step 2 - Required qualifications',
-      subtitle: 'Select qualifications that align with your requirements. Feel free to choose multiple options',
+      subtitle: 'Choose the qualifications required for the job. Feel free to choose multiple options',
       render: <JobsCreationStep2 control={control} errors={errors} />,
     },
     {
       title: 'Step 3 - Payment and Budget',
-      subtitle: 'Be transparent about the budget for the job, whether it\'s a flat rate or an hourly rate. Specify how payment will be made',
+      subtitle: 'Be transparent about the budget for the job, whether it\'s a flat rate or an hourly rate. Specify how payment will be made and when it will be paid',
       render: <JobsCreationStep3 register={register} control={control} errors={errors} />,
     },
     {
-      title: 'Step 4 - Duration and Location',
-      subtitle: 'Please provide the deadline for the job and specify the location',
+      title: 'Step 4 - Availability and Location',
+      subtitle: 'Please provide the availability you require from professionals and specify the location',
       render: <JobsCreationStep4 control={control} errors={errors} />,
     },
     {
       title: 'Step 5 - Additional information (optional)',
-      subtitle: 'Any comments or additional information you want to leave',
+      subtitle: 'Any comments or additional information you want to include in your job offer',
       render: <JobsCreationStep5 register={register} errors={errors} />,
     },
   ];

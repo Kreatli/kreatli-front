@@ -1,5 +1,5 @@
+import { Availability } from './availability';
 import { Common } from './common';
-import { Duration } from './duration';
 import { Payment } from './payment';
 import { Skill } from './skill';
 import { User } from './user';
@@ -14,7 +14,8 @@ export namespace Job {
     paymentType: Payment.Type;
     paymentPreferences: Payment.Preference[];
     paymentValue: number;
-    duration: Duration;
+    availability: Availability.Type;
+    availabilityDuration?: Availability.ProjectBase;
     location: 'remote' | string;
     additionalInformation: string;
     creationDate: Date;

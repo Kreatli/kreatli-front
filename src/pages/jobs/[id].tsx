@@ -23,7 +23,7 @@ const JobOffer: React.FC = () => {
   // TODO: handle error
   const { data } = useQuery(['job-offer', jobOfferId], fetchJobOffer);
 
-  const pageTitle = `${data?.title} | Kreatli`;
+  const pageTitle = `${data?.title ?? ''} | Kreatli`;
 
   return (
     <>
@@ -31,7 +31,7 @@ const JobOffer: React.FC = () => {
         <title>{pageTitle}</title>
         <meta name="description" content="Kreatli" />
       </Head>
-      <Container sm>
+      <Container sm css={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
         {data && (
           <JobPage {...data} />
         )}

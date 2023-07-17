@@ -4,6 +4,7 @@ import Link from 'next/link';
 import React from 'react';
 
 import { SKILL_EMOJIS } from '../../../constants/skills';
+import { useSession } from '../../../hooks/useSession';
 import { Common } from '../../../typings/common';
 import { Job } from '../../../typings/job';
 import { formatRelativeTime } from '../../../utils/dates';
@@ -22,7 +23,8 @@ export const JobCard = (props: Props) => {
     className,
     creationDate,
     creator,
-    duration,
+    availability,
+    availabilityDuration,
     location,
     paymentType,
     paymentValue,
@@ -30,6 +32,9 @@ export const JobCard = (props: Props) => {
     skills,
     title,
   } = props;
+
+  const { currentUser } = useSession();
+  const isProfessional = currentUser?.role === 'professional';
 
   const relativeCreationDate = React.useMemo(() => {
     return formatRelativeTime(creationDate);
@@ -51,14 +56,20 @@ export const JobCard = (props: Props) => {
             pointer
             size="lg"
           />
-          <Button as="div" className={styles.applyButton} auto size="sm">Apply</Button>
+          {isProfessional && <Button as="div" className={styles.applyButton} auto size="sm">Apply</Button>}
         </Row>
         <div className={styles.content}>
           <Text h4 className={styles.title}>{title} {skillEmojis}</Text>
           <Text className={styles.text}>{shortDescription}</Text>
         </div>
         <div className={styles.footer}>
-          <JobFeatures location={location} duration={duration} paymentType={paymentType} paymentValue={paymentValue} />
+          <JobFeatures
+            location={location}
+            availability={availability}
+            availabilityDuration={availabilityDuration}
+            paymentType={paymentType}
+            paymentValue={paymentValue}
+          />
           <Text size="$sm" color="$accents6">Posted {relativeCreationDate}</Text>
         </div>
       </Card.Body>

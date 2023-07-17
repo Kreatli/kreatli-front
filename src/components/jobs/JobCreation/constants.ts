@@ -1,4 +1,5 @@
-import { Duration } from '../../../typings/duration';
+/* eslint-disable max-len */
+import { Availability } from '../../../typings/availability';
 import { Payment } from '../../../typings/payment';
 
 export const DEFAULT_VALUES = {
@@ -9,7 +10,8 @@ export const DEFAULT_VALUES = {
   paymentType: '' as Payment.Type,
   paymentPreferences: [],
   paymentValue: 0,
-  duration: '' as Duration,
+  availability: '' as Availability.Type,
+  availabilityDuration: '' as Availability.ProjectBase,
   location: 'remote',
   additionalInformation: '',
 };
@@ -18,7 +20,6 @@ export type DefaultValues = typeof DEFAULT_VALUES;
 
 export const SHORT_DESCRIPTION_PLACEHOLDER = 'Join our dynamic team as a YouTube Video Editor! We\'re seeking a skilled professional who can bring their creativity and expertise to help us produce compelling videos for our growing YouTube channel.';
 
-// eslint-disable-next-line max-len
 export const DESCRIPTION_PLACEHOLDER = `As a YouTube Video Editor, you will be responsible for editing and enhancing our video content to captivate and engage our audience. Collaborating closely with our content creators, you will have the opportunity to shape the visual style and storytelling of our videos, ensuring they align with our brand and resonate with our viewers.
 
 Responsibilities:
@@ -33,3 +34,8 @@ Requirements:
 - Solid understanding of YouTube platform, audience dynamics, and video optimization
 - Creative flair with a keen eye for visual storytelling and attention to detail
 - Knowledge of video SEO strategies and YouTube analytics is a plus`;
+
+export const ADDITIONAL_INFORMATION_PLACEHOLDER = `Deadline: State the deadline for the job, whether it's a specific date or a duration of time.
+Deliverables: Clearly specify the deliverables and what you expect from the professional you hire.
+Communication: Let professionals know how you expect to communicate during the project.
+Requirements for submission: Let professionals know what information/materials they need to submit as part of their application.`;

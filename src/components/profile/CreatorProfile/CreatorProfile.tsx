@@ -69,7 +69,6 @@ export const CreatorProfile = ({ userId }: Props) => {
         <ChannelDetails id={user._id} youtubeUrl={user.youtubeUrl} details={user.youtube} />
       )}
       <Spacer y={2} />
-      <Text h3>Recent connections</Text>
       {user && (
         <RecentConnections ids={user.connections} />
       )}

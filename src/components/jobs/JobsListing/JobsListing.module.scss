@@ -41,7 +41,7 @@
 .cards {
   position: relative;
   display: grid;
-  gap: 1rem;
+  gap: var(--nextui-space-md);
   grid-template-columns: 1fr;
 
   &::after {
@@ -83,5 +83,6 @@
     padding-left: 10px;
     padding-right: 10px;
     overflow-y: auto;
+    max-width: 300px;
   }
 }

@@ -53,11 +53,9 @@ export const JobsCreationStep3: React.FC<Props> = ({ control, errors, register }
           placeholder="Select..."
           fullWidth
           selectionMode="multiple"
-          status={errors.paymentPreferences && 'error'}
           options={PAYMENT_PREFERENCE_OPTIONS}
           name="paymentPreferences"
           control={control}
-          rules={VALIDATION_RULES.REQUIRED}
         />
       </Grid>
     </Grid.Container>

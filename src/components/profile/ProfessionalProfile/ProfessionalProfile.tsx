@@ -80,7 +80,6 @@ export const ProfessionalProfile = ({ userId }: Props) => {
         ))}
       </Grid.Container>
       <Spacer y={2} />
-      <Text h3>Recent connections</Text>
       {user && (
         <RecentConnections ids={user.connections} />
       )}

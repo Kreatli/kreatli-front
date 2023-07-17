@@ -10,6 +10,10 @@ export const requestJobOffer = (id: Common.Id) => {
   return api.get(`/job-offer/${id}`).then((res) => res.data);
 };
 
+export const requestJobOfferOthers = (id: Common.Id) => {
+  return api.get(`/job-offer/${id}/others`).then((res) => res.data);
+};
+
 export const requestJobOffers = (params?: Api.GetParams['/job-offers']) => {
   return api.get('/job-offers', params).then((res) => res.data);
 };

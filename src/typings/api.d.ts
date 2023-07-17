@@ -1,3 +1,4 @@
+import { Availability } from './availability';
 import { Invitation } from './invitation';
 import { Job } from './job';
 import { Skill, SkillLevel } from './skill';
@@ -36,6 +37,7 @@ export namespace Api {
     | '/creators'
     | '/professionals'
     | '/job-offer/:id'
+    | '/job-offer/:id/others'
     | '/job-offers';
 
   export type Post =
@@ -71,6 +73,8 @@ export namespace Api {
       search?: string;
       limit?: number;
       offset?: number;
+      availability?: Availability.Type;
+      availabilityDuration?: Availability.ProjectBase;
     };
   }
 
@@ -89,6 +93,7 @@ export namespace Api {
       professionalsCount: number;
     };
     '/job-offer/:id': Job.Offer;
+    '/job-offer/:id/others': Job.Offer[];
     '/job-offers': {
       jobOffers: Job.Offer[];
       jobOffersCount: number;

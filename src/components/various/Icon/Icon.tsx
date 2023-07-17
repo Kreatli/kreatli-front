@@ -4,6 +4,7 @@ import AddImageIcon from '../../../assets/icons/add-image.svg';
 import BankIcon from '../../../assets/icons/bank.svg';
 import BitcoinIcon from '../../../assets/icons/bitcoin.svg';
 import BuildingIcon from '../../../assets/icons/building.svg';
+import CalendarIcon from '../../../assets/icons/calendar.svg';
 import CashIcon from '../../../assets/icons/cash.svg';
 import ChatIcon from '../../../assets/icons/chat.svg';
 import CheckIcon from '../../../assets/icons/check.svg';
@@ -49,6 +50,7 @@ const ICONS = {
   bank: BankIcon,
   bitcoin: BitcoinIcon,
   building: BuildingIcon,
+  calendar: CalendarIcon,
   cash: CashIcon,
   chat: ChatIcon,
   check: CheckIcon,

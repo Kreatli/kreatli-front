@@ -10,6 +10,8 @@ body {
 }
 
 main {
+  display: flex;
+  flex-direction: column;
   min-height: calc(100vh - var(--nextui--navbarHeight));
   padding: var(--nextui-space-12) 0;
 }

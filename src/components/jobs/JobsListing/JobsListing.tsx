@@ -114,7 +114,9 @@ export const JobsListing = () => {
           </Grid>
           {isCreator && (
             <Grid>
-              <Button as={Link} href="/jobs/create" color="gradient" rounded icon={<Icon icon="plus" />} auto aria-label="Create a job offer" />
+              <Button as={Link} href="/jobs/create" color="gradient" rounded icon={<Icon icon="plus" />} auto aria-label="Create a job offer">
+                {!isMobile ? 'Create job offer' : null}
+              </Button>
             </Grid>
           )}
           {isMobile && (

@@ -17,25 +17,32 @@ export const RecentConnections = ({ ids }: Props) => {
     refetchOnMount: false,
   });
 
+  if (!connections.length) {
+    return null;
+  }
+
   return (
-    <Grid.Container gap={2}>
-      {connections.map((user) => (
-        <Grid key={user._id} xs={4} sm={2}>
-          <Link href={`/profile/${user._id}`} style={{ display: 'block', width: '100%' }}>
-            <Row justify="center">
-              <ProfileBadge isVerified={user.isVerified} size="sm">
-                <Avatar src={user.avatarUrl} pointer size="xl" />
-              </ProfileBadge>
-            </Row>
-            <Row justify="center">
-              <Text size="$sm" color="$accents6" css={{ textAlign: 'center' }}>{COUNTRY_LABELS[user.country]}</Text>
-            </Row>
-            <Row justify="center">
-              <Text h5 css={{ textAlign: 'center' }}>{user.name}</Text>
-            </Row>
-          </Link>
-        </Grid>
-      ))}
-    </Grid.Container>
+    <>
+      <Text h3>Recent connections</Text>
+      <Grid.Container gap={2}>
+        {connections.map((user) => (
+          <Grid key={user._id} xs={4} sm={2}>
+            <Link href={`/profile/${user._id}`} style={{ display: 'block', width: '100%' }}>
+              <Row justify="center">
+                <ProfileBadge isVerified={user.isVerified} size="sm">
+                  <Avatar src={user.avatarUrl} pointer size="xl" />
+                </ProfileBadge>
+              </Row>
+              <Row justify="center">
+                <Text size="$sm" color="$accents6" css={{ textAlign: 'center' }}>{COUNTRY_LABELS[user.country]}</Text>
+              </Row>
+              <Row justify="center">
+                <Text h5 css={{ textAlign: 'center' }}>{user.name}</Text>
+              </Row>
+            </Link>
+          </Grid>
+        ))}
+      </Grid.Container>
+    </>
   );
 };

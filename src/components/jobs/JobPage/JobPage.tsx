@@ -4,6 +4,7 @@ import React from 'react';
 
 import { SKILL_LABELS_FOR_PROFESSIONAL } from '../../../constants/skills';
 import { useBreakpointValue } from '../../../hooks/useBreakpointValue';
+import { useSession } from '../../../hooks/useSession';
 import { Common } from '../../../typings/common';
 import { Job } from '../../../typings/job';
 import { formatRelativeTime } from '../../../utils/dates';
@@ -12,6 +13,7 @@ import { BottomBar } from '../../various/BottomBar';
 import { PaymentMethods } from '../../various/PaymentMethods';
 import { Tag } from '../../various/Tag';
 import { JobFeatures } from '../JobFeatures';
+import { JobOthers } from '../JobOthers';
 import styles from './JobPage.module.scss';
 
 interface Props
@@ -21,10 +23,12 @@ interface Props
 
 export const JobPage = (props: Props) => {
   const {
+    _id: id,
     applicationsCount,
     creationDate,
     creator,
-    duration,
+    availability,
+    availabilityDuration,
     location,
     paymentType,
     paymentValue,
@@ -35,6 +39,8 @@ export const JobPage = (props: Props) => {
   } = props;
 
   const isMobile = useBreakpointValue({ XS: false }, true);
+  const { currentUser } = useSession();
+  const isProfessional = currentUser?.role === 'professional';
 
   const relativeCreationDate = React.useMemo(() => {
     return formatRelativeTime(creationDate);
@@ -55,7 +61,7 @@ export const JobPage = (props: Props) => {
       </div>
       {!isMobile && <PaymentMethods methods={paymentPreferences} />}
       <div className={styles.cardApply}>
-        <Button auto className={styles.cardButton}>Apply for job</Button>
+        {isProfessional && <Button auto className={styles.cardButton}>Apply for job</Button>}
         <Text color="$accents6" size="$sm">{applicationsCount} application{applicationsCount === 1 ? '' : 's'} so far</Text>
       </div>
     </>
@@ -67,7 +73,13 @@ export const JobPage = (props: Props) => {
         <div className={styles.content}>
           <Text size="$sm" color="$accents6">Posted {relativeCreationDate}</Text>
           <Text h3>{title}</Text>
-          <JobFeatures location={location} duration={duration} paymentType={paymentType} paymentValue={paymentValue} />
+          <JobFeatures
+            location={location}
+            availability={availability}
+            availabilityDuration={availabilityDuration}
+            paymentType={paymentType}
+            paymentValue={paymentValue}
+          />
           <div className={styles.tags}>
             {skills.map((skill) => (
               <Tag key={skill} disabled>{SKILL_LABELS_FOR_PROFESSIONAL[skill]}</Tag>
@@ -81,6 +93,7 @@ export const JobPage = (props: Props) => {
           </div>
         )}
       </div>
+      <JobOthers id={id} creatorName={creator.name} />
       {isMobile && (
         <BottomBar className={styles.bottomBar}>
           {userCardContent}

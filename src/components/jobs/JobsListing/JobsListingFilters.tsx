@@ -2,6 +2,7 @@ import cx from 'classnames';
 import { omit, without } from 'ramda';
 import React from 'react';
 
+import { AVAILABILITY_OPTIONS, DURATION_OPTIONS } from '../../../constants/availability';
 import { LOCATION_OPTIONS } from '../../../constants/location';
 import { SKILL_DESCRIPTIONS, SKILL_EMOJIS, SKILL_LABELS, SKILLS } from '../../../constants/skills';
 import { Api } from '../../../typings/api';
@@ -21,6 +22,14 @@ export const JobsListingFilters = ({ filters, isOpen, isMobile, onChange, onClos
 
   const handleFilterSelect = (key: any) => (values?: string | string[] | React.MouseEvent<HTMLElement>) => {
     if (Array.isArray(values)) {
+      if (key === 'availability' && !values.includes('project-base')) {
+        if (values.length === 0) {
+          return onChange(omit([key, 'availabilityDuration'], filters));
+        }
+
+        return onChange(omit(['availabilityDuration'], { ...filters, [key]: values }));
+      }
+
       if (values.length === 0) {
         return onChange(omit([key], filters));
       }
@@ -47,6 +56,20 @@ export const JobsListingFilters = ({ filters, isOpen, isMobile, onChange, onClos
       selectionMode: 'multiple',
       options: LOCATION_OPTIONS,
     },
+    {
+      key: 'availability',
+      icon: 'calendar',
+      label: 'Availability',
+      selectionMode: 'single',
+      options: AVAILABILITY_OPTIONS,
+    },
+    ...(filters.availability?.includes('project-base') ? [{
+      key: 'availabilityDuration',
+      icon: 'time',
+      label: 'Duration',
+      selectionMode: 'multiple',
+      options: DURATION_OPTIONS,
+    }] as const : []),
   ] as const;
 
   return (
