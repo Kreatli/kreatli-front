@@ -25,6 +25,7 @@ export const JobCard = (props: Props) => {
     creator,
     availability,
     availabilityDuration,
+    hasApplied,
     location,
     paymentType,
     paymentValue,
@@ -56,7 +57,11 @@ export const JobCard = (props: Props) => {
             pointer
             size="lg"
           />
-          {isProfessional && <Button as="div" className={styles.applyButton} auto size="sm">Apply</Button>}
+          {isProfessional && (
+            <Button as="div" className={styles.applyButton} disabled={hasApplied} auto size="sm">
+              {hasApplied ? 'Applied' : 'Apply for job'}
+            </Button>
+          )}
         </Row>
         <div className={styles.content}>
           <Text h4 className={styles.title}>{title} {skillEmojis}</Text>
