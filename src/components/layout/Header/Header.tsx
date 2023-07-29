@@ -54,19 +54,25 @@ export const Header: React.FC = () => {
   ];
 
   const dropdownItems: DropdownItem[] = [
-    !isSignedIn ? {
+    ...(!isSignedIn ? [{
       label: 'Sign in',
       color: 'primary' as const,
       key: 'signIn',
-    } : {
-      label: 'My account',
-      color: 'primary' as const,
-      key: 'myAccount',
-    },
-    ...(isSignedIn ? [{
-      label: 'Connections',
-      key: 'connections',
-    }] : []),
+    }] : [
+      {
+        label: 'Account',
+        color: 'primary' as const,
+        key: 'myAccount',
+      },
+      {
+        label: 'Connections',
+        key: 'connections',
+      },
+      {
+        label: 'Jobs',
+        key: 'myJobs',
+      },
+    ]),
     {
       label: 'FAQ',
       key: 'faq',
@@ -89,6 +95,7 @@ export const Header: React.FC = () => {
     faq: () => router.push('/faq'),
     myAccount: () => router.push(`/profile/${currentUser?._id}`),
     connections: () => router.push(`/profile/${currentUser?._id}/connections`),
+    myJobs: () => router.push(`/profile/${currentUser?._id}/jobs`),
     signIn: openModal,
     signOut,
   };

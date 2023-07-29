@@ -4,6 +4,7 @@ import React from 'react';
 
 import { SKILL_LABELS_FOR_PROFESSIONAL } from '../../../constants/skills';
 import { useBreakpointValue } from '../../../hooks/useBreakpointValue';
+import { useModalVisibility } from '../../../hooks/useModalVisibility';
 import { useSession } from '../../../hooks/useSession';
 import { Common } from '../../../typings/common';
 import { Job } from '../../../typings/job';
@@ -12,6 +13,7 @@ import { ProfileBadge } from '../../profile/Profile/ProfileBadge';
 import { BottomBar } from '../../various/BottomBar';
 import { PaymentMethods } from '../../various/PaymentMethods';
 import { Tag } from '../../various/Tag';
+import { JobApplicationModal } from '../JobApplicationModal';
 import { JobFeatures } from '../JobFeatures';
 import { JobOthers } from '../JobOthers';
 import styles from './JobPage.module.scss';
@@ -33,12 +35,15 @@ export const JobPage = (props: Props) => {
     paymentType,
     paymentValue,
     paymentPreferences,
+    hasApplied,
+    shortDescription,
     description,
     skills,
     title,
   } = props;
 
   const isMobile = useBreakpointValue({ XS: false }, true);
+  const { isModalVisible, openModal, closeModal } = useModalVisibility();
   const { currentUser } = useSession();
   const isProfessional = currentUser?.role === 'professional';
 
@@ -61,7 +66,11 @@ export const JobPage = (props: Props) => {
       </div>
       {!isMobile && <PaymentMethods methods={paymentPreferences} />}
       <div className={styles.cardApply}>
-        {isProfessional && <Button auto className={styles.cardButton}>Apply for job</Button>}
+        {isProfessional && (
+          <Button disabled={hasApplied} auto onClick={openModal}>
+            {hasApplied ? 'Applied' : 'Apply for job'}
+          </Button>
+        )}
         <Text color="$accents6" size="$sm">{applicationsCount} application{applicationsCount === 1 ? '' : 's'} so far</Text>
       </div>
     </>
@@ -98,6 +107,15 @@ export const JobPage = (props: Props) => {
         <BottomBar className={styles.bottomBar}>
           {userCardContent}
         </BottomBar>
+      )}
+      {id && (
+        <JobApplicationModal
+          isVisible={isModalVisible}
+          jobOfferId={id}
+          title={title}
+          shortDescription={shortDescription}
+          onClose={closeModal}
+        />
       )}
     </>
   );

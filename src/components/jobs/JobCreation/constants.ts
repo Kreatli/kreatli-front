@@ -18,22 +18,13 @@ export const DEFAULT_VALUES = {
 
 export type DefaultValues = typeof DEFAULT_VALUES;
 
-export const SHORT_DESCRIPTION_PLACEHOLDER = 'Join our dynamic team as a YouTube Video Editor! We\'re seeking a skilled professional who can bring their creativity and expertise to help us produce compelling videos for our growing YouTube channel.';
+export const SHORT_DESCRIPTION_PLACEHOLDER = 'Briefly describe the job you\'re hiring for. This information is going to be shown on your Job Posting Preview.';
 
-export const DESCRIPTION_PLACEHOLDER = `As a YouTube Video Editor, you will be responsible for editing and enhancing our video content to captivate and engage our audience. Collaborating closely with our content creators, you will have the opportunity to shape the visual style and storytelling of our videos, ensuring they align with our brand and resonate with our viewers.
+export const DESCRIPTION_PLACEHOLDER = `Clearly describe the job you're hiring for and the responsibilities/requirements that come with it.
 
-Responsibilities:
-- Edit and refine raw footage to create visually stunning YouTube videos
-- Incorporate captivating visuals, transitions, and effects to enhance video quality
-- Ensure seamless audio integration, including background music and voiceovers
-- Implement engaging graphics, titles, and animations to support the video's message
-
-Requirements:
-- Proven experience as a Video Editor, specifically for YouTube content
-- Proficiency in video editing software (e.g., Adobe Premiere Pro, Final Cut Pro)
-- Solid understanding of YouTube platform, audience dynamics, and video optimization
-- Creative flair with a keen eye for visual storytelling and attention to detail
-- Knowledge of video SEO strategies and YouTube analytics is a plus`;
+Example: Type of content you create (e.g. vlogs, tutorials, reviews, etc.)
+Goals for the project (e.g. increase views, gain more subscribers, improve engagement, etc.)
+Specific requirements you have (e.g. use of certain colors or branding, inclusion of certain keywords, etc.)`;
 
 export const ADDITIONAL_INFORMATION_PLACEHOLDER = `Deadline: State the deadline for the job, whether it's a specific date or a duration of time.
 Deliverables: Clearly specify the deliverables and what you expect from the professional you hire.

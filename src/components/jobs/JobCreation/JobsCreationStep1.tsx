@@ -43,8 +43,8 @@ export const JobsCreationStep1: React.FC<Props> = ({ errors, register }) => {
           placeholder={DESCRIPTION_PLACEHOLDER}
           aria-label="Description"
           fullWidth
+          minRows={5}
           status={errors.description && 'error'}
-          rows={16}
           helperText={errors.description?.message}
           helperColor="error"
           {...register('description', VALIDATION_RULES.DESCRIPTION.MIN_100)}

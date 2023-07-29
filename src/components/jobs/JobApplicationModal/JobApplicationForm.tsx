@@ -3,35 +3,36 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useMutation, useQueryClient } from 'react-query';
 
+import { VALIDATION_RULES } from '../../../constants/validationRules';
 import { useNotifications } from '../../../hooks/useNotifications';
-import { useSession } from '../../../hooks/useSession';
-import { requestUserInvitation } from '../../../services/user';
+import { requestJobApplicationCreation } from '../../../services/job';
 import { Common } from '../../../typings/common';
 import { getErrorMessage } from '../../../utils/getErrorMessage';
 
 interface Props {
-  userId: Common.Id;
+  jobOfferId: Common.Id;
   onCancel: () => void;
   onSuccess: () => void;
 }
 
+// eslint-disable-next-line max-len
+const COVER_LETTER_PLACEHOLDER = `Introduce yourself, answer/ask questions, provide valuable information, clarify the requirements, etc.
+Make your application stand out!`;
+
 const DEFAULT_VALUES = {
-  inviter: '',
-  message: '',
+  coverLetter: '',
 };
 
 type DefaultValues = typeof DEFAULT_VALUES;
 
-export const InvitationForm: React.FC<Props> = ({ userId, onCancel, onSuccess }) => {
-  const { register, handleSubmit } = useForm({ defaultValues: DEFAULT_VALUES, mode: 'onBlur' });
+export const JobApplicationForm = ({ jobOfferId, onCancel, onSuccess }: Props) => {
+  const { register, handleSubmit, formState: { errors } } = useForm({ defaultValues: DEFAULT_VALUES, mode: 'onBlur' });
   const pushNotification = useNotifications((state) => state.pushNotification);
 
-  const { currentUserId } = useSession();
   const queryClient = useQueryClient();
-  const { mutate, isLoading } = useMutation(requestUserInvitation, {
-    onSuccess: (user) => {
-      queryClient.setQueryData(['user', userId], user);
-      queryClient.refetchQueries('user');
+  const { mutate, isLoading } = useMutation(requestJobApplicationCreation, {
+    onSuccess: (jobOffer) => {
+      queryClient.setQueryData(['job-offer', jobOfferId], jobOffer);
       onSuccess();
     },
     onError: (error: any) => {
@@ -44,28 +45,29 @@ export const InvitationForm: React.FC<Props> = ({ userId, onCancel, onSuccess })
   });
 
   const onSubmit = (data: DefaultValues) => {
-    mutate([userId, { ...data, inviter: currentUserId }]);
+    mutate([jobOfferId, data]);
   };
 
   return (
     <form noValidate onSubmit={handleSubmit(onSubmit)}>
-      <Grid.Container gap={1}>
+      <Grid.Container css={{ gap: '$2' }}>
         <Grid xs={12}>
           <Textarea
-            placeholder="Add a personalized note (optional)"
-            aria-label="Add a personalized note (optional)"
+            placeholder={COVER_LETTER_PLACEHOLDER}
+            aria-label="Any information you want to add to your application"
             disabled={isLoading}
+            status={errors.coverLetter && 'error'}
             fullWidth
-            {...register('message')}
+            {...register('coverLetter', VALIDATION_RULES.DESCRIPTION.MIN_100)}
           />
         </Grid>
       </Grid.Container>
       <Spacer y={1} />
-      <Grid.Container gap={1} justify="space-between">
+      <Grid.Container css={{ gap: '$2' }} justify="space-between">
         <Grid>
           <Button type="submit" auto flat disabled={isLoading}>
             {isLoading && <Loading size="xs" css={{ paddingRight: '$4' }} />}
-            Send invitation
+            Apply for job
           </Button>
         </Grid>
         <Grid>

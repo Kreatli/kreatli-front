@@ -23,6 +23,7 @@ export namespace Job {
     hiredApplication: Application;
     applications: Application[];
     applicationsCount: number;
+    hasApplied?: boolean;
   }
 
   export interface Application {

@@ -35,6 +35,12 @@
   gap: var(--nextui-space-sm);
 }
 
+.cardApply {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .bottomBar {
   display: flex;
   gap: 10px;

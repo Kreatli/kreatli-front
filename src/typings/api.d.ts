@@ -53,7 +53,8 @@ export namespace Api {
     | '/user/:id/invitation'
     | '/user/:id/invitation/accept'
     | '/user/:id/invitation/reject'
-    | '/job-offer';
+    | '/job-offer'
+    | '/job-offer/:id/application';
 
   export type Put = '';
 
@@ -131,6 +132,9 @@ export namespace Api {
       invitationId: Id;
     };
     '/job-offer': Job.OfferPayload;
+    '/job-offer/:id/application': {
+      coverLetter: string;
+    };
   }
 
   export interface PostResponse {
@@ -160,6 +164,7 @@ export namespace Api {
       invitee: User.Type;
     };
     '/job-offer': Job.Offer;
+    '/job-offer/:id/application': Job.Offer;
   }
 
   export interface PutPayload {

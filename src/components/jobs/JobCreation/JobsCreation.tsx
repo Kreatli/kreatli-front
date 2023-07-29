@@ -1,4 +1,5 @@
 import { Button, Collapse, Grid, Loading, Progress, Spacer, Text, useTheme } from '@nextui-org/react';
+import { omit } from 'ramda';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useMutation } from 'react-query';
@@ -77,7 +78,9 @@ export const JobsCreation = () => {
   });
 
   const onSubmit = (data: DefaultValues) => {
-    mutate(data);
+    mutate(data.availabilityDuration
+      ? data
+      : omit(['availabilityDuration'], data));
   };
 
   const progressValue = React.useMemo(() => {
@@ -114,7 +117,7 @@ export const JobsCreation = () => {
     },
   ];
 
-  const description = 'Gosha description needed';
+  const description = 'Create a job offer to attract and hire the most relevant professionals. Make it unique so that it stands out!';
 
   return (
     <>
