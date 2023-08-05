@@ -58,7 +58,9 @@ export namespace Api {
     | '/job-offer'
     | '/job-offer/:id/application'
     | '/job-offer/:id/application/:id/reject'
-    | '/job-offer/:id/application/:id/accept';
+    | '/job-offer/:id/application/:id/accept'
+    | '/job-offer/:id/application/:id/cancel'
+    | '/job-offer/:id/application/:id/reactivate';
 
   export type Put = '';
 
@@ -173,6 +175,8 @@ export namespace Api {
     '/job-offer/:id/application': Job.Offer;
     '/job-offer/:id/application/:id/reject': Job.Offer;
     '/job-offer/:id/application/:id/accept': Job.Offer;
+    '/job-offer/:id/application/:id/cancel': Job.Offer;
+    '/job-offer/:id/application/:id/reactivate': Job.Offer;
   }
 
   export interface PutPayload {

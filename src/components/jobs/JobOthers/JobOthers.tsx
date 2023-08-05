@@ -32,7 +32,7 @@ export const JobOthers = ({ id, creatorName }: Props) => {
       <Text h4>Other job offers from {creatorName}</Text>
       <div className={styles.cards}>
         {data.map((jobOffer) => (
-          <JobCard key={jobOffer._id} {...jobOffer} />
+          <JobCard key={jobOffer._id} jobOffer={jobOffer} />
         ))}
       </div>
     </div>

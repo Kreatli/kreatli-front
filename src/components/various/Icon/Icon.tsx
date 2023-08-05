@@ -7,6 +7,7 @@ import BuildingIcon from '../../../assets/icons/building.svg';
 import CalendarIcon from '../../../assets/icons/calendar.svg';
 import CashIcon from '../../../assets/icons/cash.svg';
 import ChatIcon from '../../../assets/icons/chat.svg';
+import DotsIcon from '../../../assets/icons/dots.svg';
 import CheckIcon from '../../../assets/icons/check.svg';
 import CheckCircleIcon from '../../../assets/icons/check-circle.svg';
 import CheckShieldIcon from '../../../assets/icons/check-shield.svg';
@@ -65,6 +66,7 @@ const ICONS = {
   diamond: DiamondIcon,
   discord: DiscordIcon,
   dollar: DollarIcon,
+  dots: DotsIcon,
   edit: EditIcon,
   emojiSad: EmojiSadIcon,
   error: ErrorIcon,

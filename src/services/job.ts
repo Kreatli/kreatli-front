@@ -26,6 +26,14 @@ export const requestJobApplicationAccept = ([offerId, applicationId]: [Common.Id
   return api.post(`/job-offer/${offerId}/application/${applicationId}/accept`, {}).then((res) => res.data);
 };
 
+export const requestJobApplicationCancel = ([offerId, applicationId]: [Common.Id, Common.Id]) => {
+  return api.post(`/job-offer/${offerId}/application/${applicationId}/cancel`, {}).then((res) => res.data);
+};
+
+export const requestJobApplicationReactivate = ([offerId, applicationId]: [Common.Id, Common.Id]) => {
+  return api.post(`/job-offer/${offerId}/application/${applicationId}/reactivate`, {}).then((res) => res.data);
+};
+
 export const requestJobOffers = (params?: Api.GetParams['/job-offers']) => {
   return api.get('/job-offers', params).then((res) => res.data);
 };

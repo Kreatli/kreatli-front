@@ -1,9 +1,8 @@
-import { Badge, Button, Card, Row, Text, User } from '@nextui-org/react';
+import { Button, Card, Row, Text, User } from '@nextui-org/react';
 import cx from 'classnames';
 import Link from 'next/link';
 import React from 'react';
 
-import { JOB_APPLICATION_STATUS_COLORS, JOB_APPLICATION_STATUS_LABELS, JOB_OFFER_STATUS_COLORS, JOB_OFFER_STATUS_LABELS } from '../../../constants/job';
 import { SKILL_EMOJIS } from '../../../constants/skills';
 import { useSession } from '../../../hooks/useSession';
 import { Common } from '../../../typings/common';
@@ -12,35 +11,42 @@ import { formatRelativeTime } from '../../../utils/dates';
 import { JobFeatures } from '../JobFeatures';
 import styles from './JobCard.module.scss';
 
-interface Props
-  extends Omit<Job.Offer, '_id' | 'applications'> {
-  _id?: Common.Id;
+interface Props {
+  jobOffer: Omit<Job.Offer, '_id' | 'applications'> & { _id?: Common.Id };
   className?: string;
   children?: React.ReactNode;
-  jobApplicationStatus?: Job.Application['status'];
+  header?: React.ReactNode;
+  footer?: React.ReactNode;
+  hideCreator?: boolean;
 }
 
 export const JobCard = (props: Props) => {
   const {
+    children,
+    className,
+    footer = null,
+    header = null,
+    hideCreator = false,
+    jobOffer,
+  } = props;
+
+  const {
     _id: jobOfferId,
     availability,
     availabilityDuration,
-    children,
-    className,
     creationDate,
     creator,
     hasApplied,
-    jobApplicationStatus,
     location,
     paymentType,
     paymentValue,
     shortDescription,
     skills,
-    status,
     title,
-  } = props;
+  } = jobOffer;
 
   const hasChildren = !!children;
+  const hasFooter = !!footer;
 
   const { currentUser } = useSession();
   const isProfessional = currentUser?.role === 'professional';
@@ -56,14 +62,10 @@ export const JobCard = (props: Props) => {
   const cardTitle = <Text h4 className={styles.title}>{title} {skillEmojis}</Text>;
 
   const card = (
-    <Card className={cx(styles.card, className)} isHoverable={!hasChildren} isPressable={!hasChildren}>
-      <Card.Body>
-        {hasChildren && (
-          jobApplicationStatus
-            ? <Badge variant="flat" isSquared color={JOB_APPLICATION_STATUS_COLORS[jobApplicationStatus]}>{JOB_APPLICATION_STATUS_LABELS[jobApplicationStatus]}</Badge>
-            : <Badge variant="flat" isSquared color={JOB_OFFER_STATUS_COLORS[status]}>{JOB_OFFER_STATUS_LABELS[status]}</Badge>
-        )}
-        {!hasChildren && (
+    <Card className={cx(styles.card, className)} isHoverable={!hasFooter} isPressable={!hasFooter}>
+      <Card.Body css={{ pt: header ? '$6' : undefined }}>
+        {header}
+        {!hideCreator && (
           <Row align="center" justify="space-between" className={styles.header}>
             <User
               className={styles.user}
@@ -81,7 +83,7 @@ export const JobCard = (props: Props) => {
           </Row>
         )}
         <div className={styles.content}>
-          {hasChildren && jobOfferId
+          {hasFooter && jobOfferId
             ? <Link href={`/jobs/${jobOfferId}`}>{cardTitle}</Link>
             : cardTitle}
           <Text className={styles.text}>{shortDescription}</Text>
@@ -97,15 +99,15 @@ export const JobCard = (props: Props) => {
           <Text size="$sm" color="$accents6">Posted {relativeCreationDate}</Text>
         </div>
       </Card.Body>
-      {hasChildren && (
+      {hasFooter && (
         <Card.Footer css={{ pt: 0 }}>
-          {children}
+          {footer}
         </Card.Footer>
       )}
     </Card>
   );
 
-  if (jobOfferId && !hasChildren) {
+  if (jobOfferId && !hasFooter) {
     return <Link href={`/jobs/${jobOfferId}`}>{card}</Link>;
   }
 

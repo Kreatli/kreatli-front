@@ -3,13 +3,13 @@ import React from 'react';
 import { useQuery } from 'react-query';
 
 import { requestProfessionalJobApplications } from '../../../services/professional';
-import { JobCard } from '../JobCard';
 import styles from './MyJobs.module.scss';
 import { MyJobsSkeleton } from './MyJobsSkeleton';
 import { EmptyState } from '../../various/EmptyState';
+import { MyJobsApplication } from './MyJobsApplication';
 
 export const MyJobsApplications = () => {
-  const { data, isFetching } = useQuery(['professional', 'jobApplications'], requestProfessionalJobApplications, {
+  const { data, isFetching } = useQuery(['professional', 'job-applications'], requestProfessionalJobApplications, {
     onError: () => {
       // TODO: handle error
     },
@@ -25,19 +25,15 @@ export const MyJobsApplications = () => {
       <Spacer />
       {shouldShowEmptyState && (
         <EmptyState
-          title="No jobs yet"
-          text="You didn't apply for any job yet. Let's fix it"
+          title="No job offers"
+          text="You didn't post any job offers yet. Let's fix that!"
           link={{ href: '/jobs', label: 'Browse jobs' }}
         />
       )}
       <div className={styles.cards}>
         {shouldShowSkeleton && <MyJobsSkeleton />}
         {data?.map((jobOffer) => (
-          <div key={jobOffer._id}>
-            <JobCard {...jobOffer} jobApplicationStatus={jobOffer.applications[0].status}>
-              <Text>{jobOffer.applications[0].coverLetter}</Text>
-            </JobCard>
-          </div>
+          <MyJobsApplication jobOffer={jobOffer} />
         ))}
       </div>
     </>

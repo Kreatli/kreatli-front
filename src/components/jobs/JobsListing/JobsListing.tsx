@@ -139,7 +139,7 @@ export const JobsListing = () => {
             <LazyList isLoading={isFetchingNextPage} hasMore={hasNextPage} onLoadMore={fetchNextPage}>
               <div className={cx(styles.cards, { [styles.loading]: shouldShowLoader })}>
                 {cards.map((card) => (
-                  <JobCard key={card._id} className={styles.card} {...card} />
+                  <JobCard key={card._id} className={styles.card} jobOffer={card} />
                 ))}
                 {shouldShowSkeleton && <JobsListingSkeleton />}
               </div>
