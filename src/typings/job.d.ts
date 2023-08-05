@@ -34,5 +34,5 @@ export namespace Job {
     status: 'pending' | 'hired' | 'rejected' | 'canceled';
   }
 
-  export type OfferPayload = Omit<Offer, '_id' | 'applications' | 'creator' | 'applicationsCount' | 'creationDate'>;
+  export type OfferPayload = Omit<Offer, '_id' | 'applications' | 'creator' | 'applicationsCount' | 'creationDate' | 'status'>;
 }
