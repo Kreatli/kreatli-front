@@ -63,7 +63,7 @@ export const JobCard = (props: Props) => {
 
   const card = (
     <Card className={cx(styles.card, className)} isHoverable={!hasFooter} isPressable={!hasFooter}>
-      <Card.Body css={{ pt: header ? '$6' : undefined }}>
+      <Card.Body css={{ pt: header ? '$4' : undefined }}>
         {header}
         {!hideCreator && (
           <Row align="center" justify="space-between" className={styles.header}>
