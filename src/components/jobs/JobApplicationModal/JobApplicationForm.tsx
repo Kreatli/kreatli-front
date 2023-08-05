@@ -68,15 +68,15 @@ export const JobApplicationForm = ({ jobOfferId, onCancel, onSuccess }: Props) =
         </Grid>
       </Grid.Container>
       <Spacer y={1} />
-      <Grid.Container css={{ gap: '$2' }} justify="space-between">
+      <Grid.Container css={{ gap: '$2' }} justify="center">
+        <Grid>
+          <Button auto light color="primary" onClick={onCancel}>Cancel</Button>
+        </Grid>
         <Grid>
           <Button type="submit" auto flat disabled={isLoading}>
             {isLoading && <Loading size="xs" css={{ paddingRight: '$4' }} />}
             Apply for job
           </Button>
-        </Grid>
-        <Grid>
-          <Button auto light color="primary" onClick={onCancel}>Cancel</Button>
         </Grid>
       </Grid.Container>
     </form>
