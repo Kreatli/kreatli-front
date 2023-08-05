@@ -6,6 +6,7 @@ import { requestProfessionalJobApplications } from '../../../services/profession
 import { JobCard } from '../JobCard';
 import styles from './MyJobs.module.scss';
 import { MyJobsSkeleton } from './MyJobsSkeleton';
+import { EmptyState } from '../../various/EmptyState';
 
 export const MyJobsApplications = () => {
   const { data, isFetching } = useQuery(['professional', 'jobApplications'], requestProfessionalJobApplications, {
@@ -15,12 +16,20 @@ export const MyJobsApplications = () => {
   });
 
   const shouldShowSkeleton = (!data || data.length === 0) && isFetching;
+  const shouldShowEmptyState = data && data.length === 0 && !isFetching;
 
   return (
     <>
       <Text h3>My jobs applications</Text>
       <Text color="$accents6" i>Here will be tabs displayed Pending/Hired/Rejected/Cancelled to make it more clean and easy to use</Text>
       <Spacer />
+      {shouldShowEmptyState && (
+        <EmptyState
+          title="No jobs yet"
+          text="You didn't apply for any job yet. Let's fix it"
+          link={{ href: '/jobs', label: 'Browse jobs' }}
+        />
+      )}
       <div className={styles.cards}>
         {shouldShowSkeleton && <MyJobsSkeleton />}
         {data?.map((jobOffer) => (
