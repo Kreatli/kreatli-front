@@ -32,6 +32,11 @@ export const JobApplicationForm = ({ jobOfferId, onCancel, onSuccess }: Props) =
   const queryClient = useQueryClient();
   const { mutate, isLoading } = useMutation(requestJobApplicationCreation, {
     onSuccess: (jobOffer) => {
+      pushNotification({
+        message: 'Successfully applied',
+        color: 'success',
+        icon: 'success',
+      });
       queryClient.setQueryData(['job-offer', jobOfferId], jobOffer);
       onSuccess();
     },
