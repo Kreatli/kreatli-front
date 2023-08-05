@@ -26,7 +26,6 @@ export const SignInModal: React.FC<Props> = ({ isVisible, onClose }) => {
     <Modal
       closeButton
       blur
-      aria-labelledby="modal-title"
       preventClose={isLoading}
       open={isVisible}
       onClose={onClose}

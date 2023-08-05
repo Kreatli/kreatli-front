@@ -18,7 +18,6 @@ export const JobApplicationModal = ({ jobOfferId, title, shortDescription, isVis
       closeButton
       blur
       width="500px"
-      aria-labelledby="modal-title"
       open={isVisible}
       onClose={onClose}
     >

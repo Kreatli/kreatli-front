@@ -38,7 +38,9 @@ export namespace Api {
     | '/professionals'
     | '/job-offer/:id'
     | '/job-offer/:id/others'
-    | '/job-offers';
+    | '/job-offers'
+    | '/creator/job-offers'
+    | '/professional/job-applications';
 
   export type Post =
     | '/auth/signup-creator'
@@ -54,7 +56,9 @@ export namespace Api {
     | '/user/:id/invitation/accept'
     | '/user/:id/invitation/reject'
     | '/job-offer'
-    | '/job-offer/:id/application';
+    | '/job-offer/:id/application'
+    | '/job-offer/:id/application/:id/reject'
+    | '/job-offer/:id/application/:id/accept';
 
   export type Put = '';
 
@@ -99,6 +103,8 @@ export namespace Api {
       jobOffers: Job.Offer[];
       jobOffersCount: number;
     };
+    '/creator/job-offers': Job.Offer[];
+    '/professional/job-applications': Job.Offer[];
   }
 
   export interface PostPayload {
@@ -165,6 +171,8 @@ export namespace Api {
     };
     '/job-offer': Job.Offer;
     '/job-offer/:id/application': Job.Offer;
+    '/job-offer/:id/application/:id/reject': Job.Offer;
+    '/job-offer/:id/application/:id/accept': Job.Offer;
   }
 
   export interface PutPayload {

@@ -1,7 +1,9 @@
+import { Container } from '@nextui-org/react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import React from 'react';
 
+import { MyJobsApplications, MyJobsOffers } from '../../../components/jobs/MyJobs';
 import { useUser } from '../../../hooks/useUser';
 import { Common } from '../../../typings/common';
 
@@ -10,7 +12,7 @@ const JobsPage: React.FC = () => {
   const userId = router.query.id as Common.MaybeId;
   const { user } = useUser(userId);
 
-  const pageTitle = `Jobs | ${user?.name ?? ''} | Kreatli`;
+  const pageTitle = `My jobs | ${user?.name ?? ''} | Kreatli`;
 
   return (
     <>
@@ -18,7 +20,13 @@ const JobsPage: React.FC = () => {
         <title>{pageTitle}</title>
         <meta name="description" content="Kreatli" />
       </Head>
-      Jobs
+      {user && (
+        <Container sm>
+          {user.role === 'creator'
+            ? <MyJobsOffers />
+            : <MyJobsApplications />}
+        </Container>
+      )}
     </>
   );
 };

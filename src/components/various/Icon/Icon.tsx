@@ -8,9 +8,11 @@ import CalendarIcon from '../../../assets/icons/calendar.svg';
 import CashIcon from '../../../assets/icons/cash.svg';
 import ChatIcon from '../../../assets/icons/chat.svg';
 import CheckIcon from '../../../assets/icons/check.svg';
+import CheckCircleIcon from '../../../assets/icons/check-circle.svg';
 import CheckShieldIcon from '../../../assets/icons/check-shield.svg';
 import CreditCardIcon from '../../../assets/icons/credit-card.svg';
 import CrossIcon from '../../../assets/icons/cross.svg';
+import CrossCircleIcon from '../../../assets/icons/cross-circle.svg';
 import DiamondIcon from '../../../assets/icons/diamond.svg';
 import DiscordIcon from '../../../assets/icons/discord.svg';
 import DollarIcon from '../../../assets/icons/dollar.svg';
@@ -25,6 +27,7 @@ import InfoIcon from '../../../assets/icons/info.svg';
 import InstagramIcon from '../../../assets/icons/instagram.svg';
 import LinkIcon from '../../../assets/icons/link.svg';
 import LocationIcon from '../../../assets/icons/location.svg';
+import LogoIcon from '../../../assets/icons/logo.svg';
 import MailIcon from '../../../assets/icons/mail.svg';
 import MoonIcon from '../../../assets/icons/moon.svg';
 import PaypalIcon from '../../../assets/icons/paypal.svg';
@@ -54,9 +57,11 @@ const ICONS = {
   cash: CashIcon,
   chat: ChatIcon,
   check: CheckIcon,
+  checkCircle: CheckCircleIcon,
   checkShield: CheckShieldIcon,
   creditCard: CreditCardIcon,
   cross: CrossIcon,
+  crossCircle: CrossCircleIcon,
   diamond: DiamondIcon,
   discord: DiscordIcon,
   dollar: DollarIcon,
@@ -71,6 +76,7 @@ const ICONS = {
   instagram: InstagramIcon,
   link: LinkIcon,
   location: LocationIcon,
+  logo: LogoIcon,
   mail: MailIcon,
   moon: MoonIcon,
   paypal: PaypalIcon,

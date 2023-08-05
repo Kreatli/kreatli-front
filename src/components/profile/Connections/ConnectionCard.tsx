@@ -36,11 +36,6 @@ export const ConnectionCard = ({ user }: Props) => {
           </Grid.Container>
         </Card.Body>
       </Link>
-      <Card.Divider />
-      <Card.Footer css={{ justifyContent: 'space-between' }}>
-        <Link href={`/profile/${user._id}`}>View profile</Link>
-        <Link href="/">Message</Link>
-      </Card.Footer>
     </Card>
   );
 };

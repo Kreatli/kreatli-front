@@ -17,7 +17,6 @@ export const InvitationModal: React.FC<Props> = ({ userId, inviteeName, isVisibl
       closeButton
       blur
       width="500px"
-      aria-labelledby="modal-title"
       open={isVisible}
       onClose={onClose}
     >

@@ -18,6 +18,14 @@ export const requestJobApplicationCreation = ([id, data]: [Common.Id, Api.PostPa
   return api.post(`/job-offer/${id}/application`, data).then((res) => res.data);
 };
 
+export const requestJobApplicationReject = ([offerId, applicationId]: [Common.Id, Common.Id]) => {
+  return api.post(`/job-offer/${offerId}/application/${applicationId}/reject`, {}).then((res) => res.data);
+};
+
+export const requestJobApplicationAccept = ([offerId, applicationId]: [Common.Id, Common.Id]) => {
+  return api.post(`/job-offer/${offerId}/application/${applicationId}/accept`, {}).then((res) => res.data);
+};
+
 export const requestJobOffers = (params?: Api.GetParams['/job-offers']) => {
   return api.get('/job-offers', params).then((res) => res.data);
 };

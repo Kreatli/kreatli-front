@@ -69,7 +69,7 @@ export const Header: React.FC = () => {
         key: 'connections',
       },
       {
-        label: 'Jobs',
+        label: 'My jobs',
         key: 'myJobs',
       },
     ]),

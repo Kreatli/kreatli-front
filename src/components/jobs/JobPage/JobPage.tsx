@@ -19,7 +19,7 @@ import { JobOthers } from '../JobOthers';
 import styles from './JobPage.module.scss';
 
 interface Props
-  extends Omit<Job.Offer, '_id' | 'hiredApplication' | 'applications'> {
+  extends Omit<Job.Offer, '_id' | 'applications'> {
   _id?: Common.Id;
 }
 

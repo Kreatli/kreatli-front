@@ -52,9 +52,7 @@ export const Connections = ({ userId }: Props) => {
     <Container sm>
       {isMyAccount && hasInvitations && (
         <>
-          <Text h3>
-            Invitations
-          </Text>
+          <Text h3>Invitations</Text>
           <Grid.Container css={{ gap: '$8' }}>
             {invitations?.map((invitation) => (
               <Grid xs={12}>
@@ -65,9 +63,7 @@ export const Connections = ({ userId }: Props) => {
           <Spacer y={2} />
         </>
       )}
-      <Text h3>
-        Connections ({connectionsCount})
-      </Text>
+      <Text h3>Connections ({connectionsCount})</Text>
       <LazyList isLoading={isFetchingNextPage} hasMore={hasNextPage} onLoadMore={fetchNextPage}>
         <Grid.Container gap={2} css={{ mx: '-$10' }}>
           {connections?.map((connection) => (

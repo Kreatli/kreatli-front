@@ -1,0 +1,5 @@
+.cards {
+  display: grid;
+  gap: var(--nextui-space-md);
+  grid-template-columns: 1fr;
+}
