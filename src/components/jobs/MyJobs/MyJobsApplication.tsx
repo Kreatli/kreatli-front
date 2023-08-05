@@ -88,7 +88,7 @@ export const MyJobsApplication = ({ jobOffer }: Props) => {
   ];
 
   const cardHeader = (
-    <Grid.Container alignItems="center" justify="space-between">
+    <Grid.Container css={{ height: '2.5rem' }} alignItems="center" justify="space-between">
       <Grid>
         <Badge
           isSquared

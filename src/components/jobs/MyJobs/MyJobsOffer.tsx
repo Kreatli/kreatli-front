@@ -1,4 +1,4 @@
-import { Badge, Text } from '@nextui-org/react';
+import { Badge, Grid, Text } from '@nextui-org/react';
 import React from 'react';
 
 import { JobApplications } from '../JobApplications';
@@ -12,13 +12,17 @@ interface Props {
 
 export const MyJobsOffer = ({ jobOffer }: Props) => {
   const cardHeader = (
-    <Badge
-      variant="flat"
-      isSquared
-      color={JOB_OFFER_STATUS_COLORS[jobOffer.status]}
-    >
-      {JOB_OFFER_STATUS_LABELS[jobOffer.status]}
-    </Badge>
+    <Grid.Container css={{ height: '2.5rem' }} alignItems="center" justify="space-between">
+      <Grid>
+        <Badge
+          variant="flat"
+          isSquared
+          color={JOB_OFFER_STATUS_COLORS[jobOffer.status]}
+        >
+          {JOB_OFFER_STATUS_LABELS[jobOffer.status]}
+        </Badge>
+      </Grid>
+    </Grid.Container>
   );
 
   const cardFooter = (
