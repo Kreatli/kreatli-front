@@ -49,8 +49,6 @@ export const MyJobsApplication = ({ jobOffer }: Props) => {
   };
 
   const isPending = jobApplication.status === 'pending';
-  const isCanceled = jobApplication.status === 'canceled';
-  const isPendingOrCanceled = isPending || isCanceled;
 
   const dropdownMenu = [
     ...(isPending ? [{
@@ -71,7 +69,7 @@ export const MyJobsApplication = ({ jobOffer }: Props) => {
           {JOB_APPLICATION_STATUS_LABELS[jobApplication.status]}
         </Badge>
       </Grid>
-      {isPendingOrCanceled && (
+      {isPending && (
         <Grid>
           <Dropdown isDisabled={isCanceling} placement="bottom-right">
             <Dropdown.Button light rounded icon={<Icon icon="dots" />} />
