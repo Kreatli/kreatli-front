@@ -8,7 +8,7 @@ import { Job } from '../../../typings/job';
 import { Icon } from '../../various/Icon';
 import { useNotifications } from '../../../hooks/useNotifications';
 import { getErrorMessage } from '../../../utils/getErrorMessage';
-import { requestJobApplicationCancel, requestJobApplicationReactivate } from '../../../services/job';
+import { requestJobApplicationCancel } from '../../../services/job';
 
 interface Props {
   jobOffer: Job.Offer;
@@ -30,25 +30,7 @@ export const MyJobsApplication = ({ jobOffer }: Props) => {
     onSuccess: (jobOffer) => {
       updateJobApplication(jobOffer);
       pushNotification({
-        message: 'The application was canceled, you can always come back here and reactivate it',
-        color: 'success',
-        icon: 'success',
-      });
-    },
-    onError: (error: any) => {
-      pushNotification({
-        message: getErrorMessage(error),
-        color: 'error',
-        icon: 'error',
-      });
-    },
-  });
-
-  const { mutate: mutateReactivate, isLoading: isReactivating } = useMutation(requestJobApplicationReactivate, {
-    onSuccess: (jobOffer) => {
-      updateJobApplication(jobOffer);
-      pushNotification({
-        message: 'The application was reactivated, creator will see your application as active now',
+        message: 'You cancelled this application',
         color: 'success',
         icon: 'success',
       });
@@ -63,11 +45,7 @@ export const MyJobsApplication = ({ jobOffer }: Props) => {
   });
 
   const handleAction = () => {
-    if (isPending) {
-      return mutateCancel([jobOffer._id, jobApplication._id]);
-    }
-
-    mutateReactivate([jobOffer._id, jobApplication._id]);
+    mutateCancel([jobOffer._id, jobApplication._id]);
   };
 
   const isPending = jobApplication.status === 'pending';
@@ -79,11 +57,6 @@ export const MyJobsApplication = ({ jobOffer }: Props) => {
       label: 'Cancel application',
       icon: 'cross' as const,
       color: 'error' as const,
-    }] : []),
-    ...(isCanceled ? [{
-      label: 'Reactivate application',
-      icon: 'update' as const,
-      color: 'secondary' as const,
     }] : []),
   ];
 
@@ -100,7 +73,7 @@ export const MyJobsApplication = ({ jobOffer }: Props) => {
       </Grid>
       {isPendingOrCanceled && (
         <Grid>
-          <Dropdown isDisabled={isCanceling || isReactivating} placement="bottom-right">
+          <Dropdown isDisabled={isCanceling} placement="bottom-right">
             <Dropdown.Button light rounded icon={<Icon icon="dots" />} />
             <Dropdown.Menu onAction={handleAction}>
               {dropdownMenu.map(({ icon, color, label }) => (

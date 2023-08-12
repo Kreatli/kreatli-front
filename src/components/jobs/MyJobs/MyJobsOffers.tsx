@@ -20,13 +20,13 @@ export const MyJobsOffers = () => {
 
   return (
     <>
-      <Text h3>My jobs offers</Text>
+      <Text h3>My job offers</Text>
       <Text color="$accents6" i>Here will be tabs displayed Posted/Ongoing/Completed/Cancelled to make it more clean and easy to use</Text>
       <Spacer />
       {shouldShowEmptyState && (
         <EmptyState
-          title="No jobs yet"
-          text="You didn't post any job yet. Let's fix it"
+          title="No job offers"
+          text="You didn't post any job offers yet. Let's fix that!"
           link={{ href: '/jobs/create', label: 'Create your first job offer' }}
         />
       )}

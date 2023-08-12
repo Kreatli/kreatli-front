@@ -20,13 +20,13 @@ export const MyJobsApplications = () => {
 
   return (
     <>
-      <Text h3>My jobs applications</Text>
+      <Text h3>My job applications</Text>
       <Text color="$accents6" i>Here will be tabs displayed Pending/Hired/Rejected/Cancelled to make it more clean and easy to use</Text>
       <Spacer />
       {shouldShowEmptyState && (
         <EmptyState
-          title="No job offers"
-          text="You didn't post any job offers yet. Let's fix that!"
+          title="No jobs yet"
+          text="You didn't apply for any job yet. Let's fix it"
           link={{ href: '/jobs', label: 'Browse jobs' }}
         />
       )}
