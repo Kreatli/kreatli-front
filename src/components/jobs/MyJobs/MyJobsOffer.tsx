@@ -21,7 +21,7 @@ interface Props {
 export const MyJobsOffer = ({ jobOffer }: Props) => {
   const isPosted = jobOffer.status === 'posted';
   const isOngoing = jobOffer.status === 'ongoing';
-  const professionalReview = jobOffer.reviews[0];
+  const professionalReview = jobOffer.reviews[1];
   const queryClient = useQueryClient();
   const { isModalVisible, openModal, closeModal } = useModalVisibility();
   const { pushNotification } = useNotifications();

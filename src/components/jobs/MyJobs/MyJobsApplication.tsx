@@ -72,7 +72,7 @@ export const MyJobsApplication = ({ jobOffer }: Props) => {
     }] : []),
   ];
 
-  const creatorReview = jobOffer.reviews[1];
+  const creatorReview = jobOffer.reviews[0];
 
   const cardHeader = (
     <Grid.Container css={{ height: '2.5rem' }} alignItems="center" justify="space-between">
