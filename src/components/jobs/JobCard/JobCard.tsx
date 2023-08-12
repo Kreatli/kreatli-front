@@ -18,6 +18,7 @@ interface Props {
   header?: React.ReactNode;
   footer?: React.ReactNode;
   hideCreator?: boolean;
+  hideApply?: boolean;
 }
 
 export const JobCard = (props: Props) => {
@@ -45,7 +46,7 @@ export const JobCard = (props: Props) => {
     title,
   } = jobOffer;
 
-  const hasChildren = !!children;
+  const isCompleted = jobOffer.status === 'completed';
   const hasFooter = !!footer;
 
   const { currentUser } = useSession();
@@ -61,21 +62,27 @@ export const JobCard = (props: Props) => {
 
   const cardTitle = <Text h4 className={styles.title}>{title} {skillEmojis}</Text>;
 
+  const creatorBlock = !hideCreator && (
+    <User
+      className={styles.user}
+      name={creator.name}
+      src={creator.avatarUrl}
+      description={creator.youtube.customUrl}
+      pointer
+      size="lg"
+    />
+  );
+
   const card = (
     <Card className={cx(styles.card, className)} isHoverable={!hasFooter} isPressable={!hasFooter}>
       <Card.Body css={{ pt: header ? '$4' : undefined }}>
         {header}
         {!hideCreator && (
           <Row align="center" justify="space-between" className={styles.header}>
-            <User
-              className={styles.user}
-              name={creator.name}
-              src={creator.avatarUrl}
-              description={creator.youtube.customUrl}
-              pointer
-              size="lg"
-            />
-            {isProfessional && (
+            {isCompleted
+              ? <Link href={`/profile/${creator._id}`}>{creatorBlock}</Link>
+              : creatorBlock}
+            {!isCompleted && isProfessional && (
               <Button as="div" className={styles.applyButton} disabled={hasApplied} auto size="sm">
                 {hasApplied ? 'Applied' : 'Apply for job'}
               </Button>
@@ -83,7 +90,7 @@ export const JobCard = (props: Props) => {
           </Row>
         )}
         <div className={styles.content}>
-          {hasFooter && jobOfferId
+          {!isCompleted && hasFooter && jobOfferId
             ? <Link href={`/jobs/${jobOfferId}`}>{cardTitle}</Link>
             : cardTitle}
           <Text className={styles.text}>{shortDescription}</Text>
@@ -107,7 +114,7 @@ export const JobCard = (props: Props) => {
     </Card>
   );
 
-  if (jobOfferId && !hasFooter) {
+  if (jobOfferId && !hasFooter && !isCompleted) {
     return <Link href={`/jobs/${jobOfferId}`}>{card}</Link>;
   }
 

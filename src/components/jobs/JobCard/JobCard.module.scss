@@ -1,6 +1,11 @@
 .card {
+  height: 100%;
   overflow: unset;
   padding: 0 var(--nextui-space-xs);
+}
+
+.content {
+  flex: 1;
 }
 
 .header + .content {

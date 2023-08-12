@@ -2,14 +2,14 @@ import { Spacer, Text } from '@nextui-org/react';
 import React from 'react';
 import { useQuery } from 'react-query';
 
-import { requestCreatorJobOffers } from '../../../services/creator';
+import { requestCurrentCreatorJobs } from '../../../services/creator';
 import styles from './MyJobs.module.scss';
 import { MyJobsSkeleton } from './MyJobsSkeleton';
 import { EmptyState } from '../../various/EmptyState';
 import { MyJobsOffer } from './MyJobsOffer';
 
 export const MyJobsOffers = () => {
-  const { data, isFetching } = useQuery(['creator', 'job-offers'], requestCreatorJobOffers, {
+  const { data, isFetching } = useQuery(['creator', 'job-offers'], () => requestCurrentCreatorJobs(), {
     onError: () => {
       // TODO: handle error
     },

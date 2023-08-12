@@ -11,6 +11,7 @@ import { Tag } from '../../various/Tag';
 import { ProfileHeader } from '../Profile/ProfileHeader';
 import { RecentConnections } from '../RecentConnections';
 import { ExperienceCard } from './ExperienceCard';
+import { RecentJobs } from './RecentJobs';
 
 interface Props {
   userId: Common.Id;
@@ -79,6 +80,8 @@ export const ProfessionalProfile = ({ userId }: Props) => {
           </Grid>
         ))}
       </Grid.Container>
+      <Spacer y={2} />
+        <RecentJobs />
       <Spacer y={2} />
       {user && (
         <RecentConnections ids={user.connections} />

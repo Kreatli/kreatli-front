@@ -119,7 +119,6 @@ export const MyJobsApplication = ({ jobOffer }: Props) => {
   return (
     <>
       <JobCard
-        key={jobOffer._id}
         jobOffer={jobOffer}
         hideCreator
         header={cardHeader}

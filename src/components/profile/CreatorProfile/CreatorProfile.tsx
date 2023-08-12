@@ -11,6 +11,7 @@ import { Tag } from '../../various/Tag';
 import { ProfileHeader } from '../Profile/ProfileHeader';
 import { RecentConnections } from '../RecentConnections';
 import { ChannelDetails } from './ChannelDetails';
+import { RecentJobs } from './RecentJobs';
 
 interface Props {
   userId: Common.Id;
@@ -68,6 +69,8 @@ export const CreatorProfile = ({ userId }: Props) => {
       {user && (
         <ChannelDetails id={user._id} youtubeUrl={user.youtubeUrl} details={user.youtube} />
       )}
+      <Spacer y={2} />
+      <RecentJobs />
       <Spacer y={2} />
       {user && (
         <RecentConnections ids={user.connections} />

@@ -1,6 +1,7 @@
 import { Availability } from './availability';
 import { Invitation } from './invitation';
 import { Job } from './job';
+import { Pagination } from './pagination';
 import { Skill, SkillLevel } from './skill';
 import { User } from './user';
 
@@ -40,7 +41,9 @@ export namespace Api {
     | '/job-offer/:id/others'
     | '/job-offers'
     | '/creator/job-offers'
-    | '/professional/job-applications';
+    | '/creator/:id/job-offers'
+    | '/professional/job-applications'
+    | '/professional/:id/job-applications';
 
   export type Post =
     | '/auth/signup-creator'
@@ -73,18 +76,19 @@ export namespace Api {
       tier?: string[];
       country?: string[];
       search?: string;
-      limit?: number;
-      offset?: number;
-    };
+    } & Pagination.Params;
     '/job-offers': {
       skills?: Skill[];
       country?: string[];
       search?: string;
-      limit?: number;
-      offset?: number;
       availability?: Availability.Type;
       availabilityDuration?: Availability.ProjectBase;
-    };
+    } & Pagination.Params;
+    '/user/:id/connections': Pagination.Params;
+    '/creator/job-offers': Pagination.Params;
+    '/creator/:id/job-offers': Pagination.Params;
+    '/professional/job-applications': Pagination.Params;
+    '/professional/:id/job-applications': Pagination.Params;
   }
 
   export interface GetResponse {
@@ -108,7 +112,9 @@ export namespace Api {
       jobOffersCount: number;
     };
     '/creator/job-offers': Job.Offer[];
+    '/creator/:id/job-offers': Job.Offer[];
     '/professional/job-applications': Job.Offer[];
+    '/professional/:id/job-applications': Job.Offer[];
   }
 
   export interface PostPayload {

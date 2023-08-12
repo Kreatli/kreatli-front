@@ -22,8 +22,7 @@ export const requestUserInvitationReject = ([id, data]: [Common.Id, Api.PostPayl
   return api.post(`/user/${id}/invitation/reject`, data).then((res) => res.data);
 };
 
-// TODO: move params type to Api.GetParams
-export const requestUserConnections = (id: Common.Id, params?: { limit: number; offset: number; }) => {
+export const requestUserConnections = (id: Common.Id, params?: Api.GetParams['/user/:id/connections']) => {
   return api.get(`/user/${id}/connections`, params).then((res) => res.data);
 };
 
