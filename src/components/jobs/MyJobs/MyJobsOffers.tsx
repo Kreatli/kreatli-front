@@ -33,7 +33,7 @@ export const MyJobsOffers = () => {
       <div className={styles.cards}>
         {shouldShowSkeleton && <MyJobsSkeleton />}
         {data?.map((jobOffer) => (
-          <MyJobsOffer jobOffer={jobOffer} />
+          <MyJobsOffer key={jobOffer._id} jobOffer={jobOffer} />
         ))}
       </div>
     </>

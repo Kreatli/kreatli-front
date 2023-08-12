@@ -20,14 +20,15 @@ interface Props {
   jobApplicationId: Common.Id;
   coverLetter: string;
   status: Job.Application['status'];
+  jobOfferStatus: Job.Offer['status'];
 }
 
-export const JobApplicationContent = ({ professional, jobOfferId, jobApplicationId, coverLetter, status }: Props) => {
+export const JobApplicationContent = ({ professional, jobOfferId, jobOfferStatus, jobApplicationId, coverLetter, status }: Props) => {
   const [isRejectConfirmationOpen, setIsRejectConfirmationOpen] = React.useState(false);
   const [isAcceptConfirmationOpen, setIsAcceptConfirmationOpen] = React.useState(false);
   const { pushNotification } = useNotifications();
   const queryClient = useQueryClient();
-  const isPending = status === JOB_APPLICATION_STATUSES.PENDING;
+  const isPending = status === JOB_APPLICATION_STATUSES.PENDING && jobOfferStatus !== 'canceled';
 
   const updateJobOffers = (jobOffer: Job.Offer) => {
     const jobOffers = queryClient.getQueryData<Job.Offer[]>(['creator', 'job-offers']);

@@ -51,11 +51,11 @@ export const MyJobsApplication = ({ jobOffer }: Props) => {
   const isPending = jobApplication.status === 'pending';
 
   const dropdownMenu = [
-    ...(isPending ? [{
+    {
       label: 'Cancel application',
       icon: 'cross' as const,
       color: 'error' as const,
-    }] : []),
+    },
   ];
 
   const cardHeader = (

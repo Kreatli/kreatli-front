@@ -14,6 +14,10 @@ export const requestJobOfferOthers = (id: Common.Id) => {
   return api.get(`/job-offer/${id}/others`).then((res) => res.data);
 };
 
+export const requestJobOfferCancel = (offerId: Common.Id) => {
+  return api.post(`/job-offer/${offerId}/cancel`, {}).then((res) => res.data);
+};
+
 export const requestJobApplicationCreation = ([id, data]: [Common.Id, Api.PostPayload['/job-offer/:id/application']]) => {
   return api.post(`/job-offer/${id}/application`, data).then((res) => res.data);
 };

@@ -56,6 +56,7 @@ export namespace Api {
     | '/user/:id/invitation/accept'
     | '/user/:id/invitation/reject'
     | '/job-offer'
+    | '/job-offer/:id/cancel'
     | '/job-offer/:id/application'
     | '/job-offer/:id/application/:id/reject'
     | '/job-offer/:id/application/:id/accept'
@@ -171,6 +172,7 @@ export namespace Api {
       invitee: User.Type;
     };
     '/job-offer': Job.Offer;
+    '/job-offer/:id/cancel': Job.Offer;
     '/job-offer/:id/application': Job.Offer;
     '/job-offer/:id/application/:id/reject': Job.Offer;
     '/job-offer/:id/application/:id/accept': Job.Offer;

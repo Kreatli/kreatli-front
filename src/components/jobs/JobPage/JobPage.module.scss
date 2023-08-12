@@ -31,6 +31,7 @@
 
 .tags {
   display: flex;
+  flex-wrap: wrap;
   margin: var(--nextui-space-md) 0;
   gap: var(--nextui-space-sm);
 }

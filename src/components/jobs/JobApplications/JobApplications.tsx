@@ -9,10 +9,11 @@ import { JobApplicationHeader } from './JobApplicationHeader';
 
 interface Props {
   jobOfferId: Common.Id;
+  jobOfferStatus: Job.Offer['status'];
   applications: Job.Application[];
 }
 
-export const JobApplications = ({ jobOfferId, applications }: Props) => {
+export const JobApplications = ({ jobOfferId, jobOfferStatus, applications }: Props) => {
   return (
     <div>
       <Text weight="semibold">Applications:</Text>
@@ -38,6 +39,7 @@ export const JobApplications = ({ jobOfferId, applications }: Props) => {
               professional={application.professional}
               coverLetter={application.coverLetter}
               status={application.status}
+              jobOfferStatus={jobOfferStatus}
             />
           </Collapse>
         ))}
