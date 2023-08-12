@@ -14,6 +14,8 @@ import { JobsCreationStep2 } from './JobsCreationStep2';
 import { JobsCreationStep3 } from './JobsCreationStep3';
 import { JobsCreationStep4 } from './JobsCreationStep4';
 import { JobsCreationStep5 } from './JobsCreationStep5';
+import { useRouter } from 'next/router';
+import { useSession } from '../../../hooks/useSession';
 
 const FIELDS_BY_STEP = [
   ['title', 'shortDescription', 'description'],
@@ -27,6 +29,8 @@ export const JobsCreation = () => {
   const [activeStep, setActiveStep] = React.useState(0);
   const [isFilledByStep, setIsFilledByStep] = React.useState([false, false, false]);
 
+  const { currentUserId } = useSession();
+  const router = useRouter();
   const pushNotification = useNotifications((state) => state.pushNotification);
 
   const { theme } = useTheme();
@@ -62,11 +66,11 @@ export const JobsCreation = () => {
   const { mutate, isLoading, isSuccess } = useMutation(requestJobOfferCreation, {
     onSuccess: () => {
       pushNotification({
-        message: 'Job offer created! Get ready for applications from professionals',
+        message: 'Job offer was created!',
         color: 'success',
         icon: 'success',
       });
-      handleNext();
+      router.push(`/profile/${currentUserId}/jobs`);
     },
     onError: (error) => {
       pushNotification({
