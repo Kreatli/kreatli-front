@@ -57,6 +57,8 @@ export namespace Api {
     | '/user/:id/invitation/reject'
     | '/job-offer'
     | '/job-offer/:id/cancel'
+    | '/job-offer/:id/complete'
+    | '/job-offer/:id/review'
     | '/job-offer/:id/application'
     | '/job-offer/:id/application/:id/reject'
     | '/job-offer/:id/application/:id/accept'
@@ -143,6 +145,14 @@ export namespace Api {
     '/job-offer/:id/application': {
       coverLetter: string;
     };
+    '/job-offer/:id/complete': {
+      comment: string;
+      rating: number;
+    };
+    '/job-offer/:id/review': {
+      comment: string;
+      rating: number;
+    };
   }
 
   export interface PostResponse {
@@ -173,6 +183,8 @@ export namespace Api {
     };
     '/job-offer': Job.Offer;
     '/job-offer/:id/cancel': Job.Offer;
+    '/job-offer/:id/complete': Job.Offer;
+    '/job-offer/:id/review': Job.Offer;
     '/job-offer/:id/application': Job.Offer;
     '/job-offer/:id/application/:id/reject': Job.Offer;
     '/job-offer/:id/application/:id/accept': Job.Offer;

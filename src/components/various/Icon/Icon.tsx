@@ -36,6 +36,7 @@ import PlusIcon from '../../../assets/icons/plus.svg';
 import RankingIcon from '../../../assets/icons/ranking.svg';
 import SearchIcon from '../../../assets/icons/search.svg';
 import ShowIcon from '../../../assets/icons/show.svg';
+import StarIcon from '../../../assets/icons/star.svg';
 import SuccessIcon from '../../../assets/icons/success.svg';
 import SuitcaseIcon from '../../../assets/icons/suitcase.svg';
 import SunIcon from '../../../assets/icons/sun.svg';
@@ -86,6 +87,7 @@ const ICONS = {
   ranking: RankingIcon,
   search: SearchIcon,
   show: ShowIcon,
+  star: StarIcon,
   success: SuccessIcon,
   suitcase: SuitcaseIcon,
   sun: SunIcon,

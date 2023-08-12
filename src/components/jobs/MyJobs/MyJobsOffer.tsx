@@ -10,6 +10,9 @@ import { requestJobOfferCancel } from '../../../services/job';
 import { getErrorMessage } from '../../../utils/getErrorMessage';
 import { useNotifications } from '../../../hooks/useNotifications';
 import { Icon } from '../../various/Icon';
+import { JobReviewModal } from '../JobReviewModal';
+import { useModalVisibility } from '../../../hooks/useModalVisibility';
+import { Rating } from '../../various/Rating';
 
 interface Props {
   jobOffer: Job.Offer;
@@ -17,7 +20,10 @@ interface Props {
 
 export const MyJobsOffer = ({ jobOffer }: Props) => {
   const isPosted = jobOffer.status === 'posted';
+  const isOngoing = jobOffer.status === 'ongoing';
+  const professionalReview = jobOffer.reviews[0];
   const queryClient = useQueryClient();
+  const { isModalVisible, openModal, closeModal } = useModalVisibility();
   const { pushNotification } = useNotifications();
 
   const updateJobOffer = (jobOffer: Job.Offer) => {
@@ -45,15 +51,24 @@ export const MyJobsOffer = ({ jobOffer }: Props) => {
   });
 
   const handleAction = () => {
-    mutateCancel(jobOffer._id);
+    if (isPosted) {
+      return mutateCancel(jobOffer._id);
+    }
+
+    openModal();
   };
 
   const dropdownMenu = [
-    {
+    ...(isPosted ? [{
       label: 'Cancel offer',
       icon: 'cross' as const,
       color: 'error' as const,
-    },
+    }] : []),
+    ...(isOngoing ? [{
+      label: 'Complete job',
+      icon: 'check' as const,
+      color: 'success' as const,
+    }] : []),
   ];
 
   const cardHeader = (
@@ -67,7 +82,7 @@ export const MyJobsOffer = ({ jobOffer }: Props) => {
           {JOB_OFFER_STATUS_LABELS[jobOffer.status]}
         </Badge>
       </Grid>
-      {isPosted && (
+      {dropdownMenu.length > 0 && (
         <Grid>
           <Dropdown isDisabled={isCanceling} placement="bottom-right">
             <Dropdown.Button light rounded icon={<Icon icon="dots" />} />
@@ -83,17 +98,33 @@ export const MyJobsOffer = ({ jobOffer }: Props) => {
   );
 
   const cardFooter = (
-    jobOffer.applications.length > 0
-      ? <JobApplications jobOfferId={jobOffer._id} jobOfferStatus={jobOffer.status} applications={jobOffer.applications} />
-      : <Text color="$accents6" i>There are no applications yet</Text>
+    <Grid.Container>
+      <Grid xs={12}>
+        {jobOffer.applications.length > 0
+          ? <JobApplications jobOfferId={jobOffer._id} jobOfferStatus={jobOffer.status} applications={jobOffer.applications} />
+          : <Text color="$accents6" i>There are no applications yet</Text>}
+      </Grid>
+      <Grid xs={12}>
+        {professionalReview && (
+          <Grid xs={12} direction="column">
+            <Text weight="semibold">Review:</Text>
+            <Rating value={professionalReview.rating} readOnly />
+            <Text>{professionalReview.comment}</Text>
+          </Grid>
+        )}
+      </Grid>
+    </Grid.Container>
   );
 
   return (
-    <JobCard
-      jobOffer={jobOffer}
-      hideCreator
-      header={cardHeader}
-      footer={cardFooter}
-    />
+    <>
+      <JobCard
+        jobOffer={jobOffer}
+        hideCreator
+        header={cardHeader}
+        footer={cardFooter}
+      />
+      {isOngoing && <JobReviewModal isVisible={isModalVisible} jobOfferId={jobOffer._id} onClose={closeModal} />}
+    </>
   );
 };

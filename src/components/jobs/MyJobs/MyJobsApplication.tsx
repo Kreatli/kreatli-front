@@ -9,6 +9,9 @@ import { Icon } from '../../various/Icon';
 import { useNotifications } from '../../../hooks/useNotifications';
 import { getErrorMessage } from '../../../utils/getErrorMessage';
 import { requestJobApplicationCancel } from '../../../services/job';
+import { JobReviewModal } from '../JobReviewModal';
+import { useModalVisibility } from '../../../hooks/useModalVisibility';
+import { Rating } from '../../various/Rating';
 
 interface Props {
   jobOffer: Job.Offer;
@@ -17,6 +20,8 @@ interface Props {
 export const MyJobsApplication = ({ jobOffer }: Props) => {
   const [jobApplication] = jobOffer.applications;
 
+  const { isModalVisible, openModal, closeModal } = useModalVisibility();
+  const canAddReview = jobOffer.status === 'completed' && jobOffer.reviews.length < 2;
   const queryClient = useQueryClient();
 
   const updateJobApplication = (jobOffer: Job.Offer) => {
@@ -45,18 +50,29 @@ export const MyJobsApplication = ({ jobOffer }: Props) => {
   });
 
   const handleAction = () => {
-    mutateCancel([jobOffer._id, jobApplication._id]);
+    if (isPending) {
+      return mutateCancel([jobOffer._id, jobApplication._id]);
+    }
+
+    openModal();
   };
 
   const isPending = jobApplication.status === 'pending';
 
   const dropdownMenu = [
-    {
+    ...(isPending ? [{
       label: 'Cancel application',
       icon: 'cross' as const,
       color: 'error' as const,
-    },
+    }] : []),
+    ...(canAddReview ? [{
+      label: 'Leave review',
+      icon: 'chat' as const,
+      color: 'default' as const,
+    }] : []),
   ];
+
+  const creatorReview = jobOffer.reviews[1];
 
   const cardHeader = (
     <Grid.Container css={{ height: '2.5rem' }} alignItems="center" justify="space-between">
@@ -69,7 +85,7 @@ export const MyJobsApplication = ({ jobOffer }: Props) => {
           {JOB_APPLICATION_STATUS_LABELS[jobApplication.status]}
         </Badge>
       </Grid>
-      {isPending && (
+      {dropdownMenu.length > 0 && (
         <Grid>
           <Dropdown isDisabled={isCanceling} placement="bottom-right">
             <Dropdown.Button light rounded icon={<Icon icon="dots" />} />
@@ -84,15 +100,32 @@ export const MyJobsApplication = ({ jobOffer }: Props) => {
     </Grid.Container>
   );
 
-  const cardFooter = <Text>{jobApplication.coverLetter}</Text>;
+  const cardFooter = (
+    <Grid.Container css={{ gap: '$4' }}>
+      <Grid xs={12} direction="column">
+        <Text weight="semibold">Cover letter:</Text>
+        <Text> {jobApplication.coverLetter}</Text>
+      </Grid>
+      {creatorReview && (
+        <Grid xs={12} direction="column">
+          <Text weight="semibold">Review:</Text>
+          <Rating value={creatorReview.rating} readOnly />
+          <Text>{creatorReview.comment}</Text>
+        </Grid>
+      )}
+    </Grid.Container>
+  );
 
   return (
-    <JobCard
-      key={jobOffer._id}
-      jobOffer={jobOffer}
-      hideCreator
-      header={cardHeader}
-      footer={cardFooter}
-    />
+    <>
+      <JobCard
+        key={jobOffer._id}
+        jobOffer={jobOffer}
+        hideCreator
+        header={cardHeader}
+        footer={cardFooter}
+      />
+      {canAddReview && <JobReviewModal isVisible={isModalVisible} jobOfferId={jobOffer._id} onClose={closeModal} />}
+    </>
   );
 };
