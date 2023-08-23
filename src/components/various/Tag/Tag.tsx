@@ -5,7 +5,7 @@ import styles from './Tag.module.scss';
 import { TagGroup, TagGroupContext } from './TagGroup';
 
 interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
-  status?: 'error';
+  status?: 'danger';
   children: React.ReactNode;
 }
 
@@ -21,7 +21,7 @@ export const Tag = ({ checked = false, value, status, children, onChange, ...inp
 
   return (
     // eslint-disable-next-line jsx-a11y/label-has-associated-control
-    <label className={cx(styles.tag, { [styles.checked]: isChecked, [styles.error]: status === 'error' })}>
+    <label className={cx(styles.tag, { [styles.checked]: isChecked, [styles.danger]: status === 'danger' })}>
       <input
         {...inputProps}
         type="checkbox"

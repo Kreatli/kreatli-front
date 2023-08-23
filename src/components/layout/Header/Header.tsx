@@ -1,12 +1,9 @@
-import { Avatar, Button, Dropdown, DropdownItemProps, Navbar, useTheme } from '@nextui-org/react';
-import Link from 'next/link';
+import { Avatar, Button, Dropdown, DropdownItem, DropdownItemProps, DropdownMenu, DropdownTrigger, Link, Navbar, NavbarBrand, NavbarContent, NavbarItem, NavbarMenu, NavbarMenuItem, NavbarMenuToggle, useDisclosure } from '@nextui-org/react';
+import NextLink from 'next/link';
 import { useRouter } from 'next/router';
-import { useTheme as useNextTheme } from 'next-themes';
 import React from 'react';
 
 import LogoIcon from '../../../assets/images/logo.svg';
-import { useBodyScroll } from '../../../hooks/useBodyScroll';
-import { useModalVisibility } from '../../../hooks/useModalVisibility';
 import { useSession } from '../../../hooks/useSession';
 import { SignInModal } from '../../auth/SignInModal';
 import { Icon } from '../../various/Icon';
@@ -19,18 +16,12 @@ interface DropdownItem extends Partial<DropdownItemProps> {
 export const Header: React.FC = () => {
   const router = useRouter();
   const [isNavbarOpen, setIsNavbarOpen] = React.useState(false);
-  const { isModalVisible, openModal, closeModal } = useModalVisibility();
+  const { isOpen, onOpen, onClose } = useDisclosure();
   const { isSignedIn, currentUser, signOut } = useSession();
-  const { setTheme } = useNextTheme();
-  const { isDark } = useTheme();
-  const { setIsScrollDisabled } = useBodyScroll();
 
   React.useEffect(() => {
-    if (isNavbarOpen) {
-      setIsNavbarOpen(false);
-      setIsScrollDisabled(false);
-    }
-  }, [router.asPath]);
+    setIsNavbarOpen(false);
+  }, [router.pathname]);
 
   const navigationItems = [
     ...(isSignedIn ? [
@@ -56,12 +47,10 @@ export const Header: React.FC = () => {
   const dropdownItems: DropdownItem[] = [
     ...(!isSignedIn ? [{
       label: 'Sign in',
-      color: 'primary' as const,
       key: 'signIn',
     }] : [
       {
         label: 'Account',
-        color: 'primary' as const,
         key: 'myAccount',
       },
       {
@@ -76,7 +65,6 @@ export const Header: React.FC = () => {
     {
       label: 'FAQ',
       key: 'faq',
-      withDivider: true,
     },
     {
       label: 'Contact',
@@ -85,8 +73,8 @@ export const Header: React.FC = () => {
     ...(isSignedIn ? [{
       label: 'Sign out',
       key: 'signOut',
-      color: 'error' as const,
-      withDivider: true,
+      className: 'text-danger',
+      color: 'danger' as const,
     }] : []),
   ];
 
@@ -96,7 +84,7 @@ export const Header: React.FC = () => {
     myAccount: () => router.push(`/profile/${currentUser?._id}`),
     connections: () => router.push(`/profile/${currentUser?._id}/connections`),
     myJobs: () => router.push(`/profile/${currentUser?._id}/jobs`),
-    signIn: openModal,
+    signIn: onOpen,
     signOut,
   };
 
@@ -110,8 +98,8 @@ export const Header: React.FC = () => {
     router.push(`/signup/${key}`);
   };
 
-  const handleToggleChange = () => {
-    setIsNavbarOpen((isOpen) => !isOpen);
+  const toggleTheme = () => {
+    document.documentElement.classList.toggle('dark');
   };
 
   const userInitials = React.useMemo(() => {
@@ -119,68 +107,73 @@ export const Header: React.FC = () => {
   }, [currentUser?.name]);
 
   return (
-    <Navbar variant="sticky" css={{ zIndex: '$3' }}>
-      <Navbar.Content>
-        <Navbar.Toggle isSelected={isNavbarOpen} aria-label="Toggle navigation" showIn="sm" onChange={handleToggleChange} />
-        <Navbar.Brand>
-          <Link href="/">
+    <Navbar isBlurred maxWidth="xl" className="shadow-medium z-50" isMenuOpen={isNavbarOpen} onMenuOpenChange={setIsNavbarOpen}>
+      <NavbarContent>
+        <NavbarMenuToggle className="sm:hidden" aria-label="Toggle navigation" />
+        <NavbarBrand>
+          <NextLink href="/">
             <LogoIcon viewBox="0 0 90 22" />
-          </Link>
-        </Navbar.Brand>
-      </Navbar.Content>
-      <Navbar.Content hideIn="sm">
+          </NextLink>
+        </NavbarBrand>
+      </NavbarContent>
+      <NavbarContent justify="center" className="hidden sm:flex">
         {navigationItems.map(({ label, ...props }) => (
-          <Navbar.Link as={Link} key={label} {...props}>{label}</Navbar.Link>
+          <NavbarItem key={label} >
+            <Link as={NextLink} color="foreground" {...props}>{label}</Link>
+          </NavbarItem>
         ))}
-      </Navbar.Content>
-      <Navbar.Content>
-        <Navbar.Item>
+      </NavbarContent>
+      <NavbarContent justify="end">
+        <NavbarItem>
           <Button
-            icon={<Icon icon={isDark ? 'sun' : 'moon'} />}
-            light
-            rounded
-            auto
-            onClick={() => setTheme(isDark ? 'light' : 'dark')}
-          />
-        </Navbar.Item>
+            isIconOnly
+            aria-label="Toggle theme"
+            variant="light"
+            radius="full"
+            onClick={toggleTheme}
+          >
+            <Icon icon="sun" />
+          </Button>
+        </NavbarItem>
         {!isSignedIn && (
-          <Navbar.Item>
+          <NavbarItem>
             <Dropdown>
-              <Dropdown.Button auto flat color="secondary">Sign up</Dropdown.Button>
-              <Dropdown.Menu aria-label="Sign up" color="secondary" onAction={handleSignUpAction}>
-                <Dropdown.Item key="creator">As Creator</Dropdown.Item>
-                <Dropdown.Item key="professional">As Professional</Dropdown.Item>
-              </Dropdown.Menu>
+              <DropdownTrigger>
+                <Button variant="flat" color="secondary">Sign up</Button>
+              </DropdownTrigger>
+              <DropdownMenu aria-label="Sign up" color="secondary" onAction={handleSignUpAction}>
+                <DropdownItem key="creator">As Creator</DropdownItem>
+                <DropdownItem key="professional">As Professional</DropdownItem>
+              </DropdownMenu>
             </Dropdown>
-          </Navbar.Item>
+          </NavbarItem>
         )}
         <Dropdown>
-          <Dropdown.Trigger>
+          <DropdownTrigger>
             <Avatar
               as="button"
               src={currentUser?.avatarUrl}
-              text={userInitials}
-              textColor="primary"
+              name={userInitials}
               icon={!isSignedIn && <Icon icon="user" size={20} />}
             />
-          </Dropdown.Trigger>
-          <Dropdown.Menu aria-label="User menu" onAction={handleUserMenuAction}>
+          </DropdownTrigger>
+          <DropdownMenu aria-label="User menu" onAction={handleUserMenuAction}>
             {dropdownItems.map(({ label, ...props }) => (
-              <Dropdown.Item {...props}>{label}</Dropdown.Item>
+              <DropdownItem {...props}>{label}</DropdownItem>
             ))}
-          </Dropdown.Menu>
+          </DropdownMenu>
         </Dropdown>
-      </Navbar.Content>
-      <Navbar.Collapse isOpen={isNavbarOpen}>
+      </NavbarContent>
+      <NavbarMenu className="pt-4">
         {navigationItems.map(({ label, ...props }) => (
-          <Navbar.CollapseItem key={label}>
-            <Link {...props}>
+          <NavbarMenuItem key={label}>
+            <Link as={NextLink} color="foreground" {...props} className="w-full" size="lg">
               {label}
             </Link>
-          </Navbar.CollapseItem>
+          </NavbarMenuItem>
         ))}
-      </Navbar.Collapse>
-      <SignInModal isVisible={isModalVisible} onClose={closeModal} />
+      </NavbarMenu>
+      <SignInModal isOpen={isOpen} onClose={onClose} />
     </Navbar>
   );
 };

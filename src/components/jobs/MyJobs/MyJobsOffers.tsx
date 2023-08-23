@@ -1,4 +1,4 @@
-import { Spacer, Text } from '@nextui-org/react';
+import { Tab, Tabs } from '@nextui-org/react';
 import React from 'react';
 import { useQuery } from 'react-query';
 
@@ -20,13 +20,17 @@ export const MyJobsOffers = () => {
 
   return (
     <>
-      <Text h3>My job offers</Text>
-      <Text color="$accents6" i>Here will be tabs displayed Posted/Ongoing/Completed/Cancelled to make it more clean and easy to use</Text>
-      <Spacer />
+      <h3 className="text-2xl font-semibold mb-4">My job offers</h3>
+      <Tabs aria-label="My job offers" className="mb-4">
+        <Tab key="posted" title="Posted" />
+        <Tab key="ongoing" title="Ongoing" />
+        <Tab key="completed" title="Completed" />
+        <Tab key="canceled" title="Canceled" />
+      </Tabs>
       {shouldShowEmptyState && (
         <EmptyState
           title="No job offers"
-          text="You didn't post any job offers yet. Let's fix that!"
+          text="You don't have any posted jobs. Let's fix that!"
           link={{ href: '/jobs/create', label: 'Create your first job offer' }}
         />
       )}

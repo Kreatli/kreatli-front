@@ -1,63 +1,44 @@
-import { Button, Card, Col, Row, Text } from '@nextui-org/react';
+import { Button, Card, CardBody, CardFooter, CardHeader, Image } from '@nextui-org/react';
+import NextImage from 'next/image';
 import React from 'react';
 
 export const CardCTA: React.FC = () => {
   return (
-    <Card css={{ w: '100%', h: '400px' }}>
-      <Card.Header css={{ position: 'absolute', zIndex: 1, top: 5 }}>
-        <Col>
-          <Text size={12} weight="bold" transform="uppercase" color="#ffffffAA">
-            New
-          </Text>
-          <Text h3 color="black">
-            Acme camera
-          </Text>
-        </Col>
-      </Card.Header>
-      <Card.Body css={{ p: 0 }}>
-        <Card.Image
-          src="https://nextui.org/images/card-example-6.jpeg"
-          width="100%"
-          height="100%"
-          objectFit="cover"
-          alt="Card example background"
-        />
-      </Card.Body>
-      <Card.Footer
-        isBlurred
-        css={{
-          position: 'absolute',
-          bgBlur: '#ffffff66',
-          borderTop: '$borderWeights$light solid rgba(255, 255, 255, 0.2)',
-          bottom: 0,
-          zIndex: 1,
-        }}
+    <div className="flex items-end gap-4">
+      <Card className="py-4">
+        <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
+          <p className="text-tiny uppercase font-bold">Daily Mix</p>
+          <small className="text-default-500">12 Tracks</small>
+          <h4 className="font-bold text-large">Kreatli Radio</h4>
+        </CardHeader>
+        <CardBody className="overflow-visible py-2">
+          <Image
+            alt="Card background"
+            className="object-cover rounded-xl"
+            src="https://nextui.org/images/hero-card-complete.jpeg"
+            width={270}
+          />
+        </CardBody>
+      </Card>
+      <Card
+        isFooterBlurred
+        radius="lg"
+        className="border-none"
       >
-        <Row>
-          <Col>
-            <Text color="#000" size={12}>
-              Available soon.
-            </Text>
-            <Text color="#000" size={12}>
-              Get notified.
-            </Text>
-          </Col>
-          <Col>
-            <Row justify="flex-end">
-              <Button flat auto rounded color="secondary">
-                <Text
-                  css={{ color: 'inherit' }}
-                  size={12}
-                  weight="bold"
-                  transform="uppercase"
-                >
-                  Notify Me
-                </Text>
-              </Button>
-            </Row>
-          </Col>
-        </Row>
-      </Card.Footer>
-    </Card>
+        <Image
+          alt="Woman listing to music"
+          className="object-cover"
+          height={200}
+          src="https://nextui.org/images/hero-card.jpeg"
+          width={200}
+        />
+        <CardFooter className="justify-between before:bg-white/10 border-white/20 border-1 overflow-hidden py-1 absolute before:rounded-xl rounded-large bottom-1 w-[calc(100%_-_8px)] shadow-small ml-1 z-10">
+          <p className="text-tiny text-white/80">Available soon.</p>
+          <Button className="text-tiny text-white bg-black/20" variant="flat" color="default" radius="lg" size="sm">
+            Notify me
+          </Button>
+        </CardFooter>
+      </Card>
+    </div>
   );
 };

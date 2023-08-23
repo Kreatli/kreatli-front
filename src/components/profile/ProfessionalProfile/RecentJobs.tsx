@@ -1,7 +1,5 @@
 import React from 'react';
-import { Grid, Text } from '@nextui-org/react';
 import { useQuery } from 'react-query';
-import { useSession } from '../../../hooks/useSession';
 import { JobCard } from '../../jobs/JobCard';
 
 import styles from './RecentJob.module.scss';
@@ -10,20 +8,24 @@ import { Job } from '../../../typings/job';
 import { Rating } from '../../various/Rating';
 import { RecentJobsSkeleton } from './RecentJobsSkeleton';
 import { EmptyState } from '../../various/EmptyState';
+import { Common } from 'typings/common';
 
-export const RecentJobs = () => {
-  const { currentUserId } = useSession();
-  const { data, isLoading } = useQuery(['professional', currentUserId, 'job-offers'], () => requestProfessionalJobs());
+interface Props {
+  id: Common.Id;
+}
+
+export const RecentJobs = ({ id }: Props) => {
+  const { data, isLoading } = useQuery(['professional', id, 'job-offers'], () => requestProfessionalJobs(id));
 
   const getCardFooter = (jobOffer: Job.Offer) => {
     const [creatorReview] = jobOffer.reviews;
 
     return (
-      <Grid.Container direction="column">
-        <Text weight="semibold">Review:</Text>
+      <div className="flex flex-col">
+        <p className="font-semibold">Review:</p>
         <Rating value={creatorReview?.rating} readOnly />
-        <Text>{creatorReview?.comment}</Text>
-      </Grid.Container>
+        <p>{creatorReview?.comment}</p>
+      </div>
     );
   };
 
@@ -33,7 +35,7 @@ export const RecentJobs = () => {
 
   return (
     <>
-      <Text h3>Recent jobs</Text>
+      <h3 className="text-2xl font-semibold mt-8 mb-2">Recent jobs</h3>
       {shouldShowEmptyState && (
         <EmptyState
           title="No jobs yet"

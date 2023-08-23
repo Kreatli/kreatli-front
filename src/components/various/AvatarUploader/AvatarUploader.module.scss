@@ -4,10 +4,10 @@
   display: block;
   width: 6.25rem;
   height: 6.25rem;
-  background-color: var(--nextui-colors-accents0);
-  color: var(--nextui-colors-accents6);
+  background-color: hsl(var(--nextui-foreground-100));
+  color: hsl(var(--nextui-foreground-500));
   border-radius: 50%;
-  border: 2px dashed var(--nextui-colors-accents0);
+  border: 2px dashed hsl(var(--nextui-foreground-100));
   cursor: pointer;
 
   &:active {
@@ -16,7 +16,7 @@
 
   &.dragActive {
     background-color: transparent;
-    border-color: var(--nextui-colors-accents6);
+    border-color: hsl(var(--nextui-foreground-500));
   }
 }
 
@@ -27,7 +27,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: var(--nextui-colors-accents0);
+  background-color: hsl(var(--nextui-foreground-100));
   transition: 0.3s ease-in-out opacity;
 }
 
@@ -74,10 +74,10 @@
 }
 
 .wrapper.error {
-  border-color: var(--nextui-colors-errorLight);
+  border-color: hsl(var(--nextui-danger-50));
 
   .placeholder {
-    background-color: var(--nextui-colors-errorLight);
-    color: var(--nextui-colors-error);
+    background-color: hsl(var(--nextui-danger-50));
+    color: hsl(var(--nextui-danger));
   }
 }

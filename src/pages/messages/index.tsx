@@ -1,4 +1,3 @@
-import { Container, Text } from '@nextui-org/react';
 import Head from 'next/head';
 import React from 'react';
 
@@ -9,9 +8,9 @@ const Messages: React.FC = () => {
         <title>Messages | Kreatli</title>
         <meta name="description" content="Kreatli" />
       </Head>
-      <Container sm>
-        <Text h2>Messages</Text>
-      </Container>
+      <div className="container max-w-screen-lg mx-auto px-6">
+        <h2 className="text-2xl font-semibold mb-4">Messages</h2>
+      </div>
     </>
   );
 };

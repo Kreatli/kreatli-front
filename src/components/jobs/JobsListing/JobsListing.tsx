@@ -1,6 +1,6 @@
-import { Button, Grid, Input, Spacer } from '@nextui-org/react';
+import { Button, Input } from '@nextui-org/react';
 import cx from 'classnames';
-import Link from 'next/link';
+import NextLink from 'next/link';
 import React from 'react';
 import { useInfiniteQuery } from 'react-query';
 
@@ -54,7 +54,7 @@ export const JobsListing = () => {
   const { setIsScrollDisabled } = useBodyScroll();
   const { currentUser } = useSession();
   const isCreator = currentUser?.role === 'creator';
-  const isMobile = useBreakpointValue({ SM: false }, true);
+  const isMobile = useBreakpointValue({ LG: false }, true);
 
   React.useEffect(() => () => {
     setIsScrollDisabled(false);
@@ -100,46 +100,53 @@ export const JobsListing = () => {
         onChange={handleFiltersChange}
       />
       <div className={styles.cardsWrapper}>
-        <Grid.Container css={{ gap: '$8' }}>
-          <Grid xs>
-            <Input
-              value={search}
-              labelLeft={<Icon icon="search" />}
-              aria-label="Search"
-              fullWidth
-              clearable
-              placeholder="Type here to search..."
-              onChange={handleSearchChange}
-            />
-          </Grid>
+        <div className="flex gap-4 mb-6">
+          <Input
+            value={search}
+            startContent={<Icon icon="search" size={20} />}
+            aria-label="Search"
+            fullWidth
+            isClearable
+            placeholder="Type here to search..."
+            onChange={handleSearchChange}
+          />
           {isCreator && (
-            <Grid>
-              <Button as={Link} href="/jobs/create" color="gradient" rounded icon={<Icon icon="plus" />} auto aria-label="Create a job offer">
+            <div className="flex-initial">
+              <Button
+                as={NextLink}
+                isIconOnly={isMobile}
+                href="/jobs/create"
+                color="secondary"
+                radius="full"
+                startContent={<Icon icon="plus" size={18} />}
+                aria-label="Create job offer"
+              >
                 {!isMobile ? 'Create job offer' : null}
               </Button>
-            </Grid>
+            </div>
           )}
           {isMobile && (
-            <Grid>
+            <div className="flex-initial">
               <Button
-                icon={<Icon icon="filter" />}
-                rounded
-                auto
-                color="primary"
+                isIconOnly
+                radius="full"
+                variant="flat"
+                color="secondary"
                 aria-label="Filters"
                 onClick={handleOpenFilters}
-              />
-            </Grid>
+              >
+                <Icon icon="filter" />
+              </Button>
+            </div>
           )}
-        </Grid.Container>
-        <Spacer y={1} />
+        </div>
         {shouldShowEmptyState
           ? <EmptyState />
           : (
             <LazyList isLoading={isFetchingNextPage} hasMore={hasNextPage} onLoadMore={fetchNextPage}>
               <div className={cx(styles.cards, { [styles.loading]: shouldShowLoader })}>
                 {cards.map((card) => (
-                  <JobCard key={card._id} className={styles.card} jobOffer={card} />
+                  <JobCard key={card._id} jobOffer={card} />
                 ))}
                 {shouldShowSkeleton && <JobsListingSkeleton />}
               </div>

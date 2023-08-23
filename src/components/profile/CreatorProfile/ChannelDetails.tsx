@@ -1,5 +1,6 @@
-import { Button, Card, Col, Row, Text, Tooltip, User } from '@nextui-org/react';
+import { Button, Card, CardBody, CardFooter, CardHeader, Divider, Image, Link, Tooltip, User } from '@nextui-org/react';
 import React from 'react';
+import NextLink from 'next/link';
 import { useMutation, useQueryClient } from 'react-query';
 
 import { useNotifications } from '../../../hooks/useNotifications';
@@ -26,7 +27,7 @@ export const ChannelDetails = ({ id, youtubeUrl, details }: Props) => {
     onError: (error) => {
       pushNotification({
         message: getErrorMessage(error),
-        color: 'error',
+        color: 'danger',
         icon: 'error',
       });
     },
@@ -48,51 +49,62 @@ export const ChannelDetails = ({ id, youtubeUrl, details }: Props) => {
     : <>Update limit: Once a day <br />Last update: {lastUpdateAt.toLocaleString()}</>;
 
   return (
-    <Card css={{ overflow: 'unset' }}>
-      <Card.Header>
-        <Row justify="space-between" align="center">
+    <Card>
+      <CardHeader>
+        <div className="flex w-full items-center justify-between">
           <User
             name={details.title}
-            src="/youtube.svg"
-            size="lg"
+            className="gap-3 bg-transparent"
+            classNames={{ name: 'font-medium' }}
+            description={(
+              <>
+                <Link as={NextLink} href={youtubeUrl} target="_blank" className="text-xs">
+                  {details.customUrl}
+                </Link>
+                <div className="flex items-center space-x-2 text-xs leading-3">
+                  {videos} videos • {subscribers} subscribers • {views} views
+                </div>
+              </>
+            )}
+            avatarProps={{ src: '/youtube.svg', className: 'bg-transparent' }}
           >
-            <User.Link href={youtubeUrl} target="_blank">
-              {details.customUrl}
-            </User.Link>
             <br />
-            {videos} videos • {subscribers} subscribers • {views} views
           </User>
           {isMyAccount && (
             <Tooltip
               content={tooltipContent}
-              color={canUpdateYoutubeInfo ? 'primary' : 'default'}
+              color={canUpdateYoutubeInfo ? 'secondary' : 'default'}
             >
               <Button
-                icon={<Icon icon="update" />}
-                auto
-                rounded
-                flat
+                isIconOnly
+                size="sm"
+                radius="full"
+                variant="flat"
+                aria-label="Update YouTube information"
                 disabled={!canUpdateYoutubeInfo}
-                color="primary"
+                color={canUpdateYoutubeInfo
+                  ? 'secondary'
+                  : 'default'}
                 onClick={() => mutate()}
-              />
+              >
+                <Icon icon="update" size={20} />
+              </Button>
             </Tooltip>
           )}
-        </Row>
-      </Card.Header>
-      <Card.Body css={{ p: '$0' }}>
-        <Card.Image
+        </div>
+      </CardHeader>
+      <CardBody className="p-0">
+        <Image
           src={`${details.bannerUrl}=w1200-fcrop64=1,00005a57ffffa5a8-k-c0xffffffff-no-nd-rj`}
+          radius="none"
           width="100%"
           alt="Yotube banner"
         />
-      </Card.Body>
-      <Card.Footer>
-        <Col>
-          <Text size="$sm"><Text span b>Topics: </Text>{topics}</Text>
-          <Text size="$sm"><Text span b>Description: </Text>{details.description}</Text>
-        </Col>
-      </Card.Footer>
+      </CardBody>
+      <CardFooter className="flex-col items-start">
+        <p className="text-small"><span className="font-bold">Topics: </span>{topics}</p>
+        <p className="text-small"><span className="font-bold">Description: </span>{details.description}</p>
+      </CardFooter>
     </Card>
   );
 };

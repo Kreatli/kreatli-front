@@ -1,12 +1,11 @@
-import { Button, Row } from '@nextui-org/react';
+import { Button, useDisclosure } from '@nextui-org/react';
 import React from 'react';
 
-import { useModalVisibility } from '../../../hooks/useModalVisibility';
 import { useSession } from '../../../hooks/useSession';
 import { useUserInvitation } from '../../../hooks/useUserInvitation';
 import { Common } from '../../../typings/common';
 import { Icon } from '../../various/Icon';
-import { InvitationModal } from '../InitationModal/InvitationModal';
+import { InvitationModal } from '../InvitationModal/InvitationModal';
 import { ProfileUnverifiedTooltip } from './ProfileUnverifiedTooltip';
 
 interface Props {
@@ -17,7 +16,7 @@ interface Props {
 }
 
 export const ProfileHeaderButton = ({ userId, inviteeName, hasConnection, hasInvitation }: Props) => {
-  const { isModalVisible, openModal, closeModal } = useModalVisibility();
+  const { isOpen, onOpen, onClose } = useDisclosure();
   const { currentUser } = useSession();
 
   const invitation = currentUser?.invitations.find(({ inviter }) => inviter === userId);
@@ -30,14 +29,14 @@ export const ProfileHeaderButton = ({ userId, inviteeName, hasConnection, hasInv
   if (!currentUser?.isVerified) {
     return (
       <ProfileUnverifiedTooltip>
-        <Button disabled rounded auto>Connect</Button>
+        <Button disabled color="secondary" radius="full">Connect</Button>
       </ProfileUnverifiedTooltip>
     );
   }
 
   if (hasConnection) {
     return (
-      <Button href="/" rounded auto icon={<Icon icon="chat" />}>
+      <Button href="/" radius="full" variant="flat" color="secondary" startContent={<Icon icon="chat" size={18} />}>
         Message
       </Button>
     );
@@ -45,32 +44,33 @@ export const ProfileHeaderButton = ({ userId, inviteeName, hasConnection, hasInv
 
   if (wasInvited) {
     return (
-      <Row css={{ gap: '$4' }}>
-        <Button rounded flat auto icon={<Icon icon="check" />} disabled={isLoading} onClick={handleAccept}>
+      <div className="flex gap-2">
+        <Button radius="full" color="secondary" startContent={<Icon icon="check" />} isLoading={isLoading} onClick={handleAccept}>
           Accept invitation
         </Button>
-        <Button rounded flat auto icon={<Icon icon="cross" />} disabled={isLoading} color="error" onClick={handleReject} />
-      </Row>
+        <Button aria-label="Reject invitation" radius="full" variant="flat" color="secondary" isIconOnly isLoading={isLoading} onClick={handleReject}>
+          <Icon icon="cross" />
+        </Button>
+      </div>
     );
   }
 
   return (
     <>
       <Button
-        rounded
-        auto
-        color="gradient"
-        icon={hasInvitation && <Icon icon="mail" />}
-        disabled={hasInvitation}
-        onClick={openModal}
+        radius="full"
+        color="secondary"
+        startContent={hasInvitation && <Icon icon="mail" />}
+        isDisabled={hasInvitation}
+        onClick={onOpen}
       >
         {hasInvitation ? 'Invitation sent' : 'Connect'}
       </Button>
       <InvitationModal
         userId={userId}
         inviteeName={inviteeName}
-        isVisible={isModalVisible}
-        onClose={closeModal}
+        isOpen={isOpen}
+        onClose={onClose}
       />
     </>
   );

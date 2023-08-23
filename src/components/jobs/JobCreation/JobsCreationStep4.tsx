@@ -1,4 +1,3 @@
-import { Grid } from '@nextui-org/react';
 import React from 'react';
 import { Control, FieldErrors, useController } from 'react-hook-form';
 
@@ -17,48 +16,41 @@ export const JobsCreationStep4: React.FC<Props> = ({ control, errors }) => {
   const { field: availabilityField } = useController({ control, name: 'availability' });
 
   return (
-    <Grid.Container gap={1} alignItems="flex-start">
-      <Grid xs={12} sm={6}>
+    <div className="grid grid-cols-1 sm:grid-cols-2 items-start gap-4">
+      <Select
+        label="Availability"
+        placeholder="Select..."
+        fullWidth
+        validationState={errors.availability && 'invalid'}
+        options={AVAILABILITY_OPTIONS}
+        name="availability"
+        control={control}
+        rules={VALIDATION_RULES.REQUIRED}
+      />
+      {availabilityField.value === 'project-base' && (
         <Select
-          labelLeft="Availability"
-          aria-label="Availability"
+          label="Duration"
           placeholder="Select..."
           fullWidth
-          status={errors.availability && 'error'}
-          options={AVAILABILITY_OPTIONS}
-          name="availability"
+          validationState={errors.availabilityDuration && 'invalid'}
+          options={DURATION_OPTIONS}
+          name="availabilityDuration"
           control={control}
           rules={VALIDATION_RULES.REQUIRED}
         />
-      </Grid>
-      {availabilityField.value === 'project-base' && (
-        <Grid xs={12} sm={6}>
-          <Select
-            labelLeft="Duration"
-            aria-label="Duration"
-            placeholder="Select..."
-            fullWidth
-            status={errors.availabilityDuration && 'error'}
-            options={DURATION_OPTIONS}
-            name="availabilityDuration"
-            control={control}
-            rules={VALIDATION_RULES.REQUIRED}
-          />
-        </Grid>
       )}
-      <Grid xs={12}>
+      <div className="col-span-2">
         <Select
-          labelLeft="Location"
-          aria-label="Location"
+          label="Location"
           placeholder="Select..."
           fullWidth
-          status={errors.location && 'error'}
+          validationState={errors.location && 'invalid'}
           options={LOCATION_OPTIONS}
           name="location"
           control={control}
           rules={VALIDATION_RULES.REQUIRED}
         />
-      </Grid>
-    </Grid.Container>
+      </div>
+    </div>
   );
 };

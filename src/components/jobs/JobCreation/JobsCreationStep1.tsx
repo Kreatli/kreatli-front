@@ -1,4 +1,4 @@
-import { Grid, Input, Textarea } from '@nextui-org/react';
+import { Input, Textarea } from '@nextui-org/react';
 import React from 'react';
 import { FieldErrors, UseFormRegister } from 'react-hook-form';
 
@@ -12,44 +12,32 @@ interface Props {
 
 export const JobsCreationStep1: React.FC<Props> = ({ errors, register }) => {
   return (
-    <Grid.Container gap={1} alignItems="flex-start">
-      <Grid xs={12}>
-        <Input
-          labelLeft="Title"
-          aria-label="Job title"
-          placeholder="YouTube Video Editor"
-          fullWidth
-          status={errors.title && 'error'}
-          helperText={errors.title?.message}
-          helperColor="error"
-          {...register('title', VALIDATION_RULES.SHORT_TEXT)}
-        />
-      </Grid>
-      <Grid xs={12}>
-        <Textarea
-          label="Short description"
-          placeholder={SHORT_DESCRIPTION_PLACEHOLDER}
-          aria-label="Short description"
-          fullWidth
-          status={errors.shortDescription && 'error'}
-          helperText={errors.shortDescription?.message}
-          helperColor="error"
-          {...register('shortDescription', VALIDATION_RULES.SHORT_TEXT)}
-        />
-      </Grid>
-      <Grid xs={12}>
-        <Textarea
-          label="Description"
-          placeholder={DESCRIPTION_PLACEHOLDER}
-          aria-label="Description"
-          fullWidth
-          minRows={5}
-          status={errors.description && 'error'}
-          helperText={errors.description?.message}
-          helperColor="error"
-          {...register('description', VALIDATION_RULES.DESCRIPTION.MIN_100)}
-        />
-      </Grid>
-    </Grid.Container>
+    <div className="flex flex-col items-start gap-4">
+      <Input
+        label="Title"
+        placeholder="YouTube Video Editor"
+        fullWidth
+        validationState={errors.title && 'invalid'}
+        errorMessage={errors.title?.message}
+        {...register('title', VALIDATION_RULES.SHORT_TEXT)}
+      />
+      <Textarea
+        label="Short description"
+        placeholder={SHORT_DESCRIPTION_PLACEHOLDER}
+        fullWidth
+        validationState={errors.shortDescription && 'invalid'}
+        errorMessage={errors.shortDescription?.message}
+        {...register('shortDescription', VALIDATION_RULES.SHORT_TEXT)}
+      />
+      <Textarea
+        label="Description"
+        placeholder={DESCRIPTION_PLACEHOLDER}
+        fullWidth
+        minRows={5}
+        validationState={errors.description && 'invalid'}
+        errorMessage={errors.description?.message}
+        {...register('description', VALIDATION_RULES.DESCRIPTION.MIN_100)}
+      />
+    </div>
   );
 };

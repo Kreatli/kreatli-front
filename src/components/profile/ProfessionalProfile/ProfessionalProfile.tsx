@@ -1,5 +1,4 @@
-import { Badge, Container, Grid, Spacer, Text, useTheme } from '@nextui-org/react';
-import Link from 'next/link';
+import { Badge, Link } from '@nextui-org/react';
 import React from 'react';
 
 import { SKILL_LABELS_FOR_PROFESSIONAL, SKILL_LEVEL_LABELS } from '../../../constants/skills';
@@ -18,7 +17,6 @@ interface Props {
 }
 
 export const ProfessionalProfile = ({ userId }: Props) => {
-  const { theme } = useTheme();
   const { user } = useUser<User.Professional>(userId);
 
   const socials = React.useMemo(() => {
@@ -32,60 +30,45 @@ export const ProfessionalProfile = ({ userId }: Props) => {
   }, [user]);
 
   return (
-    <Container sm>
+    <div className="container max-w-screen-lg mx-auto px-6">
       {user && (
         <ProfileHeader user={user} />
       )}
-      <Spacer y={1} />
-      <Grid.Container css={{ gap: '$10' }}>
-        <Grid xs style={{ display: 'block' }}>
-          <Text>{user?.description}</Text>
-          <Spacer y={1} />
-          <Grid.Container css={{ gap: '0.5rem' }} alignItems="center">
-            <Grid>
-              <Text>I&apos;m good at</Text>
-            </Grid>
+      <div className="flex gap-10 mt-4">
+        <div className="flex-1">
+          <p className="mb-4">{user?.description}</p>
+          <div className="flex flex-wrap items-center gap-2">
+            <p>I&apos;m good at</p>
             {user?.skills.map((skill) => (
-              <Grid key={skill}>
-                <Badge size="xs" color="primary" content={SKILL_LEVEL_LABELS[user?.skillLevels[skill] ?? 'intermediate']}>
-                  <Tag disabled>{SKILL_LABELS_FOR_PROFESSIONAL[skill]}</Tag>
-                </Badge>
-              </Grid>
+              <Badge key={skill} size="sm" color="secondary" content={SKILL_LEVEL_LABELS[user?.skillLevels[skill] ?? 'intermediate']}>
+                <Tag disabled>{SKILL_LABELS_FOR_PROFESSIONAL[skill]}</Tag>
+              </Badge>
             ))}
-          </Grid.Container>
-        </Grid>
-        <Grid>
-          <Grid.Container direction="column" css={{ gap: '$2' }}>
-            {socials.map(({ href, icon }) => (
-              <Grid key={href}>
-                <Link href={href} target="_blank">
-                  <Icon icon={icon} size={30} fill={theme?.colors.accents8.value} />
-                </Link>
-              </Grid>
-            ))}
-          </Grid.Container>
-        </Grid>
-      </Grid.Container>
-      <Spacer y={2} />
-      <Text h3>Experience</Text>
-      <Grid.Container css={{ gap: '$4' }}>
+          </div>
+        </div>
+        <div className="flex flex-col gap-2">
+          {socials.map(({ href, icon }) => (
+            <Link href={href} color="foreground" target="_blank">
+              <Icon icon={icon} size="2rem" />
+            </Link>
+          ))}
+        </div>
+      </div>
+      <h3 className="text-2xl font-semibold mt-8 mb-2">Experience</h3>
+      <div className="flex flex-col gap-4">
         {user?.experiences.map((experience) => (
-          <Grid key={experience._id} xs={12}>
-            <ExperienceCard
-              imageUrl={experience.imageUrl}
-              description={experience.description}
-              companyName={experience.companyName}
-              companyUrl={experience.companyUrl}
-            />
-          </Grid>
+          <ExperienceCard
+            imageUrl={experience.imageUrl}
+            description={experience.description}
+            companyName={experience.companyName}
+            companyUrl={experience.companyUrl}
+          />
         ))}
-      </Grid.Container>
-      <Spacer y={2} />
-        <RecentJobs />
-      <Spacer y={2} />
+      </div>
+      <RecentJobs id={userId} />
       {user && (
         <RecentConnections ids={user.connections} />
       )}
-    </Container>
+    </div>
   );
 };

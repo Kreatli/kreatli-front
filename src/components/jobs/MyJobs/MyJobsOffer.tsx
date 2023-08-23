@@ -1,4 +1,4 @@
-import { Badge, Dropdown, Grid, Text } from '@nextui-org/react';
+import { Button, Chip, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger, useDisclosure } from '@nextui-org/react';
 import React from 'react';
 
 import { JobApplications } from '../JobApplications';
@@ -11,7 +11,6 @@ import { getErrorMessage } from '../../../utils/getErrorMessage';
 import { useNotifications } from '../../../hooks/useNotifications';
 import { Icon } from '../../various/Icon';
 import { JobReviewModal } from '../JobReviewModal';
-import { useModalVisibility } from '../../../hooks/useModalVisibility';
 import { Rating } from '../../various/Rating';
 
 interface Props {
@@ -23,7 +22,7 @@ export const MyJobsOffer = ({ jobOffer }: Props) => {
   const isOngoing = jobOffer.status === 'ongoing';
   const professionalReview = jobOffer.reviews[1];
   const queryClient = useQueryClient();
-  const { isModalVisible, openModal, closeModal } = useModalVisibility();
+  const { isOpen, onOpen, onClose } = useDisclosure();
   const { pushNotification } = useNotifications();
 
   const updateJobOffer = (jobOffer: Job.Offer) => {
@@ -36,7 +35,7 @@ export const MyJobsOffer = ({ jobOffer }: Props) => {
     onSuccess: (jobOffer) => {
       updateJobOffer(jobOffer);
       pushNotification({
-        message: 'You cancelled this application',
+        message: 'The job was cancelled',
         color: 'success',
         icon: 'success',
       });
@@ -44,7 +43,7 @@ export const MyJobsOffer = ({ jobOffer }: Props) => {
     onError: (error: any) => {
       pushNotification({
         message: getErrorMessage(error),
-        color: 'error',
+        color: 'danger',
         icon: 'error',
       });
     },
@@ -55,14 +54,14 @@ export const MyJobsOffer = ({ jobOffer }: Props) => {
       return mutateCancel(jobOffer._id);
     }
 
-    openModal();
+    onOpen();
   };
 
   const dropdownMenu = [
     ...(isPosted ? [{
       label: 'Cancel offer',
       icon: 'cross' as const,
-      color: 'error' as const,
+      color: 'danger' as const,
     }] : []),
     ...(isOngoing ? [{
       label: 'Complete job',
@@ -72,48 +71,45 @@ export const MyJobsOffer = ({ jobOffer }: Props) => {
   ];
 
   const cardHeader = (
-    <Grid.Container css={{ height: '2.5rem' }} alignItems="center" justify="space-between">
-      <Grid>
-        <Badge
-          variant="flat"
-          isSquared
-          color={JOB_OFFER_STATUS_COLORS[jobOffer.status]}
-        >
-          {JOB_OFFER_STATUS_LABELS[jobOffer.status]}
-        </Badge>
-      </Grid>
+    <div className="flex items-center justify-between h-[32px] -mt-2">
+      <Chip
+        variant="flat"
+        size="sm"
+        radius="sm"
+        color={JOB_OFFER_STATUS_COLORS[jobOffer.status]}
+      >
+        {JOB_OFFER_STATUS_LABELS[jobOffer.status]}
+      </Chip>
       {dropdownMenu.length > 0 && (
-        <Grid>
-          <Dropdown isDisabled={isCanceling} placement="bottom-right">
-            <Dropdown.Button light rounded icon={<Icon icon="dots" />} />
-            <Dropdown.Menu onAction={handleAction}>
-              {dropdownMenu.map(({ icon, color, label }) => (
-                <Dropdown.Item key={label} icon={<Icon icon={icon} />} color={color}>{label}</Dropdown.Item>
-              ))}
-            </Dropdown.Menu>
-          </Dropdown>
-        </Grid>
+        <Dropdown isDisabled={isCanceling}>
+          <DropdownTrigger>
+            <Button aria-label="Job offer options" variant="light" radius="full" size="sm" isIconOnly>
+              <Icon icon="dots" />
+            </Button>
+          </DropdownTrigger>
+          <DropdownMenu onAction={handleAction}>
+            {dropdownMenu.map(({ icon, color, label }) => (
+              <DropdownItem key={label} startContent={<Icon icon={icon} />} color={color}>{label}</DropdownItem>
+            ))}
+          </DropdownMenu>
+        </Dropdown>
       )}
-    </Grid.Container>
+    </div>
   );
 
   const cardFooter = (
-    <Grid.Container>
-      <Grid xs={12}>
-        {jobOffer.applications.length > 0
-          ? <JobApplications jobOfferId={jobOffer._id} jobOfferStatus={jobOffer.status} applications={jobOffer.applications} />
-          : <Text color="$accents6" i>There are no applications yet</Text>}
-      </Grid>
-      <Grid xs={12}>
-        {professionalReview && (
-          <Grid xs={12} direction="column">
-            <Text weight="semibold">Review:</Text>
-            <Rating value={professionalReview.rating} readOnly />
-            <Text>{professionalReview.comment}</Text>
-          </Grid>
-        )}
-      </Grid>
-    </Grid.Container>
+    <div className="flex flex-col w-full">
+      {jobOffer.applications.length > 0
+        ? <JobApplications jobOfferId={jobOffer._id} jobOfferStatus={jobOffer.status} applications={jobOffer.applications} />
+        : <p className="italic text-gray-600">There are no applications yet</p>}
+      {professionalReview && (
+        <div>
+          <p className="font-semibold">Review:</p>
+          <Rating value={professionalReview.rating} readOnly />
+          <p>{professionalReview.comment}</p>
+        </div>
+      )}
+    </div>
   );
 
   return (
@@ -124,7 +120,7 @@ export const MyJobsOffer = ({ jobOffer }: Props) => {
         header={cardHeader}
         footer={cardFooter}
       />
-      {isOngoing && <JobReviewModal isVisible={isModalVisible} jobOfferId={jobOffer._id} onClose={closeModal} />}
+      {isOngoing && <JobReviewModal isOpen={isOpen} jobOfferId={jobOffer._id} onClose={onClose} />}
     </>
   );
 };

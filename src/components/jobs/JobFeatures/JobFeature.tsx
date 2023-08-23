@@ -1,4 +1,3 @@
-import { Text } from '@nextui-org/react';
 import React from 'react';
 
 import { Icon, IconType } from '../../various/Icon';
@@ -11,9 +10,9 @@ interface Props {
 
 export const JobFeature = ({ icon, title }: Props) => {
   return (
-    <Text color="$accents6" className={styles.feature}>
+    <p className={styles.feature}>
       <Icon className={styles.icon} icon={icon} size={20} />
       {title}
-    </Text>
+    </p>
   );
 };

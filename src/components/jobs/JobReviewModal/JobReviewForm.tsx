@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import { useNotifications } from '../../../hooks/useNotifications';
 import { useMutation, useQueryClient } from 'react-query';
 import { getErrorMessage } from '../../../utils/getErrorMessage';
-import { Button, Grid, Loading, Textarea } from '@nextui-org/react';
+import { Button, Textarea } from '@nextui-org/react';
 import { VALIDATION_RULES } from '../../../constants/validationRules';
 import { requestJobOfferComplete, requestJobOfferReview } from '../../../services/job';
 import { Job } from '../../../typings/job';
@@ -59,7 +59,7 @@ export const JobReviewForm = ({ jobOfferId, onCancel, onSuccess }: Props) => {
     onError: (error: any) => {
       pushNotification({
         message: getErrorMessage(error),
-        color: 'error',
+        color: 'danger',
         icon: 'error',
       });
     },
@@ -79,34 +79,23 @@ export const JobReviewForm = ({ jobOfferId, onCancel, onSuccess }: Props) => {
 
   return (
     <form noValidate onSubmit={handleSubmit(onSubmit)}>
-      <Grid.Container css={{ gap: '$10' }} justify="center">
-        <Grid>
-          <Rating invalid={!!errors.rating} {...register('rating', VALIDATION_RULES.REQUIRED)} />
-        </Grid>
-        <Grid xs={12}>
-          <Textarea
-            placeholder={textareaPlaceholder}
-            aria-label={textareaPlaceholder}
-            disabled={isLoading}
-            status={errors.comment && 'error'}
-            fullWidth
-            {...register('comment')}
-          />
-        </Grid>
-        <Grid xs={12}>
-          <Grid.Container css={{ gap: '$2' }} justify="center">
-          <Grid>
-            <Button auto light onClick={onCancel}>Cancel</Button>
-          </Grid>
-          <Grid>
-            <Button type="submit" auto flat color="secondary" disabled={isLoading}>
-              {isLoading && <Loading size="xs" css={{ paddingRight: '$4' }} />}
-              {buttonCopy}
-            </Button>
-          </Grid>
-        </Grid.Container>
-        </Grid>
-      </Grid.Container>
+      <div className="flex flex-col justify-center gap-6">
+        <Rating className="mx-auto" invalid={!!errors.rating} {...register('rating', VALIDATION_RULES.REQUIRED)} />
+        <Textarea
+          placeholder={textareaPlaceholder}
+          aria-label={textareaPlaceholder}
+          isDisabled={isLoading}
+          validationState={errors.comment && 'invalid'}
+          fullWidth
+          {...register('comment')}
+        />
+        <div className="flex justify-center gap-2">
+          <Button variant="light" onClick={onCancel}>Cancel</Button>
+          <Button type="submit" variant="flat" color="secondary" isLoading={isLoading}>
+            {buttonCopy}
+          </Button>
+        </div>
+      </div>
     </form>
   );
 };

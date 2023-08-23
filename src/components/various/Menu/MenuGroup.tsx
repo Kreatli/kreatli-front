@@ -1,4 +1,3 @@
-import { Text } from '@nextui-org/react';
 import React from 'react';
 
 import styles from './Menu.module.scss';
@@ -11,7 +10,7 @@ interface Props {
 export const MenuGroup = ({ children, title }: Props) => {
   return (
     <div className={styles.group}>
-      {title && <Text h5 css={{ margin: 0 }}>{title}</Text>}
+      {title && <h5 className="text-md font-semibold m-0">{title}</h5>}
       {children}
     </div>
   );

@@ -1,4 +1,3 @@
-import { Container, Grid, Spacer, Text } from '@nextui-org/react';
 import React from 'react';
 import { useInfiniteQuery } from 'react-query';
 
@@ -49,30 +48,25 @@ export const Connections = ({ userId }: Props) => {
   const hasInvitations = (invitations?.length ?? 0) > 0;
 
   return (
-    <Container sm>
+    <div className="container max-w-screen-lg mx-auto px-6">
       {isMyAccount && hasInvitations && (
         <>
-          <Text h3>Invitations</Text>
-          <Grid.Container css={{ gap: '$8' }}>
+          <h4 className="text-xl font-semibold mb-2">Invitations</h4>
+          <div className="flex flex-col gap-4 mb-8">
             {invitations?.map((invitation) => (
-              <Grid xs={12}>
-                <InvitationCard key={invitation._id} invitation={invitation} />
-              </Grid>
+              <InvitationCard key={invitation._id} invitation={invitation} />
             ))}
-          </Grid.Container>
-          <Spacer y={2} />
+          </div>
         </>
       )}
-      <Text h3>Connections ({connectionsCount})</Text>
+      <h3 className="text-2xl font-semibold mb-2">Connections ({connectionsCount})</h3>
       <LazyList isLoading={isFetchingNextPage} hasMore={hasNextPage} onLoadMore={fetchNextPage}>
-        <Grid.Container gap={2} css={{ mx: '-$10' }}>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {connections?.map((connection) => (
-            <Grid xs={12} sm={6}>
-              <ConnectionCard key={connection._id} user={connection} />
-            </Grid>
+            <ConnectionCard key={connection._id} user={connection} isMyAccount={isMyAccount} />
           ))}
-        </Grid.Container>
+        </div>
       </LazyList>
-    </Container>
+    </div>
   );
 };

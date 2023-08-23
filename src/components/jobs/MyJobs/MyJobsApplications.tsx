@@ -1,4 +1,4 @@
-import { Spacer, Text } from '@nextui-org/react';
+import { Tab, Tabs } from '@nextui-org/react';
 import React from 'react';
 import { useQuery } from 'react-query';
 
@@ -20,9 +20,13 @@ export const MyJobsApplications = () => {
 
   return (
     <>
-      <Text h3>My job applications</Text>
-      <Text color="$accents6" i>Here will be tabs displayed Pending/Hired/Rejected/Cancelled to make it more clean and easy to use</Text>
-      <Spacer />
+      <h3 className="text-2xl font-semibold mb-4">My job applications</h3>
+      <Tabs aria-label="My job applications" className="mb-4">
+        <Tab key="pending" title="Pending" />
+        <Tab key="hired" title="Hired" />
+        <Tab key="rejected" title="Rejected" />
+        <Tab key="canceled" title="Canceled" />
+      </Tabs>
       {shouldShowEmptyState && (
         <EmptyState
           title="No jobs yet"

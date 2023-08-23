@@ -1,4 +1,3 @@
-import { Container, Grid } from '@nextui-org/react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import React from 'react';
@@ -29,13 +28,13 @@ const ResetPassword: React.FC = () => {
         <title>Reset password | Kreatli</title>
         <meta name="description" content="Kreatli" />
       </Head>
-      <Container css={{ textAlign: 'center' }}>
-        <Grid.Container justify="center">
-          <Grid css={{ width: 'min(100%, 400px)' }}>
+      <div className="container max-w-screen-xl mx-auto px-6 text-center">
+        <div className="flex justify-center">
+          <div className="w-96 max-w-full">
             <ChangePasswordForm token={token.toString()} onSuccess={handleSubmit} onError={handleSubmit} />
-          </Grid>
-        </Grid.Container>
-      </Container>
+          </div>
+        </div>
+      </div>
     </>
   );
 };

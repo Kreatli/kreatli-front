@@ -1,5 +1,4 @@
-import { Avatar, Card, Grid, Text } from '@nextui-org/react';
-import Link from 'next/link';
+import { Avatar, Card, CardFooter, CardHeader, Link } from '@nextui-org/react';
 import React from 'react';
 
 import { Icon } from '../../various/Icon';
@@ -13,36 +12,30 @@ interface Props {
 
 export const ExperienceCard = ({ description, companyName, companyUrl, imageUrl }: Props) => {
   return (
-    <Card css={{ overflow: 'unset' }}>
-      <Card.Header>
-        <Grid.Container css={{ gap: '$4' }}>
-          <Grid xs>
-            <Grid.Container css={{ gap: '$8' }} alignItems="center">
-              <Grid>
-                <Avatar
-                  src={imageUrl}
-                  icon={<Icon icon="building" />}
-                  size="lg"
-                />
-              </Grid>
-              <Grid alignContent="center">
-                <Text size="$lg" weight="semibold">{companyName}</Text>
-              </Grid>
-            </Grid.Container>
-          </Grid>
-          <Grid>
-            <Text size="$sm">
-              <Link href={companyUrl} target="_blank" style={{ display: 'flex', alignItems: 'center', gap: '0.2rem' }}>
+    <Card className="p-2">
+      <CardHeader>
+        <div className="flex w-full items-start gap-4">
+          <div className="flex-1 flex items-center gap-4">
+            <Avatar
+              src={imageUrl}
+              isBordered
+              color="default"
+              className="bg-transparent"
+              icon={<Icon icon="building" />}
+            />
+            <div>
+              <p className="text-lg font-semibold">{companyName}</p>
+              <Link href={companyUrl} target="_blank" className="flex items-center gap-1">
                 <Icon icon="link" size={16} />
-                website
+                link
               </Link>
-            </Text>
-          </Grid>
-        </Grid.Container>
-      </Card.Header>
-      <Card.Footer>
-        <Text size="$sm" css={{ whiteSpace: 'pre-wrap' }}>{description}</Text>
-      </Card.Footer>
+            </div>
+          </div>
+        </div>
+      </CardHeader>
+      <CardFooter>
+        <p className="whitespace-pre-wrap">{description}</p>
+      </CardFooter>
     </Card>
   );
 };

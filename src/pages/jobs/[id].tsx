@@ -1,4 +1,3 @@
-import { Container } from '@nextui-org/react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import React from 'react';
@@ -31,11 +30,11 @@ const JobOffer: React.FC = () => {
         <title>{pageTitle}</title>
         <meta name="description" content="Kreatli" />
       </Head>
-      <Container sm css={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+      <div className="container max-w-screen-lg mx-auto px-6 flex-1 flex flex-col justify-between">
         {data && (
           <JobPage {...data} />
         )}
-      </Container>
+      </div>
     </>
   );
 };

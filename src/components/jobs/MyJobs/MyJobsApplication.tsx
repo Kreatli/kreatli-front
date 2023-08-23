@@ -1,4 +1,4 @@
-import { Badge, Dropdown, Grid, Text } from '@nextui-org/react';
+import { Button, Chip, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger, useDisclosure } from '@nextui-org/react';
 import { useMutation, useQueryClient } from 'react-query';
 import React from 'react';
 
@@ -10,7 +10,6 @@ import { useNotifications } from '../../../hooks/useNotifications';
 import { getErrorMessage } from '../../../utils/getErrorMessage';
 import { requestJobApplicationCancel } from '../../../services/job';
 import { JobReviewModal } from '../JobReviewModal';
-import { useModalVisibility } from '../../../hooks/useModalVisibility';
 import { Rating } from '../../various/Rating';
 
 interface Props {
@@ -20,7 +19,7 @@ interface Props {
 export const MyJobsApplication = ({ jobOffer }: Props) => {
   const [jobApplication] = jobOffer.applications;
 
-  const { isModalVisible, openModal, closeModal } = useModalVisibility();
+  const { isOpen, onOpen, onClose } = useDisclosure();
   const canAddReview = jobOffer.status === 'completed' && jobOffer.reviews.length < 2;
   const queryClient = useQueryClient();
 
@@ -35,7 +34,7 @@ export const MyJobsApplication = ({ jobOffer }: Props) => {
     onSuccess: (jobOffer) => {
       updateJobApplication(jobOffer);
       pushNotification({
-        message: 'You cancelled this application',
+        message: 'The application was cancelled',
         color: 'success',
         icon: 'success',
       });
@@ -43,7 +42,7 @@ export const MyJobsApplication = ({ jobOffer }: Props) => {
     onError: (error: any) => {
       pushNotification({
         message: getErrorMessage(error),
-        color: 'error',
+        color: 'danger',
         icon: 'error',
       });
     },
@@ -54,7 +53,7 @@ export const MyJobsApplication = ({ jobOffer }: Props) => {
       return mutateCancel([jobOffer._id, jobApplication._id]);
     }
 
-    openModal();
+    onOpen();
   };
 
   const isPending = jobApplication.status === 'pending';
@@ -63,10 +62,11 @@ export const MyJobsApplication = ({ jobOffer }: Props) => {
     ...(isPending ? [{
       label: 'Cancel application',
       icon: 'cross' as const,
-      color: 'error' as const,
+      color: 'danger' as const,
     }] : []),
     ...(canAddReview ? [{
       label: 'Leave review',
+      size: 18,
       icon: 'chat' as const,
       color: 'default' as const,
     }] : []),
@@ -75,45 +75,46 @@ export const MyJobsApplication = ({ jobOffer }: Props) => {
   const creatorReview = jobOffer.reviews[0];
 
   const cardHeader = (
-    <Grid.Container css={{ height: '2.5rem' }} alignItems="center" justify="space-between">
-      <Grid>
-        <Badge
-          isSquared
-          variant="flat"
-          color={JOB_APPLICATION_STATUS_COLORS[jobApplication.status]}
-        >
-          {JOB_APPLICATION_STATUS_LABELS[jobApplication.status]}
-        </Badge>
-      </Grid>
+    <div className="flex items-center justify-between h-[32px] -mt-2">
+      <Chip
+        radius="sm"
+        size="sm"
+        variant="flat"
+        color={JOB_APPLICATION_STATUS_COLORS[jobApplication.status]}
+      >
+        {JOB_APPLICATION_STATUS_LABELS[jobApplication.status]}
+      </Chip>
       {dropdownMenu.length > 0 && (
-        <Grid>
-          <Dropdown isDisabled={isCanceling} placement="bottom-right">
-            <Dropdown.Button light rounded icon={<Icon icon="dots" />} />
-            <Dropdown.Menu onAction={handleAction}>
-              {dropdownMenu.map(({ icon, color, label }) => (
-                <Dropdown.Item key={label} icon={<Icon icon={icon} />} color={color}>{label}</Dropdown.Item>
-              ))}
-            </Dropdown.Menu>
-          </Dropdown>
-        </Grid>
+        <Dropdown isDisabled={isCanceling}>
+          <DropdownTrigger>
+            <Button aria-label="Job application options" variant="light" radius="full" size="sm" isIconOnly>
+              <Icon icon="dots" />
+            </Button>
+          </DropdownTrigger>
+          <DropdownMenu onAction={handleAction}>
+            {dropdownMenu.map(({ icon, color, label, size }) => (
+              <DropdownItem key={label} startContent={<Icon icon={icon} size={size} />} color={color}>{label}</DropdownItem>
+            ))}
+          </DropdownMenu>
+        </Dropdown>
       )}
-    </Grid.Container>
+    </div>
   );
 
   const cardFooter = (
-    <Grid.Container css={{ gap: '$4' }}>
-      <Grid xs={12} direction="column">
-        <Text weight="semibold">Cover letter:</Text>
-        <Text> {jobApplication.coverLetter}</Text>
-      </Grid>
+    <div className="flex flex-col gap-4">
+      <div>
+        <p className="font-semibold">Cover letter:</p>
+        <p> {jobApplication.coverLetter}</p>
+      </div>
       {creatorReview && (
-        <Grid xs={12} direction="column">
-          <Text weight="semibold">Review:</Text>
+        <div>
+          <p className="font-semibold">Review:</p>
           <Rating value={creatorReview.rating} readOnly />
-          <Text>{creatorReview.comment}</Text>
-        </Grid>
+          <p>{creatorReview.comment}</p>
+        </div>
       )}
-    </Grid.Container>
+    </div>
   );
 
   return (
@@ -124,7 +125,7 @@ export const MyJobsApplication = ({ jobOffer }: Props) => {
         header={cardHeader}
         footer={cardFooter}
       />
-      {canAddReview && <JobReviewModal isVisible={isModalVisible} jobOfferId={jobOffer._id} onClose={closeModal} />}
+      {canAddReview && <JobReviewModal isOpen={isOpen} jobOfferId={jobOffer._id} onClose={onClose} />}
     </>
   );
 };

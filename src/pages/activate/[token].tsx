@@ -1,4 +1,3 @@
-import { Container, Loading } from '@nextui-org/react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import React from 'react';
@@ -7,6 +6,7 @@ import { useMutation } from 'react-query';
 import { useNotifications } from '../../hooks/useNotifications';
 import { requestUserActivation } from '../../services/auth';
 import { getErrorMessage } from '../../utils/getErrorMessage';
+import { Spinner } from '@nextui-org/react';
 
 const AccountActivation: React.FC = () => {
   const router = useRouter();
@@ -24,7 +24,7 @@ const AccountActivation: React.FC = () => {
       router.push('/');
       pushNotification({
         message: getErrorMessage(error),
-        color: 'error',
+        color: 'danger',
         icon: 'error',
       });
     },
@@ -52,9 +52,9 @@ const AccountActivation: React.FC = () => {
         <title>Activate your account | Kreatli</title>
         <meta name="description" content="Kreatli" />
       </Head>
-      <Container css={{ textAlign: 'center' }}>
-        <Loading size="lg" />
-      </Container>
+      <div className="container max-w-screen-xl mx-auto px-6 text-center">
+        <Spinner size="lg" color="secondary" />
+      </div>
     </>
   );
 };

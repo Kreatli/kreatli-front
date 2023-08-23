@@ -1,4 +1,4 @@
-import { Grid, Input, Textarea } from '@nextui-org/react';
+import { Input, Textarea } from '@nextui-org/react';
 import React from 'react';
 import { FieldErrors, UseFormRegister } from 'react-hook-form';
 
@@ -13,70 +13,60 @@ interface Props {
 
 export const SignUpCreatorStep2: React.FC<Props> = ({ errors, register }) => {
   return (
-    <Grid.Container gap={1} alignItems="flex-start">
-      <Grid xs={12}>
+    <div className="grid grid-cols-2 gap-4 items-start">
+      <div className="col-span-2">
         <Textarea
+          label="Description"
           placeholder="Introduce yourself and describe your channel. Get creative!"
-          aria-label="Description"
-          fullWidth
-          status={errors.description && 'error'}
-          helperText={errors.description?.message}
-          helperColor="error"
+          validationState={errors.description && 'invalid'}
+          errorMessage={errors.description?.message}
           {...register('description', VALIDATION_RULES.DESCRIPTION.MIN_100)}
         />
-      </Grid>
-      <Grid xs={12} sm={6}>
+      </div>
+      <div className="col-span-2 sm:col-span-1">
         <Input
           type="url"
-          labelLeft={<Icon icon="youtube" />}
+          startContent={<Icon className="text-gray-400" icon="youtube" />}
           aria-label="Youtube Link"
           placeholder="https://youtube.com/@mychannel"
-          fullWidth
-          status={errors.youtubeUrl && 'error'}
-          helperText={errors.youtubeUrl?.message}
-          helperColor="error"
+          validationState={errors.youtubeUrl && 'invalid'}
+          errorMessage={errors.youtubeUrl?.message}
           {...register('youtubeUrl', VALIDATION_RULES.YOUTUBE_CHANNEL.REQUIRED)}
         />
-      </Grid>
-      <Grid xs={12} sm={6}>
+      </div>
+      <div className="col-span-2 sm:col-span-1">
         <Input
-          labelLeft={<Icon icon="youtube" />}
-          labelRight="optional"
+          startContent={<Icon className="text-gray-400" icon="youtube" />}
+          endContent={<span className="pointer-events-none text-small text-gray-400">optional</span>}
           aria-label="Second Youtube Link"
           placeholder="https://youtube.com/@mysecondchannel"
-          fullWidth
-          status={errors.youtubeUrlOther && 'error'}
-          helperText={errors.youtubeUrlOther?.message}
-          helperColor="error"
+          validationState={errors.youtubeUrlOther && 'invalid'}
+          errorMessage={errors.youtubeUrlOther?.message}
           {...register('youtubeUrlOther', VALIDATION_RULES.YOUTUBE_CHANNEL.OPTIONAL)}
         />
-      </Grid>
-      <Grid xs={12} sm={6}>
+      </div>
+      <div className="col-span-2 sm:col-span-1">
         <Input
-          labelLeft={<Icon icon="discord" />}
-          labelRight="optional"
+          startContent={<Icon className="text-gray-400" icon="discord" />}
+          endContent={<span className="pointer-events-none text-small text-gray-400">optional</span>}
           aria-label="Discord Username"
           placeholder="username#0000"
-          fullWidth
-          status={errors.discordUsername && 'error'}
-          helperText={errors.discordUsername?.message}
-          helperColor="error"
+          validationState={errors.discordUsername && 'invalid'}
+          errorMessage={errors.discordUsername?.message}
           {...register('discordUsername', VALIDATION_RULES.DISCORD_USERNAME)}
         />
-      </Grid>
-      <Grid xs={12} sm={6}>
+      </div>
+      <div className="col-span-2 sm:col-span-1">
         <Input
-          labelLeft={<Icon icon="twitter" />}
-          labelRight="optional"
+          startContent={<Icon className="text-gray-400" icon="twitter" />}
+          endContent={<span className="pointer-events-none text-small text-gray-400">optional</span>}
           aria-label="Twitter Link"
           placeholder="https://twitter.com/myaccount"
-          fullWidth
-          status={errors.twitterUrl && 'error'}
-          helperText={errors.twitterUrl?.message}
-          helperColor="error"
+          validationState={errors.twitterUrl && 'invalid'}
+          errorMessage={errors.twitterUrl?.message}
           {...register('twitterUrl', VALIDATION_RULES.TWITTER_ACCOUNT_URL)}
         />
-      </Grid>
-    </Grid.Container>
+      </div>
+    </div>
   );
 };

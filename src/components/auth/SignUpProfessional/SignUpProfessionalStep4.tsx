@@ -1,4 +1,4 @@
-import { Button, Grid, Input, Textarea } from '@nextui-org/react';
+import { Button, Input, Textarea } from '@nextui-org/react';
 import { nanoid } from 'nanoid';
 import { remove } from 'ramda';
 import React from 'react';
@@ -32,73 +32,65 @@ export const SignUpProfessionalStep4: React.FC<Props> = ({ control, errors, regi
   };
 
   return (
-    <Grid.Container gap={1} css={{ gap: '2rem 0' }}>
+    <div className="flex flex-col gap-8">
       {field.value.map(({ id }, index) => (
-        <Grid key={id} xs={12} direction="column">
-          <Grid.Container css={{ gap: '0 1rem' }}>
-            <Grid xs>
-              <Grid.Container alignItems="center" css={{ gap: '1rem' }}>
-                <Grid>
-                  <AvatarUploader
-                    label="logo"
-                    control={control}
-                    name={`experiences.${index}.imageUrl`}
-                  />
-                </Grid>
-                <Grid xs direction="column" css={{ gap: '1rem 0' }}>
-                  <Input
-                    placeholder="Channel/Company"
-                    aria-label="Channel/Company"
-                    labelLeft={<Icon icon="building" />}
-                    fullWidth
-                    status={errors.experiences?.[index]?.companyName && 'error'}
-                    helperText={errors.experiences?.[index]?.companyName?.message}
-                    helperColor="error"
-                    {...register(`experiences.${index}.companyName`, VALIDATION_RULES.SHORT_TEXT)}
-                  />
-                  <Input
-                    placeholder="Channel/Company link"
-                    aria-label="Channel/Company link"
-                    labelLeft={<Icon icon="link" />}
-                    fullWidth
-                    status={errors.experiences?.[index]?.companyUrl && 'error'}
-                    helperText={errors.experiences?.[index]?.companyUrl?.message}
-                    helperColor="error"
-                    {...register(`experiences.${index}.companyUrl`, VALIDATION_RULES.URL.REQUIRED)}
-                  />
-                </Grid>
-                <Grid xs={12}>
-                  <Textarea
-                    placeholder="Description"
-                    aria-label="Description"
-                    fullWidth
-                    status={errors.experiences?.[index]?.description && 'error'}
-                    helperText={errors.experiences?.[index]?.description?.message}
-                    helperColor="error"
-                    {...register(`experiences.${index}.description`, VALIDATION_RULES.DESCRIPTION.MIN_100)}
-                  />
-                </Grid>
-              </Grid.Container>
-            </Grid>
-            <Grid>
-              <Button
-                auto
-                rounded
-                color="error"
-                icon={<Icon icon="trash" />}
-                iconLeftCss={{ width: '1.2rem' }}
-                disabled={index === 0}
-                onClick={handleRemove(index)}
+        <div key={id} className="flex gap-4">
+          <div className="flex-1 grid grid-cols-[auto_1fr] gap-4">
+            <div>
+              <AvatarUploader
+                label="logo"
+                control={control}
+                name={`experiences.${index}.imageUrl`}
               />
-            </Grid>
-          </Grid.Container>
-        </Grid>
+            </div>
+            <div className="flex flex-col gap-4">
+              <Input
+                placeholder="Channel/Company"
+                aria-label="Channel/Company"
+                startContent={<Icon className="text-gray-400" icon="building" />}
+                validationState={errors.experiences?.[index]?.companyName && 'invalid'}
+                errorMessage={errors.experiences?.[index]?.companyName?.message}
+                {...register(`experiences.${index}.companyName`, VALIDATION_RULES.SHORT_TEXT)}
+              />
+              <Input
+                placeholder="Channel/Company link"
+                aria-label="Channel/Company link"
+                startContent={<Icon className="text-gray-400" icon="link" />}
+                validationState={errors.experiences?.[index]?.companyUrl && 'invalid'}
+                errorMessage={errors.experiences?.[index]?.companyUrl?.message}
+                {...register(`experiences.${index}.companyUrl`, VALIDATION_RULES.URL.REQUIRED)}
+              />
+            </div>
+            <div className="col-span-2">
+              <Textarea
+                label="Description"
+                placeholder="Goshan placeholder needed"
+                validationState={errors.experiences?.[index]?.description && 'invalid'}
+                errorMessage={errors.experiences?.[index]?.description?.message}
+                {...register(`experiences.${index}.description`, VALIDATION_RULES.DESCRIPTION.MIN_100)}
+              />
+            </div>
+          </div>
+          <div className="flex-initial">
+            <Button
+              isIconOnly
+              radius="full"
+              color="danger"
+              size="sm"
+              aria-label="Delete experience"
+              isDisabled={index === 0}
+              onClick={handleRemove(index)}
+            >
+              <Icon icon="trash" size={18} />
+            </Button>
+          </div>
+        </div>
       ))}
-      <Grid xs={12}>
-        <Button size="sm" auto rounded flat icon={<Icon icon="plus" />} onClick={handleAddMore}>
+      <div>
+        <Button size="sm" radius="full" variant="flat" color="secondary" startContent={<Icon icon="plus" size={18} />} onClick={handleAddMore}>
           Add more
         </Button>
-      </Grid>
-    </Grid.Container>
+      </div>
+    </div>
   );
 };

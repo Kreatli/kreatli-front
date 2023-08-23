@@ -1,7 +1,7 @@
 .card {
   height: 100%;
+  width: 100%;
   overflow: unset;
-  padding: 0 var(--nextui-space-xs);
 }
 
 .content {
@@ -9,20 +9,7 @@
 }
 
 .header + .content {
-  margin-top: var(--nextui-space-md);
-}
-
-.user {
-  padding-left: 0;
-}
-
-.title {
-  margin: 0;
-}
-
-.text {
-  margin: var(--nextui-space-xs) 0;
-  line-height: 1.5;
+  margin-top: 1rem;
 }
 
 .footer {

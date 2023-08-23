@@ -1,5 +1,5 @@
-import { Avatar, Collapse, Text } from '@nextui-org/react';
-import Link from 'next/link';
+import { Accordion, AccordionItem, Avatar, Link } from '@nextui-org/react';
+import NextLink from 'next/link';
 import React from 'react';
 
 import { Common } from '../../../typings/common';
@@ -16,10 +16,10 @@ interface Props {
 export const JobApplications = ({ jobOfferId, jobOfferStatus, applications }: Props) => {
   return (
     <div>
-      <Text weight="semibold">Applications:</Text>
-      <Collapse.Group css={{ p: 0 }}>
+      <p className="font-semibold">Applications:</p>
+      <Accordion className="p-0">
         {applications.map((application) => (
-          <Collapse
+          <AccordionItem
             key={application._id}
             title={(
               <JobApplicationHeader
@@ -28,9 +28,9 @@ export const JobApplications = ({ jobOfferId, jobOfferStatus, applications }: Pr
                 creationDate={application.creationDate}
               />
             )}
-            subtitle={<Text size="$sm"><Link href={`/profile/${application.professional._id}`}>View profile</Link></Text>}
-            contentLeft={(
-              <Avatar src={application.professional.avatarUrl} pointer />
+            subtitle={<Link as={NextLink} href={`/profile/${application.professional._id}`} className="text-sm">View profile</Link>}
+            startContent={(
+              <Avatar src={application.professional.avatarUrl} />
             )}
           >
             <JobApplicationContent
@@ -41,9 +41,9 @@ export const JobApplications = ({ jobOfferId, jobOfferStatus, applications }: Pr
               status={application.status}
               jobOfferStatus={jobOfferStatus}
             />
-          </Collapse>
+          </AccordionItem>
         ))}
-      </Collapse.Group>
+      </Accordion>
     </div>
   );
 };

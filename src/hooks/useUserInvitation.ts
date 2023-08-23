@@ -19,7 +19,7 @@ export const useUserInvitation = ({ invitationId, userId }: Props) => {
   const onError = (error: any) => {
     pushNotification({
       message: getErrorMessage(error),
-      color: 'error',
+      color: 'danger',
       icon: 'error',
     });
   };

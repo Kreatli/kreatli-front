@@ -1,6 +1,6 @@
-import { Button, Card, Row, Text, User } from '@nextui-org/react';
+import { Button, Card, CardBody, CardFooter, Divider, User } from '@nextui-org/react';
+import NextLink from 'next/link';
 import cx from 'classnames';
-import Link from 'next/link';
 import React from 'react';
 
 import { SKILL_EMOJIS } from '../../../constants/skills';
@@ -14,7 +14,6 @@ import styles from './JobCard.module.scss';
 interface Props {
   jobOffer: Omit<Job.Offer, '_id' | 'applications'> & { _id?: Common.Id };
   className?: string;
-  children?: React.ReactNode;
   header?: React.ReactNode;
   footer?: React.ReactNode;
   hideCreator?: boolean;
@@ -23,7 +22,6 @@ interface Props {
 
 export const JobCard = (props: Props) => {
   const {
-    children,
     className,
     footer = null,
     header = null,
@@ -60,40 +58,39 @@ export const JobCard = (props: Props) => {
     return skills.map((skill) => SKILL_EMOJIS[skill]).join(' ');
   }, [skills]);
 
-  const cardTitle = <Text h4 className={styles.title}>{title} {skillEmojis}</Text>;
+  const cardTitle = <h4 className="text-xl font-semibold">{title} {skillEmojis}</h4>;
 
   const creatorBlock = !hideCreator && (
     <User
-      className={styles.user}
       name={creator.name}
-      src={creator.avatarUrl}
+      classNames={{ name: 'font-medium' }}
+      avatarProps={{ src: creator.avatarUrl }}
       description={creator.youtube.customUrl}
-      pointer
-      size="lg"
     />
   );
 
+  // TODO: on press instead of link ? to leave isPressable effect
   const card = (
-    <Card className={cx(styles.card, className)} isHoverable={!hasFooter} isPressable={!hasFooter}>
-      <Card.Body css={{ pt: header ? '$4' : undefined }}>
+    <Card className={cx(styles.card, className)} isHoverable={!hasFooter}>
+      <CardBody>
         {header}
         {!hideCreator && (
-          <Row align="center" justify="space-between" className={styles.header}>
+          <div className={`${styles.header} flex items-center justify-between`}>
             {isCompleted
-              ? <Link href={`/profile/${creator._id}`}>{creatorBlock}</Link>
+              ? <NextLink href={`/profile/${creator._id}`}>{creatorBlock}</NextLink>
               : creatorBlock}
             {!isCompleted && isProfessional && (
-              <Button as="div" className={styles.applyButton} disabled={hasApplied} auto size="sm">
+              <Button as="div" className={styles.applyButton} color="secondary" isDisabled={hasApplied} size="sm">
                 {hasApplied ? 'Applied' : 'Apply for job'}
               </Button>
             )}
-          </Row>
+          </div>
         )}
         <div className={styles.content}>
           {!isCompleted && hasFooter && jobOfferId
-            ? <Link href={`/jobs/${jobOfferId}`}>{cardTitle}</Link>
+            ? <NextLink href={`/jobs/${jobOfferId}`}>{cardTitle}</NextLink>
             : cardTitle}
-          <Text className={styles.text}>{shortDescription}</Text>
+          <p className="mb-4">{shortDescription}</p>
         </div>
         <div className={styles.footer}>
           <JobFeatures
@@ -103,19 +100,22 @@ export const JobCard = (props: Props) => {
             paymentType={paymentType}
             paymentValue={paymentValue}
           />
-          <Text size="$sm" color="$accents6">Posted {relativeCreationDate}</Text>
+          <p className="text-sm text-gray-400">Posted {relativeCreationDate}</p>
         </div>
-      </Card.Body>
+      </CardBody>
       {hasFooter && (
-        <Card.Footer css={{ pt: 0 }}>
-          {footer}
-        </Card.Footer>
+        <>
+          <Divider />
+          <CardFooter>
+            {footer}
+          </CardFooter>
+        </>
       )}
     </Card>
   );
 
   if (jobOfferId && !hasFooter && !isCompleted) {
-    return <Link href={`/jobs/${jobOfferId}`}>{card}</Link>;
+    return <NextLink href={`/jobs/${jobOfferId}`}>{card}</NextLink>;
   }
 
   return card;

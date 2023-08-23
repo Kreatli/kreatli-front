@@ -1,4 +1,4 @@
-import { Button, Grid, Input, Spacer } from '@nextui-org/react';
+import { Button, Input } from '@nextui-org/react';
 import { nanoid } from 'nanoid';
 import { remove } from 'ramda';
 import React from 'react';
@@ -32,49 +32,43 @@ export const SignUpProfessionalStep5: React.FC<Props> = ({ control, errors, regi
   };
 
   return (
-    <Grid.Container gap={1}>
+    <div className="flex flex-col gap-4">
       {field.value.map(({ id }, index) => (
-        <Grid key={id} xs={12} direction="column">
-          <Grid.Container alignItems="center" css={{ gap: '1rem' }}>
-            <Grid xs>
-              <Input
-                labelLeft="Certificate"
-                aria-label="Certificate"
-                placeholder="Adobe Certified Expert in Premiere Pro"
-                fullWidth
-                status={errors.certificates?.[index]?.name && 'error'}
-                helperText={errors.certificates?.[index]?.name?.message}
-                helperColor="error"
-                {...register(`certificates.${index}.name`, VALIDATION_RULES.SHORT_TEXT)}
-              />
-            </Grid>
-            <Grid>
-              <FileUploader
-                control={control}
-                name={`certificates.${index}.fileUrl`}
-                status={errors.certificates?.[index]?.fileUrl && 'error'}
-                rules={VALIDATION_RULES.REQUIRED}
-              />
-            </Grid>
-            <Grid>
-              <Button
-                auto
-                rounded
-                color="error"
-                icon={<Icon icon="trash" />}
-                iconLeftCss={{ width: '1.2rem' }}
-                onClick={handleRemove(index)}
-              />
-            </Grid>
-          </Grid.Container>
-        </Grid>
+        <div key={id} className="flex items-center gap-4">
+          <Input
+            label="Certificate's name"
+            placeholder="Adobe Certified Expert in Premiere Pro"
+            validationState={errors.certificates?.[index]?.name && 'invalid'}
+            errorMessage={errors.certificates?.[index]?.name?.message}
+            {...register(`certificates.${index}.name`, VALIDATION_RULES.SHORT_TEXT)}
+          />
+          <div className="flex-initial">
+            <FileUploader
+              control={control}
+              name={`certificates.${index}.fileUrl`}
+              status={errors.certificates?.[index]?.fileUrl && 'danger'}
+              rules={VALIDATION_RULES.REQUIRED}
+            />
+          </div>
+          <div className="flex-initial">
+            <Button
+              radius="full"
+              color="danger"
+              size="sm"
+              aria-label="Delete certificate"
+              isIconOnly
+              onClick={handleRemove(index)}
+            >
+              <Icon icon="trash" size={18} />
+            </Button>
+          </div>
+        </div>
       ))}
-      <Spacer />
-      <Grid xs={12}>
-        <Button size="sm" auto rounded flat icon={<Icon icon="plus" />} onClick={handleAddMore}>
+      <div>
+        <Button size="sm" radius="full" variant="flat" color="secondary" startContent={<Icon icon="plus" size={18} />} onClick={handleAddMore}>
           Add certificate
         </Button>
-      </Grid>
-    </Grid.Container>
+      </div>
+    </div>
   );
 };

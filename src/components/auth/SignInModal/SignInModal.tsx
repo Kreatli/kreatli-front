@@ -1,4 +1,4 @@
-import { Modal, Text } from '@nextui-org/react';
+import { Modal, ModalBody, ModalContent, ModalFooter, ModalHeader } from '@nextui-org/react';
 import React from 'react';
 
 import { useSession } from '../../../hooks/useSession';
@@ -6,11 +6,11 @@ import { ResetPasswordForm } from './ResetPasswordForm';
 import { SignInForm } from './SignInForm';
 
 interface Props {
-  isVisible: boolean;
+  isOpen: boolean;
   onClose: () => void;
 }
 
-export const SignInModal: React.FC<Props> = ({ isVisible, onClose }) => {
+export const SignInModal: React.FC<Props> = ({ isOpen, onClose }) => {
   const [mode, setMode] = React.useState<'signIn' | 'resetPassword'>('signIn');
   const { signInMutation: { isLoading } } = useSession();
 
@@ -25,21 +25,25 @@ export const SignInModal: React.FC<Props> = ({ isVisible, onClose }) => {
   return (
     <Modal
       closeButton
-      blur
-      preventClose={isLoading}
-      open={isVisible}
+      placement="center"
+      backdrop="blur"
+      size="sm"
+      isDismissable={isLoading}
+      isOpen={isOpen}
       onClose={onClose}
     >
-      <Modal.Header>
-        <Text h3>
-          {mode === 'signIn' && 'Sign in to your account'}
-          {mode === 'resetPassword' && 'Reset your password'}
-        </Text>
-      </Modal.Header>
-      <Modal.Body>
-        {mode === 'signIn' && <SignInForm onSuccess={onClose} onClick={handleSignInChange} />}
-        {mode === 'resetPassword' && <ResetPasswordForm onSuccess={onClose} onClick={handleResetPasswordChange} />}
-      </Modal.Body>
+      <ModalContent>
+        <ModalHeader>
+          <h3>
+            {mode === 'signIn' && 'Sign in to your account'}
+            {mode === 'resetPassword' && 'Reset your password'}
+          </h3>
+        </ModalHeader>
+        <ModalBody>
+          {mode === 'signIn' && <SignInForm onSuccess={onClose} onClick={handleSignInChange} />}
+          {mode === 'resetPassword' && <ResetPasswordForm onSuccess={onClose} onClick={handleResetPasswordChange} />}
+        </ModalBody>
+      </ModalContent>
     </Modal>
   );
 };

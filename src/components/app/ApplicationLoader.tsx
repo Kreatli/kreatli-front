@@ -1,4 +1,4 @@
-import { Loading } from '@nextui-org/react';
+import { Spinner } from '@nextui-org/react';
 import cx from 'classnames';
 import React from 'react';
 
@@ -18,7 +18,7 @@ export const ApplicationLoader = ({ children }: Props) => {
       {children}
       <div className={cx(styles.wrapper, { [styles.hidden]: !isLoading })}>
         <LogoIcon className={styles.logo} viewBox="0 0 90 22" />
-        <Loading size="lg" color="secondary" className={styles.loader} />
+        <Spinner size="lg" color="secondary" className={styles.loader} />
       </div>
     </>
   );

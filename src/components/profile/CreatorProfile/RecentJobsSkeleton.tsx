@@ -1,12 +1,11 @@
+import { Skeleton } from '@nextui-org/react';
 import React from 'react';
-
-import { Skeleton } from '../../various/Skeleton/Skeleton';
 
 export const RecentJobsSkeleton = () => {
   return (
     <>
       {Array.from(Array(2)).map((_, index) => (
-        <Skeleton key={index} aspectRatio={2} />
+        <Skeleton key={index} className="h-52 rounded-2xl" />
       ))}
     </>
   );

@@ -1,4 +1,3 @@
-import { Grid, Text } from '@nextui-org/react';
 import React from 'react';
 import { Control, FieldErrors } from 'react-hook-form';
 
@@ -19,38 +18,33 @@ export const SignUpProfessionalStep3: React.FC<Props> = ({ errors, control }) =>
 
   return (
     <Tag.Group name="skills" control={control} rules={VALIDATION_RULES.REQUIRED} onChange={setSelectedSkills}>
-      <Grid.Container gap={1}>
+      <div className="flex flex-wrap gap-2">
         {SKILL_OPTIONS.map((area) => (
-          <Grid key={area.value}>
-            <Tag value={area.value} status={errors.skills && 'error'}>
-              {area.label}
-            </Tag>
-          </Grid>
+          <Tag key={area.value} value={area.value} status={errors.skills && 'danger'}>
+            {area.label}
+          </Tag>
         ))}
-      </Grid.Container>
+      </div>
       {selectedSkills.length > 0 && (
-        <Grid.Container gap={1}>
-          <Grid xs={12}>
-            <Text h4>Specify level of expertise:</Text>
-          </Grid>
+        <div className="flex flex-col gap-2 mt-6">
+          <h4 className="text-md font-semibold mb-2">Specify level of expertise:</h4>
           {selectedSkills.map((skill) => (
-            <Grid key={skill} xs={12} css={{ alignItems: 'center', gap: '0 1rem' }}>
-              <Text css={{ whiteSpace: 'nowrap' }}>
+            <div key={skill} className="flex items-center gap-4">
+              <p className="text-sm whitespace-nowrap">
                 {SKILL_LABELS_FOR_PROFESSIONAL[skill]}
-              </Text>
+              </p>
               <Select
                 name={`skillLevels.${skill}`}
                 aria-label={`Choose level of ${SKILL_LABELS_FOR_PROFESSIONAL[skill]}`}
                 placeholder="Choose level..."
-                status={errors.skillLevels?.[skill] && 'error'}
+                validationState={errors.skillLevels?.[skill] && 'invalid'}
                 options={SKILL_LEVEL_OPTIONS}
                 control={control}
-                color="primary"
                 rules={VALIDATION_RULES.REQUIRED}
               />
-            </Grid>
+            </div>
           ))}
-        </Grid.Container>
+        </div>
       )}
     </Tag.Group>
   );

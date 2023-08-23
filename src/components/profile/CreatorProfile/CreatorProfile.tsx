@@ -1,5 +1,4 @@
-import { Container, Grid, Spacer, Text, useTheme } from '@nextui-org/react';
-import NextLink from 'next/link';
+import { Link } from '@nextui-org/react';
 import React from 'react';
 
 import { SKILL_LABELS_FOR_CREATOR } from '../../../constants/skills';
@@ -18,7 +17,6 @@ interface Props {
 }
 
 export const CreatorProfile = ({ userId }: Props) => {
-  const { theme } = useTheme();
   const { user } = useUser<User.Creator>(userId);
 
   const socials = React.useMemo(() => {
@@ -32,49 +30,40 @@ export const CreatorProfile = ({ userId }: Props) => {
   }, [user]);
 
   return (
-    <Container sm>
+    <div className="container max-w-screen-lg mx-auto px-6">
       {user && (
         <ProfileHeader user={user} />
       )}
-      <Spacer y={1} />
-      <Grid.Container css={{ gap: '$10' }}>
-        <Grid xs style={{ display: 'block' }}>
-          <Text>{user?.description}</Text>
-          <Spacer y={1} />
-          <Grid.Container css={{ gap: '0.5rem' }} alignItems="center">
-            <Grid>
-              <Text>{user?.name} is looking for</Text>
-            </Grid>
+      <div className="flex gap-10 mt-4">
+        <div className="flex-initial">
+          <p className="mb-4">{user?.description}</p>
+          <div className="flex flex-wrap items-center gap-2">
+            <div>
+              <p>{user?.name} is looking for</p>
+            </div>
             {user?.interestSkills.map((skill) => (
-              <Grid key={skill}>
+              <div key={skill}>
                 <Tag disabled>{SKILL_LABELS_FOR_CREATOR[skill]}</Tag>
-              </Grid>
+              </div>
             ))}
-          </Grid.Container>
-        </Grid>
-        <Grid>
-          <Grid.Container direction="column" css={{ gap: '$2' }}>
-            {socials.map(({ href, icon }) => (
-              <Grid key={href}>
-                <NextLink href={href} target="_blank">
-                  <Icon icon={icon} size={30} fill={theme?.colors.accents8.value} />
-                </NextLink>
-              </Grid>
-            ))}
-          </Grid.Container>
-        </Grid>
-      </Grid.Container>
-      <Spacer y={2} />
-      <Text h3>Channel details</Text>
+          </div>
+        </div>
+        <div className="flex flex-col gap-1">
+          {socials.map(({ href, icon }) => (
+            <Link href={href} target="_blank" color="foreground">
+              <Icon icon={icon} size="2rem" />
+            </Link>
+          ))}
+        </div>
+      </div>
+      <h3 className="text-2xl font-semibold mt-8 mb-2">Channel details</h3>
       {user && (
-        <ChannelDetails id={user._id} youtubeUrl={user.youtubeUrl} details={user.youtube} />
+        <>
+          <ChannelDetails id={user._id} youtubeUrl={user.youtubeUrl} details={user.youtube} />
+          <RecentJobs id={userId} />
+          <RecentConnections ids={user.connections} />
+        </>
       )}
-      <Spacer y={2} />
-      <RecentJobs />
-      <Spacer y={2} />
-      {user && (
-        <RecentConnections ids={user.connections} />
-      )}
-    </Container>
+    </div>
   );
 };

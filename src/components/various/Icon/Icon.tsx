@@ -105,7 +105,7 @@ const ICONS = {
 export type IconType = keyof typeof ICONS;
 
 interface Props extends React.SVGProps<SVGElement> {
-  size?: number;
+  size?: number | string;
   icon: IconType;
 }
 
@@ -115,8 +115,8 @@ export const Icon = ({ icon, size = 24, fill = 'currentcolor', className }: Prop
   return (
     <IconToRender
       className={className}
-      width={`${size}px`}
-      height={`${size}px`}
+      width={size}
+      height={size}
       viewBox="0 0 24 24"
       fill={fill}
     />
