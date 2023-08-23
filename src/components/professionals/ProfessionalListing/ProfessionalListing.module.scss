@@ -45,7 +45,7 @@
   &::after {
     content: "";
     position: absolute;
-    inset: 0;
+    inset: -1rem;
     pointer-events: none;
     transition: 0.25s ease;
   }
@@ -55,6 +55,7 @@
 
     &::after {
       background-color: hsl(var(--nextui-background) / 0.7);
+      z-index: 10;
     }
   }
 }
