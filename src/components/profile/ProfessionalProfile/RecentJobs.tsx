@@ -15,7 +15,7 @@ interface Props {
 }
 
 export const RecentJobs = ({ id }: Props) => {
-  const { data, isLoading } = useQuery(['professional', id, 'job-offers'], () => requestProfessionalJobs(id));
+  const { data, isLoading } = useQuery(['professional', id, 'job-applications'], () => requestProfessionalJobs(id));
 
   const getCardFooter = (jobOffer: Job.Offer) => {
     const creatorReview = jobOffer.reviews.creator;

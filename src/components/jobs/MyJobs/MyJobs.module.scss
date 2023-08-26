@@ -1,5 +1,23 @@
 .cards {
+  position: relative;
   display: grid;
   gap: 1rem;
   grid-template-columns: 1fr;
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: -1rem;
+    pointer-events: none;
+    transition: 0.25s ease;
+  }
+
+  &.loading {
+    pointer-events: none;
+
+    &::after {
+      background-color: hsl(var(--nextui-background) / 0.7);
+      z-index: 10;
+    }
+  }
 }

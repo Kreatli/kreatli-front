@@ -1,7 +1,7 @@
 import { Button, Link, Popover, PopoverContent, PopoverTrigger } from '@nextui-org/react';
 import NextLink from 'next/link';
 import React from 'react';
-import { useMutation, useQueryClient } from 'react-query';
+import { useMutation } from 'react-query';
 
 import { JOB_APPLICATION_STATUSES } from '../../../constants/job';
 import { useNotifications } from '../../../hooks/useNotifications';
@@ -21,30 +21,25 @@ interface Props {
   coverLetter: string;
   status: Job.Application['status'];
   jobOfferStatus: Job.Offer['status'];
+  onReject?: () => void;
+  onHire?: () => void;
 }
 
-export const JobApplicationContent = ({ professional, jobOfferId, jobOfferStatus, jobApplicationId, coverLetter, status }: Props) => {
+export const JobApplicationContent = ({ professional, jobOfferId, jobOfferStatus, jobApplicationId, coverLetter, status, onReject, onHire }: Props) => {
   const [isRejectConfirmationOpen, setIsRejectConfirmationOpen] = React.useState(false);
   const [isAcceptConfirmationOpen, setIsAcceptConfirmationOpen] = React.useState(false);
   const { pushNotification } = useNotifications();
-  const queryClient = useQueryClient();
   const isPending = status === JOB_APPLICATION_STATUSES.PENDING && jobOfferStatus !== 'canceled';
 
-  const updateJobOffers = (jobOffer: Job.Offer) => {
-    const jobOffers = queryClient.getQueryData<Job.Offer[]>(['creator', 'job-offers']);
-    const updatedJobOffers = jobOffers?.map((offer) => (offer._id === jobOffer._id ? jobOffer : offer));
-    queryClient.setQueryData(['creator', 'job-offers'], updatedJobOffers);
-  };
-
   const { isLoading: isRejecting, mutate: mutateReject } = useMutation(requestJobApplicationReject, {
-    onSuccess: (jobOffer) => {
+    onSuccess: () => {
       setIsRejectConfirmationOpen(false);
       pushNotification({
         message: 'The application was successfully rejected',
         color: 'success',
         icon: 'success',
       });
-      updateJobOffers(jobOffer);
+      onReject?.();
     },
     onError: (error) => {
       pushNotification({
@@ -63,7 +58,7 @@ export const JobApplicationContent = ({ professional, jobOfferId, jobOfferStatus
         color: 'success',
         icon: 'success',
       });
-      updateJobOffers(jobOffer);
+      onHire?.();
     },
     onError: (error) => {
       pushNotification({

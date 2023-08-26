@@ -3,17 +3,25 @@ import React from 'react';
 import { Common } from '../../../typings/common';
 import { JobReviewForm } from './JobReviewForm';
 import { useSession } from '../../../hooks/useSession';
+import { Job } from '../../../typings/job';
 
 interface Props {
   jobOfferId: Common.Id;
+  jobOfferStatus: Job.Offer['status'];
   isOpen: boolean;
   onClose: () => void;
+  onSuccess?: () => void;
 }
 
-export const JobReviewModal = ({ jobOfferId, isOpen, onClose }: Props) => {
+export const JobReviewModal = ({ jobOfferId, jobOfferStatus, isOpen, onClose, onSuccess }: Props) => {
   const { currentUser } = useSession();
 
   const modalDescription = `Share your feedback and rate the collaboration with ${currentUser?.role === 'creator' ? 'professional' : 'creator'}. Remember, once both sides have submitted their feedback, it will be displayed publicly`;
+
+  const handleSuccess = () => {
+    onClose();
+    onSuccess?.();
+  };
 
   return (
     <Modal backdrop="blur" placement="center" closeButton size="lg" isOpen={isOpen} onClose={onClose}>
@@ -21,7 +29,7 @@ export const JobReviewModal = ({ jobOfferId, isOpen, onClose }: Props) => {
         <ModalHeader>Rate your experience</ModalHeader>
         <ModalBody className="gap-4">
           <p>{modalDescription}</p>
-          <JobReviewForm jobOfferId={jobOfferId} onCancel={onClose} onSuccess={onClose} />
+          <JobReviewForm jobOfferId={jobOfferId} jobOfferStatus={jobOfferStatus} onCancel={onClose} onSuccess={handleSuccess} />
         </ModalBody>
       </ModalContent>
     </Modal>

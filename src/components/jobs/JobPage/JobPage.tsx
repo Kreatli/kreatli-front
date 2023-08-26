@@ -26,24 +26,26 @@ export const JobPage = (props: Props) => {
   const {
     _id: id,
     applicationsCount,
-    creationDate,
-    creator,
     availability,
     availabilityDuration,
+    creationDate,
+    creator,
+    description,
+    hasApplied,
     location,
+    paymentPreferences,
     paymentType,
     paymentValue,
-    paymentPreferences,
-    hasApplied,
     shortDescription,
-    description,
     skills,
+    status,
     title,
   } = props;
 
   const isMobile = useBreakpointValue({ SM: false }, true);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { currentUser } = useSession();
+  const isPosted = status === 'posted';
   const isProfessional = currentUser?.role === 'professional';
 
   const relativeCreationDate = React.useMemo(() => {
@@ -64,8 +66,12 @@ export const JobPage = (props: Props) => {
       {!isMobile && <PaymentMethods methods={paymentPreferences} />}
       <div className="flex flex-col items-center gap-1">
         {isProfessional && (
-          <Button isDisabled={hasApplied} color="secondary" onClick={onOpen}>
-            {hasApplied ? 'Applied' : 'Apply for job'}
+          <Button isDisabled={hasApplied || !isPosted} color="secondary" onClick={onOpen}>
+            {hasApplied
+              ? 'Applied'
+              : isPosted
+                ? 'Apply for job'
+                : 'The job is not active'}
           </Button>
         )}
         <p className="text-sm text-gray-400">{applicationsCount} application{applicationsCount === 1 ? '' : 's'} so far</p>

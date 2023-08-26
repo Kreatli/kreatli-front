@@ -1,4 +1,4 @@
-import { Button, Card, CardBody, CardFooter, Divider, User } from '@nextui-org/react';
+import { Button, Card, CardBody, CardFooter, Divider, Link, User } from '@nextui-org/react';
 import NextLink from 'next/link';
 import cx from 'classnames';
 import React from 'react';
@@ -87,8 +87,8 @@ export const JobCard = (props: Props) => {
           </div>
         )}
         <div className={styles.content}>
-          {!isCompleted && hasFooter && jobOfferId
-            ? <NextLink href={`/jobs/${jobOfferId}`}>{cardTitle}</NextLink>
+          {hasFooter && jobOfferId
+            ? <Link as={NextLink} href={`/jobs/${jobOfferId}`} color="foreground" underline="hover">{cardTitle}</Link>
             : cardTitle}
           <p className="mb-4">{shortDescription}</p>
         </div>

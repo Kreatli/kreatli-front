@@ -2,7 +2,7 @@ import React from 'react';
 import { Common } from '../../../typings/common';
 import { useForm } from 'react-hook-form';
 import { useNotifications } from '../../../hooks/useNotifications';
-import { useMutation, useQueryClient } from 'react-query';
+import { useMutation } from 'react-query';
 import { getErrorMessage } from '../../../utils/getErrorMessage';
 import { Button, Radio, RadioGroup, Textarea } from '@nextui-org/react';
 import { VALIDATION_RULES } from '../../../constants/validationRules';
@@ -13,6 +13,7 @@ import { useSession } from '../../../hooks/useSession';
 
 interface Props {
   jobOfferId: Common.Id;
+  jobOfferStatus: Job.Offer['status'];
   onCancel: () => void;
   onSuccess: () => void;
 }
@@ -25,30 +26,19 @@ const DEFAULT_VALUES: Job.OfferReviewPayload = {
 
 type DefaultValues = typeof DEFAULT_VALUES;
 
-export const JobReviewForm = ({ jobOfferId, onCancel, onSuccess }: Props) => {
+export const JobReviewForm = ({ jobOfferId, jobOfferStatus, onCancel, onSuccess }: Props) => {
   const { register, handleSubmit, formState: { errors } } = useForm({ defaultValues: DEFAULT_VALUES, mode: 'onBlur' });
   const { currentUser } = useSession();
   const isCreator = currentUser?.role === 'creator';
   const pushNotification = useNotifications((state) => state.pushNotification);
 
-  const queryClient = useQueryClient();
-  const query = isCreator
-    ? ['creator', 'job-offers']
-    : ['professional', 'job-applications'];
-  const jobOffers = queryClient.getQueryData<Job.Offer[]>(query);
-  const currentJobOffer = jobOffers?.find((job) => job._id === jobOfferId);
-  const isCompleted = currentJobOffer?.status === 'completed';
-
-  const updateJobOffer = (jobOffer: Job.Offer) => {
-    const updatedJobOffers = jobOffers?.map((offer) => (offer._id === jobOffer._id ? jobOffer : offer));
-    queryClient.setQueryData(query, updatedJobOffers);
-  };
+  const isCompleted = jobOfferStatus === 'completed';
 
   const mutation = isCompleted
     ? requestJobOfferReview
     : requestJobOfferComplete;
   const { mutate, isLoading } = useMutation(mutation, {
-    onSuccess: (jobOffer) => {
+    onSuccess: () => {
       const message = isCompleted
         ? 'The review was sent'
         : 'The collaboration was successfully finished';
@@ -57,7 +47,6 @@ export const JobReviewForm = ({ jobOfferId, onCancel, onSuccess }: Props) => {
         color: 'success',
         icon: 'success',
       });
-      updateJobOffer(jobOffer);
       onSuccess();
     },
     onError: (error: any) => {

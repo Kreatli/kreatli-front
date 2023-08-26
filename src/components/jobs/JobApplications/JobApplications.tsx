@@ -11,9 +11,11 @@ interface Props {
   jobOfferId: Common.Id;
   jobOfferStatus: Job.Offer['status'];
   applications: Job.Application[];
+  onReject?: () => void;
+  onHire?: () => void;
 }
 
-export const JobApplications = ({ jobOfferId, jobOfferStatus, applications }: Props) => {
+export const JobApplications = ({ jobOfferId, jobOfferStatus, applications, onReject, onHire }: Props) => {
   return (
     <div>
       <p className="font-semibold">Applications:</p>
@@ -40,6 +42,8 @@ export const JobApplications = ({ jobOfferId, jobOfferStatus, applications }: Pr
               coverLetter={application.coverLetter}
               status={application.status}
               jobOfferStatus={jobOfferStatus}
+              onHire={onHire}
+              onReject={onReject}
             />
           </AccordionItem>
         ))}

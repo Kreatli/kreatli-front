@@ -130,7 +130,7 @@ export const ProfessionalListing = () => {
           )}
         </div>
         {shouldShowEmptyState
-          ? <EmptyState />
+          ? <EmptyState title="No results" text="Oops! No results found. Try different criteria or check back later, we\'re growing 🚀" />
           : (
             <LazyList isLoading={isFetchingNextPage} hasMore={hasNextPage} onLoadMore={fetchNextPage}>
               <div className={cx(styles.cards, { [styles.loading]: shouldShowLoader })}>

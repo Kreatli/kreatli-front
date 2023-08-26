@@ -15,27 +15,24 @@ import { Rating } from '../../various/Rating';
 
 interface Props {
   jobOffer: Job.Offer;
+  onHire?: () => void;
+  onReject?: () => void;
+  onComplete?: () => void;
+  onCancel?: () => void;
 }
 
-export const MyJobsOffer = ({ jobOffer }: Props) => {
+export const MyJobsOffer = ({ jobOffer, onCancel, onComplete, onHire, onReject }: Props) => {
   const isPosted = jobOffer.status === 'posted';
   const isOngoing = jobOffer.status === 'ongoing';
   const isCompleted = jobOffer.status === 'completed';
   const hasLeftReview = !!jobOffer.reviews.creator;
   const professionalReview = jobOffer.reviews.professional;
-  const queryClient = useQueryClient();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { pushNotification } = useNotifications();
 
-  const updateJobOffer = (jobOffer: Job.Offer) => {
-    const jobOffers = queryClient.getQueryData<Job.Offer[]>(['creator', 'job-offers']);
-    const updatedJobOffers = jobOffers?.map((offer) => (offer._id === jobOffer._id ? jobOffer : offer));
-    queryClient.setQueryData(['creator', 'job-offers'], updatedJobOffers);
-  };
-
   const { mutate: mutateCancel, isLoading: isCanceling } = useMutation(requestJobOfferCancel, {
-    onSuccess: (jobOffer) => {
-      updateJobOffer(jobOffer);
+    onSuccess: () => {
+      onCancel?.();
       pushNotification({
         message: 'The job was cancelled',
         color: 'success',
@@ -108,7 +105,15 @@ export const MyJobsOffer = ({ jobOffer }: Props) => {
   const cardFooter = (
     <div className="flex flex-col w-full">
       {jobOffer.applications.length > 0
-        ? <JobApplications jobOfferId={jobOffer._id} jobOfferStatus={jobOffer.status} applications={jobOffer.applications} />
+        ? (
+          <JobApplications
+            jobOfferId={jobOffer._id}
+            jobOfferStatus={jobOffer.status}
+            applications={jobOffer.applications}
+            onHire={onHire}
+            onReject={onReject}
+          />
+        )
         : <p className="italic text-gray-600">There are no applications yet</p>}
       {professionalReview && (
         <div>
@@ -130,7 +135,15 @@ export const MyJobsOffer = ({ jobOffer }: Props) => {
         header={cardHeader}
         footer={cardFooter}
       />
-      {shouldShowReviewModal && <JobReviewModal isOpen={isOpen} jobOfferId={jobOffer._id} onClose={onClose} />}
+      {shouldShowReviewModal && (
+        <JobReviewModal
+          isOpen={isOpen}
+          jobOfferId={jobOffer._id}
+          jobOfferStatus={jobOffer.status}
+          onClose={onClose}
+          onSuccess={onComplete}
+        />
+      )}
     </>
   );
 };

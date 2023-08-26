@@ -85,9 +85,9 @@ export namespace Api {
       availabilityDuration?: Availability.ProjectBase;
     } & Pagination.Params;
     '/user/:id/connections': Pagination.Params;
-    '/creator/job-offers': Pagination.Params;
+    '/creator/job-offers': { status: Job.Offer['status'] } & Pagination.Params;
     '/creator/:id/job-offers': Pagination.Params;
-    '/professional/job-applications': Pagination.Params;
+    '/professional/job-applications': { status: Job.Application['status'] } & Pagination.Params;
     '/professional/:id/job-applications': Pagination.Params;
   }
 
@@ -111,9 +111,15 @@ export namespace Api {
       jobOffers: Job.Offer[];
       jobOffersCount: number;
     };
-    '/creator/job-offers': Job.Offer[];
+    '/creator/job-offers': {
+      jobOffers: Job.Offer[];
+      jobOffersCount: number;
+    };
     '/creator/:id/job-offers': Job.Offer[];
-    '/professional/job-applications': Job.Offer[];
+    '/professional/job-applications': {
+      jobApplications: Job.Offer[];
+      jobApplicationsCount: number;
+    };
     '/professional/:id/job-applications': Job.Offer[];
   }
 
