@@ -3,7 +3,7 @@ import { useQuery } from 'react-query';
 import { requestCreatorJobs } from '../../../services/creator';
 import { JobCard } from '../../jobs/JobCard';
 
-import { RecentJobsSkeleton } from './RecentJobsSkeleton';
+import { PostedJobsSkeleton } from './PostedJobsSkeleton';
 import { EmptyState } from '../../various/EmptyState';
 import { Common } from '../../../typings/common';
 
@@ -11,7 +11,7 @@ interface Props {
   id: Common.Id;
 }
 
-export const RecentJobs = ({ id }: Props) => {
+export const PostedJobs = ({ id }: Props) => {
   const { data, isLoading } = useQuery(['creator', id, 'job-offers'], () => requestCreatorJobs(id));
 
   const hasData = data && data.length > 0;
@@ -20,7 +20,7 @@ export const RecentJobs = ({ id }: Props) => {
 
   return (
     <>
-      <h3 className="text-2xl font-semibold mt-8 mb-2">Recent jobs</h3>
+      <h3 className="text-2xl font-semibold mt-8 mb-2">Posted jobs</h3>
       {shouldShowEmptyState && (
         <EmptyState
           title="No jobs yet"
@@ -28,7 +28,7 @@ export const RecentJobs = ({ id }: Props) => {
         />
       )}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-       {shouldShowSkeleton && <RecentJobsSkeleton />}
+       {shouldShowSkeleton && <PostedJobsSkeleton />}
         {data?.map((jobOffer) => (
           <JobCard
             key={jobOffer._id}

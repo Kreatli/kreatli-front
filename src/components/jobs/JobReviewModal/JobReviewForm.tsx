@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import { useNotifications } from '../../../hooks/useNotifications';
 import { useMutation, useQueryClient } from 'react-query';
 import { getErrorMessage } from '../../../utils/getErrorMessage';
-import { Button, Textarea } from '@nextui-org/react';
+import { Button, Radio, RadioGroup, Textarea } from '@nextui-org/react';
 import { VALIDATION_RULES } from '../../../constants/validationRules';
 import { requestJobOfferComplete, requestJobOfferReview } from '../../../services/job';
 import { Job } from '../../../typings/job';
@@ -17,8 +17,9 @@ interface Props {
   onSuccess: () => void;
 }
 
-const DEFAULT_VALUES = {
+const DEFAULT_VALUES: Job.OfferReviewPayload = {
   comment: '',
+  reason: '',
   rating: 0,
 };
 
@@ -30,24 +31,27 @@ export const JobReviewForm = ({ jobOfferId, onCancel, onSuccess }: Props) => {
   const isCreator = currentUser?.role === 'creator';
   const pushNotification = useNotifications((state) => state.pushNotification);
 
+  const queryClient = useQueryClient();
+  const query = isCreator
+    ? ['creator', 'job-offers']
+    : ['professional', 'job-applications'];
+  const jobOffers = queryClient.getQueryData<Job.Offer[]>(query);
+  const currentJobOffer = jobOffers?.find((job) => job._id === jobOfferId);
+  const isCompleted = currentJobOffer?.status === 'completed';
+
   const updateJobOffer = (jobOffer: Job.Offer) => {
-    const query = isCreator
-      ? ['creator', 'job-offers']
-      : ['professional', 'job-offers'];
-    const jobOffers = queryClient.getQueryData<Job.Offer[]>(query);
     const updatedJobOffers = jobOffers?.map((offer) => (offer._id === jobOffer._id ? jobOffer : offer));
     queryClient.setQueryData(query, updatedJobOffers);
   };
 
-  const queryClient = useQueryClient();
-  const mutation = isCreator
-    ? requestJobOfferComplete
-    : requestJobOfferReview;
+  const mutation = isCompleted
+    ? requestJobOfferReview
+    : requestJobOfferComplete;
   const { mutate, isLoading } = useMutation(mutation, {
     onSuccess: (jobOffer) => {
-      const message = isCreator
-        ? 'The job was successfully completed'
-        : 'Review was sent';
+      const message = isCompleted
+        ? 'The review was sent'
+        : 'The collaboration was successfully finished';
       pushNotification({
         message,
         color: 'success',
@@ -66,21 +70,27 @@ export const JobReviewForm = ({ jobOfferId, onCancel, onSuccess }: Props) => {
   });
 
   const onSubmit = (data: DefaultValues) => {
-    mutate([jobOfferId, data]);
+    mutate([jobOfferId, { ...data, rating: Number(data.rating) }]);
   };
 
   const textareaPlaceholder = isCreator
     ? 'Your thoughts on the professional\'s performance and collaboration (optional)'
     : 'Your thoughts on the creator\'s performance and collaboration (optional)';
 
-  const buttonCopy = isCreator
-    ? 'Complete job'
-    : 'Leave comment';
+  const buttonCopy = isCompleted
+    ? 'Leave feedback'
+    : 'Finish collaboration';
 
   return (
     <form noValidate onSubmit={handleSubmit(onSubmit)}>
-      <div className="flex flex-col justify-center gap-6">
-        <Rating className="mx-auto" invalid={!!errors.rating} {...register('rating', VALIDATION_RULES.REQUIRED)} />
+      <div className="flex flex-col justify-center gap-4">
+        {!isCompleted && (
+          <RadioGroup label="Reason" color="secondary" validationState={errors.reason && 'invalid'}>
+            <Radio value="satisfied" {...register('reason', VALIDATION_RULES.REQUIRED)}>Successfully finished the collaboration</Radio>
+            <Radio value="not-satisfied" {...register('reason', VALIDATION_RULES.REQUIRED)}>Not satisfied with the collaboration</Radio>
+          </RadioGroup>
+        )}
+        <Rating label="Rate the collaboration" invalid={!!errors.rating} {...register('rating', VALIDATION_RULES.REQUIRED)} />
         <Textarea
           placeholder={textareaPlaceholder}
           aria-label={textareaPlaceholder}
@@ -89,8 +99,8 @@ export const JobReviewForm = ({ jobOfferId, onCancel, onSuccess }: Props) => {
           fullWidth
           {...register('comment')}
         />
-        <div className="flex justify-center gap-2">
-          <Button variant="light" onClick={onCancel}>Cancel</Button>
+        <div className="flex justify-center gap-2 mb-2">
+          <Button variant="light" color="secondary" onClick={onCancel}>Cancel</Button>
           <Button type="submit" variant="flat" color="secondary" isLoading={isLoading}>
             {buttonCopy}
           </Button>

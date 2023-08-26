@@ -20,7 +20,9 @@ export const MyJobsApplication = ({ jobOffer }: Props) => {
   const [jobApplication] = jobOffer.applications;
 
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const canAddReview = jobOffer.status === 'completed' && jobOffer.reviews.length < 2;
+  const isCompleted = jobOffer.status === 'completed';
+  const isOngoing = jobOffer.status === 'ongoing';
+  const hasLeftReview = !!jobOffer.reviews.professional;
   const queryClient = useQueryClient();
 
   const updateJobApplication = (jobOffer: Job.Offer) => {
@@ -64,15 +66,20 @@ export const MyJobsApplication = ({ jobOffer }: Props) => {
       icon: 'cross' as const,
       color: 'danger' as const,
     }] : []),
-    ...(canAddReview ? [{
-      label: 'Leave review',
+    ...(isOngoing ? [{
+      label: 'Finish collaboration',
+      icon: 'check' as const,
+      color: 'default' as const,
+    }] : []),
+    ...(isCompleted && !hasLeftReview ? [{
+      label: 'Leave feedback',
       size: 18,
       icon: 'chat' as const,
       color: 'default' as const,
     }] : []),
   ];
 
-  const creatorReview = jobOffer.reviews[0];
+  const creatorReview = jobOffer.reviews.creator;
 
   const cardHeader = (
     <div className="flex items-center justify-between h-[32px] -mt-2">
@@ -117,6 +124,8 @@ export const MyJobsApplication = ({ jobOffer }: Props) => {
     </div>
   );
 
+  const shouldShowReviewModal = isOngoing || (isCompleted && !hasLeftReview);
+
   return (
     <>
       <JobCard
@@ -125,7 +134,7 @@ export const MyJobsApplication = ({ jobOffer }: Props) => {
         header={cardHeader}
         footer={cardFooter}
       />
-      {canAddReview && <JobReviewModal isOpen={isOpen} jobOfferId={jobOffer._id} onClose={onClose} />}
+      {shouldShowReviewModal && <JobReviewModal isOpen={isOpen} jobOfferId={jobOffer._id} onClose={onClose} />}
     </>
   );
 };

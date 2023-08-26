@@ -20,7 +20,9 @@ interface Props {
 export const MyJobsOffer = ({ jobOffer }: Props) => {
   const isPosted = jobOffer.status === 'posted';
   const isOngoing = jobOffer.status === 'ongoing';
-  const professionalReview = jobOffer.reviews[1];
+  const isCompleted = jobOffer.status === 'completed';
+  const hasLeftReview = !!jobOffer.reviews.creator;
+  const professionalReview = jobOffer.reviews.professional;
   const queryClient = useQueryClient();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { pushNotification } = useNotifications();
@@ -64,9 +66,15 @@ export const MyJobsOffer = ({ jobOffer }: Props) => {
       color: 'danger' as const,
     }] : []),
     ...(isOngoing ? [{
-      label: 'Complete job',
+      label: 'Finish collaboration',
       icon: 'check' as const,
-      color: 'success' as const,
+      color: 'default' as const,
+    }] : []),
+    ...((isCompleted && !hasLeftReview) ? [{
+      label: 'Leave feedback',
+      size: 18,
+      icon: 'chat' as const,
+      color: 'default' as const,
     }] : []),
   ];
 
@@ -88,8 +96,8 @@ export const MyJobsOffer = ({ jobOffer }: Props) => {
             </Button>
           </DropdownTrigger>
           <DropdownMenu onAction={handleAction}>
-            {dropdownMenu.map(({ icon, color, label }) => (
-              <DropdownItem key={label} startContent={<Icon icon={icon} />} color={color}>{label}</DropdownItem>
+            {dropdownMenu.map(({ icon, color, label, size }) => (
+              <DropdownItem key={label} startContent={<Icon icon={icon} size={size} />} color={color}>{label}</DropdownItem>
             ))}
           </DropdownMenu>
         </Dropdown>
@@ -112,6 +120,8 @@ export const MyJobsOffer = ({ jobOffer }: Props) => {
     </div>
   );
 
+  const shouldShowReviewModal = isOngoing || (isCompleted && !hasLeftReview);
+
   return (
     <>
       <JobCard
@@ -120,7 +130,7 @@ export const MyJobsOffer = ({ jobOffer }: Props) => {
         header={cardHeader}
         footer={cardFooter}
       />
-      {isOngoing && <JobReviewModal isOpen={isOpen} jobOfferId={jobOffer._id} onClose={onClose} />}
+      {shouldShowReviewModal && <JobReviewModal isOpen={isOpen} jobOfferId={jobOffer._id} onClose={onClose} />}
     </>
   );
 };

@@ -13,16 +13,14 @@ interface Props {
 export const JobReviewModal = ({ jobOfferId, isOpen, onClose }: Props) => {
   const { currentUser } = useSession();
 
-  const modalDescription = currentUser?.role === 'creator'
-    ? 'Help us enhance our platform by sharing your feedback. Kindly rate and review the professional you collaborated with.'
-    : 'Help us enhance our platform by sharing your feedback. Kindly rate and review the creator you collaborated with.';
+  const modalDescription = `Share your feedback and rate the collaboration with ${currentUser?.role === 'creator' ? 'professional' : 'creator'}. Remember, once both sides have submitted their feedback, it will be displayed publicly`;
 
   return (
-    <Modal backdrop="blur" placement="center" closeButton size="md" isOpen={isOpen} onClose={onClose}>
+    <Modal backdrop="blur" placement="center" closeButton size="lg" isOpen={isOpen} onClose={onClose}>
       <ModalContent>
         <ModalHeader>Rate your experience</ModalHeader>
-        <ModalBody>
-          <p className="text-center">{modalDescription}</p>
+        <ModalBody className="gap-4">
+          <p>{modalDescription}</p>
           <JobReviewForm jobOfferId={jobOfferId} onCancel={onClose} onSuccess={onClose} />
         </ModalBody>
       </ModalContent>

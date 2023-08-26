@@ -1,7 +1,7 @@
 import { Skeleton } from '@nextui-org/react';
 import React from 'react';
 
-export const RecentJobsSkeleton = () => {
+export const PostedJobsSkeleton = () => {
   return (
     <>
       {Array.from(Array(2)).map((_, index) => (

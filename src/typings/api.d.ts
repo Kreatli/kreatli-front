@@ -151,14 +151,8 @@ export namespace Api {
     '/job-offer/:id/application': {
       coverLetter: string;
     };
-    '/job-offer/:id/complete': {
-      comment: string;
-      rating: number;
-    };
-    '/job-offer/:id/review': {
-      comment: string;
-      rating: number;
-    };
+    '/job-offer/:id/complete': Job.OfferReviewPayload;
+    '/job-offer/:id/review': Job.OfferReviewPayload;
   }
 
   export interface PostResponse {

@@ -25,7 +25,7 @@ export const MyJobsOffers = () => {
         <Tab key="posted" title="Posted" />
         <Tab key="ongoing" title="Ongoing" />
         <Tab key="completed" title="Completed" />
-        <Tab key="canceled" title="Canceled" />
+        <Tab key="canceled" title="Cancelled" />
       </Tabs>
       {shouldShowEmptyState && (
         <EmptyState

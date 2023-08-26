@@ -10,7 +10,7 @@ import { Tag } from '../../various/Tag';
 import { ProfileHeader } from '../Profile/ProfileHeader';
 import { RecentConnections } from '../RecentConnections';
 import { ChannelDetails } from './ChannelDetails';
-import { RecentJobs } from './RecentJobs';
+import { PostedJobs } from './PostedJobs';
 
 interface Props {
   userId: Common.Id;
@@ -35,7 +35,7 @@ export const CreatorProfile = ({ userId }: Props) => {
         <ProfileHeader user={user} />
       )}
       <div className="flex gap-10 mt-4">
-        <div className="flex-initial">
+        <div className="flex-1">
           <p className="mb-4">{user?.description}</p>
           <div className="flex flex-wrap items-center gap-2">
             <div>
@@ -60,7 +60,7 @@ export const CreatorProfile = ({ userId }: Props) => {
       {user && (
         <>
           <ChannelDetails id={user._id} youtubeUrl={user.youtubeUrl} details={user.youtube} />
-          <RecentJobs id={userId} />
+          <PostedJobs id={userId} />
           <RecentConnections ids={user.connections} />
         </>
       )}
