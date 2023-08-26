@@ -69,7 +69,7 @@ export const JobsCreation = () => {
   const { mutate, isLoading, isSuccess } = useMutation(requestJobOfferCreation, {
     onSuccess: () => {
       pushNotification({
-        message: 'Job offer was created!',
+        message: 'Job posting was created!',
         color: 'success',
         icon: 'success',
       });
@@ -119,12 +119,12 @@ export const JobsCreation = () => {
     },
     {
       title: 'Step 5 - Additional information (optional)',
-      subtitle: 'Any comments or additional information you want to include in your job offer',
+      subtitle: 'Any comments or additional information you want to include in your job posting',
       render: <JobsCreationStep5 register={register} errors={errors} />,
     },
   ];
 
-  const description = 'Create a job offer to attract and hire the most relevant professionals. Make it unique so that it stands out!';
+  const description = 'Create a job posting to attract and hire the most relevant professionals. Make it unique so that it stands out!';
   const disabledKeys = steps
     .map((_, index) => index)
     .filter((index) => isSuccess || isLoading || (index > 0 && !isFilledByStep[index - 1]))
@@ -132,7 +132,7 @@ export const JobsCreation = () => {
 
   return (
     <>
-      <h2 className="text-3xl text-secondary font-bold mb-4">Create job offer</h2>
+      <h2 className="text-3xl text-secondary font-bold mb-4">Create job posting</h2>
       <p className="mb-6">{description}</p>
       <Progress className="mb-10" value={progressValue} color="secondary" />
       <form noValidate onSubmit={handleSubmit(onSubmit)}>
@@ -162,7 +162,7 @@ export const JobsCreation = () => {
                   <Button variant="flat" color="secondary" onClick={handleNext}>Next</Button>
                 )}
                 {index === steps.length - 1 && (
-                  <Button type="submit" color="secondary" isLoading={isLoading}>Create job offer</Button>
+                  <Button type="submit" color="secondary" isLoading={isLoading}>Create job posting</Button>
                 )}
               </div>
             </AccordionItem>

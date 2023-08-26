@@ -119,9 +119,9 @@ export const JobsListing = () => {
                 color="secondary"
                 radius="full"
                 startContent={<Icon icon="plus" size={18} />}
-                aria-label="Create job offer"
+                aria-label="Create job posting"
               >
-                {!isMobile ? 'Create job offer' : null}
+                {!isMobile ? 'Create job posting' : null}
               </Button>
             </div>
           )}

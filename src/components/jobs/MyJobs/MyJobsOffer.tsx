@@ -5,7 +5,7 @@ import { JobApplications } from '../JobApplications';
 import { JobCard } from '../JobCard';
 import { JOB_OFFER_STATUS_COLORS, JOB_OFFER_STATUS_LABELS } from '../../../constants/job';
 import { Job } from '../../../typings/job';
-import { useMutation, useQueryClient } from 'react-query';
+import { useMutation } from 'react-query';
 import { requestJobOfferCancel } from '../../../services/job';
 import { getErrorMessage } from '../../../utils/getErrorMessage';
 import { useNotifications } from '../../../hooks/useNotifications';
@@ -34,7 +34,7 @@ export const MyJobsOffer = ({ jobOffer, onCancel, onComplete, onHire, onReject }
     onSuccess: () => {
       onCancel?.();
       pushNotification({
-        message: 'The job was cancelled',
+        message: 'The job posting was cancelled',
         color: 'success',
         icon: 'success',
       });
@@ -58,7 +58,7 @@ export const MyJobsOffer = ({ jobOffer, onCancel, onComplete, onHire, onReject }
 
   const dropdownMenu = [
     ...(isPosted ? [{
-      label: 'Cancel offer',
+      label: 'Cancel job posting',
       icon: 'cross' as const,
       color: 'danger' as const,
     }] : []),
@@ -88,7 +88,7 @@ export const MyJobsOffer = ({ jobOffer, onCancel, onComplete, onHire, onReject }
       {dropdownMenu.length > 0 && (
         <Dropdown isDisabled={isCanceling}>
           <DropdownTrigger>
-            <Button aria-label="Job offer options" variant="light" radius="full" size="sm" isIconOnly>
+            <Button aria-label="Job posting settings" variant="light" radius="full" size="sm" isIconOnly>
               <Icon icon="dots" />
             </Button>
           </DropdownTrigger>

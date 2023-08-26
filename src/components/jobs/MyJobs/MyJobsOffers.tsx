@@ -56,7 +56,7 @@ export const MyJobsOffers = () => {
       return {
         title: 'No ongoing jobs yet',
         text: 'You don\'t have any ongoing jobs. Let\'s fix that!',
-        link: { href: '/jobs/create', label: 'Create job offer' },
+        link: { href: '/jobs/create', label: 'Create job posting' },
       };
     }
 
@@ -76,7 +76,7 @@ export const MyJobsOffers = () => {
     return {
       title: 'No jobs yet',
       text: 'You don\'t have any posted jobs. Let\'s fix that!',
-      link: { href: '/jobs/create', label: 'Create job offer' },
+      link: { href: '/jobs/create', label: 'Create job posting' },
     };
   }, [selectedTab]);
 
@@ -87,8 +87,8 @@ export const MyJobsOffers = () => {
 
   return (
     <>
-      <h3 className="text-2xl font-semibold mb-4">My job offers</h3>
-      <Tabs aria-label="My job offers" selectedKey={selectedTab} className="mb-4" onSelectionChange={handleSelectionChange}>
+      <h3 className="text-2xl font-semibold mb-4">My job postings</h3>
+      <Tabs aria-label="My job postings" selectedKey={selectedTab} className="mb-4" onSelectionChange={handleSelectionChange}>
         <Tab key="posted" title="Posted" />
         <Tab key="ongoing" title="Ongoing" />
         <Tab key="completed" title="Completed" />

@@ -51,7 +51,7 @@ export const JobApplicationContent = ({ professional, jobOfferId, jobOfferStatus
   });
 
   const { isLoading: isAccepting, mutate: mutateAccept } = useMutation(requestJobApplicationAccept, {
-    onSuccess: (jobOffer) => {
+    onSuccess: () => {
       setIsAcceptConfirmationOpen(false);
       pushNotification({
         message: 'The professional was successfully hired',

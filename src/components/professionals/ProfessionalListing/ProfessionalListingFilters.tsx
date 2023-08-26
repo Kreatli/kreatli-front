@@ -78,7 +78,7 @@ export const ProfessionalListingFilters = ({ filters, isOpen, isMobile, onChange
         <div className={styles.filtersInner}>
           <Menu>
             <Menu.Group>
-              <Menu.Item href="/jobs" icon="suitcase" label="Job offers" description="Find YouTube creators to work with" />
+              <Menu.Item href="/jobs" icon="suitcase" label="Job postings" description="Find YouTube creators to work with" />
               <Menu.Item href="/professionals" icon="group" label="Professionals" description="Look for professionals to connect and work with" />
             </Menu.Group>
             <Menu.Group title="Qualifications">

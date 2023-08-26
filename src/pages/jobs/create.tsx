@@ -7,7 +7,7 @@ const JobsCreate = () => {
   return (
     <>
       <Head>
-        <title>Create job offer | Kreatli</title>
+        <title>Create job posting | Kreatli</title>
         <meta name="description" content="Kreatli" />
       </Head>
       <div className="container max-w-screen-lg mx-auto px-6">
