@@ -1,4 +1,4 @@
-import { Grid, Input, Textarea } from '@nextui-org/react';
+import { Input, Textarea } from '@nextui-org/react';
 import React from 'react';
 import { Control, FieldErrors, UseFormRegister } from 'react-hook-form';
 
@@ -16,81 +16,61 @@ interface Props {
 export const SignUpProfessionalStep2: React.FC<Props> = ({ control, errors, register }) => {
   return (
     <>
-      <Grid.Container gap={1} alignItems="center">
-        <Grid>
-          <AvatarUploader
-            status={errors.avatarUrl && 'error'}
-            name="avatarUrl"
-            control={control}
-            rules={VALIDATION_RULES.REQUIRED}
-          />
-        </Grid>
-        <Grid css={{ flexGrow: 1 }}>
+      <div className="flex items-center gap-4 mb-4">
+        <AvatarUploader
+          status={errors.avatarUrl && 'danger'}
+          name="avatarUrl"
+          control={control}
+          rules={VALIDATION_RULES.REQUIRED}
+        />
+        <div className="flex-1">
           <Textarea
+            label="Description"
             placeholder="Describe your background and make your profile stand out!"
-            aria-label="Description"
-            fullWidth
-            status={errors.description && 'error'}
-            helperText={errors.description?.message}
-            helperColor="error"
+            validationState={errors.description && 'invalid'}
+            errorMessage={errors.description?.message}
             {...register('description', VALIDATION_RULES.DESCRIPTION.MIN_100)}
           />
-        </Grid>
-      </Grid.Container>
-      <Grid.Container gap={1} alignItems="flex-start">
-        <Grid xs={12} sm={6}>
-          <Input
-            labelLeft={<Icon icon="link" />}
-            labelRight="optional"
-            aria-label="Portfolio Link"
-            placeholder="https://myportflio.com"
-            fullWidth
-            status={errors.portfolioUrl && 'error'}
-            helperText={errors.portfolioUrl?.message}
-            helperColor="error"
-            {...register('portfolioUrl', VALIDATION_RULES.URL.OPTIONAL)}
-          />
-        </Grid>
-        <Grid xs={12} sm={6}>
-          <Input
-            labelLeft={<Icon icon="twitter" />}
-            labelRight="optional"
-            aria-label="Twitter Link"
-            placeholder="https://twitter.com/myaccount"
-            fullWidth
-            status={errors.twitterUrl && 'error'}
-            helperText={errors.twitterUrl?.message}
-            helperColor="error"
-            {...register('twitterUrl', VALIDATION_RULES.TWITTER_ACCOUNT_URL)}
-          />
-        </Grid>
-        <Grid xs={12} sm={6}>
-          <Input
-            labelLeft={<Icon icon="discord" />}
-            labelRight="optional"
-            aria-label="Discord Username"
-            placeholder="username#0000"
-            fullWidth
-            status={errors.discordUsername && 'error'}
-            helperText={errors.discordUsername?.message}
-            helperColor="error"
-            {...register('discordUsername', VALIDATION_RULES.DISCORD_USERNAME)}
-          />
-        </Grid>
-        <Grid xs={12} sm={6}>
-          <Input
-            labelLeft={<Icon icon="instagram" />}
-            labelRight="optional"
-            aria-label="Instagram Profile"
-            placeholder="@myusername"
-            fullWidth
-            status={errors.instagramUsername && 'error'}
-            helperText={errors.instagramUsername?.message}
-            helperColor="error"
-            {...register('instagramUsername', VALIDATION_RULES.INSTAGRAM_USERNAME)}
-          />
-        </Grid>
-      </Grid.Container>
+        </div>
+      </div>
+      <div className="grid items-start gap-4 grid-cols-1 sm:grid-cols-2">
+        <Input
+          startContent={<Icon className="text-gray-400" icon="link" />}
+          endContent={<span className="pointer-events-none text-small text-gray-400">optional</span>}
+          aria-label="Portfolio Link"
+          placeholder="https://myportflio.com"
+          validationState={errors.portfolioUrl && 'invalid'}
+          errorMessage={errors.portfolioUrl?.message}
+          {...register('portfolioUrl', VALIDATION_RULES.URL.OPTIONAL)}
+        />
+        <Input
+          startContent={<Icon className="text-gray-400" icon="twitter" />}
+          endContent={<span className="pointer-events-none text-small text-gray-400">optional</span>}
+          aria-label="Twitter Link"
+          placeholder="https://twitter.com/myaccount"
+          validationState={errors.twitterUrl && 'invalid'}
+          errorMessage={errors.twitterUrl?.message}
+          {...register('twitterUrl', VALIDATION_RULES.TWITTER_ACCOUNT_URL)}
+        />
+        <Input
+          startContent={<Icon className="text-gray-400" icon="discord" />}
+          endContent={<span className="pointer-events-none text-small text-gray-400">optional</span>}
+          aria-label="Discord Username"
+          placeholder="username#0000"
+          validationState={errors.discordUsername && 'invalid'}
+          errorMessage={errors.discordUsername?.message}
+          {...register('discordUsername', VALIDATION_RULES.DISCORD_USERNAME)}
+        />
+        <Input
+          startContent={<Icon className="text-gray-400" icon="instagram" />}
+          endContent={<span className="pointer-events-none text-small text-gray-400">optional</span>}
+          aria-label="Instagram Profile"
+          placeholder="@myusername"
+          validationState={errors.instagramUsername && 'invalid'}
+          errorMessage={errors.instagramUsername?.message}
+          {...register('instagramUsername', VALIDATION_RULES.INSTAGRAM_USERNAME)}
+        />
+      </div>
     </>
   );
 };

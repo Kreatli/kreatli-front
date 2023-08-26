@@ -1,4 +1,3 @@
-import { CssBaseline } from '@nextui-org/react';
 import Document, { DocumentContext, Head, Html, Main, NextScript } from 'next/document';
 import React from 'react';
 
@@ -7,9 +6,9 @@ const MyDocument = () => {
     <Html lang="en">
       <Head>
         <link rel="icon" href="/favicon.ico" />
-        <link href="https://fonts.gstatic.com" rel="preconnect" />
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet" />
-        {CssBaseline.flush()}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
       </Head>
       <body>
         <Main />

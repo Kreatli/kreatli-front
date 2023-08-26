@@ -85,9 +85,9 @@ export namespace Api {
       availabilityDuration?: Availability.ProjectBase;
     } & Pagination.Params;
     '/user/:id/connections': Pagination.Params;
-    '/creator/job-offers': Pagination.Params;
+    '/creator/job-offers': { status: Job.Offer['status'] } & Pagination.Params;
     '/creator/:id/job-offers': Pagination.Params;
-    '/professional/job-applications': Pagination.Params;
+    '/professional/job-applications': { status: Job.Application['status'] } & Pagination.Params;
     '/professional/:id/job-applications': Pagination.Params;
   }
 
@@ -111,9 +111,15 @@ export namespace Api {
       jobOffers: Job.Offer[];
       jobOffersCount: number;
     };
-    '/creator/job-offers': Job.Offer[];
+    '/creator/job-offers': {
+      jobOffers: Job.Offer[];
+      jobOffersCount: number;
+    };
     '/creator/:id/job-offers': Job.Offer[];
-    '/professional/job-applications': Job.Offer[];
+    '/professional/job-applications': {
+      jobApplications: Job.Offer[];
+      jobApplicationsCount: number;
+    };
     '/professional/:id/job-applications': Job.Offer[];
   }
 
@@ -151,14 +157,8 @@ export namespace Api {
     '/job-offer/:id/application': {
       coverLetter: string;
     };
-    '/job-offer/:id/complete': {
-      comment: string;
-      rating: number;
-    };
-    '/job-offer/:id/review': {
-      comment: string;
-      rating: number;
-    };
+    '/job-offer/:id/complete': Job.OfferReviewPayload;
+    '/job-offer/:id/review': Job.OfferReviewPayload;
   }
 
   export interface PostResponse {

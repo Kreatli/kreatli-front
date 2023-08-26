@@ -1,4 +1,4 @@
-import { Button, Collapse, Grid, Loading, Progress, Spacer, Text, useTheme } from '@nextui-org/react';
+import { Button, Accordion, AccordionItem, Progress, Selection } from '@nextui-org/react';
 import { omit } from 'ramda';
 import React from 'react';
 import { useForm } from 'react-hook-form';
@@ -26,14 +26,13 @@ const FIELDS_BY_STEP = [
 ] as const;
 
 export const JobsCreation = () => {
-  const [activeStep, setActiveStep] = React.useState(0);
+  const [selectedKeys, setSelectedKeys] = React.useState(['0']);
   const [isFilledByStep, setIsFilledByStep] = React.useState([false, false, false]);
 
   const { currentUserId } = useSession();
   const router = useRouter();
   const pushNotification = useNotifications((state) => state.pushNotification);
 
-  const { theme } = useTheme();
   const {
     control,
     formState: { errors },
@@ -44,29 +43,33 @@ export const JobsCreation = () => {
 
   const isValidByStep = FIELDS_BY_STEP.map((fields) => !fields.some((field) => errors[field]));
 
+  const handleSelectionChange = (keys: Selection) => {
+    if (keys !== 'all') {
+      setSelectedKeys(Array.from(keys) as string[]);
+    }
+  };
+
   const handleNext = () => {
-    trigger(FIELDS_BY_STEP[activeStep]).then((isValid) => {
+    const index = Number(selectedKeys.values().next().value);
+
+    trigger(FIELDS_BY_STEP[index]).then((isValid) => {
       if (isValid) {
-        setActiveStep(activeStep + 1);
-        setIsFilledByStep(Object.assign([], isFilledByStep, { [activeStep]: true }));
+        setSelectedKeys([(index + 1).toString()]);
+        setIsFilledByStep(Object.assign([], isFilledByStep, { [index]: true }));
       }
     });
   };
 
   const handleBack = () => {
-    setActiveStep(activeStep - 1);
-  };
+    const index = Number(selectedKeys.values().next().value);
 
-  const handleChange = (step?: number, isExpanded?: boolean) => {
-    if (isExpanded && step) {
-      setActiveStep(step - 1);
-    }
+    setSelectedKeys([(index - 1).toString()]);
   };
 
   const { mutate, isLoading, isSuccess } = useMutation(requestJobOfferCreation, {
     onSuccess: () => {
       pushNotification({
-        message: 'Job offer was created!',
+        message: 'Job posting was created!',
         color: 'success',
         icon: 'success',
       });
@@ -75,7 +78,7 @@ export const JobsCreation = () => {
     onError: (error) => {
       pushNotification({
         message: getErrorMessage(error),
-        color: 'error',
+        color: 'danger',
         icon: 'error',
       });
     },
@@ -116,57 +119,55 @@ export const JobsCreation = () => {
     },
     {
       title: 'Step 5 - Additional information (optional)',
-      subtitle: 'Any comments or additional information you want to include in your job offer',
+      subtitle: 'Any comments or additional information you want to include in your job posting',
       render: <JobsCreationStep5 register={register} errors={errors} />,
     },
   ];
 
-  const description = 'Create a job offer to attract and hire the most relevant professionals. Make it unique so that it stands out!';
+  const description = 'Create a job posting to attract and hire the most relevant professionals. Make it unique so that it stands out!';
+  const disabledKeys = steps
+    .map((_, index) => index)
+    .filter((index) => isSuccess || isLoading || (index > 0 && !isFilledByStep[index - 1]))
+    .map((index) => index.toString());
 
   return (
     <>
-      <Text as="h2" weight="bold" color="secondary">Create a job offer</Text>
-      <Text>{description}</Text>
-      <Spacer y={1} />
-      <Progress value={progressValue} size="sm" color="gradient" />
-      <Spacer y={1} />
+      <h2 className="text-3xl text-secondary font-bold mb-4">Create job posting</h2>
+      <p className="mb-6">{description}</p>
+      <Progress className="mb-10" value={progressValue} color="secondary" />
       <form noValidate onSubmit={handleSubmit(onSubmit)}>
-        <Collapse.Group splitted onChange={handleChange} css={{ padding: 0 }}>
+        <Accordion
+          className="gap-4 p-0"
+          itemClasses={{ title: 'font-semibold', subtitle: 'text-gray-400' }}
+          variant="splitted"
+          selectedKeys={selectedKeys}
+          disabledKeys={disabledKeys}
+          keepContentMounted
+          onSelectionChange={handleSelectionChange}
+        >
           {steps.map(({ title, subtitle, render }, index) => (
-            <Collapse
-              key={title}
+            <AccordionItem
+              key={`${index}`}
               title={title}
+              aria-label={title}
               subtitle={subtitle}
-              shadow
-              contentLeft={!isValidByStep[index] && <Icon icon="error" fill={theme?.colors.error.value} />}
-              expanded={activeStep === index && !isSuccess}
-              disabled={isSuccess || isLoading || (index > 0 && !isFilledByStep[index - 1])}
+              startContent={!isValidByStep[index] && <Icon className="fill-danger" icon="error" />}
             >
               {render}
-              <Spacer />
-              <Grid.Container gap={1}>
+              <div className="flex gap-2 mt-6">
                 {index > 0 && (
-                  <Grid>
-                    <Button auto light color="primary" onClick={handleBack}>Back</Button>
-                  </Grid>
+                  <Button variant="light" color="secondary" onClick={handleBack}>Back</Button>
                 )}
                 {index !== steps.length - 1 && (
-                  <Grid>
-                    <Button auto flat onClick={handleNext}>Next</Button>
-                  </Grid>
+                  <Button variant="flat" color="secondary" onClick={handleNext}>Next</Button>
                 )}
                 {index === steps.length - 1 && (
-                  <Grid>
-                    <Button type="submit" auto color="gradient" disabled={isLoading}>
-                      {isLoading && <Loading size="xs" css={{ paddingRight: '$4' }} />}
-                      Create a job offer
-                    </Button>
-                  </Grid>
+                  <Button type="submit" color="secondary" isLoading={isLoading}>Create job posting</Button>
                 )}
-              </Grid.Container>
-            </Collapse>
+              </div>
+            </AccordionItem>
           ))}
-        </Collapse.Group>
+        </Accordion>
       </form>
     </>
   );

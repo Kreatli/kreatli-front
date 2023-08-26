@@ -1,4 +1,4 @@
-import { Loading } from '@nextui-org/react';
+import { Spinner } from '@nextui-org/react';
 import React from 'react';
 
 interface Props {
@@ -38,8 +38,8 @@ export const LazyList = ({ children, isLoading, hasMore = false, onLoadMore }: P
     <div>
       {children}
       {hasMore && (
-        <div ref={ref} style={{ textAlign: 'center', display: hasMore ? 'block' : 'none' }}>
-          <Loading css={{ mt: '$10' }} />
+        <div ref={ref} className="text-center">
+          <Spinner className="mt-10" color="secondary" />
         </div>
       )}
     </div>

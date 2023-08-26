@@ -1,4 +1,4 @@
-import { Button, Grid, Input, Loading, Spacer } from '@nextui-org/react';
+import { Button, Input } from '@nextui-org/react';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useMutation } from 'react-query';
@@ -39,7 +39,7 @@ export const ResetPasswordForm: React.FC<Props> = ({ onClick, onSuccess }) => {
 
       pushNotification({
         message: getErrorMessage(error),
-        color: 'error',
+        color: 'danger',
         icon: 'error',
       });
     },
@@ -51,30 +51,20 @@ export const ResetPasswordForm: React.FC<Props> = ({ onClick, onSuccess }) => {
 
   return (
     <form noValidate onSubmit={handleSubmit(onSubmit)}>
-      <Grid.Container gap={1}>
-        <Grid xs={12}>
-          <Input
-            placeholder="Email"
-            aria-label="Email"
-            disabled={isLoading}
-            status={errors.email && 'error'}
-            fullWidth
-            {...register('email', VALIDATION_RULES.REQUIRED)}
-          />
-        </Grid>
-      </Grid.Container>
-      <Spacer y={1} />
-      <Grid.Container gap={1} justify="space-between">
-        <Grid>
-          <Button type="submit" auto flat disabled={isLoading}>
-            {isLoading && <Loading size="xs" css={{ paddingRight: '$4' }} />}
-            Send email
-          </Button>
-        </Grid>
-        <Grid>
-          <Button auto light color="primary" onClick={onClick}>Sign in</Button>
-        </Grid>
-      </Grid.Container>
+      <Input
+        placeholder="Email"
+        aria-label="Email"
+        isDisabled={isLoading}
+        validationState={errors.email && 'invalid'}
+        fullWidth
+        {...register('email', VALIDATION_RULES.REQUIRED)}
+      />
+      <div className="flex justify-between gap-4 mt-8 mb-2">
+        <Button type="submit" variant="flat" color="secondary" isLoading={isLoading}>
+          Send email
+        </Button>
+        <Button variant="light" color="secondary" onClick={onClick}>Sign in</Button>
+      </div>
     </form>
   );
 };

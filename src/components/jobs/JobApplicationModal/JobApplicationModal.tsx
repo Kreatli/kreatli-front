@@ -1,4 +1,4 @@
-import { Modal, Text } from '@nextui-org/react';
+import { Modal, ModalBody, ModalContent, ModalHeader } from '@nextui-org/react';
 import React from 'react';
 
 import { Common } from '../../../typings/common';
@@ -8,26 +8,27 @@ interface Props {
   jobOfferId: Common.Id;
   title: string;
   shortDescription: string;
-  isVisible: boolean;
+  isOpen: boolean;
   onClose: () => void;
 }
 
-export const JobApplicationModal = ({ jobOfferId, title, shortDescription, isVisible, onClose }: Props) => {
+export const JobApplicationModal = ({ jobOfferId, title, shortDescription, isOpen, onClose }: Props) => {
   return (
     <Modal
       closeButton
-      blur
-      width="500px"
-      open={isVisible}
+      placement="center"
+      backdrop="blur"
+      size="md"
+      isOpen={isOpen}
       onClose={onClose}
     >
-      <Modal.Header>
-        <Text h3>{title}</Text>
-      </Modal.Header>
-      <Modal.Body>
-        <Text size="$sm">{shortDescription}</Text>
-        <JobApplicationForm jobOfferId={jobOfferId} onSuccess={onClose} onCancel={onClose} />
-      </Modal.Body>
+      <ModalContent>
+        <ModalHeader>{title}</ModalHeader>
+        <ModalBody>
+          <p>{shortDescription}</p>
+          <JobApplicationForm jobOfferId={jobOfferId} onSuccess={onClose} onCancel={onClose} />
+        </ModalBody>
+      </ModalContent>
     </Modal>
   );
 };

@@ -1,8 +1,6 @@
-import { Text } from '@nextui-org/react';
 import React from 'react';
 
 import { Icon, IconType } from '../Icon';
-import styles from './PaymentMethods.module.scss';
 
 interface Props {
   icon: IconType;
@@ -11,9 +9,9 @@ interface Props {
 
 export const PaymentMethod = ({ icon, children }: Props) => {
   return (
-    <Text className={styles.method}>
+    <p className="flex items-center gap-1 whitespace-nowrap">
       <Icon icon={icon} />
       {children}
-    </Text>
+    </p>
   );
 };

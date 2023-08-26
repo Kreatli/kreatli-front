@@ -1,4 +1,4 @@
-import { Button, Loading, Modal, Text } from '@nextui-org/react';
+import { Button, Modal, ModalContent, Spinner, useDisclosure } from '@nextui-org/react';
 import cx from 'classnames';
 import Image from 'next/image';
 import React from 'react';
@@ -17,7 +17,7 @@ interface Props<T extends FieldValues> {
   control?: Control<T>;
   name: FieldPath<T>;
   label?: string;
-  status?: 'error';
+  status?: 'danger';
   rules?: UseControllerProps<T>['rules'];
 }
 
@@ -41,7 +41,7 @@ const getCropDimensions = (crop: Crop | undefined, originalDimensions: { width: 
 export const AvatarUploader = <T extends FieldValues>({ control, name, rules, status, label = 'avatar' }: Props<T>) => {
   const [selectedFile, setSelectedFile] = React.useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = React.useState('');
-  const [isCropperVisible, setIsCropperVisible] = React.useState(false);
+  const {isOpen, onOpen, onClose } = useDisclosure();
   const [crop, setCrop] = React.useState<Crop>();
   const [uploadedImageUrl, setUploadedImageUrl] = React.useState('');
   const [imageDimensions, setImageDimensions] = React.useState({ width: 0, height: 0 });
@@ -81,7 +81,7 @@ export const AvatarUploader = <T extends FieldValues>({ control, name, rules, st
     }
 
     setSelectedFile(file);
-    setIsCropperVisible(true);
+    onOpen();
   }, [pushNotification]);
 
   const handleImageLoad = React.useCallback((event: React.SyntheticEvent<HTMLImageElement>) => {
@@ -97,7 +97,7 @@ export const AvatarUploader = <T extends FieldValues>({ control, name, rules, st
   }, [uploadedImageUrl]);
 
   const clearSelection = React.useCallback(() => {
-    setIsCropperVisible(false);
+    onClose();
     setSelectedFile(null);
     setPreviewUrl('');
   }, []);
@@ -111,7 +111,7 @@ export const AvatarUploader = <T extends FieldValues>({ control, name, rules, st
     onError: (error) => {
       pushNotification({
         message: getErrorMessage(error),
-        color: 'error',
+        color: 'danger',
         icon: 'error',
       });
     },
@@ -152,7 +152,7 @@ export const AvatarUploader = <T extends FieldValues>({ control, name, rules, st
   });
 
   const classNames = cx(styles.wrapper, {
-    [styles.error]: status === 'error',
+    [styles.error]: status === 'danger',
     [styles.dragActive]: isDragActive,
     [styles.loading]: isLoading,
   });
@@ -174,42 +174,49 @@ export const AvatarUploader = <T extends FieldValues>({ control, name, rules, st
         {isLoading
           ? (
             <span className={styles.placeholder}>
-              <Loading />
+              <Spinner color="secondary" />
             </span>
           ) : (
             <span className={styles.placeholder}>
-              <Text color="currentColor" size="$sm">{uploadedImageUrl ? `Change ${label}` : `Upload ${label}`}</Text>
+              <p className="text-xs text-current">{uploadedImageUrl ? `Change ${label}` : `Upload ${label}`}</p>
               <Icon icon="addImage" size={20} />
             </span>
           )}
       </label>
       <Modal
-        open={isCropperVisible}
-        blur
-        preventClose
+        isOpen={isOpen}
+        placement="center"
+        backdrop="blur"
+        isDismissable={false}
       >
-        <ReactCrop
-          aspect={1}
-          crop={crop}
-          circularCrop
-          keepSelection
-          onChange={(_, responsiveCrop) => setCrop(responsiveCrop)}
-        >
-          {previewUrl && (
-            <Image
-              src={previewUrl}
-              width="400"
-              height="800"
-              className={styles.imagePreview}
-              alt="Preview"
-              onLoad={handleImageLoad}
-            />
-          )}
-        </ReactCrop>
-        <div className={styles.previewButtons}>
-          <Button flat auto color="error" icon={<Icon icon="cross" />} onClick={clearSelection} />
-          <Button auto flat color="success" icon={<Icon icon="check" />} onClick={uploadImage} />
-        </div>
+        <ModalContent>
+          <ReactCrop
+            aspect={1}
+            crop={crop}
+            circularCrop
+            keepSelection
+            onChange={(_, responsiveCrop) => setCrop(responsiveCrop)}
+          >
+            {previewUrl && (
+              <Image
+                src={previewUrl}
+                width="400"
+                height="800"
+                className={styles.imagePreview}
+                alt="Preview"
+                onLoad={handleImageLoad}
+              />
+            )}
+          </ReactCrop>
+          <div className={styles.previewButtons}>
+            <Button aria-label="Cancel image upload" color="danger" variant="faded" isIconOnly onClick={clearSelection}>
+              <Icon icon="cross" />
+            </Button>
+            <Button aria-label="Confirm image upload" color="success" variant="faded" isIconOnly onClick={uploadImage}>
+              <Icon icon="check" />
+            </Button>
+          </div>
+        </ModalContent>
       </Modal>
     </>
   );

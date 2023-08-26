@@ -1,4 +1,3 @@
-import { Text } from '@nextui-org/react';
 import React from 'react';
 
 import { Icon } from '../Icon';
@@ -12,10 +11,10 @@ interface Props {
 export const Alert = ({ text, children }: Props) => {
   return (
     <div className={styles.alert}>
-      <Text className={styles.text}>
+      <p className={`${styles.text} text-sm text-gray-600`}>
         <Icon icon="logo" size={20} className={styles.icon} />
         {text}
-      </Text>
+      </p>
       <div className={styles.actions}>
         {children}
       </div>

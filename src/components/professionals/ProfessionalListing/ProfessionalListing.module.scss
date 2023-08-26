@@ -7,15 +7,14 @@
 
 .filters {
   position: fixed;
-  inset: 76px auto 0 0;
+  inset: 4rem auto 0 0;
   width: min(340px, 90%);
-  background-color: var(--nextui-colors-background);
-  padding: var(--nextui-space-10);
-  box-shadow: 0 0 30px var(--nextui-colors-textLight);
+  background-color: hsl(var(--nextui-background));
+  padding: 1.5rem;
   transform: translateX(-100%);
   transition: 0.25s ease transform;
   overflow-y: auto;
-  z-index: 1;
+  z-index: 11;
 
   &.opened {
     transform: translateX(0);
@@ -23,15 +22,14 @@
 }
 
 .filtersInner {
-  padding-bottom: var(--nextui-space-10);
+  padding-bottom: 1.5rem;
 }
 
 .filtersBackground {
   position: fixed;
-  inset: 76px 0 0 0;
-  background: var(--nextui--navbarBlurBackgroundColor);
-  backdrop-filter: saturate(180%) blur(var(--nextui--navbarBlur));
-  z-index: 1;
+  inset: 4rem 0 0 0;
+  background-color: hsl(var(--nextui-background) / 0.7);
+  z-index: 11;
 }
 
 .cardsWrapper {
@@ -41,57 +39,43 @@
 .cards {
   position: relative;
   display: grid;
-  gap: var(--nextui-space-md);
+  gap: 1rem;
   grid-template-columns: 1fr 1fr;
 
   &::after {
     content: "";
     position: absolute;
-    inset: 0;
+    inset: -1rem;
     pointer-events: none;
     transition: 0.25s ease;
   }
 
   &.loading {
+    pointer-events: none;
+
     &::after {
-      background-color: var(--nextui-colors-backgroundAlpha);
-    }
-
-    .card {
-      filter: none;
-
-      &,
-      & * {
-        pointer-events: none;
-      }
+      background-color: hsl(var(--nextui-background) / 0.7);
+      z-index: 10;
     }
   }
 }
 
-.cardTitle {
-  margin: 0;
-}
-
 .cardBody {
   text-align: center;
-  border-radius: var(--nextui-radii-lg) var(--nextui-radii-lg) 0 0;
-  margin-top: calc(var(--nextui-radii-lg) * -1);
-  background-color: var(--nextui--cardColor);
-  z-index: 100;
+  border-radius: var(--nextui-radius-large) var(--nextui-radius-large) 0 0;
+  margin-top: calc(var(--nextui-radius-large) * -1);
+  background-color: hsl(var(--nextui-background));
+  padding: 1rem;
+  z-index: 10;
 }
 
-.cardDescription {
-  flex: 1;
-  margin-bottom: var(--nextui-space-md);
-}
-
-@include screen-min("xs") {
+@include screen-min("sm") {
   .cards {
     grid-template-columns: 1fr 1fr 1fr;
   }
 }
 
-@include screen-min("sm") {
+@include screen-min("lg") {
   .filters {
     all: unset;
     flex: 0 0 280px;
@@ -99,10 +83,10 @@
 
   .filtersInner {
     position: fixed;
-    top: 76px;
+    top: 4rem;
     bottom: 0;
     margin-left: -10px;
-    padding-top: var(--nextui-space-12);
+    padding-top: 2rem;
     padding-left: 10px;
     padding-right: 10px;
     overflow-y: auto;
@@ -114,7 +98,7 @@
   }
 }
 
-@include screen-min("lg") {
+@include screen-min("xl") {
   .cards {
     grid-template-columns: 1fr 1fr 1fr 1fr;
   }

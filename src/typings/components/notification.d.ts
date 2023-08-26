@@ -1,10 +1,10 @@
-import { SimpleColors } from '@nextui-org/react';
+import { ThemeColors } from '@nextui-org/react';
 
 import { IconType } from '../../components/various/Icon';
 
 export interface Notification {
   message: string;
-  color?: SimpleColors;
+  color?: keyof ThemeColors;
   icon?: IconType;
 }
 

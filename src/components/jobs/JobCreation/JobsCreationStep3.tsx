@@ -1,4 +1,4 @@
-import { Grid, Input } from '@nextui-org/react';
+import { Input } from '@nextui-org/react';
 import React from 'react';
 import { Control, FieldErrors, useController, UseFormRegister } from 'react-hook-form';
 
@@ -17,39 +17,32 @@ export const JobsCreationStep3: React.FC<Props> = ({ control, errors, register }
   const { field } = useController({ control, name: 'paymentType' });
 
   return (
-    <Grid.Container gap={1} alignItems="flex-start">
-      <Grid xs={12} sm={6}>
+    <div className="grid grid-cols-1 sm:grid-cols-2 items-start gap-4">
+      <Select
+        label="Payment type"
+        placeholder="Select..."
+        fullWidth
+        validationState={errors.paymentType && 'invalid'}
+        options={PAYMENT_TYPE_OPTIONS}
+        name="paymentType"
+        control={control}
+        rules={VALIDATION_RULES.REQUIRED}
+      />
+      <Input
+        type="number"
+        min={1}
+        label="Budget ($)"
+        placeholder="Budget ($)"
+        endContent={<span className="pointer-events-none whitespace-nowrap text-small text-gray-400">{PAYMENT_TYPE_SHORTS[field.value]}</span>}
+        fullWidth
+        validationState={errors.paymentValue && 'invalid'}
+        errorMessage={errors.paymentValue?.message}
+        {...register('paymentValue', VALIDATION_RULES.NUMBER)}
+      />
+      <div className="col-span-2">
         <Select
-          labelLeft="Payment type"
-          aria-label="Payment type"
-          placeholder="Select..."
-          fullWidth
-          status={errors.paymentType && 'error'}
-          options={PAYMENT_TYPE_OPTIONS}
-          name="paymentType"
-          control={control}
-          rules={VALIDATION_RULES.REQUIRED}
-        />
-      </Grid>
-      <Grid xs={12} sm={6}>
-        <Input
-          type="number"
-          min={1}
-          aria-label="Budget"
-          labelLeft="Budget ($)"
-          labelRight={PAYMENT_TYPE_SHORTS[field.value]}
-          fullWidth
-          status={errors.paymentValue && 'error'}
-          helperText={errors.paymentValue?.message}
-          helperColor="error"
-          {...register('paymentValue', VALIDATION_RULES.NUMBER)}
-        />
-      </Grid>
-      <Grid xs={12}>
-        <Select
-          labelLeft="Payment preferences"
-          labelRight="optional"
-          aria-label="Payment type"
+          endContent={<span className="pointer-events-none text-small text-gray-400">optional</span>}
+          label="Payment preferences"
           placeholder="Select..."
           fullWidth
           selectionMode="multiple"
@@ -57,7 +50,7 @@ export const JobsCreationStep3: React.FC<Props> = ({ control, errors, register }
           name="paymentPreferences"
           control={control}
         />
-      </Grid>
-    </Grid.Container>
+      </div>
+    </div>
   );
 };

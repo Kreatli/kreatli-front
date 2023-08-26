@@ -6,25 +6,26 @@ import { Icon } from '../../various/Icon';
 interface Props {
   isVerified: boolean;
   children: React.ReactNode;
-  size?: 'sm' | 'md';
+  shape?: 'circle' | 'rectangle';
+  size?: 'sm' | 'md' | 'lg';
 }
 
-export const ProfileBadge = ({ size = 'md', isVerified, children }: Props) => {
+export const ProfileBadge = ({ size = 'md', shape = 'circle', isVerified, children }: Props) => {
   const iconSizes = {
-    md: 18,
-    sm: 14,
+    lg: 16,
+    md: 14,
+    sm: 10,
   };
 
   return (
-    <Tooltip
-      content={isVerified ? 'Verified' : 'Unverified'}
-      contentColor={isVerified ? 'success' : 'default'}
-      hideArrow
-    >
+    <Tooltip content={isVerified ? 'Verified' : 'Unverified'}>
       <Badge
+        isOneChar
+        shape={shape}
+        className={isVerified ? 'bg-green-200' : 'bg-gray-200'}
         content={isVerified ? <Icon icon="checkShield" size={iconSizes[size]} /> : <Icon icon="timer" size={iconSizes[size]} />}
         variant="flat"
-        css={{ p: '2px' }}
+        size={size}
         color={isVerified ? 'success' : 'default'}
       >
         {children}

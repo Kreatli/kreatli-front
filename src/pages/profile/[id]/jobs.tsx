@@ -1,4 +1,3 @@
-import { Container } from '@nextui-org/react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import React from 'react';
@@ -21,11 +20,11 @@ const JobsPage: React.FC = () => {
         <meta name="description" content="Kreatli" />
       </Head>
       {user && (
-        <Container sm>
+        <div className="container max-w-screen-lg mx-auto px-6">
           {user.role === 'creator'
             ? <MyJobsOffers />
             : <MyJobsApplications />}
-        </Container>
+        </div>
       )}
     </>
   );

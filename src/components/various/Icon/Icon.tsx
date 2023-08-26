@@ -18,6 +18,7 @@ import DiamondIcon from '../../../assets/icons/diamond.svg';
 import DiscordIcon from '../../../assets/icons/discord.svg';
 import DollarIcon from '../../../assets/icons/dollar.svg';
 import EditIcon from '../../../assets/icons/edit.svg';
+import EmojiHappyIcon from '../../../assets/icons/emoji/happy.svg';
 import EmojiSadIcon from '../../../assets/icons/emoji/sad.svg';
 import ErrorIcon from '../../../assets/icons/error.svg';
 import FileIcon from '../../../assets/icons/file.svg';
@@ -69,6 +70,7 @@ const ICONS = {
   dollar: DollarIcon,
   dots: DotsIcon,
   edit: EditIcon,
+  emojiHappy: EmojiHappyIcon,
   emojiSad: EmojiSadIcon,
   error: ErrorIcon,
   file: FileIcon,
@@ -105,7 +107,7 @@ const ICONS = {
 export type IconType = keyof typeof ICONS;
 
 interface Props extends React.SVGProps<SVGElement> {
-  size?: number;
+  size?: number | string;
   icon: IconType;
 }
 
@@ -115,8 +117,8 @@ export const Icon = ({ icon, size = 24, fill = 'currentcolor', className }: Prop
   return (
     <IconToRender
       className={className}
-      width={`${size}px`}
-      height={`${size}px`}
+      width={size}
+      height={size}
       viewBox="0 0 24 24"
       fill={fill}
     />

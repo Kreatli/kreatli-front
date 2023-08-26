@@ -1,4 +1,4 @@
-import { Button, Grid, Input, Spacer } from '@nextui-org/react';
+import { Button, Input } from '@nextui-org/react';
 import cx from 'classnames';
 import React from 'react';
 import { useInfiniteQuery } from 'react-query';
@@ -52,7 +52,7 @@ export const ProfessionalListing = () => {
   }, [data?.pages]);
 
   const { setIsScrollDisabled } = useBodyScroll();
-  const isMobile = useBreakpointValue({ SM: false }, true);
+  const isMobile = useBreakpointValue({ LG: false }, true);
 
   React.useEffect(() => () => {
     setIsScrollDisabled(false);
@@ -71,6 +71,11 @@ export const ProfessionalListing = () => {
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
     setSearch(event.target.value);
+  };
+
+  const handleClear = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    setSearch('');
   };
 
   const handleCloseFilters = React.useCallback(() => {
@@ -98,34 +103,34 @@ export const ProfessionalListing = () => {
         onChange={handleFiltersChange}
       />
       <div className={styles.cardsWrapper}>
-        <Grid.Container css={{ gap: '$8' }}>
-          <Grid xs>
+        <div className="flex gap-6 mb-6">
+          <div className="flex-1">
             <Input
               value={search}
-              labelLeft={<Icon icon="search" />}
+              startContent={<Icon icon="search" size={20} />}
               aria-label="Search"
               fullWidth
-              clearable
+              isClearable
               placeholder="Type here to search..."
+              onClear={handleClear}
               onChange={handleSearchChange}
             />
-          </Grid>
+          </div>
           {isMobile && (
-            <Grid>
-              <Button
-                icon={<Icon icon="filter" />}
-                rounded
-                auto
-                color="primary"
-                aria-label="Filters"
-                onClick={handleOpenFilters}
-              />
-            </Grid>
+            <Button
+              isIconOnly
+              radius="full"
+              variant="flat"
+              color="secondary"
+              aria-label="Filters"
+              onClick={handleOpenFilters}
+            >
+              <Icon icon="filter" />
+            </Button>
           )}
-        </Grid.Container>
-        <Spacer y={1} />
+        </div>
         {shouldShowEmptyState
-          ? <EmptyState />
+          ? <EmptyState title="No results" text="Oops! No results found. Try different criteria or check back later, we're growing 🚀" />
           : (
             <LazyList isLoading={isFetchingNextPage} hasMore={hasNextPage} onLoadMore={fetchNextPage}>
               <div className={cx(styles.cards, { [styles.loading]: shouldShowLoader })}>

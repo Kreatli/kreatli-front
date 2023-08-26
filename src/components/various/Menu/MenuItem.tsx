@@ -1,6 +1,6 @@
-import { Dropdown, Text } from '@nextui-org/react';
+import { Dropdown, DropdownItem, DropdownMenu, DropdownTrigger } from '@nextui-org/react';
 import cx from 'classnames';
-import Link from 'next/link';
+import NextLink from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
 
@@ -49,13 +49,13 @@ export const MenuItem = ({ href, label, description, icon, emoji, options, selec
           </span>
         )}
         <span className={styles.content}>
-          <Text size="small" weight="semibold">{label}</Text>
-          {(description || selectDescription) && <Text size="x-small" color="$accents6" className={styles.description}>{description || selectDescription}</Text>}
+          <p className="text-xs font-semibold mb-0.5">{label}</p>
+          {(description || selectDescription) && <p className="text-[0.65rem] tracking-tight text-gray-400">{description || selectDescription}</p>}
         </span>
         {isSelected && (
           <>
-            <Icon icon="check" className={styles.check} />
-            <Icon icon="cross" className={styles.cross} />
+            <Icon icon="check" className={styles.check} size={20} />
+            <Icon icon="cross" className={styles.cross} size={20} />
           </>
         )}
       </>
@@ -79,24 +79,24 @@ export const MenuItem = ({ href, label, description, icon, emoji, options, selec
             className={styles.clearButton}
           />
         )}
-        <Dropdown placement="top-right" onOpenChange={setIsDropdownOpen}>
-          <Dropdown.Trigger>
+        <Dropdown onOpenChange={setIsDropdownOpen}>
+          <DropdownTrigger>
             <button type="button" className={classNames} onClick={onClick}>
               {menuItemContent}
             </button>
-          </Dropdown.Trigger>
-          <Dropdown.Menu
+          </DropdownTrigger>
+          <DropdownMenu
             aria-label={label}
             selectionMode={selectionMode}
             selectedKeys={selected}
             onSelectionChange={handleSelectChange}
           >
             {options.map((option) => (
-              <Dropdown.Item key={option.value}>
+              <DropdownItem key={option.value}>
                 {option.label}
-              </Dropdown.Item>
+              </DropdownItem>
             ))}
-          </Dropdown.Menu>
+          </DropdownMenu>
         </Dropdown>
       </div>
     );
@@ -115,9 +115,9 @@ export const MenuItem = ({ href, label, description, icon, emoji, options, selec
 
   if (href) {
     return (
-      <Link href={href} className={classNames} onClick={onClick} {...cancelListeners}>
+      <NextLink href={href} className={classNames} onClick={onClick} {...cancelListeners}>
         {menuItemContent}
-      </Link>
+      </NextLink>
     );
   }
 

@@ -1,5 +1,5 @@
-import { Button, Card, Text, User } from '@nextui-org/react';
-import Link from 'next/link';
+import { Button, Card, CardBody, CardHeader, User } from '@nextui-org/react';
+import NextLink from 'next/link';
 import React from 'react';
 
 import { useSession } from '../../../hooks/useSession';
@@ -22,31 +22,32 @@ export const InvitationCard = ({ invitation }: Props) => {
   });
 
   return (
-    <Card variant="bordered">
-      <Card.Header css={{ justifyContent: 'space-between' }}>
-        <Link href={`/profile/${inviter._id}`} style={{ maxWidth: 'calc(100% - 5.5rem)' }}>
+    <Card>
+      <CardHeader className="flex justify-between">
+        <NextLink href={`/profile/${inviter._id}`}>
           <User
-            src={inviter.avatarUrl}
+            avatarProps={{ src: inviter.avatarUrl }}
             description={getUserShortDescription(inviter)}
-            size="xl"
-            pointer
-            bordered
             name={inviter.name}
           />
-        </Link>
-        <div style={{ display: 'flex', gap: '0.5rem' }}>
+        </NextLink>
+        <div className="flex gap-2">
           <ProfileUnverifiedTooltip>
-            <Button icon={<Icon icon="check" />} auto rounded flat disabled={isLoading || !currentUser?.isVerified} onClick={handleAccept} />
+            <Button aria-label="Accept invitation" isIconOnly radius="full" disabled={!currentUser?.isVerified} isDisabled={isLoading} color="secondary" onClick={handleAccept}>
+              <Icon icon="check" />
+            </Button>
           </ProfileUnverifiedTooltip>
           <ProfileUnverifiedTooltip>
-            <Button icon={<Icon icon="cross" />} auto rounded flat disabled={isLoading || !currentUser?.isVerified} color="error" onClick={handleReject} />
+            <Button aria-label="Reject invitation" isIconOnly radius="full" variant="flat" disabled={!currentUser?.isVerified} isDisabled={isLoading} color="secondary" onClick={handleReject}>
+              <Icon icon="cross" />
+            </Button>
           </ProfileUnverifiedTooltip>
         </div>
-      </Card.Header>
-      {message && (
-        <Card.Body css={{ p: '$0 $10 $6' }}>
-          <Text size="$sm">{message}</Text>
-        </Card.Body>
+      </CardHeader>
+      {true && (
+        <CardBody className="pt-0">
+          <p className="text-sm">Hello! My name is Yury. Let's chat</p>
+        </CardBody>
       )}
     </Card>
   );

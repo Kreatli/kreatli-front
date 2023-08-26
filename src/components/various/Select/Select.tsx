@@ -1,5 +1,4 @@
-import { Dropdown, DropdownMenuProps, Input } from '@nextui-org/react';
-import { Props as InputProps } from '@nextui-org/react/types/input/input-props';
+import { Dropdown, DropdownItem, DropdownMenu, DropdownMenuProps, DropdownTrigger, Input, InputProps } from '@nextui-org/react';
 import React from 'react';
 import { Control, FieldPath, FieldValues, useController, UseControllerProps } from 'react-hook-form';
 
@@ -49,9 +48,9 @@ export const Select = <T extends FieldValues>(props: Props<T>) => {
   }, [options, selected]);
 
   return (
-    <Dropdown placement="bottom-left">
-      <Dropdown.Trigger>
-        <div style={{ width: '100%' }}>
+    <Dropdown>
+      <DropdownTrigger>
+        <div>
           <Input
             {...rest}
             type="text"
@@ -59,8 +58,8 @@ export const Select = <T extends FieldValues>(props: Props<T>) => {
             readOnly
           />
         </div>
-      </Dropdown.Trigger>
-      <Dropdown.Menu
+      </DropdownTrigger>
+      <DropdownMenu
         aria-label={rest['aria-label']}
         selectionMode={selectionMode}
         color={color}
@@ -68,14 +67,9 @@ export const Select = <T extends FieldValues>(props: Props<T>) => {
         onSelectionChange={handleChange}
       >
         {options.map(({ label, value }) => (
-          <Dropdown.Item
-            key={value}
-            css={{ height: 'auto', minHeight: '2.25rem' }}
-          >
-            {label}
-          </Dropdown.Item>
+          <DropdownItem key={value}>{label}</DropdownItem>
         ))}
-      </Dropdown.Menu>
+      </DropdownMenu>
     </Dropdown>
   );
 };

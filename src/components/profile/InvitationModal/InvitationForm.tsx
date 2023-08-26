@@ -1,4 +1,4 @@
-import { Button, Grid, Loading, Spacer, Textarea } from '@nextui-org/react';
+import { Button, Textarea } from '@nextui-org/react';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useMutation, useQueryClient } from 'react-query';
@@ -37,7 +37,7 @@ export const InvitationForm: React.FC<Props> = ({ userId, onCancel, onSuccess })
     onError: (error: any) => {
       pushNotification({
         message: getErrorMessage(error),
-        color: 'error',
+        color: 'danger',
         icon: 'error',
       });
     },
@@ -49,29 +49,23 @@ export const InvitationForm: React.FC<Props> = ({ userId, onCancel, onSuccess })
 
   return (
     <form noValidate onSubmit={handleSubmit(onSubmit)}>
-      <Grid.Container gap={1}>
-        <Grid xs={12}>
-          <Textarea
-            placeholder="Add a personalized note (optional)"
-            aria-label="Add a personalized note (optional)"
-            disabled={isLoading}
-            fullWidth
-            {...register('message')}
-          />
-        </Grid>
-      </Grid.Container>
-      <Spacer y={1} />
-      <Grid.Container gap={1} justify="space-between">
-        <Grid>
-          <Button type="submit" auto flat disabled={isLoading}>
-            {isLoading && <Loading size="xs" css={{ paddingRight: '$4' }} />}
+      <Textarea
+        placeholder="Add a personalized note (optional)"
+        aria-label="Add a personalized note (optional)"
+        isDisabled={isLoading}
+        fullWidth
+        {...register('message')}
+      />
+      <div className="flex justify-between gap-4 mt-8 mb-2">
+        <div>
+          <Button type="submit" variant="flat" color="secondary" isLoading={isLoading}>
             Send invitation
           </Button>
-        </Grid>
-        <Grid>
-          <Button auto light color="primary" onClick={onCancel}>Cancel</Button>
-        </Grid>
-      </Grid.Container>
+        </div>
+        <div>
+          <Button variant="light" color="secondary" onClick={onCancel}>Cancel</Button>
+        </div>
+      </div>
     </form>
   );
 };

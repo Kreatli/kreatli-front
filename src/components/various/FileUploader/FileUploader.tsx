@@ -1,4 +1,4 @@
-import { Button, Loading } from '@nextui-org/react';
+import { Button } from '@nextui-org/react';
 import React from 'react';
 import { useDropzone } from 'react-dropzone';
 import { Control, FieldPath, FieldValues, useController, UseControllerProps } from 'react-hook-form';
@@ -13,7 +13,7 @@ import styles from './FileUploader.module.scss';
 interface Props<T extends FieldValues> {
   control?: Control<T>;
   name: FieldPath<T>;
-  status?: 'error';
+  status?: 'danger';
   rules?: UseControllerProps<T>['rules'];
 }
 
@@ -30,7 +30,7 @@ export const FileUploader = <T extends FieldValues>({ control, name, status, rul
     onError: (error) => {
       pushNotification({
         message: getErrorMessage(error),
-        color: 'error',
+        color: 'danger',
         icon: 'error',
       });
     },
@@ -45,7 +45,7 @@ export const FileUploader = <T extends FieldValues>({ control, name, status, rul
 
     if ((file.size / (1024 * 1024)) >= 5) {
       pushNotification({
-        color: 'error',
+        color: 'danger',
         icon: 'error',
         message: 'The maximum file size is 5 MB',
       });
@@ -86,18 +86,19 @@ export const FileUploader = <T extends FieldValues>({ control, name, status, rul
     ? selectedFile.name
     : 'Upload file';
 
+  const isBordered = !isLoading && (isDragActive || !!selectedFile);
+
   return (
-    <div>
+    <div className="cursor-pointer" {...getRootProps()}>
       <Button
-        as="label"
-        auto
-        flat
-        bordered={!isLoading && (isDragActive || !!selectedFile)}
-        icon={!isLoading && icon}
-        color={status === 'error' ? 'error' : 'default'}
-        {...getRootProps()}
+        as="div"
+        tabIndex={-1}
+        className="pointer-events-none"
+        variant={isBordered ? 'bordered' : 'flat'}
+        isLoading={isLoading}
+        startContent={!isLoading && icon}
+        color={status === 'danger' ? 'danger' : 'secondary'}
       >
-        {isLoading && <Loading size="sm" css={{ paddingRight: '$3' }} />}
         <div className={styles.label}>{label}</div>
         <input type="file" {...getInputProps()} />
       </Button>

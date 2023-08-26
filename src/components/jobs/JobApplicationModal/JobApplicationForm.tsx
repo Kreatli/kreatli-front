@@ -1,4 +1,4 @@
-import { Button, Grid, Loading, Spacer, Textarea } from '@nextui-org/react';
+import { Button, Textarea } from '@nextui-org/react';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useMutation, useQueryClient } from 'react-query';
@@ -43,7 +43,7 @@ export const JobApplicationForm = ({ jobOfferId, onCancel, onSuccess }: Props) =
     onError: (error: any) => {
       pushNotification({
         message: getErrorMessage(error),
-        color: 'error',
+        color: 'danger',
         icon: 'error',
       });
     },
@@ -55,30 +55,21 @@ export const JobApplicationForm = ({ jobOfferId, onCancel, onSuccess }: Props) =
 
   return (
     <form noValidate onSubmit={handleSubmit(onSubmit)}>
-      <Grid.Container css={{ gap: '$2' }}>
-        <Grid xs={12}>
-          <Textarea
-            placeholder={COVER_LETTER_PLACEHOLDER}
-            aria-label="Any information you want to add to your application"
-            disabled={isLoading}
-            status={errors.coverLetter && 'error'}
-            fullWidth
-            {...register('coverLetter', VALIDATION_RULES.DESCRIPTION.MIN_100)}
-          />
-        </Grid>
-      </Grid.Container>
-      <Spacer y={1} />
-      <Grid.Container css={{ gap: '$2' }} justify="center">
-        <Grid>
-          <Button auto light color="primary" onClick={onCancel}>Cancel</Button>
-        </Grid>
-        <Grid>
-          <Button type="submit" auto flat disabled={isLoading}>
-            {isLoading && <Loading size="xs" css={{ paddingRight: '$4' }} />}
-            Apply for job
-          </Button>
-        </Grid>
-      </Grid.Container>
+      <Textarea
+        placeholder={COVER_LETTER_PLACEHOLDER}
+        aria-label="Any information you want to add to your application"
+        isDisabled={isLoading}
+        validationState={errors.coverLetter && 'invalid'}
+        fullWidth
+        errorMessage={errors.coverLetter?.message}
+        {...register('coverLetter', VALIDATION_RULES.DESCRIPTION.MIN_100)}
+      />
+      <div className="flex justify-center gap-2 mt-4">
+        <Button variant="light" color="secondary" onClick={onCancel}>Cancel</Button>
+        <Button type="submit" variant="flat" color="secondary" isLoading={isLoading}>
+          Apply for job
+        </Button>
+      </div>
     </form>
   );
 };

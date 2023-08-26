@@ -1,4 +1,3 @@
-import { Grid } from '@nextui-org/react';
 import React from 'react';
 import { Control, FieldErrors } from 'react-hook-form';
 
@@ -15,15 +14,13 @@ interface Props {
 export const JobsCreationStep2: React.FC<Props> = ({ control, errors }) => {
   return (
     <Tag.Group name="skills" control={control} rules={VALIDATION_RULES.REQUIRED}>
-      <Grid.Container gap={1}>
+      <div className="flex flex-wrap gap-2">
         {SKILL_OPTIONS.map((area) => (
-          <Grid key={area.value}>
-            <Tag value={area.value} status={errors.skills && 'error'}>
-              {area.label}
-            </Tag>
-          </Grid>
+          <Tag key={area.value} value={area.value} status={errors.skills && 'danger'}>
+            {area.label}
+          </Tag>
         ))}
-      </Grid.Container>
+      </div>
     </Tag.Group>
   );
 };

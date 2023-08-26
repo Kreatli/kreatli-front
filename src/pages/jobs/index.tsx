@@ -1,4 +1,3 @@
-import { Container } from '@nextui-org/react';
 import Head from 'next/head';
 import React from 'react';
 
@@ -8,12 +7,12 @@ const Jobs = () => {
   return (
     <>
       <Head>
-        <title>Job offers | Kreatli</title>
+        <title>Job postings | Kreatli</title>
         <meta name="description" content="Kreatli" />
       </Head>
-      <Container lg>
+      <div className="container max-w-screen-xl mx-auto px-6">
         <JobsListing />
-      </Container>
+      </div>
     </>
   );
 };

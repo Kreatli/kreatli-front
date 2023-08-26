@@ -1,4 +1,4 @@
-import { Button, Grid, Input, Loading, Spacer } from '@nextui-org/react';
+import { Button, Input } from '@nextui-org/react';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { useForm } from 'react-hook-form';
@@ -7,7 +7,7 @@ import { VALIDATION_RULES } from '../../../constants/validationRules';
 import { useNotifications } from '../../../hooks/useNotifications';
 import { useSession } from '../../../hooks/useSession';
 import { getErrorMessage } from '../../../utils/getErrorMessage';
-import { Icon } from '../../various/Icon';
+import { InputPassword } from '../../various/InputPassword';
 
 interface Props {
   onClick: () => void;
@@ -45,7 +45,7 @@ export const SignInForm: React.FC<Props> = ({ onClick, onSuccess }) => {
 
         pushNotification({
           message: getErrorMessage(error),
-          color: 'error',
+          color: 'danger',
           icon: 'error',
         });
       },
@@ -54,42 +54,30 @@ export const SignInForm: React.FC<Props> = ({ onClick, onSuccess }) => {
 
   return (
     <form noValidate onSubmit={handleSubmit(onSubmit)}>
-      <Grid.Container gap={1}>
-        <Grid xs={12}>
-          <Input
-            placeholder="Email"
-            aria-label="Email"
-            disabled={isLoading}
-            status={errors.email && 'error'}
-            fullWidth
-            {...register('email', VALIDATION_RULES.REQUIRED)}
-          />
-        </Grid>
-        <Grid xs={12}>
-          <Input.Password
-            placeholder="Password"
-            aria-label="Password"
-            disabled={isLoading}
-            fullWidth
-            status={errors.password && 'error'}
-            visibleIcon={<Icon icon="show" />}
-            hiddenIcon={<Icon icon="hide" />}
-            {...register('password', VALIDATION_RULES.REQUIRED)}
-          />
-        </Grid>
-      </Grid.Container>
-      <Spacer y={1} />
-      <Grid.Container gap={1} justify="space-between">
-        <Grid>
-          <Button type="submit" auto flat disabled={isLoading}>
-            {isLoading && <Loading size="xs" css={{ paddingRight: '$4' }} />}
-            Sign in
-          </Button>
-        </Grid>
-        <Grid>
-          <Button auto light color="primary" onClick={onClick}>Forgot password?</Button>
-        </Grid>
-      </Grid.Container>
+      <div className="flex flex-col gap-4">
+        <Input
+          placeholder="Email"
+          aria-label="Email"
+          isDisabled={isLoading}
+          validationState={errors.email && 'invalid'}
+          fullWidth
+          {...register('email', VALIDATION_RULES.REQUIRED)}
+        />
+        <InputPassword
+          placeholder="Password"
+          aria-label="Password"
+          isDisabled={isLoading}
+          fullWidth
+          validationState={errors.password && 'invalid'}
+          {...register('password', VALIDATION_RULES.REQUIRED)}
+        />
+      </div>
+      <div className="flex justify-between gap-4 mt-8 mb-2">
+        <Button type="submit" variant="flat" color="secondary" isLoading={isLoading}>
+          Sign in
+        </Button>
+        <Button variant="light" color="secondary" onClick={onClick}>Forgot password?</Button>
+      </div>
     </form>
   );
 };

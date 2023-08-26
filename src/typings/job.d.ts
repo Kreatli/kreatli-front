@@ -20,7 +20,10 @@ export namespace Job {
     paymentPreferences: Payment.Preference[];
     paymentType: Payment.Type;
     paymentValue: number;
-    reviews: [] | [Review] | [Review, Review];
+    reviews: {
+      creator: Review | null;
+      professional: Review | null;
+    };
     shortDescription: string;
     skills: Skill[];
     status: 'posted' | 'ongoing' | 'completed' | 'canceled';
@@ -39,8 +42,10 @@ export namespace Job {
     _id: string;
     comment: string;
     rating: number;
+    reason: '' | 'satisfied' | 'not-satisfied';
     creationDate: Date;
   }
 
+  export type OfferReviewPayload = Omit<Review, '_id' | 'creationDate'>;
   export type OfferPayload = Omit<Offer, '_id' | 'applications' | 'creator' | 'applicationsCount' | 'creationDate' | 'status' | 'hiredProfessional' | 'reviews'>;
 }
