@@ -11,12 +11,6 @@ export const Hero: React.FC = () => {
           <h1 className="text-3xl font-bold">
           Professional social media platform for YouTube
           </h1>
-          <div>
-            Надеюсь это не трегирит 👅👅👅
-          </div>
-          <div className="animate-ping w-28 mt-10 bg-orange-500 rounded-md p-2">Мама Гошы</div>
-          <div className="animate-spin w-28 mt-10 bg-orange-500 rounded-md p-2">Мама Гошы</div>
-          <div className="animate-ping w-28 mt-10 bg-orange-500 rounded-md p-2">Мама Гошы</div>
         </div>
         <CardCTA />
       </div>
