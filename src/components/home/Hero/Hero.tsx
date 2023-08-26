@@ -11,16 +11,12 @@ export const Hero: React.FC = () => {
           <h1 className="text-3xl font-bold">
           Professional social media platform for YouTube
           </h1>
-          <div className="max-w-[300px] w-full flex items-center gap-3">
-            <div>
-              <Skeleton className="flex rounded-full w-12 h-12"/>
-            </div>
-            <div className="w-full flex flex-col gap-2">
-              <Skeleton className="h-3 w-3/5 rounded-lg"/>
-              <Skeleton className="h-3 w-4/5 rounded-lg"/>
-            </div>
+          <div>
+            Надеюсь это не трегирит 👅👅👅
           </div>
-          <Skeleton className="h-20 w-4/5 rounded-lg"/>
+          <div className="animate-ping w-28 mt-10 bg-orange-500 rounded-md p-2">Мама Гошы</div>
+          <div className="animate-spin w-28 mt-10 bg-orange-500 rounded-md p-2">Мама Гошы</div>
+          <div className="animate-ping w-28 mt-10 bg-orange-500 rounded-md p-2">Мама Гошы</div>
         </div>
         <CardCTA />
       </div>
