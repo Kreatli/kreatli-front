@@ -38,7 +38,6 @@ export const SignUpProfessional: React.FC = () => {
   const isValidByStep = FIELDS_BY_STEP.map((fields) => !fields.some((field) => errors[field]));
 
   const handleSelectionChange = (keys: Selection) => {
-    console.log(keys);
     if (keys !== 'all') {
       setSelectedKeys(keys);
     }
