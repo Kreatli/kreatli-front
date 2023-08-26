@@ -7,6 +7,7 @@ import { VALIDATION_RULES } from '../../../constants/validationRules';
 import { useNotifications } from '../../../hooks/useNotifications';
 import { useSession } from '../../../hooks/useSession';
 import { getErrorMessage } from '../../../utils/getErrorMessage';
+import { InputPassword } from '../../various/InputPassword';
 
 interface Props {
   onClick: () => void;
@@ -62,8 +63,7 @@ export const SignInForm: React.FC<Props> = ({ onClick, onSuccess }) => {
           fullWidth
           {...register('email', VALIDATION_RULES.REQUIRED)}
         />
-        <Input
-          type="password"
+        <InputPassword
           placeholder="Password"
           aria-label="Password"
           isDisabled={isLoading}

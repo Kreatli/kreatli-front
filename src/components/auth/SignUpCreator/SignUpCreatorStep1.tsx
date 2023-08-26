@@ -6,6 +6,7 @@ import { COUNTRIES } from '../../../constants/countries';
 import { VALIDATION_RULES } from '../../../constants/validationRules';
 import { Select } from '../../various/Select';
 import { DefaultValues } from './constants';
+import { InputPassword } from '../../various/InputPassword';
 
 interface Props {
   control: Control<DefaultValues>;
@@ -24,8 +25,7 @@ export const SignUpCreatorStep1: React.FC<Props> = ({ control, errors, register 
         errorMessage={errors.email?.message}
         {...register('email', VALIDATION_RULES.EMAIL)}
       />
-      <Input
-        type="password"
+      <InputPassword
         label="Password"
         validationState={errors.password && 'invalid'}
         errorMessage={errors.password?.message}

@@ -65,7 +65,7 @@ export const SignUpCreator: React.FC = () => {
   const { mutate, isLoading, isSuccess } = useMutation(requestSignUpCreator, {
     onSuccess: () => {
       pushNotification({
-        message: 'Cool! Now all you have to do is check your email to complete the registration',
+        message: 'Cool! Now all you have to do is check your inbox to complete the registration',
         color: 'success',
         icon: 'success',
       });

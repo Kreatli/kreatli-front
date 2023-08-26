@@ -64,7 +64,7 @@ export const SignUpProfessionalStep4: React.FC<Props> = ({ control, errors, regi
             <div className="col-span-2">
               <Textarea
                 label="Description"
-                placeholder="Goshan placeholder needed"
+                placeholder="Highlight key responsibilities, projects, and achievements from this job. Focus on demonstrating your expertise, skills, and the value you can bring to potential clients."
                 validationState={errors.experiences?.[index]?.description && 'invalid'}
                 errorMessage={errors.experiences?.[index]?.description?.message}
                 {...register(`experiences.${index}.description`, VALIDATION_RULES.DESCRIPTION.MIN_100)}

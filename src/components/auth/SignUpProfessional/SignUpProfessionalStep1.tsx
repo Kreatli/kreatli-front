@@ -4,9 +4,9 @@ import { Control, FieldErrors, UseFormRegister } from 'react-hook-form';
 
 import { COUNTRIES } from '../../../constants/countries';
 import { VALIDATION_RULES } from '../../../constants/validationRules';
-import { Icon } from '../../various/Icon';
 import { Select } from '../../various/Select';
 import { DefaultValues } from './constants';
+import { InputPassword } from '../../various/InputPassword';
 
 interface Props {
   control: Control<DefaultValues>;
@@ -25,8 +25,7 @@ export const SignUpProfessionalStep1: React.FC<Props> = ({ control, errors, regi
         errorMessage={errors.email?.message}
         {...register('email', VALIDATION_RULES.EMAIL)}
       />
-      <Input
-        type="password"
+      <InputPassword
         label="Password"
         validationState={errors.password && 'invalid'}
         errorMessage={errors.password?.message}

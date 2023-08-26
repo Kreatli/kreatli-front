@@ -33,12 +33,12 @@ export const InvitationCard = ({ invitation }: Props) => {
         </NextLink>
         <div className="flex gap-2">
           <ProfileUnverifiedTooltip>
-            <Button aria-label="Accept invitation" isIconOnly radius="full" isDisabled={!currentUser?.isVerified || isLoading} color="secondary" onClick={handleAccept}>
+            <Button aria-label="Accept invitation" isIconOnly radius="full" disabled={!currentUser?.isVerified} isDisabled={isLoading} color="secondary" onClick={handleAccept}>
               <Icon icon="check" />
             </Button>
           </ProfileUnverifiedTooltip>
           <ProfileUnverifiedTooltip>
-            <Button aria-label="Reject invitation" isIconOnly radius="full" variant="flat" isDisabled={!currentUser?.isVerified || isLoading} color="secondary" onClick={handleReject}>
+            <Button aria-label="Reject invitation" isIconOnly radius="full" variant="flat" disabled={!currentUser?.isVerified} isDisabled={isLoading} color="secondary" onClick={handleReject}>
               <Icon icon="cross" />
             </Button>
           </ProfileUnverifiedTooltip>

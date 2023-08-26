@@ -32,6 +32,7 @@ export const JobsCreationStep3: React.FC<Props> = ({ control, errors, register }
         type="number"
         min={1}
         label="Budget ($)"
+        placeholder="Budget ($)"
         endContent={<span className="pointer-events-none whitespace-nowrap text-small text-gray-400">{PAYMENT_TYPE_SHORTS[field.value]}</span>}
         fullWidth
         validationState={errors.paymentValue && 'invalid'}

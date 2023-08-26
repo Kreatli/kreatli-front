@@ -69,7 +69,7 @@ export const SignUpProfessional: React.FC = () => {
   const { mutate, isLoading, isSuccess } = useMutation(requestSignUpProfessional, {
     onSuccess: () => {
       pushNotification({
-        message: 'Great! Check your email to complete the registration',
+        message: 'Great! Check your inbox to complete the registration',
         color: 'success',
         icon: 'success',
       });

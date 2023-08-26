@@ -1,8 +1,9 @@
-import { Button, Input } from '@nextui-org/react';
+import { Button } from '@nextui-org/react';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useMutation } from 'react-query';
 
+import { InputPassword } from '../../various/InputPassword';
 import { VALIDATION_RULES } from '../../../constants/validationRules';
 import { useNotifications } from '../../../hooks/useNotifications';
 import { requestChangePassword } from '../../../services/auth';
@@ -51,8 +52,7 @@ export const ChangePasswordForm = ({ token, onSuccess, onError }: Props) => {
     <form noValidate onSubmit={handleSubmit(onSubmit)} className="w-full">
       <h3 className="text-2xl font-semibold mb-4">Create a new password</h3>
       <div className="flex flex-col gap-4">
-        <Input
-          type="password"
+        <InputPassword
           placeholder="New password"
           aria-label="New password"
           isDisabled={isLoading}
@@ -61,8 +61,7 @@ export const ChangePasswordForm = ({ token, onSuccess, onError }: Props) => {
           errorMessage={errors.password?.message}
           {...register('password', VALIDATION_RULES.PASSWORD)}
         />
-        <Input
-          type="password"
+        <InputPassword
           placeholder="Repeat new password"
           aria-label="Repeat new password"
           isDisabled={isLoading}

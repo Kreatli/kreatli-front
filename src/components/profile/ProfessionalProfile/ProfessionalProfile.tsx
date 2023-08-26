@@ -38,7 +38,7 @@ export const ProfessionalProfile = ({ userId }: Props) => {
         <div className="flex-1">
           <p className="mb-4">{user?.description}</p>
           <div className="flex flex-wrap items-center gap-2">
-            <p>I&apos;m good at</p>
+            <p>Skills</p>
             {user?.skills.map((skill) => (
               <Badge key={skill} size="sm" color="secondary" content={SKILL_LEVEL_LABELS[user?.skillLevels[skill] ?? 'intermediate']}>
                 <Tag disabled>{SKILL_LABELS_FOR_PROFESSIONAL[skill]}</Tag>

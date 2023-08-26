@@ -61,6 +61,7 @@ export const JobApplicationForm = ({ jobOfferId, onCancel, onSuccess }: Props) =
         isDisabled={isLoading}
         validationState={errors.coverLetter && 'invalid'}
         fullWidth
+        errorMessage={errors.coverLetter?.message}
         {...register('coverLetter', VALIDATION_RULES.DESCRIPTION.MIN_100)}
       />
       <div className="flex justify-center gap-2 mt-4">
