@@ -48,7 +48,7 @@ export const ProfessionalProfile = ({ userId }: Props) => {
         </div>
         <div className="flex flex-col gap-2">
           {socials.map(({ href, icon }) => (
-            <Link href={href} color="foreground" target="_blank">
+            <Link key={href} href={href} color="foreground" target="_blank">
               <Icon icon={icon} size="2rem" />
             </Link>
           ))}
@@ -58,6 +58,7 @@ export const ProfessionalProfile = ({ userId }: Props) => {
       <div className="flex flex-col gap-4">
         {user?.experiences.map((experience) => (
           <ExperienceCard
+            key={experience._id}
             imageUrl={experience.imageUrl}
             description={experience.description}
             companyName={experience.companyName}

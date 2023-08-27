@@ -11,6 +11,7 @@ import { getErrorMessage } from '../../../utils/getErrorMessage';
 import { requestJobApplicationCancel } from '../../../services/job';
 import { JobReviewModal } from '../JobReviewModal';
 import { Rating } from '../../various/Rating';
+import { useSession } from '../../../hooks/useSession';
 
 interface Props {
   jobOffer: Job.Offer;
@@ -20,11 +21,13 @@ interface Props {
 
 export const MyJobsApplication = ({ jobOffer, onCancel, onComplete }: Props) => {
   const [jobApplication] = jobOffer.applications;
+  const { currentUserId } = useSession();
 
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const isHired= jobApplication.status === 'hired';
+  const isHired = jobApplication.status === 'hired';
   const isCompleted = jobOffer.status === 'completed';
   const isOngoing = jobOffer.status === 'ongoing';
+  const isCurrentUserHired = jobOffer.hiredProfessional === currentUserId;
   const hasLeftReview = !!jobOffer.reviews.professional;
 
   const pushNotification = useNotifications((state) => state.pushNotification);
@@ -62,12 +65,12 @@ export const MyJobsApplication = ({ jobOffer, onCancel, onComplete }: Props) => 
       icon: 'cross' as const,
       color: 'danger' as const,
     }] : []),
-    ...(isOngoing ? [{
+    ...(isOngoing && isCurrentUserHired ? [{
       label: 'Finish collaboration',
       icon: 'check' as const,
       color: 'default' as const,
     }] : []),
-    ...(isCompleted && !hasLeftReview ? [{
+    ...(isCompleted && !hasLeftReview && isCurrentUserHired ? [{
       label: 'Leave feedback',
       size: 18,
       icon: 'chat' as const,
@@ -112,9 +115,9 @@ export const MyJobsApplication = ({ jobOffer, onCancel, onComplete }: Props) => 
         <p className="font-semibold">Cover letter:</p>
         <p>{jobApplication.coverLetter}</p>
       </div>
-      {creatorReview && (
+      {creatorReview && isCurrentUserHired && (
         <div>
-          <p className="font-semibold">Review:</p>
+          <p className="font-semibold">Review from {jobOffer.creator.name}:</p>
           <Rating value={creatorReview.rating} readOnly />
           <p>{creatorReview.comment}</p>
         </div>
@@ -122,7 +125,7 @@ export const MyJobsApplication = ({ jobOffer, onCancel, onComplete }: Props) => 
     </div>
   );
 
-  const shouldShowReviewModal = isOngoing || (isCompleted && !hasLeftReview);
+  const shouldShowReviewModal = (isOngoing || (isCompleted && !hasLeftReview)) && isCurrentUserHired;
 
   return (
     <>

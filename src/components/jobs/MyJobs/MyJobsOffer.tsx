@@ -27,6 +27,7 @@ export const MyJobsOffer = ({ jobOffer, onCancel, onComplete, onHire, onReject }
   const isCompleted = jobOffer.status === 'completed';
   const hasLeftReview = !!jobOffer.reviews.creator;
   const professionalReview = jobOffer.reviews.professional;
+  const hiredProfessional = jobOffer.applications.find(({ professional }) => professional._id === jobOffer.hiredProfessional)?.professional;
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { pushNotification } = useNotifications();
 
@@ -117,7 +118,7 @@ export const MyJobsOffer = ({ jobOffer, onCancel, onComplete, onHire, onReject }
         : <p className="italic text-gray-600">There are no applications yet</p>}
       {professionalReview && (
         <div>
-          <p className="font-semibold">Review:</p>
+          <p className="font-semibold">Review from {hiredProfessional?.name}:</p>
           <Rating value={professionalReview.rating} readOnly />
           <p>{professionalReview.comment}</p>
         </div>

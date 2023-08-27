@@ -89,7 +89,7 @@ export const MyJobsApplications = () => {
       <div className={cx(styles.cards, { [styles.loading]: shouldShowLoader })}>
         {shouldShowSkeleton && <MyJobsSkeleton />}
         {data?.jobApplications.map((jobOffer) => (
-          <MyJobsApplication jobOffer={jobOffer} onCancel={refetch} onComplete={refetch} />
+          <MyJobsApplication key={jobOffer._id} jobOffer={jobOffer} onCancel={refetch} onComplete={refetch} />
         ))}
       </div>
       {totalPages > 1 && <Pagination className="mt-4" page={page} total={totalPages} color="secondary" onChange={handlePagination} />}

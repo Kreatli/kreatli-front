@@ -16,6 +16,7 @@ export namespace Job {
     creator: User.Creator;
     description: string;
     hasApplied?: boolean;
+    hiredProfessional: Common.Id;
     location: 'remote' | string;
     paymentPreferences: Payment.Preference[];
     paymentType: Payment.Type;
