@@ -115,7 +115,7 @@ export const JobsCreation = () => {
     {
       title: 'Step 4 - Availability and Location',
       subtitle: 'Please provide the availability you require from professionals and specify the location',
-      render: <JobsCreationStep4 control={control} errors={errors} />,
+      render: <JobsCreationStep4 register={register} control={control} errors={errors} />,
     },
     {
       title: 'Step 5 - Additional information (optional)',

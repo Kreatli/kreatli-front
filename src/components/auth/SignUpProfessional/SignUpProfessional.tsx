@@ -92,7 +92,7 @@ export const SignUpProfessional: React.FC = () => {
     {
       title: 'Step 1 - Basic Information',
       subtitle: 'Fill out a form that includes i.a. your name, email, and password to create an account on the platform',
-      render: <SignUpProfessionalStep1 control={control} register={register} errors={errors} />,
+      render: <SignUpProfessionalStep1 register={register} errors={errors} />,
     },
     {
       title: 'Step 2 - Creating a Profile',
@@ -102,7 +102,7 @@ export const SignUpProfessional: React.FC = () => {
     {
       title: 'Step 3 - Qualifications',
       subtitle: 'Provide information about the skills you possess and their level. Be sure to accurately represent your qualifications and skill level to build trust with potential clients',
-      render: <SignUpProfessionalStep3 control={control} errors={errors} />,
+      render: <SignUpProfessionalStep3 control={control} register={register} errors={errors} />,
     },
     {
       title: 'Step 4 - Experience',

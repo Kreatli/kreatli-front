@@ -88,7 +88,7 @@ export const SignUpCreator: React.FC = () => {
     {
       title: 'Step 1 - Basic Information',
       subtitle: 'Fill out a form that includes i.a. your name, email, and password to create an account on the platform',
-      render: <SignUpCreatorStep1 control={control} register={register} errors={errors} />,
+      render: <SignUpCreatorStep1 register={register} errors={errors} />,
     },
     {
       title: 'Step 2 - Channel Details',

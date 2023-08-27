@@ -1,55 +1,53 @@
 import React from 'react';
-import { Control, FieldErrors, useController } from 'react-hook-form';
+import { Control, FieldErrors, UseFormRegister, useController } from 'react-hook-form';
 
 import { AVAILABILITY_OPTIONS, DURATION_OPTIONS } from '../../../constants/availability';
 import { LOCATION_OPTIONS } from '../../../constants/location';
 import { VALIDATION_RULES } from '../../../constants/validationRules';
-import { Select } from '../../various/Select';
 import { DefaultValues } from './constants';
+import { Select, SelectItem } from '@nextui-org/react';
 
 interface Props {
   control: Control<DefaultValues>;
+  register: UseFormRegister<DefaultValues>;
   errors: FieldErrors<DefaultValues>;
 }
 
-export const JobsCreationStep4: React.FC<Props> = ({ control, errors }) => {
+export const JobsCreationStep4: React.FC<Props> = ({ control, register, errors }) => {
   const { field: availabilityField } = useController({ control, name: 'availability' });
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 items-start gap-4">
       <Select
         label="Availability"
-        placeholder="Select..."
-        fullWidth
         validationState={errors.availability && 'invalid'}
-        options={AVAILABILITY_OPTIONS}
-        name="availability"
-        control={control}
-        rules={VALIDATION_RULES.REQUIRED}
-      />
+        {...register('availability', VALIDATION_RULES.REQUIRED)}
+      >
+        {AVAILABILITY_OPTIONS.map((option) => (
+          <SelectItem key={option.value} value={option.value}>{option.label}</SelectItem>
+        ))}
+      </Select>
       {availabilityField.value === 'project-base' && (
         <Select
           label="Duration"
-          placeholder="Select..."
-          fullWidth
           validationState={errors.availabilityDuration && 'invalid'}
-          options={DURATION_OPTIONS}
-          name="availabilityDuration"
-          control={control}
-          rules={VALIDATION_RULES.REQUIRED}
-        />
+          {...register('availabilityDuration', VALIDATION_RULES.REQUIRED)}
+        >
+          {DURATION_OPTIONS.map((option) => (
+            <SelectItem key={option.value} value={option.value}>{option.label}</SelectItem>
+          ))}
+        </Select>
       )}
       <div className="col-span-2">
         <Select
           label="Location"
-          placeholder="Select..."
-          fullWidth
           validationState={errors.location && 'invalid'}
-          options={LOCATION_OPTIONS}
-          name="location"
-          control={control}
-          rules={VALIDATION_RULES.REQUIRED}
-        />
+          {...register('location', VALIDATION_RULES.REQUIRED)}
+        >
+          {LOCATION_OPTIONS.map((option) => (
+            <SelectItem key={option.value} value={option.value}>{option.label}</SelectItem>
+          ))}
+        </Select>
       </div>
     </div>
   );

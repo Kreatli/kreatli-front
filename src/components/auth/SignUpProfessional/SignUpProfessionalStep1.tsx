@@ -1,20 +1,18 @@
-import { Input } from '@nextui-org/react';
+import { Input, Select, SelectItem } from '@nextui-org/react';
 import React from 'react';
-import { Control, FieldErrors, UseFormRegister } from 'react-hook-form';
+import { FieldErrors, UseFormRegister } from 'react-hook-form';
 
 import { COUNTRIES } from '../../../constants/countries';
 import { VALIDATION_RULES } from '../../../constants/validationRules';
-import { Select } from '../../various/Select';
 import { DefaultValues } from './constants';
 import { InputPassword } from '../../various/InputPassword';
 
 interface Props {
-  control: Control<DefaultValues>;
   register: UseFormRegister<DefaultValues>;
   errors: FieldErrors<DefaultValues>;
 }
 
-export const SignUpProfessionalStep1: React.FC<Props> = ({ control, errors, register }) => {
+export const SignUpProfessionalStep1: React.FC<Props> = ({ errors, register }) => {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 items-start gap-4">
       <Input
@@ -40,13 +38,14 @@ export const SignUpProfessionalStep1: React.FC<Props> = ({ control, errors, regi
       />
       <Select
         label="Country"
-        placeholder="Select..."
+        placeholder="Select country"
         validationState={errors.country && 'invalid'}
-        options={COUNTRIES}
-        name="country"
-        control={control}
-        rules={VALIDATION_RULES.REQUIRED}
-      />
+        {...register('country', VALIDATION_RULES.REQUIRED)}
+      >
+        {COUNTRIES.map((country) => (
+          <SelectItem key={country.value} value={country.value}>{country.label}</SelectItem>
+        ))}
+      </Select>
     </div>
   );
 };

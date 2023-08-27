@@ -1,10 +1,9 @@
-import { Input } from '@nextui-org/react';
+import { Input, Select, SelectItem } from '@nextui-org/react';
 import React from 'react';
 import { Control, FieldErrors, useController, UseFormRegister } from 'react-hook-form';
 
 import { PAYMENT_PREFERENCE_OPTIONS, PAYMENT_TYPE_OPTIONS, PAYMENT_TYPE_SHORTS } from '../../../constants/payment';
 import { VALIDATION_RULES } from '../../../constants/validationRules';
-import { Select } from '../../various/Select';
 import { DefaultValues } from './constants';
 
 interface Props {
@@ -20,14 +19,14 @@ export const JobsCreationStep3: React.FC<Props> = ({ control, errors, register }
     <div className="grid grid-cols-1 sm:grid-cols-2 items-start gap-4">
       <Select
         label="Payment type"
-        placeholder="Select..."
-        fullWidth
+        placeholder="Select payment type"
         validationState={errors.paymentType && 'invalid'}
-        options={PAYMENT_TYPE_OPTIONS}
-        name="paymentType"
-        control={control}
-        rules={VALIDATION_RULES.REQUIRED}
-      />
+        {...register('paymentType', VALIDATION_RULES.REQUIRED)}
+      >
+        {PAYMENT_TYPE_OPTIONS.map((paymentType) => (
+          <SelectItem key={paymentType.value} value={paymentType.value}>{paymentType.label}</SelectItem>
+        ))}
+      </Select>
       <Input
         type="number"
         min={1}
@@ -41,15 +40,16 @@ export const JobsCreationStep3: React.FC<Props> = ({ control, errors, register }
       />
       <div className="col-span-2">
         <Select
-          endContent={<span className="pointer-events-none text-small text-gray-400">optional</span>}
-          label="Payment preferences"
-          placeholder="Select..."
-          fullWidth
+          label="Payment preferences (optional)"
+          placeholder="Select payment preferences"
           selectionMode="multiple"
-          options={PAYMENT_PREFERENCE_OPTIONS}
-          name="paymentPreferences"
-          control={control}
-        />
+          validationState={errors.paymentPreferences && 'invalid'}
+          {...register('paymentPreferences', VALIDATION_RULES.REQUIRED)}
+        >
+          {PAYMENT_PREFERENCE_OPTIONS.map((paymentPreference) => (
+            <SelectItem key={paymentPreference.value} value={paymentPreference.value}>{paymentPreference.label}</SelectItem>
+          ))}
+        </Select>
       </div>
     </div>
   );
