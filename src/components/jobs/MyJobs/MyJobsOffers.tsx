@@ -54,29 +54,29 @@ export const MyJobsOffers = () => {
   const emptyStateProps = React.useMemo(() => {
     if (selectedTab === 'ongoing') {
       return {
-        title: 'No ongoing jobs yet',
-        text: 'You don\'t have any ongoing jobs. Let\'s fix that!',
-        link: { href: '/jobs/create', label: 'Create job posting' },
+        title: 'No ongoing job postings',
+        text: 'You don\'t have any ongoing job postings yet. Let\'s fix this!',
+        link: { href: '/jobs/create', label: 'Create a job posting' },
       };
     }
 
     if (selectedTab === 'completed') {
       return {
-        title: 'No completed jobs yet',
+        title: 'No completed collaborations yet',
       };
     }
 
     if (selectedTab === 'canceled') {
       return {
         icon: 'emojiHappy' as const,
-        title: 'No cancelled jobs yet',
+        title: 'no cancelled collaborations',
       };
     }
 
     return {
-      title: 'No jobs yet',
-      text: 'You don\'t have any posted jobs. Let\'s fix that!',
-      link: { href: '/jobs/create', label: 'Create job posting' },
+      title: 'No job posting',
+      text: 'You don\'t have any job postings yet. Let\'s fix this!',
+      link: { href: '/jobs/create', label: 'Create a job posting' },
     };
   }, [selectedTab]);
 

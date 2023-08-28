@@ -43,14 +43,14 @@ export const MyJobsApplications = () => {
     if (selectedTab === 'canceled') {
       return {
         icon: 'emojiHappy' as const,
-        title: 'No cancelled applications yet',
+        title: 'No cancelled applications',
       };
     }
 
     if (selectedTab === 'hired') {
       return {
-        title: 'No applications yet',
-        text: 'You wasn\'t hired for any job yet. Let\'s fix it',
+        title: 'No applications',
+        text: 'You weren\'t hired for any job yet. Let\'s fix this',
         link: { href: '/jobs', label: 'Browse jobs' },
       };
     }
@@ -58,13 +58,13 @@ export const MyJobsApplications = () => {
     if (selectedTab === 'rejected') {
       return {
         icon: 'emojiHappy' as const,
-        title: 'No rejected applications yet',
+        title: 'No rejected applications',
       };
     }
 
     return {
-      title: 'No applications yet',
-      text: 'You didn\'t apply for any job yet. Let\'s fix it',
+      title: 'No pending applications',
+      text: 'You haven\'t applied for any job yet. Let\'s fix this',
       link: { href: '/jobs', label: 'Browse jobs' },
     };
   }, [selectedTab]);
