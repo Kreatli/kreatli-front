@@ -117,7 +117,9 @@ export const JobApplicationContent = ({ professional, jobOfferId, jobOfferStatus
       )}
       <p>{coverLetter}</p>
       {isPending && (
-        <Link as={NextLink} href="/">Answer in chat</Link>
+        <div>
+          <Link as={NextLink} href="/">Answer in chat</Link>
+        </div>
       )}
     </div>
   );
