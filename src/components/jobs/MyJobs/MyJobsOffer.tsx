@@ -89,7 +89,7 @@ export const MyJobsOffer = ({ jobOffer, onCancel, onComplete, onHire, onReject }
       {dropdownMenu.length > 0 && (
         <Dropdown isDisabled={isCanceling}>
           <DropdownTrigger>
-            <Button aria-label="Job posting settings" variant="light" radius="full" size="sm" isIconOnly>
+            <Button aria-label="Job posting settings" variant="flat" radius="full" size="sm" isIconOnly>
               <Icon icon="dots" />
             </Button>
           </DropdownTrigger>
