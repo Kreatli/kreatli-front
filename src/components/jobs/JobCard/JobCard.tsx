@@ -77,9 +77,9 @@ export const JobCard = (props: Props) => {
       <CardBody>
         {header}
         {!hideCreator && (
-          <div className={`${styles.header} flex items-center justify-between`}>
+          <div className="flex items-center justify-between mb-2">
             {!shouldWrapInLink
-              ? <NextLink href={`/profile/${creator._id}`}>{creatorBlock}</NextLink>
+              ? <NextLink href={`/profile/${creator._id}`} className="flex">{creatorBlock}</NextLink>
               : creatorBlock}
             {shouldWrapInLink && isProfessional && (
               <Button as="div" className={styles.applyButton} color="secondary" isDisabled={hasApplied} size="sm">
