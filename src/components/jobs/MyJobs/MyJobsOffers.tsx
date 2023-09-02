@@ -1,5 +1,6 @@
-import { Pagination, Tab, Tabs } from '@nextui-org/react';
+import { Button, Pagination, Tab, Tabs } from '@nextui-org/react';
 import React from 'react';
+import NextLink from 'next/link';
 import cx from 'classnames';
 import { useQuery } from 'react-query';
 
@@ -9,12 +10,16 @@ import { MyJobsSkeleton } from './MyJobsSkeleton';
 import { EmptyState } from '../../various/EmptyState';
 import { MyJobsOffer } from './MyJobsOffer';
 import { Job } from '../../../typings/job';
+import { useBreakpointValue } from '../../../hooks/useBreakpointValue';
+import { Icon } from 'components/various/Icon';
 
 const PAGE_LIMIT = 5;
 
 export const MyJobsOffers = () => {
   const [page, setPage] = React.useState(1);
   const [selectedTab, setSelectedTab] = React.useState<Job.Offer['status']>('posted');
+
+  const isMobile = useBreakpointValue({ SM: false }, true);
 
   const getCurrentCreatorJobs = () => {
     return requestCurrentCreatorJobs({ status: selectedTab, offset: (page - 1) * PAGE_LIMIT });
@@ -69,7 +74,7 @@ export const MyJobsOffers = () => {
     if (selectedTab === 'canceled') {
       return {
         icon: 'emojiHappy' as const,
-        title: 'no cancelled collaborations',
+        title: 'No cancelled collaborations',
       };
     }
 
@@ -87,7 +92,12 @@ export const MyJobsOffers = () => {
 
   return (
     <>
-      <h3 className="text-2xl font-semibold mb-4">My job postings</h3>
+      <div className="flex items-center justify-between mb-4">
+        <h3 className="text-2xl font-semibold">My job postings</h3>
+        <Button as={NextLink} isIconOnly={isMobile} startContent={<Icon icon="plus" size={18} />} radius="full" color="secondary" href="/jobs/create">
+          {!isMobile && 'Create job posting'}
+        </Button>
+      </div>
       <Tabs aria-label="My job postings" selectedKey={selectedTab} className="mb-4" onSelectionChange={handleSelectionChange}>
         <Tab key="posted" title="Posted" />
         <Tab key="ongoing" title="Ongoing" />
