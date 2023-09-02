@@ -1,4 +1,4 @@
-import { Button, Chip, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger, useDisclosure } from '@nextui-org/react';
+import { Button, Chip, Divider, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger, useDisclosure } from '@nextui-org/react';
 import React from 'react';
 
 import { JobApplications } from '../JobApplications';
@@ -118,6 +118,7 @@ export const MyJobsOffer = ({ jobOffer, onCancel, onComplete, onHire, onReject }
         : <p className="italic text-gray-600">There are no applications yet</p>}
       {professionalReview && (
         <div>
+          <Divider className="mb-2" />
           <p className="font-semibold">Review from {hiredProfessional?.name}:</p>
           <Rating value={professionalReview.rating} readOnly />
           <p>{professionalReview.comment}</p>

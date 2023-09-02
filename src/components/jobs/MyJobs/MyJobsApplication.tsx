@@ -1,4 +1,4 @@
-import { Button, Chip, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger, useDisclosure } from '@nextui-org/react';
+import { Button, Chip, Divider, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger, useDisclosure } from '@nextui-org/react';
 import { useMutation } from 'react-query';
 import React from 'react';
 
@@ -83,7 +83,7 @@ export const MyJobsApplication = ({ jobOffer, onCancel, onComplete }: Props) => 
   const chipLabel = isHired ? JOB_OFFER_STATUS_LABELS[jobOffer.status] : JOB_APPLICATION_STATUS_LABELS[jobApplication.status];
 
   const cardHeader = (
-    <div className="flex items-center justify-between h-[32px] -mt-2">
+    <div className="flex items-center justify-between h-[32px] -mt-2 mb-2">
       <Chip
         radius="sm"
         size="sm"
@@ -131,7 +131,6 @@ export const MyJobsApplication = ({ jobOffer, onCancel, onComplete }: Props) => 
     <>
       <JobCard
         jobOffer={jobOffer}
-        hideCreator
         header={cardHeader}
         footer={cardFooter}
       />

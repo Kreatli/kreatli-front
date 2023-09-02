@@ -69,6 +69,8 @@ export const JobCard = (props: Props) => {
     />
   );
 
+  const shouldWrapInLink = jobOfferId && !hasFooter && !isCompleted;
+
   // TODO: on press instead of link ? to leave isPressable effect
   const card = (
     <Card className={cx(styles.card, className)} isHoverable={!hasFooter}>
@@ -76,10 +78,10 @@ export const JobCard = (props: Props) => {
         {header}
         {!hideCreator && (
           <div className={`${styles.header} flex items-center justify-between`}>
-            {isCompleted
+            {!shouldWrapInLink
               ? <NextLink href={`/profile/${creator._id}`}>{creatorBlock}</NextLink>
               : creatorBlock}
-            {!isCompleted && isProfessional && (
+            {shouldWrapInLink && isProfessional && (
               <Button as="div" className={styles.applyButton} color="secondary" isDisabled={hasApplied} size="sm">
                 {hasApplied ? 'Applied' : 'Apply for job'}
               </Button>
@@ -114,7 +116,7 @@ export const JobCard = (props: Props) => {
     </Card>
   );
 
-  if (jobOfferId && !hasFooter && !isCompleted) {
+  if (shouldWrapInLink) {
     return <NextLink href={`/jobs/${jobOfferId}`}>{card}</NextLink>;
   }
 
