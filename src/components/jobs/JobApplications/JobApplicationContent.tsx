@@ -80,7 +80,7 @@ export const JobApplicationContent = ({ professional, jobOfferId, jobOfferStatus
   return (
     <div className={styles.jobApplicationContent}>
       {isPending && (
-        <Alert text={`${professional.name} sends a request for cooperation for this project`}>
+        <Alert text={`${professional.name} sends a request for collaboration for this project`}>
           <Popover isOpen={isRejectConfirmationOpen} onOpenChange={setIsRejectConfirmationOpen}>
             <PopoverTrigger>
               <Button color="secondary" size="sm" radius="lg" variant="flat" startContent={<Icon icon="crossCircle" size={18} />}>
