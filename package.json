@@ -14,7 +14,6 @@
   },
   "dependencies": {
     "@emoji-mart/data": "^1.1.2",
-    "@emoji-mart/react": "^1.1.1",
     "@lexical/react": "^0.12.2",
     "@nextui-org/react": "^2.1.13",
     "axios": "^1.4.0",

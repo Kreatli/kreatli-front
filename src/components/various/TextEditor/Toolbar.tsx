@@ -5,9 +5,8 @@ import { Button, Popover, PopoverContent, PopoverTrigger } from '@nextui-org/rea
 import React from 'react';
 import { Icon } from '../Icon';
 import styles from './TextEditor.module.scss';
-import EmojiPicker from '@emoji-mart/react';
-import emojiPickerData from '@emoji-mart/data';
 import { useIsTouchScreen } from 'hooks/useIsTouchScreen';
+import { EmojiPicker } from '../EmojiPicker';
 
 interface Props {
   children?: React.ReactNode;
@@ -156,7 +155,6 @@ export const Toolbar = ({ children }: Props) => {
         </PopoverTrigger>
         <PopoverContent className="p-0">
           <EmojiPicker
-            data={emojiPickerData}
             maxFrequentRows={2}
             onEmojiSelect={handleEmojiClick}
           />
