@@ -14,8 +14,7 @@ export default function Home() {
         <title>Home | Kreatli</title>
         <meta name="description" content="Kreatli" />
       </Head>
-      <Feed />
-      {/* {isSignedIn ? <Feed /> : <Hero />} */}
+      {isSignedIn ? <Feed /> : <Hero />}
     </>
   );
 }
