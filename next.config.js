@@ -7,6 +7,7 @@ const nextConfig = {
   env: {
     API_URL: process.env.API_URL,
   },
+  swcMinify: false,
   webpack(config) {
     const fileLoaderRule = config.module.rules.find((rule) => rule.test?.test?.('.svg'));
 
