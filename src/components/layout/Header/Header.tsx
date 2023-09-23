@@ -141,7 +141,7 @@ export const Header: React.FC = () => {
               <DropdownTrigger>
                 <Button variant="flat" color="secondary">Sign up</Button>
               </DropdownTrigger>
-              <DropdownMenu aria-label="Sign up" color="secondary" onAction={handleSignUpAction}>
+              <DropdownMenu aria-label="Sign up" variant="flat" color="secondary" onAction={handleSignUpAction}>
                 <DropdownItem key="creator">As Creator</DropdownItem>
                 <DropdownItem key="professional">As Professional</DropdownItem>
               </DropdownMenu>
@@ -157,7 +157,7 @@ export const Header: React.FC = () => {
               icon={!isSignedIn && <Icon icon="user" size={20} />}
             />
           </DropdownTrigger>
-          <DropdownMenu aria-label="User menu" onAction={handleUserMenuAction}>
+          <DropdownMenu aria-label="User menu" variant="flat" onAction={handleUserMenuAction}>
             {dropdownItems.map(({ label, ...props }) => (
               <DropdownItem {...props}>{label}</DropdownItem>
             ))}

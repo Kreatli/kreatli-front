@@ -7,7 +7,7 @@ import { User } from '../../../typings/user';
 import { Icon } from '../../various/Icon';
 import { useBreakpointValue } from '../../../hooks/useBreakpointValue';
 import { ProfileBadge } from './ProfileBadge';
-import { ProfileHeaderButton } from './ProfileHeaderButton';
+import { ConnectionButton } from '../Connections/ConnectionButton';
 
 interface Props {
   user: User.Type;
@@ -56,14 +56,14 @@ export const ProfileHeader = ({ user }: Props) => {
       </div>
       {isMyAccount
         ? (
-          <Button aria-label="Edit profile" radius="full" isIconOnly={isMobile} variant="flat" color="secondary" startContent={<Icon icon="edit" size={20} />}>
+          <Button aria-label="Edit profile" isIconOnly={isMobile} variant="flat" color="secondary" startContent={<Icon icon="edit" size={20} />}>
             {!isMobile && 'Edit profile'}
           </Button>
         ) : (
-          <ProfileHeaderButton
+          <ConnectionButton
             userId={user._id}
             inviteeName={user.name}
-            hasInvitation={user?.invitations.some(({ inviter }) => inviter === currentUserId)}
+            hasInvitation={user.hasInvitation ?? false}
             hasConnection={user.hasConnection ?? false}
           />
         )}

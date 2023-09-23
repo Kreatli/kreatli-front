@@ -27,7 +27,6 @@ export const ProfessionalListing = () => {
   const searchDebounced = useDebounce(search);
 
   const requestProfessionalsQuery = {
-    limit: LIMIT,
     ...selectedFilters,
     ...(searchDebounced && { search: searchDebounced }),
   };

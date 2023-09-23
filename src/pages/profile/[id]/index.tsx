@@ -15,6 +15,8 @@ const Profile: React.FC = () => {
 
   const pageTitle = `${user?.name ?? ''} | Kreatli`;
 
+  // TODO: profile posts at the end of the page
+
   return (
     <>
       <Head>

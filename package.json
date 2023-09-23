@@ -13,12 +13,17 @@
     "node": "18.*"
   },
   "dependencies": {
-    "@nextui-org/react": "^2.1.7",
+    "@emoji-mart/data": "^1.1.2",
+    "@emoji-mart/react": "^1.1.1",
+    "@lexical/react": "^0.12.2",
+    "@nextui-org/react": "^2.1.13",
     "axios": "^1.4.0",
     "classnames": "^2.3.2",
+    "emoji-mart": "^5.5.2",
     "eslint": "^8.47.0",
     "eslint-config-next": "^13.4.13",
     "framer-motion": "^10.15.1",
+    "lexical": "^0.12.2",
     "nanoid": "^4.0.2",
     "next": "^13.4.13",
     "ramda": "^0.29.0",

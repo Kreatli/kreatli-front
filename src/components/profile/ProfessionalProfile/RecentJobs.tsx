@@ -46,6 +46,7 @@ export const RecentJobs = ({ id }: Props) => {
         {shouldShowSkeleton && <RecentJobsSkeleton />}
         {data?.map((jobOffer) => (
           <JobCard
+            key={jobOffer._id}
             jobOffer={jobOffer}
             footer={getCardFooter(jobOffer)}
             hideApply

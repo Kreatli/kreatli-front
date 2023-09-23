@@ -20,8 +20,42 @@ main {
   padding: 2rem 0;
 }
 
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
 @media screen and (max-width: 960px) {
   html {
     font-size: 14px;
   }
+}
+
+.EmojiPickerReact {
+  --epr-emoji-size: 1.5rem !important;
+  --epr-header-padding: 10px !important;
+}
+
+.textItalic {
+  font-style: italic;
+}
+
+.textUnderline {
+  text-decoration: underline;
+}
+
+.textBold {
+  font-weight: 600;
+}
+
+.textStrikethrough {
+  text-decoration: line-through
+}
+
+.textUnderlineStrikethrough {
+  text-decoration: underline line-through;
 }

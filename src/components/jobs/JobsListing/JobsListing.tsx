@@ -29,7 +29,6 @@ export const JobsListing = () => {
   const searchDebounced = useDebounce(search);
 
   const requestJobOffersQuery = {
-    limit: LIMIT,
     ...selectedFilters,
     ...(searchDebounced && { search: searchDebounced }),
   };

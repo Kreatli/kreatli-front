@@ -22,7 +22,7 @@ const DEFAULT_VALUES = {
 
 type DefaultValues = typeof DEFAULT_VALUES;
 
-export const InvitationForm: React.FC<Props> = ({ userId, onCancel, onSuccess }) => {
+export const InvitationForm = ({ userId, onCancel, onSuccess }: Props) => {
   const { register, handleSubmit } = useForm({ defaultValues: DEFAULT_VALUES, mode: 'onBlur' });
   const pushNotification = useNotifications((state) => state.pushNotification);
 

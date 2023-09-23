@@ -87,6 +87,7 @@ export const MenuItem = ({ href, label, description, icon, emoji, options, selec
           </DropdownTrigger>
           <DropdownMenu
             aria-label={label}
+            variant="flat"
             className="max-h-96 overflow-auto"
             selectionMode={selectionMode}
             selectedKeys={selected}

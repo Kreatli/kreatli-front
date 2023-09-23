@@ -18,9 +18,9 @@ export const ConnectionCard = ({ user, isMyAccount }: Props) => {
       {isMyAccount && (
         <Dropdown>
           <DropdownTrigger>
-            <Button className="absolute top-2 right-2" size="sm" variant="light" isIconOnly><Icon icon="dots" size={20} /></Button>
+            <Button className="absolute top-2 right-2" size="sm" variant="light" radius="full" isIconOnly><Icon icon="dots" size={20} /></Button>
           </DropdownTrigger>
-          <DropdownMenu>
+          <DropdownMenu variant="flat">
             <DropdownItem startContent={<Icon icon="chat" size={18} />}>Message</DropdownItem>
           </DropdownMenu>
         </Dropdown>

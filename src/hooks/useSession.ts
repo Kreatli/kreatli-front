@@ -3,7 +3,7 @@ import React from 'react';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
 
 import { requestSignIn } from '../services/auth';
-import { requestUser } from '../services/user';
+import { requestCurrentUser } from '../services/user';
 import { useApplicationLoader } from './useApplicationLoader';
 
 export const useSession = () => {
@@ -24,7 +24,7 @@ export const useSession = () => {
     router.push('/');
   }, [queryClient, router]);
 
-  const { data } = useQuery('user', requestUser, {
+  const { data } = useQuery('user', requestCurrentUser, {
     refetchOnMount: false,
     onSettled: () => {
       setIsLoading(false);

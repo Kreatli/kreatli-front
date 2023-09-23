@@ -1,4 +1,5 @@
 import { Availability } from './availability';
+import { Feed } from './feed';
 import { Invitation } from './invitation';
 import { Job } from './job';
 import { Pagination } from './pagination';
@@ -32,8 +33,10 @@ export interface UploadApiResponse {
 export namespace Api {
   export type Get =
     | '/user'
+    | '/user/posts'
     | '/user/:id'
     | '/user/:id/connections'
+    | '/user/:id/posts'
     | '/users'
     | '/creators'
     | '/professionals'
@@ -43,7 +46,8 @@ export namespace Api {
     | '/creator/job-offers'
     | '/creator/:id/job-offers'
     | '/professional/job-applications'
-    | '/professional/:id/job-applications';
+    | '/professional/:id/job-applications'
+    | '/posts';
 
   export type Post =
     | '/auth/signup-creator'
@@ -65,9 +69,14 @@ export namespace Api {
     | '/job-offer/:id/application'
     | '/job-offer/:id/application/:id/reject'
     | '/job-offer/:id/application/:id/accept'
-    | '/job-offer/:id/application/:id/cancel';
+    | '/job-offer/:id/application/:id/cancel'
+    | '/post'
+    | '/post/:id/like'
+    | '/post/:id/comment'
+    | '/post/:id/comment/:id/like';
 
-  export type Put = '';
+  export type Put =
+    | '/post/:id';
 
   export interface GetParams {
     '/professionals': {
@@ -84,20 +93,31 @@ export namespace Api {
       availability?: Availability.Type;
       availabilityDuration?: Availability.ProjectBase;
     } & Pagination.Params;
+    '/user/posts': Pagination.Params;
+    '/user/:id/posts': Pagination.Params;
     '/user/:id/connections': Pagination.Params;
     '/creator/job-offers': { status: Job.Offer['status'] } & Pagination.Params;
     '/creator/:id/job-offers': Pagination.Params;
     '/professional/job-applications': { status: Job.Application['status'] } & Pagination.Params;
     '/professional/:id/job-applications': Pagination.Params;
+    '/posts': { feedbackOnly?: boolean } & Pagination.Params;
   }
 
   export interface GetResponse {
     '/user': User.Type;
+    '/user/posts': {
+      posts: Feed.Post[];
+      postsCount: number;
+    };
     '/user/:id': User.Type;
     '/user/:id/connections': {
       connections: User.ShortInfo[];
       connectionsCount: number;
       invitations: Invitation[];
+    };
+    '/user/:id/posts': {
+      posts: Feed.Post[];
+      postsCount: number;
     };
     '/users': User.ShortInfo[];
     '/creators': User.Creator[];
@@ -121,6 +141,10 @@ export namespace Api {
       jobApplicationsCount: number;
     };
     '/professional/:id/job-applications': Job.Offer[];
+    '/posts': {
+      posts: Feed.Post[];
+      postsCount: number;
+    };
   }
 
   export interface PostPayload {
@@ -159,6 +183,10 @@ export namespace Api {
     };
     '/job-offer/:id/complete': Job.OfferReviewPayload;
     '/job-offer/:id/review': Job.OfferReviewPayload;
+    '/post': Feed.PostPayload;
+    '/post/:id/like': {};
+    '/post/:id/comment': Feed.CommentPayload;
+    '/post/:id/comment/:id/like': {};
   }
 
   export interface PostResponse {
@@ -195,13 +223,17 @@ export namespace Api {
     '/job-offer/:id/application/:id/reject': Job.Offer;
     '/job-offer/:id/application/:id/accept': Job.Offer;
     '/job-offer/:id/application/:id/cancel': Job.Offer;
+    '/post': Feed.Post;
+    '/post/:id/like': Feed.Post;
+    '/post/:id/comment': Feed.Post;
+    '/post/:id/comment/:id/like': Feed.Post;
   }
 
   export interface PutPayload {
-    '': {};
+    '/post/:id': Feed.PostPayload;
   }
 
   export interface PutResponse {
-    '': {};
+    '/post/:id': Feed.Post;
   }
 }

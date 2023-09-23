@@ -61,6 +61,7 @@ export const MyJobsOffer = ({ jobOffer, onCancel, onComplete, onHire, onReject }
     ...(isPosted ? [{
       label: 'Cancel job posting',
       icon: 'cross' as const,
+      className: 'text-danger',
       color: 'danger' as const,
     }] : []),
     ...(isOngoing ? [{
@@ -93,9 +94,9 @@ export const MyJobsOffer = ({ jobOffer, onCancel, onComplete, onHire, onReject }
               <Icon icon="dots" />
             </Button>
           </DropdownTrigger>
-          <DropdownMenu onAction={handleAction}>
-            {dropdownMenu.map(({ icon, color, label, size }) => (
-              <DropdownItem key={label} startContent={<Icon icon={icon} size={size} />} color={color}>{label}</DropdownItem>
+          <DropdownMenu variant="flat" onAction={handleAction}>
+            {dropdownMenu.map(({ icon, color, label, size, className }) => (
+              <DropdownItem key={label} className={className} startContent={<Icon icon={icon} size={size} />} color={color}>{label}</DropdownItem>
             ))}
           </DropdownMenu>
         </Dropdown>

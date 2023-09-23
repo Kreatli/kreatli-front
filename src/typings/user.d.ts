@@ -9,6 +9,8 @@ export namespace User {
     country: string;
     isVerified: boolean;
     name: string;
+    hasConnection?: boolean;
+    hasInvitation?: boolean;
   }
 
   export interface ShortInfoCreator extends ShortInfoBase {
@@ -33,7 +35,6 @@ export namespace User {
     connections: Common.Id[];
     isEmailVerified: boolean;
     isActive: boolean;
-    hasConnection?: boolean;
     tier: number;
     tierPoints: number;
     invitations: {
