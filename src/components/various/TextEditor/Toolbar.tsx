@@ -62,11 +62,12 @@ export const Toolbar = ({ children }: Props) => {
     setIsEmojiPickerOpen(false);
 
     editor.update(() => {
-      $getRoot().selectEnd();
       const selection = $getSelection();
 
       if (selection) {
         selection.insertText(native);
+      } else {
+        $getRoot().selectEnd().insertText(native);
       }
     });
   };
