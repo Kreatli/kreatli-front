@@ -35,7 +35,7 @@ export const MediaSlider = ({ media }: Props) => {
     <div className="relative">
       <div ref={slidesRef} className="flex gap-4 overflow-x-auto no-scrollbar snap-x snap-mandatory" onScroll={handleScroll}>
         {media.map((mediaItem) => (
-          <div key={mediaItem._id} className="min-w-full h-80 overflow-hidden snap-center snap-always">
+          <div key={mediaItem._id} className="min-w-full h-56 md:h-80 overflow-hidden snap-center snap-always">
             {mediaItem.type === 'image' && <ImageSlide {...mediaItem} />}
             {mediaItem.type === 'video' && <VideoSlide {...mediaItem} />}
           </div>

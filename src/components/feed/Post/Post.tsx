@@ -9,6 +9,7 @@ import { PostLikeButton } from './PostLikeButton';
 import { PostContext } from 'contexts/Post';
 import { ConnectionButton } from 'components/profile/Connections/ConnectionButton';
 import { useSession } from 'hooks/useSession';
+import { useBreakpointValue } from 'hooks/useBreakpointValue';
 
 const POST_TEXT_LIMIT = 300;
 const POST_CONTENT_LIMIT = 350;
@@ -22,6 +23,7 @@ export const Post = () => {
   const [areCommentsExpanded, setAreCommentsExpanded] = React.useState(false);
 
   const { currentUserId } = useSession();
+  const isMobile = useBreakpointValue({ SM: false }, true);
 
   const postContent = React.useMemo(() => {
     const contentEl = document.createElement('div');
@@ -75,12 +77,11 @@ export const Post = () => {
           />
           <div className="flex gap-3">
             <PostLikeButton postId={postId} hasLiked={hasLiked} likeCount={likeCount} />
-            <span className="hidden sm:block">
             {isMyPost
               ? (
                   // TODO: edit post modal
-                  <Button variant="flat" color="secondary" startContent={<Icon icon="edit" size={20} />}>
-                    Edit post
+                  <Button variant="flat" color="secondary" isIconOnly={isMobile} startContent={<Icon icon="edit" size={20} />}>
+                    {!isMobile && 'Edit post'}
                   </Button>
                 ) : (
                   <ConnectionButton
@@ -91,7 +92,6 @@ export const Post = () => {
                     mode="redirect"
                   />
                 )}
-            </span>
           </div>
         </CardHeader>
         <CardBody className="py-0 gap-4">

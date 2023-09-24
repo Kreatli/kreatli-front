@@ -8,6 +8,7 @@ import { Common } from '../../../typings/common';
 import { Icon } from '../../various/Icon';
 import { InvitationModal } from '../InvitationModal/InvitationModal';
 import { ProfileUnverifiedTooltip } from '../Profile/ProfileUnverifiedTooltip';
+import { useBreakpointValue } from 'hooks/useBreakpointValue';
 
 interface Props {
   userId: Common.Id;
@@ -20,6 +21,7 @@ interface Props {
 export const ConnectionButton = ({ userId, inviteeName, hasConnection, hasInvitation, mode }: Props) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { currentUser } = useSession();
+  const isMobile = useBreakpointValue({ SM: false }, true);
 
   const invitation = currentUser?.invitations.find(({ inviter }) => inviter === userId);
   const wasInvited = !!invitation;
@@ -38,8 +40,8 @@ export const ConnectionButton = ({ userId, inviteeName, hasConnection, hasInvita
 
   if (hasConnection) {
     return (
-      <Button href="/" variant="flat" color="secondary" startContent={<Icon icon="chat" size={18} />}>
-        Message
+      <Button href="/" variant="flat" color="secondary" isIconOnly={isMobile} startContent={<Icon icon="chat" size={18} />}>
+        {!isMobile && 'Message'}
       </Button>
     );
   }
@@ -49,11 +51,14 @@ export const ConnectionButton = ({ userId, inviteeName, hasConnection, hasInvita
       <Button
         as={NextLink}
         href={`/profile/${userId}`}
+        isIconOnly={isMobile}
         color="secondary"
         startContent={hasInvitation && <Icon icon="mail" size={20} />}
         isDisabled={hasInvitation}
       >
-        {hasInvitation ? 'Invitation sent' : 'Connect'}
+        {!isMobile && (
+          hasInvitation ? 'Invitation sent' : 'Connect'
+        )}
       </Button>
     );
   }
@@ -61,8 +66,8 @@ export const ConnectionButton = ({ userId, inviteeName, hasConnection, hasInvita
   if (wasInvited) {
     return (
       <div className="flex gap-2">
-        <Button color="secondary" startContent={<Icon icon="check" />} isLoading={isLoading} onClick={handleAccept}>
-          Accept invitation
+        <Button color="secondary" isIconOnly={isMobile} startContent={<Icon icon="check" />} isLoading={isLoading} onClick={handleAccept}>
+          {!isMobile && 'Accept invitation'}
         </Button>
         <Button aria-label="Reject invitation" variant="flat" color="secondary" isIconOnly isLoading={isLoading} onClick={handleReject}>
           <Icon icon="cross" />
@@ -79,7 +84,9 @@ export const ConnectionButton = ({ userId, inviteeName, hasConnection, hasInvita
         isDisabled={hasInvitation}
         onClick={onOpen}
       >
-        {hasInvitation ? 'Invitation sent' : 'Connect'}
+        {!isMobile && (
+          hasInvitation ? 'Invitation sent' : 'Connect'
+        )}
       </Button>
       <InvitationModal
         userId={userId}
