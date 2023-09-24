@@ -55,7 +55,7 @@ export const Posts = () => {
           </PostContextProvider>
         ))}
         {shouldShowSkeleton && <PostsSkeleton />}
-        <div className={`absolute -inset-4 -inset-x-8 pointer-events-none transition-all rounded-large ${shouldShowLoader ? 'z-10 bg-background/70' : ''}`} />
+        <div className={`absolute -inset-4 md:-inset-x-8 pointer-events-none transition-all rounded-large ${shouldShowLoader ? 'z-10 bg-background/70' : ''}`} />
       </div>
     </LazyList>
   );
