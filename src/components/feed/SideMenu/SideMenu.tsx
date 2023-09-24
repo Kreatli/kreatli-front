@@ -23,7 +23,7 @@ export const SideMenu = () => {
   };
 
   return (
-    <Card className="sticky bg-background/70 backdrop-blur-lg z-20 top-20 md:top-24" isBlurred>
+    <Card className="sticky z-20 top-20 md:top-24">
       <CardBody className="py-4">
         <div className="flex justify-between">
           <p className="text-default-400">Filter:</p>
