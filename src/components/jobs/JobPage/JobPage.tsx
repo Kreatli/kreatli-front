@@ -52,6 +52,10 @@ export const JobPage = (props: Props) => {
     return formatRelativeTime(creationDate);
   }, [creationDate]);
 
+  const notAppliedActionLabel = isPosted
+    ? 'Apply for job'
+    : 'The job is not active';
+
   const userCardContent = (
     <>
       <NextLink href={`/profile/${creator._id}`} className="flex sm:flex-col items-center gap-4">
@@ -69,9 +73,7 @@ export const JobPage = (props: Props) => {
           <Button isDisabled={hasApplied || !isPosted} color="secondary" onClick={onOpen}>
             {hasApplied
               ? 'Applied'
-              : isPosted
-                ? 'Apply for job'
-                : 'The job is not active'}
+              : notAppliedActionLabel}
           </Button>
         )}
         <p className="text-sm text-gray-400">{applicationsCount} application{applicationsCount === 1 ? '' : 's'} so far</p>

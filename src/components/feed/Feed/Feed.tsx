@@ -1,7 +1,8 @@
 import React from 'react';
-import { SideMenu } from '../SideMenu';
+
 import { CreatePost } from '../CreatePost';
 import { Posts } from '../Posts';
+import { SideMenu } from '../SideMenu';
 
 export const Feed = () => {
   return (

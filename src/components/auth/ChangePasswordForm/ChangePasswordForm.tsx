@@ -3,11 +3,11 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useMutation } from 'react-query';
 
-import { InputPassword } from '../../various/InputPassword';
 import { VALIDATION_RULES } from '../../../constants/validationRules';
 import { useNotifications } from '../../../hooks/useNotifications';
 import { requestChangePassword } from '../../../services/auth';
 import { getErrorMessage } from '../../../utils/getErrorMessage';
+import { InputPassword } from '../../various/InputPassword';
 
 const DEFAULT_VALUES = {
   password: '',

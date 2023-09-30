@@ -1,11 +1,11 @@
+import { Select, SelectItem } from '@nextui-org/react';
 import React from 'react';
-import { Control, FieldErrors, UseFormRegister, useController } from 'react-hook-form';
+import { Control, FieldErrors, useController, UseFormRegister } from 'react-hook-form';
 
 import { AVAILABILITY_OPTIONS, DURATION_OPTIONS } from '../../../constants/availability';
 import { LOCATION_OPTIONS } from '../../../constants/location';
 import { VALIDATION_RULES } from '../../../constants/validationRules';
 import { DefaultValues } from './constants';
-import { Select, SelectItem } from '@nextui-org/react';
 
 interface Props {
   control: Control<DefaultValues>;

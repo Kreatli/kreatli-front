@@ -47,7 +47,9 @@ export const JobsCreationStep3: React.FC<Props> = ({ control, errors, register }
           {...register('paymentPreferences', VALIDATION_RULES.REQUIRED)}
         >
           {PAYMENT_PREFERENCE_OPTIONS.map((paymentPreference) => (
-            <SelectItem key={paymentPreference.value} value={paymentPreference.value}>{paymentPreference.label}</SelectItem>
+            <SelectItem key={paymentPreference.value} value={paymentPreference.value}>
+              {paymentPreference.label}
+            </SelectItem>
           ))}
         </Select>
       </div>

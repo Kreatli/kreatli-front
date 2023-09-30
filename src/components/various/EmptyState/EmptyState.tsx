@@ -1,9 +1,9 @@
 import { Button } from '@nextui-org/react';
+import NextLink from 'next/link';
 import React from 'react';
 
 import { Icon, IconType } from '../Icon';
 import styles from './EmptyState.module.scss';
-import NextLink from 'next/link';
 
 interface Props {
   title: string;

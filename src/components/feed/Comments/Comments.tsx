@@ -1,8 +1,9 @@
-import React from 'react';
-import { Comment } from './Comment';
-import { AddComment } from './AddComment';
-import { PostContext } from 'contexts/Post';
 import { ScrollShadow } from '@nextui-org/react';
+import { PostContext } from 'contexts/Post';
+import React from 'react';
+
+import { AddComment } from './AddComment';
+import { Comment } from './Comment';
 
 export const Comments = () => {
   const { post: { comments }, commentsRef } = React.useContext(PostContext);
@@ -12,7 +13,7 @@ export const Comments = () => {
       <ScrollShadow ref={commentsRef} className="max-h-[50vh]">
         {comments.length > 0 && (
           <div className="flex flex-col bg-default-50 p-5 rounded-xl mt-4">
-            {comments.map(comment => (
+            {comments.map((comment) => (
               <Comment key={comment._id} {...comment} />
             ))}
           </div>

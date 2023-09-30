@@ -1,12 +1,12 @@
 import { LexicalComposer } from '@lexical/react/LexicalComposer';
-import { RichTextPlugin } from '@lexical/react/LexicalRichTextPlugin';
 import { ContentEditable } from '@lexical/react/LexicalContentEditable';
 import LexicalErrorBoundary from '@lexical/react/LexicalErrorBoundary';
+import { RichTextPlugin } from '@lexical/react/LexicalRichTextPlugin';
 import React from 'react';
-import { Toolbar } from './Toolbar';
 
-import styles from './TextEditor.module.scss';
 import { EditorPlugin } from './EditorPlugin';
+import styles from './TextEditor.module.scss';
+import { Toolbar } from './Toolbar';
 
 interface Props {
   value?: string;
@@ -15,6 +15,10 @@ interface Props {
   placeholder: string;
   onChange: (content: string) => void;
 }
+
+const Placeholder = ({ placeholder }: { placeholder: string }) => (
+  <div className={styles.placeholder}>{placeholder}</div>
+);
 
 export const TextEditor = ({ children, value, namespace, placeholder, onChange }: Props) => {
   const initialConfig = {
@@ -33,15 +37,15 @@ export const TextEditor = ({ children, value, namespace, placeholder, onChange }
     },
   };
 
-  const Placeholder = () => (
-    <div className={styles.placeholder}>{placeholder}</div>
-  );
-
   return (
     <LexicalComposer initialConfig={initialConfig}>
       <Toolbar>{children}</Toolbar>
       <div className={styles.editorWrapper}>
-        <RichTextPlugin contentEditable={<ContentEditable className={styles.contentEditable} />} placeholder={<Placeholder />} ErrorBoundary={LexicalErrorBoundary} />
+        <RichTextPlugin
+          contentEditable={<ContentEditable className={styles.contentEditable} />}
+          placeholder={<Placeholder placeholder={placeholder} />}
+          ErrorBoundary={LexicalErrorBoundary}
+        />
       </div>
       <EditorPlugin value={value} onChange={onChange} />
     </LexicalComposer>

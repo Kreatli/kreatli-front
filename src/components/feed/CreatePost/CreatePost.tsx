@@ -1,14 +1,15 @@
 import { Button, Card, CardBody, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger, Tooltip } from '@nextui-org/react';
 import { Icon } from 'components/various/Icon';
 import { TextEditor } from 'components/various/TextEditor';
-import { useImagesUpload } from 'hooks/useImagesUpload';
-import React from 'react';
-import { ImagePreview } from './ImagePreview';
 import { VideoUploaderModal } from 'components/various/VideoUploaderModal';
+import { useImagesUpload } from 'hooks/useImagesUpload';
+import { useNotifications } from 'hooks/useNotifications';
+import React from 'react';
 import { useMutation, useQueryClient } from 'react-query';
 import { requestPostCreation } from 'services/feed';
-import { useNotifications } from 'hooks/useNotifications';
 import { getErrorMessage } from 'utils/getErrorMessage';
+
+import { ImagePreview } from './ImagePreview';
 import { VideoPreview } from './VideoPreview';
 
 export const CreatePost = () => {
@@ -18,7 +19,7 @@ export const CreatePost = () => {
 
   const { images, getInputProps, getRootProps, removeImage, setImages } = useImagesUpload();
   const { pushNotification } = useNotifications();
-  const queryClient  = useQueryClient();
+  const queryClient = useQueryClient();
 
   const { isLoading, mutate } = useMutation(requestPostCreation, {
     onSuccess: () => {
@@ -42,17 +43,17 @@ export const CreatePost = () => {
   });
 
   const handleVideoRemove = (id: string) => {
-    setVideoIds(ids => ids.filter(videoId => videoId !== id));
+    setVideoIds((ids) => ids.filter((videoId) => videoId !== id));
   };
 
   const handleVideoUpload = (id: string) => {
-    setVideoIds(ids => ids.includes(id) ? ids : [...ids, id]);
+    setVideoIds((ids) => (ids.includes(id) ? ids : [...ids, id]));
   };
 
   const handlePublishPost = (key: React.Key) => {
     const media = [
       ...images.map(({ src }) => ({ type: 'image' as const, src })),
-      ...videoIds.map(id => ({ type: 'video' as const, videoId: id, src: `https://www.youtube.com/embed/${id}` })),
+      ...videoIds.map((id) => ({ type: 'video' as const, videoId: id, src: `https://www.youtube.com/embed/${id}` })),
     ];
 
     mutate({
@@ -90,16 +91,16 @@ export const CreatePost = () => {
           >
             {isImageUploadDisabled
               ? (
-                  <Tooltip content="You've already uploaded 5 images, which is the maximum limit allowed">
-                    <span>{imageUploadButton}</span>
-                  </Tooltip>
-                )
+                <Tooltip content="You've already uploaded 5 images, which is the maximum limit allowed">
+                  <span>{imageUploadButton}</span>
+                </Tooltip>
+              )
               : (
-                  <span className="cursor-pointer" {...getRootProps()}>
-                    {imageUploadButton}
-                    <input {...getInputProps()} />
-                  </span>
-                )}
+                <span className="cursor-pointer" {...getRootProps()}>
+                  {imageUploadButton}
+                  <input {...getInputProps()} />
+                </span>
+              )}
             <Tooltip isDisabled={!isVideoUploadDisabled} content="You've already uploaded 5 videos, which is the maximum limit allowed">
               <span>
                 <Button
@@ -117,10 +118,15 @@ export const CreatePost = () => {
           <div className="flex w-full items-end justify-end">
             {(images.length > 0 || videoIds.length > 0) && (
               <div className="flex-1 mt-3 flex gap-2">
-                {images.map(({ src, isLoading }) => (
-                  <ImagePreview key={src} src={src} isLoading={isLoading} onRemove={() => removeImage(src)} />
+                {images.map((image) => (
+                  <ImagePreview
+                    key={image.src}
+                    src={image.src}
+                    isLoading={image.isLoading}
+                    onRemove={() => removeImage(image.src)}
+                  />
                 ))}
-                {videoIds.map(id => (
+                {videoIds.map((id) => (
                   <VideoPreview key={id} videoId={id} onRemove={() => handleVideoRemove(id)} />
                 ))}
               </div>

@@ -1,9 +1,9 @@
-import React from 'react';
 import { $generateHtmlFromNodes, $generateNodesFromDOM } from '@lexical/html';
-import { $isRootTextContentEmpty } from '@lexical/text';
-import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext';
 import { ClearEditorPlugin } from '@lexical/react/LexicalClearEditorPlugin';
+import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext';
+import { $isRootTextContentEmpty } from '@lexical/text';
 import { $getRoot, $insertNodes, BLUR_COMMAND, CLEAR_EDITOR_COMMAND } from 'lexical';
+import React from 'react';
 
 interface Props {
   value?: string;

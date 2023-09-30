@@ -1,3 +1,4 @@
+import { Select, SelectItem } from '@nextui-org/react';
 import React from 'react';
 import { Control, FieldErrors, UseFormRegister } from 'react-hook-form';
 
@@ -6,7 +7,6 @@ import { VALIDATION_RULES } from '../../../constants/validationRules';
 import { Skill } from '../../../typings/skill';
 import { Tag } from '../../various/Tag';
 import { DefaultValues } from './constants';
-import { Select, SelectItem } from '@nextui-org/react';
 
 interface Props {
   control: Control<DefaultValues>;

@@ -1,14 +1,14 @@
 import React from 'react';
 import { useQuery } from 'react-query';
-import { JobCard } from '../../jobs/JobCard';
+import { Common } from 'typings/common';
 
-import styles from './RecentJob.module.scss';
 import { requestProfessionalJobs } from '../../../services/professional';
 import { Job } from '../../../typings/job';
-import { Rating } from '../../various/Rating';
-import { RecentJobsSkeleton } from './RecentJobsSkeleton';
+import { JobCard } from '../../jobs/JobCard';
 import { EmptyState } from '../../various/EmptyState';
-import { Common } from 'typings/common';
+import { Rating } from '../../various/Rating';
+import styles from './RecentJob.module.scss';
+import { RecentJobsSkeleton } from './RecentJobsSkeleton';
 
 interface Props {
   id: Common.Id;
@@ -49,7 +49,6 @@ export const RecentJobs = ({ id }: Props) => {
             key={jobOffer._id}
             jobOffer={jobOffer}
             footer={getCardFooter(jobOffer)}
-            hideApply
           />
         ))}
       </div>

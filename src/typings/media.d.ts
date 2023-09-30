@@ -1,4 +1,3 @@
-import mongoose from 'mongoose';
 import { Common } from './common';
 
 export namespace Media {

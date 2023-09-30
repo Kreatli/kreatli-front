@@ -1,4 +1,4 @@
-import { Button, Card, Input, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, Skeleton } from '@nextui-org/react';
+import { Button, Input, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader } from '@nextui-org/react';
 import React from 'react';
 
 interface Props {
@@ -7,7 +7,7 @@ interface Props {
   onClose: () => void;
 }
 
-const YOUTUBE_VIDEO_PATTERN = /^https?\:\/\/(?:www\.youtube(?:\-nocookie)?\.com\/|m\.youtube\.com\/|youtube\.com\/)?(?:ytscreeningroom\?vi?=|youtu\.be\/|vi?\/|user\/.+\/u\/\w{1,2}\/|embed\/|watch\?(?:.*\&)?vi?=|\&vi?=|\?(?:.*\&)?vi?=)([^#\&\?\n\/<>"']+)/;
+const YOUTUBE_VIDEO_PATTERN = /^https?:\/\/(?:www\.youtube(?:-nocookie)?\.com\/|m\.youtube\.com\/|youtube\.com\/)?(?:ytscreeningroom\?vi?=|youtu\.be\/|vi?\/|user\/.+\/u\/\w{1,2}\/|embed\/|watch\?(?:.*&)?vi?=|&vi?=|\?(?:.*&)?vi?=)([^#&?\n/<>"']+)/;
 
 export const VideoUploaderModal = ({ isOpen, onUpload, onClose }: Props) => {
   const [src, setUrl] = React.useState('');
@@ -65,22 +65,23 @@ export const VideoUploaderModal = ({ isOpen, onUpload, onClose }: Props) => {
             />
             {videoId
               ? (
-                  <div className="rounded-lg h-80 overflow-hidden">
-                    <iframe
-                      src={`https://www.youtube.com/embed/${videoId}`}
-                      className="w-full h-full"
-                      frameBorder="0"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      allowFullScreen
-                      sandbox="allow-same-origin allow-scripts allow-presentation"
-                    />
-                  </div>
-                )
+                <div className="rounded-lg h-80 overflow-hidden">
+                  <iframe
+                    title={videoId}
+                    src={`https://www.youtube.com/embed/${videoId}`}
+                    className="w-full h-full"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    sandbox="allow-same-origin allow-scripts allow-presentation"
+                  />
+                </div>
+              )
               : (
-                  <div className="flex items-center justify-center text-default-400 p-4 text-center border-1 border-dashed rounded-lg h-80 text-sm">
-                    If the video URL is valid, the video preview will be displayed here
-                  </div>
-                )}
+                <div className="flex items-center justify-center text-default-400 p-4 text-center border-1 border-dashed rounded-lg h-80 text-sm">
+                  If the video URL is valid, the video preview will be displayed here
+                </div>
+              )}
           </div>
         </ModalBody>
         <ModalFooter className="justify-center">

@@ -2,6 +2,7 @@ import React from 'react';
 import { FileRejection, useDropzone } from 'react-dropzone';
 import { useMutation } from 'react-query';
 import { requestImageUpload } from 'services/upload';
+
 import { useNotifications } from './useNotifications';
 
 interface Image {
@@ -31,7 +32,7 @@ export const useImagesUpload = () => {
       isLoading: true,
     }));
 
-    setImages(images => [...images, ...previewImages]);
+    setImages((imgs) => [...imgs, ...previewImages]);
 
     const promises = files.map((file) => {
       const formData = new FormData();
@@ -39,16 +40,16 @@ export const useImagesUpload = () => {
       return mutateAsync(formData);
     });
 
-    Promise.all(promises).then(uploadedImages => {
-      setImages(images => [
-        ...images.slice(0, -uploadedImages.length),
-        ...uploadedImages.map(({ secure_url }) => ({ src: secure_url, isLoading: false }))
+    Promise.all(promises).then((uploadedImages) => {
+      setImages((imgs) => [
+        ...imgs.slice(0, -uploadedImages.length),
+        ...uploadedImages.map(({ secure_url }) => ({ src: secure_url, isLoading: false })),
       ]);
     });
   };
 
   const handleDropRejected = (rejectedFiles: FileRejection[]) => {
-    const isMaxFilesError = rejectedFiles.some(({ errors }) => errors.some(error => error.code === 'too-many-files'));
+    const isMaxFilesError = rejectedFiles.some(({ errors }) => errors.some((error) => error.code === 'too-many-files'));
 
     if (isMaxFilesError) {
       return pushNotification({
@@ -97,5 +98,5 @@ export const useImagesUpload = () => {
     getInputProps,
     removeImage,
     setImages,
-  }
+  };
 };

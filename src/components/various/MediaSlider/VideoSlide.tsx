@@ -1,5 +1,4 @@
 import React from 'react';
-import { Image } from '@nextui-org/react';
 import { Media } from 'typings/media';
 
 interface Props extends Media.Video {}
@@ -7,6 +6,7 @@ interface Props extends Media.Video {}
 export const VideoSlide = ({ videoId }: Props) => {
   return (
     <iframe
+      title={videoId}
       src={`https://www.youtube.com/embed/${videoId}`}
       loading="lazy"
       className="w-full h-full rounded-large"

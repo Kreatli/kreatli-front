@@ -25,7 +25,9 @@ interface Props {
   onHire?: () => void;
 }
 
-export const JobApplicationContent = ({ professional, jobOfferId, jobOfferStatus, jobApplicationId, coverLetter, status, onReject, onHire }: Props) => {
+export const JobApplicationContent = (props: Props) => {
+  const { professional, jobOfferId, jobOfferStatus, jobApplicationId, coverLetter, status, onReject, onHire } = props;
+
   const [isRejectConfirmationOpen, setIsRejectConfirmationOpen] = React.useState(false);
   const [isAcceptConfirmationOpen, setIsAcceptConfirmationOpen] = React.useState(false);
   const { pushNotification } = useNotifications();

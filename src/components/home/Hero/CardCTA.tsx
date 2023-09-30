@@ -1,5 +1,4 @@
 import { Button, Card, CardBody, CardFooter, CardHeader, Image } from '@nextui-org/react';
-import NextImage from 'next/image';
 import React from 'react';
 
 export const CardCTA: React.FC = () => {

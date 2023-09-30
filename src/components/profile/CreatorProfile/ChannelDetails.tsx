@@ -1,6 +1,6 @@
-import { Button, Card, CardBody, CardFooter, CardHeader, Divider, Image, Link, Tooltip, User } from '@nextui-org/react';
-import React from 'react';
+import { Button, Card, CardBody, CardFooter, CardHeader, Image, Link, Tooltip, User } from '@nextui-org/react';
 import NextLink from 'next/link';
+import React from 'react';
 import { useMutation, useQueryClient } from 'react-query';
 
 import { useNotifications } from '../../../hooks/useNotifications';

@@ -1,17 +1,17 @@
 import { Button, Pagination, Tab, Tabs } from '@nextui-org/react';
-import React from 'react';
-import NextLink from 'next/link';
 import cx from 'classnames';
+import { Icon } from 'components/various/Icon';
+import NextLink from 'next/link';
+import React from 'react';
 import { useQuery } from 'react-query';
 
-import { requestCurrentCreatorJobs } from '../../../services/creator';
-import styles from './MyJobs.module.scss';
-import { MyJobsSkeleton } from './MyJobsSkeleton';
-import { EmptyState } from '../../various/EmptyState';
-import { MyJobsOffer } from './MyJobsOffer';
-import { Job } from '../../../typings/job';
 import { useBreakpointValue } from '../../../hooks/useBreakpointValue';
-import { Icon } from 'components/various/Icon';
+import { requestCurrentCreatorJobs } from '../../../services/creator';
+import { Job } from '../../../typings/job';
+import { EmptyState } from '../../various/EmptyState';
+import styles from './MyJobs.module.scss';
+import { MyJobsOffer } from './MyJobsOffer';
+import { MyJobsSkeleton } from './MyJobsSkeleton';
 
 const PAGE_LIMIT = 5;
 

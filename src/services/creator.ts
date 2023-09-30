@@ -1,5 +1,5 @@
-import { Common } from '../typings/common';
 import { Api } from '../typings/api';
+import { Common } from '../typings/common';
 import { api } from './api';
 
 export const requestCurrentCreatorJobs = (params?: Api.GetParams['/creator/job-offers']) => {

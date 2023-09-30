@@ -1,11 +1,11 @@
 import React from 'react';
 import { useQuery } from 'react-query';
-import { requestCreatorJobs } from '../../../services/creator';
-import { JobCard } from '../../jobs/JobCard';
 
-import { PostedJobsSkeleton } from './PostedJobsSkeleton';
-import { EmptyState } from '../../various/EmptyState';
+import { requestCreatorJobs } from '../../../services/creator';
 import { Common } from '../../../typings/common';
+import { JobCard } from '../../jobs/JobCard';
+import { EmptyState } from '../../various/EmptyState';
+import { PostedJobsSkeleton } from './PostedJobsSkeleton';
 
 interface Props {
   id: Common.Id;
@@ -28,7 +28,7 @@ export const PostedJobs = ({ id }: Props) => {
         />
       )}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-       {shouldShowSkeleton && <PostedJobsSkeleton />}
+        {shouldShowSkeleton && <PostedJobsSkeleton />}
         {data?.map((jobOffer) => (
           <JobCard
             key={jobOffer._id}

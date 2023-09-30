@@ -1,17 +1,17 @@
-import { Button, Chip, Divider, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger, useDisclosure } from '@nextui-org/react';
-import { useMutation } from 'react-query';
+import { Button, Chip, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger, useDisclosure } from '@nextui-org/react';
 import React from 'react';
+import { useMutation } from 'react-query';
 
-import { JobCard } from '../JobCard';
 import { JOB_APPLICATION_STATUS_COLORS, JOB_APPLICATION_STATUS_LABELS, JOB_OFFER_STATUS_COLORS, JOB_OFFER_STATUS_LABELS } from '../../../constants/job';
-import { Job } from '../../../typings/job';
-import { Icon } from '../../various/Icon';
 import { useNotifications } from '../../../hooks/useNotifications';
-import { getErrorMessage } from '../../../utils/getErrorMessage';
-import { requestJobApplicationCancel } from '../../../services/job';
-import { JobReviewModal } from '../JobReviewModal';
-import { Rating } from '../../various/Rating';
 import { useSession } from '../../../hooks/useSession';
+import { requestJobApplicationCancel } from '../../../services/job';
+import { Job } from '../../../typings/job';
+import { getErrorMessage } from '../../../utils/getErrorMessage';
+import { Icon } from '../../various/Icon';
+import { Rating } from '../../various/Rating';
+import { JobCard } from '../JobCard';
+import { JobReviewModal } from '../JobReviewModal';
 
 interface Props {
   jobOffer: Job.Offer;
@@ -27,6 +27,7 @@ export const MyJobsApplication = ({ jobOffer, onCancel, onComplete }: Props) => 
   const isHired = jobApplication.status === 'hired';
   const isCompleted = jobOffer.status === 'completed';
   const isOngoing = jobOffer.status === 'ongoing';
+  const isPending = jobApplication.status === 'pending';
   const isCurrentUserHired = jobOffer.hiredProfessional === currentUserId;
   const hasLeftReview = !!jobOffer.reviews.professional;
 
@@ -57,8 +58,6 @@ export const MyJobsApplication = ({ jobOffer, onCancel, onComplete }: Props) => 
     onOpen();
   };
 
-  const isPending = jobApplication.status === 'pending';
-
   const dropdownMenu = [
     ...(isPending ? [{
       label: 'Cancel application',
@@ -80,8 +79,12 @@ export const MyJobsApplication = ({ jobOffer, onCancel, onComplete }: Props) => 
   ];
 
   const creatorReview = jobOffer.reviews.creator;
-  const chipColor = isHired ? JOB_OFFER_STATUS_COLORS[jobOffer.status] : JOB_APPLICATION_STATUS_COLORS[jobApplication.status];
-  const chipLabel = isHired ? JOB_OFFER_STATUS_LABELS[jobOffer.status] : JOB_APPLICATION_STATUS_LABELS[jobApplication.status];
+  const chipColor = isHired
+    ? JOB_OFFER_STATUS_COLORS[jobOffer.status]
+    : JOB_APPLICATION_STATUS_COLORS[jobApplication.status];
+  const chipLabel = isHired
+    ? JOB_OFFER_STATUS_LABELS[jobOffer.status]
+    : JOB_APPLICATION_STATUS_LABELS[jobApplication.status];
 
   const cardHeader = (
     <div className="flex items-center justify-between h-[32px] -mt-2 mb-2">
@@ -102,7 +105,14 @@ export const MyJobsApplication = ({ jobOffer, onCancel, onComplete }: Props) => 
           </DropdownTrigger>
           <DropdownMenu variant="flat" onAction={handleAction}>
             {dropdownMenu.map(({ icon, color, label, size, className }) => (
-              <DropdownItem className={className} key={label} startContent={<Icon icon={icon} size={size} />} color={color}>{label}</DropdownItem>
+              <DropdownItem
+                className={className}
+                key={label}
+                startContent={<Icon icon={icon} size={size} />}
+                color={color}
+              >
+                {label}
+              </DropdownItem>
             ))}
           </DropdownMenu>
         </Dropdown>

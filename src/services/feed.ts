@@ -1,6 +1,7 @@
-import { Api } from "typings/api";
-import { api } from "./api";
-import { Common } from "typings/common";
+import { Api } from 'typings/api';
+import { Common } from 'typings/common';
+
+import { api } from './api';
 
 export const requestPostCreation = (data: Api.PostPayload['/post']) => {
   return api.post('/post', data).then((res) => res.data);

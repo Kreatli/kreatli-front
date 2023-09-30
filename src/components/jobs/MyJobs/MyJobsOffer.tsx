@@ -1,17 +1,17 @@
 import { Button, Chip, Divider, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger, useDisclosure } from '@nextui-org/react';
 import React from 'react';
+import { useMutation } from 'react-query';
 
+import { JOB_OFFER_STATUS_COLORS, JOB_OFFER_STATUS_LABELS } from '../../../constants/job';
+import { useNotifications } from '../../../hooks/useNotifications';
+import { requestJobOfferCancel } from '../../../services/job';
+import { Job } from '../../../typings/job';
+import { getErrorMessage } from '../../../utils/getErrorMessage';
+import { Icon } from '../../various/Icon';
+import { Rating } from '../../various/Rating';
 import { JobApplications } from '../JobApplications';
 import { JobCard } from '../JobCard';
-import { JOB_OFFER_STATUS_COLORS, JOB_OFFER_STATUS_LABELS } from '../../../constants/job';
-import { Job } from '../../../typings/job';
-import { useMutation } from 'react-query';
-import { requestJobOfferCancel } from '../../../services/job';
-import { getErrorMessage } from '../../../utils/getErrorMessage';
-import { useNotifications } from '../../../hooks/useNotifications';
-import { Icon } from '../../various/Icon';
 import { JobReviewModal } from '../JobReviewModal';
-import { Rating } from '../../various/Rating';
 
 interface Props {
   jobOffer: Job.Offer;
@@ -27,7 +27,10 @@ export const MyJobsOffer = ({ jobOffer, onCancel, onComplete, onHire, onReject }
   const isCompleted = jobOffer.status === 'completed';
   const hasLeftReview = !!jobOffer.reviews.creator;
   const professionalReview = jobOffer.reviews.professional;
-  const hiredProfessional = jobOffer.applications.find(({ professional }) => professional._id === jobOffer.hiredProfessional)?.professional;
+  const hiredApplication = jobOffer.applications.find(({ professional }) => (
+    professional._id === jobOffer.hiredProfessional
+  ));
+  const hiredProfessional = hiredApplication?.professional;
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { pushNotification } = useNotifications();
 
@@ -96,7 +99,14 @@ export const MyJobsOffer = ({ jobOffer, onCancel, onComplete, onHire, onReject }
           </DropdownTrigger>
           <DropdownMenu variant="flat" onAction={handleAction}>
             {dropdownMenu.map(({ icon, color, label, size, className }) => (
-              <DropdownItem key={label} className={className} startContent={<Icon icon={icon} size={size} />} color={color}>{label}</DropdownItem>
+              <DropdownItem
+                key={label}
+                className={className}
+                startContent={<Icon icon={icon} size={size} />}
+                color={color}
+              >
+                {label}
+              </DropdownItem>
             ))}
           </DropdownMenu>
         </Dropdown>

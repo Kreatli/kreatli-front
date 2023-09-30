@@ -1,4 +1,4 @@
-import { Avatar, Button, Dropdown, DropdownItem, DropdownItemProps, DropdownMenu, DropdownTrigger, Link, Navbar, NavbarBrand, NavbarContent, NavbarItem, NavbarMenu, NavbarMenuItem, NavbarMenuToggle, useDisclosure } from '@nextui-org/react';
+import { Avatar, Button, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger, Link, Navbar, NavbarBrand, NavbarContent, NavbarItem, NavbarMenu, NavbarMenuItem, NavbarMenuToggle, useDisclosure } from '@nextui-org/react';
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
@@ -7,11 +7,6 @@ import LogoIcon from '../../../assets/images/logo.svg';
 import { useSession } from '../../../hooks/useSession';
 import { SignInModal } from '../../auth/SignInModal';
 import { Icon } from '../../various/Icon';
-
-interface DropdownItem extends Partial<DropdownItemProps> {
-  label: string;
-  key: string;
-}
 
 export const Header: React.FC = () => {
   const router = useRouter();
@@ -44,7 +39,7 @@ export const Header: React.FC = () => {
     ] : []),
   ];
 
-  const dropdownItems: DropdownItem[] = [
+  const dropdownItems = [
     ...(!isSignedIn ? [{
       label: 'Sign in',
       key: 'signIn',
@@ -118,7 +113,7 @@ export const Header: React.FC = () => {
       </NavbarContent>
       <NavbarContent justify="center" className="hidden sm:flex">
         {navigationItems.map(({ label, ...props }) => (
-          <NavbarItem key={label} >
+          <NavbarItem key={label}>
             <Link as={NextLink} color="foreground" {...props}>{label}</Link>
           </NavbarItem>
         ))}

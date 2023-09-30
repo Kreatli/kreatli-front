@@ -1,3 +1,4 @@
+import { Spinner } from '@nextui-org/react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import React from 'react';
@@ -6,7 +7,6 @@ import { useMutation } from 'react-query';
 import { useNotifications } from '../../hooks/useNotifications';
 import { requestUserActivation } from '../../services/auth';
 import { getErrorMessage } from '../../utils/getErrorMessage';
-import { Spinner } from '@nextui-org/react';
 
 const AccountActivation: React.FC = () => {
   const router = useRouter();

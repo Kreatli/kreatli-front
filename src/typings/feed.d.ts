@@ -1,8 +1,6 @@
-import mongoose from 'mongoose';
-
+import { Common } from './common';
 import { Media } from './media';
 import { User } from './user';
-import { Common } from './common';
 
 export namespace Feed {
   export interface Post {

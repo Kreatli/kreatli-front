@@ -56,7 +56,7 @@ export const PostContextProvider = ({ children, post: initialPost }: Props) => {
     commentsRef,
     comment,
     parentCommentId,
-    post: post,
+    post,
     setPost,
     replyToComment,
     setComment,

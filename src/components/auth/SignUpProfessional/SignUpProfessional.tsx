@@ -1,4 +1,4 @@
-import { Button, Accordion, AccordionItem, Progress, Selection } from '@nextui-org/react';
+import { Accordion, AccordionItem, Button, Progress, Selection } from '@nextui-org/react';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useMutation } from 'react-query';
@@ -121,7 +121,7 @@ export const SignUpProfessional: React.FC = () => {
     steps
       .map((_, index) => index)
       .filter((index) => isSuccess || isLoading || (index > 0 && !isFilledByStep[index - 1]))
-      .map((index) => index.toString())
+      .map((index) => index.toString()),
   );
 
   return (

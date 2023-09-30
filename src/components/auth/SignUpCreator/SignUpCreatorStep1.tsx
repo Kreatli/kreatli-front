@@ -4,8 +4,8 @@ import { FieldErrors, UseFormRegister } from 'react-hook-form';
 
 import { COUNTRIES } from '../../../constants/countries';
 import { VALIDATION_RULES } from '../../../constants/validationRules';
-import { DefaultValues } from './constants';
 import { InputPassword } from '../../various/InputPassword';
+import { DefaultValues } from './constants';
 
 interface Props {
   errors: FieldErrors<DefaultValues>;

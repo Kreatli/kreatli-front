@@ -1,14 +1,14 @@
 import { Pagination, Tab, Tabs } from '@nextui-org/react';
-import React from 'react';
 import cx from 'classnames';
+import React from 'react';
 import { useQuery } from 'react-query';
 
 import { requestCurrentProfessionalJobs } from '../../../services/professional';
-import styles from './MyJobs.module.scss';
-import { MyJobsSkeleton } from './MyJobsSkeleton';
-import { EmptyState } from '../../various/EmptyState';
-import { MyJobsApplication } from './MyJobsApplication';
 import { Job } from '../../../typings/job';
+import { EmptyState } from '../../various/EmptyState';
+import styles from './MyJobs.module.scss';
+import { MyJobsApplication } from './MyJobsApplication';
+import { MyJobsSkeleton } from './MyJobsSkeleton';
 
 const PAGE_LIMIT = 5;
 

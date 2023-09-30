@@ -1,11 +1,11 @@
 import { Avatar, Button, Card, CardBody, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger } from '@nextui-org/react';
+import { Icon } from 'components/various/Icon';
 import NextLink from 'next/link';
 import React from 'react';
 
 import { User } from '../../../typings/user';
 import { getUserSkills } from '../../../utils/user';
 import { ProfileBadge } from '../Profile/ProfileBadge';
-import { Icon } from 'components/various/Icon';
 
 interface Props {
   user: User.ShortInfo;

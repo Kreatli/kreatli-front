@@ -14,7 +14,7 @@ interface Props {
 }
 
 export const InvitationCard = ({ invitation }: Props) => {
-  const { inviter, message } = invitation;
+  const { inviter } = invitation;
   const { currentUser } = useSession();
   const { isLoading, handleAccept, handleReject } = useUserInvitation({
     invitationId: invitation._id,
@@ -46,7 +46,7 @@ export const InvitationCard = ({ invitation }: Props) => {
       </CardHeader>
       {true && (
         <CardBody className="pt-0">
-          <p className="text-sm">Hello! My name is Yury. Let's chat</p>
+          <p className="text-sm">Hello! My name is Yury. Let&apos;s chat</p>
         </CardBody>
       )}
     </Card>

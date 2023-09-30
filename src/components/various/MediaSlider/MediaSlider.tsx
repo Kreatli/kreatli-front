@@ -1,7 +1,7 @@
-import { Image } from '@nextui-org/react';
 import React from 'react';
-import { Icon } from '../Icon';
 import { Media } from 'typings/media';
+
+import { Icon } from '../Icon';
 import { ImageSlide } from './ImageSlide';
 import { VideoSlide } from './VideoSlide';
 

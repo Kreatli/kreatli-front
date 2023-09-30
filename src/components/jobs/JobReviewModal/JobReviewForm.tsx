@@ -1,15 +1,16 @@
-import React from 'react';
-import { Common } from '../../../typings/common';
-import { useForm } from 'react-hook-form';
-import { useNotifications } from '../../../hooks/useNotifications';
-import { useMutation } from 'react-query';
-import { getErrorMessage } from '../../../utils/getErrorMessage';
 import { Button, Radio, RadioGroup, Textarea } from '@nextui-org/react';
+import React from 'react';
+import { useForm } from 'react-hook-form';
+import { useMutation } from 'react-query';
+
 import { VALIDATION_RULES } from '../../../constants/validationRules';
-import { requestJobOfferComplete, requestJobOfferReview } from '../../../services/job';
-import { Job } from '../../../typings/job';
-import { Rating } from '../../various/Rating';
+import { useNotifications } from '../../../hooks/useNotifications';
 import { useSession } from '../../../hooks/useSession';
+import { requestJobOfferComplete, requestJobOfferReview } from '../../../services/job';
+import { Common } from '../../../typings/common';
+import { Job } from '../../../typings/job';
+import { getErrorMessage } from '../../../utils/getErrorMessage';
+import { Rating } from '../../various/Rating';
 
 interface Props {
   jobOfferId: Common.Id;

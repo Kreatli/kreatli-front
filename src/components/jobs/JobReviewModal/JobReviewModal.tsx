@@ -1,9 +1,10 @@
 import { Modal, ModalBody, ModalContent, ModalHeader } from '@nextui-org/react';
 import React from 'react';
-import { Common } from '../../../typings/common';
-import { JobReviewForm } from './JobReviewForm';
+
 import { useSession } from '../../../hooks/useSession';
+import { Common } from '../../../typings/common';
 import { Job } from '../../../typings/job';
+import { JobReviewForm } from './JobReviewForm';
 
 interface Props {
   jobOfferId: Common.Id;
@@ -29,7 +30,12 @@ export const JobReviewModal = ({ jobOfferId, jobOfferStatus, isOpen, onClose, on
         <ModalHeader>Rate your experience</ModalHeader>
         <ModalBody className="gap-4">
           <p>{modalDescription}</p>
-          <JobReviewForm jobOfferId={jobOfferId} jobOfferStatus={jobOfferStatus} onCancel={onClose} onSuccess={handleSuccess} />
+          <JobReviewForm
+            jobOfferId={jobOfferId}
+            jobOfferStatus={jobOfferStatus}
+            onCancel={onClose}
+            onSuccess={handleSuccess}
+          />
         </ModalBody>
       </ModalContent>
     </Modal>

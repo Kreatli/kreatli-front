@@ -1,6 +1,6 @@
 import { Button, Card, CardBody, CardFooter, Divider, Link, User } from '@nextui-org/react';
-import NextLink from 'next/link';
 import cx from 'classnames';
+import NextLink from 'next/link';
 import React from 'react';
 
 import { SKILL_EMOJIS } from '../../../constants/skills';
@@ -17,7 +17,6 @@ interface Props {
   header?: React.ReactNode;
   footer?: React.ReactNode;
   hideCreator?: boolean;
-  hideApply?: boolean;
 }
 
 export const JobCard = (props: Props) => {

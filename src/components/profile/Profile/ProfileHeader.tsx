@@ -2,12 +2,12 @@ import { Avatar, Button, Link } from '@nextui-org/react';
 import NextLink from 'next/link';
 import React from 'react';
 
+import { useBreakpointValue } from '../../../hooks/useBreakpointValue';
 import { useSession } from '../../../hooks/useSession';
 import { User } from '../../../typings/user';
 import { Icon } from '../../various/Icon';
-import { useBreakpointValue } from '../../../hooks/useBreakpointValue';
-import { ProfileBadge } from './ProfileBadge';
 import { ConnectionButton } from '../Connections/ConnectionButton';
+import { ProfileBadge } from './ProfileBadge';
 
 interface Props {
   user: User.Type;

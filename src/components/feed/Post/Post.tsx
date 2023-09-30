@@ -1,15 +1,16 @@
 import { Button, Card, CardBody, CardFooter, CardHeader, Link, User } from '@nextui-org/react';
+import { ConnectionButton } from 'components/profile/Connections/ConnectionButton';
 import { Icon } from 'components/various/Icon';
 import { MediaSlider } from 'components/various/MediaSlider';
-import React from 'react';
+import { PostContext } from 'contexts/Post';
+import { useBreakpointValue } from 'hooks/useBreakpointValue';
+import { useSession } from 'hooks/useSession';
 import NextLink from 'next/link';
+import React from 'react';
 import { formatRelativeTime } from 'utils/dates';
+
 import { Comments } from '../Comments';
 import { PostLikeButton } from './PostLikeButton';
-import { PostContext } from 'contexts/Post';
-import { ConnectionButton } from 'components/profile/Connections/ConnectionButton';
-import { useSession } from 'hooks/useSession';
-import { useBreakpointValue } from 'hooks/useBreakpointValue';
 
 const POST_TEXT_LIMIT = 300;
 const POST_CONTENT_LIMIT = 350;
@@ -48,11 +49,11 @@ export const Post = () => {
         <div className="contents [&>*]:contents" dangerouslySetInnerHTML={{ __html: `${content.slice(0, POST_CONTENT_LIMIT)}... ` }} />
         <Link as="button" color="secondary" onClick={() => setIsContentExpanded(true)}>show more</Link>
       </>
-    )
+    );
   }, [isContentExpanded, content]);
 
   const toggleComments = () => {
-    setAreCommentsExpanded(isExpanded => !isExpanded);
+    setAreCommentsExpanded((isExpanded) => !isExpanded);
   };
 
   const isMyPost = authorId === currentUserId;
@@ -79,19 +80,19 @@ export const Post = () => {
             <PostLikeButton postId={postId} hasLiked={hasLiked} likeCount={likeCount} />
             {isMyPost
               ? (
-                  // TODO: edit post modal
-                  <Button variant="flat" color="secondary" isIconOnly={isMobile} startContent={<Icon icon="edit" size={20} />}>
-                    {!isMobile && 'Edit post'}
-                  </Button>
-                ) : (
-                  <ConnectionButton
-                    hasConnection={hasConnection ?? false}
-                    hasInvitation={hasInvitation ?? false}
-                    inviteeName={authorName}
-                    userId={authorId}
-                    mode="redirect"
-                  />
-                )}
+            // TODO: edit post modal
+                <Button variant="flat" color="secondary" isIconOnly={isMobile} startContent={<Icon icon="edit" size={20} />}>
+                  {!isMobile && 'Edit post'}
+                </Button>
+              ) : (
+                <ConnectionButton
+                  hasConnection={hasConnection ?? false}
+                  hasInvitation={hasInvitation ?? false}
+                  inviteeName={authorName}
+                  userId={authorId}
+                  mode="redirect"
+                />
+              )}
           </div>
         </CardHeader>
         <CardBody className="py-0 gap-4">

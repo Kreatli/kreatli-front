@@ -1,6 +1,7 @@
 import { Button, useDisclosure } from '@nextui-org/react';
-import React from 'react';
+import { useBreakpointValue } from 'hooks/useBreakpointValue';
 import NextLink from 'next/link';
+import React from 'react';
 
 import { useSession } from '../../../hooks/useSession';
 import { useUserInvitation } from '../../../hooks/useUserInvitation';
@@ -8,7 +9,6 @@ import { Common } from '../../../typings/common';
 import { Icon } from '../../various/Icon';
 import { InvitationModal } from '../InvitationModal/InvitationModal';
 import { ProfileUnverifiedTooltip } from '../Profile/ProfileUnverifiedTooltip';
-import { useBreakpointValue } from 'hooks/useBreakpointValue';
 
 interface Props {
   userId: Common.Id;

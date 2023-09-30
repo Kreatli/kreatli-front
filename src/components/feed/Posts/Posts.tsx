@@ -1,11 +1,12 @@
-import React from 'react';
-import { Post } from '../Post';
-import { useInfiniteQuery } from 'react-query';
-import { requestPosts } from 'services/feed';
+import { EmptyState } from 'components/various/EmptyState';
 import { LazyList } from 'components/various/LazyList';
 import { PostContextProvider } from 'contexts/Post';
 import { usePostsFilters } from 'hooks/usePostsFilters';
-import { EmptyState } from 'components/various/EmptyState';
+import React from 'react';
+import { useInfiniteQuery } from 'react-query';
+import { requestPosts } from 'services/feed';
+
+import { Post } from '../Post';
 import { PostsSkeleton } from './PostsSkeleton';
 
 const LIMIT = 10;
@@ -49,7 +50,7 @@ export const Posts = () => {
   return (
     <LazyList isLoading={isFetchingNextPage} hasMore={hasNextPage} onLoadMore={fetchNextPage}>
       <div className={`relative flex flex-col gap-8 ${shouldShowLoader ? 'pointer-events-none' : ''}`}>
-        {posts.map(post => (
+        {posts.map((post) => (
           <PostContextProvider key={post._id} post={post}>
             <Post />
           </PostContextProvider>

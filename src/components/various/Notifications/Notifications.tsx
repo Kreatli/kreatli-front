@@ -2,7 +2,6 @@ import { Card, CardBody } from '@nextui-org/react';
 import React from 'react';
 
 import { useNotifications } from '../../../hooks/useNotifications';
-import { Notification } from '../../../typings/components/notification';
 import { Icon } from '../Icon';
 import styles from './Notifications.module.scss';
 

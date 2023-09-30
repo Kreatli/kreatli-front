@@ -1,9 +1,9 @@
 import Head from 'next/head';
 import React from 'react';
 
+import { Feed } from '../components/feed/Feed';
 import { Hero } from '../components/home/Hero';
 import { useSession } from '../hooks/useSession';
-import { Feed } from '../components/feed/Feed';
 
 export default function Home() {
   const { isSignedIn } = useSession();

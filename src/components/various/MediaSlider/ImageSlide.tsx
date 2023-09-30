@@ -1,5 +1,5 @@
-import React from 'react';
 import { Image } from '@nextui-org/react';
+import React from 'react';
 import { Media } from 'typings/media';
 
 interface Props extends Media.Image {}

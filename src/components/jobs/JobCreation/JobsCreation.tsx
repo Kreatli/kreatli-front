@@ -1,10 +1,12 @@
-import { Button, Accordion, AccordionItem, Progress, Selection } from '@nextui-org/react';
+import { Accordion, AccordionItem, Button, Progress, Selection } from '@nextui-org/react';
+import { useRouter } from 'next/router';
 import { omit } from 'ramda';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useMutation } from 'react-query';
 
 import { useNotifications } from '../../../hooks/useNotifications';
+import { useSession } from '../../../hooks/useSession';
 import { requestJobOfferCreation } from '../../../services/job';
 import { getErrorMessage } from '../../../utils/getErrorMessage';
 import { Icon } from '../../various/Icon';
@@ -14,8 +16,6 @@ import { JobsCreationStep2 } from './JobsCreationStep2';
 import { JobsCreationStep3 } from './JobsCreationStep3';
 import { JobsCreationStep4 } from './JobsCreationStep4';
 import { JobsCreationStep5 } from './JobsCreationStep5';
-import { useRouter } from 'next/router';
-import { useSession } from '../../../hooks/useSession';
 
 const FIELDS_BY_STEP = [
   ['title', 'shortDescription', 'description'],

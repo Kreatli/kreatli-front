@@ -41,7 +41,7 @@ const getCropDimensions = (crop: Crop | undefined, originalDimensions: { width: 
 export const AvatarUploader = <T extends FieldValues>({ control, name, rules, status, label = 'avatar' }: Props<T>) => {
   const [selectedFile, setSelectedFile] = React.useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = React.useState('');
-  const {isOpen, onOpen, onClose } = useDisclosure();
+  const { isOpen, onOpen, onClose } = useDisclosure();
   const [crop, setCrop] = React.useState<Crop>();
   const [uploadedImageUrl, setUploadedImageUrl] = React.useState('');
   const [imageDimensions, setImageDimensions] = React.useState({ width: 0, height: 0 });

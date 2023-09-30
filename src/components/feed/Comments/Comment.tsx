@@ -1,20 +1,22 @@
 import { Button, Link, User } from '@nextui-org/react';
-import React from 'react';
-import { Common } from 'typings/common';
-import NextLink from 'next/link';
-import { formatRelativeTime } from 'utils/dates';
 import { Icon } from 'components/various/Icon';
 import { PostContext } from 'contexts/Post';
-import { Feed } from 'typings/feed';
+import NextLink from 'next/link';
+import React from 'react';
 import { useMutation } from 'react-query';
 import { requestLikePostComment } from 'services/feed';
+import { Common } from 'typings/common';
+import { Feed } from 'typings/feed';
+import { formatRelativeTime } from 'utils/dates';
 
 interface Props extends Feed.Comment {
   parentCommentId?: Common.Id;
 }
 
-export const Comment = ({ _id, author, content, creationDate, parentCommentId, likeCount, comments, hasLiked }: Props) => {
+export const Comment = (props: Props) => {
+  const { _id: commentId, author, content, creationDate, parentCommentId, likeCount, comments, hasLiked } = props;
   const { _id: authorId, name: authorName, avatarUrl } = author;
+
   const [isLiked, setIsLiked] = React.useState(hasLiked);
   const [areAnswersVisible, setAreAnswersVisible] = React.useState(false);
   const { post: { _id: postId }, setPost, replyToComment } = React.useContext(PostContext);
@@ -26,12 +28,12 @@ export const Comment = ({ _id, author, content, creationDate, parentCommentId, l
   });
 
   const toggleLike = () => {
-    mutate([postId, _id]);
-    setIsLiked(liked => !liked);
+    mutate([postId, commentId]);
+    setIsLiked((liked) => !liked);
   };
 
   const toggleAnswersVisibility = () => {
-    setAreAnswersVisible(areVisible => !areVisible);
+    setAreAnswersVisible((areVisible) => !areVisible);
   };
 
   return (
@@ -49,7 +51,7 @@ export const Comment = ({ _id, author, content, creationDate, parentCommentId, l
       <div className="flex gap-2 w-full">
         <div className="flex-1 flex flex-col gap-2">
           <p className="text-sm">{content}</p>
-          <Link as="button" size="sm" className="text-default-400" onClick={() => replyToComment(parentCommentId ?? _id, authorName)}>
+          <Link as="button" size="sm" className="text-default-400" onClick={() => replyToComment(parentCommentId ?? commentId, authorName)}>
             <Icon icon="reply" size={20} />
             Reply
           </Link>
@@ -67,8 +69,8 @@ export const Comment = ({ _id, author, content, creationDate, parentCommentId, l
       )}
       {areAnswersVisible && (
         <div className="pl-10 border-t-1 pt-4 mt-2 w-full">
-          {comments.map(comment => (
-            <Comment key={comment._id} parentCommentId={_id} {...comment} />
+          {comments.map((comment) => (
+            <Comment key={comment._id} parentCommentId={commentId} {...comment} />
           ))}
         </div>
       )}
