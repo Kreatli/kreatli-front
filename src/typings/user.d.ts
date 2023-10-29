@@ -1,4 +1,5 @@
 import { Common } from './common';
+import { File } from './file';
 import { Skill, SkillLevel } from './skill';
 
 export namespace User {
@@ -72,7 +73,7 @@ export namespace User {
     certificates: {
       _id: Common.Id;
       name: string;
-      fileUrl: string;
+      file: File.Type | null;
       share: boolean;
     }[];
   }

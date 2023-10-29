@@ -1,6 +1,7 @@
 import { Avatar, Button, Card, CardBody, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger } from '@nextui-org/react';
 import { Icon } from 'components/various/Icon';
 import NextLink from 'next/link';
+import { useRouter } from 'next/router';
 import React from 'react';
 
 import { User } from '../../../typings/user';
@@ -13,6 +14,12 @@ interface Props {
 }
 
 export const ConnectionCard = ({ user, isMyAccount }: Props) => {
+  const router = useRouter();
+
+  const handleAction = () => {
+    router.push(`/chat/${user._id}`);
+  };
+
   return (
     <Card isHoverable>
       {isMyAccount && (
@@ -20,7 +27,7 @@ export const ConnectionCard = ({ user, isMyAccount }: Props) => {
           <DropdownTrigger>
             <Button className="absolute top-2 right-2" size="sm" variant="light" radius="full" isIconOnly><Icon icon="dots" size={20} /></Button>
           </DropdownTrigger>
-          <DropdownMenu variant="flat">
+          <DropdownMenu variant="flat" onAction={handleAction}>
             <DropdownItem startContent={<Icon icon="chat" size={18} />}>Message</DropdownItem>
           </DropdownMenu>
         </Dropdown>

@@ -1,17 +1,13 @@
-import { Button, Link, Popover, PopoverContent, PopoverTrigger } from '@nextui-org/react';
+import { Link } from '@nextui-org/react';
 import NextLink from 'next/link';
 import React from 'react';
-import { useMutation } from 'react-query';
 
 import { JOB_APPLICATION_STATUSES } from '../../../constants/job';
-import { useNotifications } from '../../../hooks/useNotifications';
-import { requestJobApplicationAccept, requestJobApplicationReject } from '../../../services/job';
 import { Common } from '../../../typings/common';
 import { Job } from '../../../typings/job';
 import { User } from '../../../typings/user';
-import { getErrorMessage } from '../../../utils/getErrorMessage';
 import { Alert } from '../../various/Alert';
-import { Icon } from '../../various/Icon';
+import { JobApplicationButtons } from './JobApplicationButtons';
 import styles from './JobApplications.module.scss';
 
 interface Props {
@@ -28,99 +24,24 @@ interface Props {
 export const JobApplicationContent = (props: Props) => {
   const { professional, jobOfferId, jobOfferStatus, jobApplicationId, coverLetter, status, onReject, onHire } = props;
 
-  const [isRejectConfirmationOpen, setIsRejectConfirmationOpen] = React.useState(false);
-  const [isAcceptConfirmationOpen, setIsAcceptConfirmationOpen] = React.useState(false);
-  const { pushNotification } = useNotifications();
   const isPending = status === JOB_APPLICATION_STATUSES.PENDING && jobOfferStatus !== 'canceled';
-
-  const { isLoading: isRejecting, mutate: mutateReject } = useMutation(requestJobApplicationReject, {
-    onSuccess: () => {
-      setIsRejectConfirmationOpen(false);
-      pushNotification({
-        message: 'The application was successfully rejected',
-        color: 'success',
-        icon: 'success',
-      });
-      onReject?.();
-    },
-    onError: (error) => {
-      pushNotification({
-        message: getErrorMessage(error),
-        color: 'danger',
-        icon: 'error',
-      });
-    },
-  });
-
-  const { isLoading: isAccepting, mutate: mutateAccept } = useMutation(requestJobApplicationAccept, {
-    onSuccess: () => {
-      setIsAcceptConfirmationOpen(false);
-      pushNotification({
-        message: 'The professional was successfully hired',
-        color: 'success',
-        icon: 'success',
-      });
-      onHire?.();
-    },
-    onError: (error) => {
-      pushNotification({
-        message: getErrorMessage(error),
-        color: 'danger',
-        icon: 'error',
-      });
-    },
-  });
-
-  const handleReject = () => {
-    mutateReject([jobOfferId, jobApplicationId]);
-  };
-
-  const handleAccept = () => {
-    mutateAccept([jobOfferId, jobApplicationId]);
-  };
 
   return (
     <div className={styles.jobApplicationContent}>
       {isPending && (
         <Alert text={`${professional.name} sends a request for collaboration for this project`}>
-          <Popover isOpen={isRejectConfirmationOpen} onOpenChange={setIsRejectConfirmationOpen}>
-            <PopoverTrigger>
-              <Button color="secondary" size="sm" radius="lg" variant="flat" startContent={<Icon icon="crossCircle" size={18} />}>
-                Reject
-              </Button>
-            </PopoverTrigger>
-            <PopoverContent>
-              <div className="py-2">
-                <p>Are you sure you want to reject this application?</p>
-                <div className="flex gap-2 mt-2">
-                  <Button isDisabled={isRejecting} size="sm" variant="light" onClick={() => setIsRejectConfirmationOpen(false)}>Cancel</Button>
-                  <Button isLoading={isRejecting} size="sm" variant="flat" color="danger" onClick={handleReject}>Reject</Button>
-                </div>
-              </div>
-            </PopoverContent>
-          </Popover>
-          <Popover isOpen={isAcceptConfirmationOpen} onOpenChange={setIsAcceptConfirmationOpen}>
-            <PopoverTrigger>
-              <Button color="secondary" size="sm" radius="lg" startContent={<Icon icon="checkCircle" size={18} />}>
-                Hire
-              </Button>
-            </PopoverTrigger>
-            <PopoverContent>
-              <div className="py-2">
-                <p>Are you sure you want to hire this professional?</p>
-                <div className="flex gap-2 mt-2">
-                  <Button isDisabled={isAccepting} size="sm" variant="light" onClick={() => setIsAcceptConfirmationOpen(false)}>Cancel</Button>
-                  <Button isLoading={isAccepting} size="sm" variant="flat" color="success" onClick={handleAccept}>Hire</Button>
-                </div>
-              </div>
-            </PopoverContent>
-          </Popover>
+          <JobApplicationButtons
+            jobOfferId={jobOfferId}
+            jobApplicationId={jobApplicationId}
+            onHire={onHire}
+            onReject={onReject}
+          />
         </Alert>
       )}
       <p>{coverLetter}</p>
       {isPending && (
         <div>
-          <Link as={NextLink} href="/">Answer in chat</Link>
+          <Link as={NextLink} href={`/chat/${professional._id}`}>Answer in chat</Link>
         </div>
       )}
     </div>

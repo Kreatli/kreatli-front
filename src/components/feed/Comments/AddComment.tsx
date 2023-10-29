@@ -65,6 +65,7 @@ export const AddComment = () => {
         <Textarea
           ref={addCommentRef}
           value={comment}
+          minRows={2}
           disabled={isLoading}
           placeholder="Type your comment"
           onChange={handleChange}

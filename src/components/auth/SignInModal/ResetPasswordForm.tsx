@@ -55,7 +55,7 @@ export const ResetPasswordForm: React.FC<Props> = ({ onClick, onSuccess }) => {
         placeholder="Email"
         aria-label="Email"
         isDisabled={isLoading}
-        validationState={errors.email && 'invalid'}
+        isInvalid={!!errors.email}
         fullWidth
         {...register('email', VALIDATION_RULES.REQUIRED)}
       />

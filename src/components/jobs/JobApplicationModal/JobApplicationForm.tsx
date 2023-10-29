@@ -59,7 +59,7 @@ export const JobApplicationForm = ({ jobOfferId, onCancel, onSuccess }: Props) =
         placeholder={COVER_LETTER_PLACEHOLDER}
         aria-label="Any information you want to add to your application"
         isDisabled={isLoading}
-        validationState={errors.coverLetter && 'invalid'}
+        isInvalid={!!errors.coverLetter}
         fullWidth
         errorMessage={errors.coverLetter?.message}
         {...register('coverLetter', VALIDATION_RULES.DESCRIPTION.MIN_100)}

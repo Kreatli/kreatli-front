@@ -13,14 +13,20 @@ interface Props {
 }
 
 export const JobsCreationStep3: React.FC<Props> = ({ control, errors, register }) => {
-  const { field } = useController({ control, name: 'paymentType' });
+  const { field: paymentTypeField } = useController({ control, name: 'paymentType' });
+  const { field: paymentPreferencesField } = useController({ control, name: 'paymentPreferences' });
+
+  const handlePaymentPreferencesChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    paymentPreferencesField.onChange(event.target.value.split(','));
+    paymentPreferencesField.onBlur();
+  };
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 items-start gap-4">
       <Select
         label="Payment type"
         placeholder="Select payment type"
-        validationState={errors.paymentType && 'invalid'}
+        isInvalid={!!errors.paymentType}
         {...register('paymentType', VALIDATION_RULES.REQUIRED)}
       >
         {PAYMENT_TYPE_OPTIONS.map((paymentType) => (
@@ -32,9 +38,9 @@ export const JobsCreationStep3: React.FC<Props> = ({ control, errors, register }
         min={1}
         label="Budget ($)"
         placeholder="Budget ($)"
-        endContent={<span className="pointer-events-none whitespace-nowrap text-small text-gray-400">{PAYMENT_TYPE_SHORTS[field.value]}</span>}
+        endContent={<span className="pointer-events-none whitespace-nowrap text-small text-gray-400">{PAYMENT_TYPE_SHORTS[paymentTypeField.value]}</span>}
         fullWidth
-        validationState={errors.paymentValue && 'invalid'}
+        isInvalid={!!errors.paymentValue}
         errorMessage={errors.paymentValue?.message}
         {...register('paymentValue', VALIDATION_RULES.NUMBER)}
       />
@@ -43,8 +49,8 @@ export const JobsCreationStep3: React.FC<Props> = ({ control, errors, register }
           label="Payment preferences (optional)"
           placeholder="Select payment preferences"
           selectionMode="multiple"
-          validationState={errors.paymentPreferences && 'invalid'}
-          {...register('paymentPreferences', VALIDATION_RULES.REQUIRED)}
+          isInvalid={!!errors.paymentPreferences}
+          onChange={handlePaymentPreferencesChange}
         >
           {PAYMENT_PREFERENCE_OPTIONS.map((paymentPreference) => (
             <SelectItem key={paymentPreference.value} value={paymentPreference.value}>

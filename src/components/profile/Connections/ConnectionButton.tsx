@@ -40,7 +40,7 @@ export const ConnectionButton = ({ userId, inviteeName, hasConnection, hasInvita
 
   if (hasConnection) {
     return (
-      <Button href="/" variant="flat" color="secondary" isIconOnly={isMobile} startContent={<Icon icon="chat" size={18} />}>
+      <Button as={NextLink} href={`/chat/${userId}`} variant="flat" color="secondary" isIconOnly={isMobile} startContent={<Icon icon="chat" size={18} />}>
         {!isMobile && 'Message'}
       </Button>
     );

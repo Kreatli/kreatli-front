@@ -24,7 +24,11 @@ export const FileUploader = <T extends FieldValues>({ control, name, status, rul
 
   const { isLoading, mutate } = useMutation(requestFileUpload, {
     onSuccess: (data) => {
-      field.onChange(data.secure_url);
+      field.onChange({
+        url: data.secure_url,
+        name: `${data.original_filename}.${data.format}`,
+        size: data.bytes,
+      });
       field.onBlur();
     },
     onError: (error) => {
@@ -89,19 +93,17 @@ export const FileUploader = <T extends FieldValues>({ control, name, status, rul
   const isBordered = !isLoading && (isDragActive || !!selectedFile);
 
   return (
-    <div className="cursor-pointer" {...getRootProps()}>
-      <Button
-        as="div"
-        tabIndex={-1}
-        className="pointer-events-none"
-        variant={isBordered ? 'bordered' : 'flat'}
-        isLoading={isLoading}
-        startContent={!isLoading && icon}
-        color={status === 'danger' ? 'danger' : 'secondary'}
-      >
+    <Button
+      tabIndex={-1}
+      variant={isBordered ? 'bordered' : 'flat'}
+      isLoading={isLoading}
+      startContent={!isLoading && icon}
+      color={status === 'danger' ? 'danger' : 'secondary'}
+    >
+      <div {...getRootProps()}>
         <div className={styles.label}>{label}</div>
         <input type="file" {...getInputProps()} />
-      </Button>
-    </div>
+      </div>
+    </Button>
   );
 };

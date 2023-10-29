@@ -4,15 +4,6 @@ const HOUR_IN_MILLISECONDS = 3600 * ONE_SECOND_IN_MILLISECONDS;
 const DAY_IN_MILLISECONDS = 24 * HOUR_IN_MILLISECONDS;
 const WEEK_IN_MILLISECONDS = 7 * DAY_IN_MILLISECONDS;
 
-const formatDate = (dateString: Date | string) => {
-  const date = new Date(dateString);
-  const month = (date.getMonth() + 1).toString().padStart(2, '0');
-  const day = date.getDate().toString().padStart(2, '0');
-  const year = date.getFullYear();
-
-  return [year, month, day].join('-');
-};
-
 export const formatRelativeTime = (dateString: Date | string) => {
   const currentDate = new Date();
   const dateToCompare = new Date(dateString);
@@ -34,5 +25,42 @@ export const formatRelativeTime = (dateString: Date | string) => {
     return formatter.format(Math.round(relativeTimeDifference / DAY_IN_MILLISECONDS), 'day');
   }
 
-  return formatDate(dateString);
+  return dateToCompare.toLocaleDateString('en', { dateStyle: 'medium' });
+};
+
+export const formatChatMessageTime = (dateString: Date | string) => {
+  const date = new Date(dateString);
+
+  return date.toLocaleTimeString('en', { timeStyle: 'short' });
+};
+
+export const formatChatMessageDate = (dateString: Date | string) => {
+  const currentDate = new Date();
+  const dateToCompare = new Date(dateString);
+
+  const isToday = currentDate.toDateString() === dateToCompare.toDateString();
+
+  if (isToday) {
+    return formatChatMessageTime(dateString);
+  }
+
+  return dateToCompare.toLocaleDateString('en', { dateStyle: 'short' });
+};
+
+export const formChatMessagesGroupDate = (dateString: Date | string) => {
+  const currentDate = new Date();
+  const dateToCompare = new Date(dateString);
+
+  const isToday = currentDate.toDateString() === dateToCompare.toDateString();
+  const isThisYear = currentDate.getFullYear() === dateToCompare.getFullYear();
+
+  if (isToday) {
+    return 'Today';
+  }
+
+  if (isThisYear) {
+    return dateToCompare.toLocaleDateString('en', { day: 'numeric', month: 'long' });
+  }
+
+  return dateToCompare.toLocaleDateString('en', { day: 'numeric', month: 'long', year: 'numeric' });
 };

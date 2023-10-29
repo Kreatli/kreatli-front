@@ -19,27 +19,27 @@ export const SignUpCreatorStep1: React.FC<Props> = ({ errors, register }) => {
         type="email"
         label="Email"
         placeholder="john.doe@domain.com"
-        validationState={errors.email && 'invalid'}
+        isInvalid={!!errors.email}
         errorMessage={errors.email?.message}
         {...register('email', VALIDATION_RULES.EMAIL)}
       />
       <InputPassword
         label="Password"
-        validationState={errors.password && 'invalid'}
+        isInvalid={!!errors.password}
         errorMessage={errors.password?.message}
         {...register('password', VALIDATION_RULES.PASSWORD)}
       />
       <Input
         label="Name"
         placeholder="John Doe"
-        validationState={errors.name && 'invalid'}
+        isInvalid={!!errors.name}
         errorMessage={errors.name?.message}
         {...register('name', VALIDATION_RULES.SHORT_TEXT)}
       />
       <Select
         label="Country"
         placeholder="Select country"
-        validationState={errors.country && 'invalid'}
+        isInvalid={!!errors.country}
         {...register('country', VALIDATION_RULES.REQUIRED)}
       >
         {COUNTRIES.map((country) => (

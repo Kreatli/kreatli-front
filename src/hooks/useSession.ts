@@ -39,6 +39,6 @@ export const useSession = () => {
     signInMutation,
     signOut,
     currentUser: data,
-    currentUserId: data?._id ?? ':id',
+    currentUserId: data?._id,
   };
 };

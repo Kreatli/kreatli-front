@@ -23,6 +23,9 @@ export default function App({ Component, pageProps }: AppProps) {
     }),
   );
 
+  // @ts-ignore
+  const getLayout = Component.getLayout || ((page) => page);
+
   return (
     <>
       <Head>
@@ -35,7 +38,7 @@ export default function App({ Component, pageProps }: AppProps) {
           <ApplicationLoader>
             <Header />
             <main>
-              <Component {...pageProps} />
+              {getLayout(<Component {...pageProps} />)}
             </main>
             <footer />
             <Notifications />

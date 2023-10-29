@@ -17,7 +17,7 @@ export const JobsCreationStep1: React.FC<Props> = ({ errors, register }) => {
         label="Title"
         placeholder="YouTube Video Editor"
         fullWidth
-        validationState={errors.title && 'invalid'}
+        isInvalid={!!errors.title}
         errorMessage={errors.title?.message}
         {...register('title', VALIDATION_RULES.SHORT_TEXT)}
       />
@@ -25,7 +25,7 @@ export const JobsCreationStep1: React.FC<Props> = ({ errors, register }) => {
         label="Short description"
         placeholder={SHORT_DESCRIPTION_PLACEHOLDER}
         fullWidth
-        validationState={errors.shortDescription && 'invalid'}
+        isInvalid={!!errors.shortDescription}
         errorMessage={errors.shortDescription?.message}
         {...register('shortDescription', VALIDATION_RULES.SHORT_TEXT)}
       />
@@ -34,7 +34,7 @@ export const JobsCreationStep1: React.FC<Props> = ({ errors, register }) => {
         placeholder={DESCRIPTION_PLACEHOLDER}
         fullWidth
         minRows={5}
-        validationState={errors.description && 'invalid'}
+        isInvalid={!!errors.description}
         errorMessage={errors.description?.message}
         {...register('description', VALIDATION_RULES.DESCRIPTION.MIN_100)}
       />

@@ -1,4 +1,6 @@
 import { Availability } from './availability';
+import { Chat } from './chat';
+import { Common } from './common';
 import { Feed } from './feed';
 import { Invitation } from './invitation';
 import { Job } from './job';
@@ -47,7 +49,10 @@ export namespace Api {
     | '/creator/:id/job-offers'
     | '/professional/job-applications'
     | '/professional/:id/job-applications'
-    | '/posts';
+    | '/posts'
+    | '/chat/:id'
+    | '/chat/:id/messages'
+    | '/chat-requests';
 
   export type Post =
     | '/auth/signup-creator'
@@ -73,10 +78,12 @@ export namespace Api {
     | '/post'
     | '/post/:id/like'
     | '/post/:id/comment'
-    | '/post/:id/comment/:id/like';
+    | '/post/:id/comment/:id/like'
+    | '/chat/:id/messages/read';
 
   export type Put =
-    | '/post/:id';
+    | '/post/:id'
+    | '/chat/:id';
 
   export interface GetParams {
     '/professionals': {
@@ -101,6 +108,7 @@ export namespace Api {
     '/professional/job-applications': { status: Job.Application['status'] } & Pagination.Params;
     '/professional/:id/job-applications': Pagination.Params;
     '/posts': { feedbackOnly?: boolean } & Pagination.Params;
+    '/chat/:id/messages': Pagination.Params;
   }
 
   export interface GetResponse {
@@ -145,6 +153,12 @@ export namespace Api {
       posts: Feed.Post[];
       postsCount: number;
     };
+    '/chat/:id': Chat.Type;
+    '/chat/:id/messages': {
+      messages: Chat.Message[];
+      messagesCount: number;
+    };
+    '/chat-requests': Chat.Type[];
   }
 
   export interface PostPayload {
@@ -187,6 +201,9 @@ export namespace Api {
     '/post/:id/like': {};
     '/post/:id/comment': Feed.CommentPayload;
     '/post/:id/comment/:id/like': {};
+    '/chat/:id/messages/read': {
+      ids: Common.Id[];
+    }
   }
 
   export interface PostResponse {
@@ -227,13 +244,16 @@ export namespace Api {
     '/post/:id/like': Feed.Post;
     '/post/:id/comment': Feed.Post;
     '/post/:id/comment/:id/like': Feed.Post;
+    '/chat/:id/messages/read': undefined;
   }
 
   export interface PutPayload {
     '/post/:id': Feed.PostPayload;
+    '/chat/:id': { isRequest: boolean };
   }
 
   export interface PutResponse {
     '/post/:id': Feed.Post;
+    '/chat/:id': Chat.Type;
   }
 }

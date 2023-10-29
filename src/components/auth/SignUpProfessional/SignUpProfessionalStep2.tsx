@@ -27,7 +27,7 @@ export const SignUpProfessionalStep2: React.FC<Props> = ({ control, errors, regi
           <Textarea
             label="Description"
             placeholder="Describe your background and make your profile stand out!"
-            validationState={errors.description && 'invalid'}
+            isInvalid={!!errors.description}
             errorMessage={errors.description?.message}
             {...register('description', VALIDATION_RULES.DESCRIPTION.MIN_100)}
           />
@@ -39,7 +39,7 @@ export const SignUpProfessionalStep2: React.FC<Props> = ({ control, errors, regi
           endContent={<span className="pointer-events-none text-small text-gray-400">optional</span>}
           aria-label="Portfolio Link"
           placeholder="https://myportflio.com"
-          validationState={errors.portfolioUrl && 'invalid'}
+          isInvalid={!!errors.portfolioUrl}
           errorMessage={errors.portfolioUrl?.message}
           {...register('portfolioUrl', VALIDATION_RULES.URL.OPTIONAL)}
         />
@@ -48,7 +48,7 @@ export const SignUpProfessionalStep2: React.FC<Props> = ({ control, errors, regi
           endContent={<span className="pointer-events-none text-small text-gray-400">optional</span>}
           aria-label="Twitter Link"
           placeholder="https://twitter.com/myaccount"
-          validationState={errors.twitterUrl && 'invalid'}
+          isInvalid={!!errors.twitterUrl}
           errorMessage={errors.twitterUrl?.message}
           {...register('twitterUrl', VALIDATION_RULES.TWITTER_ACCOUNT_URL)}
         />
@@ -57,7 +57,7 @@ export const SignUpProfessionalStep2: React.FC<Props> = ({ control, errors, regi
           endContent={<span className="pointer-events-none text-small text-gray-400">optional</span>}
           aria-label="Discord Username"
           placeholder="username#0000"
-          validationState={errors.discordUsername && 'invalid'}
+          isInvalid={!!errors.discordUsername}
           errorMessage={errors.discordUsername?.message}
           {...register('discordUsername', VALIDATION_RULES.DISCORD_USERNAME)}
         />
@@ -66,7 +66,7 @@ export const SignUpProfessionalStep2: React.FC<Props> = ({ control, errors, regi
           endContent={<span className="pointer-events-none text-small text-gray-400">optional</span>}
           aria-label="Instagram Profile"
           placeholder="@myusername"
-          validationState={errors.instagramUsername && 'invalid'}
+          isInvalid={!!errors.instagramUsername}
           errorMessage={errors.instagramUsername?.message}
           {...register('instagramUsername', VALIDATION_RULES.INSTAGRAM_USERNAME)}
         />

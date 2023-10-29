@@ -75,7 +75,7 @@ export const JobReviewForm = ({ jobOfferId, jobOfferStatus, onCancel, onSuccess 
     <form noValidate onSubmit={handleSubmit(onSubmit)}>
       <div className="flex flex-col justify-center gap-4">
         {!isCompleted && (
-          <RadioGroup label="Reason" color="secondary" validationState={errors.reason && 'invalid'}>
+          <RadioGroup label="Reason" color="secondary" isInvalid={!!errors.reason}>
             <Radio value="satisfied" {...register('reason', VALIDATION_RULES.REQUIRED)}>Successfully finished the collaboration</Radio>
             <Radio value="not-satisfied" {...register('reason', VALIDATION_RULES.REQUIRED)}>Not satisfied with the collaboration</Radio>
           </RadioGroup>
@@ -85,7 +85,7 @@ export const JobReviewForm = ({ jobOfferId, jobOfferStatus, onCancel, onSuccess 
           placeholder={textareaPlaceholder}
           aria-label={textareaPlaceholder}
           isDisabled={isLoading}
-          validationState={errors.comment && 'invalid'}
+          isInvalid={!!errors.comment}
           fullWidth
           {...register('comment')}
         />

@@ -1,5 +1,6 @@
 import { Button, Card, CardBody, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger, Tooltip } from '@nextui-org/react';
 import { Icon } from 'components/various/Icon';
+import { ImagePreview } from 'components/various/ImagePreview';
 import { TextEditor } from 'components/various/TextEditor';
 import { VideoUploaderModal } from 'components/various/VideoUploaderModal';
 import { useImagesUpload } from 'hooks/useImagesUpload';
@@ -9,7 +10,6 @@ import { useMutation, useQueryClient } from 'react-query';
 import { requestPostCreation } from 'services/feed';
 import { getErrorMessage } from 'utils/getErrorMessage';
 
-import { ImagePreview } from './ImagePreview';
 import { VideoPreview } from './VideoPreview';
 
 export const CreatePost = () => {
@@ -66,19 +66,6 @@ export const CreatePost = () => {
   const isImageUploadDisabled = images.length > 4;
   const isVideoUploadDisabled = videoIds.length > 4;
 
-  const imageUploadButton = (
-    <Button
-      as="div"
-      tabIndex={-1}
-      className="pointer-events-none text-default-400"
-      isDisabled={isImageUploadDisabled}
-      isIconOnly
-      startContent={<Icon icon="addImage" size={20} />}
-      variant="light"
-      size="sm"
-    />
-  );
-
   return (
     <>
       <Card>
@@ -89,18 +76,21 @@ export const CreatePost = () => {
             placeholder="Share your thoughts or ask for a feedback..."
             onChange={setContent}
           >
-            {isImageUploadDisabled
-              ? (
-                <Tooltip content="You've already uploaded 5 images, which is the maximum limit allowed">
-                  <span>{imageUploadButton}</span>
-                </Tooltip>
-              )
-              : (
-                <span className="cursor-pointer" {...getRootProps()}>
-                  {imageUploadButton}
+            <Tooltip isDisabled={!isImageUploadDisabled} content="You've already uploaded 5 images, which is the maximum limit allowed">
+              <Button
+                tabIndex={-1}
+                className="text-default-400"
+                isDisabled={isImageUploadDisabled}
+                isIconOnly
+                variant="light"
+                size="sm"
+              >
+                <div {...getRootProps()}>
+                  <Icon icon="addImage" size={20} />
                   <input {...getInputProps()} />
-                </span>
-              )}
+                </div>
+              </Button>
+            </Tooltip>
             <Tooltip isDisabled={!isVideoUploadDisabled} content="You've already uploaded 5 videos, which is the maximum limit allowed">
               <span>
                 <Button

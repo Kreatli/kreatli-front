@@ -53,7 +53,7 @@ export const useImagesUpload = () => {
 
     if (isMaxFilesError) {
       return pushNotification({
-        message: 'You can upload a maximum of 5 images per post',
+        message: 'You can upload maximum 5 images at once',
         color: 'danger',
         icon: 'error',
       });

@@ -58,7 +58,7 @@ export const VideoUploaderModal = ({ isOpen, onUpload, onClose }: Props) => {
           <div className="flex flex-col gap-4">
             <Input
               label="YouTube video"
-              validationState={shouldShowError ? 'invalid' : undefined}
+              isInvalid={shouldShowError}
               errorMessage={shouldShowError && 'Please provide a valid URL'}
               placeholder="Paste the URL here"
               onChange={handleChange}
@@ -78,7 +78,7 @@ export const VideoUploaderModal = ({ isOpen, onUpload, onClose }: Props) => {
                 </div>
               )
               : (
-                <div className="flex items-center justify-center text-default-400 p-4 text-center border-1 border-dashed rounded-lg h-80 text-sm">
+                <div className="flex items-center justify-center text-default-400 p-4 text-center border-1 border-dashed border-default-200 rounded-lg h-80 text-sm">
                   If the video URL is valid, the video preview will be displayed here
                 </div>
               )}

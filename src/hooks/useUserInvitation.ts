@@ -41,11 +41,15 @@ export const useUserInvitation = ({ invitationId, userId }: Props) => {
   });
 
   const handleAccept = () => {
-    mutateAccept([currentUserId, { invitationId }]);
+    if (currentUserId) {
+      mutateAccept([currentUserId, { invitationId }]);
+    }
   };
 
   const handleReject = () => {
-    mutateReject([currentUserId, { invitationId }]);
+    if (currentUserId) {
+      mutateReject([currentUserId, { invitationId }]);
+    }
   };
 
   const isLoading = isLoadingAccept || isLoadingReject;

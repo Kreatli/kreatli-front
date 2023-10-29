@@ -74,6 +74,11 @@ export const JobsListing = () => {
     setSearch(event.target.value);
   };
 
+  const handleSearchClear = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    setSearch('');
+  };
+
   const handleCloseFilters = React.useCallback(() => {
     setIsFilersOpen(false);
     setIsScrollDisabled(false);
@@ -108,6 +113,7 @@ export const JobsListing = () => {
             isClearable
             placeholder="Type here to search..."
             onChange={handleSearchChange}
+            onClear={handleSearchClear}
           />
           {isCreator && (
             <div className="flex-initial">

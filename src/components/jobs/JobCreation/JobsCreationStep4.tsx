@@ -20,7 +20,7 @@ export const JobsCreationStep4: React.FC<Props> = ({ control, register, errors }
     <div className="grid grid-cols-1 sm:grid-cols-2 items-start gap-4">
       <Select
         label="Availability"
-        validationState={errors.availability && 'invalid'}
+        isInvalid={!!errors.availability}
         {...register('availability', VALIDATION_RULES.REQUIRED)}
       >
         {AVAILABILITY_OPTIONS.map((option) => (
@@ -30,7 +30,7 @@ export const JobsCreationStep4: React.FC<Props> = ({ control, register, errors }
       {availabilityField.value === 'project-base' && (
         <Select
           label="Duration"
-          validationState={errors.availabilityDuration && 'invalid'}
+          isInvalid={!!errors.availabilityDuration}
           {...register('availabilityDuration', VALIDATION_RULES.REQUIRED)}
         >
           {DURATION_OPTIONS.map((option) => (
@@ -41,7 +41,7 @@ export const JobsCreationStep4: React.FC<Props> = ({ control, register, errors }
       <div className="col-span-2">
         <Select
           label="Location"
-          validationState={errors.location && 'invalid'}
+          isInvalid={!!errors.location}
           {...register('location', VALIDATION_RULES.REQUIRED)}
         >
           {LOCATION_OPTIONS.map((option) => (

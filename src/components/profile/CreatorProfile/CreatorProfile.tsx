@@ -49,8 +49,8 @@ export const CreatorProfile = ({ userId }: Props) => {
           </div>
         </div>
         <div className="flex flex-col gap-1">
-          {socials.map(({ href, icon }) => (
-            <Link href={href} target="_blank" color="foreground">
+          {socials.map(({ href, icon }, index) => (
+            <Link key={index} href={href} target="_blank" color="foreground">
               <Icon icon={icon} size="2rem" />
             </Link>
           ))}

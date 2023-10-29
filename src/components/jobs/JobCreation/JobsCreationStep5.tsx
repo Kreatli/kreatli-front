@@ -15,7 +15,7 @@ export const JobsCreationStep5: React.FC<Props> = ({ errors, register }) => {
       placeholder={ADDITIONAL_INFORMATION_PLACEHOLDER}
       aria-label="Additional information"
       fullWidth
-      validationState={errors.additionalInformation && 'invalid'}
+      isInvalid={!!errors.additionalInformation}
       errorMessage={errors.additionalInformation?.message}
       {...register('additionalInformation')}
     />

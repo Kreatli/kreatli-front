@@ -38,7 +38,7 @@ export const SignUpProfessionalStep3: React.FC<Props> = ({ errors, control, regi
                 label="Select level"
                 size="sm"
                 className="w-36"
-                validationState={errors.skillLevels?.[skill] && 'invalid'}
+                isInvalid={!!errors.skillLevels?.[skill]}
                 {...register(`skillLevels.${skill}`, VALIDATION_RULES.REQUIRED)}
               >
                 {SKILL_LEVEL_OPTIONS.map((skillLevel) => (

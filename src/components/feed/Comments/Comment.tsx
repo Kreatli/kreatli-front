@@ -37,7 +37,7 @@ export const Comment = (props: Props) => {
   };
 
   return (
-    <div className="flex flex-col gap-3 items-start border-b-1 pb-4 mb-4 last:border-none last:pb-0 last:mb-0">
+    <div className="flex flex-col gap-3 items-start border-b-1 border-default-200 pb-4 mb-4 last:border-none last:pb-0 last:mb-0">
       <div className="w-full flex items-center justify-between">
         <User
           as={NextLink}
@@ -68,7 +68,7 @@ export const Comment = (props: Props) => {
         </Link>
       )}
       {areAnswersVisible && (
-        <div className="pl-10 border-t-1 pt-4 mt-2 w-full">
+        <div className="pl-10 border-t-1 border-default-200 pt-4 mt-2 w-full">
           {comments.map((comment) => (
             <Comment key={comment._id} parentCommentId={commentId} {...comment} />
           ))}

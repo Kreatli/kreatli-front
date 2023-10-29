@@ -1,4 +1,5 @@
 import { nanoid } from 'nanoid';
+import { File } from 'typings/file';
 
 import { Skill, SkillLevel } from '../../../typings/skill';
 
@@ -13,7 +14,7 @@ export const DEFAULT_EXPERIENCE = {
 export const DEFAULT_CERTIFICATE = {
   id: nanoid(),
   name: '',
-  fileUrl: '',
+  file: null as File.Type | null,
   share: false,
 };
 

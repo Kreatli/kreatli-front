@@ -38,15 +38,15 @@ export const SignUpProfessionalStep5: React.FC<Props> = ({ control, errors, regi
           <Input
             label="Certificate's name"
             placeholder="Adobe Certified Expert in Premiere Pro"
-            validationState={errors.certificates?.[index]?.name && 'invalid'}
+            isInvalid={!!errors.certificates?.[index]?.name}
             errorMessage={errors.certificates?.[index]?.name?.message}
             {...register(`certificates.${index}.name`, VALIDATION_RULES.SHORT_TEXT)}
           />
           <div className="flex-initial">
             <FileUploader
               control={control}
-              name={`certificates.${index}.fileUrl`}
-              status={errors.certificates?.[index]?.fileUrl && 'danger'}
+              name={`certificates.${index}.file`}
+              status={errors.certificates?.[index]?.file && 'danger'}
               rules={VALIDATION_RULES.REQUIRED}
             />
           </div>

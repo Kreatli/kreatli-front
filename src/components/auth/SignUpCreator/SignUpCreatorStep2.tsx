@@ -18,7 +18,7 @@ export const SignUpCreatorStep2: React.FC<Props> = ({ errors, register }) => {
         <Textarea
           label="Description"
           placeholder="Introduce yourself and describe your channel. Get creative!"
-          validationState={errors.description && 'invalid'}
+          isInvalid={!!errors.description}
           errorMessage={errors.description?.message}
           {...register('description', VALIDATION_RULES.DESCRIPTION.MIN_100)}
         />
@@ -29,7 +29,7 @@ export const SignUpCreatorStep2: React.FC<Props> = ({ errors, register }) => {
           startContent={<Icon className="text-gray-400" icon="youtube" />}
           aria-label="Youtube Link"
           placeholder="https://youtube.com/@mychannel"
-          validationState={errors.youtubeUrl && 'invalid'}
+          isInvalid={!!errors.youtubeUrl}
           errorMessage={errors.youtubeUrl?.message}
           {...register('youtubeUrl', VALIDATION_RULES.YOUTUBE_CHANNEL.REQUIRED)}
         />
@@ -40,7 +40,7 @@ export const SignUpCreatorStep2: React.FC<Props> = ({ errors, register }) => {
           endContent={<span className="pointer-events-none text-small text-gray-400">optional</span>}
           aria-label="Second Youtube Link"
           placeholder="https://youtube.com/@mysecondchannel"
-          validationState={errors.youtubeUrlOther && 'invalid'}
+          isInvalid={!!errors.youtubeUrlOther}
           errorMessage={errors.youtubeUrlOther?.message}
           {...register('youtubeUrlOther', VALIDATION_RULES.YOUTUBE_CHANNEL.OPTIONAL)}
         />
@@ -51,7 +51,7 @@ export const SignUpCreatorStep2: React.FC<Props> = ({ errors, register }) => {
           endContent={<span className="pointer-events-none text-small text-gray-400">optional</span>}
           aria-label="Discord Username"
           placeholder="username#0000"
-          validationState={errors.discordUsername && 'invalid'}
+          isInvalid={!!errors.discordUsername}
           errorMessage={errors.discordUsername?.message}
           {...register('discordUsername', VALIDATION_RULES.DISCORD_USERNAME)}
         />
@@ -62,7 +62,7 @@ export const SignUpCreatorStep2: React.FC<Props> = ({ errors, register }) => {
           endContent={<span className="pointer-events-none text-small text-gray-400">optional</span>}
           aria-label="Twitter Link"
           placeholder="https://twitter.com/myaccount"
-          validationState={errors.twitterUrl && 'invalid'}
+          isInvalid={!!errors.twitterUrl}
           errorMessage={errors.twitterUrl?.message}
           {...register('twitterUrl', VALIDATION_RULES.TWITTER_ACCOUNT_URL)}
         />

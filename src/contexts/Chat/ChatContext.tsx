@@ -1,0 +1,212 @@
+import { useSession } from 'hooks/useSession';
+import { useSocket } from 'hooks/useSocket';
+import { useRouter } from 'next/router';
+import React from 'react';
+import { useQuery } from 'react-query';
+import { requestChat, requestChatMessages } from 'services/chat';
+import { requestChatRequests } from 'services/chats';
+import { Chat } from 'typings/chat';
+import { Common } from 'typings/common';
+import { File } from 'typings/file';
+import { Media } from 'typings/media';
+import { User } from 'typings/user';
+
+interface MessagePayload {
+  media: Omit<Media.Image, '_id'>[];
+  content: string;
+  files: Omit<File.Type, '_id'>[];
+}
+
+interface Context {
+  addMessage: (message: MessagePayload) => void;
+  activeChat: Chat.Type | null;
+  chats: Chat.Type[];
+  chatRequests: Chat.Type[];
+  hasMoreMessages: boolean;
+  isLoadingChats: boolean;
+  isLoadingMessages: boolean;
+  isLoadingMoreMessages: boolean;
+  loadInitialMessages: () => void;
+  loadMoreMessages: () => void;
+  messages: Chat.Message[];
+  participant: User.ShortInfoBase | null;
+  participantId: Common.Id | null;
+}
+
+const initialContext: Context = {
+  addMessage: () => null,
+  activeChat: null,
+  chats: [],
+  chatRequests: [],
+  hasMoreMessages: false,
+  isLoadingChats: true,
+  isLoadingMessages: true,
+  isLoadingMoreMessages: false,
+  loadInitialMessages: () => null,
+  loadMoreMessages: () => null,
+  messages: [],
+  participant: null,
+  participantId: null,
+};
+
+interface Props {
+  children: React.ReactNode;
+}
+
+const MESSAGES_LIMIT = 20;
+
+export const ChatContext = React.createContext<Context>(initialContext);
+
+export const ChatContextProvider = ({ children }: Props) => {
+  const router = useRouter();
+  const { currentUserId } = useSession();
+  const socketRef = useSocket();
+
+  const [chats, setChats] = React.useState<Chat.Type[]>([]);
+  const [isLoadingChats, setIsLoadingChats] = React.useState(true);
+
+  const [messages, setMessages] = React.useState<Chat.Message[]>([]);
+  const [isLoadingMessages, setIsLoadingMessages] = React.useState(true);
+  const [isLoadingMoreMessages, setIsLoadingMoreMessages] = React.useState(true);
+  const [hasMoreMessages, setHasMoreMessages] = React.useState(false);
+  const [messagesOffset, setMessagesOffset] = React.useState(0);
+
+  const participantId = React.useMemo(() => {
+    return router.query.userId as Common.Id ?? null;
+  }, [router.query.userId]);
+
+  const { data: chat = null } = useQuery(['chat', participantId], () => (participantId ? requestChat(participantId) : null));
+  const { data: chatRequests = [] } = useQuery(['chat-requests'], requestChatRequests);
+
+  const participant = chat?.participants.find(({ _id }) => _id !== currentUserId)!;
+
+  const loadInitialMessages = React.useCallback(() => {
+    if (!participantId) {
+      return;
+    }
+
+    setHasMoreMessages(false);
+    setMessagesOffset(0);
+    setIsLoadingMoreMessages(false);
+    setIsLoadingMessages(true);
+
+    requestChatMessages(participantId, { offset: 0, limit: MESSAGES_LIMIT })
+      .then((data) => {
+        setMessages(data.messages);
+        setHasMoreMessages(data.messages.length < data.messagesCount);
+      })
+      .catch(() => {
+        // TODO: handle error
+      })
+      .finally(() => {
+        setIsLoadingMessages(false);
+      });
+  }, [participantId]);
+
+  React.useEffect(() => {
+    loadInitialMessages();
+  }, [loadInitialMessages]);
+
+  React.useEffect(() => {
+    const socket = socketRef.current;
+
+    if (!socket) {
+      return;
+    }
+
+    socket.on('chats', (newChats) => {
+      setChats(newChats);
+      setIsLoadingChats(false);
+    });
+
+    socket.on('message', (message) => {
+      setMessages((currentMessages) => [message, ...currentMessages]);
+    });
+
+    return () => {
+      socket.off('chats');
+      socket.off('message');
+    };
+  }, [socketRef]);
+
+  React.useEffect(() => {
+    const socket = socketRef.current;
+
+    if (!participantId || !currentUserId || !socket) {
+      return;
+    }
+
+    socket.emit('join', {
+      senderId: currentUserId,
+      receiverId: participantId,
+    });
+
+    return () => {
+      socket.emit('leave', {
+        senderId: currentUserId,
+        receiverId: participantId,
+      });
+    };
+  }, [currentUserId, participantId, socketRef]);
+
+  const addMessage = React.useCallback((message: MessagePayload) => {
+    socketRef.current?.emit('message', {
+      senderId: currentUserId,
+      receiverId: participantId,
+      message,
+    });
+  }, [currentUserId, participantId, socketRef]);
+
+  const loadMoreMessages = React.useCallback(() => {
+    setIsLoadingMoreMessages(true);
+    setMessagesOffset(messagesOffset + MESSAGES_LIMIT);
+
+    requestChatMessages(participantId, { offset: messagesOffset + MESSAGES_LIMIT, limit: MESSAGES_LIMIT })
+      .then((data) => {
+        setMessages([...messages, ...data.messages]);
+        setHasMoreMessages(messages.length + MESSAGES_LIMIT < data.messagesCount);
+      })
+      .catch(() => {
+        // TODO: handle error
+      })
+      .finally(() => {
+        setIsLoadingMoreMessages(false);
+      });
+  }, [messages, messagesOffset, participantId]);
+
+  const memoizedValue = React.useMemo(() => ({
+    addMessage,
+    activeChat: chat,
+    chats,
+    chatRequests,
+    hasMoreMessages,
+    isLoadingChats,
+    isLoadingMessages,
+    isLoadingMoreMessages,
+    loadInitialMessages,
+    loadMoreMessages,
+    messages,
+    participant,
+    participantId,
+  }), [
+    addMessage,
+    chatRequests,
+    chat,
+    chats,
+    hasMoreMessages,
+    isLoadingChats,
+    isLoadingMessages,
+    isLoadingMoreMessages,
+    loadInitialMessages,
+    loadMoreMessages,
+    messages,
+    participant,
+    participantId,
+  ]);
+
+  return (
+    <ChatContext.Provider value={memoizedValue}>
+      {children}
+    </ChatContext.Provider>
+  );
+};

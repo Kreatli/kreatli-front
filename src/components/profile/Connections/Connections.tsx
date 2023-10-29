@@ -1,3 +1,4 @@
+import { EmptyState } from 'components/various/EmptyState';
 import React from 'react';
 import { useInfiniteQuery } from 'react-query';
 
@@ -17,7 +18,7 @@ const LIMIT = 10;
 export const Connections = ({ userId }: Props) => {
   const { currentUserId } = useSession();
 
-  const { isFetchingNextPage, data, hasNextPage, fetchNextPage } = useInfiniteQuery(
+  const { isFetchingNextPage, isFetching, data, hasNextPage, fetchNextPage } = useInfiniteQuery(
     ['user', userId, 'connections'],
     ({ pageParam = 1 }) => userId && requestUserConnections(userId, { limit: LIMIT, offset: (pageParam - 1) * LIMIT }),
     {
@@ -45,7 +46,13 @@ export const Connections = ({ userId }: Props) => {
   }, [data?.pages]);
 
   const isMyAccount = currentUserId === userId;
-  const hasInvitations = (invitations?.length ?? 0) > 0;
+  const hasInvitations = invitations.length > 0;
+  const hasConnections = connections.length > 0;
+
+  // TODO: skeleton + loader
+  // const shouldShowSkeleton = isFetching && !hasConnections;
+  // const shouldShowLoader = isFetching && !isFetchingNextPage && hasConnections;
+  const shouldShowEmptyState = !isFetching && !hasConnections;
 
   return (
     <div className="container max-w-screen-lg mx-auto px-6">
@@ -67,6 +74,9 @@ export const Connections = ({ userId }: Props) => {
           ))}
         </div>
       </LazyList>
+      {shouldShowEmptyState && (
+        <EmptyState title="You don't have any connections yet" />
+      )}
     </div>
   );
 };

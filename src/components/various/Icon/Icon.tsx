@@ -4,6 +4,7 @@ import AddImageIcon from '../../../assets/icons/add-image.svg';
 import AddVideoIcon from '../../../assets/icons/add-video.svg';
 import ArrowLeftIcon from '../../../assets/icons/arrow-left.svg';
 import ArrowRightIcon from '../../../assets/icons/arrow-right.svg';
+import ArrowRightTopIcon from '../../../assets/icons/arrow-right-top.svg';
 import BankIcon from '../../../assets/icons/bank.svg';
 import BitcoinIcon from '../../../assets/icons/bitcoin.svg';
 import BoldIcon from '../../../assets/icons/bold.svg';
@@ -27,6 +28,12 @@ import EmojiHappyIcon from '../../../assets/icons/emoji/happy.svg';
 import EmojiSadIcon from '../../../assets/icons/emoji/sad.svg';
 import ErrorIcon from '../../../assets/icons/error.svg';
 import FileIcon from '../../../assets/icons/file.svg';
+import FileDocIcon from '../../../assets/icons/file-doc.svg';
+import FileGifIcon from '../../../assets/icons/file-gif.svg';
+import FileJpgIcon from '../../../assets/icons/file-jpg.svg';
+import FilePdfIcon from '../../../assets/icons/file-pdf.svg';
+import FilePngIcon from '../../../assets/icons/file-png.svg';
+import FileSolidIcon from '../../../assets/icons/file-solid.svg';
 import FilterIcon from '../../../assets/icons/filter.svg';
 import GroupIcon from '../../../assets/icons/group.svg';
 import HeartIcon from '../../../assets/icons/heart.svg';
@@ -67,6 +74,7 @@ const ICONS = {
   addVideo: AddVideoIcon,
   arrowLeft: ArrowLeftIcon,
   arrowRight: ArrowRightIcon,
+  arrowRightTop: ArrowRightTopIcon,
   bank: BankIcon,
   bitcoin: BitcoinIcon,
   bold: BoldIcon,
@@ -90,6 +98,12 @@ const ICONS = {
   emojiSad: EmojiSadIcon,
   error: ErrorIcon,
   file: FileIcon,
+  fileDoc: FileDocIcon,
+  fileGif: FileGifIcon,
+  fileJpg: FileJpgIcon,
+  filePdf: FilePdfIcon,
+  filePng: FilePngIcon,
+  fileSolid: FileSolidIcon,
   filter: FilterIcon,
   group: GroupIcon,
   heart: HeartIcon,

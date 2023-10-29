@@ -34,7 +34,7 @@ export const Header: React.FC = () => {
       },
       {
         label: 'Messages',
-        href: '/messages',
+        href: '/chat',
       },
     ] : []),
   ];

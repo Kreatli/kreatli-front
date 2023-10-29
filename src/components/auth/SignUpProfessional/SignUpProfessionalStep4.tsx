@@ -48,7 +48,7 @@ export const SignUpProfessionalStep4: React.FC<Props> = ({ control, errors, regi
                 placeholder="Channel/Company"
                 aria-label="Channel/Company"
                 startContent={<Icon className="text-gray-400" icon="building" />}
-                validationState={errors.experiences?.[index]?.companyName && 'invalid'}
+                isInvalid={!!errors.experiences?.[index]?.companyName}
                 errorMessage={errors.experiences?.[index]?.companyName?.message}
                 {...register(`experiences.${index}.companyName`, VALIDATION_RULES.SHORT_TEXT)}
               />
@@ -56,7 +56,7 @@ export const SignUpProfessionalStep4: React.FC<Props> = ({ control, errors, regi
                 placeholder="Channel/Company link"
                 aria-label="Channel/Company link"
                 startContent={<Icon className="text-gray-400" icon="link" />}
-                validationState={errors.experiences?.[index]?.companyUrl && 'invalid'}
+                isInvalid={!!errors.experiences?.[index]?.companyUrl}
                 errorMessage={errors.experiences?.[index]?.companyUrl?.message}
                 {...register(`experiences.${index}.companyUrl`, VALIDATION_RULES.URL.REQUIRED)}
               />
@@ -65,7 +65,7 @@ export const SignUpProfessionalStep4: React.FC<Props> = ({ control, errors, regi
               <Textarea
                 label="Description"
                 placeholder="Highlight key responsibilities, projects, and achievements from this job. Focus on demonstrating your expertise, skills, and the value you can bring to potential clients."
-                validationState={errors.experiences?.[index]?.description && 'invalid'}
+                isInvalid={!!errors.experiences?.[index]?.description}
                 errorMessage={errors.experiences?.[index]?.description?.message}
                 {...register(`experiences.${index}.description`, VALIDATION_RULES.DESCRIPTION.MIN_100)}
               />
