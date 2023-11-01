@@ -68,7 +68,7 @@ export const ChatMessage = ({ message }: Props) => {
         {message.media.length > 0 && (
           <div className="mt-2 flex flex-col gap-2">
             {message.media.map(({ _id, src }, index) => (
-              <button key={_id} type="button" onClick={() => setOpenedMediaIndex(index)}>
+              <button key={_id} type="button" className="w-fit" onClick={() => setOpenedMediaIndex(index)}>
                 <Image src={src} width={240} />
               </button>
             ))}
