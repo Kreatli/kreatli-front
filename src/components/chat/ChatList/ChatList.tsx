@@ -42,8 +42,8 @@ export const ChatList = () => {
   const shouldShowChats = !isLoadingChats && hasChats;
 
   return (
-    <Card className="w-96">
-      <CardHeader className="gap-2 pb-2">
+    <Card className="w-full max-md:shadow-none md:w-80 lg:w-96">
+      <CardHeader className="gap-2 pb-2 max-md:pt-6 max-md:pb-0">
         <Input value={searchQuery} placeholder="Search" isClearable onChange={handleSearchChange} onClear={handleClear} />
         <ChatListNewButton />
       </CardHeader>

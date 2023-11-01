@@ -74,8 +74,6 @@ export const FileUploader = <T extends FieldValues>({ control, name, status, rul
       'image/avif': ['.avif'],
       'image/gif': ['.gif'],
       'application/pdf': ['.pdf'],
-      'application/msword': ['.doc'],
-      'application/vnd.openxmlformats-officedocument.wordprocessingml.document': ['.docx'],
     },
     disabled: isLoading,
     multiple: false,

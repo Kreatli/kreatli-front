@@ -94,7 +94,7 @@ export const SystemMessage = ({ message }: Props) => {
   }, [type, jobApplicationStatus, isCurrentUserSender, jobOfferId, jobApplicationId]);
 
   return (
-    <div className="px-10 mx-auto">
+    <div className="md:px-10 mx-auto">
       <Alert text={alertText} width="auto">
         {alertActions}
       </Alert>

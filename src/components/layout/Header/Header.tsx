@@ -8,7 +8,7 @@ import { useSession } from '../../../hooks/useSession';
 import { SignInModal } from '../../auth/SignInModal';
 import { Icon } from '../../various/Icon';
 
-export const Header: React.FC = () => {
+export const Header = () => {
   const router = useRouter();
   const [isNavbarOpen, setIsNavbarOpen] = React.useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -124,6 +124,7 @@ export const Header: React.FC = () => {
             isIconOnly
             aria-label="Toggle theme"
             variant="light"
+            className="text-foreground"
             radius="full"
             onClick={toggleTheme}
           >

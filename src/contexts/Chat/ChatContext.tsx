@@ -85,11 +85,6 @@ export const ChatContextProvider = ({ children }: Props) => {
       return;
     }
 
-    setHasMoreMessages(false);
-    setMessagesOffset(0);
-    setIsLoadingMoreMessages(false);
-    setIsLoadingMessages(true);
-
     requestChatMessages(participantId, { offset: 0, limit: MESSAGES_LIMIT })
       .then((data) => {
         setMessages(data.messages);
@@ -104,6 +99,13 @@ export const ChatContextProvider = ({ children }: Props) => {
   }, [participantId]);
 
   React.useEffect(() => {
+    // Clear states of previous chat
+    setMessages([]);
+    setHasMoreMessages(false);
+    setMessagesOffset(0);
+    setIsLoadingMoreMessages(false);
+    setIsLoadingMessages(true);
+    // Fetch messages for the selected chat
     loadInitialMessages();
   }, [loadInitialMessages]);
 

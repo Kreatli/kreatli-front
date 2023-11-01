@@ -7,7 +7,7 @@ import { ChatMessages } from '../ChatMessages';
 
 export const ChatWindow = () => {
   return (
-    <Card className="flex-1">
+    <Card className="flex-1 max-md:shadow-none">
       <CardHeader className="border-b-1 border-default-200">
         <ChatHeader />
       </CardHeader>

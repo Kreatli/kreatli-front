@@ -92,8 +92,6 @@ export const useFilesUpload = () => {
       'image/avif': ['.avif'],
       'image/gif': ['.gif'],
       'application/pdf': ['.pdf'],
-      'application/msword': ['.doc'],
-      'application/vnd.openxmlformats-officedocument.wordprocessingml.document': ['.docx'],
     },
     disabled: isLoading || files.length === 5,
     multiple: true,

@@ -17,9 +17,11 @@ export const Alert = ({ text, width, children }: Props) => {
         <Icon icon="logo" size={20} className={styles.icon} />
         {text}
       </p>
-      <div className={styles.actions}>
-        {children}
-      </div>
+      {children && (
+        <div className={styles.actions}>
+          {children}
+        </div>
+      )}
     </div>
   );
 };

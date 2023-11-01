@@ -60,8 +60,15 @@ export const AddMessage = () => {
 
     const hasContent = !!value.trim();
     const hasImages = images.length > 0;
+    const hasFiles = files.length > 0;
 
-    if (!hasContent && !hasImages) {
+    if (!hasContent && !hasImages && !hasFiles) {
+      return;
+    }
+
+    const isLoadingImagesOrFiles = [...images, ...files].some(({ isLoading }) => isLoading);
+
+    if (isLoadingImagesOrFiles) {
       return;
     }
 
@@ -155,7 +162,7 @@ export const AddMessage = () => {
           minRows={2}
           maxRows={3}
           variant="bordered"
-          classNames={{ input: 'pr-36', inputWrapper: 'bordered' }}
+          classNames={{ input: isTouchScreen ? 'pr-28' : 'pr-36', inputWrapper: 'bordered' }}
           onKeyDown={handleKeyDown}
         />
         <div className="absolute bottom-2 right-2 flex items-center">
@@ -188,7 +195,7 @@ export const AddMessage = () => {
               </div>
             </Button>
           </Tooltip>
-          <Button className="ml-2" isIconOnly color="secondary" radius="full" variant="light" aria-label="Send message" onClick={sendMessage}>
+          <Button className="md:ml-2" isIconOnly color="secondary" radius="full" variant="light" aria-label="Send message" onClick={sendMessage}>
             <Icon icon="send" />
           </Button>
         </div>
