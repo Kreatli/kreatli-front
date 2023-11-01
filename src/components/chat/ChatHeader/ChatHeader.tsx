@@ -19,11 +19,11 @@ export const ChatHeader = () => {
         {participant
           ? (
             <>
-              <div className="text-center">
+              <NextLink href={`/profile/${participant._id}`} className="text-center">
                 <div className="text-md font-semibold">{participant.name}</div>
                 <div className="text-sm text-default-400">{COUNTRY_LABELS[participant.country]}</div>
-              </div>
-              <Avatar src={participant.avatarUrl} className="w-12 h-12" />
+              </NextLink>
+              <Avatar as={NextLink} href={`/profile/${participant._id}`} src={participant.avatarUrl} className="w-12 h-12" />
             </>
           )
           : (
