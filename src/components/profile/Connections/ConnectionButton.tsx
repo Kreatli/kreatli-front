@@ -53,7 +53,7 @@ export const ConnectionButton = ({ userId, inviteeName, hasConnection, hasInvita
         href={`/profile/${userId}`}
         isIconOnly={isMobile}
         color="secondary"
-        startContent={hasInvitation && <Icon icon="mail" size={20} />}
+        startContent={hasInvitation ? <Icon icon="mail" size={20} /> : <Icon icon="userPlus" size={20} />}
         isDisabled={hasInvitation}
       >
         {!isMobile && (
@@ -80,7 +80,8 @@ export const ConnectionButton = ({ userId, inviteeName, hasConnection, hasInvita
     <>
       <Button
         color="secondary"
-        startContent={hasInvitation && <Icon icon="mail" size={20} />}
+        isIconOnly={isMobile}
+        startContent={hasInvitation ? <Icon icon="mail" size={20} /> : <Icon icon="userPlus" size={20} />}
         isDisabled={hasInvitation}
         onClick={onOpen}
       >

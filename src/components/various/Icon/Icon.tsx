@@ -66,6 +66,7 @@ import UnderlineIcon from '../../../assets/icons/underline.svg';
 import UpdateIcon from '../../../assets/icons/update.svg';
 import UploadIcon from '../../../assets/icons/upload.svg';
 import UserIcon from '../../../assets/icons/user.svg';
+import UserPlusIcon from '../../../assets/icons/user-plus.svg';
 import WarningIcon from '../../../assets/icons/warning.svg';
 import YoutubeIcon from '../../../assets/icons/youtube.svg';
 
@@ -136,6 +137,7 @@ const ICONS = {
   update: UpdateIcon,
   upload: UploadIcon,
   user: UserIcon,
+  userPlus: UserPlusIcon,
   warning: WarningIcon,
   youtube: YoutubeIcon,
 };
