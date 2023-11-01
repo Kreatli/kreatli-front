@@ -81,7 +81,7 @@ export const ChatMessages = () => {
               ? <SystemMessage key={message._id} message={message} />
               : <ChatMessage key={message._id} message={message} />
             ))}
-            <div className="text-sm w-fit mx-auto py-1 px-4 font-semibold rounded-full sticky top-0 bg-background/70 backdrop-blur shadow-small text-default-600">
+            <div className="text-sm w-fit mx-auto py-1 px-4 font-semibold rounded-full sticky top-0 bg-background/70 backdrop-blur shadow-small text-default-600 z-10">
               {date}
             </div>
           </div>
