@@ -13,7 +13,13 @@ interface Props {
 export const FilePreview = ({ name, format, isLoading, onRemove }: Props) => {
   return (
     <Tooltip content={name}>
-      <button type="button" disabled={isLoading} className="relative w-12 h-12 flex items-center justify-center shadow-small text-secondary-400 rounded-xl" onClick={onRemove}>
+      <button
+        type="button"
+        aria-label="Remove file"
+        disabled={isLoading}
+        className="relative w-12 h-12 flex items-center justify-center shadow-small text-secondary-400 rounded-xl"
+        onClick={onRemove}
+      >
         {!isLoading && (
           <Icon icon={iconsByFileFormat[format] ?? 'fileSolid'} size={32} />
         )}

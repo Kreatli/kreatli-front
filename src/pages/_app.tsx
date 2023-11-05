@@ -2,6 +2,7 @@ import '../styles/globals.scss';
 import 'react-image-crop/dist/ReactCrop.css';
 
 import { NextUIProvider } from '@nextui-org/react';
+import { DashboardTiersModal } from 'components/dashboard/DashboardTiers';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import React from 'react';
@@ -43,6 +44,7 @@ export default function App({ Component, pageProps }: AppProps) {
             <footer />
             <Notifications />
           </ApplicationLoader>
+          <DashboardTiersModal />
         </NextUIProvider>
       </QueryClientProvider>
     </>

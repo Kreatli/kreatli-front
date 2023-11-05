@@ -13,7 +13,7 @@ export const InputPassword = React.forwardRef<HTMLInputElement, InputProps>((pro
       ref={ref}
       type={isVisible ? 'text' : 'password'}
       endContent={(
-        <button type="button" onClick={toggleVisibility}>
+        <button type="button" aria-label="Toggle password visibility" onClick={toggleVisibility}>
           {isVisible ? (
             <Icon icon="show" size={16} />
           ) : (

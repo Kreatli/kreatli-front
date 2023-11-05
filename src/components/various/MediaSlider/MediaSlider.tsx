@@ -42,12 +42,22 @@ export const MediaSlider = ({ media }: Props) => {
         ))}
       </div>
       {shouldShowLeftArrow && (
-        <button type="button" className="absolute top-1/2 -translate-y-1/2 left-2 z-10 border-1 border-default-400 rounded-xl p-0.5 bg-white/30 backdrop-blur-sm" onClick={() => scrollToSlide(activeIndex - 1)}>
+        <button
+          type="button"
+          aria-label="Scroll to previous slide"
+          className="absolute top-1/2 -translate-y-1/2 left-2 z-10 border-1 border-default-400 rounded-xl p-0.5 bg-white/30 backdrop-blur-sm"
+          onClick={() => scrollToSlide(activeIndex - 1)}
+        >
           <Icon icon="arrowLeft" fill="white" size={20} className="mix-blend-difference" />
         </button>
       )}
       {shouldShowRightArrow && (
-        <button type="button" className="absolute top-1/2 -translate-y-1/2 right-2 z-10 border-1 border-default-400 rounded-xl p-0.5 bg-white/30 backdrop-blur-sm" onClick={() => scrollToSlide(activeIndex + 1)}>
+        <button
+          type="button"
+          aria-label="Scroll to next slide"
+          className="absolute top-1/2 -translate-y-1/2 right-2 z-10 border-1 border-default-400 rounded-xl p-0.5 bg-white/30 backdrop-blur-sm"
+          onClick={() => scrollToSlide(activeIndex + 1)}
+        >
           <Icon icon="arrowRight" fill="white" size={20} className="mix-blend-difference" />
         </button>
       )}

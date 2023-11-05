@@ -16,6 +16,7 @@ import CheckIcon from '../../../assets/icons/check.svg';
 import CheckCircleIcon from '../../../assets/icons/check-circle.svg';
 import CheckShieldIcon from '../../../assets/icons/check-shield.svg';
 import ChevronDownIcon from '../../../assets/icons/chevron-down.svg';
+import CoinIcon from '../../../assets/icons/coin.svg';
 import CreditCardIcon from '../../../assets/icons/credit-card.svg';
 import CrossIcon from '../../../assets/icons/cross.svg';
 import CrossCircleIcon from '../../../assets/icons/cross-circle.svg';
@@ -37,6 +38,7 @@ import FileSolidIcon from '../../../assets/icons/file-solid.svg';
 import FilterIcon from '../../../assets/icons/filter.svg';
 import GroupIcon from '../../../assets/icons/group.svg';
 import HeartIcon from '../../../assets/icons/heart.svg';
+import HelpCircleIcon from '../../../assets/icons/help-circle.svg';
 import HideIcon from '../../../assets/icons/hide.svg';
 import InfoIcon from '../../../assets/icons/info.svg';
 import InstagramIcon from '../../../assets/icons/instagram.svg';
@@ -58,6 +60,11 @@ import StrikethroughIcon from '../../../assets/icons/strikethrough.svg';
 import SuccessIcon from '../../../assets/icons/success.svg';
 import SuitcaseIcon from '../../../assets/icons/suitcase.svg';
 import SunIcon from '../../../assets/icons/sun.svg';
+import TaskEngageIcon from '../../../assets/icons/tasks/engage.svg';
+import TaskGrowIcon from '../../../assets/icons/tasks/grow.svg';
+import TaskLikeIcon from '../../../assets/icons/tasks/like.svg';
+import TaskSendIcon from '../../../assets/icons/tasks/send.svg';
+import TaskWriteIcon from '../../../assets/icons/tasks/write.svg';
 import TimeIcon from '../../../assets/icons/time.svg';
 import TimerIcon from '../../../assets/icons/timer.svg';
 import TrashIcon from '../../../assets/icons/trash.svg';
@@ -86,6 +93,7 @@ const ICONS = {
   check: CheckIcon,
   checkCircle: CheckCircleIcon,
   checkShield: CheckShieldIcon,
+  coin: CoinIcon,
   chevronDown: ChevronDownIcon,
   creditCard: CreditCardIcon,
   cross: CrossIcon,
@@ -107,6 +115,7 @@ const ICONS = {
   fileSolid: FileSolidIcon,
   filter: FilterIcon,
   group: GroupIcon,
+  helpCircle: HelpCircleIcon,
   heart: HeartIcon,
   hide: HideIcon,
   info: InfoIcon,
@@ -129,6 +138,11 @@ const ICONS = {
   success: SuccessIcon,
   suitcase: SuitcaseIcon,
   sun: SunIcon,
+  taskEngage: TaskEngageIcon,
+  taskGrow: TaskGrowIcon,
+  taskLike: TaskLikeIcon,
+  taskSend: TaskSendIcon,
+  taskWrite: TaskWriteIcon,
   time: TimeIcon,
   timer: TimerIcon,
   trash: TrashIcon,
