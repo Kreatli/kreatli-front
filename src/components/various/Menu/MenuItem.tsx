@@ -14,7 +14,7 @@ interface Props {
   href?: string;
   icon?: IconType;
   emoji?: Common.Emoji;
-  options?: { label: string; value: string }[];
+  options?: { label: string; value: string | number }[];
   selectionMode?: 'single' | 'multiple';
   isSelected?: boolean;
   onClick?: (event: React.MouseEvent<HTMLElement>) => void;
