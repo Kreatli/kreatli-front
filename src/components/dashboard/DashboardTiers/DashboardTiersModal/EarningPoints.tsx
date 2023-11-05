@@ -7,19 +7,19 @@ const EARNING_POINTS_ACTIVITIES = [
     title: 'Create High-Quality Content',
     text: 'Contribute to the platform by creating insightful posts, and giving feedback that helps others succeed',
     icon: 'taskWrite' as const,
-    color: 'primary',
+    color: 'secondary',
   },
   {
     title: 'Engage in Community',
     text: 'Participate in discussions, offer valuable insights, and collaborate with fellow professionals and creators',
     icon: 'taskEngage' as const,
-    color: 'warning',
+    color: 'primary',
   },
   {
     title: 'Collaborate on Projects',
     text: 'Creators can hire professionals for their projects, while professionals can find clients seeking their expertise, creating a thriving ecosystem of collaboration',
     icon: 'taskSend' as const,
-    color: 'secondary',
+    color: 'warning',
   },
   {
     title: 'Share Your Work',
