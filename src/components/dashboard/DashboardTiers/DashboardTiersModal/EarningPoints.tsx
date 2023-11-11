@@ -22,16 +22,10 @@ const EARNING_POINTS_ACTIVITIES = [
     color: 'warning',
   },
   {
-    title: 'Share Your Work',
-    text: 'Showcase your expertise by sharing your portfolio, projects, and achievements',
+    title: 'Platform Activities',
+    text: 'Involve essential interactions within Kreatli, such as profile verification, daily visits, and tier progression. Users can earn points to enhance their profiles, get rewards, and climb tiers for exclusive benefits',
     icon: 'taskGrow' as const,
     color: 'success',
-  },
-  {
-    title: 'Refer Others',
-    text: 'Invite friends and colleagues to join Kreatli, and when they register and engage on the platform, you\'ll earn points as a token of appreciation',
-    icon: 'taskLike' as const,
-    color: 'danger',
   },
 ];
 
