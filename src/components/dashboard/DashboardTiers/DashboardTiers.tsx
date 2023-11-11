@@ -5,7 +5,7 @@ import React from 'react';
 
 import { DashboardTier } from './DashboardTier';
 
-const CURRENT_USER_CURRENT_TIER = 1;
+const CURRENT_USER_CURRENT_TIER = 5;
 
 export const DashboardTiers = React.forwardRef<HTMLDivElement>((_, ref) => {
   const { openModal } = useTiersModal();
