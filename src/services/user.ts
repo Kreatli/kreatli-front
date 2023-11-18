@@ -10,6 +10,10 @@ export const requestCurrentUserPosts = (params?: Api.GetParams['/user/posts']) =
   return api.get('/user/posts', params).then((res) => res.data);
 };
 
+export const requestCurrentUserTasks = () => {
+  return api.get('/user/tasks').then((res) => res.data);
+};
+
 export const requestYoutubeInfoUpdate = () => {
   return api.post('/user/update-youtube-info', {}).then((res) => res.data);
 };

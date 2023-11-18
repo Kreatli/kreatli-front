@@ -1,3 +1,4 @@
+import { DashboardContextProvider } from 'contexts/Dashboard';
 import { useBreakpointValue } from 'hooks/useBreakpointValue';
 import React from 'react';
 
@@ -40,15 +41,17 @@ export const Dashboard = () => {
   }, [isMobile, tiersHeight, overviewHeight]);
 
   return (
-    <div className="flex max-md:flex-col gap-5">
-      <div className="flex-1 flex flex-col gap-5">
-        <DashboardOverview ref={overviewRef} />
-        <DashboardLeaderBoard minHeight={boardMinHeight} maxHeight={boardMaxHeight} />
+    <DashboardContextProvider>
+      <div className="flex max-md:flex-col gap-5">
+        <div className="flex-1 flex flex-col gap-5">
+          <DashboardOverview ref={overviewRef} />
+          <DashboardLeaderBoard minHeight={boardMinHeight} maxHeight={boardMaxHeight} />
+        </div>
+        <div className="flex-[2] flex flex-col gap-5">
+          <DashboardTasks minHeight={tasksMinHeight} maxHeight={tasksMaxHeight} />
+          <DashboardTiers ref={tiersRef} />
+        </div>
       </div>
-      <div className="flex-[2] flex flex-col gap-5">
-        <DashboardTasks minHeight={tasksMinHeight} maxHeight={tasksMaxHeight} />
-        <DashboardTiers ref={tiersRef} />
-      </div>
-    </div>
+    </DashboardContextProvider>
   );
 };

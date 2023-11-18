@@ -1,8 +1,8 @@
 export namespace Tasks {
-  type TaskType = 'engage' | 'write' | 'like' | 'send' | 'grow';
+  type Type = 'platform' | 'content' | 'job' | 'engagement';
 
   export interface Task {
-    type: TaskType;
+    type: Type;
     label: string;
     points: number;
     value: number;

@@ -1,25 +1,23 @@
-import { Progress } from '@nextui-org/react';
-import { Icon } from 'components/various/Icon';
+import { Progress, ProgressProps } from '@nextui-org/react';
+import { Icon, IconType } from 'components/various/Icon';
 import React from 'react';
 import { Tasks } from 'typings/tasks';
 
 interface Props extends Tasks.Task {}
 
-const ICON_BY_TYPE = {
-  engage: 'taskEngage',
-  grow: 'taskGrow',
-  like: 'taskLike',
-  send: 'taskSend',
-  write: 'taskWrite',
-} as const;
+const ICON_BY_TYPE: Record<Tasks.Type, IconType> = {
+  content: 'taskWrite',
+  engagement: 'taskEngage',
+  job: 'taskSend',
+  platform: 'taskGrow',
+};
 
-const COLOR_BY_TYPE = {
-  engage: 'primary',
-  grow: 'success',
-  like: 'danger',
-  send: 'warning',
-  write: 'secondary',
-} as const;
+const COLOR_BY_TYPE: Record<Tasks.Type, ProgressProps['color']> = {
+  content: 'secondary',
+  engagement: 'primary',
+  job: 'warning',
+  platform: 'success',
+};
 
 export const DashboardTask = ({ type, label, value, maxValue, points }: Props) => {
   const shouldShowProgress = value > 0;

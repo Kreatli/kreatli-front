@@ -1,23 +1,23 @@
 import { Card, CardBody, Divider, Tooltip } from '@nextui-org/react';
 import { Icon } from 'components/various/Icon';
+import { DashboardContext } from 'contexts/Dashboard';
 import { useTiersModal } from 'hooks/useTiersModal';
 import React from 'react';
 
 import { DashboardTier } from './DashboardTier';
 
-const CURRENT_USER_CURRENT_TIER = 5;
-
 export const DashboardTiers = React.forwardRef<HTMLDivElement>((_, ref) => {
+  const { userTier } = React.useContext(DashboardContext);
   const { openModal } = useTiersModal();
 
   return (
     <Card ref={ref}>
       <CardBody>
-        <DashboardTier tier={CURRENT_USER_CURRENT_TIER} label="Current tier" />
-        {CURRENT_USER_CURRENT_TIER < 5 && (
+        <DashboardTier tier={userTier} label="Current tier" />
+        {userTier < 5 && (
           <>
             <Divider className="bg-default-100 my-4" />
-            <DashboardTier tier={CURRENT_USER_CURRENT_TIER + 1} label="Next tier" />
+            <DashboardTier tier={userTier + 1} label="Next tier" />
           </>
         )}
       </CardBody>

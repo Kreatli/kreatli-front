@@ -40,6 +40,7 @@ export namespace User {
     tierPoints: number;
     invitations: {
       _id: Common.Id;
+      creationDate: Date;
       inviter: string;
       message?: string;
     }[];

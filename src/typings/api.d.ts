@@ -6,6 +6,7 @@ import { Invitation } from './invitation';
 import { Job } from './job';
 import { Pagination } from './pagination';
 import { Skill, SkillLevel } from './skill';
+import { Tasks } from './tasks';
 import { User } from './user';
 
 export interface UploadApiResponse {
@@ -36,6 +37,7 @@ export namespace Api {
   export type Get =
     | '/user'
     | '/user/posts'
+    | '/user/tasks'
     | '/user/:id'
     | '/user/:id/connections'
     | '/user/:id/posts'
@@ -52,7 +54,9 @@ export namespace Api {
     | '/posts'
     | '/chat/:id'
     | '/chat/:id/messages'
-    | '/chat-requests';
+    | '/chat-requests'
+    | '/dashboard'
+    | '/leaderboard';
 
   export type Post =
     | '/auth/signup-creator'
@@ -112,7 +116,11 @@ export namespace Api {
   }
 
   export interface GetResponse {
-    '/user': User.Type;
+    '/user': User.Professional | (User.Creator & {
+      exceededLimits: {
+        jobOffers: boolean;
+      }
+    });
     '/user/posts': {
       posts: Feed.Post[];
       postsCount: number;
@@ -126,6 +134,10 @@ export namespace Api {
     '/user/:id/posts': {
       posts: Feed.Post[];
       postsCount: number;
+    };
+    '/user/tasks': {
+      ongoingTasks: Tasks.Task[];
+      newTasks: Tasks.Task[];
     };
     '/users': User.ShortInfo[];
     '/creators': User.Creator[];
@@ -159,6 +171,14 @@ export namespace Api {
       messagesCount: number;
     };
     '/chat-requests': Chat.Type[];
+    '/dashboard': {
+      earnedToday: number;
+      earnedTomorrow: number;
+      dailyLimit: number;
+      userTier: number;
+      userPoints: number;
+    };
+    '/leaderboard': (User.ShortInfo & { tierPoints: number })[];
   }
 
   export interface PostPayload {

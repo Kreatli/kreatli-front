@@ -3,15 +3,17 @@ import React from 'react';
 import { Tasks } from 'typings/tasks';
 
 import { DashboardTask } from './DashboardTask';
+import { DashboardTasksTrackerSkeleton } from './DashboardTasksTrackerSkeleton';
 
 interface Props {
   label: string;
   tasks: Tasks.Task[];
+  isLoading?: boolean;
   maxHeight?: string;
   minHeight?: string;
 }
 
-export const DashboardTasksTracker = ({ label, tasks, maxHeight, minHeight }: Props) => {
+export const DashboardTasksTracker = ({ label, isLoading, tasks, maxHeight, minHeight }: Props) => {
   return (
     <Card className="flex-1" style={{ maxHeight, minHeight }}>
       <CardHeader className="p-5 pb-2">
@@ -19,9 +21,16 @@ export const DashboardTasksTracker = ({ label, tasks, maxHeight, minHeight }: Pr
       </CardHeader>
       <CardBody className="pt-2">
         <div className="flex sm:flex-col gap-3">
-          {tasks.map((task, index) => (
-            <DashboardTask key={index} {...task} />
-          ))}
+          {isLoading && (
+            <DashboardTasksTrackerSkeleton />
+          )}
+          {!isLoading && (
+            <>
+              {tasks.map((task, index) => (
+                <DashboardTask key={index} {...task} />
+              ))}
+            </>
+          )}
         </div>
       </CardBody>
     </Card>
