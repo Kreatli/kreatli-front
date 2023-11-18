@@ -91,7 +91,7 @@ export const SystemMessage = ({ message }: Props) => {
     if (jobApplicationStatus === JOB_APPLICATION_STATUSES.CANCELED) {
       return <span className="flex gap-1 text-sm text-default-400"><Icon icon="crossCircle" size={18} />Cancelled</span>;
     }
-  }, [type, jobApplicationStatus, isCurrentUserSender, jobOfferId, jobApplicationId]);
+  }, [type, jobApplicationStatus, isCurrentUserSender, jobOfferId, jobApplicationId, loadInitialMessages]);
 
   return (
     <div className="md:px-10 mx-auto">

@@ -82,7 +82,7 @@ export const AvatarUploader = <T extends FieldValues>({ control, name, rules, st
 
     setSelectedFile(file);
     onOpen();
-  }, [pushNotification]);
+  }, [onOpen, pushNotification]);
 
   const handleImageLoad = React.useCallback((event: React.SyntheticEvent<HTMLImageElement>) => {
     const { naturalWidth: width, naturalHeight: height } = event.currentTarget;
@@ -100,7 +100,7 @@ export const AvatarUploader = <T extends FieldValues>({ control, name, rules, st
     onClose();
     setSelectedFile(null);
     setPreviewUrl('');
-  }, []);
+  }, [onClose]);
 
   const { mutate } = useMutation(requestImageUpload, {
     onSuccess: (data) => {

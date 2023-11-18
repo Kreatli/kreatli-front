@@ -85,7 +85,6 @@ export const SignUpProfessional: React.FC = () => {
   });
 
   const onSubmit = (data: DefaultValues) => {
-    console.log(data);
     const dataWithoutIds = {
       ...data,
       certificates: data.certificates.map(({ id: _, ...rest }) => rest),
