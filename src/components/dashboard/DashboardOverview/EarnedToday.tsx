@@ -8,14 +8,14 @@ export const EarnedToday = () => {
 
   const tooltipContent = React.useMemo(() => {
     if (earnedTomorrow > 0) {
-      return 'You exceeded the daily limit, some of the points will be added to tomorrow\'s limit';
+      return `You exceeded the daily limit, ${earnedTomorrow} points will be added in 24 hours`;
     }
 
     if (earnedToday === dailyLimit) {
-      return 'You reached out the maximum, tasks are frozen until the end of the day';
+      return 'You reached the daily limit, progress on tasks is not being tracked until the next day';
     }
 
-    return 'You can earn max 200 points in a day';
+    return 'You can earn a maximum of 200 points daily';
   }, [dailyLimit, earnedToday, earnedTomorrow]);
 
   return (
