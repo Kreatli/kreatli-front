@@ -44,9 +44,9 @@ export const InvitationCard = ({ invitation }: Props) => {
           </ProfileUnverifiedTooltip>
         </div>
       </CardHeader>
-      {true && (
+      {invitation.message && (
         <CardBody className="p-5 pt-0">
-          <p className="text-sm">Hello! My name is Yury. Let&apos;s chat</p>
+          <p className="text-sm">{invitation.message}</p>
         </CardBody>
       )}
     </Card>
