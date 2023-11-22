@@ -37,6 +37,7 @@ export const JobApplicationForm = ({ jobOfferId, onCancel, onSuccess }: Props) =
         color: 'success',
         icon: 'success',
       });
+      queryClient.refetchQueries('user');
       queryClient.setQueryData(['job-offer', jobOfferId], jobOffer);
       onSuccess();
     },
@@ -67,7 +68,7 @@ export const JobApplicationForm = ({ jobOfferId, onCancel, onSuccess }: Props) =
       <div className="flex justify-center gap-2 mt-4">
         <Button variant="light" color="secondary" onClick={onCancel}>Cancel</Button>
         <Button type="submit" variant="flat" color="secondary" isLoading={isLoading}>
-          Apply for job
+          Apply for a job
         </Button>
       </div>
     </form>

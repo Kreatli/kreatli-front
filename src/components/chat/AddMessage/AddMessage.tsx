@@ -17,7 +17,7 @@ import { requestChatUpdate } from 'services/chat';
 import { getErrorMessage } from 'utils/getErrorMessage';
 
 export const AddMessage = () => {
-  const editorRef = React.useRef<HTMLInputElement>(null);
+  const editorRef = React.useRef<HTMLTextAreaElement>(null);
   const [isEmojiPickerOpened, setIsEmojiPickerOpen] = React.useState(false);
 
   const { addMessage, activeChat, participant, participantId } = React.useContext(ChatContext);

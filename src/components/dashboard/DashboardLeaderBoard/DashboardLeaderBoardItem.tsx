@@ -37,7 +37,7 @@ export const DashboardLeaderBoardItem = ({ user, points, place }: Props) => {
         </div>
       </NextLink>
       <div>
-        <div className="text-xs text-default-400">Score</div>
+        <div className="text-xs text-default-400">Points</div>
         <div className="text-sm font-semibold">{pointsFormatter.format(points)}</div>
       </div>
     </div>

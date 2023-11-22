@@ -60,14 +60,14 @@ export const SignInForm: React.FC<Props> = ({ onClick, onSuccess }) => {
           aria-label="Email"
           isDisabled={isLoading}
           isInvalid={!!errors.email}
-          fullWidth
+          labelPlacement="outside"
           {...register('email', VALIDATION_RULES.REQUIRED)}
         />
         <InputPassword
           placeholder="Password"
           aria-label="Password"
           isDisabled={isLoading}
-          fullWidth
+          labelPlacement="outside"
           isInvalid={!!errors.password}
           {...register('password', VALIDATION_RULES.REQUIRED)}
         />

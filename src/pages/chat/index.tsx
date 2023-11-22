@@ -12,7 +12,7 @@ const Chat = () => {
         <meta name="description" content="Kreatli" />
       </Head>
       <Card className="flex-1">
-        <CardBody>
+        <CardBody className="p-5">
           <EmptyState
             title="Select a chat"
             text="To see your an existing conversation or start a new one"

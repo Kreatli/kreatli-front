@@ -24,7 +24,7 @@ export const SideMenu = () => {
 
   return (
     <Card className="sticky z-20 top-20 md:top-24">
-      <CardBody className="py-4">
+      <CardBody className="px-5 py-4">
         <div className="flex justify-between">
           <p className="text-default-400">Filter:</p>
           <Dropdown>

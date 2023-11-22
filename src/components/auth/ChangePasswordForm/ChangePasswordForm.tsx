@@ -56,7 +56,7 @@ export const ChangePasswordForm = ({ token, onSuccess, onError }: Props) => {
           placeholder="New password"
           aria-label="New password"
           isDisabled={isLoading}
-          fullWidth
+          labelPlacement="outside"
           isInvalid={!!errors.password}
           errorMessage={errors.password?.message}
           {...register('password', VALIDATION_RULES.PASSWORD)}
@@ -65,7 +65,7 @@ export const ChangePasswordForm = ({ token, onSuccess, onError }: Props) => {
           placeholder="Repeat new password"
           aria-label="Repeat new password"
           isDisabled={isLoading}
-          fullWidth
+          labelPlacement="outside"
           isInvalid={!!errors.passwordRepeat}
           errorMessage={errors.passwordRepeat?.message}
           {...register('passwordRepeat', VALIDATION_RULES.PASSWORD)}

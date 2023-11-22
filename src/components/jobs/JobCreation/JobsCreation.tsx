@@ -1,10 +1,9 @@
 import { Accordion, AccordionItem, Button, Progress, Selection } from '@nextui-org/react';
-import { EmptyState } from 'components/various/EmptyState';
 import { useRouter } from 'next/router';
 import { omit } from 'ramda';
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { useMutation } from 'react-query';
+import { useMutation, useQueryClient } from 'react-query';
 
 import { useNotifications } from '../../../hooks/useNotifications';
 import { useSession } from '../../../hooks/useSession';
@@ -30,9 +29,9 @@ export const JobsCreation = () => {
   const [selectedKeys, setSelectedKeys] = React.useState(['0']);
   const [isFilledByStep, setIsFilledByStep] = React.useState([false, false, false]);
 
-  const { currentUser, currentUserId } = useSession();
-  const isExceededLimits = currentUser?.role === 'creator' && currentUser?.exceededLimits.jobOffers;
+  const { currentUserId } = useSession();
   const router = useRouter();
+  const queryClient = useQueryClient();
   const pushNotification = useNotifications((state) => state.pushNotification);
 
   const {
@@ -75,6 +74,7 @@ export const JobsCreation = () => {
         color: 'success',
         icon: 'success',
       });
+      queryClient.refetchQueries('user');
       router.push(`/profile/${currentUserId}/jobs`);
     },
     onError: (error) => {
@@ -135,53 +135,42 @@ export const JobsCreation = () => {
   return (
     <>
       <h2 className="text-3xl text-secondary font-bold mb-4">Create job posting</h2>
-      {isExceededLimits && (
-        <EmptyState
-          title="Looks like you exceeded your limit in this month"
-          text="Visit the dashboard to discover tasks that expedite your progress to the next tier. Or buy points for an even quicker upgrade!"
-          link={{ href: '/dashboard', label: 'Go to dashboard' }}
-        />
-      )}
-      {!isExceededLimits && (
-        <>
-          <p className="mb-6">{description}</p>
-          <Progress className="mb-10" value={progressValue} color="secondary" />
-          <form noValidate onSubmit={handleSubmit(onSubmit)}>
-            <Accordion
-              className="gap-4 p-0"
-              itemClasses={{ title: 'font-semibold', subtitle: 'text-gray-400' }}
-              variant="splitted"
-              selectedKeys={selectedKeys}
-              disabledKeys={disabledKeys}
-              keepContentMounted
-              onSelectionChange={handleSelectionChange}
+      <p className="mb-6">{description}</p>
+      <Progress className="mb-10" value={progressValue} color="secondary" />
+      <form noValidate onSubmit={handleSubmit(onSubmit)}>
+        <Accordion
+          className="gap-4 p-0"
+          itemClasses={{ title: 'font-semibold', subtitle: 'text-gray-400' }}
+          variant="splitted"
+          selectedKeys={selectedKeys}
+          disabledKeys={disabledKeys}
+          keepContentMounted
+          onSelectionChange={handleSelectionChange}
+        >
+          {steps.map(({ title, subtitle, render }, index) => (
+            <AccordionItem
+              key={`${index}`}
+              title={title}
+              aria-label={title}
+              subtitle={subtitle}
+              startContent={!isValidByStep[index] && <Icon className="fill-danger" icon="error" />}
             >
-              {steps.map(({ title, subtitle, render }, index) => (
-                <AccordionItem
-                  key={`${index}`}
-                  title={title}
-                  aria-label={title}
-                  subtitle={subtitle}
-                  startContent={!isValidByStep[index] && <Icon className="fill-danger" icon="error" />}
-                >
-                  {render}
-                  <div className="flex gap-2 mt-6">
-                    {index > 0 && (
-                      <Button variant="light" color="secondary" onClick={handleBack}>Back</Button>
-                    )}
-                    {index !== steps.length - 1 && (
-                      <Button variant="flat" color="secondary" onClick={handleNext}>Next</Button>
-                    )}
-                    {index === steps.length - 1 && (
-                      <Button type="submit" color="secondary" isLoading={isLoading}>Create job posting</Button>
-                    )}
-                  </div>
-                </AccordionItem>
-              ))}
-            </Accordion>
-          </form>
-        </>
-      )}
+              {render}
+              <div className="flex gap-2 mt-6">
+                {index > 0 && (
+                  <Button variant="light" color="secondary" onClick={handleBack}>Back</Button>
+                )}
+                {index !== steps.length - 1 && (
+                  <Button variant="flat" color="secondary" onClick={handleNext}>Next</Button>
+                )}
+                {index === steps.length - 1 && (
+                  <Button type="submit" color="secondary" isLoading={isLoading}>Create job posting</Button>
+                )}
+              </div>
+            </AccordionItem>
+          ))}
+        </Accordion>
+      </form>
     </>
   );
 };

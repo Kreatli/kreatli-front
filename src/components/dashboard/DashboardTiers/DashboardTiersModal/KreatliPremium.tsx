@@ -6,7 +6,7 @@ import React from 'react';
 export const KreatliPremium = () => {
   return (
     <Card>
-      <CardBody>
+      <CardBody className="p-5">
         <div className="flex gap-1 items-center mb-4">
           <h3 className="text-medium font-semibold">Kreatli premium</h3>
           <Tooltip content="Kreatli Premium is going to be available in the next product update soon">

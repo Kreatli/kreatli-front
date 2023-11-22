@@ -30,7 +30,7 @@ export const RecentConnections = ({ ids }: Props) => {
             <ProfileBadge isVerified={user.isVerified} size="sm">
               <Avatar src={user.avatarUrl} size="lg" />
             </ProfileBadge>
-            <h5 className="text-lg font-semibold leading-4 mt-2 mb-1 text-center">{user.name}</h5>
+            <h5 className="text-medium font-semibold leading-4 mt-2 mb-1 text-center">{user.name}</h5>
             <p className="text-sm text-gray-400 text-center">{COUNTRY_LABELS[user.country]}</p>
           </NextLink>
         ))}

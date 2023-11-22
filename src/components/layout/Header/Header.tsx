@@ -1,4 +1,5 @@
 import { Avatar, Button, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger, Link, Navbar, NavbarBrand, NavbarContent, NavbarItem, NavbarMenu, NavbarMenuItem, NavbarMenuToggle, useDisclosure } from '@nextui-org/react';
+import { NotificationButton } from 'components/notifications/NotificationButton';
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
@@ -119,7 +120,8 @@ export const Header = () => {
         ))}
       </NavbarContent>
       <NavbarContent justify="end">
-        <NavbarItem>
+        <NavbarItem className="flex items-center">
+          <NotificationButton />
           <Button
             isIconOnly
             aria-label="Toggle theme"

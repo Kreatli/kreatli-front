@@ -7,7 +7,7 @@ import { TierStructureItem } from './TierStructureItem';
 export const TierStructure = () => {
   return (
     <Card className="md:flex-[3]">
-      <CardBody>
+      <CardBody className="p-5">
         <h3 className="text-medium font-semibold mb-4">Tier Structure</h3>
         <div className="flex flex-col gap-4">
           {TIER_OPTIONS.map(({ value }) => (

@@ -9,7 +9,7 @@ export const BuyPoints = () => {
   return (
     <>
       <Card className="flex-1">
-        <CardBody className="gap-4">
+        <CardBody className="p-5 gap-4">
           <div className="text-sm font-semibold text-center">
             Want to reach the next tier faster?
           </div>

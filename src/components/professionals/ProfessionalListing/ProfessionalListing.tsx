@@ -110,6 +110,7 @@ export const ProfessionalListing = () => {
               aria-label="Search"
               fullWidth
               isClearable
+              labelPlacement="outside"
               placeholder="Type here to search..."
               onClear={handleClear}
               onChange={handleSearchChange}

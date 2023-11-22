@@ -95,7 +95,7 @@ export const Post = () => {
               )}
           </div>
         </CardHeader>
-        <CardBody className="py-0 gap-4">
+        <CardBody className="px-5 py-0 gap-4">
           <div className="whitespace-pre-wrap">{postContent}</div>
           {media.length > 0 && (
             <MediaSlider media={media} />

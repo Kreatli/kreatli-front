@@ -56,7 +56,7 @@ export const ResetPasswordForm: React.FC<Props> = ({ onClick, onSuccess }) => {
         aria-label="Email"
         isDisabled={isLoading}
         isInvalid={!!errors.email}
-        fullWidth
+        labelPlacement="outside"
         {...register('email', VALIDATION_RULES.REQUIRED)}
       />
       <div className="flex justify-between gap-4 mt-8 mb-2">

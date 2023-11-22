@@ -19,7 +19,7 @@ export const DashboardTasksTracker = ({ label, isLoading, tasks, maxHeight, minH
       <CardHeader className="p-5 pb-2">
         <div className="text-xs text-default-400 font-semibold">{label}</div>
       </CardHeader>
-      <CardBody className="pt-2">
+      <CardBody className="p-5 pt-2">
         <div className="flex sm:flex-col gap-3">
           {isLoading && (
             <DashboardTasksTrackerSkeleton />

@@ -1,4 +1,4 @@
-import { Avatar, Button, useDisclosure } from '@nextui-org/react';
+import { Avatar, Button, Tooltip, useDisclosure } from '@nextui-org/react';
 import NextLink from 'next/link';
 import React from 'react';
 
@@ -45,6 +45,7 @@ export const JobPage = (props: Props) => {
   const isMobile = useBreakpointValue({ SM: false }, true);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { currentUser } = useSession();
+  const isExceededLimits = currentUser?.exceededLimits.jobApplications;
   const isPosted = status === 'posted';
   const isProfessional = currentUser?.role === 'professional';
 
@@ -53,7 +54,7 @@ export const JobPage = (props: Props) => {
   }, [creationDate]);
 
   const notAppliedActionLabel = isPosted
-    ? 'Apply for job'
+    ? 'Apply for a job'
     : 'The job is not active';
 
   const userCardContent = (
@@ -70,11 +71,21 @@ export const JobPage = (props: Props) => {
       {!isMobile && <PaymentMethods methods={paymentPreferences} />}
       <div className="flex flex-col items-center gap-1">
         {isProfessional && (
-          <Button isDisabled={hasApplied || !isPosted} color="secondary" onClick={onOpen}>
-            {hasApplied
-              ? 'Applied'
-              : notAppliedActionLabel}
-          </Button>
+          !isPosted || hasApplied ? (
+            <Button isDisabled color="secondary" onClick={onOpen}>
+              {hasApplied
+                ? 'Applied'
+                : notAppliedActionLabel}
+            </Button>
+          ) : (
+            <Tooltip isDisabled={!isExceededLimits} content="You've reached your job applications limit. Get to the next tier to increase the limit">
+              <div>
+                <Button isDisabled={isExceededLimits} color="secondary" onClick={onOpen}>
+                  {notAppliedActionLabel}
+                </Button>
+              </div>
+            </Tooltip>
+          )
         )}
         <p className="text-sm text-gray-400">{applicationsCount} application{applicationsCount === 1 ? '' : 's'} so far</p>
       </div>

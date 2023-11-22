@@ -20,7 +20,7 @@ export const EarnedToday = () => {
 
   return (
     <Card className="flex-1">
-      <CardBody className="justify-center items-center">
+      <CardBody className="p-5 justify-center items-center">
         <CircularProgress
           size="lg"
           value={earnedToday}

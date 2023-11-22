@@ -10,7 +10,7 @@ export const CardCTA: React.FC = () => {
           <small className="text-default-500">12 Tracks</small>
           <h4 className="font-bold text-large">Kreatli Radio</h4>
         </CardHeader>
-        <CardBody className="overflow-visible py-2">
+        <CardBody className="px-5 overflow-visible py-2">
           <Image
             alt="Card background"
             className="object-cover rounded-xl"

@@ -18,7 +18,7 @@
     "@lexical/react": "^0.12.2",
     "@lexical/text": "^0.12.2",
     "@lexical/utils": "^0.12.2",
-    "@nextui-org/react": "^2.1.13",
+    "@nextui-org/react": "^2.2.9",
     "axios": "^1.5.1",
     "classnames": "^2.3.2",
     "emoji-mart": "^5.5.2",

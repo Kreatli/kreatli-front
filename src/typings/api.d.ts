@@ -116,11 +116,13 @@ export namespace Api {
   }
 
   export interface GetResponse {
-    '/user': User.Professional | (User.Creator & {
+    '/user': User.Type & {
       exceededLimits: {
         jobOffers: boolean;
+        jobApplications: boolean;
+        invitations: boolean;
       }
-    });
+    };
     '/user/posts': {
       posts: Feed.Post[];
       postsCount: number;

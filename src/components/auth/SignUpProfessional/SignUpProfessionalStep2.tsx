@@ -39,6 +39,7 @@ export const SignUpProfessionalStep2: React.FC<Props> = ({ control, errors, regi
           endContent={<span className="pointer-events-none text-small text-gray-400">optional</span>}
           aria-label="Portfolio Link"
           placeholder="https://myportflio.com"
+          labelPlacement="outside"
           isInvalid={!!errors.portfolioUrl}
           errorMessage={errors.portfolioUrl?.message}
           {...register('portfolioUrl', VALIDATION_RULES.URL.OPTIONAL)}
@@ -48,6 +49,7 @@ export const SignUpProfessionalStep2: React.FC<Props> = ({ control, errors, regi
           endContent={<span className="pointer-events-none text-small text-gray-400">optional</span>}
           aria-label="Twitter Link"
           placeholder="https://twitter.com/myaccount"
+          labelPlacement="outside"
           isInvalid={!!errors.twitterUrl}
           errorMessage={errors.twitterUrl?.message}
           {...register('twitterUrl', VALIDATION_RULES.TWITTER_ACCOUNT_URL)}
@@ -57,6 +59,7 @@ export const SignUpProfessionalStep2: React.FC<Props> = ({ control, errors, regi
           endContent={<span className="pointer-events-none text-small text-gray-400">optional</span>}
           aria-label="Discord Username"
           placeholder="username#0000"
+          labelPlacement="outside"
           isInvalid={!!errors.discordUsername}
           errorMessage={errors.discordUsername?.message}
           {...register('discordUsername', VALIDATION_RULES.DISCORD_USERNAME)}
@@ -66,6 +69,7 @@ export const SignUpProfessionalStep2: React.FC<Props> = ({ control, errors, regi
           endContent={<span className="pointer-events-none text-small text-gray-400">optional</span>}
           aria-label="Instagram Profile"
           placeholder="@myusername"
+          labelPlacement="outside"
           isInvalid={!!errors.instagramUsername}
           errorMessage={errors.instagramUsername?.message}
           {...register('instagramUsername', VALIDATION_RULES.INSTAGRAM_USERNAME)}

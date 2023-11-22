@@ -12,7 +12,7 @@ export const DashboardTiers = React.forwardRef<HTMLDivElement>((_, ref) => {
 
   return (
     <Card ref={ref}>
-      <CardBody>
+      <CardBody className="p-5">
         <DashboardTier tier={userTier} label="Current tier" />
         {userTier < 5 && (
           <>

@@ -1,6 +1,7 @@
-import { Button, Pagination, Tab, Tabs } from '@nextui-org/react';
+import { Button, Pagination, Tab, Tabs, Tooltip } from '@nextui-org/react';
 import cx from 'classnames';
 import { Icon } from 'components/various/Icon';
+import { useSession } from 'hooks/useSession';
 import NextLink from 'next/link';
 import React from 'react';
 import { useQuery } from 'react-query';
@@ -19,7 +20,9 @@ export const MyJobsOffers = () => {
   const [page, setPage] = React.useState(1);
   const [selectedTab, setSelectedTab] = React.useState<Job.Offer['status']>('posted');
 
+  const { currentUser } = useSession();
   const isMobile = useBreakpointValue({ SM: false }, true);
+  const isExceededLimits = currentUser?.role === 'creator' && currentUser?.exceededLimits.jobOffers;
 
   const getCurrentCreatorJobs = () => {
     return requestCurrentCreatorJobs({ status: selectedTab, offset: (page - 1) * PAGE_LIMIT });
@@ -94,9 +97,13 @@ export const MyJobsOffers = () => {
     <>
       <div className="flex items-center justify-between mb-4">
         <h3 className="text-2xl font-semibold">My job postings</h3>
-        <Button as={NextLink} isIconOnly={isMobile} startContent={<Icon icon="plus" size={18} />} radius="full" color="secondary" href="/jobs/create">
-          {!isMobile && 'Create job posting'}
-        </Button>
+        <Tooltip isDisabled={!isExceededLimits} content="You've reached your job posting limit. Get to the next tier to increase the limit">
+          <div>
+            <Button as={NextLink} isDisabled={isExceededLimits} isIconOnly={isMobile} startContent={<Icon icon="plus" size={18} />} radius="full" color="secondary" href="/jobs/create">
+              {!isMobile && 'Create job posting'}
+            </Button>
+          </div>
+        </Tooltip>
       </div>
       <Tabs aria-label="My job postings" selectedKey={selectedTab} className="mb-4" onSelectionChange={handleSelectionChange}>
         <Tab key="posted" title="Posted" />

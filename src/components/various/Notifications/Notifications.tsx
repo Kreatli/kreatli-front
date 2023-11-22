@@ -12,7 +12,7 @@ export const Notifications = () => {
     <div className={styles.wrapper}>
       {notifications.map(({ id, message, color = 'danger', icon }) => (
         <Card key={id} className={`${styles.card} text-${color} bg-${color}-50`}>
-          <CardBody>
+          <CardBody className="p-5">
             <div className={styles.content}>
               {icon && <Icon icon={icon} />}
               {message}

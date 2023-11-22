@@ -32,7 +32,7 @@ const EARNING_POINTS_ACTIVITIES = [
 export const EarningPoints = () => {
   return (
     <Card>
-      <CardBody>
+      <CardBody className="p-5">
         <h3 className="text-medium font-semibold mb-4">Earning Points</h3>
         <p className="text-sm text-default-500">Users can earn a maximum of 200 points daily.</p>
         <Divider className="my-4" />

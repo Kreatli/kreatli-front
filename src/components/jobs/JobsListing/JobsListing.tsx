@@ -1,4 +1,4 @@
-import { Button, Input } from '@nextui-org/react';
+import { Button, Input, Tooltip } from '@nextui-org/react';
 import cx from 'classnames';
 import NextLink from 'next/link';
 import React from 'react';
@@ -94,6 +94,8 @@ export const JobsListing = () => {
   const shouldShowLoader = isFetching && !isFetchingNextPage && cards.length;
   const shouldShowEmptyState = !isFetching && !cards.length;
 
+  const isExceededLimits = currentUser?.role === 'creator' && currentUser?.exceededLimits.jobOffers;
+
   return (
     <div className={styles.wrapper}>
       <JobsListingFilters
@@ -112,22 +114,28 @@ export const JobsListing = () => {
             fullWidth
             isClearable
             placeholder="Type here to search..."
+            labelPlacement="outside"
             onChange={handleSearchChange}
             onClear={handleSearchClear}
           />
           {isCreator && (
             <div className="flex-initial">
-              <Button
-                as={NextLink}
-                isIconOnly={isMobile}
-                href="/jobs/create"
-                color="secondary"
-                radius="full"
-                startContent={<Icon icon="plus" size={18} />}
-                aria-label="Create job posting"
-              >
-                {!isMobile ? 'Create job posting' : null}
-              </Button>
+              <Tooltip isDisabled={!isExceededLimits} content="You've reached your job posting limit. Get to the next tier to increase the limit">
+                <div>
+                  <Button
+                    as={NextLink}
+                    isIconOnly={isMobile}
+                    isDisabled={isExceededLimits}
+                    href="/jobs/create"
+                    color="secondary"
+                    radius="full"
+                    startContent={<Icon icon="plus" size={18} />}
+                    aria-label="Create job posting"
+                  >
+                    {!isMobile ? 'Create job posting' : null}
+                  </Button>
+                </div>
+              </Tooltip>
             </div>
           )}
           {isMobile && (

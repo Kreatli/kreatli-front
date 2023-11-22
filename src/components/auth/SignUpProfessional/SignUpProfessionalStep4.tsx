@@ -48,6 +48,7 @@ export const SignUpProfessionalStep4: React.FC<Props> = ({ control, errors, regi
                 placeholder="Channel/Company"
                 aria-label="Channel/Company"
                 startContent={<Icon className="text-gray-400" icon="building" />}
+                labelPlacement="outside"
                 isInvalid={!!errors.experiences?.[index]?.companyName}
                 errorMessage={errors.experiences?.[index]?.companyName?.message}
                 {...register(`experiences.${index}.companyName`, VALIDATION_RULES.SHORT_TEXT)}
@@ -56,6 +57,7 @@ export const SignUpProfessionalStep4: React.FC<Props> = ({ control, errors, regi
                 placeholder="Channel/Company link"
                 aria-label="Channel/Company link"
                 startContent={<Icon className="text-gray-400" icon="link" />}
+                labelPlacement="outside"
                 isInvalid={!!errors.experiences?.[index]?.companyUrl}
                 errorMessage={errors.experiences?.[index]?.companyUrl?.message}
                 {...register(`experiences.${index}.companyUrl`, VALIDATION_RULES.URL.REQUIRED)}

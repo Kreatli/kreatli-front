@@ -1,4 +1,4 @@
-import { Button, useDisclosure } from '@nextui-org/react';
+import { Button, Tooltip, useDisclosure } from '@nextui-org/react';
 import { useBreakpointValue } from 'hooks/useBreakpointValue';
 import NextLink from 'next/link';
 import React from 'react';
@@ -24,6 +24,7 @@ export const ConnectionButton = ({ userId, inviteeName, hasConnection, hasInvita
   const isMobile = useBreakpointValue({ SM: false }, true);
 
   const invitation = currentUser?.invitations.find(({ inviter }) => inviter === userId);
+  const isExceededLimits = currentUser?.exceededLimits.invitations;
   const wasInvited = !!invitation;
   const { isLoading, handleAccept, handleReject } = useUserInvitation({
     invitationId: invitation?._id,
@@ -76,19 +77,35 @@ export const ConnectionButton = ({ userId, inviteeName, hasConnection, hasInvita
     );
   }
 
-  return (
-    <>
+  if (hasInvitation) {
+    return (
       <Button
         color="secondary"
         isIconOnly={isMobile}
-        startContent={hasInvitation ? <Icon icon="mail" size={20} /> : <Icon icon="userPlus" size={20} />}
-        isDisabled={hasInvitation}
+        startContent={<Icon icon="mail" size={20} />}
+        isDisabled
         onClick={onOpen}
       >
-        {!isMobile && (
-          hasInvitation ? 'Invitation sent' : 'Connect'
-        )}
+        {!isMobile && 'Invitation sent'}
       </Button>
+    );
+  }
+
+  return (
+    <>
+      <Tooltip isDisabled={!isExceededLimits} content="You've reached your connection requests limit. Get to the next tier to increase the limit">
+        <div>
+          <Button
+            color="secondary"
+            isIconOnly={isMobile}
+            startContent={<Icon icon="userPlus" size={20} />}
+            isDisabled={isExceededLimits}
+            onClick={onOpen}
+          >
+            {!isMobile && 'Connect'}
+          </Button>
+        </div>
+      </Tooltip>
       <InvitationModal
         userId={userId}
         inviteeName={inviteeName}

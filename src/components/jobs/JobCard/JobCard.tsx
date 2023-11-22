@@ -73,7 +73,7 @@ export const JobCard = (props: Props) => {
   // TODO: on press instead of link ? to leave isPressable effect
   const card = (
     <Card className={cx(styles.card, className)} isHoverable={!hasFooter}>
-      <CardBody>
+      <CardBody className="p-5">
         {header}
         {!hideCreator && (
           <div className="flex items-center justify-between mb-2">
@@ -82,7 +82,7 @@ export const JobCard = (props: Props) => {
               : creatorBlock}
             {shouldWrapInLink && isProfessional && (
               <Button as="div" className={styles.applyButton} color="secondary" isDisabled={hasApplied} size="sm">
-                {hasApplied ? 'Applied' : 'Apply for job'}
+                {hasApplied ? 'Applied' : 'Apply for a job'}
               </Button>
             )}
           </div>

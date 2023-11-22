@@ -21,7 +21,7 @@ export const DashboardLeaderBoard = ({ maxHeight, minHeight }: Props) => {
       <CardHeader className="p-5 pb-2">
         <div className="text-medium font-semibold">Leaderboard</div>
       </CardHeader>
-      <CardBody className="pt-2">
+      <CardBody className="p-5 pt-2">
         <div className="flex flex-col gap-3">
           {shouldShowSkeleton && (
             <DashboardLeaderBoardSkeleton />

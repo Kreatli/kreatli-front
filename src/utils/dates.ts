@@ -64,3 +64,21 @@ export const formChatMessagesGroupDate = (dateString: Date | string) => {
 
   return dateToCompare.toLocaleDateString('en', { day: 'numeric', month: 'long', year: 'numeric' });
 };
+
+export const formatNotificationTime = (dateString: Date) => {
+  const currentDate = new Date();
+  const dateToCompare = new Date(dateString);
+
+  const isToday = currentDate.toDateString() === dateToCompare.toDateString();
+  const isThisYear = currentDate.getFullYear() === dateToCompare.getFullYear();
+
+  if (isToday) {
+    return dateToCompare.toLocaleTimeString('en', { timeStyle: 'short' });
+  }
+
+  if (isThisYear) {
+    return dateToCompare.toLocaleDateString('en', { day: 'numeric', month: 'short' });
+  }
+
+  return dateToCompare.toLocaleDateString('en', { day: 'numeric', month: 'short', year: 'numeric' });
+};

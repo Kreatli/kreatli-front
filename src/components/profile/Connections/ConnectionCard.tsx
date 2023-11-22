@@ -33,10 +33,10 @@ export const ConnectionCard = ({ user, isMyAccount }: Props) => {
         </Dropdown>
       )}
       <NextLink href={`/profile/${user._id}`}>
-        <CardBody>
+        <CardBody className="p-4">
           <div className="flex gap-6 items-center">
             <ProfileBadge isVerified={user.isVerified}>
-              <Avatar src={user.avatarUrl} isBordered className="w-16 h-16" />
+              <Avatar src={user.avatarUrl} isBordered className="w-14 h-14" />
             </ProfileBadge>
             <div className="flex-1">
               <p className="text-lg font-semibold">{user.name}</p>

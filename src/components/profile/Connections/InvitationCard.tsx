@@ -45,7 +45,7 @@ export const InvitationCard = ({ invitation }: Props) => {
         </div>
       </CardHeader>
       {true && (
-        <CardBody className="pt-0">
+        <CardBody className="p-5 pt-0">
           <p className="text-sm">Hello! My name is Yury. Let&apos;s chat</p>
         </CardBody>
       )}

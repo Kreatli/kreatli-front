@@ -7,7 +7,7 @@ import React from 'react';
 export const TierLegend = () => {
   return (
     <Card>
-      <CardBody className="flex-row flex-wrap justify-around gap-5">
+      <CardBody className="p-5 flex-row flex-wrap justify-around gap-5">
         {TIER_OPTIONS.map(({ value, label }) => {
           const isSubscriptionOnly = value === 4 || value === 5;
 

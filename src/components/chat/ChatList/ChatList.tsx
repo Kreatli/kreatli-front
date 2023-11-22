@@ -44,10 +44,10 @@ export const ChatList = () => {
   return (
     <Card className="w-full max-md:shadow-none md:w-80 lg:w-96">
       <CardHeader className="gap-2 pb-2 max-md:pt-6 max-md:pb-0">
-        <Input value={searchQuery} placeholder="Search" isClearable onChange={handleSearchChange} onClear={handleClear} />
+        <Input value={searchQuery} placeholder="Search" labelPlacement="outside" isClearable onChange={handleSearchChange} onClear={handleClear} />
         <ChatListNewButton />
       </CardHeader>
-      <CardBody>
+      <CardBody className="p-5">
         <div className="flex justify-between pb-4">
           <ListController isActive={listMode === 'chats'} label="Chats" count={chats.length} onClick={() => setListMode('chats')} />
           <ListController isActive={listMode === 'requests'} label="Requests" count={chatRequests.length} onClick={() => setListMode('requests')} />
