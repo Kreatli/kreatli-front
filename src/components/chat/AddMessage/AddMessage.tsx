@@ -161,7 +161,6 @@ export const AddMessage = () => {
           placeholder="Type to add your message"
           minRows={2}
           maxRows={3}
-          variant="bordered"
           classNames={{ input: isTouchScreen ? 'pr-28' : 'pr-36', inputWrapper: 'bordered' }}
           onKeyDown={handleKeyDown}
         />
