@@ -114,7 +114,7 @@ export const Header = () => {
       </NavbarContent>
       <NavbarContent justify="center" className="hidden sm:flex">
         {navigationItems.map(({ label, ...props }) => (
-          <NavbarItem key={label}>
+          <NavbarItem key={label} isActive={router.pathname.includes(props.href)}>
             <Link as={NextLink} color="foreground" {...props}>{label}</Link>
           </NavbarItem>
         ))}
