@@ -25,9 +25,9 @@ export const MenuItem = ({ href, label, description, icon, emoji, options, selec
   const { pathname } = useRouter();
   const [isCancelable, setIsCancelable] = React.useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = React.useState(false);
-  const [selected, setSelected] = React.useState<Set<React.Key>>(new Set([]));
+  const [selected, setSelected] = React.useState<Set<string | number>>(new Set([]));
 
-  const handleSelectChange = React.useCallback((keys: 'all' | Set<React.Key>) => {
+  const handleSelectChange = React.useCallback((keys: 'all' | Set<string | number>) => {
     if (keys === 'all') {
       return;
     }

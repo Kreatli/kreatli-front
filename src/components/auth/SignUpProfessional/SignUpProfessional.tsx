@@ -23,7 +23,7 @@ const FIELDS_BY_STEP = [
 ] as const;
 
 export const SignUpProfessional: React.FC = () => {
-  const [selectedKeys, setSelectedKeys] = React.useState<Set<React.Key>>(new Set(['0']));
+  const [selectedKeys, setSelectedKeys] = React.useState<Set<string | number>>(new Set(['0']));
   const [isFilledByStep, setIsFilledByStep] = React.useState([false, false, false]);
 
   const pushNotification = useNotifications((state) => state.pushNotification);

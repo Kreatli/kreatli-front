@@ -3,7 +3,7 @@ import { Common } from 'typings/common';
 import { Feed } from 'typings/feed';
 
 interface Context {
-  addCommentRef: React.RefObject<HTMLInputElement>;
+  addCommentRef: React.RefObject<HTMLTextAreaElement>;
   commentsRef: React.RefObject<HTMLDivElement>;
   comment: string;
   parentCommentId: Common.Id | undefined;
@@ -32,7 +32,7 @@ interface Props {
 export const PostContext = React.createContext<Context>(initialContext);
 
 export const PostContextProvider = ({ children, post: initialPost }: Props) => {
-  const addCommentRef = React.useRef<HTMLInputElement>(null);
+  const addCommentRef = React.useRef<HTMLTextAreaElement>(null);
   const commentsRef = React.useRef<HTMLDivElement>(null);
   const [post, setPost] = React.useState(initialPost);
   const [comment, setComment] = React.useState('');
