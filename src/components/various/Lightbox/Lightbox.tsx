@@ -14,7 +14,7 @@ export const Lightbox = ({ image, isOpen, onOpenChange }: Props) => {
   }
 
   return (
-    <Modal size="5xl" placement="center" isOpen={isOpen} hideCloseButton backdrop="blur" onOpenChange={onOpenChange}>
+    <Modal size="5xl" placement="center" className="w-auto" isOpen={isOpen} hideCloseButton backdrop="blur" onOpenChange={onOpenChange}>
       <ModalContent className="bg-transparent shadow-large">
         <a href={image.src} target="_blank" rel="noreferrer">
           <Image src={image.src} height={500} removeWrapper className="max-h-[80vh] object-contain object-center mx-auto" />
