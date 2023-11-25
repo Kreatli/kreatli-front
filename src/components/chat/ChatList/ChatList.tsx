@@ -10,12 +10,11 @@ import { ChatListNewButton } from './ChatListNewButton';
 import { ChatListSkeleton } from './ChatListSkeleton';
 
 export const ChatList = () => {
-  const [listMode, setListMode] = React.useState<'chats' | 'requests'>('chats');
   const [searchQuery, setSearchQuery] = React.useState('');
-  const { chats, chatRequests, isLoadingChats } = React.useContext(ChatContext);
+  const { chats, chatRequests, chatListMode, setChatListMode, isLoadingChats } = React.useContext(ChatContext);
   const { currentUserId } = useSession();
 
-  const modeChats = listMode === 'chats'
+  const modeChats = chatListMode === 'chats'
     ? chats
     : chatRequests;
 
@@ -49,8 +48,8 @@ export const ChatList = () => {
       </CardHeader>
       <CardBody className="p-5">
         <div className="flex justify-between pb-4">
-          <ListController isActive={listMode === 'chats'} label="Chats" count={chats.length} onClick={() => setListMode('chats')} />
-          <ListController isActive={listMode === 'requests'} label="Requests" count={chatRequests.length} onClick={() => setListMode('requests')} />
+          <ListController isActive={chatListMode === 'chats'} label="Chats" count={chats.length} onClick={() => setChatListMode('chats')} />
+          <ListController isActive={chatListMode === 'requests'} label="Requests" count={chatRequests.length} onClick={() => setChatListMode('requests')} />
         </div>
         <div className="relative flex-1">
           <div className="absolute inset-0 overflow-auto">
@@ -63,8 +62,8 @@ export const ChatList = () => {
             )}
             {shouldShowEmptyState && (
               <EmptyState
-                title={`You have no ${listMode === 'chats' ? 'chats' : 'requests'}`}
-                text={listMode === 'chats' && 'Write your first message by clicking the button above'}
+                title={`You have no ${chatListMode === 'chats' ? 'chats' : 'requests'}`}
+                text={chatListMode === 'chats' && 'Write your first message by clicking the button above'}
                 image="chats"
               />
             )}

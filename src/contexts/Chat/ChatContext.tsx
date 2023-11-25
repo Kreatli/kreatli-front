@@ -21,6 +21,7 @@ interface Context {
   addMessage: (message: MessagePayload) => void;
   activeChat: Chat.Type | null;
   chats: Chat.Type[];
+  chatListMode: 'chats' | 'requests';
   chatRequests: Chat.Type[];
   hasMoreMessages: boolean;
   isLoadingChats: boolean;
@@ -31,12 +32,14 @@ interface Context {
   messages: Chat.Message[];
   participant: User.ShortInfoBase | null;
   participantId: Common.Id | null;
+  setChatListMode: (chatListMode: 'chats' | 'requests') => void;
 }
 
 const initialContext: Context = {
   addMessage: () => null,
   activeChat: null,
   chats: [],
+  chatListMode: 'chats',
   chatRequests: [],
   hasMoreMessages: false,
   isLoadingChats: true,
@@ -47,6 +50,7 @@ const initialContext: Context = {
   messages: [],
   participant: null,
   participantId: null,
+  setChatListMode: () => null,
 };
 
 interface Props {
@@ -63,8 +67,8 @@ export const ChatContextProvider = ({ children }: Props) => {
   const socketRef = useSocket();
 
   const [chats, setChats] = React.useState<Chat.Type[]>([]);
+  const [chatListMode, setChatListMode] = React.useState<'chats' | 'requests'>('chats');
   const [isLoadingChats, setIsLoadingChats] = React.useState(true);
-
   const [messages, setMessages] = React.useState<Chat.Message[]>([]);
   const [isLoadingMessages, setIsLoadingMessages] = React.useState(true);
   const [isLoadingMoreMessages, setIsLoadingMoreMessages] = React.useState(true);
@@ -75,8 +79,12 @@ export const ChatContextProvider = ({ children }: Props) => {
     return router.query.userId as Common.Id ?? null;
   }, [router.query.userId]);
 
-  const { data: chat = null } = useQuery(['chat', participantId], () => (participantId ? requestChat(participantId) : null));
   const { data: chatRequests = [] } = useQuery(['chat-requests'], requestChatRequests);
+  const { data: chat = null } = useQuery(['chat', participantId], () => (participantId ? requestChat(participantId) : null), {
+    onSuccess: (data) => {
+      setChatListMode(data?.isRequest ? 'requests' : 'chats');
+    },
+  });
 
   const participant = chat?.participants.find(({ _id }) => _id !== currentUserId)!;
 
@@ -176,10 +184,11 @@ export const ChatContextProvider = ({ children }: Props) => {
       });
   }, [messages, messagesOffset, participantId]);
 
-  const memoizedValue = React.useMemo(() => ({
+  const value = {
     addMessage,
     activeChat: chat,
     chats,
+    chatListMode,
     chatRequests,
     hasMoreMessages,
     isLoadingChats,
@@ -190,24 +199,11 @@ export const ChatContextProvider = ({ children }: Props) => {
     messages,
     participant,
     participantId,
-  }), [
-    addMessage,
-    chatRequests,
-    chat,
-    chats,
-    hasMoreMessages,
-    isLoadingChats,
-    isLoadingMessages,
-    isLoadingMoreMessages,
-    loadInitialMessages,
-    loadMoreMessages,
-    messages,
-    participant,
-    participantId,
-  ]);
+    setChatListMode,
+  };
 
   return (
-    <ChatContext.Provider value={memoizedValue}>
+    <ChatContext.Provider value={value}>
       {children}
     </ChatContext.Provider>
   );
