@@ -155,18 +155,22 @@ export const Header = () => {
       </NavbarContent>
       <NavbarContent justify="end">
         <NavbarItem className="flex items-center">
-          <Button
-            as={NextLink}
-            href="/chat"
-            isIconOnly
-            aria-label="Open messages"
-            variant="light"
-            className="text-foreground"
-            radius="full"
-          >
-            <Icon icon="chat" size={20} />
-          </Button>
-          <NotificationButton />
+          {isSignedIn && (
+            <>
+              <Button
+                as={NextLink}
+                href="/chat"
+                isIconOnly
+                aria-label="Open messages"
+                variant="light"
+                className="text-foreground"
+                radius="full"
+              >
+                <Icon icon="chat" size={20} />
+              </Button>
+              <NotificationButton />
+            </>
+          )}
           <Button
             isIconOnly
             aria-label="Toggle theme"
