@@ -1,4 +1,4 @@
-import { Avatar, Button, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger, Link, Navbar, NavbarBrand, NavbarContent, NavbarItem, NavbarMenu, NavbarMenuItem, NavbarMenuToggle, useDisclosure } from '@nextui-org/react';
+import { Avatar, Button, Dropdown, DropdownItem, DropdownMenu, DropdownSection, DropdownTrigger, Link, Navbar, NavbarBrand, NavbarContent, NavbarItem, NavbarMenu, NavbarMenuItem, NavbarMenuToggle, useDisclosure } from '@nextui-org/react';
 import { NotificationButton } from 'components/notifications/NotificationButton';
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
@@ -22,8 +22,8 @@ export const Header = () => {
   const navigationItems = [
     ...(isSignedIn ? [
       {
-        label: 'Dashboard',
-        href: '/dashboard',
+        label: 'Feed',
+        href: '/',
       },
       {
         label: 'Jobs',
@@ -34,52 +34,86 @@ export const Header = () => {
         href: '/professionals',
       },
       {
-        label: 'Messages',
-        href: '/chat',
+        label: 'Dashboard',
+        href: '/dashboard',
       },
     ] : []),
   ];
 
-  const dropdownItems = [
-    ...(!isSignedIn ? [{
-      label: 'Sign in',
-      key: 'signIn',
-    }] : [
-      {
-        label: 'Account',
-        key: 'myAccount',
-      },
-      {
-        label: 'Connections',
-        key: 'connections',
-      },
-      {
-        label: 'My jobs',
-        key: 'myJobs',
-      },
-    ]),
+  const commonItems = [
     {
+      as: NextLink,
+      href: '/faq',
       label: 'FAQ',
       key: 'faq',
     },
     {
+      as: NextLink,
+      href: '/contact',
       label: 'Contact',
       key: 'contact',
     },
-    ...(isSignedIn ? [{
-      label: 'Sign out',
-      key: 'signOut',
-      className: 'text-danger',
-      color: 'danger' as const,
-    }] : []),
   ];
 
+  const anonymousSections = [[
+    {
+      label: 'Sign in',
+      key: 'signIn',
+    },
+    ...commonItems,
+  ]];
+
+  const signedSections = [
+    [
+      {
+        as: NextLink,
+        href: `/profile/${currentUser?._id}`,
+        label: 'My profile',
+        key: 'myProfile',
+      },
+      {
+        as: NextLink,
+        href: '/dashboard',
+        label: 'Dashboard',
+        key: 'dashboard',
+      },
+    ],
+    [
+      {
+        as: NextLink,
+        href: `/profile/${currentUser?._id}/jobs`,
+        label: 'My jobs',
+        key: 'myJobs',
+      },
+      {
+        as: NextLink,
+        href: '/chat',
+        label: 'Messages',
+        key: 'messages',
+      },
+      {
+        as: NextLink,
+        href: `/profile/${currentUser?._id}/connections`,
+        label: 'Connections',
+        key: 'connections',
+      },
+    ],
+    [
+      ...commonItems,
+      {
+        label: 'Sign out',
+        key: 'signOut',
+        className: 'text-danger',
+        color: 'danger' as const,
+      },
+    ],
+  ];
+
+  const userWidgetSections = isSignedIn
+    ? signedSections
+    : anonymousSections;
+
   const dropdownActions = {
-    contact: () => router.push('/contact'),
-    faq: () => router.push('/faq'),
-    myAccount: () => router.push(`/profile/${currentUser?._id}`),
-    connections: () => router.push(`/profile/${currentUser?._id}/connections`),
-    myJobs: () => router.push(`/profile/${currentUser?._id}/jobs`),
     signIn: onOpen,
     signOut,
   };
@@ -114,13 +148,24 @@ export const Header = () => {
       </NavbarContent>
       <NavbarContent justify="center" className="hidden sm:flex">
         {navigationItems.map(({ label, ...rest }) => (
-          <NavbarItem key={label} isActive={router.pathname.includes(rest.href)}>
+          <NavbarItem key={label} isActive={router.pathname === rest.href}>
             <Link as={NextLink} color="foreground" {...rest}>{label}</Link>
           </NavbarItem>
         ))}
       </NavbarContent>
       <NavbarContent justify="end">
         <NavbarItem className="flex items-center">
+          <Button
+            as={NextLink}
+            href="/chat"
+            isIconOnly
+            aria-label="Open messages"
+            variant="light"
+            className="text-foreground"
+            radius="full"
+          >
+            <Icon icon="chat" size={20} />
+          </Button>
           <NotificationButton />
           <Button
             isIconOnly
@@ -156,16 +201,20 @@ export const Header = () => {
             />
           </DropdownTrigger>
           <DropdownMenu aria-label="User menu" variant="flat" onAction={handleUserMenuAction}>
-            {dropdownItems.map(({ label, ...props }) => (
-              <DropdownItem {...props}>{label}</DropdownItem>
+            {userWidgetSections.map((section, index) => (
+              <DropdownSection key={index} showDivider={userWidgetSections.length - 1 !== index}>
+                {section.map(({ label, ...rest }) => (
+                  <DropdownItem {...rest}>{label}</DropdownItem>
+                ))}
+              </DropdownSection>
             ))}
           </DropdownMenu>
         </Dropdown>
       </NavbarContent>
       <NavbarMenu className="pt-4">
-        {navigationItems.map(({ label, ...props }) => (
+        {navigationItems.map(({ label, ...rest }) => (
           <NavbarMenuItem key={label}>
-            <Link as={NextLink} color="foreground" {...props} className="w-full" size="lg">
+            <Link as={NextLink} color="foreground" {...rest} className="w-full" size="lg">
               {label}
             </Link>
           </NavbarMenuItem>
