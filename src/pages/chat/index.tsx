@@ -14,8 +14,8 @@ const Chat = () => {
       <Card className="flex-1">
         <CardBody className="p-5">
           <EmptyState
-            title="Select a chat"
-            text="To see your an existing conversation or start a new one"
+            title="Select a chat to start messaging"
+            text="Select an existing conversation or start a new one"
           />
         </CardBody>
       </Card>

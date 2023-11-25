@@ -35,30 +35,34 @@ export const SystemMessage = ({ message }: Props) => {
   const alertText = React.useMemo(() => {
     if (type === 'requestJob') {
       if (isCurrentUserSender) {
-        return <span>You sent a request for cooperation for the job {offerLink}</span>;
+        return <span>You applied for {offerLink}</span>;
       }
 
-      return <span>{participant?.name} sends a request for cooperation for the job {offerLink}</span>;
+      return <span>{participant?.name} applied for {offerLink}</span>;
     }
 
     if (type === 'acceptJob') {
-      return <span>Cooperation on the project {offerLink} started</span>;
+      if (isCurrentUserSender) {
+        return <span>You hired {participant?.name} for {offerLink}</span>;
+      }
+
+      return <span>{participant?.name} accepted your job application for {offerLink}</span>;
     }
 
     if (type === 'rejectJob') {
       if (isCurrentUserSender) {
-        return <span>You rejected the offer of cooperation for the job {offerLink}</span>;
+        return <span>You rejected the job application for {offerLink}</span>;
       }
 
-      return <span>{participant?.name} rejected the offer of cooperation for the job {offerLink}</span>;
+      return <span>{participant?.name} rejected your job application for {offerLink}</span>;
     }
 
     if (type === 'endJob') {
       if (isCurrentUserSender) {
-        return <span>You ended cooperation for the job {offerLink}</span>;
+        return <span>You finished the collaboration for {offerLink}</span>;
       }
 
-      return <span>{participant?.name} ended cooperation for the job {offerLink}</span>;
+      return <span>{participant?.name} finished the collaboration for {offerLink}</span>;
     }
 
     return 'alert text';

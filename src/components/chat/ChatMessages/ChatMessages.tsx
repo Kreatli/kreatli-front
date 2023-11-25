@@ -67,7 +67,7 @@ export const ChatMessages = () => {
     return (
       <EmptyState
         title="Send your first message"
-        text="To start a conversation"
+        text="Send your first message to start a conversation"
       />
     );
   }

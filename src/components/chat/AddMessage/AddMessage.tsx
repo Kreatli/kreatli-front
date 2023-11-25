@@ -113,8 +113,7 @@ export const AddMessage = () => {
     if (isCurrentUserRequest) {
       return (
         <div className="border-t-1 border-default-200 w-full p-2 text-sm text-center text-default-500">
-          You have sent this message to {participant?.name}.<br />
-          To continue the conversation, wait until they answer you or accept your connection request.
+          This conversation will start once {participant?.name} answers or accepts your connection request
         </div>
       );
     }
@@ -122,10 +121,10 @@ export const AddMessage = () => {
     return (
       <div className="border-t-1 border-default-200 w-full p-2 text-center">
         <span className="text-sm text-default-500">
-          To respond to the message from {participant?.name},{' '}
+          To start this conversation,{' '}
           {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
           <Link as="button" size="sm" color="secondary" underline="hover" onClick={() => moveRequestToChat()}>
-            move this conversion to chats.
+            move it to chats
           </Link>
         </span>
       </div>
