@@ -19,6 +19,7 @@ import { getErrorMessage } from 'utils/getErrorMessage';
 export const AddMessage = () => {
   const editorRef = React.useRef<HTMLTextAreaElement>(null);
   const [isEmojiPickerOpened, setIsEmojiPickerOpen] = React.useState(false);
+  const [message, setMessage] = React.useState('');
 
   const { addMessage, activeChat, participant, participantId } = React.useContext(ChatContext);
 
@@ -56,9 +57,7 @@ export const AddMessage = () => {
   });
 
   const sendMessage = () => {
-    const value = editorRef.current?.value ?? '';
-
-    const hasContent = !!value.trim();
+    const hasContent = !!message.trim();
     const hasImages = images.length > 0;
     const hasFiles = files.length > 0;
 
@@ -74,15 +73,12 @@ export const AddMessage = () => {
 
     addMessage({
       media: images.map(({ src }) => ({ type: 'image' as const, src })),
-      content: editorRef.current?.value.trimStart().trimEnd() ?? '',
+      content: message.trimStart().trimEnd() ?? '',
       files: files.map(omit(['isLoading'])),
     });
     setImages([]);
     setFiles([]);
-
-    if (editorRef.current) {
-      editorRef.current.value = '';
-    }
+    setMessage('');
   };
 
   const handleKeyDown = (event: React.KeyboardEvent) => {
@@ -93,10 +89,10 @@ export const AddMessage = () => {
   };
 
   const handleEmojiClick = ({ native }: { native: string }) => {
-    const selectionStart = editorRef.current?.selectionStart ?? 0;
-    const selectionEnd = editorRef.current?.selectionEnd ?? 0;
+    const start = editorRef.current?.selectionStart ?? 0;
+    const end = editorRef.current?.selectionEnd ?? 0;
 
-    editorRef.current?.setRangeText(native, selectionStart, selectionEnd, 'end');
+    setMessage((currentMessage) => `${currentMessage.slice(0, start)}${native}${currentMessage.slice(end)}`);
     editorRef.current?.focus();
   };
 
@@ -157,10 +153,12 @@ export const AddMessage = () => {
       <div className="relative">
         <Textarea
           ref={editorRef}
+          value={message}
           placeholder="Type to add your message"
           minRows={2}
           maxRows={3}
           classNames={{ input: isTouchScreen ? 'pr-28' : 'pr-36', inputWrapper: 'bordered' }}
+          onChange={(event) => setMessage(event.target.value)}
           onKeyDown={handleKeyDown}
         />
         <div className="absolute bottom-2 right-2 flex items-center">
