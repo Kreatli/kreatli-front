@@ -1,0 +1,16 @@
+export const NOTIFICATION_TYPE = {
+  TASK_COMPLETION: 'task-completion',
+  INVITATION: 'invitation',
+  INVITATION_ACCEPT: 'invitation-accept',
+  NEW_TIER: 'new-tier',
+  POST_LIKE: 'post-like',
+  POST_COMMENT: 'post-comment',
+  NEW_MESSAGE: 'new-message',
+  PROFILE_VERIFICATION: 'profile-verification',
+  NEW_JOB_APPLICATION: 'new-job-application',
+  JOB_APPLICATION_ACCEPT: 'job-application-accept',
+  JOB_APPLICATION_REJECT: 'job-application-reject',
+  COLLABORATION_COMPLETED: 'collaboration-completed',
+  FEEDBACK_RECEIVED: 'feedback-received',
+  POINTS_PURCHASE: 'points-purchase',
+} as const;

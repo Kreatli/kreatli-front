@@ -3,7 +3,7 @@ import io, { Socket } from 'socket.io-client';
 
 import { useSession } from './useSession';
 
-export const useSocket = () => {
+export const useSocket = (path: string) => {
   const socketRef = React.useRef<Socket | null>(null);
 
   const { currentUserId } = useSession();
@@ -13,13 +13,18 @@ export const useSocket = () => {
       return;
     }
 
-    socketRef.current = io(process.env.API_URL as string, { autoConnect: false, query: { userId: currentUserId } });
+    socketRef.current = io(process.env.API_URL as string, {
+      key: currentUserId,
+      autoConnect: false,
+      path,
+      query: { userId: currentUserId },
+    });
     socketRef.current.connect();
 
     return () => {
       socketRef.current?.disconnect();
     };
-  }, [currentUserId]);
+  }, [currentUserId, path]);
 
   return socketRef;
 };

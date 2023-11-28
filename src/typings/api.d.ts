@@ -4,6 +4,7 @@ import { Common } from './common';
 import { Feed } from './feed';
 import { Invitation } from './invitation';
 import { Job } from './job';
+import { Notifications } from './notifications';
 import { Pagination } from './pagination';
 import { Skill, SkillLevel } from './skill';
 import { Tasks } from './tasks';
@@ -56,7 +57,8 @@ export namespace Api {
     | '/chat/:id/messages'
     | '/chat-requests'
     | '/dashboard'
-    | '/leaderboard';
+    | '/leaderboard'
+    | '/notifications';
 
   export type Post =
     | '/auth/signup-creator'
@@ -87,7 +89,8 @@ export namespace Api {
 
   export type Put =
     | '/post/:id'
-    | '/chat/:id';
+    | '/chat/:id'
+    | '/notification/:id';
 
   export interface GetParams {
     '/professionals': {
@@ -113,6 +116,7 @@ export namespace Api {
     '/professional/:id/job-applications': Pagination.Params;
     '/posts': { feedbackOnly?: boolean } & Pagination.Params;
     '/chat/:id/messages': Pagination.Params;
+    '/notifications': Pagination.Params;
   }
 
   export interface GetResponse {
@@ -181,6 +185,10 @@ export namespace Api {
       userPoints: number;
     };
     '/leaderboard': (User.ShortInfo & { tierPoints: number })[];
+    '/notifications': {
+      notifications: Notifications.Notification[];
+      notificationsCount: number;
+    }
   }
 
   export interface PostPayload {
@@ -272,10 +280,12 @@ export namespace Api {
   export interface PutPayload {
     '/post/:id': Feed.PostPayload;
     '/chat/:id': { isRequest: boolean };
+    '/notification/:id': { isRead: boolean };
   }
 
   export interface PutResponse {
     '/post/:id': Feed.Post;
     '/chat/:id': Chat.Type;
+    '/notification/:id': Notifications.Notification;
   }
 }

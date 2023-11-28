@@ -64,7 +64,7 @@ export const ChatContext = React.createContext<Context>(initialContext);
 export const ChatContextProvider = ({ children }: Props) => {
   const router = useRouter();
   const { currentUserId } = useSession();
-  const socketRef = useSocket();
+  const socketRef = useSocket('/chat-server');
 
   const [chats, setChats] = React.useState<Chat.Type[]>([]);
   const [chatListMode, setChatListMode] = React.useState<'chats' | 'requests'>('chats');
