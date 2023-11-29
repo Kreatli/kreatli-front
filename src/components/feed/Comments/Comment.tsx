@@ -1,5 +1,6 @@
 import { Button, Link, User } from '@nextui-org/react';
 import { Icon } from 'components/various/Icon';
+import { TierImage } from 'components/various/TierImage';
 import { PostContext } from 'contexts/Post';
 import NextLink from 'next/link';
 import React from 'react';
@@ -15,7 +16,7 @@ interface Props extends Feed.Comment {
 
 export const Comment = (props: Props) => {
   const { _id: commentId, author, content, creationDate, parentCommentId, likeCount, comments, hasLiked } = props;
-  const { _id: authorId, name: authorName, avatarUrl } = author;
+  const { _id: authorId, name: authorName, avatarUrl, tier: authorTier } = author;
 
   const [isLiked, setIsLiked] = React.useState(hasLiked);
   const [areAnswersVisible, setAreAnswersVisible] = React.useState(false);
@@ -36,13 +37,20 @@ export const Comment = (props: Props) => {
     setAreAnswersVisible((areVisible) => !areVisible);
   };
 
+  const userName = (
+    <>
+      {authorName}
+      <TierImage tier={authorTier} className="w-6 h-6" isInline />
+    </>
+  );
+
   return (
     <div className="flex flex-col gap-3 items-start border-b-1 border-default-200 pb-4 mb-4 last:border-none last:pb-0 last:mb-0">
       <div className="w-full flex items-center justify-between">
         <User
           as={NextLink}
           href={`/profile/${authorId}`}
-          name={authorName}
+          name={userName}
           classNames={{ name: 'font-semibold' }}
           avatarProps={{ src: avatarUrl, size: 'sm' }}
         />

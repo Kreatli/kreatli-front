@@ -1,12 +1,12 @@
 import { Avatar, Button, Card, CardBody, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger } from '@nextui-org/react';
 import { Icon } from 'components/various/Icon';
+import { TierImage } from 'components/various/TierImage';
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
 
 import { User } from '../../../typings/user';
 import { getUserSkills } from '../../../utils/user';
-import { ProfileBadge } from '../Profile/ProfileBadge';
 
 interface Props {
   user: User.ShortInfo;
@@ -35,11 +35,12 @@ export const ConnectionCard = ({ user, isMyAccount }: Props) => {
       <NextLink href={`/profile/${user._id}`}>
         <CardBody className="p-4">
           <div className="flex gap-6 items-center">
-            <ProfileBadge isVerified={user.isVerified}>
-              <Avatar src={user.avatarUrl} isBordered className="w-14 h-14" />
-            </ProfileBadge>
+            <Avatar src={user.avatarUrl} isBordered className="w-14 h-14" />
             <div className="flex-1">
-              <p className="text-lg font-semibold">{user.name}</p>
+              <p className="text-lg font-semibold">
+                {user.name}
+                <TierImage tier={user.tier} className="w-6 h-6" isInline />
+              </p>
               {user.role === 'creator' && <p className="text-sm text-gray-400">{user.youtube.customUrl}</p>}
               <p className="text-sm">{getUserSkills(user)}</p>
             </div>

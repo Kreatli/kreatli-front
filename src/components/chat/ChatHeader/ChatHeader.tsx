@@ -1,5 +1,7 @@
-import { Avatar, Button, Skeleton, User } from '@nextui-org/react';
+import { Avatar, Button, Skeleton } from '@nextui-org/react';
+import { ProfileBadge } from 'components/profile/Profile/ProfileBadge';
 import { Icon } from 'components/various/Icon';
+import { TierImage } from 'components/various/TierImage';
 import { COUNTRY_LABELS } from 'constants/countries';
 import { ChatContext } from 'contexts/Chat';
 import { useBreakpointValue } from 'hooks/useBreakpointValue';
@@ -9,6 +11,13 @@ import React from 'react';
 export const ChatHeader = () => {
   const { participant } = React.useContext(ChatContext);
   const isMobile = useBreakpointValue({ MD: false }, true);
+
+  const userName = (
+    <>
+      {participant?.name}
+      {participant?.tier && <TierImage tier={participant.tier} className="w-6 h-6" isInline />}
+    </>
+  );
 
   if (isMobile) {
     return (
@@ -20,10 +29,12 @@ export const ChatHeader = () => {
           ? (
             <>
               <NextLink href={`/profile/${participant._id}`} className="text-center">
-                <div className="text-md font-semibold">{participant.name}</div>
+                <div className="text-md font-semibold">{userName}</div>
                 <div className="text-sm text-default-400">{COUNTRY_LABELS[participant.country]}</div>
               </NextLink>
-              <Avatar as={NextLink} href={`/profile/${participant._id}`} src={participant.avatarUrl} className="w-12 h-12" />
+              <ProfileBadge isVerified={participant.isVerified} size="sm">
+                <Avatar as={NextLink} href={`/profile/${participant._id}`} src={participant.avatarUrl} className="w-12 h-12" />
+              </ProfileBadge>
             </>
           )
           : (
@@ -44,13 +55,15 @@ export const ChatHeader = () => {
       {participant
         ? (
           <NextLink href={`/profile/${participant._id}`} className="flex">
-            <User
-              name={participant.name}
-              description={COUNTRY_LABELS[participant.country]}
-              className="gap-4"
-              classNames={{ name: 'text-large font-semibold', description: 'text-sm' }}
-              avatarProps={{ src: participant.avatarUrl, className: 'w-12 h-12' }}
-            />
+            <div className="flex items-center gap-4">
+              <ProfileBadge isVerified={participant.isVerified} size="sm">
+                <Avatar src={participant.avatarUrl} className="w-12 h-12" />
+              </ProfileBadge>
+              <div>
+                <h3 className="text-large font-semibold">{userName}</h3>
+                <p className="text-small text-default-400">{COUNTRY_LABELS[participant.country]}</p>
+              </div>
+            </div>
           </NextLink>
         ) : (
           <div className="flex items-center gap-4">

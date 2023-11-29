@@ -1,7 +1,8 @@
-import { Button, Card, CardBody, CardFooter, CardHeader, Link, User } from '@nextui-org/react';
+import { Avatar, Button, Card, CardBody, CardFooter, CardHeader, Link } from '@nextui-org/react';
 import { ConnectionButton } from 'components/profile/Connections/ConnectionButton';
 import { Icon } from 'components/various/Icon';
 import { MediaSlider } from 'components/various/MediaSlider';
+import { TierImage } from 'components/various/TierImage';
 import { PostContext } from 'contexts/Post';
 import { useBreakpointValue } from 'hooks/useBreakpointValue';
 import { useSession } from 'hooks/useSession';
@@ -18,7 +19,7 @@ const POST_CONTENT_LIMIT = 350;
 export const Post = () => {
   const { post } = React.useContext(PostContext);
   const { _id: postId, author, media, creationDate, content, likeCount, hasLiked, commentCount, isFeedback } = post;
-  const { name: authorName, _id: authorId, avatarUrl, hasConnection, hasInvitation } = author;
+  const { name: authorName, _id: authorId, hasConnection, hasInvitation, tier: authorTier } = author;
 
   const [isContentExpanded, setIsContentExpanded] = React.useState(false);
   const [areCommentsExpanded, setAreCommentsExpanded] = React.useState(false);
@@ -56,6 +57,13 @@ export const Post = () => {
     setAreCommentsExpanded((isExpanded) => !isExpanded);
   };
 
+  const userName = (
+    <>
+      {authorName}
+      <TierImage tier={authorTier} className="w-6 h-6" isInline />
+    </>
+  );
+
   const isMyPost = authorId === currentUserId;
 
   return (
@@ -67,15 +75,13 @@ export const Post = () => {
       )}
       <Card>
         <CardHeader className="p-5 gap-4 justify-between">
-          <User
-            as={NextLink}
-            href={`/profile/${authorId}`}
-            name={authorName}
-            className="gap-4"
-            classNames={{ name: 'text-md font-bold' }}
-            description={formatRelativeTime(creationDate)}
-            avatarProps={{ src: avatarUrl, className: 'h-12 w-12 shrink-0' }}
-          />
+          <NextLink href={`/profile/${authorId}`} className="flex items-center gap-4">
+            <Avatar src={author.avatarUrl} className="w-12 h-12 shrink-0" />
+            <div>
+              <h3 className="text-md font-semibold">{userName}</h3>
+              <p className="text-xs text-default-400">{formatRelativeTime(creationDate)}</p>
+            </div>
+          </NextLink>
           <div className="flex gap-3">
             <PostLikeButton postId={postId} hasLiked={hasLiked} likeCount={likeCount} />
             {isMyPost

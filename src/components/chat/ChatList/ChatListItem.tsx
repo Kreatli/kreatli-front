@@ -1,5 +1,6 @@
 import { Avatar, Card, CardBody } from '@nextui-org/react';
 import cx from 'classnames';
+import { ProfileBadge } from 'components/profile/Profile/ProfileBadge';
 import { useSession } from 'hooks/useSession';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -41,7 +42,9 @@ export const ChatListItem = ({ chat }: Props) => {
     <Link href={`/chat/${participant._id}`}>
       <Card shadow="none" className={cx('border-1 border-default-200', { 'bg-secondary-50/75': isActive })}>
         <CardBody className="relative flex-row gap-3 px-3 py-4">
-          <Avatar src={participant.avatarUrl} />
+          <ProfileBadge isVerified={participant.isVerified} size="sm">
+            <Avatar src={participant.avatarUrl} />
+          </ProfileBadge>
           <div className="flex-1">
             <div className="text-sm font-medium">{participant.name}</div>
             <div className="text-xs text-default-400 line-clamp-2 [word-break:break-word]">{chatPreview}</div>

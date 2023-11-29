@@ -1,4 +1,5 @@
 import { Avatar, Button, Tooltip, useDisclosure } from '@nextui-org/react';
+import { TierImage } from 'components/various/TierImage';
 import NextLink from 'next/link';
 import React from 'react';
 
@@ -8,7 +9,6 @@ import { useSession } from '../../../hooks/useSession';
 import { Common } from '../../../typings/common';
 import { Job } from '../../../typings/job';
 import { formatRelativeTime } from '../../../utils/dates';
-import { ProfileBadge } from '../../profile/Profile/ProfileBadge';
 import { BottomBar } from '../../various/BottomBar';
 import { PaymentMethods } from '../../various/PaymentMethods';
 import { Tag } from '../../various/Tag';
@@ -60,11 +60,12 @@ export const JobPage = (props: Props) => {
   const userCardContent = (
     <>
       <NextLink href={`/profile/${creator._id}`} className="flex sm:flex-col items-center gap-4">
-        <ProfileBadge isVerified={creator.isVerified} shape="circle">
-          <Avatar src={creator.avatarUrl} className="w-14 h-14 sm:w-20 sm:h-20" radius="full" isBordered />
-        </ProfileBadge>
+        <Avatar src={creator.avatarUrl} className="w-14 h-14 sm:w-20 sm:h-20" radius="full" isBordered />
         <div>
-          <p className="text-lg font-semibold leading-6">{creator.name}</p>
+          <p className="text-lg font-semibold leading-6">
+            {creator.name}
+            <TierImage tier={creator.tier} className="w-6 h-6" isInline />
+          </p>
           <p className="text-sm text-gray-400">{creator.youtube.customUrl}</p>
         </div>
       </NextLink>

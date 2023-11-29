@@ -1,4 +1,5 @@
 import { Avatar, Button, Link } from '@nextui-org/react';
+import { TierImage } from 'components/various/TierImage';
 import NextLink from 'next/link';
 import React from 'react';
 
@@ -14,7 +15,7 @@ interface Props {
 }
 
 export const ProfileHeader = ({ user }: Props) => {
-  const { _id: userId, connectionsCount, role, name, avatarUrl, isVerified } = user;
+  const { _id: userId, connectionsCount, role, name, avatarUrl, isVerified, tier } = user;
   const { currentUserId } = useSession();
 
   const isMobile = useBreakpointValue({ SM: false }, true);
@@ -48,7 +49,10 @@ export const ProfileHeader = ({ user }: Props) => {
           </Link>
         )}
         {youtubeUsername && <p className="text-small text-gray-400">{youtubeUsername}</p>}
-        <h2 className="text-3xl font-semibold">{name}</h2>
+        <h2 className="text-3xl font-semibold">
+          {name}
+          <TierImage tier={tier} className="w-10 h-10" isInline />
+        </h2>
         <Link as={NextLink} href={`/profile/${userId}/connections`} className="text-small">
           {`${connectionsCount} connection${connectionsCount === 1 ? '' : 's'}`}
           {user.invitations.length > 0 && isMyAccount ? ` • ${user.invitations.length} invite${connectionsCount === 1 ? '' : 's'}` : ''}

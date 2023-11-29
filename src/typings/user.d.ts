@@ -10,6 +10,7 @@ export namespace User {
     country: string;
     isVerified: boolean;
     name: string;
+    tier: number;
     hasConnection?: boolean;
     hasInvitation?: boolean;
   }
