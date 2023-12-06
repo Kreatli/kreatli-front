@@ -14,7 +14,6 @@ interface Props {
 
 export const Notification = ({ notification }: Props) => {
   const { _id: id, isRead, creationDate } = notification;
-
   const { mutate } = useMutation(requestNotificationUpdate);
 
   const handleClick = () => {

@@ -1,5 +1,6 @@
 import { Link } from '@nextui-org/react';
 import { NOTIFICATION_TYPE } from 'constants/notifications';
+import { useNotificationsPopoverVisibility } from 'hooks/useNotificationsPopoverVisibility';
 import { useSession } from 'hooks/useSession';
 import NextLink from 'next/link';
 import React from 'react';
@@ -14,10 +15,12 @@ interface Props {
 export const NotificationLink = ({ notification }: Props) => {
   const { currentUserId } = useSession();
   const { mutate } = useMutation(requestNotificationUpdate);
-
+  const { closePopover } = useNotificationsPopoverVisibility();
   const { _id: id, isRead, type } = notification;
 
   const handleClick = () => {
+    closePopover();
+
     if (!isRead) {
       mutate([id, { isRead: true }]);
     }
@@ -75,6 +78,22 @@ export const NotificationLink = ({ notification }: Props) => {
     [NOTIFICATION_TYPE.JOB_APPLICATION_REJECT]: {
       label: 'Visit My jobs',
       href: `/profile/${currentUserId}/jobs`,
+    },
+    [NOTIFICATION_TYPE.JOB_APPLICATION_LIMIT]: {
+      label: 'Go to Dashboard',
+      href: '/dashboard',
+    },
+    [NOTIFICATION_TYPE.JOB_OFFER_LIMIT]: {
+      label: 'Go to Dashboard',
+      href: '/dashboard',
+    },
+    [NOTIFICATION_TYPE.INVITATION_LIMIT]: {
+      label: 'Go to Dashboard',
+      href: '/dashboard',
+    },
+    [NOTIFICATION_TYPE.DAILY_POINTS_LIMIT]: {
+      label: 'Go to Dashboard',
+      href: '/dashboard',
     },
   };
 

@@ -1,5 +1,6 @@
 import { Badge, Button, Popover, PopoverContent, PopoverTrigger } from '@nextui-org/react';
 import { Icon } from 'components/various/Icon';
+import { useNotificationsPopoverVisibility } from 'hooks/useNotificationsPopoverVisibility';
 import { useSocket } from 'hooks/useSocket';
 import React from 'react';
 import { requestNotifications } from 'services/notifications';
@@ -9,6 +10,7 @@ import { Notifications } from '../Notifications';
 
 export const NotificationButton = () => {
   const socketRef = useSocket('/notifications-server');
+  const { isOpen, onOpenChange } = useNotificationsPopoverVisibility();
   const [notifications, setNotifications] = React.useState<NotificationsI.Notification[]>([]);
 
   React.useEffect(() => {
@@ -48,7 +50,7 @@ export const NotificationButton = () => {
   }, [notifications]);
 
   return (
-    <Popover shouldBlockScroll>
+    <Popover isOpen={isOpen} onOpenChange={onOpenChange} shouldBlockScroll>
       <PopoverTrigger>
         <Button
           isIconOnly

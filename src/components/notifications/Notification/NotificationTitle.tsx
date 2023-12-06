@@ -21,6 +21,10 @@ const NOTIFICATION_TITLES = {
   [NOTIFICATION_TYPE.COLLABORATION_COMPLETED]: 'Collaboration Success!',
   [NOTIFICATION_TYPE.FEEDBACK_RECEIVED]: 'Collaboration Feedback Shared!',
   [NOTIFICATION_TYPE.POINTS_PURCHASE]: 'Points Power-Up!',
+  [NOTIFICATION_TYPE.JOB_APPLICATION_LIMIT]: 'Unlock More Opportunities!',
+  [NOTIFICATION_TYPE.JOB_OFFER_LIMIT]: 'Elevate Your Job Posts!',
+  [NOTIFICATION_TYPE.INVITATION_LIMIT]: 'Expand Your Network!',
+  [NOTIFICATION_TYPE.DAILY_POINTS_LIMIT]: 'Daily Points Limit Reached!',
 };
 
 export const NotificationTitle = ({ notification }: Props) => {

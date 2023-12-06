@@ -92,7 +92,7 @@ export namespace User {
     subscriberCount: number;
     videoCount: number;
     topics: string[];
-    bannerUrl: string;
+    bannerUrl?: string;
     lastUpdateAt: Date;
   }
 

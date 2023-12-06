@@ -105,6 +105,22 @@ export namespace Notifications {
     type: 'points-purchase';
   }
 
+  export interface JobApplicationLimitNotification extends NotificationBase {
+    type: 'job-application-limit';
+  }
+
+  export interface JobOfferLimitNotification extends NotificationBase {
+    type: 'job-offer-limit';
+  }
+
+  export interface InvitationLimitNotification extends NotificationBase {
+    type: 'invitation-limit';
+  }
+
+  export interface DailyPointsLimitNotification extends NotificationBase {
+    type: 'daily-points-limit';
+  }
+
   export type Notification =
     | TaskNotification
     | InvitationNotification
@@ -119,5 +135,9 @@ export namespace Notifications {
     | CollaborationCompletedNotification
     | NewJobApplication
     | JobApplicationAcceptNotification
-    | JobApplicationRejectNotification;
+    | JobApplicationRejectNotification
+    | JobApplicationLimitNotification
+    | JobOfferLimitNotification
+    | InvitationLimitNotification
+    | DailyPointsLimitNotification;
 }

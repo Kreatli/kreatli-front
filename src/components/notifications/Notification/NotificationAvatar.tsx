@@ -71,7 +71,13 @@ export const NotificationAvatar = ({ notification }: Props) => {
       );
     }
 
-    if (type === NOTIFICATION_TYPE.POINTS_PURCHASE || type === NOTIFICATION_TYPE.PROFILE_VERIFICATION) {
+    if (type === NOTIFICATION_TYPE.POINTS_PURCHASE
+      || type === NOTIFICATION_TYPE.PROFILE_VERIFICATION
+      || type === NOTIFICATION_TYPE.JOB_OFFER_LIMIT
+      || type === NOTIFICATION_TYPE.JOB_APPLICATION_LIMIT
+      || type === NOTIFICATION_TYPE.INVITATION_LIMIT
+      || type === NOTIFICATION_TYPE.DAILY_POINTS_LIMIT
+    ) {
       return (
         <IconWrapper>
           <Icon icon="logo" size={18} />

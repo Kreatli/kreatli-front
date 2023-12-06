@@ -13,4 +13,8 @@ export const NOTIFICATION_TYPE = {
   COLLABORATION_COMPLETED: 'collaboration-completed',
   FEEDBACK_RECEIVED: 'feedback-received',
   POINTS_PURCHASE: 'points-purchase',
+  JOB_APPLICATION_LIMIT: 'job-application-limit',
+  JOB_OFFER_LIMIT: 'job-offer-limit',
+  INVITATION_LIMIT: 'invitation-limit',
+  DAILY_POINTS_LIMIT: 'daily-points-limit',
 } as const;

@@ -93,18 +93,26 @@ export const ChannelDetails = ({ id, youtubeUrl, details }: Props) => {
           )}
         </div>
       </CardHeader>
-      <CardBody className="p-0">
-        <Image
-          src={`${details.bannerUrl}=w1200-fcrop64=1,00005a57ffffa5a8-k-c0xffffffff-no-nd-rj`}
-          radius="none"
-          width="100%"
-          alt="Yotube banner"
-        />
-      </CardBody>
-      <CardFooter className="flex-col items-start">
-        <p className="text-small"><span className="font-bold">Topics: </span>{topics}</p>
-        <p className="text-small"><span className="font-bold">Description: </span>{details.description}</p>
-      </CardFooter>
+      {details.bannerUrl && (
+        <CardBody className="p-0">
+          <Image
+            src={`${details.bannerUrl}=w1200-fcrop64=1,00005a57ffffa5a8-k-c0xffffffff-no-nd-rj`}
+            radius="none"
+            width="100%"
+            alt="Yotube banner"
+          />
+        </CardBody>
+      )}
+      {(topics || details.description) && (
+        <CardFooter className="flex-col items-start">
+          {topics && (
+            <p className="text-small"><span className="font-bold">Topics: </span>{topics}</p>
+          )}
+          {details.description && (
+            <p className="text-small"><span className="font-bold">Description: </span>{details.description}</p>
+          )}
+        </CardFooter>
+      )}
     </Card>
   );
 };

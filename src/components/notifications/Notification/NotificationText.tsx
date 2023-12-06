@@ -161,5 +161,41 @@ export const NotificationText = ({ notification }: Props) => {
     );
   }
 
+  if (type === NOTIFICATION_TYPE.JOB_APPLICATION_LIMIT) {
+    return (
+      <>
+        You&apos;ve run out of Job Application Credits. Want more?
+        Explore the benefits of purchasing points for more Job Application Credits.
+      </>
+    );
+  }
+
+  if (type === NOTIFICATION_TYPE.JOB_OFFER_LIMIT) {
+    return (
+      <>
+        You&apos;ve run out of Job Posting Credits. Want more?
+        Explore the benefits of purchasing points for more Job Posting Credits.
+      </>
+    );
+  }
+
+  if (type === NOTIFICATION_TYPE.INVITATION_LIMIT) {
+    return (
+      <>
+        You&apos;ve run out of Connection Requests. Need more?
+        Consider purchasing points for enhanced experience.
+      </>
+    );
+  }
+
+  if (type === NOTIFICATION_TYPE.DAILY_POINTS_LIMIT) {
+    return (
+      <>
+        You&apos;ve reached your daily points limit. Want more points?
+        Consider purchasing points.
+      </>
+    );
+  }
+
   return null;
 };
