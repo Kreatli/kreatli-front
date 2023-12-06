@@ -3,8 +3,7 @@ import axios from 'axios';
 import { Api } from '../typings/api';
 
 const getHeaders = () => {
-  // const token = window.localStorage.getItem('token');
-  const token = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NjIxNjQxNzliOTBiMDc3YmM1NjE4NSIsImlhdCI6MTcwMTg4OTY1NX0.bLXPeXUOaqQJ0KS9MHIHu4CIFkIMPG93yPzBjNWGO8c';
+  const token = window.localStorage.getItem('token');
 
   return {
     Accept: 'application/json',
