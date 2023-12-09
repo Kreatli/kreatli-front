@@ -1,25 +1,53 @@
+import { Link } from '@nextui-org/react';
 import { EmptyState } from 'components/various/EmptyState';
+import { Icon } from 'components/various/Icon';
+import { LazyList } from 'components/various/LazyList';
 import React from 'react';
+import { useMutation } from 'react-query';
+import { requestNotificationsMarkAsRead } from 'services/notifications';
 import { Notifications as NotificationsI } from 'typings/notifications';
 
 import { Notification } from '../Notification';
 
 interface Props {
+  isLoading: boolean;
   notifications: NotificationsI.Notification[];
+  totalCount: number;
+  unreadCount: number;
+  onLoadMore: () => void;
+  onReadAll: () => void;
 }
 
-export const Notifications = ({ notifications = [] }: Props) => {
+export const Notifications = (props: Props) => {
+  const { isLoading, notifications = [], totalCount, unreadCount, onReadAll, onLoadMore } = props;
   const shouldShowEmptyState = notifications.length === 0;
+  const hasMoreNotifications = notifications.length < totalCount;
+
+  const { mutate } = useMutation(requestNotificationsMarkAsRead, {
+    onSuccess: onReadAll,
+  });
+
+  const markAllAsRead = () => {
+    mutate();
+  };
 
   return (
     <div className="max-w-md">
-      <div className="px-4 py-3 border-b-1 border-default-200">
+      <div className="flex gap-2 justify-between px-4 py-3 border-b-1 border-default-200">
         <h3 className="text-medium font-semibold">Notifications</h3>
+        <Link as="button" size="sm" className="gap-1 text-default-400" disabled={unreadCount === 0} onClick={markAllAsRead}>
+          <Icon icon="check" size={18} />
+          Mark all as read
+        </Link>
       </div>
-      <div className="max-h-[75vh] overflow-auto">
-        {notifications.map((notification) => (
-          <Notification key={notification._id} notification={notification} />
-        ))}
+      <div className="max-h-[30vh] overflow-auto">
+        {!shouldShowEmptyState && (
+          <LazyList hasMore={hasMoreNotifications} isLoading={isLoading} onLoadMore={onLoadMore}>
+            {notifications.map((notification) => (
+              <Notification key={notification._id} notification={notification} />
+            ))}
+          </LazyList>
+        )}
         {shouldShowEmptyState && (
           <div className="px-4">
             <EmptyState title="No New Notifications" text="You're all caught up! Check back later for updates, or explore more of Kreatli in the meantime." />

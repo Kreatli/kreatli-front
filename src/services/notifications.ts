@@ -10,3 +10,7 @@ export const requestNotifications = (params?: Api.GetParams['/notifications']) =
 export const requestNotificationUpdate = ([notificationId, data]: [Common.Id, Api.PutPayload['/notification/:id']]) => {
   return api.put(`/notification/${notificationId}`, data).then((res) => res.data);
 };
+
+export const requestNotificationsMarkAsRead = () => {
+  return api.post('/notifications/mark-all-read', {}).then((res) => res.data);
+};

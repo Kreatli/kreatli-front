@@ -8,7 +8,8 @@ export const EarnedToday = () => {
 
   const tooltipContent = React.useMemo(() => {
     if (earnedTomorrow > 0) {
-      return `You exceeded the daily limit, ${earnedTomorrow} points will be added in 24 hours`;
+      // eslint-disable-next-line max-len
+      return `You exceeded the daily limit, progress on tasks is not being tracked. ${earnedTomorrow} points will be added in 24 hours`;
     }
 
     if (earnedToday === dailyLimit) {

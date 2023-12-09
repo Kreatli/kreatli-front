@@ -85,7 +85,8 @@ export namespace Api {
     | '/post/:id/like'
     | '/post/:id/comment'
     | '/post/:id/comment/:id/like'
-    | '/chat/:id/messages/read';
+    | '/chat/:id/messages/read'
+    | '/notifications/mark-all-read';
 
   export type Put =
     | '/post/:id'
@@ -188,6 +189,7 @@ export namespace Api {
     '/notifications': {
       notifications: Notifications.Notification[];
       notificationsCount: number;
+      unreadNotificationsCount: number;
     }
   }
 
@@ -233,7 +235,8 @@ export namespace Api {
     '/post/:id/comment/:id/like': {};
     '/chat/:id/messages/read': {
       ids: Common.Id[];
-    }
+    };
+    '/notifications/mark-all-read': {};
   }
 
   export interface PostResponse {

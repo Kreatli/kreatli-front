@@ -191,7 +191,7 @@ export const NotificationText = ({ notification }: Props) => {
   if (type === NOTIFICATION_TYPE.DAILY_POINTS_LIMIT) {
     return (
       <>
-        You&apos;ve reached your daily points limit. Want more points?
+        You&apos;ve reached your daily points limit. Progress on tasks is not being tracked. Want more points?
         Consider purchasing points.
       </>
     );

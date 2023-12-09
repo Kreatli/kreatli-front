@@ -17,6 +17,7 @@ const get = <T extends Api.Get>(path: T, params?: any) => {
 
 // @ts-ignore
 const post = <T extends Api.Post>(path: T, data: Api.PostPayload[T], params?: any) => {
+  // @ts-ignore
   return axios.post<Api.PostResponse[T]>(`${process.env.API_URL}${path}`, data, { params, headers: getHeaders() });
 };
 

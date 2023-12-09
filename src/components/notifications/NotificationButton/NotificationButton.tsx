@@ -8,17 +8,46 @@ import { Notifications as NotificationsI } from 'typings/notifications';
 
 import { Notifications } from '../Notifications';
 
+const NOTIFICATIONS_LIMIT = 20;
+
 export const NotificationButton = () => {
   const socketRef = useSocket('/notifications-server');
   const { isOpen, onOpenChange } = useNotificationsPopoverVisibility();
   const [notifications, setNotifications] = React.useState<NotificationsI.Notification[]>([]);
+  const [totalCount, setTotalCount] = React.useState(0);
+  const [unreadCount, setUnreadCount] = React.useState(0);
+  const [offset, setOffset] = React.useState(0);
+  const [isLoading, setIsLoading] = React.useState(true);
 
-  React.useEffect(() => {
-    requestNotifications()
+  const loadInitialNotifications = () => {
+    setIsLoading(true);
+    setOffset(0);
+    requestNotifications({ offset: 0, limit: NOTIFICATIONS_LIMIT })
       .then((data) => {
         setNotifications(data.notifications);
+        setTotalCount(data.notificationsCount);
+        setUnreadCount(data.unreadNotificationsCount);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
-  }, []);
+  };
+
+  const loadMoreNotifications = () => {
+    setIsLoading(true);
+    setOffset(offset + NOTIFICATIONS_LIMIT);
+    requestNotifications({ offset: offset + NOTIFICATIONS_LIMIT, limit: NOTIFICATIONS_LIMIT })
+      .then((data) => {
+        setNotifications((currentNotifications) => [...currentNotifications, ...data.notifications]);
+        setUnreadCount(data.unreadNotificationsCount);
+        setTotalCount(data.notificationsCount);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  };
+
+  React.useEffect(() => loadInitialNotifications, []);
 
   React.useEffect(() => {
     const socket = socketRef.current;
@@ -37,6 +66,11 @@ export const NotificationButton = () => {
           ? updatedNotification
           : notification));
       });
+      setUnreadCount((count) => {
+        return updatedNotification.isRead
+          ? count - 1
+          : count + 1;
+      });
     });
 
     return () => {
@@ -44,10 +78,6 @@ export const NotificationButton = () => {
       socket.off('notificationUpdate');
     };
   }, [socketRef]);
-
-  const unreadMessagesCount = React.useMemo(() => {
-    return notifications.reduce((acc, notification) => (notification.isRead ? acc : acc + 1), 0);
-  }, [notifications]);
 
   return (
     <Popover isOpen={isOpen} onOpenChange={onOpenChange} shouldBlockScroll>
@@ -59,13 +89,20 @@ export const NotificationButton = () => {
           className="text-foreground"
           radius="full"
         >
-          <Badge size="sm" isInvisible={unreadMessagesCount === 0} content={unreadMessagesCount} color="danger">
+          <Badge size="sm" isInvisible={unreadCount === 0} content={unreadCount} color="danger">
             <Icon icon="bell" size={20} />
           </Badge>
         </Button>
       </PopoverTrigger>
       <PopoverContent className="p-0 overflow-hidden">
-        <Notifications notifications={notifications} />
+        <Notifications
+          isLoading={isLoading}
+          notifications={notifications}
+          totalCount={totalCount}
+          unreadCount={unreadCount}
+          onReadAll={loadInitialNotifications}
+          onLoadMore={loadMoreNotifications}
+        />
       </PopoverContent>
     </Popover>
   );
