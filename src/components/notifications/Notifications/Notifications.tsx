@@ -40,7 +40,7 @@ export const Notifications = (props: Props) => {
           Mark all as read
         </Link>
       </div>
-      <div className="max-h-[30vh] overflow-auto">
+      <div className="max-h-[75vh] overflow-auto">
         {!shouldShowEmptyState && (
           <LazyList hasMore={hasMoreNotifications} isLoading={isLoading} onLoadMore={onLoadMore}>
             {notifications.map((notification) => (
