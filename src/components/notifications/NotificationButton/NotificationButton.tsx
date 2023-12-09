@@ -47,7 +47,7 @@ export const NotificationButton = () => {
       });
   };
 
-  React.useEffect(() => loadInitialNotifications, []);
+  React.useEffect(loadInitialNotifications, []);
 
   React.useEffect(() => {
     const socket = socketRef.current;
