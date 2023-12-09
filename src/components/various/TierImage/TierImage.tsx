@@ -37,7 +37,7 @@ export const TierImage = ({ tier, className, isInline }: Props) => {
     <Tooltip content={`Tier ${tier}: ${TIER_LABELS[tier]}`}>
       <button
         type="button"
-        className={isInline ? 'inline align-middle translate-x-1 -translate-y-0.5' : undefined}
+        className={isInline ? 'inline align-middle translate-x-1 -translate-y-0.5 outline-none' : 'outline-none'}
         aria-label="Show tiers explanation modal"
         onClick={handleClick}
       >
