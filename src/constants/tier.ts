@@ -55,39 +55,108 @@ export const TIER_OPTIONS = [
 
 export const TIER_FEATURES = {
   [TIERS.NOVICE]: [
-    'Standard job posting visibility for YouTube creators, allowing them to reach professionals',
-    'Standard profile visibility for professionals, allowing them to be discovered by YouTube creators',
-    'Maximum Connection Requests: 10 per month',
-    'Maximum Job Applications: 10 per month',
-    'Maximum Job Postings: 2 per month',
+    {
+      visibleFor: 'creator',
+      text: 'Standard job posting visibility for YouTube creators, allowing them to reach professionals',
+    },
+    {
+      visibleFor: 'professional',
+      text: 'Standard profile visibility for professionals, allowing them to be discovered by YouTube creators',
+    },
+    {
+      text: 'Maximum Connection Requests: 10 per month',
+    },
+    {
+      visibleFor: 'professional',
+      text: 'Maximum Job Applications: 10 per month',
+    },
+    {
+      visibleFor: 'creator',
+      text: 'Maximum Job Postings: 2 per month',
+    },
   ],
   [TIERS.ENTHUSIAST]: [
-    'Enhanced job posting visibility for YouTube creators, allowing them to reach a wider range of professionals',
-    'Expanded profile visibility for professionals, increasing their chances of being discovered by more YouTube creators',
-    'Maximum Connection Requests: 20 per month',
-    'Maximum Job Applications: 20 per month',
-    'Maximum Job Postings: 5 per month',
+    {
+      visibleFor: 'creator',
+      text: 'Enhanced job posting visibility for YouTube creators, allowing them to reach a wider range of professionals',
+    },
+    {
+      visibleFor: 'professional',
+      text: 'Expanded profile visibility for professionals, increasing their chances of being discovered by more YouTube creators',
+    },
+    {
+      text: 'Maximum Connection Requests: 20 per month',
+    },
+    {
+      visibleFor: 'professional',
+      text: 'Maximum Job Applications: 20 per month',
+    },
+    {
+      visibleFor: 'creator',
+      text: 'Maximum Job Postings: 5 per month',
+    },
   ],
   [TIERS.INNOVATOR]: [
-    'Featured profile placement, ensuring professionals receive increased visibility and exposure to potential YouTube creators',
-    'Featured job postings in the search to make them stand out and increase exposure to professionals',
-    'Maximum Connection Requests: 50 per month',
-    'Maximum Job Applications: 50 per month',
-    'Maximum Job Postings: 15 per month',
+    {
+      visibleFor: 'professional',
+      text: 'Featured profile placement, ensuring professionals receive increased visibility and exposure to potential YouTube creators',
+    },
+    {
+      visibleFor: 'creator',
+      text: 'Featured job postings in the search to make them stand out and increase exposure to professionals',
+    },
+    {
+      text: 'Maximum Connection Requests: 50 per month',
+    },
+    {
+      visibleFor: 'professional',
+      text: 'Maximum Job Applications: 50 per month',
+    },
+    {
+      visibleFor: 'creator',
+      text: 'Maximum Job Postings: 15 per month',
+    },
   ],
   [TIERS.EXPERT]: [
-    'New unique filters (price, rating)',
-    '“Expert” visibility badge',
-    'Dedicated Support: subscribers receive dedicated support from the Kreatli team, ensuring a personalized and prompt response to their queries, concerns, and technical assistance needs',
-    'Maximum Connection Requests: Unlimited',
-    'Maximum Job Applications: Unlimited',
-    'Maximum Job Postings: Unlimited',
+    {
+      visibleFor: 'professional',
+      text: 'New unique price filter',
+    },
+    {
+      visibleFor: 'creator',
+      text: 'New unique rating filter',
+    },
+    {
+      text: '“Expert” visibility badge',
+    },
+    {
+      text: 'Dedicated Support: subscribers receive dedicated support from the Kreatli team, ensuring a personalized and prompt response to their queries, concerns, and technical assistance needs',
+    },
+    {
+      text: 'Maximum Connection Requests: Unlimited',
+    },
+    {
+      visibleFor: 'professional',
+      text: 'Maximum Job Applications: Unlimited',
+    },
+    {
+      visibleFor: 'creator',
+      text: 'Maximum Job Postings: Unlimited',
+    },
   ],
   [TIERS.LEGEND]: [
-    'Early access to upcoming platform features and updates, allowing users to experience and provide feedback on new developments. Also, the ability to influence what features are going to be developed/introduced in the future',
-    '“Legend” visibility badge',
-    'VIP support with prioritized assistance for any platform-related issues or inquiries',
-    'Private Discord Server where legendary users will be able to share industry knowledge and expertise with each other, collaborate, and ask for any help',
+    {
+      text: 'Early access to upcoming platform features and updates, allowing users to experience and provide feedback on new developments. Also, the ability to influence what features are going to be developed/introduced in the future',
+    },
+    {
+      text: '“Legend” visibility badge',
+    },
+    {
+      text: 'VIP support with prioritized assistance for any platform-related issues or inquiries',
+    },
+    {
+      text: 'Private Discord Server where legendary users will be able to share industry knowledge and expertise with each other, collaborate, and ask for any help',
+    },
   ],
 };
 

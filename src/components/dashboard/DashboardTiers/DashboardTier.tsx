@@ -1,5 +1,6 @@
 import { TierImage } from 'components/various/TierImage';
 import { TIER_COLORS, TIER_FEATURES, TIER_LABELS } from 'constants/tier';
+import { useSession } from 'hooks/useSession';
 import React from 'react';
 
 interface Props {
@@ -8,8 +9,19 @@ interface Props {
 }
 
 export const DashboardTier = ({ tier, label }: Props) => {
+  const { currentUser } = useSession();
+
   const tierColor = TIER_COLORS[tier];
-  const tierFeatures = TIER_FEATURES[tier];
+
+  const tierFeatures = React.useMemo(() => {
+    if (!currentUser) {
+      return [];
+    }
+
+    return TIER_FEATURES[tier]
+      .filter(({ visibleFor }) => !visibleFor || visibleFor === currentUser.role)
+      .map(({ text }) => text);
+  }, [currentUser, tier]);
 
   const tierLabel = (
     <div className="font-semibold">{label}: <span className={`text-${tierColor}-500`}>{TIER_LABELS[tier]}</span></div>
