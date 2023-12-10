@@ -165,7 +165,7 @@ export const NotificationText = ({ notification }: Props) => {
     return (
       <>
         You&apos;ve run out of Job Application Credits. Want more?
-        Explore the benefits of purchasing points for more Job Application Credits.
+        Explore the benefits of upgrading to Premium or purchasing points for more Job Application Credits.
       </>
     );
   }
@@ -174,7 +174,7 @@ export const NotificationText = ({ notification }: Props) => {
     return (
       <>
         You&apos;ve run out of Job Posting Credits. Want more?
-        Explore the benefits of purchasing points for more Job Posting Credits.
+        Explore the benefits of upgrading to Premium or purchasing points for more Job Posting Credits.
       </>
     );
   }
@@ -183,7 +183,7 @@ export const NotificationText = ({ notification }: Props) => {
     return (
       <>
         You&apos;ve run out of Connection Requests. Need more?
-        Consider purchasing points for enhanced experience.
+        Consider upgrading to Premium or purchasing points.
       </>
     );
   }
@@ -192,7 +192,7 @@ export const NotificationText = ({ notification }: Props) => {
     return (
       <>
         You&apos;ve reached your daily points limit. Progress on tasks is not being tracked. Want more points?
-        Consider purchasing points.
+        Consider upgrading to Premium or purchasing points.
       </>
     );
   }
