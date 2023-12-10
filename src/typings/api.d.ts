@@ -86,7 +86,8 @@ export namespace Api {
     | '/post/:id/comment'
     | '/post/:id/comment/:id/like'
     | '/chat/:id/messages/read'
-    | '/notifications/mark-all-read';
+    | '/notifications/mark-all-read'
+    | '/buy-points';
 
   export type Put =
     | '/post/:id'
@@ -237,6 +238,9 @@ export namespace Api {
       ids: Common.Id[];
     };
     '/notifications/mark-all-read': {};
+    '/buy-points': {
+      points: number;
+    };
   }
 
   export interface PostResponse {
@@ -278,6 +282,7 @@ export namespace Api {
     '/post/:id/comment': Feed.Post;
     '/post/:id/comment/:id/like': Feed.Post;
     '/chat/:id/messages/read': undefined;
+    '/buy-points': { paymentLink: string };
   }
 
   export interface PutPayload {
