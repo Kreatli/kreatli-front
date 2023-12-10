@@ -42,11 +42,6 @@ export const Header = () => {
 
   const commonItems = [
     {
-      label: 'Kreatli Premium',
-      key: 'kreatli-premium',
-      description: 'Coming soon',
-    },
-    {
       as: NextLink,
       href: '/faq',
       label: 'FAQ',
@@ -104,6 +99,11 @@ export const Header = () => {
       },
     ],
     [
+      {
+        label: 'Kreatli Premium',
+        key: 'kreatli-premium',
+        description: 'Coming soon',
+      },
       ...commonItems,
       {
         label: 'Sign out',
