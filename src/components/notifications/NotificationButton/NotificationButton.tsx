@@ -58,6 +58,8 @@ export const NotificationButton = () => {
 
     socket.on('notification', (notification: NotificationsI.Notification) => {
       setNotifications((currentNotifications) => [notification, ...currentNotifications]);
+      setTotalCount((count) => count + 1);
+      setUnreadCount((count) => count + 1);
     });
 
     socket.on('notificationUpdate', (updatedNotification: NotificationsI.Notification) => {
