@@ -60,10 +60,10 @@ export const ResetPasswordForm: React.FC<Props> = ({ onClick, onSuccess }) => {
         {...register('email', VALIDATION_RULES.REQUIRED)}
       />
       <div className="flex justify-between gap-4 mt-8 mb-2">
+        <Button variant="light" color="secondary" onClick={onClick}>Sign in</Button>
         <Button type="submit" variant="flat" color="secondary" isLoading={isLoading}>
           Send email
         </Button>
-        <Button variant="light" color="secondary" onClick={onClick}>Sign in</Button>
       </div>
     </form>
   );

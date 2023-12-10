@@ -73,10 +73,10 @@ export const SignInForm: React.FC<Props> = ({ onClick, onSuccess }) => {
         />
       </div>
       <div className="flex justify-between gap-4 mt-8 mb-2">
+        <Button variant="light" color="secondary" onClick={onClick}>Forgot password?</Button>
         <Button type="submit" variant="flat" color="secondary" isLoading={isLoading}>
           Sign in
         </Button>
-        <Button variant="light" color="secondary" onClick={onClick}>Forgot password?</Button>
       </div>
     </form>
   );
