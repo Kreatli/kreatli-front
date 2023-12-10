@@ -42,6 +42,11 @@ export const Header = () => {
 
   const commonItems = [
     {
+      label: 'Kreatli Premium',
+      key: 'kreatli-premium',
+      description: 'Coming soon',
+    },
+    {
       as: NextLink,
       href: '/faq',
       label: 'FAQ',
@@ -204,7 +209,7 @@ export const Header = () => {
               icon={!isSignedIn && <Icon icon="user" size={20} />}
             />
           </DropdownTrigger>
-          <DropdownMenu aria-label="User menu" variant="flat" onAction={handleUserMenuAction}>
+          <DropdownMenu aria-label="User menu" disabledKeys={['kreatli-premium']} variant="flat" onAction={handleUserMenuAction}>
             {userWidgetSections.map((section, index) => (
               <DropdownSection key={index} showDivider={userWidgetSections.length - 1 !== index}>
                 {section.map(({ label, ...rest }) => (
