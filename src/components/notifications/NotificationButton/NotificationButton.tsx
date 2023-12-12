@@ -88,10 +88,10 @@ export const NotificationButton = () => {
           isIconOnly
           aria-label="Toggle notifications menu"
           variant="light"
-          className="text-foreground"
+          className="text-foreground overflow-visible"
           radius="full"
         >
-          <Badge size="sm" isInvisible={unreadCount === 0} content={unreadCount} color="danger">
+          <Badge size="sm" shape="circle" isInvisible={unreadCount === 0} content={unreadCount} color="danger">
             <Icon icon="bell" size={20} />
           </Badge>
         </Button>
