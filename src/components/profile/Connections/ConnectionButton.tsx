@@ -34,7 +34,7 @@ export const ConnectionButton = ({ userId, inviteeName, hasConnection, hasInvita
   if (!currentUser?.isVerified) {
     return (
       <ProfileUnverifiedTooltip>
-        <Button disabled color="secondary">Connect</Button>
+        <Button isDisabled color="secondary">Connect</Button>
       </ProfileUnverifiedTooltip>
     );
   }
@@ -67,12 +67,16 @@ export const ConnectionButton = ({ userId, inviteeName, hasConnection, hasInvita
   if (wasInvited) {
     return (
       <div className="flex gap-2">
-        <Button color="secondary" isIconOnly={isMobile} startContent={<Icon icon="check" />} isLoading={isLoading} onClick={handleAccept}>
-          {!isMobile && 'Accept invitation'}
-        </Button>
-        <Button aria-label="Reject invitation" variant="flat" color="secondary" isIconOnly isLoading={isLoading} onClick={handleReject}>
-          <Icon icon="cross" />
-        </Button>
+        <ProfileUnverifiedTooltip>
+          <Button color="secondary" isIconOnly={isMobile} startContent={<Icon icon="check" />} isDisabled={!currentUser.isVerified} isLoading={isLoading} onClick={handleAccept}>
+            {!isMobile && 'Accept invitation'}
+          </Button>
+        </ProfileUnverifiedTooltip>
+        <ProfileUnverifiedTooltip>
+          <Button aria-label="Reject invitation" variant="flat" color="secondary" isDisabled={!currentUser.isVerified} isIconOnly isLoading={isLoading} onClick={handleReject}>
+            <Icon icon="cross" />
+          </Button>
+        </ProfileUnverifiedTooltip>
       </div>
     );
   }

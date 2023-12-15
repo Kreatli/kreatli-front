@@ -1,5 +1,6 @@
 import { Button, Input, Tooltip } from '@nextui-org/react';
 import cx from 'classnames';
+import { ProfileUnverifiedTooltip } from 'components/profile/Profile/ProfileUnverifiedTooltip';
 import NextLink from 'next/link';
 import React from 'react';
 import { useInfiniteQuery } from 'react-query';
@@ -122,18 +123,20 @@ export const JobsListing = () => {
             <div className="flex-initial">
               <Tooltip isDisabled={!isExceededLimits} content="You've reached your job posting limit. Get to the next tier to increase the limit">
                 <div>
-                  <Button
-                    as={NextLink}
-                    isIconOnly={isMobile}
-                    isDisabled={isExceededLimits}
-                    href="/jobs/create"
-                    color="secondary"
-                    radius="full"
-                    startContent={<Icon icon="plus" size={18} />}
-                    aria-label="Create job posting"
-                  >
-                    {!isMobile ? 'Create job posting' : null}
-                  </Button>
+                  <ProfileUnverifiedTooltip>
+                    <Button
+                      as={NextLink}
+                      isIconOnly={isMobile}
+                      isDisabled={isExceededLimits || !currentUser?.isVerified}
+                      href="/jobs/create"
+                      color="secondary"
+                      radius="full"
+                      startContent={<Icon icon="plus" size={18} />}
+                      aria-label="Create a job posting"
+                    >
+                      {!isMobile ? 'Create a job posting' : null}
+                    </Button>
+                  </ProfileUnverifiedTooltip>
                 </div>
               </Tooltip>
             </div>

@@ -1,10 +1,12 @@
 import { Button, Card, CardBody, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger, Tooltip } from '@nextui-org/react';
+import { ProfileUnverifiedTooltip } from 'components/profile/Profile/ProfileUnverifiedTooltip';
 import { Icon } from 'components/various/Icon';
 import { ImagePreview } from 'components/various/ImagePreview';
 import { TextEditor } from 'components/various/TextEditor';
 import { VideoUploaderModal } from 'components/various/VideoUploaderModal';
 import { useImagesUpload } from 'hooks/useImagesUpload';
 import { useNotifications } from 'hooks/useNotifications';
+import { useSession } from 'hooks/useSession';
 import React from 'react';
 import { useMutation, useQueryClient } from 'react-query';
 import { requestPostCreation } from 'services/feed';
@@ -17,6 +19,7 @@ export const CreatePost = () => {
   const [isVideoModalOpen, setIsVideoModalOpen] = React.useState(false);
   const [videoIds, setVideoIds] = React.useState<string[]>([]);
 
+  const { currentUser } = useSession();
   const { images, getInputProps, getRootProps, removeImage, setImages } = useImagesUpload();
   const { pushNotification } = useNotifications();
   const queryClient = useQueryClient();
@@ -123,15 +126,17 @@ export const CreatePost = () => {
             )}
             <Dropdown>
               <DropdownTrigger>
-                <Button
-                  isIconOnly
-                  isLoading={isLoading}
-                  radius="full"
-                  isDisabled={content.trim() === ''}
-                  color="secondary"
-                  variant="light"
-                  startContent={!isLoading && <Icon icon="send" />}
-                />
+                <ProfileUnverifiedTooltip>
+                  <Button
+                    isIconOnly
+                    isLoading={isLoading}
+                    radius="full"
+                    isDisabled={content.trim() === '' || !currentUser?.isVerified}
+                    color="secondary"
+                    variant="light"
+                    startContent={!isLoading && <Icon icon="send" />}
+                  />
+                </ProfileUnverifiedTooltip>
               </DropdownTrigger>
               <DropdownMenu variant="flat" onAction={handlePublishPost}>
                 <DropdownItem key="post">

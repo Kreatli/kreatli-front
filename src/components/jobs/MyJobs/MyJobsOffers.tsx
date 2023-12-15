@@ -1,5 +1,6 @@
 import { Button, Pagination, Tab, Tabs, Tooltip } from '@nextui-org/react';
 import cx from 'classnames';
+import { ProfileUnverifiedTooltip } from 'components/profile/Profile/ProfileUnverifiedTooltip';
 import { Icon } from 'components/various/Icon';
 import { useSession } from 'hooks/useSession';
 import NextLink from 'next/link';
@@ -64,7 +65,7 @@ export const MyJobsOffers = () => {
       return {
         title: 'No ongoing job postings',
         text: 'You don\'t have any ongoing job postings yet. Let\'s fix this!',
-        link: { href: '/jobs/create', label: 'Create a job posting' },
+        ...(currentUser?.isVerified && { link: { href: '/jobs/create', label: 'Create a job posting' } }),
       };
     }
 
@@ -84,9 +85,9 @@ export const MyJobsOffers = () => {
     return {
       title: 'No job posting',
       text: 'You don\'t have any job postings yet. Let\'s fix this!',
-      link: { href: '/jobs/create', label: 'Create a job posting' },
+      ...(currentUser?.isVerified && { link: { href: '/jobs/create', label: 'Create a job posting' } }),
     };
-  }, [selectedTab]);
+  }, [currentUser?.isVerified, selectedTab]);
 
   const totalPages = Math.ceil((data?.jobOffersCount ?? 0) / PAGE_LIMIT);
   const shouldShowSkeleton = (!data || data.jobOffers.length === 0) && isFetching;
@@ -99,9 +100,11 @@ export const MyJobsOffers = () => {
         <h3 className="text-2xl font-semibold">My job postings</h3>
         <Tooltip isDisabled={!isExceededLimits} content="You've reached your job posting limit. Get to the next tier to increase the limit">
           <div>
-            <Button as={NextLink} isDisabled={isExceededLimits} isIconOnly={isMobile} startContent={<Icon icon="plus" size={18} />} radius="full" color="secondary" href="/jobs/create">
-              {!isMobile && 'Create job posting'}
-            </Button>
+            <ProfileUnverifiedTooltip>
+              <Button as={NextLink} isDisabled={isExceededLimits || !currentUser?.isVerified} isIconOnly={isMobile} startContent={<Icon icon="plus" size={18} />} radius="full" color="secondary" href="/jobs/create">
+                {!isMobile && 'Create a job posting'}
+              </Button>
+            </ProfileUnverifiedTooltip>
           </div>
         </Tooltip>
       </div>

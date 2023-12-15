@@ -58,7 +58,7 @@ export const Connections = ({ userId }: Props) => {
     <div className="container max-w-screen-lg mx-auto px-6">
       {isMyAccount && hasInvitations && (
         <>
-          <h4 className="text-xl font-semibold mb-2">Invitations</h4>
+          <h4 className="text-xl font-semibold mb-4">Invitations</h4>
           <div className="flex flex-col gap-4 mb-8">
             {invitations?.map((invitation) => (
               <InvitationCard key={invitation._id} invitation={invitation} />
@@ -66,7 +66,7 @@ export const Connections = ({ userId }: Props) => {
           </div>
         </>
       )}
-      <h3 className="text-2xl font-semibold mb-2">Connections ({connectionsCount})</h3>
+      <h3 className="text-2xl font-semibold mb-4">Connections ({connectionsCount})</h3>
       <LazyList isLoading={isFetchingNextPage} hasMore={hasNextPage} onLoadMore={fetchNextPage}>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {connections?.map((connection) => (

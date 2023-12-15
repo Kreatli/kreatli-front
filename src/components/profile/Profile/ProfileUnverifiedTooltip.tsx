@@ -25,7 +25,7 @@ export const ProfileUnverifiedTooltip = ({ children }: Props) => {
         </>
       )}
     >
-      {children}
+      <span>{children}</span>
     </Tooltip>
   );
 };

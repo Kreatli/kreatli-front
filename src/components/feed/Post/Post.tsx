@@ -1,5 +1,6 @@
 import { Avatar, Button, Card, CardBody, CardFooter, CardHeader, Link } from '@nextui-org/react';
 import { ConnectionButton } from 'components/profile/Connections/ConnectionButton';
+import { ProfileUnverifiedTooltip } from 'components/profile/Profile/ProfileUnverifiedTooltip';
 import { Icon } from 'components/various/Icon';
 import { MediaSlider } from 'components/various/MediaSlider';
 import { TierImage } from 'components/various/TierImage';
@@ -24,7 +25,7 @@ export const Post = () => {
   const [isContentExpanded, setIsContentExpanded] = React.useState(false);
   const [areCommentsExpanded, setAreCommentsExpanded] = React.useState(false);
 
-  const { currentUserId } = useSession();
+  const { currentUser, currentUserId } = useSession();
   const isMobile = useBreakpointValue({ SM: false }, true);
 
   const postContent = React.useMemo(() => {
@@ -108,10 +109,12 @@ export const Post = () => {
           )}
         </CardBody>
         <CardFooter className="px-5 flex-col items-start">
-          <Button variant="light" color={areCommentsExpanded ? 'secondary' : 'default'} size="sm" onClick={toggleComments}>
-            <Icon icon="chat" size={20} />
-            {commentCount}
-          </Button>
+          <ProfileUnverifiedTooltip>
+            <Button variant="light" isDisabled={!currentUser?.isVerified} color={areCommentsExpanded ? 'secondary' : 'default'} size="sm" onClick={toggleComments}>
+              <Icon icon="chat" size={20} />
+              {commentCount}
+            </Button>
+          </ProfileUnverifiedTooltip>
           {areCommentsExpanded && (
             <Comments />
           )}
