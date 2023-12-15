@@ -1,4 +1,5 @@
 import { Avatar, Button, Tooltip, useDisclosure } from '@nextui-org/react';
+import { ProfileUnverifiedTooltip } from 'components/profile/Profile/ProfileUnverifiedTooltip';
 import { TierImage } from 'components/various/TierImage';
 import NextLink from 'next/link';
 import React from 'react';
@@ -53,10 +54,6 @@ export const JobPage = (props: Props) => {
     return formatRelativeTime(creationDate);
   }, [creationDate]);
 
-  const notAppliedActionLabel = isPosted
-    ? 'Apply for a job'
-    : 'The job is not active';
-
   const userCardContent = (
     <>
       <NextLink href={`/profile/${creator._id}`} className="flex sm:flex-col items-center gap-4">
@@ -76,16 +73,18 @@ export const JobPage = (props: Props) => {
             <Button isDisabled color="secondary" onClick={onOpen}>
               {hasApplied
                 ? 'Applied'
-                : notAppliedActionLabel}
+                : 'The job is not active'}
             </Button>
           ) : (
-            <Tooltip isDisabled={!isExceededLimits} content="You've reached your job applications limit. Get to the next tier to increase the limit">
-              <div>
-                <Button isDisabled={isExceededLimits} color="secondary" onClick={onOpen}>
-                  {notAppliedActionLabel}
-                </Button>
-              </div>
-            </Tooltip>
+            <ProfileUnverifiedTooltip>
+              <Tooltip isDisabled={!isExceededLimits} content="You've reached your job applications limit. Get to the next tier to increase the limit">
+                <div>
+                  <Button isDisabled={isExceededLimits || !currentUser.isVerified} color="secondary" onClick={onOpen}>
+                    Apply for a job
+                  </Button>
+                </div>
+              </Tooltip>
+            </ProfileUnverifiedTooltip>
           )
         )}
         <p className="text-sm text-gray-400">{applicationsCount} application{applicationsCount === 1 ? '' : 's'} so far</p>
