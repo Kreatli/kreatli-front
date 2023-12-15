@@ -38,6 +38,7 @@ export const JobApplicationForm = ({ jobOfferId, onCancel, onSuccess }: Props) =
         icon: 'success',
       });
       queryClient.refetchQueries('user');
+      queryClient.invalidateQueries(['job-offers']);
       queryClient.setQueryData(['job-offer', jobOfferId], jobOffer);
       onSuccess();
     },
