@@ -1,6 +1,7 @@
 import { Input, Select, SelectItem } from '@nextui-org/react';
 import React from 'react';
-import { Control, FieldErrors, useController, UseFormRegister } from 'react-hook-form';
+import { Control, Controller, FieldErrors, useController, UseFormRegister } from 'react-hook-form';
+import { NumericFormat } from 'react-number-format';
 
 import { PAYMENT_PREFERENCE_OPTIONS, PAYMENT_TYPE_OPTIONS, PAYMENT_TYPE_SHORTS } from '../../../constants/payment';
 import { VALIDATION_RULES } from '../../../constants/validationRules';
@@ -33,17 +34,30 @@ export const JobsCreationStep3: React.FC<Props> = ({ control, errors, register }
           <SelectItem key={paymentType.value} value={paymentType.value}>{paymentType.label}</SelectItem>
         ))}
       </Select>
-      <Input
-        type="number"
-        min={1}
-        label="Budget ($)"
-        placeholder="Budget ($)"
-        endContent={<span className="pointer-events-none whitespace-nowrap text-small text-gray-400">{PAYMENT_TYPE_SHORTS[paymentTypeField.value]}</span>}
-        fullWidth
-        isInvalid={!!errors.paymentValue}
-        errorMessage={errors.paymentValue?.message}
-        {...register('paymentValue', VALIDATION_RULES.NUMBER)}
+      <Controller
+        render={({ field }) => (
+          <NumericFormat
+            value={field.value || ''}
+            onValueChange={({ floatValue }) => field.onChange(floatValue)}
+            customInput={Input}
+            allowNegative={false}
+            thousandSeparator
+            decimalScale={0}
+            prefix="$"
+            min={1}
+            label="Budget ($)"
+            placeholder="Specify your budget"
+            endContent={<span className="pointer-events-none whitespace-nowrap text-small text-gray-400">{PAYMENT_TYPE_SHORTS[paymentTypeField.value]}</span>}
+            fullWidth
+            isInvalid={!!errors.paymentValue}
+            errorMessage={errors.paymentValue?.message}
+          />
+        )}
+        name="paymentValue"
+        control={control}
+        rules={VALIDATION_RULES.NUMBER}
       />
+
       <div className="col-span-2">
         <Select
           label="Payment preferences (optional)"
