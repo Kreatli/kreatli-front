@@ -65,7 +65,12 @@ export const MyJobsOffers = () => {
       return {
         title: 'No ongoing job postings',
         text: 'You don\'t have any ongoing job postings yet. Let\'s fix this!',
-        ...(currentUser?.isVerified && { link: { href: '/jobs/create', label: 'Create a job posting' } }),
+        ...(!isExceededLimits && currentUser?.isVerified && {
+          link: {
+            href: '/jobs/create',
+            label: 'Create a job posting',
+          },
+        }),
       };
     }
 
@@ -85,9 +90,14 @@ export const MyJobsOffers = () => {
     return {
       title: 'No job posting',
       text: 'You don\'t have any job postings yet. Let\'s fix this!',
-      ...(currentUser?.isVerified && { link: { href: '/jobs/create', label: 'Create a job posting' } }),
+      ...(!isExceededLimits && currentUser?.isVerified && {
+        link: {
+          href: '/jobs/create',
+          label: 'Create a job posting',
+        },
+      }),
     };
-  }, [currentUser?.isVerified, selectedTab]);
+  }, [currentUser?.isVerified, isExceededLimits, selectedTab]);
 
   const totalPages = Math.ceil((data?.jobOffersCount ?? 0) / PAGE_LIMIT);
   const shouldShowSkeleton = (!data || data.jobOffers.length === 0) && isFetching;
