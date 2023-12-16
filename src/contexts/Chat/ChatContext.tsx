@@ -30,7 +30,7 @@ interface Context {
   loadInitialMessages: () => void;
   loadMoreMessages: () => void;
   messages: Chat.Message[];
-  participant: User.ShortInfoBase | null;
+  participant: User.ShortInfo | null;
   participantId: Common.Id | null;
   setChatListMode: (chatListMode: 'chats' | 'requests') => void;
 }

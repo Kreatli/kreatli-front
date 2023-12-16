@@ -7,7 +7,7 @@ import { User } from './user';
 export namespace Chat {
   export interface Type {
     _id: Common.Id;
-    participants: User.ShortInfoBase[];
+    participants: User.ShortInfo[];
     creationDate: Date;
     lastMessage: Message | null;
     isRequest: boolean;

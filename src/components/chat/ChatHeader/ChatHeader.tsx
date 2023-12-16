@@ -2,11 +2,11 @@ import { Avatar, Button, Skeleton } from '@nextui-org/react';
 import { ProfileBadge } from 'components/profile/Profile/ProfileBadge';
 import { Icon } from 'components/various/Icon';
 import { TierImage } from 'components/various/TierImage';
-import { COUNTRY_LABELS } from 'constants/countries';
 import { ChatContext } from 'contexts/Chat';
 import { useBreakpointValue } from 'hooks/useBreakpointValue';
 import NextLink from 'next/link';
 import React from 'react';
+import { getUserSkills } from 'utils/user';
 
 export const ChatHeader = () => {
   const { participant } = React.useContext(ChatContext);
@@ -21,7 +21,7 @@ export const ChatHeader = () => {
 
   if (isMobile) {
     return (
-      <div className="flex w-full justify-between items-center">
+      <div className="flex w-full gap-2 justify-between items-center">
         <Button as={NextLink} className="text-foreground" variant="light" href="/chat" isIconOnly>
           <Icon icon="arrowLeft" />
         </Button>
@@ -30,7 +30,10 @@ export const ChatHeader = () => {
             <>
               <NextLink href={`/profile/${participant._id}`} className="text-center">
                 <div className="text-md font-semibold">{userName}</div>
-                <div className="text-sm text-default-400">{COUNTRY_LABELS[participant.country]}</div>
+                <div className="flex gap-2 text-sm text-default-400">
+                  {participant.role === 'creator' && <span>{participant.youtube.customUrl}</span>}
+                  <span>{getUserSkills(participant)}</span>
+                </div>
               </NextLink>
               <ProfileBadge isVerified={participant.isVerified} size="sm">
                 <Avatar as={NextLink} href={`/profile/${participant._id}`} src={participant.avatarUrl} className="w-12 h-12" />
@@ -61,7 +64,10 @@ export const ChatHeader = () => {
               </ProfileBadge>
               <div>
                 <h3 className="text-large font-semibold">{userName}</h3>
-                <p className="text-small text-default-400">{COUNTRY_LABELS[participant.country]}</p>
+                <div className="flex gap-2 text-sm text-default-400">
+                  {participant.role === 'creator' && <span>{participant.youtube.customUrl}</span>}
+                  <span>{getUserSkills(participant)}</span>
+                </div>
               </div>
             </div>
           </NextLink>
