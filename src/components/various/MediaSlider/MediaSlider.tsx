@@ -7,9 +7,10 @@ import { VideoSlide } from './VideoSlide';
 
 interface Props {
   media: Media.Any[];
+  onClick: (index: number) => void;
 }
 
-export const MediaSlider = ({ media }: Props) => {
+export const MediaSlider = ({ media, onClick }: Props) => {
   const slidesRef = React.useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = React.useState(0);
 
@@ -34,9 +35,9 @@ export const MediaSlider = ({ media }: Props) => {
   return (
     <div className="relative">
       <div ref={slidesRef} className="flex gap-4 overflow-x-auto no-scrollbar snap-x snap-mandatory" onScroll={handleScroll}>
-        {media.map((mediaItem) => (
+        {media.map((mediaItem, index) => (
           <div key={mediaItem._id} className="min-w-full h-56 md:h-80 overflow-hidden snap-center snap-always">
-            {mediaItem.type === 'image' && <ImageSlide {...mediaItem} />}
+            {mediaItem.type === 'image' && <ImageSlide {...mediaItem} onClick={() => onClick(index)} />}
             {mediaItem.type === 'video' && <VideoSlide {...mediaItem} />}
           </div>
         ))}

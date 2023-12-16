@@ -2,14 +2,17 @@ import { Image } from '@nextui-org/react';
 import React from 'react';
 import { Media } from 'typings/media';
 
-interface Props extends Media.Image {}
+interface Props extends Media.Image {
+  onClick: () => void;
+}
 
-export const ImageSlide = ({ src }: Props) => {
+export const ImageSlide = ({ src, onClick }: Props) => {
   return (
     <Image
-      classNames={{ wrapper: 'h-full !max-w-full', img: 'w-full h-full object-cover' }}
+      classNames={{ wrapper: 'h-full !max-w-full cursor-pointer', img: 'w-full h-full object-cover' }}
       loading="lazy"
       src={src}
+      onClick={onClick}
     />
   );
 };

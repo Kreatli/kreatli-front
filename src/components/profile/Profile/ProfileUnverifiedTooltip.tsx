@@ -13,7 +13,7 @@ export const ProfileUnverifiedTooltip = ({ children }: Props) => {
 
   if (isVerified) {
     // eslint-disable-next-line react/jsx-no-useless-fragment
-    return <>{children}</>;
+    return children;
   }
 
   return (

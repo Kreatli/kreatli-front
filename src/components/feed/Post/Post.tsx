@@ -2,6 +2,7 @@ import { Avatar, Button, Card, CardBody, CardFooter, CardHeader, Link } from '@n
 import { ConnectionButton } from 'components/profile/Connections/ConnectionButton';
 import { ProfileUnverifiedTooltip } from 'components/profile/Profile/ProfileUnverifiedTooltip';
 import { Icon } from 'components/various/Icon';
+import { Lightbox } from 'components/various/Lightbox';
 import { MediaSlider } from 'components/various/MediaSlider';
 import { TierImage } from 'components/various/TierImage';
 import { PostContext } from 'contexts/Post';
@@ -9,6 +10,7 @@ import { useBreakpointValue } from 'hooks/useBreakpointValue';
 import { useSession } from 'hooks/useSession';
 import NextLink from 'next/link';
 import React from 'react';
+import { Media } from 'typings/media';
 import { formatRelativeTime } from 'utils/dates';
 
 import { Comments } from '../Comments';
@@ -24,6 +26,7 @@ export const Post = () => {
 
   const [isContentExpanded, setIsContentExpanded] = React.useState(false);
   const [areCommentsExpanded, setAreCommentsExpanded] = React.useState(false);
+  const [openedMedia, setOpenedMedia] = React.useState<Media.Image | null>(null);
 
   const { currentUser, currentUserId } = useSession();
   const isMobile = useBreakpointValue({ SM: false }, true);
@@ -105,7 +108,7 @@ export const Post = () => {
         <CardBody className="px-5 py-0 gap-4">
           <div className="whitespace-pre-wrap">{postContent}</div>
           {media.length > 0 && (
-            <MediaSlider media={media} />
+            <MediaSlider media={media} onClick={(index) => setOpenedMedia(media[index] as Media.Image)} />
           )}
         </CardBody>
         <CardFooter className="px-5 flex-col items-start">
@@ -120,6 +123,9 @@ export const Post = () => {
           )}
         </CardFooter>
       </Card>
+      {!!openedMedia && (
+        <Lightbox isOpen image={openedMedia} onOpenChange={() => setOpenedMedia(null)} />
+      )}
     </div>
   );
 };

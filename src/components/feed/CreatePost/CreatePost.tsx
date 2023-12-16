@@ -124,9 +124,9 @@ export const CreatePost = () => {
                 ))}
               </div>
             )}
-            <Dropdown>
-              <DropdownTrigger>
-                <ProfileUnverifiedTooltip>
+            <ProfileUnverifiedTooltip>
+              <Dropdown>
+                <DropdownTrigger>
                   <Button
                     isIconOnly
                     isLoading={isLoading}
@@ -136,17 +136,17 @@ export const CreatePost = () => {
                     variant="light"
                     startContent={!isLoading && <Icon icon="send" />}
                   />
-                </ProfileUnverifiedTooltip>
-              </DropdownTrigger>
-              <DropdownMenu variant="flat" onAction={handlePublishPost}>
-                <DropdownItem key="post">
-                  Post
-                </DropdownItem>
-                <DropdownItem key="feedbackPost" color="secondary">
-                  Feedback Post
-                </DropdownItem>
-              </DropdownMenu>
-            </Dropdown>
+                </DropdownTrigger>
+                <DropdownMenu variant="flat" onAction={handlePublishPost}>
+                  <DropdownItem key="post">
+                    Post
+                  </DropdownItem>
+                  <DropdownItem key="feedbackPost" color="secondary">
+                    Feedback Post
+                  </DropdownItem>
+                </DropdownMenu>
+              </Dropdown>
+            </ProfileUnverifiedTooltip>
           </div>
         </CardBody>
       </Card>
