@@ -24,11 +24,10 @@ export const SignInModal: React.FC<Props> = ({ isOpen, onClose }) => {
 
   return (
     <Modal
-      closeButton
       placement="center"
       backdrop="blur"
       size="sm"
-      isDismissable={isLoading}
+      isDismissable={!isLoading}
       isOpen={isOpen}
       onClose={onClose}
     >

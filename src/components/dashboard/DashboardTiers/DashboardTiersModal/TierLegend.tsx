@@ -13,6 +13,7 @@ export const TierLegend = () => {
 
           return (
             <div
+              key={value}
               className={cx('relative flex flex-col justify-center text-center px-4 py-2 rounded-large border-1 border-secondary overflow-hidden', {
                 'border-none': !isSubscriptionOnly,
               })}

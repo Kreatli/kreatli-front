@@ -33,10 +33,11 @@ export const SignUpProfessionalStep5: React.FC<Props> = ({ control, errors, regi
 
   return (
     <div className="flex flex-col gap-4">
-      {field.value.map(({ id }, index) => (
+      {field.value.map(({ id, name }, index) => (
         <div key={id} className="flex items-center gap-4">
           <Input
             label="Certificate's name"
+            defaultValue={name}
             placeholder="Adobe Certified Expert in Premiere Pro"
             isInvalid={!!errors.certificates?.[index]?.name}
             errorMessage={errors.certificates?.[index]?.name?.message}

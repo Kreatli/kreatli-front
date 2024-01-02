@@ -6,25 +6,46 @@ import { TextEditor } from 'components/various/TextEditor';
 import { VideoUploaderModal } from 'components/various/VideoUploaderModal';
 import { useImagesUpload } from 'hooks/useImagesUpload';
 import { useNotifications } from 'hooks/useNotifications';
+import { usePostsFilters } from 'hooks/usePostsFilters';
 import { useSession } from 'hooks/useSession';
 import React from 'react';
-import { useMutation, useQueryClient } from 'react-query';
-import { requestPostCreation } from 'services/feed';
+import { InfiniteData, useMutation, useQueryClient } from 'react-query';
+import { requestPostCreation, requestPostEdit } from 'services/feed';
+import { Feed } from 'typings/feed';
+import { Media } from 'typings/media';
 import { getErrorMessage } from 'utils/getErrorMessage';
 
 import { VideoPreview } from './VideoPreview';
 
-export const CreatePost = () => {
-  const [content, setContent] = React.useState('');
+interface Props {
+  defaultValue?: Feed.Post;
+  onEdit?: () => void;
+}
+
+export const CreatePost = ({ defaultValue, onEdit }: Props) => {
+  const isEditMode = !!defaultValue;
+  const {
+    _id: editPostId,
+    content: defaultContent = '',
+    media: defaultMedia = [],
+  } = defaultValue ?? {};
+
+  const defaultImages = defaultMedia.filter(({ type }) => type === 'image') as Media.Image[];
+  const defaultImageEntries = defaultImages.map(({ src }) => ({ src, isLoading: false }));
+  const defaultVideos = defaultMedia.filter(({ type }) => type === 'video') as Media.Video[];
+  const defaultVideoIds = defaultVideos.map(({ videoId }) => videoId);
+
+  const [content, setContent] = React.useState(defaultContent);
   const [isVideoModalOpen, setIsVideoModalOpen] = React.useState(false);
-  const [videoIds, setVideoIds] = React.useState<string[]>([]);
+  const [videoIds, setVideoIds] = React.useState<string[]>(defaultVideoIds);
 
   const { currentUser } = useSession();
-  const { images, getInputProps, getRootProps, removeImage, setImages } = useImagesUpload();
+  const { images, getInputProps, getRootProps, removeImage, setImages } = useImagesUpload(defaultImageEntries);
   const { pushNotification } = useNotifications();
   const queryClient = useQueryClient();
+  const { filter } = usePostsFilters();
 
-  const { isLoading, mutate } = useMutation(requestPostCreation, {
+  const { isLoading: isCreating, mutate: createPost } = useMutation(requestPostCreation, {
     onSuccess: () => {
       setContent('');
       setImages([]);
@@ -32,6 +53,53 @@ export const CreatePost = () => {
       queryClient.invalidateQueries('posts');
       pushNotification({
         message: 'The post was published',
+        color: 'success',
+        icon: 'success',
+      });
+    },
+    onError: (error: any) => {
+      pushNotification({
+        message: getErrorMessage(error),
+        color: 'danger',
+        icon: 'error',
+      });
+    },
+  });
+
+  const { isLoading: isEditing, mutate: editPost } = useMutation(requestPostEdit, {
+    onSuccess: (updatedPost) => {
+      onEdit?.();
+
+      queryClient.setQueryData<InfiniteData<{
+        posts: Feed.Post[];
+        postsCount: number;
+      }>>(['posts', filter], (prevData) => {
+        if (!prevData) {
+          return {
+            pages: [],
+            pageParams: [],
+          };
+        }
+
+        return {
+          ...prevData,
+          pages: prevData?.pages.map((page) => {
+            return {
+              ...page,
+              posts: page.posts.map((post) => {
+                if (post._id !== updatedPost._id) {
+                  return post;
+                }
+
+                return updatedPost;
+              }),
+            };
+          }),
+        };
+      });
+
+      pushNotification({
+        message: 'The post was updated',
         color: 'success',
         icon: 'success',
       });
@@ -59,11 +127,27 @@ export const CreatePost = () => {
       ...videoIds.map((id) => ({ type: 'video' as const, videoId: id, src: `https://www.youtube.com/embed/${id}` })),
     ];
 
-    mutate({
+    createPost({
       content,
       isFeedback: key === 'feedbackPost',
       media,
     });
+  };
+
+  const handleEditPost = () => {
+    if (!editPostId) {
+      return;
+    }
+
+    const media = [
+      ...images.map(({ src }) => ({ type: 'image' as const, src })),
+      ...videoIds.map((id) => ({ type: 'video' as const, videoId: id, src: `https://www.youtube.com/embed/${id}` })),
+    ];
+
+    editPost([editPostId, {
+      content,
+      media,
+    }]);
   };
 
   const isImageUploadDisabled = images.length > 4;
@@ -124,29 +208,43 @@ export const CreatePost = () => {
                 ))}
               </div>
             )}
-            <ProfileUnverifiedTooltip>
-              <Dropdown>
-                <DropdownTrigger>
-                  <Button
-                    isIconOnly
-                    isLoading={isLoading}
-                    radius="full"
-                    isDisabled={content.trim() === '' || !currentUser?.isVerified}
-                    color="secondary"
-                    variant="light"
-                    startContent={!isLoading && <Icon icon="send" />}
-                  />
-                </DropdownTrigger>
-                <DropdownMenu variant="flat" onAction={handlePublishPost}>
-                  <DropdownItem key="post">
-                    Post
-                  </DropdownItem>
-                  <DropdownItem key="feedbackPost" color="secondary">
-                    Feedback Post
-                  </DropdownItem>
-                </DropdownMenu>
-              </Dropdown>
-            </ProfileUnverifiedTooltip>
+            {isEditMode && (
+              <Button
+                isIconOnly
+                isLoading={isEditing}
+                radius="full"
+                isDisabled={content.trim() === '' || !currentUser?.isVerified}
+                color="secondary"
+                variant="light"
+                startContent={!isEditing && <Icon icon="send" />}
+                onClick={handleEditPost}
+              />
+            )}
+            {!isEditMode && (
+              <ProfileUnverifiedTooltip>
+                <Dropdown>
+                  <DropdownTrigger>
+                    <Button
+                      isIconOnly
+                      isLoading={isCreating}
+                      radius="full"
+                      isDisabled={content.trim() === '' || !currentUser?.isVerified}
+                      color="secondary"
+                      variant="light"
+                      startContent={!isCreating && <Icon icon="send" />}
+                    />
+                  </DropdownTrigger>
+                  <DropdownMenu variant="flat" onAction={handlePublishPost}>
+                    <DropdownItem key="post">
+                      Post
+                    </DropdownItem>
+                    <DropdownItem key="feedbackPost" color="secondary">
+                      Feedback Post
+                    </DropdownItem>
+                  </DropdownMenu>
+                </Dropdown>
+              </ProfileUnverifiedTooltip>
+            )}
           </div>
         </CardBody>
       </Card>

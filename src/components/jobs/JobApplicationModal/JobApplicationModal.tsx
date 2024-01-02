@@ -15,7 +15,6 @@ interface Props {
 export const JobApplicationModal = ({ jobOfferId, title, shortDescription, isOpen, onClose }: Props) => {
   return (
     <Modal
-      closeButton
       placement="center"
       backdrop="blur"
       size="md"

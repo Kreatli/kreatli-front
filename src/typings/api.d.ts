@@ -92,7 +92,8 @@ export namespace Api {
   export type Put =
     | '/post/:id'
     | '/chat/:id'
-    | '/notification/:id';
+    | '/notification/:id'
+    | '/user';
 
   export interface GetParams {
     '/professionals': {
@@ -286,9 +287,10 @@ export namespace Api {
   }
 
   export interface PutPayload {
-    '/post/:id': Feed.PostPayload;
+    '/post/:id': Partial<Feed.PostPayload>;
     '/chat/:id': { isRequest: boolean };
     '/notification/:id': { isRead: boolean };
+    '/user': any; // TODO: change to payload type
   }
 
   export interface PutResponse {

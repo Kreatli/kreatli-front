@@ -9,15 +9,15 @@ interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
   children: React.ReactNode;
 }
 
-export const Tag = ({ checked = false, value, status, children, onChange, ...inputProps }: Props) => {
-  const [isChecked, setIsChecked] = React.useState(checked);
-  const { toggleTag } = React.useContext(TagGroupContext);
+export const Tag = ({ value, status, children, onChange, ...inputProps }: Props) => {
+  const { checkedTags, toggleTag } = React.useContext(TagGroupContext);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setIsChecked((prevIsChecked) => !prevIsChecked);
     onChange?.(event);
     toggleTag(value);
   };
+
+  const isChecked = checkedTags.includes(value as string);
 
   return (
     // eslint-disable-next-line jsx-a11y/label-has-associated-control

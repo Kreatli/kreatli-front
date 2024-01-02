@@ -15,7 +15,7 @@ interface Props {
   errors: FieldErrors<DefaultValues>;
 }
 
-export const SignUpProfessionalStep4: React.FC<Props> = ({ control, errors, register }) => {
+export const SignUpProfessionalStep4 = ({ control, errors, register }: Props) => {
   const { field } = useController({ control, name: 'experiences', rules: VALIDATION_RULES.REQUIRED });
 
   const handleAddMore = () => {
@@ -33,7 +33,7 @@ export const SignUpProfessionalStep4: React.FC<Props> = ({ control, errors, regi
 
   return (
     <div className="flex flex-col gap-8">
-      {field.value.map(({ id }, index) => (
+      {field.value.map(({ id, companyName, companyUrl, description }, index) => (
         <div key={id} className="flex gap-4">
           <div className="flex-1 grid grid-cols-[auto_1fr] gap-4">
             <div>
@@ -49,6 +49,7 @@ export const SignUpProfessionalStep4: React.FC<Props> = ({ control, errors, regi
                 aria-label="Channel/Company"
                 startContent={<Icon className="text-gray-400" icon="building" />}
                 labelPlacement="outside"
+                defaultValue={companyName}
                 isInvalid={!!errors.experiences?.[index]?.companyName}
                 errorMessage={errors.experiences?.[index]?.companyName?.message}
                 {...register(`experiences.${index}.companyName`, VALIDATION_RULES.SHORT_TEXT)}
@@ -58,6 +59,7 @@ export const SignUpProfessionalStep4: React.FC<Props> = ({ control, errors, regi
                 aria-label="Channel/Company link"
                 startContent={<Icon className="text-gray-400" icon="link" />}
                 labelPlacement="outside"
+                defaultValue={companyUrl}
                 isInvalid={!!errors.experiences?.[index]?.companyUrl}
                 errorMessage={errors.experiences?.[index]?.companyUrl?.message}
                 {...register(`experiences.${index}.companyUrl`, VALIDATION_RULES.URL.REQUIRED)}
@@ -66,6 +68,7 @@ export const SignUpProfessionalStep4: React.FC<Props> = ({ control, errors, regi
             <div className="col-span-2">
               <Textarea
                 label="Description"
+                defaultValue={description}
                 placeholder="Highlight key responsibilities, projects, and achievements from this job. Focus on demonstrating your expertise, skills, and the value you can bring to potential clients."
                 isInvalid={!!errors.experiences?.[index]?.description}
                 errorMessage={errors.experiences?.[index]?.description?.message}

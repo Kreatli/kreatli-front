@@ -39,6 +39,10 @@ export const PostContextProvider = ({ children, post: initialPost }: Props) => {
   const [parentCommentId, setParentCommentId] = React.useState<Common.Id | undefined>();
 
   React.useEffect(() => {
+    setPost(initialPost);
+  }, [initialPost]);
+
+  React.useEffect(() => {
     if (!comment) {
       setParentCommentId(undefined);
     }

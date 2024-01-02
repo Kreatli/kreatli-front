@@ -39,16 +39,17 @@ const getCropDimensions = (crop: Crop | undefined, originalDimensions: { width: 
 };
 
 export const AvatarUploader = <T extends FieldValues>({ control, name, rules, status, label = 'avatar' }: Props<T>) => {
+  const { field } = useController({ control, name, rules });
+
   const [selectedFile, setSelectedFile] = React.useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = React.useState('');
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [crop, setCrop] = React.useState<Crop>();
-  const [uploadedImageUrl, setUploadedImageUrl] = React.useState('');
+  const [uploadedImageUrl, setUploadedImageUrl] = React.useState(field.value as string);
   const [imageDimensions, setImageDimensions] = React.useState({ width: 0, height: 0 });
   const [isLoading, setIsLoading] = React.useState(false);
 
   const pushNotification = useNotifications((state) => state.pushNotification);
-  const { field } = useController({ control, name, rules });
 
   React.useEffect(() => {
     if (!selectedFile) {
@@ -187,7 +188,7 @@ export const AvatarUploader = <T extends FieldValues>({ control, name, rules, st
         isOpen={isOpen}
         placement="center"
         backdrop="blur"
-        isDismissable={false}
+        isDismissable={!isLoading}
       >
         <ModalContent>
           <ReactCrop

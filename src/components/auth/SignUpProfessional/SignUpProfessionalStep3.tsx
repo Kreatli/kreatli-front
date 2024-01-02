@@ -1,10 +1,10 @@
 import { Select, SelectItem } from '@nextui-org/react';
 import React from 'react';
-import { Control, FieldErrors, UseFormRegister } from 'react-hook-form';
+import { Control, FieldErrors, useController, UseFormRegister } from 'react-hook-form';
 
 import { SKILL_LABELS_FOR_PROFESSIONAL, SKILL_LEVEL_OPTIONS, SKILL_OPTIONS } from '../../../constants/skills';
 import { VALIDATION_RULES } from '../../../constants/validationRules';
-import { Skill } from '../../../typings/skill';
+import { Skill, SkillLevel } from '../../../typings/skill';
 import { Tag } from '../../various/Tag';
 import { DefaultValues } from './constants';
 
@@ -15,7 +15,9 @@ interface Props {
 }
 
 export const SignUpProfessionalStep3: React.FC<Props> = ({ errors, control, register }) => {
-  const [selectedSkills, setSelectedSkills] = React.useState<Skill[]>([]);
+  const { field: skillsField } = useController({ control, name: 'skills' });
+  const { field: skillLevelsField } = useController({ control, name: 'skillLevels' });
+  const [selectedSkills, setSelectedSkills] = React.useState<Skill[]>(skillsField.value ?? []);
 
   return (
     <Tag.Group name="skills" control={control} rules={VALIDATION_RULES.REQUIRED} onChange={setSelectedSkills}>
@@ -38,6 +40,9 @@ export const SignUpProfessionalStep3: React.FC<Props> = ({ errors, control, regi
                 label="Select level"
                 size="sm"
                 className="w-36"
+                defaultSelectedKeys={
+                  skillLevelsField.value?.[skill] && new Set([skillLevelsField.value?.[skill]]) as Iterable<SkillLevel>
+                }
                 isInvalid={!!errors.skillLevels?.[skill]}
                 {...register(`skillLevels.${skill}`, VALIDATION_RULES.REQUIRED)}
               >

@@ -43,7 +43,6 @@ export const VideoUploaderModal = ({ isOpen, onUpload, onClose }: Props) => {
 
   return (
     <Modal
-      closeButton
       placement="center"
       backdrop="blur"
       size="xl"

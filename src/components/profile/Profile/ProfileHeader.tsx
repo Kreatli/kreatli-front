@@ -8,6 +8,7 @@ import { useSession } from '../../../hooks/useSession';
 import { User } from '../../../typings/user';
 import { Icon } from '../../various/Icon';
 import { ConnectionButton } from '../Connections/ConnectionButton';
+import { EditProfileModal } from '../EditProfile';
 import { ProfileBadge } from './ProfileBadge';
 
 interface Props {
@@ -16,9 +17,10 @@ interface Props {
 
 export const ProfileHeader = ({ user }: Props) => {
   const { _id: userId, connectionsCount, role, name, avatarUrl, isVerified, tier } = user;
+  const [isEditModalOpen, setIsEditModalOpen] = React.useState(false);
   const { currentUserId } = useSession();
-
   const isMobile = useBreakpointValue({ SM: false }, true);
+
   const isMyAccount = currentUserId === userId;
   const youtubeUsername = role === 'creator'
     ? user.youtube.customUrl
@@ -60,9 +62,12 @@ export const ProfileHeader = ({ user }: Props) => {
       </div>
       {isMyAccount
         ? (
-          <Button aria-label="Edit profile" isIconOnly={isMobile} variant="flat" color="secondary" startContent={<Icon icon="edit" size={20} />}>
-            {!isMobile && 'Edit profile'}
-          </Button>
+          <>
+            <Button aria-label="Edit profile" isIconOnly={isMobile} variant="flat" color="secondary" startContent={<Icon icon="edit" size={20} />} onClick={() => setIsEditModalOpen(true)}>
+              {!isMobile && 'Edit profile'}
+            </Button>
+            <EditProfileModal isOpen={isEditModalOpen} onClose={() => setIsEditModalOpen(false)} />
+          </>
         ) : (
           <ConnectionButton
             userId={user._id}

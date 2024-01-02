@@ -29,15 +29,8 @@ export const EditorPlugin = ({ value, onChange }: Props) => {
   }, []);
 
   React.useEffect(() => {
+    editor.dispatchCommand(CLEAR_EDITOR_COMMAND, undefined);
     editor.update(() => {
-      const htmlString = $generateHtmlFromNodes(editor, null);
-
-      if (htmlString === value) {
-        return;
-      }
-
-      editor.dispatchCommand(CLEAR_EDITOR_COMMAND, undefined);
-
       const parser = new DOMParser();
       const dom = parser.parseFromString(value ?? '', 'text/html');
 

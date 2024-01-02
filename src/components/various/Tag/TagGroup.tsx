@@ -11,13 +11,14 @@ interface TagGroupProps<T extends FieldValues, K extends string> {
 }
 
 export const TagGroupContext = React.createContext({
+  checkedTags: [] as string[],
   toggleTag: (_value: any) => {},
 });
 
 export const TagGroup = <T extends FieldValues, K extends string>(props: TagGroupProps<T, K>) => {
   const { name, children, control, rules, onChange } = props;
-  const [checkedTags, setCheckedTags] = React.useState<K[]>([]);
   const { field } = useController({ control, name, rules });
+  const [checkedTags, setCheckedTags] = React.useState<K[]>(field.value ?? []);
 
   const toggleTag = React.useCallback((value: K) => {
     const tags = checkedTags.includes(value)
@@ -31,7 +32,7 @@ export const TagGroup = <T extends FieldValues, K extends string>(props: TagGrou
   }, [checkedTags, field, onChange]);
 
   return (
-    <TagGroupContext.Provider value={{ toggleTag }}>
+    <TagGroupContext.Provider value={{ checkedTags, toggleTag }}>
       {children}
     </TagGroupContext.Provider>
   );

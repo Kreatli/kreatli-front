@@ -10,8 +10,8 @@ interface Image {
   src: string;
 }
 
-export const useImagesUpload = () => {
-  const [images, setImages] = React.useState<Image[]>([]);
+export const useImagesUpload = (defaultImages?: Image[]) => {
+  const [images, setImages] = React.useState<Image[]>(defaultImages ?? []);
 
   const pushNotification = useNotifications((state) => state.pushNotification);
 

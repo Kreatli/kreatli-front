@@ -25,7 +25,7 @@ export const JobReviewModal = ({ jobOfferId, jobOfferStatus, isOpen, onClose, on
   };
 
   return (
-    <Modal backdrop="blur" placement="center" closeButton size="lg" isOpen={isOpen} onClose={onClose}>
+    <Modal backdrop="blur" placement="center" size="lg" isOpen={isOpen} onClose={onClose}>
       <ModalContent>
         <ModalHeader>Rate your experience</ModalHeader>
         <ModalBody className="gap-4">

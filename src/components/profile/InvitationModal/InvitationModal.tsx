@@ -14,7 +14,6 @@ interface Props {
 export const InvitationModal: React.FC<Props> = ({ userId, inviteeName, isOpen, onClose }) => {
   return (
     <Modal
-      closeButton
       placement="center"
       size="md"
       backdrop="blur"

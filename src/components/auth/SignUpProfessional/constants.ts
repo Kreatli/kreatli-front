@@ -32,7 +32,7 @@ export const DEFAULT_VALUES = {
   twitterUrl: '',
   instagramUsername: '',
   // Step 3
-  skills: [],
+  skills: [] as Skill[],
   skillLevels: {} as Partial<Record<Skill, SkillLevel>>,
   // Step 4
   experiences: [DEFAULT_EXPERIENCE],

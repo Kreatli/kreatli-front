@@ -22,6 +22,7 @@ const post = <T extends Api.Post>(path: T, data: Api.PostPayload[T], params?: an
 };
 
 const put = <T extends Api.Put>(path: T, data: Api.PutPayload[T], params?: any) => {
+  // @ts-ignore
   return axios.put<Api.PutResponse[T]>(`${process.env.API_URL}${path}`, data, { params, headers: getHeaders() });
 };
 

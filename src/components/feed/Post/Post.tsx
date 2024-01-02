@@ -14,6 +14,7 @@ import { Media } from 'typings/media';
 import { formatRelativeTime } from 'utils/dates';
 
 import { Comments } from '../Comments';
+import { EditPostModal } from './EditPostModal';
 import { PostLikeButton } from './PostLikeButton';
 
 const POST_TEXT_LIMIT = 300;
@@ -24,6 +25,7 @@ export const Post = () => {
   const { _id: postId, author, media, creationDate, content, likeCount, hasLiked, commentCount, isFeedback } = post;
   const { name: authorName, _id: authorId, hasConnection, hasInvitation, tier: authorTier } = author;
 
+  const [isEditModalOpen, setIsEditModalOpen] = React.useState(false);
   const [isContentExpanded, setIsContentExpanded] = React.useState(false);
   const [areCommentsExpanded, setAreCommentsExpanded] = React.useState(false);
   const [openedMedia, setOpenedMedia] = React.useState<Media.Image | null>(null);
@@ -91,9 +93,18 @@ export const Post = () => {
             {isMyPost
               ? (
             // TODO: edit post modal
-                <Button variant="flat" color="secondary" isIconOnly={isMobile} startContent={<Icon icon="edit" size={20} />}>
-                  {!isMobile && 'Edit post'}
-                </Button>
+                <>
+                  <Button
+                    variant="flat"
+                    color="secondary"
+                    isIconOnly={isMobile}
+                    startContent={<Icon icon="edit" size={20} />}
+                    onClick={() => setIsEditModalOpen(true)}
+                  >
+                    {!isMobile && 'Edit post'}
+                  </Button>
+                  <EditPostModal isOpen={isEditModalOpen} post={post} onClose={() => setIsEditModalOpen(false)} />
+                </>
               ) : (
                 <ConnectionButton
                   hasConnection={hasConnection ?? false}

@@ -6,6 +6,10 @@ export const requestCurrentUser = () => {
   return api.get('/user').then((res) => res.data);
 };
 
+export const requestCurrentUserUpdate = (data: any) => {
+  return api.put('/user', data).then((res) => res.data);
+};
+
 export const requestCurrentUserPosts = (params?: Api.GetParams['/user/posts']) => {
   return api.get('/user/posts', params).then((res) => res.data);
 };
