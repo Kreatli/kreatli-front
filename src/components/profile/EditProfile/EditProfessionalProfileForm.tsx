@@ -7,11 +7,13 @@ import { AvatarUploader } from 'components/various/AvatarUploader';
 import { Icon } from 'components/various/Icon';
 import { COUNTRIES } from 'constants/countries';
 import { VALIDATION_RULES } from 'constants/validationRules';
+import { useNotifications } from 'hooks/useNotifications';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useMutation, useQueryClient } from 'react-query';
 import { requestCurrentUserUpdate } from 'services/user';
 import { User } from 'typings/user';
+import { getErrorMessage } from 'utils/getErrorMessage';
 
 interface Props {
   user: User.Professional;
@@ -20,11 +22,24 @@ interface Props {
 }
 
 export const EditProfessionalProfileForm = ({ user, onCancel, onSuccess }: Props) => {
+  const { pushNotification } = useNotifications();
   const queryClient = useQueryClient();
   const { mutate } = useMutation(requestCurrentUserUpdate, {
     onSuccess: () => {
       queryClient.refetchQueries('user');
       onSuccess();
+      pushNotification({
+        message: 'Your profile has been updated!',
+        color: 'success',
+        icon: 'checkCircle',
+      });
+    },
+    onError: (error) => {
+      pushNotification({
+        message: getErrorMessage(error),
+        color: 'danger',
+        icon: 'error',
+      });
     },
   });
   const defaultValues = React.useMemo(() => ({

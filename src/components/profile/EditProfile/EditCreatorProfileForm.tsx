@@ -4,11 +4,13 @@ import { Tag } from 'components/various/Tag';
 import { COUNTRIES } from 'constants/countries';
 import { SKILL_OPTIONS_FOR_CREATOR } from 'constants/skills';
 import { VALIDATION_RULES } from 'constants/validationRules';
+import { useNotifications } from 'hooks/useNotifications';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useMutation, useQueryClient } from 'react-query';
 import { requestCurrentUserUpdate } from 'services/user';
 import { User } from 'typings/user';
+import { getErrorMessage } from 'utils/getErrorMessage';
 
 interface Props {
   user: User.Creator;
@@ -18,10 +20,23 @@ interface Props {
 
 export const EditCreatorProfileForm = ({ user, onCancel, onSuccess }: Props) => {
   const queryClient = useQueryClient();
+  const { pushNotification } = useNotifications();
   const { mutate } = useMutation(requestCurrentUserUpdate, {
     onSuccess: () => {
       queryClient.refetchQueries('user');
       onSuccess();
+      pushNotification({
+        message: 'Your profile has been updated!',
+        color: 'success',
+        icon: 'checkCircle',
+      });
+    },
+    onError: (error) => {
+      pushNotification({
+        message: getErrorMessage(error),
+        color: 'danger',
+        icon: 'error',
+      });
     },
   });
   const defaultValues = React.useMemo(() => ({
