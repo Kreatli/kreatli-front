@@ -1,4 +1,4 @@
-import { Badge, Link } from '@nextui-org/react';
+import { Badge, Link, Skeleton } from '@nextui-org/react';
 import React from 'react';
 
 import { SKILL_LABELS_FOR_PROFESSIONAL, SKILL_LEVEL_LABELS } from '../../../constants/skills';
@@ -8,6 +8,7 @@ import { User } from '../../../typings/user';
 import { Icon, IconType } from '../../various/Icon';
 import { Tag } from '../../various/Tag';
 import { ProfileHeader } from '../Profile/ProfileHeader';
+import { ProfileHeaderSkeleton } from '../Profile/ProfileHeaderSkeleton';
 import { RecentConnections } from '../RecentConnections';
 import { ExperienceCard } from './ExperienceCard';
 import { RecentJobs } from './RecentJobs';
@@ -31,20 +32,26 @@ export const ProfessionalProfile = ({ userId }: Props) => {
 
   return (
     <div className="container max-w-screen-lg mx-auto px-6">
-      {user && (
-        <ProfileHeader user={user} />
-      )}
+      {user
+        ? <ProfileHeader user={user} />
+        : <ProfileHeaderSkeleton />}
       <div className="flex gap-10 mt-4">
         <div className="flex-1">
-          <p className="mb-4">{user?.description}</p>
-          <div className="flex flex-wrap items-center gap-2">
-            <p>Skills</p>
-            {user?.skills.map((skill) => (
-              <Badge key={skill} size="sm" color="secondary" content={SKILL_LEVEL_LABELS[user?.skillLevels[skill] ?? 'intermediate']}>
-                <Tag disabled>{SKILL_LABELS_FOR_PROFESSIONAL[skill]}</Tag>
-              </Badge>
-            ))}
-          </div>
+          {user
+            ? (
+              <>
+                <p className="mb-4">{user?.description}</p>
+                <div className="flex flex-wrap items-center gap-2">
+                  <p>Skills</p>
+                  {user?.skills.map((skill) => (
+                    <Badge key={skill} size="sm" color="secondary" content={SKILL_LEVEL_LABELS[user?.skillLevels[skill] ?? 'intermediate']}>
+                      <Tag disabled>{SKILL_LABELS_FOR_PROFESSIONAL[skill]}</Tag>
+                    </Badge>
+                  ))}
+                </div>
+              </>
+            )
+            : <Skeleton className="rounded-xl w-full h-24" />}
         </div>
         <div className="flex flex-col gap-2">
           {socials.map(({ href, icon }) => (
@@ -54,8 +61,13 @@ export const ProfessionalProfile = ({ userId }: Props) => {
           ))}
         </div>
       </div>
-      <h3 className="text-2xl font-semibold mt-8 mb-2">Experience</h3>
+      <h3 className="text-2xl font-semibold mt-8 mb-2">
+        {user ? 'Experience' : <Skeleton className="rounded-xl w-48 h-8" />}
+      </h3>
       <div className="flex flex-col gap-4">
+        {!user && (
+          <Skeleton className="rounded-xl w-full h-36" />
+        )}
         {user?.experiences.map((experience) => (
           <ExperienceCard
             key={experience._id}

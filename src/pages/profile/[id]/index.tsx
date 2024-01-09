@@ -15,6 +15,10 @@ const Profile: React.FC = () => {
 
   const pageTitle = `${user?.name ?? ''} | Kreatli`;
 
+  if (!userId) {
+    return null;
+  }
+
   // TODO: profile posts at the end of the page
 
   return (
@@ -23,11 +27,9 @@ const Profile: React.FC = () => {
         <title>{pageTitle}</title>
         <meta name="description" content="Kreatli" />
       </Head>
-      {user && (
-        user?.role === 'creator'
-          ? <CreatorProfile userId={user._id} />
-          : <ProfessionalProfile userId={user._id} />
-      )}
+      {user?.role === 'creator'
+        ? <CreatorProfile userId={userId} />
+        : <ProfessionalProfile userId={userId} />}
     </>
   );
 };

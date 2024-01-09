@@ -7,6 +7,7 @@ import { requestUserConnections } from '../../../services/user';
 import { Common } from '../../../typings/common';
 import { LazyList } from '../../various/LazyList';
 import { ConnectionCard } from './ConnectionCard';
+import { ConnectionsSkeleton } from './ConnectionsSkeleton';
 import { InvitationCard } from './InvitationCard';
 
 interface Props {
@@ -49,9 +50,7 @@ export const Connections = ({ userId }: Props) => {
   const hasInvitations = invitations.length > 0;
   const hasConnections = connections.length > 0;
 
-  // TODO: skeleton + loader
-  // const shouldShowSkeleton = isFetching && !hasConnections;
-  // const shouldShowLoader = isFetching && !isFetchingNextPage && hasConnections;
+  const shouldShowSkeleton = isFetching && !hasConnections;
   const shouldShowEmptyState = !isFetching && !hasConnections;
 
   return (
@@ -72,6 +71,7 @@ export const Connections = ({ userId }: Props) => {
           {connections?.map((connection) => (
             <ConnectionCard key={connection._id} user={connection} isMyAccount={isMyAccount} />
           ))}
+          {shouldShowSkeleton && <ConnectionsSkeleton />}
         </div>
       </LazyList>
       {shouldShowEmptyState && (

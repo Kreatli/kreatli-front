@@ -1,3 +1,4 @@
+import { Skeleton } from '@nextui-org/react';
 import React from 'react';
 import { useQuery } from 'react-query';
 import { Common } from 'typings/common';
@@ -35,7 +36,9 @@ export const RecentJobs = ({ id }: Props) => {
 
   return (
     <>
-      <h3 className="text-2xl font-semibold mt-8 mb-2">Recent jobs</h3>
+      <h3 className="text-2xl font-semibold mt-8 mb-2">
+        {!shouldShowSkeleton ? 'Recent jobs' : <Skeleton className="rounded-xl w-48 h-8" />}
+      </h3>
       {shouldShowEmptyState && (
         <EmptyState
           title="No jobs yet"
