@@ -92,7 +92,6 @@ export const Post = () => {
             <PostLikeButton postId={postId} hasLiked={hasLiked} likeCount={likeCount} />
             {isMyPost
               ? (
-            // TODO: edit post modal
                 <>
                   <Button
                     variant="flat"
