@@ -7,6 +7,7 @@ import { Icon } from '../../various/Icon';
 const FILTER_LABELS = {
   allPosts: 'All posts',
   feedbackPosts: 'Feedback posts',
+  myPosts: 'My posts',
 };
 
 export const SideMenu = () => {
@@ -30,6 +31,8 @@ export const SideMenu = () => {
           <p className="text-default-400">Filter:</p>
           <Dropdown>
             <DropdownTrigger>
+              {/* Disabled since it renders as button */}
+              {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
               <Link as="button" color="secondary" className="font-semibold">
                 {FILTER_LABELS[filter]}
                 <Icon icon="chevronDown" />
@@ -38,6 +41,7 @@ export const SideMenu = () => {
             <DropdownMenu selectionMode="single" selectedKeys={[filter]} color="secondary" variant="flat" onSelectionChange={handleChange}>
               <DropdownItem key="allPosts">{FILTER_LABELS.allPosts}</DropdownItem>
               <DropdownItem key="feedbackPosts">{FILTER_LABELS.feedbackPosts}</DropdownItem>
+              <DropdownItem key="myPosts">{FILTER_LABELS.myPosts}</DropdownItem>
             </DropdownMenu>
           </Dropdown>
         </div>

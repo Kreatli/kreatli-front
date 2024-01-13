@@ -11,6 +11,12 @@ import { PostsSkeleton } from './PostsSkeleton';
 
 const LIMIT = 10;
 
+const EMPTY_STATE_TITLES = {
+  allPosts: 'There are no posts yet',
+  feedbackPosts: 'There are no feedback posts yet',
+  myPosts: 'You have no posts yet',
+};
+
 export const Posts = () => {
   const { filter } = usePostsFilters();
 
@@ -19,7 +25,12 @@ export const Posts = () => {
     keepPreviousData: true,
     queryKey: ['posts', filter],
     queryFn: ({ pageParam = 1 }) => {
-      return requestPosts({ limit: LIMIT, offset: (pageParam - 1) * LIMIT, feedbackOnly: filter === 'feedbackPosts' });
+      return requestPosts({
+        limit: LIMIT,
+        offset: (pageParam - 1) * LIMIT,
+        isFeedback: filter === 'feedbackPosts',
+        myPosts: filter === 'myPosts',
+      });
     },
     getNextPageParam: (lastPage, allPages) => {
       return allPages.length * LIMIT < (lastPage?.postsCount ?? 0)
@@ -39,9 +50,7 @@ export const Posts = () => {
   if (shouldShowEmptyState) {
     return (
       <EmptyState
-        title={filter === 'allPosts'
-          ? 'There are no posts yet'
-          : 'There are no feedback posts yet'}
+        title={EMPTY_STATE_TITLES[filter]}
         text="Go ahead and create the one!"
       />
     );

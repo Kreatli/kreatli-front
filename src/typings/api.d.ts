@@ -117,7 +117,10 @@ export namespace Api {
     '/creator/:id/job-offers': Pagination.Params;
     '/professional/job-applications': { status: Job.Application['status'] } & Pagination.Params;
     '/professional/:id/job-applications': Pagination.Params;
-    '/posts': { feedbackOnly?: boolean } & Pagination.Params;
+    '/posts': {
+      isFeedback?: boolean;
+      myPosts?: boolean;
+    } & Pagination.Params;
     '/chat/:id/messages': Pagination.Params;
     '/notifications': Pagination.Params;
   }
