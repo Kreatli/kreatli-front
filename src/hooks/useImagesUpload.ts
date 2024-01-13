@@ -1,8 +1,8 @@
 import React from 'react';
 import { FileRejection, useDropzone } from 'react-dropzone';
 import { useMutation } from 'react-query';
-import { requestImageUpload } from 'services/upload';
 
+import { requestImageUpload } from '../services/upload';
 import { useNotifications } from './useNotifications';
 
 interface Image {

@@ -21,7 +21,7 @@ const DEFAULT_VALUES = {
 
 type DefaultValues = typeof DEFAULT_VALUES;
 
-export const SignInForm: React.FC<Props> = ({ onClick, onSuccess }) => {
+export const SignInForm = ({ onClick, onSuccess }: Props) => {
   const router = useRouter();
   const { register, handleSubmit, formState: { errors }, setError } = useForm({ defaultValues: DEFAULT_VALUES, mode: 'onBlur' });
   const { signInMutation: { mutate, isLoading } } = useSession();

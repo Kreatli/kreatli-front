@@ -1,8 +1,8 @@
 import React from 'react';
-import { File } from 'typings/file';
-import { formatBytes } from 'utils/formatBytes';
-import { iconsByFileFormat } from 'utils/icons';
 
+import { File } from '../../../typings/file';
+import { formatBytes } from '../../../utils/formatBytes';
+import { iconsByFileFormat } from '../../../utils/icons';
 import { Icon } from '../Icon';
 
 interface Props {

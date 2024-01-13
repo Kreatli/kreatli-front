@@ -1,5 +1,4 @@
 import { Avatar, Button, Dropdown, DropdownItem, DropdownMenu, DropdownSection, DropdownTrigger, Link, Navbar, NavbarBrand, NavbarContent, NavbarItem, NavbarMenu, NavbarMenuItem, NavbarMenuToggle, useDisclosure } from '@nextui-org/react';
-import { NotificationButton } from 'components/notifications/NotificationButton';
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
@@ -7,6 +6,7 @@ import React from 'react';
 import LogoIcon from '../../../assets/images/logo.svg';
 import { useSession } from '../../../hooks/useSession';
 import { SignInModal } from '../../auth/SignInModal';
+import { NotificationButton } from '../../notifications/NotificationButton';
 import { Icon } from '../../various/Icon';
 
 export const Header = () => {

@@ -18,7 +18,7 @@ const FIELDS_BY_STEP = [
   ['interestSkills'],
 ] as const;
 
-export const SignUpCreator: React.FC = () => {
+export const SignUpCreator = () => {
   const [selectedKeys, setSelectedKeys] = React.useState(['0']);
   const [isFilledByStep, setIsFilledByStep] = React.useState([false, false, false]);
 

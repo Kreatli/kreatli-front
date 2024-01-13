@@ -1,7 +1,8 @@
-import { ChatLayout } from 'components/chat/ChatLayout';
-import { ChatWindow } from 'components/chat/ChatWindow';
 import Head from 'next/head';
 import React from 'react';
+
+import { ChatLayout } from '../../components/chat/ChatLayout';
+import { ChatWindow } from '../../components/chat/ChatWindow';
 
 const Chat = () => {
   return (

@@ -1,12 +1,13 @@
 import { Link } from '@nextui-org/react';
-import { NOTIFICATION_TYPE } from 'constants/notifications';
-import { useNotificationsPopoverVisibility } from 'hooks/useNotificationsPopoverVisibility';
-import { useSession } from 'hooks/useSession';
 import NextLink from 'next/link';
 import React from 'react';
 import { useMutation } from 'react-query';
-import { requestNotificationUpdate } from 'services/notifications';
-import { Notifications } from 'typings/notifications';
+
+import { NOTIFICATION_TYPE } from '../../../constants/notifications';
+import { useNotificationsPopoverVisibility } from '../../../hooks/useNotificationsPopoverVisibility';
+import { useSession } from '../../../hooks/useSession';
+import { requestNotificationUpdate } from '../../../services/notifications';
+import { Notifications } from '../../../typings/notifications';
 
 interface Props {
   notification: Notifications.Notification;

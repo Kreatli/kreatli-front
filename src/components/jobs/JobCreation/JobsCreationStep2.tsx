@@ -11,7 +11,7 @@ interface Props {
   errors: FieldErrors<DefaultValues>;
 }
 
-export const JobsCreationStep2: React.FC<Props> = ({ control, errors }) => {
+export const JobsCreationStep2 = ({ control, errors }: Props) => {
   return (
     <Tag.Group name="skills" control={control} rules={VALIDATION_RULES.REQUIRED}>
       <div className="flex flex-wrap gap-2">

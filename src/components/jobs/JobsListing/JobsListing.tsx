@@ -1,6 +1,5 @@
 import { Button, Input, Tooltip } from '@nextui-org/react';
 import cx from 'classnames';
-import { ProfileUnverifiedTooltip } from 'components/profile/Profile/ProfileUnverifiedTooltip';
 import NextLink from 'next/link';
 import React from 'react';
 import { useInfiniteQuery } from 'react-query';
@@ -11,6 +10,7 @@ import { useDebounce } from '../../../hooks/useDebounce';
 import { useSession } from '../../../hooks/useSession';
 import { requestJobOffers } from '../../../services/job';
 import { Api } from '../../../typings/api';
+import { ProfileUnverifiedTooltip } from '../../profile/Profile/ProfileUnverifiedTooltip';
 import { EmptyState } from '../../various/EmptyState';
 import { Icon } from '../../various/Icon';
 import { LazyList } from '../../various/LazyList';

@@ -13,7 +13,7 @@ interface Props {
   errors: FieldErrors<DefaultValues>;
 }
 
-export const SignUpProfessionalStep2: React.FC<Props> = ({ control, errors, register }) => {
+export const SignUpProfessionalStep2 = ({ control, errors, register }: Props) => {
   return (
     <>
       <div className="flex items-center gap-4 mb-4">

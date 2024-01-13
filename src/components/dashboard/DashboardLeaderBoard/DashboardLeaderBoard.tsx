@@ -1,8 +1,8 @@
 import { Card, CardBody, CardHeader, Divider } from '@nextui-org/react';
 import React from 'react';
 import { useQuery } from 'react-query';
-import { requestLeaderboardUsers } from 'services/leaderboard';
 
+import { requestLeaderboardUsers } from '../../../services/leaderboard';
 import { DashboardLeaderBoardItem } from './DashboardLeaderBoardItem';
 import { DashboardLeaderBoardSkeleton } from './DashboardLeaderBoardSkeleton';
 

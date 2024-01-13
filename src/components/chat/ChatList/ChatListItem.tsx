@@ -1,12 +1,13 @@
 import { Avatar, Card, CardBody } from '@nextui-org/react';
 import cx from 'classnames';
-import { ProfileBadge } from 'components/profile/Profile/ProfileBadge';
-import { useSession } from 'hooks/useSession';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
-import { Chat } from 'typings/chat';
-import { formatChatMessageDate } from 'utils/dates';
+
+import { useSession } from '../../../hooks/useSession';
+import { Chat } from '../../../typings/chat';
+import { formatChatMessageDate } from '../../../utils/dates';
+import { ProfileBadge } from '../../profile/Profile/ProfileBadge';
 
 interface Props {
   chat: Chat.Type;

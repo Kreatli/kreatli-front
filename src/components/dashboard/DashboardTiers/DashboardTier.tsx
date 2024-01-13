@@ -1,7 +1,8 @@
-import { TierImage } from 'components/various/TierImage';
-import { TIER_COLORS, TIER_FEATURES, TIER_LABELS } from 'constants/tier';
-import { useSession } from 'hooks/useSession';
 import React from 'react';
+
+import { TIER_COLORS, TIER_FEATURES, TIER_LABELS } from '../../../constants/tier';
+import { useSession } from '../../../hooks/useSession';
+import { TierImage } from '../../various/TierImage';
 
 interface Props {
   tier: number;

@@ -1,9 +1,9 @@
 import { Card, CardBody, Divider, Tooltip } from '@nextui-org/react';
-import { Icon } from 'components/various/Icon';
-import { DashboardContext } from 'contexts/Dashboard';
-import { useTiersModal } from 'hooks/useTiersModal';
 import React from 'react';
 
+import { DashboardContext } from '../../../contexts/Dashboard';
+import { useTiersModal } from '../../../hooks/useTiersModal';
+import { Icon } from '../../various/Icon';
 import { DashboardTier } from './DashboardTier';
 
 export const DashboardTiers = React.forwardRef<HTMLDivElement>((_, ref) => {

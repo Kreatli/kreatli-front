@@ -2,13 +2,13 @@ import '../styles/globals.scss';
 import 'react-image-crop/dist/ReactCrop.css';
 
 import { NextUIProvider } from '@nextui-org/react';
-import { DashboardTiersModal } from 'components/dashboard/DashboardTiers';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import React from 'react';
 import { QueryClient, QueryClientProvider } from 'react-query';
 
 import { ApplicationLoader } from '../components/app/ApplicationLoader';
+import { DashboardTiersModal } from '../components/dashboard/DashboardTiers';
 import { Header } from '../components/layout/Header';
 import { Notifications } from '../components/various/Notifications';
 

@@ -2,8 +2,15 @@ import Head from 'next/head';
 import React from 'react';
 
 import { ProfessionalListing } from '../components/professionals/ProfessionalListing';
+import { useProtectedPage } from '../hooks/useProtectedPage';
 
 const Professionals = () => {
+  const { isSignedIn } = useProtectedPage();
+
+  if (!isSignedIn) {
+    return null;
+  }
+
   return (
     <>
       <Head>

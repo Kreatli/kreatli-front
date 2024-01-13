@@ -1,11 +1,11 @@
 import { Badge, Button, Popover, PopoverContent, PopoverTrigger } from '@nextui-org/react';
-import { Icon } from 'components/various/Icon';
-import { useNotificationsPopoverVisibility } from 'hooks/useNotificationsPopoverVisibility';
-import { useSocket } from 'hooks/useSocket';
 import React from 'react';
-import { requestNotifications } from 'services/notifications';
-import { Notifications as NotificationsI } from 'typings/notifications';
 
+import { useNotificationsPopoverVisibility } from '../../../hooks/useNotificationsPopoverVisibility';
+import { useSocket } from '../../../hooks/useSocket';
+import { requestNotifications } from '../../../services/notifications';
+import { Notifications as NotificationsI } from '../../../typings/notifications';
+import { Icon } from '../../various/Icon';
 import { Notifications } from '../Notifications';
 
 const NOTIFICATIONS_LIMIT = 20;

@@ -11,7 +11,7 @@ interface Props {
   onClose: () => void;
 }
 
-export const InvitationModal: React.FC<Props> = ({ userId, inviteeName, isOpen, onClose }) => {
+export const InvitationModal = ({ userId, inviteeName, isOpen, onClose }: Props) => {
   return (
     <Modal
       placement="center"

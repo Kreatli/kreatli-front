@@ -1,11 +1,11 @@
-import { EmptyState } from 'components/various/EmptyState';
-import { LazyList } from 'components/various/LazyList';
-import { PostContextProvider } from 'contexts/Post';
-import { usePostsFilters } from 'hooks/usePostsFilters';
 import React from 'react';
 import { useInfiniteQuery } from 'react-query';
-import { requestPosts } from 'services/feed';
 
+import { PostContextProvider } from '../../../contexts/Post';
+import { usePostsFilters } from '../../../hooks/usePostsFilters';
+import { requestPosts } from '../../../services/feed';
+import { EmptyState } from '../../chat/EmptyState';
+import { LazyList } from '../../various/LazyList';
 import { Post } from '../Post';
 import { PostsSkeleton } from './PostsSkeleton';
 

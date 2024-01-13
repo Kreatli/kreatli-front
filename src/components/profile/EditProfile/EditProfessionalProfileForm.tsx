@@ -1,19 +1,20 @@
 import { Button, Input, Select, SelectItem, Tab, Tabs, Textarea } from '@nextui-org/react';
-import { DefaultValues } from 'components/auth/SignUpProfessional/constants';
-import { SignUpProfessionalStep3 } from 'components/auth/SignUpProfessional/SignUpProfessionalStep3';
-import { SignUpProfessionalStep4 } from 'components/auth/SignUpProfessional/SignUpProfessionalStep4';
-import { SignUpProfessionalStep5 } from 'components/auth/SignUpProfessional/SignUpProfessionalStep5';
-import { AvatarUploader } from 'components/various/AvatarUploader';
-import { Icon } from 'components/various/Icon';
-import { COUNTRIES } from 'constants/countries';
-import { VALIDATION_RULES } from 'constants/validationRules';
-import { useNotifications } from 'hooks/useNotifications';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useMutation, useQueryClient } from 'react-query';
-import { requestCurrentUserUpdate } from 'services/user';
-import { User } from 'typings/user';
-import { getErrorMessage } from 'utils/getErrorMessage';
+
+import { COUNTRIES } from '../../../constants/countries';
+import { VALIDATION_RULES } from '../../../constants/validationRules';
+import { useNotifications } from '../../../hooks/useNotifications';
+import { requestCurrentUserUpdate } from '../../../services/user';
+import { User } from '../../../typings/user';
+import { getErrorMessage } from '../../../utils/getErrorMessage';
+import { DefaultValues } from '../../auth/SignUpProfessional/constants';
+import { SignUpProfessionalStep3 } from '../../auth/SignUpProfessional/SignUpProfessionalStep3';
+import { SignUpProfessionalStep4 } from '../../auth/SignUpProfessional/SignUpProfessionalStep4';
+import { SignUpProfessionalStep5 } from '../../auth/SignUpProfessional/SignUpProfessionalStep5';
+import { AvatarUploader } from '../../various/AvatarUploader';
+import { Icon } from '../../various/Icon';
 
 interface Props {
   user: User.Professional;

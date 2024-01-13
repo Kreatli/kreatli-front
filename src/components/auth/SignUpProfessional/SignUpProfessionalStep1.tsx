@@ -12,7 +12,7 @@ interface Props {
   errors: FieldErrors<DefaultValues>;
 }
 
-export const SignUpProfessionalStep1: React.FC<Props> = ({ errors, register }) => {
+export const SignUpProfessionalStep1 = ({ errors, register }: Props) => {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 items-start gap-4">
       <Input

@@ -1,9 +1,9 @@
 import { Skeleton } from '@nextui-org/react';
 import React from 'react';
 import { useQuery } from 'react-query';
-import { Common } from 'typings/common';
 
 import { requestProfessionalJobs } from '../../../services/professional';
+import { Common } from '../../../typings/common';
 import { Job } from '../../../typings/job';
 import { JobCard } from '../../jobs/JobCard';
 import { EmptyState } from '../../various/EmptyState';

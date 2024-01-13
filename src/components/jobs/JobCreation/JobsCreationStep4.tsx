@@ -13,7 +13,7 @@ interface Props {
   errors: FieldErrors<DefaultValues>;
 }
 
-export const JobsCreationStep4: React.FC<Props> = ({ control, register, errors }) => {
+export const JobsCreationStep4 = ({ control, register, errors }: Props) => {
   const { field: availabilityField } = useController({ control, name: 'availability' });
 
   return (

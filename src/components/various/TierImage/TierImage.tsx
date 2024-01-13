@@ -1,6 +1,4 @@
 import { Tooltip } from '@nextui-org/react';
-import { TIER_LABELS, TIERS } from 'constants/tier';
-import { useTiersModal } from 'hooks/useTiersModal';
 import React from 'react';
 
 import Tier1Image from '../../../assets/images/tiers/tier-1.svg';
@@ -8,6 +6,8 @@ import Tier2Image from '../../../assets/images/tiers/tier-2.svg';
 import Tier3Image from '../../../assets/images/tiers/tier-3.svg';
 import Tier4Image from '../../../assets/images/tiers/tier-4.svg';
 import Tier5Image from '../../../assets/images/tiers/tier-5.svg';
+import { TIER_LABELS, TIERS } from '../../../constants/tier';
+import { useTiersModal } from '../../../hooks/useTiersModal';
 
 interface Props {
   tier: number;

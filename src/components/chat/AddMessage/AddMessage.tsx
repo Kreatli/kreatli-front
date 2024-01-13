@@ -1,20 +1,21 @@
 import { Button, Link, Popover, PopoverContent, PopoverTrigger, Textarea, Tooltip } from '@nextui-org/react';
 import cx from 'classnames';
-import { EmojiPicker } from 'components/various/EmojiPicker';
-import { FilePreview } from 'components/various/FilePreview';
-import { Icon } from 'components/various/Icon';
-import { ImagePreview } from 'components/various/ImagePreview';
-import { ChatContext } from 'contexts/Chat/ChatContext';
-import { useFilesUpload } from 'hooks/useFilesUpload';
-import { useImagesUpload } from 'hooks/useImagesUpload';
-import { useIsTouchScreen } from 'hooks/useIsTouchScreen';
-import { useNotifications } from 'hooks/useNotifications';
-import { useSession } from 'hooks/useSession';
 import { omit } from 'ramda';
 import React from 'react';
 import { useMutation, useQueryClient } from 'react-query';
-import { requestChatUpdate } from 'services/chat';
-import { getErrorMessage } from 'utils/getErrorMessage';
+
+import { ChatContext } from '../../../contexts/Chat/ChatContext';
+import { useFilesUpload } from '../../../hooks/useFilesUpload';
+import { useImagesUpload } from '../../../hooks/useImagesUpload';
+import { useIsTouchScreen } from '../../../hooks/useIsTouchScreen';
+import { useNotifications } from '../../../hooks/useNotifications';
+import { useSession } from '../../../hooks/useSession';
+import { requestChatUpdate } from '../../../services/chat';
+import { getErrorMessage } from '../../../utils/getErrorMessage';
+import { EmojiPicker } from '../../various/EmojiPicker';
+import { FilePreview } from '../../various/FilePreview';
+import { Icon } from '../../various/Icon';
+import { ImagePreview } from '../../various/ImagePreview';
 
 export const AddMessage = () => {
   const editorRef = React.useRef<HTMLTextAreaElement>(null);

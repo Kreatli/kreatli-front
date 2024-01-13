@@ -1,9 +1,10 @@
 import { Avatar, Card, CardBody, Divider, Progress } from '@nextui-org/react';
-import { TierImage } from 'components/various/TierImage';
-import { TIER_COLORS, TIER_LABELS, TIER_POINTS } from 'constants/tier';
-import { DashboardContext } from 'contexts/Dashboard';
-import { useSession } from 'hooks/useSession';
 import React from 'react';
+
+import { TIER_COLORS, TIER_LABELS, TIER_POINTS } from '../../../constants/tier';
+import { DashboardContext } from '../../../contexts/Dashboard';
+import { useSession } from '../../../hooks/useSession';
+import { TierImage } from '../../various/TierImage';
 
 export const Overview = () => {
   const { currentUser } = useSession();

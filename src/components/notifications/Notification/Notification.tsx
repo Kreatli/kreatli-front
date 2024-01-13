@@ -1,10 +1,10 @@
-import { Icon } from 'components/various/Icon';
 import React from 'react';
 import { useMutation } from 'react-query';
-import { requestNotificationUpdate } from 'services/notifications';
-import { Notifications } from 'typings/notifications';
-import { formatNotificationTime } from 'utils/dates';
 
+import { requestNotificationUpdate } from '../../../services/notifications';
+import { Notifications } from '../../../typings/notifications';
+import { formatNotificationTime } from '../../../utils/dates';
+import { Icon } from '../../various/Icon';
 import { NotificationAvatar } from './NotificationAvatar';
 import { NotificationContent } from './NotificationContent';
 

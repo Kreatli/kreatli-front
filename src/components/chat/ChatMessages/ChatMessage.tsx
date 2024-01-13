@@ -1,13 +1,14 @@
 import { Avatar, Image } from '@nextui-org/react';
 import cx from 'classnames';
-import { FileBox } from 'components/various/FileBox';
-import { Lightbox } from 'components/various/Lightbox';
-import { ChatContext } from 'contexts/Chat';
-import { useSession } from 'hooks/useSession';
 import NextLink from 'next/link';
 import React from 'react';
-import { Chat } from 'typings/chat';
-import { formatChatMessageTime } from 'utils/dates';
+
+import { ChatContext } from '../../../contexts/Chat';
+import { useSession } from '../../../hooks/useSession';
+import { Chat } from '../../../typings/chat';
+import { formatChatMessageTime } from '../../../utils/dates';
+import { FileBox } from '../../various/FileBox';
+import { Lightbox } from '../../various/Lightbox';
 
 interface Props {
   message: Chat.Message;

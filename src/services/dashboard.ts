@@ -1,5 +1,4 @@
-import { Api } from 'typings/api';
-
+import { Api } from '../typings/api';
 import { api } from './api';
 
 export const requestDashboardData = () => {

@@ -4,10 +4,15 @@ import React from 'react';
 import { useQuery } from 'react-query';
 
 import { JobPage } from '../../components/jobs/JobPage';
+import { useNotifications } from '../../hooks/useNotifications';
+import { useProtectedPage } from '../../hooks/useProtectedPage';
 import { requestJobOffer } from '../../services/job';
 import { Common } from '../../typings/common';
+import { getErrorMessage } from '../../utils/getErrorMessage';
 
-const JobOffer: React.FC = () => {
+const JobOffer = () => {
+  const { isSignedIn } = useProtectedPage();
+  const { pushNotification } = useNotifications();
   const router = useRouter();
   const jobOfferId = router.query.id as Common.MaybeId;
 
@@ -19,8 +24,19 @@ const JobOffer: React.FC = () => {
     return undefined;
   };
 
-  // TODO: handle error
-  const { data } = useQuery(['job-offer', jobOfferId], fetchJobOffer);
+  const { data } = useQuery(['job-offer', jobOfferId], fetchJobOffer, {
+    onError: (error) => {
+      pushNotification({
+        message: getErrorMessage(error),
+        color: 'danger',
+        icon: 'error',
+      });
+    },
+  });
+
+  if (!isSignedIn) {
+    return null;
+  }
 
   const pageTitle = `${data?.title ?? ''} | Kreatli`;
 

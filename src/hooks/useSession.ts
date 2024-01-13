@@ -24,7 +24,7 @@ export const useSession = () => {
     router.push('/');
   }, [queryClient, router]);
 
-  const { data } = useQuery('user', requestCurrentUser, {
+  const { data, isLoading } = useQuery('user', requestCurrentUser, {
     refetchOnMount: false,
     onSettled: () => {
       setIsLoading(false);
@@ -38,6 +38,7 @@ export const useSession = () => {
     isSignedIn: !!data,
     signInMutation,
     signOut,
+    isLoading,
     currentUser: data,
     currentUserId: data?._id,
   };

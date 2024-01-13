@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import React from 'react';
 
-const Contact: React.FC = () => {
+const Contact = () => {
   return (
     <>
       <Head>

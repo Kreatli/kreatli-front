@@ -1,15 +1,18 @@
-import { useSession } from 'hooks/useSession';
-import { useSocket } from 'hooks/useSocket';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { useQuery } from 'react-query';
-import { requestChat, requestChatMessages } from 'services/chat';
-import { requestChatRequests } from 'services/chats';
-import { Chat } from 'typings/chat';
-import { Common } from 'typings/common';
-import { File } from 'typings/file';
-import { Media } from 'typings/media';
-import { User } from 'typings/user';
+
+import { useNotifications } from '../../hooks/useNotifications';
+import { useSession } from '../../hooks/useSession';
+import { useSocket } from '../../hooks/useSocket';
+import { requestChat, requestChatMessages } from '../../services/chat';
+import { requestChatRequests } from '../../services/chats';
+import { Chat } from '../../typings/chat';
+import { Common } from '../../typings/common';
+import { File } from '../../typings/file';
+import { Media } from '../../typings/media';
+import { User } from '../../typings/user';
+import { getErrorMessage } from '../../utils/getErrorMessage';
 
 interface MessagePayload {
   media: Omit<Media.Image, '_id'>[];
@@ -64,6 +67,7 @@ export const ChatContext = React.createContext<Context>(initialContext);
 export const ChatContextProvider = ({ children }: Props) => {
   const router = useRouter();
   const { currentUserId } = useSession();
+  const { pushNotification } = useNotifications();
   const socketRef = useSocket('/chat-server');
 
   const [chats, setChats] = React.useState<Chat.Type[]>([]);
@@ -98,13 +102,17 @@ export const ChatContextProvider = ({ children }: Props) => {
         setMessages(data.messages);
         setHasMoreMessages(data.messages.length < data.messagesCount);
       })
-      .catch(() => {
-        // TODO: handle error
+      .catch((error) => {
+        pushNotification({
+          message: getErrorMessage(error),
+          color: 'danger',
+          icon: 'error',
+        });
       })
       .finally(() => {
         setIsLoadingMessages(false);
       });
-  }, [participantId]);
+  }, [participantId, pushNotification]);
 
   React.useEffect(() => {
     // Clear states of previous chat
@@ -176,13 +184,17 @@ export const ChatContextProvider = ({ children }: Props) => {
         setMessages([...messages, ...data.messages]);
         setHasMoreMessages(messages.length + MESSAGES_LIMIT < data.messagesCount);
       })
-      .catch(() => {
-        // TODO: handle error
+      .catch((error) => {
+        pushNotification({
+          message: getErrorMessage(error),
+          color: 'danger',
+          icon: 'error',
+        });
       })
       .finally(() => {
         setIsLoadingMoreMessages(false);
       });
-  }, [messages, messagesOffset, participantId]);
+  }, [messages, messagesOffset, participantId, pushNotification]);
 
   const value = {
     addMessage,

@@ -13,7 +13,7 @@ export namespace Job {
     availability: Availability.Type;
     availabilityDuration?: Availability.ProjectBase;
     creationDate: Date;
-    creator: User.Creator;
+    creator: User.ShortInfoCreator;
     description: string;
     hasApplied?: boolean;
     hiredProfessional: Common.Id;
@@ -35,7 +35,7 @@ export namespace Job {
     _id: Common.Id;
     creationDate: Date;
     coverLetter: string;
-    professional: User.Professional;
+    professional: User.ShortInfoProfessional;
     status: 'pending' | 'hired' | 'rejected' | 'canceled';
   }
 

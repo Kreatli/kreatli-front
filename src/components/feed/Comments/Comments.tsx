@@ -1,7 +1,7 @@
 import { ScrollShadow } from '@nextui-org/react';
-import { PostContext } from 'contexts/Post';
 import React from 'react';
 
+import { PostContext } from '../../../contexts/Post';
 import { AddComment } from './AddComment';
 import { Comment } from './Comment';
 

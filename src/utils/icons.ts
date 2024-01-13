@@ -1,4 +1,4 @@
-import { IconType } from 'components/various/Icon';
+import { IconType } from '../components/various/Icon';
 
 export const iconsByFileFormat: Record<string, IconType> = {
   doc: 'fileDoc',

@@ -3,8 +3,12 @@ import { useQuery } from 'react-query';
 import { requestUser } from '../services/user';
 import { Common } from '../typings/common';
 import { User } from '../typings/user';
+import { getErrorMessage } from '../utils/getErrorMessage';
+import { useNotifications } from './useNotifications';
 
 export const useUser = <T extends User.Type = User.Type>(userId: Common.MaybeId, refetch = false) => {
+  const { pushNotification } = useNotifications();
+
   const fetchUser = () => {
     if (userId) {
       return requestUser(userId);
@@ -15,8 +19,12 @@ export const useUser = <T extends User.Type = User.Type>(userId: Common.MaybeId,
 
   const { data } = useQuery(['user', userId], fetchUser, {
     refetchOnMount: refetch,
-    onError: () => {
-      // TODO: show error notification
+    onError: (error) => {
+      pushNotification({
+        message: getErrorMessage(error),
+        color: 'danger',
+        icon: 'error',
+      });
     },
   });
 

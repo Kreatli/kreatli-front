@@ -1,11 +1,12 @@
 import { Button } from '@nextui-org/react';
-import { ProfileUnverifiedTooltip } from 'components/profile/Profile/ProfileUnverifiedTooltip';
-import { Icon } from 'components/various/Icon';
-import { useSession } from 'hooks/useSession';
 import React from 'react';
 import { useMutation } from 'react-query';
-import { requestLikePost } from 'services/feed';
-import { Common } from 'typings/common';
+
+import { useSession } from '../../../hooks/useSession';
+import { requestLikePost } from '../../../services/feed';
+import { Common } from '../../../typings/common';
+import { ProfileUnverifiedTooltip } from '../../profile/Profile/ProfileUnverifiedTooltip';
+import { Icon } from '../../various/Icon';
 
 interface Props {
   postId: Common.Id;

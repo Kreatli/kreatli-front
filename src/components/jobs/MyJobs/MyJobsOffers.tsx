@@ -1,16 +1,18 @@
 import { Button, Pagination, Tab, Tabs, Tooltip } from '@nextui-org/react';
 import cx from 'classnames';
-import { ProfileUnverifiedTooltip } from 'components/profile/Profile/ProfileUnverifiedTooltip';
-import { Icon } from 'components/various/Icon';
-import { useSession } from 'hooks/useSession';
 import NextLink from 'next/link';
 import React from 'react';
 import { useQuery } from 'react-query';
 
 import { useBreakpointValue } from '../../../hooks/useBreakpointValue';
+import { useNotifications } from '../../../hooks/useNotifications';
+import { useSession } from '../../../hooks/useSession';
 import { requestCurrentCreatorJobs } from '../../../services/creator';
 import { Job } from '../../../typings/job';
+import { getErrorMessage } from '../../../utils/getErrorMessage';
+import { ProfileUnverifiedTooltip } from '../../profile/Profile/ProfileUnverifiedTooltip';
 import { EmptyState } from '../../various/EmptyState';
+import { Icon } from '../../various/Icon';
 import styles from './MyJobs.module.scss';
 import { MyJobsOffer } from './MyJobsOffer';
 import { MyJobsSkeleton } from './MyJobsSkeleton';
@@ -22,6 +24,7 @@ export const MyJobsOffers = () => {
   const [selectedTab, setSelectedTab] = React.useState<Job.Offer['status']>('posted');
 
   const { currentUser } = useSession();
+  const { pushNotification } = useNotifications();
   const isMobile = useBreakpointValue({ SM: false }, true);
   const isExceededLimits = currentUser?.role === 'creator' && currentUser?.exceededLimits.jobOffers;
 
@@ -33,8 +36,12 @@ export const MyJobsOffers = () => {
 
   const { data, isFetching, refetch } = useQuery(['creator', 'job-offers', query], getCurrentCreatorJobs, {
     keepPreviousData: true,
-    onError: () => {
-      // TODO: handle error
+    onError: (error) => {
+      pushNotification({
+        message: getErrorMessage(error),
+        color: 'danger',
+        icon: 'error',
+      });
     },
   });
 

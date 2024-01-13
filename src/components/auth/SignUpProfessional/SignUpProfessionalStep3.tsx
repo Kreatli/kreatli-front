@@ -14,7 +14,7 @@ interface Props {
   errors: FieldErrors<DefaultValues>;
 }
 
-export const SignUpProfessionalStep3: React.FC<Props> = ({ errors, control, register }) => {
+export const SignUpProfessionalStep3 = ({ errors, control, register }: Props) => {
   const { field: skillsField } = useController({ control, name: 'skills' });
   const { field: skillLevelsField } = useController({ control, name: 'skillLevels' });
   const [selectedSkills, setSelectedSkills] = React.useState<Skill[]>(skillsField.value ?? []);

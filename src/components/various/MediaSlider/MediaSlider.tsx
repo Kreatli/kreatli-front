@@ -1,6 +1,6 @@
 import React from 'react';
-import { Media } from 'typings/media';
 
+import { Media } from '../../../typings/media';
 import { Icon } from '../Icon';
 import { ImageSlide } from './ImageSlide';
 import { VideoSlide } from './VideoSlide';

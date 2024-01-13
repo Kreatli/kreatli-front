@@ -1,6 +1,7 @@
-import { TierImage } from 'components/various/TierImage';
-import { TIER_LABELS, TIER_POINTS, TIER_STRUCTURES } from 'constants/tier';
 import React from 'react';
+
+import { TIER_LABELS, TIER_POINTS, TIER_STRUCTURES } from '../../../../constants/tier';
+import { TierImage } from '../../../various/TierImage';
 
 interface Props {
   tier: number;

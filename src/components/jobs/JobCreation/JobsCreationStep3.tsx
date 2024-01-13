@@ -13,7 +13,7 @@ interface Props {
   register: UseFormRegister<DefaultValues>;
 }
 
-export const JobsCreationStep3: React.FC<Props> = ({ control, errors, register }) => {
+export const JobsCreationStep3 = ({ control, errors, register }: Props) => {
   const { field: paymentTypeField } = useController({ control, name: 'paymentType' });
   const { field: paymentPreferencesField } = useController({ control, name: 'paymentPreferences' });
 

@@ -2,8 +2,15 @@ import Head from 'next/head';
 import React from 'react';
 
 import { JobsListing } from '../../components/jobs/JobsListing';
+import { useProtectedPage } from '../../hooks/useProtectedPage';
 
 const Jobs = () => {
+  const { isSignedIn } = useProtectedPage();
+
+  if (!isSignedIn) {
+    return null;
+  }
+
   return (
     <>
       <Head>

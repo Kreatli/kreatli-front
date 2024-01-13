@@ -1,16 +1,17 @@
 import { Button, Input, Select, SelectItem, Textarea } from '@nextui-org/react';
-import { Icon } from 'components/various/Icon';
-import { Tag } from 'components/various/Tag';
-import { COUNTRIES } from 'constants/countries';
-import { SKILL_OPTIONS_FOR_CREATOR } from 'constants/skills';
-import { VALIDATION_RULES } from 'constants/validationRules';
-import { useNotifications } from 'hooks/useNotifications';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useMutation, useQueryClient } from 'react-query';
-import { requestCurrentUserUpdate } from 'services/user';
-import { User } from 'typings/user';
-import { getErrorMessage } from 'utils/getErrorMessage';
+
+import { COUNTRIES } from '../../../constants/countries';
+import { SKILL_OPTIONS_FOR_CREATOR } from '../../../constants/skills';
+import { VALIDATION_RULES } from '../../../constants/validationRules';
+import { useNotifications } from '../../../hooks/useNotifications';
+import { requestCurrentUserUpdate } from '../../../services/user';
+import { User } from '../../../typings/user';
+import { getErrorMessage } from '../../../utils/getErrorMessage';
+import { Icon } from '../../various/Icon';
+import { Tag } from '../../various/Tag';
 
 interface Props {
   user: User.Creator;

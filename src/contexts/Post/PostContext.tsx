@@ -1,6 +1,7 @@
 import React from 'react';
-import { Common } from 'typings/common';
-import { Feed } from 'typings/feed';
+
+import { Common } from '../../typings/common';
+import { Feed } from '../../typings/feed';
 
 interface Context {
   addCommentRef: React.RefObject<HTMLTextAreaElement>;

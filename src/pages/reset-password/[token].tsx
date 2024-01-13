@@ -3,9 +3,11 @@ import { useRouter } from 'next/router';
 import React from 'react';
 
 import { ChangePasswordForm } from '../../components/auth/ChangePasswordForm';
+import { useSession } from '../../hooks/useSession';
 
-const ResetPassword: React.FC = () => {
+const ResetPassword = () => {
   const router = useRouter();
+  const { isSignedIn, isLoading } = useSession();
   const { token = '' } = router.query;
 
   React.useEffect(() => {
@@ -13,10 +15,14 @@ const ResetPassword: React.FC = () => {
       return;
     }
 
-    if (!token) {
-      router.push('/');
+    if (!token || (!isLoading && isSignedIn)) {
+      router.replace('/');
     }
-  }, [router]);
+  }, [isLoading, isSignedIn, router, token]);
+
+  if (isSignedIn) {
+    return null;
+  }
 
   const handleSubmit = () => {
     router.push('/');

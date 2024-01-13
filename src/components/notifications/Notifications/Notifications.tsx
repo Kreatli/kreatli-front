@@ -1,12 +1,12 @@
 import { Link } from '@nextui-org/react';
-import { EmptyState } from 'components/various/EmptyState';
-import { Icon } from 'components/various/Icon';
-import { LazyList } from 'components/various/LazyList';
 import React from 'react';
 import { useMutation } from 'react-query';
-import { requestNotificationsMarkAsRead } from 'services/notifications';
-import { Notifications as NotificationsI } from 'typings/notifications';
 
+import { requestNotificationsMarkAsRead } from '../../../services/notifications';
+import { Notifications as NotificationsI } from '../../../typings/notifications';
+import { EmptyState } from '../../chat/EmptyState';
+import { Icon } from '../../various/Icon';
+import { LazyList } from '../../various/LazyList';
 import { Notification } from '../Notification';
 
 interface Props {

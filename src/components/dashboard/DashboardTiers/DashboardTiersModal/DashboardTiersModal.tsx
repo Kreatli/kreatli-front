@@ -1,9 +1,9 @@
 import { Button, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader } from '@nextui-org/react';
-import { useBreakpointValue } from 'hooks/useBreakpointValue';
-import { useTiersModal } from 'hooks/useTiersModal';
 import NextLink from 'next/link';
 import React from 'react';
 
+import { useBreakpointValue } from '../../../../hooks/useBreakpointValue';
+import { useTiersModal } from '../../../../hooks/useTiersModal';
 import { EarningPoints } from './EarningPoints';
 import { KreatliPremium } from './KreatliPremium';
 import { PointsPurchase } from './PointsPurchase';

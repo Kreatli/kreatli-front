@@ -11,7 +11,7 @@ interface Props {
   errors: FieldErrors<DefaultValues>;
 }
 
-export const SignUpCreatorStep3: React.FC<Props> = ({ control, errors }) => {
+export const SignUpCreatorStep3 = ({ control, errors }: Props) => {
   return (
     <Tag.Group name="interestSkills" control={control} rules={VALIDATION_RULES.REQUIRED}>
       <div className="flex flex-wrap gap-2">

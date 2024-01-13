@@ -15,7 +15,7 @@ interface Props {
   errors: FieldErrors<DefaultValues>;
 }
 
-export const SignUpProfessionalStep5: React.FC<Props> = ({ control, errors, register }) => {
+export const SignUpProfessionalStep5 = ({ control, errors, register }: Props) => {
   const { field } = useController({ control, name: 'certificates' });
 
   const handleAddMore = () => {

@@ -1,10 +1,12 @@
-import { EmptyState } from 'components/various/EmptyState';
 import React from 'react';
 import { useInfiniteQuery } from 'react-query';
 
+import { useNotifications } from '../../../hooks/useNotifications';
 import { useSession } from '../../../hooks/useSession';
 import { requestUserConnections } from '../../../services/user';
 import { Common } from '../../../typings/common';
+import { getErrorMessage } from '../../../utils/getErrorMessage';
+import { EmptyState } from '../../various/EmptyState';
 import { LazyList } from '../../various/LazyList';
 import { ConnectionCard } from './ConnectionCard';
 import { ConnectionsSkeleton } from './ConnectionsSkeleton';
@@ -18,6 +20,7 @@ const LIMIT = 10;
 
 export const Connections = ({ userId }: Props) => {
   const { currentUserId } = useSession();
+  const { pushNotification } = useNotifications();
 
   const { isFetchingNextPage, isFetching, data, hasNextPage, fetchNextPage } = useInfiniteQuery(
     ['user', userId, 'connections'],
@@ -28,8 +31,12 @@ export const Connections = ({ userId }: Props) => {
           ? allPages.length + 1
           : undefined;
       },
-      onError: () => {
-        // TODO: show notification error
+      onError: (error) => {
+        pushNotification({
+          message: getErrorMessage(error),
+          color: 'danger',
+          icon: 'error',
+        });
       },
     },
   );

@@ -1,5 +1,4 @@
 import { Avatar, Button, Link } from '@nextui-org/react';
-import { TierImage } from 'components/various/TierImage';
 import NextLink from 'next/link';
 import React from 'react';
 
@@ -7,6 +6,7 @@ import { useBreakpointValue } from '../../../hooks/useBreakpointValue';
 import { useSession } from '../../../hooks/useSession';
 import { User } from '../../../typings/user';
 import { Icon } from '../../various/Icon';
+import { TierImage } from '../../various/TierImage';
 import { ConnectionButton } from '../Connections/ConnectionButton';
 import { EditProfileModal } from '../EditProfile';
 import { ProfileBadge } from './ProfileBadge';

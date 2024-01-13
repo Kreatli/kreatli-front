@@ -1,8 +1,9 @@
 import { Card, CardBody } from '@nextui-org/react';
-import { ChatLayout } from 'components/chat/ChatLayout';
-import { EmptyState } from 'components/chat/EmptyState';
 import Head from 'next/head';
 import React from 'react';
+
+import { ChatLayout } from '../../components/chat/ChatLayout';
+import { EmptyState } from '../../components/chat/EmptyState';
 
 const Chat = () => {
   return (

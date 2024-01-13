@@ -1,6 +1,7 @@
-import { NOTIFICATION_TYPE } from 'constants/notifications';
 import React from 'react';
-import { Notifications } from 'typings/notifications';
+
+import { NOTIFICATION_TYPE } from '../../../constants/notifications';
+import { Notifications } from '../../../typings/notifications';
 
 interface Props {
   notification: Notifications.Notification;

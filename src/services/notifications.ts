@@ -1,6 +1,5 @@
-import { Api } from 'typings/api';
-import { Common } from 'typings/common';
-
+import { Api } from '../typings/api';
+import { Common } from '../typings/common';
 import { api } from './api';
 
 export const requestNotifications = (params?: Api.GetParams['/notifications']) => {

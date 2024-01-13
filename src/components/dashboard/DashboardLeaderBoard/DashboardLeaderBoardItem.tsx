@@ -1,11 +1,11 @@
 import { Avatar } from '@nextui-org/react';
 import NextLink from 'next/link';
 import React from 'react';
-import { User } from 'typings/user';
 
 import BronzeMedalImage from '../../../assets/images/medals/bronze.svg';
 import GoldMedalImage from '../../../assets/images/medals/gold.svg';
 import SilverMedalImage from '../../../assets/images/medals/silver.svg';
+import { User } from '../../../typings/user';
 
 interface Props {
   user: User.ShortInfo;

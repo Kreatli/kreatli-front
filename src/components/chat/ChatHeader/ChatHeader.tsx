@@ -1,12 +1,13 @@
 import { Avatar, Button, Skeleton } from '@nextui-org/react';
-import { ProfileBadge } from 'components/profile/Profile/ProfileBadge';
-import { Icon } from 'components/various/Icon';
-import { TierImage } from 'components/various/TierImage';
-import { ChatContext } from 'contexts/Chat';
-import { useBreakpointValue } from 'hooks/useBreakpointValue';
 import NextLink from 'next/link';
 import React from 'react';
-import { getUserSkills } from 'utils/user';
+
+import { ChatContext } from '../../../contexts/Chat';
+import { useBreakpointValue } from '../../../hooks/useBreakpointValue';
+import { getUserSkills } from '../../../utils/user';
+import { ProfileBadge } from '../../profile/Profile/ProfileBadge';
+import { Icon } from '../../various/Icon';
+import { TierImage } from '../../various/TierImage';
 
 export const ChatHeader = () => {
   const { participant } = React.useContext(ChatContext);

@@ -5,14 +5,17 @@ import React from 'react';
 import { useMutation } from 'react-query';
 
 import { useNotifications } from '../../hooks/useNotifications';
+import { useSession } from '../../hooks/useSession';
 import { requestUserActivation } from '../../services/auth';
 import { getErrorMessage } from '../../utils/getErrorMessage';
 
-const AccountActivation: React.FC = () => {
+const AccountActivation = () => {
   const router = useRouter();
+  const { isSignedIn, isLoading } = useSession();
   const pushNotification = useNotifications((state) => state.pushNotification);
+
   const { mutate } = useMutation(requestUserActivation, {
-    onSettled: () => {
+    onSuccess: () => {
       router.push('/');
       pushNotification({
         message: 'Your account has been activated! You can sign in now.',
@@ -37,14 +40,18 @@ const AccountActivation: React.FC = () => {
 
     const { token } = router.query;
 
-    if (!token) {
-      router.push('/');
+    if (!token || (!isLoading && isSignedIn)) {
+      router.replace('/');
 
       return;
     }
 
     mutate({ token: token.toString() });
-  }, [router]);
+  }, [isLoading, isSignedIn, mutate, router]);
+
+  if (isSignedIn) {
+    return null;
+  }
 
   return (
     <>

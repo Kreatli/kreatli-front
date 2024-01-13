@@ -19,7 +19,7 @@ const DEFAULT_VALUES = {
 
 type DefaultValues = typeof DEFAULT_VALUES;
 
-export const ResetPasswordForm: React.FC<Props> = ({ onClick, onSuccess }) => {
+export const ResetPasswordForm = ({ onClick, onSuccess }: Props) => {
   const { register, handleSubmit, formState: { errors }, setError } = useForm({ defaultValues: DEFAULT_VALUES, mode: 'onBlur' });
   const pushNotification = useNotifications((state) => state.pushNotification);
   const { mutate, isLoading } = useMutation(requestResetPassword, {

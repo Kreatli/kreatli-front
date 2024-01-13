@@ -1,20 +1,20 @@
 import { Button, Card, CardBody, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger, Tooltip } from '@nextui-org/react';
-import { ProfileUnverifiedTooltip } from 'components/profile/Profile/ProfileUnverifiedTooltip';
-import { Icon } from 'components/various/Icon';
-import { ImagePreview } from 'components/various/ImagePreview';
-import { TextEditor } from 'components/various/TextEditor';
-import { VideoUploaderModal } from 'components/various/VideoUploaderModal';
-import { useImagesUpload } from 'hooks/useImagesUpload';
-import { useNotifications } from 'hooks/useNotifications';
-import { usePostsFilters } from 'hooks/usePostsFilters';
-import { useSession } from 'hooks/useSession';
 import React from 'react';
 import { InfiniteData, useMutation, useQueryClient } from 'react-query';
-import { requestPostCreation, requestPostEdit } from 'services/feed';
-import { Feed } from 'typings/feed';
-import { Media } from 'typings/media';
-import { getErrorMessage } from 'utils/getErrorMessage';
 
+import { useImagesUpload } from '../../../hooks/useImagesUpload';
+import { useNotifications } from '../../../hooks/useNotifications';
+import { usePostsFilters } from '../../../hooks/usePostsFilters';
+import { useSession } from '../../../hooks/useSession';
+import { requestPostCreation, requestPostEdit } from '../../../services/feed';
+import { Feed } from '../../../typings/feed';
+import { Media } from '../../../typings/media';
+import { getErrorMessage } from '../../../utils/getErrorMessage';
+import { ProfileUnverifiedTooltip } from '../../profile/Profile/ProfileUnverifiedTooltip';
+import { Icon } from '../../various/Icon';
+import { ImagePreview } from '../../various/ImagePreview';
+import { TextEditor } from '../../various/TextEditor';
+import { VideoUploaderModal } from '../../various/VideoUploaderModal';
 import { VideoPreview } from './VideoPreview';
 
 interface Props {

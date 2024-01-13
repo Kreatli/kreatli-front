@@ -1,8 +1,8 @@
-import { ChatContext, ChatContextProvider } from 'contexts/Chat';
-import { useBreakpointValue } from 'hooks/useBreakpointValue';
-import { useSession } from 'hooks/useSession';
 import React from 'react';
 
+import { ChatContext, ChatContextProvider } from '../../../contexts/Chat';
+import { useBreakpointValue } from '../../../hooks/useBreakpointValue';
+import { useProtectedPage } from '../../../hooks/useProtectedPage';
 import { ChatList } from '../ChatList';
 
 interface Props {
@@ -10,14 +10,8 @@ interface Props {
 }
 
 const ChatLayoutComponent = ({ children }: Props) => {
-  const { currentUser } = useSession();
   const { participantId } = React.useContext(ChatContext);
   const isMobile = useBreakpointValue({ MD: false }, true);
-
-  if (!currentUser) {
-    return;
-  }
-
   const shouldShowChatList = !isMobile || (isMobile && !participantId);
   const shouldShowChat = !isMobile || (isMobile && participantId);
 
@@ -32,10 +26,10 @@ const ChatLayoutComponent = ({ children }: Props) => {
 };
 
 export const ChatLayout = ({ children }: Props) => {
-  const { currentUser } = useSession();
+  const { isSignedIn } = useProtectedPage();
 
-  if (!currentUser) {
-    return;
+  if (!isSignedIn) {
+    return null;
   }
 
   return (

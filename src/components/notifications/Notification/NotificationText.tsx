@@ -1,8 +1,9 @@
-import { NOTIFICATION_TYPE } from 'constants/notifications';
-import { TASK_COLOR_BY_TYPE } from 'constants/tasks';
-import { TIER_LABELS } from 'constants/tier';
 import React from 'react';
-import { Notifications } from 'typings/notifications';
+
+import { NOTIFICATION_TYPE } from '../../../constants/notifications';
+import { TASK_COLOR_BY_TYPE } from '../../../constants/tasks';
+import { TIER_LABELS } from '../../../constants/tier';
+import { Notifications } from '../../../typings/notifications';
 
 interface Props {
   notification: Notifications.Notification;

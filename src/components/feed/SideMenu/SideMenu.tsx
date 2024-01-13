@@ -1,7 +1,8 @@
 import { Card, CardBody, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger, Link } from '@nextui-org/react';
-import { Icon } from 'components/various/Icon';
-import { usePostsFilters } from 'hooks/usePostsFilters';
 import React from 'react';
+
+import { usePostsFilters } from '../../../hooks/usePostsFilters';
+import { Icon } from '../../various/Icon';
 
 const FILTER_LABELS = {
   allPosts: 'All posts',

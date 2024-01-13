@@ -7,7 +7,7 @@ import { User } from '../../../typings/user';
 import { formatRelativeTime } from '../../../utils/dates';
 
 interface Props {
-  professional: User.Professional;
+  professional: User.ShortInfoProfessional;
   creationDate: Date;
   status: Job.Application['status'];
 }

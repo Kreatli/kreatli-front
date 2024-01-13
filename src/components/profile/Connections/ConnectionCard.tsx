@@ -1,12 +1,12 @@
 import { Avatar, Button, Card, CardBody, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger } from '@nextui-org/react';
-import { Icon } from 'components/various/Icon';
-import { TierImage } from 'components/various/TierImage';
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
 
 import { User } from '../../../typings/user';
 import { getUserSkills } from '../../../utils/user';
+import { Icon } from '../../various/Icon';
+import { TierImage } from '../../various/TierImage';
 
 interface Props {
   user: User.ShortInfo;

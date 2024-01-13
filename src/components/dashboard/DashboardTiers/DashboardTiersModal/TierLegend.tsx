@@ -1,8 +1,9 @@
 import { Card, CardBody } from '@nextui-org/react';
 import cx from 'classnames';
-import { TierImage } from 'components/various/TierImage';
-import { TIER_OPTIONS } from 'constants/tier';
 import React from 'react';
+
+import { TIER_OPTIONS } from '../../../../constants/tier';
+import { TierImage } from '../../../various/TierImage';
 
 export const TierLegend = () => {
   return (

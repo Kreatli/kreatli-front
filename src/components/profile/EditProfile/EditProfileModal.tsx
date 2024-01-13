@@ -1,7 +1,7 @@
 import { Modal, ModalBody, ModalContent, ModalHeader } from '@nextui-org/react';
-import { useSession } from 'hooks/useSession';
 import React from 'react';
 
+import { useSession } from '../../../hooks/useSession';
 import { EditCreatorProfileForm } from './EditCreatorProfileForm';
 import { EditProfessionalProfileForm } from './EditProfessionalProfileForm';
 

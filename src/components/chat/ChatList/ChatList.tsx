@@ -1,8 +1,8 @@
 import { Card, CardBody, CardHeader, Input } from '@nextui-org/react';
-import { ChatContext } from 'contexts/Chat';
-import { useSession } from 'hooks/useSession';
 import React from 'react';
 
+import { ChatContext } from '../../../contexts/Chat';
+import { useSession } from '../../../hooks/useSession';
 import { EmptyState } from '../EmptyState';
 import { ListController } from './ChatListController';
 import { ChatListItem } from './ChatListItem';

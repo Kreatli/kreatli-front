@@ -3,13 +3,19 @@ import { useRouter } from 'next/router';
 import React from 'react';
 
 import { MyJobsApplications, MyJobsOffers } from '../../../components/jobs/MyJobs';
+import { useProtectedPage } from '../../../hooks/useProtectedPage';
 import { useUser } from '../../../hooks/useUser';
 import { Common } from '../../../typings/common';
 
-const JobsPage: React.FC = () => {
+const JobsPage = () => {
   const router = useRouter();
   const userId = router.query.id as Common.MaybeId;
   const { user } = useUser(userId);
+  const { isSignedIn } = useProtectedPage();
+
+  if (!isSignedIn) {
+    return null;
+  }
 
   const pageTitle = `My jobs | ${user?.name ?? ''} | Kreatli`;
 

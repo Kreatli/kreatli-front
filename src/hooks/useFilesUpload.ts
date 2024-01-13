@@ -1,9 +1,9 @@
 import React from 'react';
 import { FileRejection, useDropzone } from 'react-dropzone';
 import { useMutation } from 'react-query';
-import { requestFileUpload } from 'services/upload';
-import { File as FileI } from 'typings/file';
 
+import { requestFileUpload } from '../services/upload';
+import { File as FileI } from '../typings/file';
 import { useNotifications } from './useNotifications';
 
 interface FileType extends Omit<FileI.Type, '_id'> {

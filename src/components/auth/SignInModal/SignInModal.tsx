@@ -10,7 +10,7 @@ interface Props {
   onClose: () => void;
 }
 
-export const SignInModal: React.FC<Props> = ({ isOpen, onClose }) => {
+export const SignInModal = ({ isOpen, onClose }: Props) => {
   const [mode, setMode] = React.useState<'signIn' | 'resetPassword'>('signIn');
   const { signInMutation: { isLoading } } = useSession();
 

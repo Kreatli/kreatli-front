@@ -1,6 +1,7 @@
 import { Image, Spinner } from '@nextui-org/react';
-import { Icon } from 'components/various/Icon';
 import React from 'react';
+
+import { Icon } from '../Icon';
 
 interface Props {
   src: string;

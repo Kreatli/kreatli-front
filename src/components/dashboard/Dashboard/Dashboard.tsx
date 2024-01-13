@@ -1,7 +1,7 @@
-import { DashboardContextProvider } from 'contexts/Dashboard';
-import { useBreakpointValue } from 'hooks/useBreakpointValue';
 import React from 'react';
 
+import { DashboardContextProvider } from '../../../contexts/Dashboard';
+import { useBreakpointValue } from '../../../hooks/useBreakpointValue';
 import { DashboardLeaderBoard } from '../DashboardLeaderBoard';
 import { DashboardOverview } from '../DashboardOverview';
 import { DashboardTasks } from '../DashboardTasks';

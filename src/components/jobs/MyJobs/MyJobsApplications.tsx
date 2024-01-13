@@ -3,8 +3,10 @@ import cx from 'classnames';
 import React from 'react';
 import { useQuery } from 'react-query';
 
+import { useNotifications } from '../../../hooks/useNotifications';
 import { requestCurrentProfessionalJobs } from '../../../services/professional';
 import { Job } from '../../../typings/job';
+import { getErrorMessage } from '../../../utils/getErrorMessage';
 import { EmptyState } from '../../various/EmptyState';
 import styles from './MyJobs.module.scss';
 import { MyJobsApplication } from './MyJobsApplication';
@@ -15,6 +17,7 @@ const PAGE_LIMIT = 5;
 export const MyJobsApplications = () => {
   const [page, setPage] = React.useState(1);
   const [selectedTab, setSelectedTab] = React.useState<Job.Application['status']>('pending');
+  const { pushNotification } = useNotifications();
 
   const getCurrentProfessionalJobs = () => {
     return requestCurrentProfessionalJobs({ status: selectedTab, offset: (page - 1) * PAGE_LIMIT });
@@ -24,8 +27,12 @@ export const MyJobsApplications = () => {
 
   const { data, isFetching, refetch } = useQuery(['professional', 'job-applications', query], () => getCurrentProfessionalJobs(), {
     keepPreviousData: true,
-    onError: () => {
-      // TODO: handle error
+    onError: (error) => {
+      pushNotification({
+        message: getErrorMessage(error),
+        color: 'danger',
+        icon: 'error',
+      });
     },
   });
 

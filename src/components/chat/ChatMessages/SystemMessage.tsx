@@ -1,13 +1,14 @@
 import { Link } from '@nextui-org/react';
-import { JobApplicationButtons } from 'components/jobs/JobApplications/JobApplicationButtons';
-import { Alert } from 'components/various/Alert';
-import { Icon } from 'components/various/Icon';
-import { JOB_APPLICATION_STATUSES } from 'constants/job';
-import { ChatContext } from 'contexts/Chat';
-import { useSession } from 'hooks/useSession';
 import NextLink from 'next/link';
 import React from 'react';
-import { Chat } from 'typings/chat';
+
+import { JOB_APPLICATION_STATUSES } from '../../../constants/job';
+import { ChatContext } from '../../../contexts/Chat';
+import { useSession } from '../../../hooks/useSession';
+import { Chat } from '../../../typings/chat';
+import { JobApplicationButtons } from '../../jobs/JobApplications/JobApplicationButtons';
+import { Alert } from '../../various/Alert';
+import { Icon } from '../../various/Icon';
 
 interface Props {
   message: Chat.SystemMessage;

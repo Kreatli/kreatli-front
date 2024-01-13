@@ -1,14 +1,15 @@
 import { Button, Link, User } from '@nextui-org/react';
-import { Icon } from 'components/various/Icon';
-import { TierImage } from 'components/various/TierImage';
-import { PostContext } from 'contexts/Post';
 import NextLink from 'next/link';
 import React from 'react';
 import { useMutation } from 'react-query';
-import { requestLikePostComment } from 'services/feed';
-import { Common } from 'typings/common';
-import { Feed } from 'typings/feed';
-import { formatRelativeTime } from 'utils/dates';
+
+import { PostContext } from '../../../contexts/Post';
+import { requestLikePostComment } from '../../../services/feed';
+import { Common } from '../../../typings/common';
+import { Feed } from '../../../typings/feed';
+import { formatRelativeTime } from '../../../utils/dates';
+import { Icon } from '../../various/Icon';
+import { TierImage } from '../../various/TierImage';
 
 interface Props extends Feed.Comment {
   parentCommentId?: Common.Id;

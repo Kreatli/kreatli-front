@@ -11,7 +11,7 @@ interface Props {
   register: UseFormRegister<DefaultValues>;
 }
 
-export const SignUpCreatorStep2: React.FC<Props> = ({ errors, register }) => {
+export const SignUpCreatorStep2 = ({ errors, register }: Props) => {
   return (
     <div className="grid grid-cols-2 gap-4 items-start">
       <div className="col-span-2">

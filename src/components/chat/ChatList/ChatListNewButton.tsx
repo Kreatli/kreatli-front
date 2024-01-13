@@ -1,11 +1,12 @@
 import { Avatar, Button, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger, Tooltip } from '@nextui-org/react';
-import { Icon } from 'components/various/Icon';
-import { COUNTRY_LABELS } from 'constants/countries';
-import { useSession } from 'hooks/useSession';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { useQuery } from 'react-query';
-import { requestUsersByIds } from 'services/users';
+
+import { COUNTRY_LABELS } from '../../../constants/countries';
+import { useSession } from '../../../hooks/useSession';
+import { requestUsersByIds } from '../../../services/users';
+import { Icon } from '../../various/Icon';
 
 export const ChatListNewButton = () => {
   const router = useRouter();

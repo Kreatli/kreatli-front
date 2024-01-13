@@ -1,7 +1,7 @@
 import { Card, CardBody } from '@nextui-org/react';
-import { TIER_OPTIONS } from 'constants/tier';
 import React from 'react';
 
+import { TIER_OPTIONS } from '../../../../constants/tier';
 import { TierStructureItem } from './TierStructureItem';
 
 export const TierStructure = () => {

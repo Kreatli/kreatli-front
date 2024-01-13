@@ -1,7 +1,7 @@
 import { Button, Card, CardBody, CardFooter, CardHeader, Image } from '@nextui-org/react';
 import React from 'react';
 
-export const CardCTA: React.FC = () => {
+export const CardCTA = () => {
   return (
     <div className="flex items-end gap-4">
       <Card className="py-4">

@@ -9,7 +9,7 @@ interface Props {
   register: UseFormRegister<DefaultValues>;
 }
 
-export const JobsCreationStep5: React.FC<Props> = ({ errors, register }) => {
+export const JobsCreationStep5 = ({ errors, register }: Props) => {
   return (
     <Textarea
       placeholder={ADDITIONAL_INFORMATION_PLACEHOLDER}

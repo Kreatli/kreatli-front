@@ -1,6 +1,7 @@
 import { Image } from '@nextui-org/react';
-import { Icon } from 'components/various/Icon';
 import React from 'react';
+
+import { Icon } from '../../various/Icon';
 
 interface Props {
   videoId: string;

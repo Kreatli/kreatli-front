@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import React from 'react';
 
-const Faq: React.FC = () => {
+const Faq = () => {
   return (
     <>
       <Head>

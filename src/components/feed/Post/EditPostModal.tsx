@@ -1,7 +1,7 @@
 import { Modal, ModalBody, ModalContent, ModalHeader } from '@nextui-org/react';
 import React from 'react';
-import { Feed } from 'typings/feed';
 
+import { Feed } from '../../../typings/feed';
 import { CreatePost } from '../CreatePost';
 
 interface Props {

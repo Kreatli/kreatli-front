@@ -1,5 +1,6 @@
 import React from 'react';
-import { Media } from 'typings/media';
+
+import { Media } from '../../../typings/media';
 
 interface Props extends Media.Video {}
 

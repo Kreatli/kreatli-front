@@ -1,12 +1,18 @@
-import { useSession } from 'hooks/useSession';
 import Error from 'next/error';
 import Head from 'next/head';
 import React from 'react';
 
 import { JobsCreation } from '../../components/jobs/JobCreation';
+import { useProtectedPage } from '../../hooks/useProtectedPage';
+import { useSession } from '../../hooks/useSession';
 
 const JobsCreate = () => {
   const { currentUser } = useSession();
+  const { isSignedIn } = useProtectedPage();
+
+  if (!isSignedIn) {
+    return null;
+  }
 
   if (currentUser?.role === 'professional') {
     return <Error statusCode={404} />;

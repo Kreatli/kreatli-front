@@ -1,10 +1,10 @@
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext';
 import { mergeRegister } from '@lexical/utils';
 import { Button, Popover, PopoverContent, PopoverTrigger } from '@nextui-org/react';
-import { useIsTouchScreen } from 'hooks/useIsTouchScreen';
 import { $getRoot, $getSelection, $isRangeSelection, FORMAT_TEXT_COMMAND, SELECTION_CHANGE_COMMAND } from 'lexical';
 import React from 'react';
 
+import { useIsTouchScreen } from '../../../hooks/useIsTouchScreen';
 import { EmojiPicker } from '../EmojiPicker';
 import { Icon } from '../Icon';
 import styles from './TextEditor.module.scss';

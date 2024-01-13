@@ -1,7 +1,9 @@
 import React from 'react';
 import { useQuery } from 'react-query';
-import { requestCurrentUserTasks } from 'services/user';
 
+import { useNotifications } from '../../../hooks/useNotifications';
+import { requestCurrentUserTasks } from '../../../services/user';
+import { getErrorMessage } from '../../../utils/getErrorMessage';
 import { DashboardTasksTracker } from './DashboardTasksTracker';
 
 interface Props {
@@ -10,9 +12,14 @@ interface Props {
 }
 
 export const DashboardTasks = ({ maxHeight, minHeight }: Props) => {
+  const { pushNotification } = useNotifications();
   const { data, isFetching } = useQuery('userTasks', requestCurrentUserTasks, {
-    onError: () => {
-      // TODO: handle error
+    onError: (error) => {
+      pushNotification({
+        message: getErrorMessage(error),
+        color: 'danger',
+        icon: 'error',
+      });
     },
   });
 

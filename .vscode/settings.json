@@ -12,5 +12,6 @@
     "svgr",
     "tailwindcss",
     "zustand"
-  ]
+  ],
+  "typescript.preferences.importModuleSpecifier": "relative"
 }

@@ -1,7 +1,7 @@
 import { Card, CardBody, CardHeader } from '@nextui-org/react';
 import React from 'react';
-import { Tasks } from 'typings/tasks';
 
+import { Tasks } from '../../../typings/tasks';
 import { DashboardTask } from './DashboardTask';
 import { DashboardTasksTrackerSkeleton } from './DashboardTasksTrackerSkeleton';
 

@@ -1,8 +1,8 @@
 import { Button, Tooltip, useDisclosure } from '@nextui-org/react';
-import { useBreakpointValue } from 'hooks/useBreakpointValue';
 import NextLink from 'next/link';
 import React from 'react';
 
+import { useBreakpointValue } from '../../../hooks/useBreakpointValue';
 import { useSession } from '../../../hooks/useSession';
 import { useUserInvitation } from '../../../hooks/useUserInvitation';
 import { Common } from '../../../typings/common';

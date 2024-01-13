@@ -1,8 +1,9 @@
 import { Progress } from '@nextui-org/react';
-import { Icon } from 'components/various/Icon';
-import { TASK_COLOR_BY_TYPE, TASK_ICON_BY_TYPE } from 'constants/tasks';
 import React from 'react';
-import { Tasks } from 'typings/tasks';
+
+import { TASK_COLOR_BY_TYPE, TASK_ICON_BY_TYPE } from '../../../constants/tasks';
+import { Tasks } from '../../../typings/tasks';
+import { Icon } from '../../various/Icon';
 
 interface Props extends Tasks.Task {}
 

@@ -1,12 +1,12 @@
-import { LazyList } from 'components/various/LazyList';
-import { ChatContext } from 'contexts/Chat';
-import { useSession } from 'hooks/useSession';
 import React from 'react';
 import { useMutation } from 'react-query';
-import { requestChatMessagesRead } from 'services/chat';
-import { Chat } from 'typings/chat';
-import { formChatMessagesGroupDate } from 'utils/dates';
 
+import { ChatContext } from '../../../contexts/Chat';
+import { useSession } from '../../../hooks/useSession';
+import { requestChatMessagesRead } from '../../../services/chat';
+import { Chat } from '../../../typings/chat';
+import { formChatMessagesGroupDate } from '../../../utils/dates';
+import { LazyList } from '../../various/LazyList';
 import { EmptyState } from '../EmptyState';
 import { ChatMessage } from './ChatMessage';
 import { ChatMessagesSkeleton } from './ChatMessagesSkeleton';

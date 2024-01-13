@@ -1,6 +1,6 @@
 import { nanoid } from 'nanoid';
-import { File } from 'typings/file';
 
+import { File } from '../../../typings/file';
 import { Skill, SkillLevel } from '../../../typings/skill';
 
 export const DEFAULT_EXPERIENCE = {

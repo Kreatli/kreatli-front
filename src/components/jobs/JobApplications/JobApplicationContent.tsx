@@ -11,7 +11,7 @@ import { JobApplicationButtons } from './JobApplicationButtons';
 import styles from './JobApplications.module.scss';
 
 interface Props {
-  professional: User.Professional;
+  professional: User.ShortInfoProfessional;
   jobOfferId: Common.Id;
   jobApplicationId: Common.Id;
   coverLetter: string;

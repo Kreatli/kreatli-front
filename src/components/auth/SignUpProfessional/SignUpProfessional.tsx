@@ -22,7 +22,7 @@ const FIELDS_BY_STEP = [
   ['certificates'],
 ] as const;
 
-export const SignUpProfessional: React.FC = () => {
+export const SignUpProfessional = () => {
   const [selectedKeys, setSelectedKeys] = React.useState<Set<string | number>>(new Set(['0']));
   const [isFilledByStep, setIsFilledByStep] = React.useState([false, false, false]);
 

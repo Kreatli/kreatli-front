@@ -1,6 +1,6 @@
 import React from 'react';
-import { Notifications } from 'typings/notifications';
 
+import { Notifications } from '../../../typings/notifications';
 import { NotificationLink } from './NotificationLink';
 import { NotificationText } from './NotificationText';
 import { NotificationTitle } from './NotificationTitle';

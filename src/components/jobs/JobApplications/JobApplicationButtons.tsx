@@ -1,11 +1,12 @@
 import { Button, Popover, PopoverContent, PopoverTrigger } from '@nextui-org/react';
-import { Icon } from 'components/various/Icon';
-import { useNotifications } from 'hooks/useNotifications';
 import React from 'react';
 import { useMutation } from 'react-query';
-import { requestJobApplicationAccept, requestJobApplicationReject } from 'services/job';
-import { Common } from 'typings/common';
-import { getErrorMessage } from 'utils/getErrorMessage';
+
+import { useNotifications } from '../../../hooks/useNotifications';
+import { requestJobApplicationAccept, requestJobApplicationReject } from '../../../services/job';
+import { Common } from '../../../typings/common';
+import { getErrorMessage } from '../../../utils/getErrorMessage';
+import { Icon } from '../../various/Icon';
 
 interface Props {
   jobOfferId: Common.Id;

@@ -1,9 +1,24 @@
 import Head from 'next/head';
+import { useRouter } from 'next/router';
 import React from 'react';
 
 import { SignUpCreator } from '../../components/auth/SignUpCreator';
+import { useSession } from '../../hooks/useSession';
 
-const Creator: React.FC = () => {
+const Creator = () => {
+  const { isSignedIn, isLoading } = useSession();
+  const router = useRouter();
+
+  React.useLayoutEffect(() => {
+    if (!isLoading && isSignedIn) {
+      router.replace('/');
+    }
+  }, [isLoading, isSignedIn, router]);
+
+  if (isSignedIn) {
+    return null;
+  }
+
   return (
     <>
       <Head>

@@ -1,11 +1,12 @@
 import { Avatar, Badge } from '@nextui-org/react';
 import cx from 'classnames';
-import { Icon } from 'components/various/Icon';
-import { TierImage } from 'components/various/TierImage';
-import { NOTIFICATION_TYPE } from 'constants/notifications';
-import { TASK_COLOR_BY_TYPE, TASK_ICON_BY_TYPE } from 'constants/tasks';
 import React from 'react';
-import { Notifications } from 'typings/notifications';
+
+import { NOTIFICATION_TYPE } from '../../../constants/notifications';
+import { TASK_COLOR_BY_TYPE, TASK_ICON_BY_TYPE } from '../../../constants/tasks';
+import { Notifications } from '../../../typings/notifications';
+import { Icon } from '../../various/Icon';
+import { TierImage } from '../../various/TierImage';
 
 interface Props {
   notification: Notifications.Notification;

@@ -1,8 +1,9 @@
 import { Button, Card, CardBody } from '@nextui-org/react';
-import { Icon } from 'components/various/Icon';
 import React from 'react';
 import { useMutation } from 'react-query';
-import { requestBuyPoints } from 'services/dashboard';
+
+import { requestBuyPoints } from '../../../../services/dashboard';
+import { Icon } from '../../../various/Icon';
 
 interface Props {
   pointsAmount: number;

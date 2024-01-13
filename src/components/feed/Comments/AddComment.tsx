@@ -1,12 +1,13 @@
 import { Avatar, Button, Textarea } from '@nextui-org/react';
-import { Icon } from 'components/various/Icon';
-import { PostContext } from 'contexts/Post';
-import { useNotifications } from 'hooks/useNotifications';
-import { useSession } from 'hooks/useSession';
 import React from 'react';
 import { useMutation } from 'react-query';
-import { requestPostCommentCreation } from 'services/feed';
-import { getErrorMessage } from 'utils/getErrorMessage';
+
+import { PostContext } from '../../../contexts/Post';
+import { useNotifications } from '../../../hooks/useNotifications';
+import { useSession } from '../../../hooks/useSession';
+import { requestPostCommentCreation } from '../../../services/feed';
+import { getErrorMessage } from '../../../utils/getErrorMessage';
+import { Icon } from '../../various/Icon';
 
 export const AddComment = () => {
   const { currentUser } = useSession();

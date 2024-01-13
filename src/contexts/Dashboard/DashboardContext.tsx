@@ -1,7 +1,10 @@
-import { useSession } from 'hooks/useSession';
 import React from 'react';
 import { useQuery } from 'react-query';
-import { requestDashboardData } from 'services/dashboard';
+
+import { useNotifications } from '../../hooks/useNotifications';
+import { useSession } from '../../hooks/useSession';
+import { requestDashboardData } from '../../services/dashboard';
+import { getErrorMessage } from '../../utils/getErrorMessage';
 
 interface Context {
   earnedToday: number;
@@ -27,10 +30,15 @@ export const DashboardContext = React.createContext<Context>(initialContext);
 
 export const DashboardContextProvider = ({ children }: Props) => {
   const { currentUser } = useSession();
+  const { pushNotification } = useNotifications();
 
   const { data } = useQuery('dashboard', requestDashboardData, {
-    onError: () => {
-      // TODO: handle error
+    onError: (error) => {
+      pushNotification({
+        message: getErrorMessage(error),
+        color: 'danger',
+        icon: 'error',
+      });
     },
   });
 

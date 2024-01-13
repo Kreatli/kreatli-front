@@ -10,7 +10,7 @@ interface Props {
   register: UseFormRegister<DefaultValues>;
 }
 
-export const JobsCreationStep1: React.FC<Props> = ({ errors, register }) => {
+export const JobsCreationStep1 = ({ errors, register }: Props) => {
   return (
     <div className="flex flex-col items-start gap-4">
       <Input

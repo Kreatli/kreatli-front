@@ -1,6 +1,4 @@
 import { Avatar, Button, Tooltip, useDisclosure } from '@nextui-org/react';
-import { ProfileUnverifiedTooltip } from 'components/profile/Profile/ProfileUnverifiedTooltip';
-import { TierImage } from 'components/various/TierImage';
 import NextLink from 'next/link';
 import React from 'react';
 
@@ -10,9 +8,11 @@ import { useSession } from '../../../hooks/useSession';
 import { Common } from '../../../typings/common';
 import { Job } from '../../../typings/job';
 import { formatRelativeTime } from '../../../utils/dates';
+import { ProfileUnverifiedTooltip } from '../../profile/Profile/ProfileUnverifiedTooltip';
 import { BottomBar } from '../../various/BottomBar';
 import { PaymentMethods } from '../../various/PaymentMethods';
 import { Tag } from '../../various/Tag';
+import { TierImage } from '../../various/TierImage';
 import { JobApplicationModal } from '../JobApplicationModal';
 import { JobFeatures } from '../JobFeatures';
 import { JobOthers } from '../JobOthers';
