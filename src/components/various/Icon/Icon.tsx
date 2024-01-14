@@ -12,12 +12,14 @@ import BoldIcon from '../../../assets/icons/bold.svg';
 import BuildingIcon from '../../../assets/icons/building.svg';
 import CalendarIcon from '../../../assets/icons/calendar.svg';
 import CashIcon from '../../../assets/icons/cash.svg';
+import CertificationIcon from '../../../assets/icons/certification.svg';
 import ChatIcon from '../../../assets/icons/chat.svg';
 import CheckIcon from '../../../assets/icons/check.svg';
 import CheckCircleIcon from '../../../assets/icons/check-circle.svg';
 import CheckShieldIcon from '../../../assets/icons/check-shield.svg';
 import ChevronDownIcon from '../../../assets/icons/chevron-down.svg';
 import CoinIcon from '../../../assets/icons/coin.svg';
+import ConversationIcon from '../../../assets/icons/conversation.svg';
 import CreditCardIcon from '../../../assets/icons/credit-card.svg';
 import CrossIcon from '../../../assets/icons/cross.svg';
 import CrossCircleIcon from '../../../assets/icons/cross-circle.svg';
@@ -48,6 +50,7 @@ import LinkIcon from '../../../assets/icons/link.svg';
 import LocationIcon from '../../../assets/icons/location.svg';
 import LogoIcon from '../../../assets/icons/logo.svg';
 import MailIcon from '../../../assets/icons/mail.svg';
+import MedalIcon from '../../../assets/icons/medal.svg';
 import MoonIcon from '../../../assets/icons/moon.svg';
 import PaypalIcon from '../../../assets/icons/paypal.svg';
 import PlusIcon from '../../../assets/icons/plus.svg';
@@ -91,11 +94,13 @@ const ICONS = {
   building: BuildingIcon,
   calendar: CalendarIcon,
   cash: CashIcon,
+  certification: CertificationIcon,
   chat: ChatIcon,
   check: CheckIcon,
   checkCircle: CheckCircleIcon,
   checkShield: CheckShieldIcon,
   coin: CoinIcon,
+  conversation: ConversationIcon,
   chevronDown: ChevronDownIcon,
   creditCard: CreditCardIcon,
   cross: CrossIcon,
@@ -127,6 +132,7 @@ const ICONS = {
   location: LocationIcon,
   logo: LogoIcon,
   mail: MailIcon,
+  medal: MedalIcon,
   moon: MoonIcon,
   paypal: PaypalIcon,
   plus: PlusIcon,

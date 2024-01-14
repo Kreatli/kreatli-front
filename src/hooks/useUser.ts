@@ -20,11 +20,13 @@ export const useUser = <T extends User.Type = User.Type>(userId: Common.MaybeId,
   const { data } = useQuery(['user', userId], fetchUser, {
     refetchOnMount: refetch,
     onError: (error) => {
-      pushNotification({
-        message: getErrorMessage(error),
-        color: 'danger',
-        icon: 'error',
-      });
+      if (refetch) {
+        pushNotification({
+          message: getErrorMessage(error),
+          color: 'danger',
+          icon: 'error',
+        });
+      }
     },
   });
 

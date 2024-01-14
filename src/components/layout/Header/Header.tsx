@@ -180,6 +180,7 @@ export const Header = () => {
             isIconOnly
             aria-label="Toggle theme"
             variant="light"
+            color="secondary"
             className="text-foreground"
             radius="full"
             onClick={toggleTheme}
@@ -205,6 +206,8 @@ export const Header = () => {
             <Avatar
               as="button"
               src={currentUser?.avatarUrl}
+              color="secondary"
+              className="bg-secondary/20 text-secondary"
               name={userInitials}
               icon={!isSignedIn && <Icon icon="user" size={20} />}
             />
