@@ -1,11 +1,19 @@
-import { Accordion, AccordionItem, Chip } from '@nextui-org/react';
+/* eslint-disable max-len */
+import { Button, Card, CardBody, CardFooter, CardHeader, Chip, Image, Link } from '@nextui-org/react';
+import NextLink from 'next/link';
 import React from 'react';
 
+import LogoIcon from '../../../assets/images/logo.svg';
+import { ContactForm } from '../../contact/ContactForm';
+import { Faq } from '../../contact/Faq';
 import { Video } from '../../various/Video';
 import { Feature } from '../Feature';
 import { DesktopFrame } from '../Frames';
 import { Hero } from '../Hero';
 import { TextLinear } from '../TextLinear';
+import backgroundImage from './assets/background.jpg';
+import creatorsImage from './assets/creators.jpg';
+import professionalsImage from './assets/professionals.jpg';
 
 export const Home = () => {
   const creatorFeatures = [
@@ -23,45 +31,6 @@ export const Home = () => {
       icon: 'conversation' as const,
       title: 'Unified Platform: Secure Communication \nand No-Bot Policy',
       text: 'Our platform offers secure and efficient communication tools, free from spam and bots, promoting authentic interactions between clients and professionals.',
-    },
-  ];
-
-  const faqItems = [
-    {
-      question: 'How do I join Kreatli?',
-      answer: 'Joining Kreatli is easy. Simply sign up as a YouTube creator or a professional, complete your profile, and start exploring opportunities or talent.',
-    },
-    {
-      question: 'How are professionals verified on Kreatli?',
-      answer: 'We prioritize the credibility and expertise of professionals on Kreatli. Our verification process involves a thorough review of each professional\'s qualifications and work samples. When creating a profile, professionals provide detailed information about their skills, work experience, and portfolios. Our team then carefully assesses this information to ensure that it aligns with the standards of our platform. This verification process helps maintain a community of skilled and reliable professionals, enhancing the quality of collaborations between creators and professionals.',
-    },
-    {
-      question: 'Do I have to pay in order to apply for a job or find a professional?',
-      answer: 'No, Kreatli is absolutely free of charge. Our platform allows you to explore job opportunities and connect with professionals without any upfront fees. That is why there is a Tier System in place that allows everyone to compete under the same fair circumstances. However, for those who want to accelerate the progress, we do offer a premium subscription and point purchase options. They unlock additional opportunities and enhance access to our platform\'s features.',
-    },
-    {
-      question: 'Can I find job opportunities as a professional on Kreatli?',
-      answer: 'Absolutely. Kreatli offers professionals a wide range of job opportunities posted by YouTube creators. Whether you\'re a video editor, thumbnail designer, scriptwriter, etc. you can find projects that match your skills.',
-    },
-    {
-      question: 'How can I collaborate with a YouTube creator on Kreatli?',
-      answer: 'It\'s simple. As a professional, you can apply for job postings that align with your expertise. If a creator is interested, they\'ll initiate a collaboration, and you can discuss project details and terms.',
-    },
-    {
-      question: 'What benefits does the Tier System offer?',
-      answer: 'The Kreatli Tier System is designed to enhance user engagement, recognize contributions, and provide rewards within the Kreatli community. Users can progress through different tiers by completing various tasks and achieving milestones, unlocking exclusive benefits, and gaining recognition.',
-    },
-    {
-      question: 'Can I purchase points on Kreatli?',
-      answer: 'Yes, you can buy points to boost your profile\'s visibility, increase your earning potential, and access more advanced features. Points can be used strategically to maximize your impact on the platform.',
-    },
-    {
-      question: 'Is my personal information safe on Kreatli?',
-      answer: 'Absolutely. We prioritize the security and privacy of our users. Your personal information is kept confidential and is only used for platform-related interactions.',
-    },
-    {
-      question: 'What is Kreatli Premium?',
-      answer: 'Kreatli Premium is a subscription that enhances your Kreatli experience. It offers increased daily point limits, point multipliers, and access to premium tiers, empowering you to make the most out of your collaboration journey.',
     },
   ];
 
@@ -98,7 +67,6 @@ export const Home = () => {
             <TextLinear>Collaborate</TextLinear> <br />Seamlessly
           </h2>
           <p className="text-lg text-foreground-400 max-w-[480px]">
-            {/* eslint-disable-next-line max-len */}
             Explore a world of exciting job opportunities with Kreatli&apos;s powerful job search feature. Designed for seamless collaboration, it connects professionals and creators, making it effortless to find the perfect match for your next venture.
           </p>
         </div>
@@ -118,7 +86,6 @@ export const Home = () => {
             Fuel Your <br /><TextLinear>Creativity</TextLinear>
           </h2>
           <p className="text-lg text-foreground-400">
-            {/* eslint-disable-next-line max-len */}
             Immerse yourself in our vibrant community. The Kreatli Feed keeps you in the loop on the latest trends, collaborations, and opportunities. Stay inspired and informed about the buzzing activities within Kreatli.
           </p>
         </div>
@@ -132,7 +99,6 @@ export const Home = () => {
             Recognize Your <br /><TextLinear>Progress</TextLinear>
           </h2>
           <p className="text-lg text-foreground-400 max-w-[480px]">
-            {/* eslint-disable-next-line max-len */}
             Explore a world of exciting job opportunities with Kreatli&apos;s powerful job search feature. Designed for seamless collaboration, it connects professionals and creators, making it effortless to find the perfect match for your next venture.
           </p>
         </div>
@@ -140,33 +106,137 @@ export const Home = () => {
           <Video src="/videos/dashboard.mp4" className="scale-[1.01]" />
         </DesktopFrame>
       </section>
-      <section className="relative flex flex-col gap-2 items-center container max-w-screen-xl mx-auto px-6 text-center mb-32">
+      <section className="relative py-32 mb-40">
+        <div className="container max-w-screen-2xl px-6 mx-auto">
+          <div className="flex flex-col gap-2 items-center text-center">
+            <Chip variant="flat" color="secondary" classNames={{ content: 'font-semibold' }}>
+              Welcome
+            </Chip>
+            <h2 className="text-4xl font-semibold leading-tight mx-auto mb-8 sm:mb-16">
+              Join the <br /><TextLinear>Community</TextLinear>
+            </h2>
+          </div>
+          <div className="grid grid-cols-2 gap-8">
+            <div className="grid grid-cols-2 gap-4">
+              <Card>
+                <CardHeader className="block p-8">
+                  <span className="text-lg font-semibold">For</span>
+                  <h3 className="text-4xl font-semibold text-secondary">Creators</h3>
+                </CardHeader>
+                <CardBody className="p-8 pt-0">
+                  <ul className="flex flex-col gap-2 list-disc list-outside pl-4 marker:text-secondary max-w-[250px] text-foreground-500">
+                    <li>Discover the right talent with ease.</li>
+                    <li>Collaborate with experts effortlessly.</li>
+                    <li>Simplify your hiring process by easily finding, evaluating, and hiring the perfect professionals for your job.</li>
+                  </ul>
+                </CardBody>
+                <CardFooter className="p-8">
+                  <Button as={NextLink} href="/signup/creator" color="secondary" radius="full">Join as Creator</Button>
+                </CardFooter>
+              </Card>
+              <div className="relative rounded-large overflow-hidden shadow-small">
+                <div className="absolute inset-0 z-20 bg-gradient-to-bl from-secondary/20 to-black/60" />
+                <Image
+                  src={creatorsImage.src}
+                  alt="Creators"
+                  removeWrapper
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              <Card>
+                <CardHeader className="block p-8">
+                  <span className="text-lg font-semibold">For</span>
+                  <h3 className="text-4xl font-semibold text-secondary">Professionals</h3>
+                </CardHeader>
+                <CardBody className="p-8 pt-0">
+                  <ul className="flex flex-col gap-2 list-disc list-outside pl-4 marker:text-secondary max-w-[250px] text-foreground-500">
+                    <li>Grow your professional network.</li>
+                    <li>Grow your professional network.</li>
+                    <li>Showcase your amazing skills effectively to potential clients. </li>
+                  </ul>
+                </CardBody>
+                <CardFooter className="p-8">
+                  <Button as={NextLink} href="/signup/professional" color="secondary" radius="full">Join as Professional</Button>
+                </CardFooter>
+              </Card>
+              <div className="relative rounded-large overflow-hidden shadow-small">
+                <div className="absolute inset-0 z-20 bg-gradient-to-bl from-secondary/20 to-black/60" />
+                <Image
+                  src={professionalsImage.src}
+                  alt="Professionals"
+                  removeWrapper
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="absolute inset-0 bg-[url('/logo-k-light.svg')] dark:bg-[url('/logo-k-dark.svg')] bg-[length:80px] sm:bg-[length:120px] bg-repeat-space -z-10 pointer-events-none" />
+      </section>
+      <section className="grid grid-cols-2 mb-40">
+        <div className="relative">
+          <Image
+            radius="none"
+            src={backgroundImage.src}
+            removeWrapper
+            alt="Professional in action"
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 z-20 bg-gradient-to-bl from-secondary/20 to-black/60" />
+        </div>
+        <div className="pl-24 pr-6 py-12">
+          <Chip variant="flat" color="secondary" className="mb-4" classNames={{ content: 'font-semibold' }}>
+            Why us
+          </Chip>
+          <h2 className="text-4xl font-semibold leading-tight mb-12">
+            Why Should <TextLinear>Professionals</TextLinear><br /> Choose Kreatli?
+          </h2>
+          <article className="mb-6">
+            <div className="text-6xl font-bold text-secondary mb-2">1</div>
+            <h3 className="text-xl font-semibold mb-2">Unified Platform</h3>
+            <p className="text-lg text-foreground-500 max-w-[500px]">End the endless search across Reddit, Twitter, Discord, Fiverr, or Upwork. Find jobs and opportunities, all in one convenient place.</p>
+          </article>
+          <article className="mb-6">
+            <div className="text-6xl font-bold text-secondary mb-2">2</div>
+            <h3 className="text-xl font-semibold mb-2">Unified Platform</h3>
+            <p className="text-lg text-foreground-500 max-w-[500px]">End the endless search across Reddit, Twitter, Discord, Fiverr, or Upwork. Find jobs and opportunities, all in one convenient place.</p>
+          </article>
+          <article>
+            <div className="text-6xl font-bold text-secondary mb-2">3</div>
+            <h3 className="text-xl font-semibold mb-2">Unified Platform</h3>
+            <p className="text-lg text-foreground-500 max-w-[500px]">End the endless search across Reddit, Twitter, Discord, Fiverr, or Upwork. Find jobs and opportunities, all in one convenient place.</p>
+          </article>
+        </div>
+      </section>
+      <section className="relative flex flex-col gap-2 items-center container max-w-screen-md mx-auto px-6 text-center mb-32">
         <Chip variant="flat" color="secondary" classNames={{ content: 'font-semibold' }}>
           FAQ
         </Chip>
         <h2 className="text-4xl font-semibold leading-tight max-w-lg mx-auto mb-8">
           Frequently Asked <br /><TextLinear>Questions</TextLinear>
         </h2>
-        <div className="w-full max-w-screen-md text-left">
-          <Accordion variant="shadow">
-            {faqItems.map(({ question, answer }) => (
-              <AccordionItem key={question} title={question} aria-label={question}>
-                <span className="text-foreground-500">{answer}</span>
-              </AccordionItem>
-            ))}
-          </Accordion>
+        <Faq />
+      </section>
+      <section className="container max-w-screen-xl mx-auto px-6 text-center mb-20">
+        <h2 className="text-4xl font-semibold leading-tight mb-2">Still have some questions?<br /> <TextLinear>Contact us</TextLinear></h2>
+        <p className="mb-8 text-large text-foreground-500">We&apos;re all ears! Fill out the form below and let&apos;s chat!</p>
+        <div className="max-w-[600px] mx-auto">
+          <ContactForm />
         </div>
       </section>
-      <section>
-        <div className="flex flex-col gap-2 items-center text-center">
-          <Chip variant="flat" color="secondary" classNames={{ content: 'font-semibold' }}>
-            Welcome
-          </Chip>
-          <h2 className="text-4xl font-semibold leading-tight max-w-lg mx-auto mb-8 sm:mb-16">
-            Join the <br /><TextLinear>Community</TextLinear>
-          </h2>
+      <footer className="shadow-medium -mb-8">
+        <div className="max-w-screen-xl mx-auto px-6 py-10 flex justify-between">
+          <LogoIcon viewBox="0 0 90 22" />
+          <div className="flex gap-1">
+            <span className="text-sm text-foreground-400">© Kreatli 2024. All rights reserved.</span>
+            <Link as={NextLink} href="/privacy-policy" size="sm" className="text-foreground-400" underline="hover">Privacy policy</Link>
+            <Link as={NextLink} href="terms-and-conditions" size="sm" className="text-foreground-400" underline="hover">Terms and conditions</Link>
+            <Link href="mailto:support@kreatli.com" size="sm" className="text-foreground-400" underline="hover">support@kreatli.com</Link>
+          </div>
         </div>
-      </section>
+      </footer>
     </div>
   );
 };
