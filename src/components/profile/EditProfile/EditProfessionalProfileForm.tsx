@@ -1,4 +1,5 @@
 import { Button, Input, Select, SelectItem, Tab, Tabs, Textarea } from '@nextui-org/react';
+import { omit } from 'ramda';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useMutation, useQueryClient } from 'react-query';
@@ -65,8 +66,14 @@ export const EditProfessionalProfileForm = ({ user, onCancel, onSuccess }: Props
     register,
   } = useForm({ mode: 'onBlur', defaultValues });
 
-  const onSubmit = (data: any) => {
-    mutate(data);
+  const onSubmit = (data: DefaultValues) => {
+    const normalizedData = {
+      ...data,
+      experiences: data.experiences.map((experience) => omit(['id'], experience)),
+      certificates: data.certificates.map((certificate) => omit(['id'], certificate)),
+    };
+
+    mutate(normalizedData);
   };
 
   return (
