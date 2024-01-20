@@ -37,7 +37,7 @@ export const Home = () => {
   return (
     <div>
       <Hero />
-      <section className="relative flex flex-col gap-2 items-center container max-w-screen-xl mx-auto px-6 text-center mb-32">
+      <section className="relative flex flex-col gap-2 items-center container max-w-screen-xl mx-auto px-6 text-center mb-20 sm:mb-32">
         <Chip variant="flat" color="secondary" classNames={{ content: 'font-semibold' }}>
           Why us
         </Chip>
@@ -50,7 +50,7 @@ export const Home = () => {
           ))}
         </div>
       </section>
-      <section className="flex flex-col gap-2 items-center container max-w-screen-xl mx-auto px-6 text-center mb-28">
+      <section className="flex flex-col gap-2 items-center container max-w-screen-xl mx-auto px-6 text-center mb-20 sm:mb-28">
         <Chip variant="flat" color="secondary" classNames={{ content: 'font-semibold' }}>
           Features
         </Chip>
@@ -58,7 +58,7 @@ export const Home = () => {
           <TextLinear>Glimpse into Kreatli</TextLinear> — a unified platform
         </h2>
       </section>
-      <section className="grid grid-cols-1 sm:grid-cols-2 gap-x-20 items-center container max-w-screen-xl mx-auto px-6 mb-40">
+      <section className="grid grid-cols-1 sm:grid-cols-2 gap-x-20 gap-y-8 items-center container max-w-screen-xl mx-auto px-6 mb-20 sm:mb-40">
         <div className="flex flex-col gap-4 max-w-[480px]">
           <Chip variant="flat" color="secondary" classNames={{ content: 'font-semibold' }}>
             Job search
@@ -74,7 +74,7 @@ export const Home = () => {
           <Video src="/videos/chat.mp4" className="scale-85 aspect-[4/3]" />
         </DesktopFrame>
       </section>
-      <section className="grid grid-cols-1 sm:grid-cols-2 gap-x-20 items-center container max-w-screen-xl mx-auto px-6 mb-40">
+      <section className="grid grid-cols-1 sm:grid-cols-2 gap-x-20 gap-y-8 items-center container max-w-screen-xl mx-auto px-6 mb-20 sm:mb-40">
         <DesktopFrame>
           <Video src="/videos/feed.mp4" className="aspect-[4/3]" />
         </DesktopFrame>
@@ -90,7 +90,7 @@ export const Home = () => {
           </p>
         </div>
       </section>
-      <section className="grid grid-cols-1 sm:grid-cols-2 gap-x-20 items-center container max-w-screen-xl mx-auto px-6 mb-40">
+      <section className="grid grid-cols-1 sm:grid-cols-2 gap-x-20 gap-y-8 items-center container max-w-screen-xl mx-auto px-6 mb-20 sm:mb-40">
         <div className="flex flex-col gap-4 max-w-[480px]">
           <Chip variant="flat" color="secondary" classNames={{ content: 'font-semibold' }}>
             Tier and point system
@@ -106,7 +106,7 @@ export const Home = () => {
           <Video src="/videos/dashboard.mp4" className="scale-[1.01] aspect-[4/3]" />
         </DesktopFrame>
       </section>
-      <section className="relative py-32 mb-40">
+      <section className="relative py-20 sm:py-32 mb-10 sm:mb-40">
         <div className="container max-w-screen-2xl px-6 mx-auto">
           <div className="flex flex-col gap-2 items-center text-center">
             <Chip variant="flat" color="secondary" classNames={{ content: 'font-semibold' }}>
@@ -116,67 +116,63 @@ export const Home = () => {
               Join the <br /><TextLinear>Community</TextLinear>
             </h2>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <Card>
-                <CardHeader className="block p-8">
-                  <span className="text-lg font-semibold">For</span>
-                  <h3 className="text-4xl font-semibold text-secondary">Creators</h3>
-                </CardHeader>
-                <CardBody className="p-8 pt-0">
-                  <ul className="flex flex-col gap-2 list-disc list-outside pl-4 marker:text-secondary max-w-[250px] text-foreground-500">
-                    <li>Discover the right talent with ease.</li>
-                    <li>Collaborate with experts effortlessly.</li>
-                    <li>Simplify your hiring process by easily finding, evaluating, and hiring the perfect professionals for your job.</li>
-                  </ul>
-                </CardBody>
-                <CardFooter className="p-8">
-                  <Button as={NextLink} href="/signup/creator" color="secondary" radius="full">Join as Creator</Button>
-                </CardFooter>
-              </Card>
-              <div className="relative rounded-large overflow-hidden shadow-small">
-                <div className="absolute inset-0 z-20 bg-gradient-to-bl from-secondary/20 to-black/60" />
-                <Image
-                  src={creatorsImage.src}
-                  alt="Creators"
-                  removeWrapper
-                  className="w-full h-full object-cover"
-                />
-              </div>
+          <div className="grid grid-cols-4 gap-4">
+            <Card className="col-start-1 col-end-5 sm:col-end-3 xl:col-end-2">
+              <CardHeader className="block p-8">
+                <span className="text-lg font-semibold">For</span>
+                <h3 className="text-4xl font-semibold text-secondary">Creators</h3>
+              </CardHeader>
+              <CardBody className="p-8 pt-0">
+                <ul className="flex flex-col gap-2 list-disc list-outside pl-4 marker:text-secondary xl:max-w-[250px] text-foreground-500">
+                  <li>Discover the right talent with ease.</li>
+                  <li>Collaborate with experts effortlessly.</li>
+                  <li>Simplify your hiring process by easily finding, evaluating, and hiring the perfect professionals for your job.</li>
+                </ul>
+              </CardBody>
+              <CardFooter className="p-8">
+                <Button as={NextLink} href="/signup/creator" color="secondary" radius="full">Join as Creator</Button>
+              </CardFooter>
+            </Card>
+            <div className="col-start-1 col-end-5 sm:col-end-3 xl:col-start-2 relative rounded-large overflow-hidden shadow-small max-h-[500px]">
+              <div className="absolute inset-0 z-20 bg-gradient-to-bl from-secondary/20 to-black/60" />
+              <Image
+                src={creatorsImage.src}
+                alt="Creators"
+                removeWrapper
+                className="w-full h-full object-cover"
+              />
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <Card>
-                <CardHeader className="block p-8">
-                  <span className="text-lg font-semibold">For</span>
-                  <h3 className="text-4xl font-semibold text-secondary">Professionals</h3>
-                </CardHeader>
-                <CardBody className="p-8 pt-0">
-                  <ul className="flex flex-col gap-2 list-disc list-outside pl-4 marker:text-secondary max-w-[250px] text-foreground-500">
-                    <li>Grow your professional network.</li>
-                    <li>Grow your professional network.</li>
-                    <li>Showcase your amazing skills effectively to potential clients. </li>
-                  </ul>
-                </CardBody>
-                <CardFooter className="p-8">
-                  <Button as={NextLink} href="/signup/professional" color="secondary" radius="full">Join as Professional</Button>
-                </CardFooter>
-              </Card>
-              <div className="relative rounded-large overflow-hidden shadow-small">
-                <div className="absolute inset-0 z-20 bg-gradient-to-bl from-secondary/20 to-black/60" />
-                <Image
-                  src={professionalsImage.src}
-                  alt="Professionals"
-                  removeWrapper
-                  className="w-full h-full object-cover"
-                />
-              </div>
+            <Card className="col-start-1 col-end-5 sm:col-start-3 xl:col-end-4 sm:row-start-1">
+              <CardHeader className="block p-8">
+                <span className="text-lg font-semibold">For</span>
+                <h3 className="text-4xl font-semibold text-secondary">Professionals</h3>
+              </CardHeader>
+              <CardBody className="p-8 pt-0">
+                <ul className="flex flex-col gap-2 list-disc list-outside pl-4 marker:text-secondary xl:max-w-[250px] text-foreground-500">
+                  <li>Grow your professional network.</li>
+                  <li>Grow your professional network.</li>
+                  <li>Showcase your amazing skills effectively to potential clients. </li>
+                </ul>
+              </CardBody>
+              <CardFooter className="p-8">
+                <Button as={NextLink} href="/signup/professional" color="secondary" radius="full">Join as Professional</Button>
+              </CardFooter>
+            </Card>
+            <div className="col-start-1 col-end-5 sm:col-start-3 xl:col-start-4 relative rounded-large overflow-hidden shadow-small max-h-[500px]">
+              <div className="absolute inset-0 z-20 bg-gradient-to-bl from-secondary/20 to-black/60" />
+              <Image
+                src={professionalsImage.src}
+                alt="Professionals"
+                removeWrapper
+                className="w-full h-full object-cover"
+              />
             </div>
           </div>
         </div>
         <div className="absolute inset-0 bg-[url('/logo-k-light.svg')] dark:bg-[url('/logo-k-dark.svg')] bg-[length:80px] sm:bg-[length:120px] bg-repeat-space -z-10 pointer-events-none" />
       </section>
-      <section className="grid grid-cols-2 mb-40">
-        <div className="hidden sm:block relative">
+      <section className="grid grid-cols-1 md:grid-cols-2 mb-20 sm:mb-40">
+        <div className="hidden md:block relative">
           <Image
             radius="none"
             src={backgroundImage.src}
@@ -186,7 +182,7 @@ export const Home = () => {
           />
           <div className="absolute inset-0 z-20 bg-gradient-to-bl from-secondary/20 to-black/60" />
         </div>
-        <div className="pl-24 pr-6 py-12">
+        <div className="pl-6 md:pl-24 pr-6 py-12">
           <Chip variant="flat" color="secondary" className="mb-4" classNames={{ content: 'font-semibold' }}>
             Why us
           </Chip>
@@ -229,7 +225,7 @@ export const Home = () => {
       <footer className="shadow-medium -mb-8">
         <div className="max-w-screen-xl mx-auto px-6 py-10 flex justify-between">
           <LogoIcon viewBox="0 0 90 22" />
-          <div className="flex gap-1">
+          <div className="flex flex-col sm:flex-row items-end gap-1">
             <span className="text-sm text-foreground-400">© Kreatli 2024. All rights reserved.</span>
             <Link as={NextLink} href="/privacy-policy" size="sm" className="text-foreground-400" underline="hover">Privacy policy</Link>
             <Link as={NextLink} href="terms-and-conditions" size="sm" className="text-foreground-400" underline="hover">Terms and conditions</Link>

@@ -15,7 +15,7 @@ export const Hero = () => {
     <div className="relative overflow-x-clip">
       <div className="absolute top-0 -left-[10%] lg:left-0 rounded-[60px] bg-secondary-50/50 w-3/5 min-w-[700px] aspect-square rotate-45 -translate-x-1/2 hidden md:block" />
       <div className="absolute top-0 -right-[30%] lg:-right-[10%] rounded-[60px] bg-secondary w-3/5 min-w-[700px] aspect-square rotate-45 -translate-y-1/2 hidden md:block" />
-      <div className="relative container max-w-screen-xl mx-auto px-6 py-8 md:py-20 mb-32">
+      <div className="relative container max-w-screen-xl mx-auto px-6 py-8 md:py-20 mb-20 sm:mb-32">
         <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-8 gap-y-16">
           <div className="flex flex-col gap-6">
             <h1 className="text-5xl sm:text-6xl font-semibold max-w-lg">

@@ -144,7 +144,7 @@ export const Header = () => {
   return (
     <Navbar isBlurred maxWidth="xl" className="shadow-medium z-50" isMenuOpen={isNavbarOpen} onMenuOpenChange={setIsNavbarOpen}>
       <NavbarContent>
-        <NavbarMenuToggle className="sm:hidden" aria-label="Toggle navigation" />
+        {isSignedIn && <NavbarMenuToggle className="sm:hidden" aria-label="Toggle navigation" />}
         <NavbarBrand>
           <NextLink href="/">
             <LogoIcon viewBox="0 0 90 22" />
