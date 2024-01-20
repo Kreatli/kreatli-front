@@ -6,6 +6,7 @@ const nextConfig = {
   },
   env: {
     API_URL: process.env.API_URL,
+    GTM_ID: process.env.GTM_ID,
   },
   swcMinify: false,
   webpack(config) {
