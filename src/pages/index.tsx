@@ -11,7 +11,7 @@ export default function HomePage() {
   return (
     <>
       <Head>
-        <title>Home | Kreatli</title>
+        <title>Professional social media platform for YouTube | Kreatli</title>
         <meta name="description" content="Kreatli" />
       </Head>
       {isSignedIn ? <Feed /> : <Home />}

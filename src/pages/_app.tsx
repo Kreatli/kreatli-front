@@ -31,7 +31,7 @@ export default function App({ Component, pageProps }: AppProps) {
     <>
       <Head>
         <title>Kreatli</title>
-        <meta name="description" content="Kreatli - " />
+        <meta name="description" content="Kreatli is a place where Editors, Designers, and Producers find YouTube Creators to work with and build a professional network." />
         <meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1.0, user-scalable=no" />
       </Head>
       <QueryClientProvider client={queryClient}>
