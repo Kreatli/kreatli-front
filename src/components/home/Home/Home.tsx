@@ -58,7 +58,7 @@ export const Home = () => {
           <TextLinear>Glimpse into Kreatli</TextLinear> — a unified platform
         </h2>
       </section>
-      <section className="grid grid-cols-2 gap-x-20 items-center container max-w-screen-xl mx-auto px-6 mb-40">
+      <section className="grid grid-cols-1 sm:grid-cols-2 gap-x-20 items-center container max-w-screen-xl mx-auto px-6 mb-40">
         <div className="flex flex-col gap-4 max-w-[480px]">
           <Chip variant="flat" color="secondary" classNames={{ content: 'font-semibold' }}>
             Job search
@@ -71,14 +71,14 @@ export const Home = () => {
           </p>
         </div>
         <DesktopFrame>
-          <Video src="/videos/chat.mp4" className="scale-85" />
+          <Video src="/videos/chat.mp4" className="scale-85 aspect-[4/3]" />
         </DesktopFrame>
       </section>
-      <section className="grid grid-cols-2 gap-x-20 items-center container max-w-screen-xl mx-auto px-6 mb-40">
+      <section className="grid grid-cols-1 sm:grid-cols-2 gap-x-20 items-center container max-w-screen-xl mx-auto px-6 mb-40">
         <DesktopFrame>
-          <Video src="/videos/feed.mp4" />
+          <Video src="/videos/feed.mp4" className="aspect-[4/3]" />
         </DesktopFrame>
-        <div className="flex flex-col gap-4 max-w-[480px] ml-auto">
+        <div className="-order-1 sm:order-1 flex flex-col gap-4 max-w-[480px] sm:ml-auto">
           <Chip variant="flat" color="secondary" classNames={{ content: 'font-semibold' }}>
             Kreatli feed
           </Chip>
@@ -90,7 +90,7 @@ export const Home = () => {
           </p>
         </div>
       </section>
-      <section className="grid grid-cols-2 gap-x-20 items-center container max-w-screen-xl mx-auto px-6 mb-40">
+      <section className="grid grid-cols-1 sm:grid-cols-2 gap-x-20 items-center container max-w-screen-xl mx-auto px-6 mb-40">
         <div className="flex flex-col gap-4 max-w-[480px]">
           <Chip variant="flat" color="secondary" classNames={{ content: 'font-semibold' }}>
             Tier and point system
@@ -103,7 +103,7 @@ export const Home = () => {
           </p>
         </div>
         <DesktopFrame>
-          <Video src="/videos/dashboard.mp4" className="scale-[1.01]" />
+          <Video src="/videos/dashboard.mp4" className="scale-[1.01] aspect-[4/3]" />
         </DesktopFrame>
       </section>
       <section className="relative py-32 mb-40">
@@ -116,8 +116,8 @@ export const Home = () => {
               Join the <br /><TextLinear>Community</TextLinear>
             </h2>
           </div>
-          <div className="grid grid-cols-2 gap-8">
-            <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <Card>
                 <CardHeader className="block p-8">
                   <span className="text-lg font-semibold">For</span>
@@ -144,7 +144,7 @@ export const Home = () => {
                 />
               </div>
             </div>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <Card>
                 <CardHeader className="block p-8">
                   <span className="text-lg font-semibold">For</span>
@@ -176,7 +176,7 @@ export const Home = () => {
         <div className="absolute inset-0 bg-[url('/logo-k-light.svg')] dark:bg-[url('/logo-k-dark.svg')] bg-[length:80px] sm:bg-[length:120px] bg-repeat-space -z-10 pointer-events-none" />
       </section>
       <section className="grid grid-cols-2 mb-40">
-        <div className="relative">
+        <div className="hidden sm:block relative">
           <Image
             radius="none"
             src={backgroundImage.src}

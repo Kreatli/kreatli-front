@@ -46,11 +46,11 @@ export const Hero = () => {
           </div>
           <div className="relative lg:pr-16">
             <DesktopFrame>
-              <Video src="/videos/job-offers.mp4" className="scale-110" />
+              <Video src="/videos/job-offers.mp4" className="scale-110 w-full aspect-[4/3]" loading="eager" />
             </DesktopFrame>
             <div className="absolute -bottom-16 right-0 hidden lg:block">
               <MobileFrame>
-                <Video src="/videos/chat-mobile.mp4" className="w-36 rounded-2xl" />
+                <Video src="/videos/chat-mobile.mp4" className="w-36 rounded-2xl aspect-[9/20]" loading="eager" />
               </MobileFrame>
             </div>
           </div>

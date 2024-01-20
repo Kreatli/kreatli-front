@@ -5,6 +5,7 @@ interface Props {
   width?: number;
   height?: number;
   className?: string;
+  loading?: 'eager' | 'lazy';
 }
 
 const observerOptions = {
@@ -12,9 +13,9 @@ const observerOptions = {
   threshold: 0,
 };
 
-export const Video = ({ src, className, height, width }: Props) => {
+export const Video = ({ src, className, height, width, loading = 'lazy' }: Props) => {
   const videoRef = React.useRef<HTMLVideoElement>(null);
-  const [shouldRender, setShouldRender] = React.useState(false);
+  const [shouldRender, setShouldRender] = React.useState(loading === 'eager');
 
   React.useEffect(() => {
     const target = videoRef.current;
@@ -40,6 +41,7 @@ export const Video = ({ src, className, height, width }: Props) => {
       width={width}
       height={height}
       className={className}
+      playsInline
       autoPlay
       loop
       muted
