@@ -5,12 +5,10 @@ import { InfiniteData, useMutation, useQueryClient } from 'react-query';
 import { useImagesUpload } from '../../../hooks/useImagesUpload';
 import { useNotifications } from '../../../hooks/useNotifications';
 import { usePostsFilters } from '../../../hooks/usePostsFilters';
-import { useSession } from '../../../hooks/useSession';
 import { requestPostCreation, requestPostEdit } from '../../../services/feed';
 import { Feed } from '../../../typings/feed';
 import { Media } from '../../../typings/media';
 import { getErrorMessage } from '../../../utils/getErrorMessage';
-import { ProfileUnverifiedTooltip } from '../../profile/Profile/ProfileUnverifiedTooltip';
 import { Icon } from '../../various/Icon';
 import { ImagePreview } from '../../various/ImagePreview';
 import { TextEditor } from '../../various/TextEditor';
@@ -39,7 +37,6 @@ export const CreatePost = ({ defaultValue, onEdit }: Props) => {
   const [isVideoModalOpen, setIsVideoModalOpen] = React.useState(false);
   const [videoIds, setVideoIds] = React.useState<string[]>(defaultVideoIds);
 
-  const { currentUser } = useSession();
   const { images, getInputProps, getRootProps, removeImage, setImages } = useImagesUpload(defaultImageEntries);
   const { pushNotification } = useNotifications();
   const queryClient = useQueryClient();
@@ -213,7 +210,7 @@ export const CreatePost = ({ defaultValue, onEdit }: Props) => {
                 isIconOnly
                 isLoading={isEditing}
                 radius="full"
-                isDisabled={content.trim() === '' || !currentUser?.isVerified}
+                isDisabled={content.trim() === ''}
                 color="secondary"
                 variant="light"
                 startContent={!isEditing && <Icon icon="send" />}
@@ -221,29 +218,27 @@ export const CreatePost = ({ defaultValue, onEdit }: Props) => {
               />
             )}
             {!isEditMode && (
-              <ProfileUnverifiedTooltip>
-                <Dropdown>
-                  <DropdownTrigger>
-                    <Button
-                      isIconOnly
-                      isLoading={isCreating}
-                      radius="full"
-                      isDisabled={content.trim() === '' || !currentUser?.isVerified}
-                      color="secondary"
-                      variant="light"
-                      startContent={!isCreating && <Icon icon="send" />}
-                    />
-                  </DropdownTrigger>
-                  <DropdownMenu variant="flat" onAction={handlePublishPost}>
-                    <DropdownItem key="post">
-                      Post
-                    </DropdownItem>
-                    <DropdownItem key="feedbackPost" color="secondary">
-                      Feedback Post
-                    </DropdownItem>
-                  </DropdownMenu>
-                </Dropdown>
-              </ProfileUnverifiedTooltip>
+              <Dropdown>
+                <DropdownTrigger>
+                  <Button
+                    isIconOnly
+                    isLoading={isCreating}
+                    radius="full"
+                    isDisabled={content.trim() === ''}
+                    color="secondary"
+                    variant="light"
+                    startContent={!isCreating && <Icon icon="send" />}
+                  />
+                </DropdownTrigger>
+                <DropdownMenu variant="flat" onAction={handlePublishPost}>
+                  <DropdownItem key="post">
+                    Post
+                  </DropdownItem>
+                  <DropdownItem key="feedbackPost" color="secondary">
+                    Feedback Post
+                  </DropdownItem>
+                </DropdownMenu>
+              </Dropdown>
             )}
           </div>
         </CardBody>
