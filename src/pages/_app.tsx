@@ -1,6 +1,7 @@
 import '../styles/globals.scss';
 import 'react-image-crop/dist/ReactCrop.css';
 
+import { GoogleTagManager } from '@next/third-parties/google';
 import { NextUIProvider } from '@nextui-org/react';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
@@ -47,6 +48,7 @@ export default function App({ Component, pageProps }: AppProps) {
           <DashboardTiersModal />
         </NextUIProvider>
       </QueryClientProvider>
+      {process.env.GTM_ID && <GoogleTagManager gtmId={process.env.GTM_ID} />}
     </>
   );
 }
