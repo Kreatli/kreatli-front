@@ -46,7 +46,9 @@ const AccountActivation = () => {
       return;
     }
 
-    mutate({ token: token.toString() });
+    if (!isLoading) {
+      mutate({ token: token.toString() });
+    }
   }, [isLoading, isSignedIn, mutate, router]);
 
   if (isSignedIn) {
