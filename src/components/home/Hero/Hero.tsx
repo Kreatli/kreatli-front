@@ -21,7 +21,7 @@ export const Hero = () => {
             <h1 className="text-5xl sm:text-6xl font-semibold max-w-lg">
               <TextLinear>Connecting</TextLinear> YouTube Creators and Professionals
             </h1>
-            <p className="text-lg text-foreground-400 sm:w-11/12">
+            <p className="text-lg text-foreground-500 sm:w-11/12">
               {/* eslint-disable-next-line max-len */}
               Kreatli brings YouTube Creators and Professionals together, empowering their collaboration and success in a vibrant community designed for growth and creativity
             </p>

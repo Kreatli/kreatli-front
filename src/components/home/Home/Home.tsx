@@ -66,7 +66,7 @@ export const Home = () => {
           <h2 className="text-4xl font-semibold leading-tight">
             <TextLinear>Collaborate</TextLinear> <br />Seamlessly
           </h2>
-          <p className="text-lg text-foreground-400 max-w-[480px]">
+          <p className="text-lg text-foreground-500 max-w-[480px]">
             Explore a world of exciting job opportunities with Kreatli&apos;s powerful job search feature. Designed for seamless collaboration, it connects professionals and creators, making it effortless to find the perfect match for your next venture.
           </p>
         </div>
@@ -85,7 +85,7 @@ export const Home = () => {
           <h2 className="text-4xl font-semibold leading-tight">
             Fuel Your <br /><TextLinear>Creativity</TextLinear>
           </h2>
-          <p className="text-lg text-foreground-400">
+          <p className="text-lg text-foreground-500">
             Immerse yourself in our vibrant community. The Kreatli Feed keeps you in the loop on the latest trends, collaborations, and opportunities. Stay inspired and informed about the buzzing activities within Kreatli.
           </p>
         </div>
@@ -98,7 +98,7 @@ export const Home = () => {
           <h2 className="text-4xl font-semibold leading-tight">
             Recognize Your <br /><TextLinear>Progress</TextLinear>
           </h2>
-          <p className="text-lg text-foreground-400 max-w-[480px]">
+          <p className="text-lg text-foreground-500 max-w-[480px]">
             Explore a world of exciting job opportunities with Kreatli&apos;s powerful job search feature. Designed for seamless collaboration, it connects professionals and creators, making it effortless to find the perfect match for your next venture.
           </p>
         </div>

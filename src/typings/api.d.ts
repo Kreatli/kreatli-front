@@ -68,6 +68,7 @@ export namespace Api {
     | '/auth/reset-password'
     | '/auth/change-password'
     | '/upload/image'
+    | '/contact'
     | '/upload/file'
     | '/user/update-youtube-info'
     | '/user/:id/invitation'
@@ -244,6 +245,11 @@ export namespace Api {
     '/notifications/mark-all-read': {};
     '/buy-points': {
       points: number;
+    };
+    '/contact': {
+      email: string;
+      name: string;
+      message: string;
     };
   }
 
