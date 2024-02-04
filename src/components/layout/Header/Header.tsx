@@ -37,10 +37,10 @@ export const Header = () => {
         label: 'Dashboard',
         href: '/dashboard',
       },
-      {
+      ...(currentUser?.role === 'admin' ? [{
         label: 'Admin panel',
         href: '/admin',
-      },
+      }] : []),
     ] : []),
   ];
 
