@@ -47,6 +47,10 @@ export namespace User {
     }[];
   }
 
+  export interface Admin extends Base {
+    role: 'admin';
+  }
+
   export interface Creator extends Base {
     role: 'creator';
     youtubeUrl: string;
@@ -96,5 +100,5 @@ export namespace User {
     lastUpdateAt: Date;
   }
 
-  export type Type = Professional | Creator;
+  export type Type = Professional | Creator | Admin;
 }

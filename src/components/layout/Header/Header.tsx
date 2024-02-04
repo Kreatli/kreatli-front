@@ -1,4 +1,4 @@
-import { Avatar, Button, Dropdown, DropdownItem, DropdownMenu, DropdownSection, DropdownTrigger, Link, Navbar, NavbarBrand, NavbarContent, NavbarItem, NavbarMenu, NavbarMenuItem, NavbarMenuToggle, useDisclosure } from '@nextui-org/react';
+import { Avatar, Badge, Button, Dropdown, DropdownItem, DropdownMenu, DropdownSection, DropdownTrigger, Link, Navbar, NavbarBrand, NavbarContent, NavbarItem, NavbarMenu, NavbarMenuItem, NavbarMenuToggle, useDisclosure } from '@nextui-org/react';
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
@@ -36,6 +36,10 @@ export const Header = () => {
       {
         label: 'Dashboard',
         href: '/dashboard',
+      },
+      {
+        label: 'Admin panel',
+        href: '/admin',
       },
     ] : []),
   ];
@@ -149,6 +153,9 @@ export const Header = () => {
           <NextLink href="/">
             <LogoIcon viewBox="0 0 90 22" />
           </NextLink>
+          <Badge content="admin" size="sm" color="secondary" variant="flat">
+            <div className="opacity-0">__</div>
+          </Badge>
         </NavbarBrand>
       </NavbarContent>
       <NavbarContent justify="center" className="hidden sm:flex">

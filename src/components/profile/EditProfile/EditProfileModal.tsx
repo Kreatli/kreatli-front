@@ -27,9 +27,8 @@ export const EditProfileModal = ({ isOpen, onClose }: Props) => {
       <ModalContent>
         <ModalHeader>Edit Profile</ModalHeader>
         <ModalBody className="pt-0">
-          {currentUser.role === 'creator'
-            ? <EditCreatorProfileForm user={currentUser} onSuccess={onClose} onCancel={onClose} />
-            : <EditProfessionalProfileForm user={currentUser} onSuccess={onClose} onCancel={onClose} />}
+          {currentUser.role === 'creator' && <EditCreatorProfileForm user={currentUser} onSuccess={onClose} onCancel={onClose} />}
+          {currentUser.role === 'professional' && <EditProfessionalProfileForm user={currentUser} onSuccess={onClose} onCancel={onClose} />}
         </ModalBody>
       </ModalContent>
     </Modal>

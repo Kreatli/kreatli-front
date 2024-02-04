@@ -58,7 +58,8 @@ export namespace Api {
     | '/chat-requests'
     | '/dashboard'
     | '/leaderboard'
-    | '/notifications';
+    | '/notifications'
+    | '/unverified-users';
 
   export type Post =
     | '/auth/signup-creator'
@@ -88,7 +89,9 @@ export namespace Api {
     | '/post/:id/comment/:id/like'
     | '/chat/:id/messages/read'
     | '/notifications/mark-all-read'
-    | '/buy-points';
+    | '/buy-points'
+    | '/unverified-users/:id/accept'
+    | '/unverified-users/:id/reject';
 
   export type Put =
     | '/post/:id'
@@ -196,7 +199,12 @@ export namespace Api {
       notifications: Notifications.Notification[];
       notificationsCount: number;
       unreadNotificationsCount: number;
-    }
+    };
+    '/unverified-users': {
+      users: (User.ShortInfo & {
+        isEmailVerified: boolean;
+      })[];
+    };
   }
 
   export interface PostPayload {
@@ -251,6 +259,9 @@ export namespace Api {
       name: string;
       message: string;
     };
+    '/unverified-users/:id/reject': {
+      message: string;
+    };
   }
 
   export interface PostResponse {
@@ -293,6 +304,8 @@ export namespace Api {
     '/post/:id/comment/:id/like': Feed.Post;
     '/chat/:id/messages/read': undefined;
     '/buy-points': { paymentLink: string };
+    '/unverified-users/:id/accept': User.Type;
+    '/unverified-users/:id/reject': { message: string };
   }
 
   export interface PutPayload {

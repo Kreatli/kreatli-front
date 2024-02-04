@@ -29,9 +29,15 @@ const Profile = () => {
         <title>{pageTitle}</title>
         <meta name="description" content="Kreatli" />
       </Head>
-      {user?.role === 'creator'
-        ? <CreatorProfile userId={userId} />
-        : <ProfessionalProfile userId={userId} />}
+      {user?.role === 'creator' && <CreatorProfile userId={userId} />}
+      {user?.role === 'professional' && <ProfessionalProfile userId={userId} />}
+      {user?.role === 'admin' && (
+        <div className="max-w-screen-lg mx-auto">
+          <pre className="overflow-auto">
+            <code>{JSON.stringify(user, null, 2)}</code>
+          </pre>
+        </div>
+      )}
     </>
   );
 };

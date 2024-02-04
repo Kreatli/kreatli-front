@@ -59,6 +59,7 @@ export const AddComment = () => {
   return (
     <form
       className="flex w-full gap-4 items-center z-10"
+      noValidate
       onSubmit={handleSubmit}
     >
       <Avatar src={currentUser?.avatarUrl} className="shrink-0" />
@@ -74,6 +75,7 @@ export const AddComment = () => {
         <Button
           type="submit"
           isLoading={isLoading}
+          isDisabled={comment.trim() === '' || currentUser?.role === 'admin'}
           startContent={!isLoading && <Icon icon="send" />}
           isIconOnly
           variant="light"

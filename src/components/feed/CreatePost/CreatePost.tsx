@@ -5,6 +5,7 @@ import { InfiniteData, useMutation, useQueryClient } from 'react-query';
 import { useImagesUpload } from '../../../hooks/useImagesUpload';
 import { useNotifications } from '../../../hooks/useNotifications';
 import { usePostsFilters } from '../../../hooks/usePostsFilters';
+import { useSession } from '../../../hooks/useSession';
 import { requestPostCreation, requestPostEdit } from '../../../services/feed';
 import { Feed } from '../../../typings/feed';
 import { Media } from '../../../typings/media';
@@ -41,6 +42,7 @@ export const CreatePost = ({ defaultValue, onEdit }: Props) => {
   const { pushNotification } = useNotifications();
   const queryClient = useQueryClient();
   const { filter } = usePostsFilters();
+  const { currentUser } = useSession();
 
   const { isLoading: isCreating, mutate: createPost } = useMutation(requestPostCreation, {
     onSuccess: () => {
@@ -224,7 +226,7 @@ export const CreatePost = ({ defaultValue, onEdit }: Props) => {
                     isIconOnly
                     isLoading={isCreating}
                     radius="full"
-                    isDisabled={content.trim() === ''}
+                    isDisabled={content.trim() === '' || currentUser?.role === 'admin'}
                     color="secondary"
                     variant="light"
                     startContent={!isCreating && <Icon icon="send" />}

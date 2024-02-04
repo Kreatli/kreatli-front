@@ -103,7 +103,7 @@ export const ConnectionButton = ({ userId, inviteeName, hasConnection, hasInvita
             color="secondary"
             isIconOnly={isMobile}
             startContent={<Icon icon="userPlus" size={20} />}
-            isDisabled={isExceededLimits}
+            isDisabled={isExceededLimits || currentUser.role === 'admin'}
             onClick={onOpen}
           >
             {!isMobile && 'Connect'}

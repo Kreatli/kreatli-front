@@ -29,7 +29,7 @@ export const JobsCreation = () => {
   const [selectedKeys, setSelectedKeys] = React.useState(['0']);
   const [isFilledByStep, setIsFilledByStep] = React.useState([false, false, false]);
 
-  const { currentUserId } = useSession();
+  const { currentUser, currentUserId } = useSession();
   const router = useRouter();
   const queryClient = useQueryClient();
   const pushNotification = useNotifications((state) => state.pushNotification);
@@ -164,7 +164,9 @@ export const JobsCreation = () => {
                   <Button variant="flat" color="secondary" onClick={handleNext}>Next</Button>
                 )}
                 {index === steps.length - 1 && (
-                  <Button type="submit" color="secondary" isLoading={isLoading}>Create job posting</Button>
+                  <Button type="submit" color="secondary" disabled={currentUser?.role === 'admin'} isLoading={isLoading}>
+                    Create job posting
+                  </Button>
                 )}
               </div>
             </AccordionItem>
