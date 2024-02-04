@@ -28,6 +28,7 @@ export const FileUploader = <T extends FieldValues>({ control, name, status, rul
         url: data.secure_url,
         name: `${data.original_filename}.${data.format}`,
         size: data.bytes,
+        format: data.format,
       });
       field.onBlur();
     },
