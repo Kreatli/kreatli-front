@@ -18,7 +18,8 @@ export const RejectVerificationModal = ({ isOpen, userId, onClose }: Props) => {
   const [reason, setReason] = React.useState('');
 
   const { mutate, isLoading } = useMutation(rejectUserVerification, {
-    onSuccess: () => {
+    onSuccess: ({ message }) => {
+      pushNotification({ message, color: 'success', icon: 'success' });
       onClose();
     },
     onError: (error) => {

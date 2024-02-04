@@ -19,6 +19,7 @@ export const AcceptVerificationModal = ({ isOpen, userId, onClose }: Props) => {
 
   const { mutate, isLoading } = useMutation(acceptUserVerification, {
     onSuccess: () => {
+      pushNotification({ message: 'The user was marked as verified!', color: 'success', icon: 'success' });
       onClose();
       queryClient.invalidateQueries('unverifiedUsers');
     },
