@@ -11,5 +11,5 @@ export const acceptUserVerification = async (id: Common.Id) => {
 };
 
 export const rejectUserVerification = async ([id, data]: [Common.Id, Api.PostPayload['/unverified-users/:id/reject']]) => {
-  return api.post(`/unverified-users/${id}/accept`, data).then((res) => res.data);
+  return api.post(`/unverified-users/${id}/reject`, data).then((res) => res.data);
 };
