@@ -196,13 +196,13 @@ export const Home = () => {
           </article>
           <article className="mb-6">
             <div className="text-6xl font-bold text-secondary mb-2">2</div>
-            <h3 className="text-xl font-semibold mb-2">Unified Platform</h3>
-            <p className="text-lg text-foreground-500 max-w-[500px]">End the endless search across Reddit, Twitter, Discord, Fiverr, or Upwork. Find jobs and opportunities, all in one convenient place.</p>
+            <h3 className="text-xl font-semibold mb-2">Community Engagement</h3>
+            <p className="text-lg text-foreground-500 max-w-[500px]">Join a network of like-minded professionals, share experiences, receive valuable feedback, and collaborate on creative projects.</p>
           </article>
           <article>
             <div className="text-6xl font-bold text-secondary mb-2">3</div>
-            <h3 className="text-xl font-semibold mb-2">Unified Platform</h3>
-            <p className="text-lg text-foreground-500 max-w-[500px]">End the endless search across Reddit, Twitter, Discord, Fiverr, or Upwork. Find jobs and opportunities, all in one convenient place.</p>
+            <h3 className="text-xl font-semibold mb-2">Compete Fairly</h3>
+            <p className="text-lg text-foreground-500 max-w-[500px]">Bid farewell to battles with bots. Here you compete with other human professionals, ensuring a level playing field.</p>
           </article>
         </div>
       </section>
