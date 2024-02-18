@@ -161,7 +161,7 @@ export const AvatarUploader = <T extends FieldValues>({ control, name, rules, st
   return (
     <>
       {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-      <label className={classNames} {...getRootProps()}>
+      <div className={classNames} {...getRootProps()}>
         <input {...getInputProps()} />
         {uploadedImageUrl && (
           <Image
@@ -183,7 +183,7 @@ export const AvatarUploader = <T extends FieldValues>({ control, name, rules, st
               <Icon icon="addImage" size={20} />
             </span>
           )}
-      </label>
+      </div>
       <Modal
         isOpen={isOpen}
         placement="center"
