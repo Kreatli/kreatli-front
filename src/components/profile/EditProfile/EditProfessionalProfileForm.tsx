@@ -166,12 +166,12 @@ export const EditProfessionalProfileForm = ({ user, onCancel, onSuccess }: Props
                 startContent={<Icon className="text-gray-400" icon="discord" />}
                 endContent={<span className="pointer-events-none text-small text-gray-400">optional</span>}
                 aria-label="Discord Username"
-                placeholder="username#0000"
+                placeholder="username"
                 defaultValue={user.discordUsername}
                 labelPlacement="outside"
                 isInvalid={!!errors.discordUsername}
                 errorMessage={errors.discordUsername?.message}
-                {...register('discordUsername', VALIDATION_RULES.DISCORD_USERNAME)}
+                {...register('discordUsername')}
               />
             </div>
             <div className="col-span-2 sm:col-span-1">

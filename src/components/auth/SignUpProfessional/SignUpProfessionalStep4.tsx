@@ -47,7 +47,7 @@ export const SignUpProfessionalStep4 = ({ control, errors, register }: Props) =>
               <Input
                 placeholder="Channel/Company"
                 aria-label="Channel/Company"
-                startContent={<Icon className="text-gray-400" icon="building" />}
+                startContent={<Icon className="text-gray-400" icon="building" size={20} />}
                 labelPlacement="outside"
                 defaultValue={companyName}
                 isInvalid={!!errors.experiences?.[index]?.companyName}
@@ -57,7 +57,7 @@ export const SignUpProfessionalStep4 = ({ control, errors, register }: Props) =>
               <Input
                 placeholder="Channel/Company link"
                 aria-label="Channel/Company link"
-                startContent={<Icon className="text-gray-400" icon="link" />}
+                startContent={<Icon className="text-gray-400" icon="link" size={20} />}
                 labelPlacement="outside"
                 defaultValue={companyUrl}
                 isInvalid={!!errors.experiences?.[index]?.companyUrl}

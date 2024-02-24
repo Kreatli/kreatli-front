@@ -5,8 +5,9 @@ import { SKILL_LABELS_FOR_PROFESSIONAL, SKILL_LEVEL_LABELS } from '../../../cons
 import { useUser } from '../../../hooks/useUser';
 import { Common } from '../../../typings/common';
 import { User } from '../../../typings/user';
-import { Icon, IconType } from '../../various/Icon';
+import { Icon } from '../../various/Icon';
 import { Tag } from '../../various/Tag';
+import { ProfileDiscordButton } from '../Profile/ProfileDiscordButton';
 import { ProfileHeader } from '../Profile/ProfileHeader';
 import { ProfileHeaderSkeleton } from '../Profile/ProfileHeaderSkeleton';
 import { RecentConnections } from '../RecentConnections';
@@ -19,16 +20,6 @@ interface Props {
 
 export const ProfessionalProfile = ({ userId }: Props) => {
   const { user } = useUser<User.Professional>(userId);
-
-  const socials = React.useMemo(() => {
-    if (!user) return [];
-
-    return [
-      ...(user.instagramUsername ? [{ href: `https://instagram.com/${user.instagramUsername}`, icon: 'instagram' }] : []),
-      ...(user.twitterUrl ? [{ href: user.twitterUrl, icon: 'twitter' }] : []),
-      ...(user.discordUsername ? [{ href: 'https://discord.com', icon: 'discord' }] : []),
-    ] as { href: string; icon: IconType }[];
-  }, [user]);
 
   return (
     <div className="container max-w-screen-lg mx-auto px-6">
@@ -53,13 +44,23 @@ export const ProfessionalProfile = ({ userId }: Props) => {
             )
             : <Skeleton className="rounded-xl w-full h-24" />}
         </div>
-        <div className="flex flex-col gap-2">
-          {socials.map(({ href, icon }) => (
-            <Link key={href} href={href} color="foreground" target="_blank">
-              <Icon icon={icon} size="2rem" />
-            </Link>
-          ))}
-        </div>
+        {user && (
+          <div className="flex flex-col gap-2">
+            {user.instagramUsername && (
+              <Link href={`https://instagram.com/${user.instagramUsername}`} color="foreground" target="_blank">
+                <Icon icon="instagram" size="2rem" />
+              </Link>
+            )}
+            {user.discordUsername && (
+              <ProfileDiscordButton discordUsername={user.discordUsername} />
+            )}
+            {user.twitterUrl && (
+              <Link href={user.twitterUrl} color="foreground" target="_blank">
+                <Icon icon="twitter" size="2rem" />
+              </Link>
+            )}
+          </div>
+        )}
       </div>
       <h3 className="text-2xl font-semibold mt-8 mb-2">
         {user ? 'Experience' : <Skeleton className="rounded-xl w-48 h-8" />}

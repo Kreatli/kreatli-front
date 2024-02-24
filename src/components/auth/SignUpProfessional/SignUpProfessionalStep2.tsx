@@ -47,7 +47,7 @@ export const SignUpProfessionalStep2 = ({ control, errors, register }: Props) =>
         <Input
           startContent={<Icon className="text-gray-400" icon="twitter" />}
           endContent={<span className="pointer-events-none text-small text-gray-400">optional</span>}
-          aria-label="Twitter Link"
+          aria-label="X (Twitter) Link"
           placeholder="https://twitter.com/myaccount"
           labelPlacement="outside"
           isInvalid={!!errors.twitterUrl}
@@ -58,11 +58,11 @@ export const SignUpProfessionalStep2 = ({ control, errors, register }: Props) =>
           startContent={<Icon className="text-gray-400" icon="discord" />}
           endContent={<span className="pointer-events-none text-small text-gray-400">optional</span>}
           aria-label="Discord Username"
-          placeholder="username#0000"
+          placeholder="username"
           labelPlacement="outside"
           isInvalid={!!errors.discordUsername}
           errorMessage={errors.discordUsername?.message}
-          {...register('discordUsername', VALIDATION_RULES.DISCORD_USERNAME)}
+          {...register('discordUsername')}
         />
         <Input
           startContent={<Icon className="text-gray-400" icon="instagram" />}
