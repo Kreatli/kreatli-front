@@ -23,7 +23,7 @@ export const Notifications = (props: Props) => {
   const shouldShowEmptyState = notifications.length === 0;
   const hasMoreNotifications = notifications.length < totalCount;
 
-  const { mutate } = useMutation(requestNotificationsMarkAsRead, {
+  const { mutate, isLoading: isDisabled } = useMutation(requestNotificationsMarkAsRead, {
     onSuccess: onReadAll,
   });
 
@@ -44,7 +44,11 @@ export const Notifications = (props: Props) => {
         {!shouldShowEmptyState && (
           <LazyList hasMore={hasMoreNotifications} isLoading={isLoading} onLoadMore={onLoadMore}>
             {notifications.map((notification) => (
-              <Notification key={notification._id} notification={notification} />
+              <Notification
+                key={notification._id}
+                notification={notification}
+                isDisabled={isDisabled}
+              />
             ))}
           </LazyList>
         )}

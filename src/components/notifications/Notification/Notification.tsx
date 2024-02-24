@@ -10,13 +10,18 @@ import { NotificationContent } from './NotificationContent';
 
 interface Props {
   notification: Notifications.Notification;
+  isDisabled: boolean;
 }
 
-export const Notification = ({ notification }: Props) => {
+export const Notification = ({ notification, isDisabled = false }: Props) => {
   const { _id: id, isRead, creationDate } = notification;
   const { mutate } = useMutation(requestNotificationUpdate);
 
   const handleClick = () => {
+    if (isDisabled) {
+      return;
+    }
+
     mutate([id, { isRead: !isRead }]);
   };
 
