@@ -2,7 +2,6 @@ const EMAIL_PATTERN = /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(
 const URL_PATTERN = /^(http(s)?:\/\/)[\w.-]+(?:\.[\w.-]+)+[\w\-._~:/?#[\]@!$&'()*+,;=.]+$/;
 const YOUTUBE_CHANNEL_URL_PATTERN = /^https?:\/\/(?:www\.)?youtube\.com\/(?:channel|c|user\/\S+|@[\w-]+)\/?[.a-zA-Z0-9_-]{0,}$/;
 const DISCORD_USERNAME_PATTERN = /^.{3,32}#[0-9]{4}$/;
-const INSTAGRAM_USERNAME_PATTERN = /^@[\w.\d-]{1,30}$/;
 const TWITTER_ACCOUNT_URL_PATTERN = /(https:\/\/twitter.com\/(?![a-zA-Z0-9_]+\/)([a-zA-Z0-9_]+))/g;
 
 const getDescriptionRulesByMinLength = (minLength: number) => ({
@@ -89,7 +88,6 @@ export const VALIDATION_RULES = {
     REQUIRED: { required: true, ...YOUTUBE_CHANNEL_RULES },
     OPTIONAL: YOUTUBE_CHANNEL_RULES,
   },
-  INSTAGRAM_USERNAME: { pattern: { value: INSTAGRAM_USERNAME_PATTERN, message: 'Incorrect Instagram username' } },
   DISCORD_USERNAME: { pattern: { value: DISCORD_USERNAME_PATTERN, message: 'Incorrect Discord username' } },
   TWITTER_ACCOUNT_URL: { pattern: { value: TWITTER_ACCOUNT_URL_PATTERN, message: 'The URL must point to your Twitter account' } },
 };

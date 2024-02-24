@@ -28,7 +28,7 @@ const DEFAULT_VALUES: Job.OfferReviewPayload = {
 type DefaultValues = typeof DEFAULT_VALUES;
 
 export const JobReviewForm = ({ jobOfferId, jobOfferStatus, onCancel, onSuccess }: Props) => {
-  const { register, handleSubmit, formState: { errors } } = useForm({ defaultValues: DEFAULT_VALUES, mode: 'onBlur' });
+  const { register, handleSubmit, formState: { errors } } = useForm({ defaultValues: DEFAULT_VALUES, mode: 'onTouched' });
   const { currentUser } = useSession();
   const isCreator = currentUser?.role === 'creator';
   const pushNotification = useNotifications((state) => state.pushNotification);

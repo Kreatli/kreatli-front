@@ -40,7 +40,7 @@ export const JobsCreation = () => {
     handleSubmit,
     register,
     trigger,
-  } = useForm({ defaultValues: DEFAULT_VALUES, mode: 'onBlur' });
+  } = useForm({ defaultValues: DEFAULT_VALUES, mode: 'onTouched' });
 
   const isValidByStep = FIELDS_BY_STEP.map((fields) => !fields.some((field) => errors[field]));
 

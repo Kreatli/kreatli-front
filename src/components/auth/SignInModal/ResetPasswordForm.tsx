@@ -20,7 +20,7 @@ const DEFAULT_VALUES = {
 type DefaultValues = typeof DEFAULT_VALUES;
 
 export const ResetPasswordForm = ({ onClick, onSuccess }: Props) => {
-  const { register, handleSubmit, formState: { errors }, setError } = useForm({ defaultValues: DEFAULT_VALUES, mode: 'onBlur' });
+  const { register, handleSubmit, formState: { errors }, setError } = useForm({ defaultValues: DEFAULT_VALUES, mode: 'onTouched' });
   const pushNotification = useNotifications((state) => state.pushNotification);
   const { mutate, isLoading } = useMutation(requestResetPassword, {
     onSuccess: () => {

@@ -21,7 +21,7 @@ export const ContactForm = () => {
 
   const { register, handleSubmit, reset, formState: { errors } } = useForm({
     defaultValues: initialValues,
-    mode: 'onBlur',
+    mode: 'onTouched',
   });
 
   const { isLoading, mutate } = useMutation(requestContactFormSubmission, {

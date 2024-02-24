@@ -55,7 +55,7 @@ export const EditCreatorProfileForm = ({ user, onCancel, onSuccess }: Props) => 
     handleSubmit,
     formState: { errors },
     register,
-  } = useForm({ mode: 'onBlur', defaultValues });
+  } = useForm({ mode: 'onTouched', defaultValues });
 
   const defaultSelectedCountry = user.country
     ? new Set([user.country])

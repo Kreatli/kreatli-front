@@ -24,7 +24,7 @@ interface Props {
 
 export const ChangePasswordForm = ({ token, onSuccess, onError }: Props) => {
   const pushNotification = useNotifications((state) => state.pushNotification);
-  const { register, handleSubmit, formState: { errors } } = useForm({ defaultValues: DEFAULT_VALUES, mode: 'onBlur' });
+  const { register, handleSubmit, formState: { errors } } = useForm({ defaultValues: DEFAULT_VALUES, mode: 'onTouched' });
   const { isLoading, mutate } = useMutation(requestChangePassword, {
     onSuccess: () => {
       onSuccess();

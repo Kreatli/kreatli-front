@@ -23,7 +23,7 @@ type DefaultValues = typeof DEFAULT_VALUES;
 
 export const SignInForm = ({ onClick, onSuccess }: Props) => {
   const router = useRouter();
-  const { register, handleSubmit, formState: { errors }, setError } = useForm({ defaultValues: DEFAULT_VALUES, mode: 'onBlur' });
+  const { register, handleSubmit, formState: { errors }, setError } = useForm({ defaultValues: DEFAULT_VALUES, mode: 'onTouched' });
   const { signInMutation: { mutate, isLoading } } = useSession();
   const pushNotification = useNotifications((state) => state.pushNotification);
 

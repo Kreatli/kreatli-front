@@ -23,7 +23,7 @@ const DEFAULT_VALUES = {
 type DefaultValues = typeof DEFAULT_VALUES;
 
 export const InvitationForm = ({ userId, onCancel, onSuccess }: Props) => {
-  const { register, handleSubmit } = useForm({ defaultValues: DEFAULT_VALUES, mode: 'onBlur' });
+  const { register, handleSubmit } = useForm({ defaultValues: DEFAULT_VALUES, mode: 'onTouched' });
   const pushNotification = useNotifications((state) => state.pushNotification);
 
   const { currentUserId } = useSession();

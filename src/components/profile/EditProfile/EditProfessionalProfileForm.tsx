@@ -64,7 +64,7 @@ export const EditProfessionalProfileForm = ({ user, onCancel, onSuccess }: Props
     handleSubmit,
     formState: { errors },
     register,
-  } = useForm({ mode: 'onBlur', defaultValues });
+  } = useForm({ mode: 'onTouched', defaultValues });
 
   const onSubmit = (data: DefaultValues) => {
     const normalizedData = {
@@ -179,12 +179,12 @@ export const EditProfessionalProfileForm = ({ user, onCancel, onSuccess }: Props
                 startContent={<Icon className="text-gray-400" icon="instagram" />}
                 endContent={<span className="pointer-events-none text-small text-gray-400">optional</span>}
                 aria-label="Instagram Profile"
-                placeholder="@myusername"
+                placeholder="myusername"
                 defaultValue={user.instagramUsername}
                 labelPlacement="outside"
                 isInvalid={!!errors.instagramUsername}
                 errorMessage={errors.instagramUsername?.message}
-                {...register('instagramUsername', VALIDATION_RULES.INSTAGRAM_USERNAME)}
+                {...register('instagramUsername')}
               />
             </div>
           </div>

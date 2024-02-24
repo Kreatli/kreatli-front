@@ -68,11 +68,11 @@ export const SignUpProfessionalStep2 = ({ control, errors, register }: Props) =>
           startContent={<Icon className="text-gray-400" icon="instagram" />}
           endContent={<span className="pointer-events-none text-small text-gray-400">optional</span>}
           aria-label="Instagram Profile"
-          placeholder="@myusername"
+          placeholder="myusername"
           labelPlacement="outside"
           isInvalid={!!errors.instagramUsername}
           errorMessage={errors.instagramUsername?.message}
-          {...register('instagramUsername', VALIDATION_RULES.INSTAGRAM_USERNAME)}
+          {...register('instagramUsername')}
         />
       </div>
     </>

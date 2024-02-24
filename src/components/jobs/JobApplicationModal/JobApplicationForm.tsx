@@ -26,7 +26,7 @@ const DEFAULT_VALUES = {
 type DefaultValues = typeof DEFAULT_VALUES;
 
 export const JobApplicationForm = ({ jobOfferId, onCancel, onSuccess }: Props) => {
-  const { register, handleSubmit, formState: { errors } } = useForm({ defaultValues: DEFAULT_VALUES, mode: 'onBlur' });
+  const { register, handleSubmit, formState: { errors } } = useForm({ defaultValues: DEFAULT_VALUES, mode: 'onTouched' });
   const pushNotification = useNotifications((state) => state.pushNotification);
 
   const queryClient = useQueryClient();
