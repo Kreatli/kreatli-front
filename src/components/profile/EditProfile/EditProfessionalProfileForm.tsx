@@ -204,7 +204,7 @@ export const EditProfessionalProfileForm = ({ user, onCancel, onSuccess }: Props
             Provide details about your relevant work experience, including past projects and clients you&apos;ve worked with.
             Be sure to highlight your most impressive work to attract potential clients
           </p>
-          <SignUpProfessionalStep4 control={control} errors={errors} register={register} />
+          <SignUpProfessionalStep4 control={control} errors={errors} />
         </Tab>
         <Tab value="certifications-and-licenses" title="Certifications and Licenses">
           <h2 className="text-medium font-semibold">Certifications and Licenses</h2>
@@ -212,7 +212,7 @@ export const EditProfessionalProfileForm = ({ user, onCancel, onSuccess }: Props
             Provide information about any relevant certifications or licenses you hold.
             This information helps YouTube creators understand your level of expertise.
           </p>
-          <SignUpProfessionalStep5 control={control} errors={errors} register={register} />
+          <SignUpProfessionalStep5 control={control} errors={errors} />
         </Tab>
       </Tabs>
       <div className="flex gap-4 my-4 justify-end">

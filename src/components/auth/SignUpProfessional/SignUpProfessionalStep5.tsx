@@ -1,8 +1,7 @@
 import { Button, Input } from '@nextui-org/react';
 import { nanoid } from 'nanoid';
-import { remove } from 'ramda';
 import React from 'react';
-import { Control, FieldErrors, useController, UseFormRegister } from 'react-hook-form';
+import { Control, FieldErrors, useFieldArray } from 'react-hook-form';
 
 import { VALIDATION_RULES } from '../../../constants/validationRules';
 import { FileUploader } from '../../various/FileUploader';
@@ -11,29 +10,23 @@ import { DEFAULT_CERTIFICATE, DefaultValues } from './constants';
 
 interface Props {
   control: Control<DefaultValues>;
-  register: UseFormRegister<DefaultValues>;
   errors: FieldErrors<DefaultValues>;
 }
 
-export const SignUpProfessionalStep5 = ({ control, errors, register }: Props) => {
-  const { field } = useController({ control, name: 'certificates' });
+export const SignUpProfessionalStep5 = ({ control, errors }: Props) => {
+  const { fields, append, remove } = useFieldArray({ control, name: 'certificates' });
 
   const handleAddMore = () => {
-    field.onChange([
-      ...field.value,
-      { ...DEFAULT_CERTIFICATE, id: nanoid() },
-    ]);
-    field.onBlur();
+    append({ ...DEFAULT_CERTIFICATE, id: nanoid() });
   };
 
   const handleRemove = (index: number) => () => {
-    field.onChange(remove(index, 1, field.value));
-    field.onBlur();
+    remove(index);
   };
 
   return (
     <div className="flex flex-col gap-4">
-      {field.value.map(({ id, name }, index) => (
+      {fields.map(({ id, name }, index) => (
         <div key={id} className="flex items-center gap-4">
           <Input
             label="Certificate's name"
@@ -41,7 +34,7 @@ export const SignUpProfessionalStep5 = ({ control, errors, register }: Props) =>
             placeholder="Adobe Certified Expert in Premiere Pro"
             isInvalid={!!errors.certificates?.[index]?.name}
             errorMessage={errors.certificates?.[index]?.name?.message}
-            {...register(`certificates.${index}.name`, VALIDATION_RULES.SHORT_TEXT)}
+            {...control.register(`certificates.${index}.name`, VALIDATION_RULES.SHORT_TEXT)}
           />
           <div className="flex-initial">
             <FileUploader

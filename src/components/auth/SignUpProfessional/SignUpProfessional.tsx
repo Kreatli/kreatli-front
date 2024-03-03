@@ -113,12 +113,12 @@ export const SignUpProfessional = () => {
     {
       title: 'Step 4 - Experience',
       subtitle: 'Provide details about your relevant work experience, including past projects and clients you\'ve worked with. Be sure to highlight your most impressive work to attract potential clients',
-      render: <SignUpProfessionalStep4 control={control} register={register} errors={errors} />,
+      render: <SignUpProfessionalStep4 control={control} errors={errors} />,
     },
     {
       title: 'Step 5 - Certifications and Licenses (optional)',
       subtitle: 'Provide information about any relevant certifications or licenses you hold. This information helps YouTube creators understand your level of expertise. Keep in mind that we manually verify information you provide!',
-      render: <SignUpProfessionalStep5 control={control} register={register} errors={errors} />,
+      render: <SignUpProfessionalStep5 control={control} errors={errors} />,
     },
   ];
 
