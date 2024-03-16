@@ -21,7 +21,8 @@ export const AcceptVerificationModal = ({ isOpen, userId, onClose }: Props) => {
     onSuccess: () => {
       pushNotification({ message: 'The user was marked as verified!', color: 'success', icon: 'success' });
       onClose();
-      queryClient.invalidateQueries('unverifiedUsers');
+      queryClient.invalidateQueries({ queryKey: ['unverifiedUsers'] });
+      queryClient.invalidateQueries({ queryKey: ['rejectedUsers'] });
     },
     onError: (error) => {
       pushNotification({

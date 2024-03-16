@@ -4,27 +4,24 @@ import React from 'react';
 import { useQuery } from 'react-query';
 
 import { COUNTRY_LABELS } from '../../../constants/countries';
-import { getUnverifiedUsers } from '../../../services/admin';
-import { Api } from '../../../typings/api';
+import { getRejectedUsers } from '../../../services/admin';
 import { Common } from '../../../typings/common';
 import { Icon } from '../../various/Icon';
-import { AcceptVerificationModal } from './AcceptVerificationModal';
-import { RejectVerificationModal } from './RejectVerificationModal';
-import { ResendVerificationModal } from './ResendVerificationModal';
+import { AcceptVerificationModal } from '../UnverifiedUsers/AcceptVerificationModal';
+import { RejectVerificationModal } from '../UnverifiedUsers/RejectVerificationModal';
 
 const LIMIT = 10;
 
-export const UnverifiedUsers = () => {
+export const RejectedUsers = () => {
   const [page, setPage] = React.useState(1);
   const [userId, setUserId] = React.useState<Common.Id | null>(null);
   const [isAcceptModalOpen, setIsAcceptModalOpen] = React.useState(false);
   const [isRejectModalOpen, setIsRejectModalOpen] = React.useState(false);
-  const [isUpdateModalOpen, setIsUpdateModalOpen] = React.useState(false);
 
   const { data, isLoading } = useQuery({
     keepPreviousData: true,
-    queryKey: ['unverifiedUsers', page],
-    queryFn: () => getUnverifiedUsers({ offset: (page - 1) * LIMIT, limit: LIMIT }),
+    queryKey: ['rejectedUsers', page],
+    queryFn: () => getRejectedUsers({ offset: (page - 1) * LIMIT, limit: LIMIT }),
   });
 
   const users = data?.users ?? [];
@@ -40,11 +37,6 @@ export const UnverifiedUsers = () => {
     setIsRejectModalOpen(true);
   };
 
-  const handleUpdate = (id: Common.Id) => () => {
-    setUserId(id);
-    setIsUpdateModalOpen(true);
-  };
-
   const handleAcceptModalClose = () => {
     setUserId(null);
     setIsAcceptModalOpen(false);
@@ -53,11 +45,6 @@ export const UnverifiedUsers = () => {
   const handleRejectModalClose = () => {
     setUserId(null);
     setIsRejectModalOpen(false);
-  };
-
-  const handleUpdateModalClose = () => {
-    setUserId(null);
-    setIsUpdateModalOpen(false);
   };
 
   const dateFormatter = new Intl.DateTimeFormat('en', { dateStyle: 'medium', timeStyle: 'medium' }).format;
@@ -74,16 +61,6 @@ export const UnverifiedUsers = () => {
     />
   );
 
-  const getIsUpdateButtonDisabled = (user: Api.GetResponse['/unverified-users']['users'][number]) => {
-    if (user.isEmailVerified) {
-      return true;
-    }
-
-    const registrationDate = new Date(user.registrationDate);
-
-    return (Date.now() - registrationDate.getTime()) < (3 * 1000 * 60 * 60 * 24);
-  };
-
   return (
     <>
       <Table isHeaderSticky bottomContent={pagination}>
@@ -94,7 +71,7 @@ export const UnverifiedUsers = () => {
           <TableColumn>IS EMAIL VERIFIED</TableColumn>
           <TableColumn>ACTIONS</TableColumn>
         </TableHeader>
-        <TableBody isLoading={isLoading} emptyContent="There are no unverified users">
+        <TableBody isLoading={isLoading} emptyContent="There are no rejected users">
           {users.map((user) => (
             <TableRow key={user._id}>
               <TableCell>
@@ -142,19 +119,6 @@ export const UnverifiedUsers = () => {
                     <Icon icon="check" size={18} />
                   </Button>
                 </Tooltip>
-                <Tooltip content="Resend activation link">
-                  <Button
-                    size="sm"
-                    variant="flat"
-                    color="default"
-                    isIconOnly
-                    isDisabled={getIsUpdateButtonDisabled(user)}
-                    aria-label="Resend verification email"
-                    onClick={handleUpdate(user._id)}
-                  >
-                    <Icon icon="update" size={18} />
-                  </Button>
-                </Tooltip>
               </TableCell>
             </TableRow>
           ))}
@@ -162,7 +126,6 @@ export const UnverifiedUsers = () => {
       </Table>
       <AcceptVerificationModal isOpen={isAcceptModalOpen} userId={userId} onClose={handleAcceptModalClose} />
       <RejectVerificationModal isOpen={isRejectModalOpen} userId={userId} onClose={handleRejectModalClose} />
-      <ResendVerificationModal isOpen={isUpdateModalOpen} userId={userId} onClose={handleUpdateModalClose} />
     </>
   );
 };

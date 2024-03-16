@@ -1,9 +1,9 @@
-import { Button, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, Textarea } from '@nextui-org/react';
+import { Button, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader } from '@nextui-org/react';
 import React from 'react';
 import { useMutation, useQueryClient } from 'react-query';
 
 import { useNotifications } from '../../../hooks/useNotifications';
-import { rejectUserVerification } from '../../../services/admin';
+import { resendActivationLink } from '../../../services/admin';
 import { Common } from '../../../typings/common';
 import { getErrorMessage } from '../../../utils/getErrorMessage';
 
@@ -13,12 +13,11 @@ interface Props {
   onClose: () => void;
 }
 
-export const RejectVerificationModal = ({ isOpen, userId, onClose }: Props) => {
-  const [reason, setReason] = React.useState('');
+export const ResendVerificationModal = ({ isOpen, userId, onClose }: Props) => {
   const { pushNotification } = useNotifications();
   const queryClient = useQueryClient();
 
-  const { mutate, isLoading } = useMutation(rejectUserVerification, {
+  const { mutate, isLoading } = useMutation(resendActivationLink, {
     onSuccess: ({ message }) => {
       pushNotification({ message, color: 'success', icon: 'success' });
       onClose();
@@ -34,26 +33,23 @@ export const RejectVerificationModal = ({ isOpen, userId, onClose }: Props) => {
   });
 
   const handleClick = () => {
-    if (userId && reason.trim() !== '') {
-      mutate([userId, { message: reason }]);
+    if (userId) {
+      mutate(userId);
     }
   };
 
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <ModalContent>
-        <ModalHeader>Are you sure you want to reject user&apos;s verification?</ModalHeader>
+        <ModalHeader>Are you sure you want to resend verification email?</ModalHeader>
         <ModalBody>
-          <Textarea
-            value={reason}
-            label="Reason"
-            placeholder="Please provide a reason for rejecting user's verification"
-            onChange={(event) => setReason(event.target.value)}
-          />
+          <p className="text-small text-foreground-500">
+            The user will get standard post-registration email with a link to activate their profile.
+          </p>
         </ModalBody>
         <ModalFooter>
           <Button variant="light" color="secondary" onClick={onClose}>Cancel</Button>
-          <Button variant="flat" color="secondary" onClick={handleClick} isLoading={isLoading}>Send email</Button>
+          <Button variant="flat" color="secondary" onClick={handleClick} isLoading={isLoading}>Resend email</Button>
         </ModalFooter>
       </ModalContent>
     </Modal>

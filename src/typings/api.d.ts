@@ -59,7 +59,8 @@ export namespace Api {
     | '/dashboard'
     | '/leaderboard'
     | '/notifications'
-    | '/unverified-users';
+    | '/unverified-users'
+    | '/rejected-users';
 
   export type Post =
     | '/auth/signup-creator'
@@ -91,7 +92,8 @@ export namespace Api {
     | '/notifications/mark-all-read'
     | '/buy-points'
     | '/unverified-users/:id/accept'
-    | '/unverified-users/:id/reject';
+    | '/unverified-users/:id/reject'
+    | '/unverified-users/:id/resend-activation-link';
 
   export type Put =
     | '/post/:id'
@@ -127,6 +129,9 @@ export namespace Api {
     } & Pagination.Params;
     '/chat/:id/messages': Pagination.Params;
     '/notifications': Pagination.Params;
+    '/creators': Pagination.Params;
+    '/unverified-users': Pagination.Params;
+    '/rejected-users': Pagination.Params;
   }
 
   export interface GetResponse {
@@ -156,7 +161,12 @@ export namespace Api {
       newTasks: Tasks.Task[];
     };
     '/users': User.ShortInfo[];
-    '/creators': User.Creator[];
+    '/creators': {
+      users: (User.ShortInfo & {
+        registrationDate: string;
+      })[];
+      total: number;
+    };
     '/professionals': {
       professionals: User.Professional[];
       professionalsCount: number;
@@ -203,7 +213,16 @@ export namespace Api {
     '/unverified-users': {
       users: (User.ShortInfo & {
         isEmailVerified: boolean;
+        registrationDate: string;
       })[];
+      total: number;
+    };
+    '/rejected-users': {
+      users: (User.ShortInfo & {
+        isEmailVerified: boolean;
+        registrationDate: string;
+      })[];
+      total: number;
     };
   }
 
@@ -262,6 +281,7 @@ export namespace Api {
     '/unverified-users/:id/reject': {
       message: string;
     };
+    '/unverified-users/:id/resend-activation-link': {};
   }
 
   export interface PostResponse {
@@ -306,6 +326,7 @@ export namespace Api {
     '/buy-points': { paymentLink: string };
     '/unverified-users/:id/accept': User.Type;
     '/unverified-users/:id/reject': { message: string };
+    '/unverified-users/:id/resend-activation-link': { message: string };
   }
 
   export interface PutPayload {
