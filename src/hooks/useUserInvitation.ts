@@ -1,4 +1,4 @@
-import { useMutation, useQueryClient } from 'react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import { requestUserInvitationAccept, requestUserInvitationReject } from '../services/user';
 import { Common } from '../typings/common';
@@ -25,17 +25,19 @@ export const useUserInvitation = ({ invitationId, userId }: Props) => {
   };
 
   const onSuccess = () => {
-    queryClient.invalidateQueries(['user']);
-    queryClient.invalidateQueries(['user', userId]);
-    queryClient.invalidateQueries(['user', currentUserId, 'connections']);
+    queryClient.invalidateQueries({ queryKey: ['user'] });
+    queryClient.invalidateQueries({ queryKey: ['user', userId] });
+    queryClient.invalidateQueries({ queryKey: ['user', currentUserId, 'connections'] });
   };
 
-  const { mutate: mutateAccept, isLoading: isLoadingAccept } = useMutation(requestUserInvitationAccept, {
+  const { mutate: mutateAccept, isPending: isLoadingAccept } = useMutation({
+    mutationFn: requestUserInvitationAccept,
     onSuccess,
     onError,
   });
 
-  const { mutate: mutateReject, isLoading: isLoadingReject } = useMutation(requestUserInvitationReject, {
+  const { mutate: mutateReject, isPending: isLoadingReject } = useMutation({
+    mutationFn: requestUserInvitationReject,
     onSuccess,
     onError,
   });

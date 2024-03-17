@@ -1,6 +1,6 @@
 import { Button, Popover, PopoverContent, PopoverTrigger } from '@nextui-org/react';
+import { useMutation } from '@tanstack/react-query';
 import React from 'react';
-import { useMutation } from 'react-query';
 
 import { useNotifications } from '../../../hooks/useNotifications';
 import { requestJobApplicationAccept, requestJobApplicationReject } from '../../../services/job';
@@ -20,7 +20,8 @@ export const JobApplicationButtons = ({ jobOfferId, jobApplicationId, onHire, on
   const [isAcceptConfirmationOpen, setIsAcceptConfirmationOpen] = React.useState(false);
   const { pushNotification } = useNotifications();
 
-  const { isLoading: isRejecting, mutate: mutateReject } = useMutation(requestJobApplicationReject, {
+  const { isPending: isRejecting, mutate: mutateReject } = useMutation({
+    mutationFn: requestJobApplicationReject,
     onSuccess: () => {
       setIsRejectConfirmationOpen(false);
       pushNotification({
@@ -39,7 +40,8 @@ export const JobApplicationButtons = ({ jobOfferId, jobApplicationId, onHire, on
     },
   });
 
-  const { isLoading: isAccepting, mutate: mutateAccept } = useMutation(requestJobApplicationAccept, {
+  const { isPending: isAccepting, mutate: mutateAccept } = useMutation({
+    mutationFn: requestJobApplicationAccept,
     onSuccess: () => {
       setIsAcceptConfirmationOpen(false);
       pushNotification({

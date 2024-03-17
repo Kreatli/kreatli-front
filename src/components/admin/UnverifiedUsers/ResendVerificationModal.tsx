@@ -1,6 +1,6 @@
 import { Button, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader } from '@nextui-org/react';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import React from 'react';
-import { useMutation, useQueryClient } from 'react-query';
 
 import { useNotifications } from '../../../hooks/useNotifications';
 import { resendActivationLink } from '../../../services/admin';
@@ -17,7 +17,8 @@ export const ResendVerificationModal = ({ isOpen, userId, onClose }: Props) => {
   const { pushNotification } = useNotifications();
   const queryClient = useQueryClient();
 
-  const { mutate, isLoading } = useMutation(resendActivationLink, {
+  const { mutate, isPending } = useMutation({
+    mutationFn: resendActivationLink,
     onSuccess: ({ message }) => {
       pushNotification({ message, color: 'success', icon: 'success' });
       onClose();
@@ -49,7 +50,7 @@ export const ResendVerificationModal = ({ isOpen, userId, onClose }: Props) => {
         </ModalBody>
         <ModalFooter>
           <Button variant="light" color="secondary" onClick={onClose}>Cancel</Button>
-          <Button variant="flat" color="secondary" onClick={handleClick} isLoading={isLoading}>Resend email</Button>
+          <Button variant="flat" color="secondary" onClick={handleClick} isLoading={isPending}>Resend email</Button>
         </ModalFooter>
       </ModalContent>
     </Modal>

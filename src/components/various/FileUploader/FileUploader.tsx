@@ -1,8 +1,8 @@
 import { Button } from '@nextui-org/react';
+import { useMutation } from '@tanstack/react-query';
 import React from 'react';
 import { useDropzone } from 'react-dropzone';
 import { Control, FieldPath, FieldValues, useController, UseControllerProps } from 'react-hook-form';
-import { useMutation } from 'react-query';
 
 import { useNotifications } from '../../../hooks/useNotifications';
 import { requestFileUpload } from '../../../services/upload';
@@ -22,7 +22,8 @@ export const FileUploader = <T extends FieldValues>({ control, name, status, rul
   const { field } = useController({ control, name, rules });
   const pushNotification = useNotifications((state) => state.pushNotification);
 
-  const { isLoading, mutate } = useMutation(requestFileUpload, {
+  const { isPending, mutate } = useMutation({
+    mutationFn: requestFileUpload,
     onSuccess: (data) => {
       field.onChange({
         url: data.secure_url,
@@ -76,7 +77,7 @@ export const FileUploader = <T extends FieldValues>({ control, name, status, rul
       'image/gif': ['.gif'],
       'application/pdf': ['.pdf'],
     },
-    disabled: isLoading,
+    disabled: isPending,
     multiple: false,
     onDrop,
   });
@@ -89,14 +90,14 @@ export const FileUploader = <T extends FieldValues>({ control, name, status, rul
     ? selectedFile.name
     : 'Upload file';
 
-  const isBordered = !isLoading && (isDragActive || !!selectedFile);
+  const isBordered = !isPending && (isDragActive || !!selectedFile);
 
   return (
     <Button
       tabIndex={-1}
       variant={isBordered ? 'bordered' : 'flat'}
-      isLoading={isLoading}
-      startContent={!isLoading && icon}
+      isLoading={isPending}
+      startContent={!isPending && icon}
       color={status === 'danger' ? 'danger' : 'secondary'}
     >
       <div {...getRootProps()}>

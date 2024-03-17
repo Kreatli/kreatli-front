@@ -1,7 +1,7 @@
 import { Button, Card, CardBody, CardFooter, CardHeader, Image, Link, Tooltip, User } from '@nextui-org/react';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import NextLink from 'next/link';
 import React from 'react';
-import { useMutation, useQueryClient } from 'react-query';
 
 import { useNotifications } from '../../../hooks/useNotifications';
 import { useSession } from '../../../hooks/useSession';
@@ -23,7 +23,8 @@ export const ChannelDetails = ({ id, youtubeUrl, details }: Props) => {
   const queryClient = useQueryClient();
   const { currentUserId } = useSession();
   const { pushNotification } = useNotifications();
-  const { mutate } = useMutation(requestYoutubeInfoUpdate, {
+  const { mutate } = useMutation({
+    mutationFn: requestYoutubeInfoUpdate,
     onError: (error) => {
       pushNotification({
         message: getErrorMessage(error),

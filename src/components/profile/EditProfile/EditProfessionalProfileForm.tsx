@@ -1,8 +1,8 @@
 import { Button, Input, Select, SelectItem, Tab, Tabs, Textarea } from '@nextui-org/react';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { omit } from 'ramda';
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { useMutation, useQueryClient } from 'react-query';
 
 import { COUNTRIES } from '../../../constants/countries';
 import { VALIDATION_RULES } from '../../../constants/validationRules';
@@ -26,9 +26,10 @@ interface Props {
 export const EditProfessionalProfileForm = ({ user, onCancel, onSuccess }: Props) => {
   const { pushNotification } = useNotifications();
   const queryClient = useQueryClient();
-  const { mutate } = useMutation(requestCurrentUserUpdate, {
+  const { mutate } = useMutation({
+    mutationFn: requestCurrentUserUpdate,
     onSuccess: () => {
-      queryClient.refetchQueries('user');
+      queryClient.refetchQueries({ queryKey: ['user'] });
       onSuccess();
       pushNotification({
         message: 'Your profile has been updated!',

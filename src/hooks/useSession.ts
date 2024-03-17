@@ -1,6 +1,6 @@
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useRouter } from 'next/router';
 import React from 'react';
-import { useMutation, useQuery, useQueryClient } from 'react-query';
 
 import { requestSignIn } from '../services/auth';
 import { requestCurrentUser } from '../services/user';
@@ -11,28 +11,38 @@ export const useSession = () => {
   const router = useRouter();
   const setIsLoading = useApplicationLoader((state) => state.setIsLoading);
 
-  const signInMutation = useMutation(requestSignIn, {
+  const signInMutation = useMutation({
+    mutationFn: requestSignIn,
     onSuccess: ({ token, user }) => {
       localStorage.setItem('token', token);
-      queryClient.setQueryData('user', user);
+      queryClient.setQueryData(['user'], user);
     },
   });
 
   const signOut = React.useCallback(() => {
     localStorage.removeItem('token');
-    queryClient.setQueryData('user', undefined);
+    queryClient.setQueryData(['user'], null);
     router.push('/');
   }, [queryClient, router]);
 
-  const { data, isLoading } = useQuery('user', requestCurrentUser, {
+  const { data, isLoading, isError } = useQuery({
+    queryKey: ['user'],
+    queryFn: requestCurrentUser,
     refetchOnMount: false,
-    onSettled: () => {
-      setIsLoading(false);
-    },
-    onError: () => {
-      localStorage.removeItem('token');
-    },
   });
+
+  React.useEffect(() => {
+    if (data && !isLoading) {
+      setIsLoading(false);
+    }
+  }, [data, isLoading, setIsLoading]);
+
+  React.useEffect(() => {
+    if (isError) {
+      localStorage.removeItem('token');
+      setIsLoading(false);
+    }
+  }, [isError, setIsLoading]);
 
   return {
     isSignedIn: !!data,

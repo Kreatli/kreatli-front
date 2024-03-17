@@ -1,7 +1,7 @@
 import { Button, Input, Select, SelectItem, Textarea } from '@nextui-org/react';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { useMutation, useQueryClient } from 'react-query';
 
 import { COUNTRIES } from '../../../constants/countries';
 import { SKILL_OPTIONS_FOR_CREATOR } from '../../../constants/skills';
@@ -22,9 +22,10 @@ interface Props {
 export const EditCreatorProfileForm = ({ user, onCancel, onSuccess }: Props) => {
   const queryClient = useQueryClient();
   const { pushNotification } = useNotifications();
-  const { mutate } = useMutation(requestCurrentUserUpdate, {
+  const { mutate } = useMutation({
+    mutationFn: requestCurrentUserUpdate,
     onSuccess: () => {
-      queryClient.refetchQueries('user');
+      queryClient.refetchQueries({ queryKey: ['user'] });
       onSuccess();
       pushNotification({
         message: 'Your profile has been updated!',

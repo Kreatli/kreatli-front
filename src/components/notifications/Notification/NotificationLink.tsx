@@ -1,7 +1,7 @@
 import { Link } from '@nextui-org/react';
+import { useMutation } from '@tanstack/react-query';
 import NextLink from 'next/link';
 import React from 'react';
-import { useMutation } from 'react-query';
 
 import { NOTIFICATION_TYPE } from '../../../constants/notifications';
 import { useNotificationsPopoverVisibility } from '../../../hooks/useNotificationsPopoverVisibility';
@@ -15,7 +15,9 @@ interface Props {
 
 export const NotificationLink = ({ notification }: Props) => {
   const { currentUserId } = useSession();
-  const { mutate } = useMutation(requestNotificationUpdate);
+  const { mutate } = useMutation({
+    mutationFn: requestNotificationUpdate,
+  });
   const { closePopover } = useNotificationsPopoverVisibility();
   const { _id: id, isRead, type } = notification;
 

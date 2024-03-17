@@ -1,8 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
+  reactStrictMode: false,
   images: {
     domains: ['res.cloudinary.com'],
+  },
+  experimental: {
+    scrollRestoration: true,
   },
   env: {
     API_URL: process.env.API_URL,

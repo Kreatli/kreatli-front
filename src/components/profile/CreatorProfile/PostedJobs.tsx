@@ -1,5 +1,5 @@
+import { useQuery } from '@tanstack/react-query';
 import React from 'react';
-import { useQuery } from 'react-query';
 
 import { requestCreatorJobs } from '../../../services/creator';
 import { Common } from '../../../typings/common';
@@ -12,7 +12,10 @@ interface Props {
 }
 
 export const PostedJobs = ({ id }: Props) => {
-  const { data, isLoading } = useQuery(['creator', id, 'job-offers'], () => requestCreatorJobs(id));
+  const { data, isLoading } = useQuery({
+    queryKey: ['creator', id, 'job-offers'],
+    queryFn: () => requestCreatorJobs(id),
+  });
 
   const hasData = data && data.length > 0;
   const shouldShowEmptyState = !hasData && !isLoading;

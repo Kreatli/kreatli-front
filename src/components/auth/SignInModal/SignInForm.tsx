@@ -24,7 +24,7 @@ type DefaultValues = typeof DEFAULT_VALUES;
 export const SignInForm = ({ onClick, onSuccess }: Props) => {
   const router = useRouter();
   const { register, handleSubmit, formState: { errors }, setError } = useForm({ defaultValues: DEFAULT_VALUES, mode: 'onTouched' });
-  const { signInMutation: { mutate, isLoading } } = useSession();
+  const { signInMutation: { mutate, isPending } } = useSession();
   const pushNotification = useNotifications((state) => state.pushNotification);
 
   const onSubmit = (data: DefaultValues) => {
@@ -58,7 +58,7 @@ export const SignInForm = ({ onClick, onSuccess }: Props) => {
         <Input
           placeholder="Email"
           aria-label="Email"
-          isDisabled={isLoading}
+          isDisabled={isPending}
           isInvalid={!!errors.email}
           labelPlacement="outside"
           {...register('email', VALIDATION_RULES.REQUIRED)}
@@ -66,7 +66,7 @@ export const SignInForm = ({ onClick, onSuccess }: Props) => {
         <InputPassword
           placeholder="Password"
           aria-label="Password"
-          isDisabled={isLoading}
+          isDisabled={isPending}
           labelPlacement="outside"
           isInvalid={!!errors.password}
           {...register('password', VALIDATION_RULES.REQUIRED)}
@@ -74,7 +74,7 @@ export const SignInForm = ({ onClick, onSuccess }: Props) => {
       </div>
       <div className="flex justify-between gap-4 mt-8 mb-2">
         <Button variant="light" color="secondary" onClick={onClick}>Forgot password?</Button>
-        <Button type="submit" variant="flat" color="secondary" isLoading={isLoading}>
+        <Button type="submit" variant="flat" color="secondary" isLoading={isPending}>
           Sign in
         </Button>
       </div>

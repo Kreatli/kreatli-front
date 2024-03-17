@@ -1,7 +1,6 @@
 import { Button, Input } from '@nextui-org/react';
-import cx from 'classnames';
+import { useInfiniteQuery } from '@tanstack/react-query';
 import React from 'react';
-import { useInfiniteQuery } from 'react-query';
 
 import { useBodyScroll } from '../../../hooks/useBodyScroll';
 import { useBreakpointValue } from '../../../hooks/useBreakpointValue';
@@ -16,7 +15,6 @@ import { ProfessionalListingCards } from './ProfessionalListingCards';
 import { ProfessionalListingFilters } from './ProfessionalListingFilters';
 import { ProfessionalListingSkeleton } from './ProfessionalListingSkeleton';
 
-const MINUTE_IN_MILLISECONDS = 60 * 1000;
 const LIMIT = 12;
 
 export const ProfessionalListing = () => {
@@ -31,10 +29,8 @@ export const ProfessionalListing = () => {
     ...(searchDebounced && { search: searchDebounced }),
   };
 
-  const { data, isFetching, isFetchingNextPage, hasNextPage, fetchNextPage } = useInfiniteQuery({
-    keepPreviousData: true,
-    refetchOnMount: true,
-    staleTime: 5 * MINUTE_IN_MILLISECONDS,
+  const { data, isFetching, isLoading, isFetchingNextPage, hasNextPage, fetchNextPage } = useInfiniteQuery({
+    initialPageParam: 1,
     queryKey: ['professionals', requestProfessionalsQuery],
     queryFn: ({ pageParam = 1 }) => (
       requestProfessionals({ ...requestProfessionalsQuery, offset: (pageParam - 1) * LIMIT })
@@ -88,8 +84,6 @@ export const ProfessionalListing = () => {
     }
   }, [handleCloseFilters, isMobile]);
 
-  const shouldShowSkeleton = isFetching && !cards.length;
-  const shouldShowLoader = isFetching && !isFetchingNextPage && cards.length;
   const shouldShowEmptyState = !isFetching && !cards.length;
 
   return (
@@ -133,9 +127,9 @@ export const ProfessionalListing = () => {
           ? <EmptyState title="No results" text="Oops! No results found. Try different criteria or check back later, we're growing 🚀" />
           : (
             <LazyList isLoading={isFetchingNextPage} hasMore={hasNextPage} onLoadMore={fetchNextPage}>
-              <div className={cx(styles.cards, { [styles.loading]: shouldShowLoader })}>
+              <div className={styles.cards}>
                 <ProfessionalListingCards cards={cards} />
-                {shouldShowSkeleton && <ProfessionalListingSkeleton />}
+                {(isLoading || isFetchingNextPage) && <ProfessionalListingSkeleton />}
               </div>
             </LazyList>
           )}

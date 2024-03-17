@@ -1,11 +1,11 @@
 import { Button, Modal, ModalContent, Spinner, useDisclosure } from '@nextui-org/react';
+import { useMutation } from '@tanstack/react-query';
 import cx from 'classnames';
 import Image from 'next/image';
 import React from 'react';
 import { useDropzone } from 'react-dropzone';
 import { Control, FieldPath, FieldValues, useController, UseControllerProps } from 'react-hook-form';
 import ReactCrop, { centerCrop, Crop, makeAspectCrop } from 'react-image-crop';
-import { useMutation } from 'react-query';
 
 import { useNotifications } from '../../../hooks/useNotifications';
 import { requestImageUpload } from '../../../services/upload';
@@ -103,7 +103,8 @@ export const AvatarUploader = <T extends FieldValues>({ control, name, rules, st
     setPreviewUrl('');
   }, [onClose]);
 
-  const { mutate } = useMutation(requestImageUpload, {
+  const { mutate } = useMutation({
+    mutationFn: requestImageUpload,
     onSuccess: (data) => {
       setUploadedImageUrl(data.secure_url);
       field.onChange(data.secure_url);

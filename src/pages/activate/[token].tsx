@@ -1,8 +1,8 @@
 import { Spinner } from '@nextui-org/react';
+import { useMutation } from '@tanstack/react-query';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import React from 'react';
-import { useMutation } from 'react-query';
 
 import { useNotifications } from '../../hooks/useNotifications';
 import { useSession } from '../../hooks/useSession';
@@ -14,7 +14,8 @@ const AccountActivation = () => {
   const { isSignedIn, isLoading } = useSession();
   const pushNotification = useNotifications((state) => state.pushNotification);
 
-  const { mutate } = useMutation(requestUserActivation, {
+  const { mutate } = useMutation({
+    mutationFn: requestUserActivation,
     onSuccess: () => {
       router.push('/');
       pushNotification({

@@ -1,7 +1,7 @@
 import { Avatar } from '@nextui-org/react';
+import { useQuery } from '@tanstack/react-query';
 import NextLink from 'next/link';
 import React from 'react';
-import { useQuery } from 'react-query';
 
 import { COUNTRY_LABELS } from '../../../constants/countries';
 import { requestUsersByIds } from '../../../services/users';
@@ -12,7 +12,9 @@ interface Props {
 }
 
 export const RecentConnections = ({ ids }: Props) => {
-  const { data: connections = [] } = useQuery(['users', ...ids], () => requestUsersByIds(ids), {
+  const { data: connections = [] } = useQuery({
+    queryKey: ['users', ...ids],
+    queryFn: () => requestUsersByIds(ids),
     refetchOnMount: false,
   });
 

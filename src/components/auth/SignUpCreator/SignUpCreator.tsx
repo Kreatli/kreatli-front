@@ -1,7 +1,7 @@
 import { Accordion, AccordionItem, Button, Progress, Selection } from '@nextui-org/react';
+import { useMutation } from '@tanstack/react-query';
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { useMutation } from 'react-query';
 
 import { useNotifications } from '../../../hooks/useNotifications';
 import { requestSignUpCreator } from '../../../services/auth';
@@ -62,7 +62,8 @@ export const SignUpCreator = () => {
     return ((filledStepsLength + 1) / 4) * 100;
   }, [isFilledByStep]);
 
-  const { mutate, isLoading, isSuccess } = useMutation(requestSignUpCreator, {
+  const { mutate, isPending, isSuccess } = useMutation({
+    mutationFn: requestSignUpCreator,
     onSuccess: () => {
       pushNotification({
         message: 'Cool! Now all you have to do is check your inbox to complete the registration',
@@ -105,7 +106,7 @@ export const SignUpCreator = () => {
   const description = 'Kreatli will help you find professionals to create high-quality content that resonates with your audience. The registration process only takes 3 minutes, so join today and take your YouTube channel to the next level!';
   const disabledKeys = steps
     .map((_, index) => index)
-    .filter((index) => isSuccess || isLoading || (index > 0 && !isFilledByStep[index - 1]))
+    .filter((index) => isSuccess || isPending || (index > 0 && !isFilledByStep[index - 1]))
     .map((index) => index.toString());
 
   return (
@@ -140,7 +141,7 @@ export const SignUpCreator = () => {
                   <Button variant="flat" color="secondary" onClick={handleNext}>Next</Button>
                 )}
                 {index === steps.length - 1 && (
-                  <Button type="submit" color="secondary" isLoading={isLoading}>Create profile</Button>
+                  <Button type="submit" color="secondary" isLoading={isPending}>Create profile</Button>
                 )}
               </div>
             </AccordionItem>

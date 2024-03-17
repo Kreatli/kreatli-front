@@ -1,7 +1,7 @@
 import { Button, Link, User } from '@nextui-org/react';
+import { useMutation } from '@tanstack/react-query';
 import NextLink from 'next/link';
 import React from 'react';
-import { useMutation } from 'react-query';
 
 import { PostContext } from '../../../contexts/Post';
 import { requestLikePostComment } from '../../../services/feed';
@@ -23,7 +23,8 @@ export const Comment = (props: Props) => {
   const [areAnswersVisible, setAreAnswersVisible] = React.useState(false);
   const { post: { _id: postId }, setPost, replyToComment } = React.useContext(PostContext);
 
-  const { mutate } = useMutation(requestLikePostComment, {
+  const { mutate } = useMutation({
+    mutationFn: requestLikePostComment,
     onSuccess: (post) => {
       setPost(post);
     },

@@ -1,7 +1,7 @@
 import { Button, Chip, Pagination, Table, TableBody, TableCell, TableColumn, TableHeader, TableRow, Tooltip, User } from '@nextui-org/react';
+import { keepPreviousData, useQuery } from '@tanstack/react-query';
 import Link from 'next/link';
 import React from 'react';
-import { useQuery } from 'react-query';
 
 import { COUNTRY_LABELS } from '../../../constants/countries';
 import { getRejectedUsers } from '../../../services/admin';
@@ -19,7 +19,7 @@ export const RejectedUsers = () => {
   const [isRejectModalOpen, setIsRejectModalOpen] = React.useState(false);
 
   const { data, isLoading } = useQuery({
-    keepPreviousData: true,
+    placeholderData: keepPreviousData,
     queryKey: ['rejectedUsers', page],
     queryFn: () => getRejectedUsers({ offset: (page - 1) * LIMIT, limit: LIMIT }),
   });

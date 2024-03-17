@@ -1,6 +1,6 @@
 import { Card, CardBody, CardHeader, Divider } from '@nextui-org/react';
+import { useQuery } from '@tanstack/react-query';
 import React from 'react';
-import { useQuery } from 'react-query';
 
 import { requestLeaderboardUsers } from '../../../services/leaderboard';
 import { DashboardLeaderBoardItem } from './DashboardLeaderBoardItem';
@@ -12,7 +12,10 @@ interface Props {
 }
 
 export const DashboardLeaderBoard = ({ maxHeight, minHeight }: Props) => {
-  const { data: users = [], isFetching } = useQuery('leaderboard', requestLeaderboardUsers);
+  const { data: users = [], isFetching } = useQuery({
+    queryKey: ['leaderboard'],
+    queryFn: requestLeaderboardUsers,
+  });
 
   const shouldShowSkeleton = (users.length === 0) && isFetching;
 

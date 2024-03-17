@@ -1,5 +1,5 @@
+import { useMutation } from '@tanstack/react-query';
 import React from 'react';
-import { useMutation } from 'react-query';
 
 import { requestNotificationUpdate } from '../../../services/notifications';
 import { Notifications } from '../../../typings/notifications';
@@ -15,7 +15,9 @@ interface Props {
 
 export const Notification = ({ notification, isDisabled = false }: Props) => {
   const { _id: id, isRead, creationDate } = notification;
-  const { mutate } = useMutation(requestNotificationUpdate);
+  const { mutate } = useMutation({
+    mutationFn: requestNotificationUpdate,
+  });
 
   const handleClick = () => {
     if (isDisabled) {

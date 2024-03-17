@@ -1,6 +1,6 @@
+import { useQuery } from '@tanstack/react-query';
 import { useRouter } from 'next/router';
 import React from 'react';
-import { useQuery } from 'react-query';
 
 import { useNotifications } from '../../hooks/useNotifications';
 import { useSession } from '../../hooks/useSession';
@@ -83,12 +83,23 @@ export const ChatContextProvider = ({ children }: Props) => {
     return router.query.userId as Common.Id ?? null;
   }, [router.query.userId]);
 
-  const { data: chatRequests = [] } = useQuery(['chat-requests'], requestChatRequests);
-  const { data: chat = null } = useQuery(['chat', participantId], () => (participantId ? requestChat(participantId) : null), {
-    onSuccess: (data) => {
-      setChatListMode(data?.isRequest ? 'requests' : 'chats');
-    },
+  const { data: chatRequests = [] } = useQuery({
+    queryKey: ['chat-requests'],
+    queryFn: requestChatRequests,
   });
+  const { data: chat = null } = useQuery({
+    enabled: !!participantId,
+    queryKey: ['chat', participantId],
+    queryFn: () => requestChat(participantId),
+  });
+
+  React.useEffect(() => {
+    if (!chat) {
+      return;
+    }
+
+    setChatListMode(chat.isRequest ? 'requests' : 'chats');
+  }, [chat]);
 
   const participant = chat?.participants.find(({ _id }) => _id !== currentUserId)!;
 

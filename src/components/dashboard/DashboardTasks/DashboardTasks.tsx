@@ -1,9 +1,7 @@
+import { useQuery } from '@tanstack/react-query';
 import React from 'react';
-import { useQuery } from 'react-query';
 
-import { useNotifications } from '../../../hooks/useNotifications';
 import { requestCurrentUserTasks } from '../../../services/user';
-import { getErrorMessage } from '../../../utils/getErrorMessage';
 import { DashboardTasksTracker } from './DashboardTasksTracker';
 
 interface Props {
@@ -12,15 +10,12 @@ interface Props {
 }
 
 export const DashboardTasks = ({ maxHeight, minHeight }: Props) => {
-  const { pushNotification } = useNotifications();
-  const { data, isFetching } = useQuery('userTasks', requestCurrentUserTasks, {
-    onError: (error) => {
-      pushNotification({
-        message: getErrorMessage(error),
-        color: 'danger',
-        icon: 'error',
-      });
+  const { data, isFetching } = useQuery({
+    meta: {
+      showErrorNotification: true,
     },
+    queryKey: ['userTasks'],
+    queryFn: requestCurrentUserTasks,
   });
 
   const { ongoingTasks = [], newTasks = [] } = data ?? {};

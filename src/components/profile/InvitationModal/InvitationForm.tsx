@@ -1,7 +1,7 @@
 import { Button, Textarea } from '@nextui-org/react';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { useMutation, useQueryClient } from 'react-query';
 
 import { useNotifications } from '../../../hooks/useNotifications';
 import { useSession } from '../../../hooks/useSession';
@@ -28,10 +28,11 @@ export const InvitationForm = ({ userId, onCancel, onSuccess }: Props) => {
 
   const { currentUserId } = useSession();
   const queryClient = useQueryClient();
-  const { mutate, isLoading } = useMutation(requestUserInvitation, {
+  const { mutate, isPending } = useMutation({
+    mutationFn: requestUserInvitation,
     onSuccess: (user) => {
       queryClient.setQueryData(['user', userId], user);
-      queryClient.refetchQueries('user');
+      queryClient.refetchQueries({ queryKey: ['user'] });
       onSuccess();
     },
     onError: (error: any) => {
@@ -52,13 +53,13 @@ export const InvitationForm = ({ userId, onCancel, onSuccess }: Props) => {
       <Textarea
         placeholder="Add a personalized note (optional)"
         aria-label="Add a personalized note (optional)"
-        isDisabled={isLoading}
+        isDisabled={isPending}
         fullWidth
         {...register('message')}
       />
       <div className="flex justify-between gap-4 mt-8 mb-2">
         <div>
-          <Button type="submit" variant="flat" color="secondary" isLoading={isLoading}>
+          <Button type="submit" variant="flat" color="secondary" isLoading={isPending}>
             Send invitation
           </Button>
         </div>

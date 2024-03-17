@@ -1,7 +1,7 @@
 import { Button, Radio, RadioGroup, Textarea } from '@nextui-org/react';
+import { useMutation } from '@tanstack/react-query';
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { useMutation } from 'react-query';
 
 import { VALIDATION_RULES } from '../../../constants/validationRules';
 import { useNotifications } from '../../../hooks/useNotifications';
@@ -35,10 +35,10 @@ export const JobReviewForm = ({ jobOfferId, jobOfferStatus, onCancel, onSuccess 
 
   const isCompleted = jobOfferStatus === 'completed';
 
-  const mutation = isCompleted
-    ? requestJobOfferReview
-    : requestJobOfferComplete;
-  const { mutate, isLoading } = useMutation(mutation, {
+  const { mutate, isPending } = useMutation({
+    mutationFn: isCompleted
+      ? requestJobOfferReview
+      : requestJobOfferComplete,
     onSuccess: () => {
       const message = isCompleted
         ? 'The review was sent'
@@ -84,14 +84,14 @@ export const JobReviewForm = ({ jobOfferId, jobOfferStatus, onCancel, onSuccess 
         <Textarea
           placeholder={textareaPlaceholder}
           aria-label={textareaPlaceholder}
-          isDisabled={isLoading}
+          isDisabled={isPending}
           isInvalid={!!errors.comment}
           fullWidth
           {...register('comment')}
         />
         <div className="flex justify-center gap-2 mb-2">
           <Button variant="light" color="secondary" onClick={onCancel}>Cancel</Button>
-          <Button type="submit" variant="flat" color="secondary" isLoading={isLoading}>
+          <Button type="submit" variant="flat" color="secondary" isLoading={isPending}>
             {buttonCopy}
           </Button>
         </div>

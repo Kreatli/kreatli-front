@@ -1,5 +1,5 @@
+import { useQuery } from '@tanstack/react-query';
 import React from 'react';
-import { useQuery } from 'react-query';
 
 import { requestJobOfferOthers } from '../../../services/job';
 import { Common } from '../../../typings/common';
@@ -20,7 +20,11 @@ export const JobOthers = ({ id, creatorName }: Props) => {
     return requestJobOfferOthers(id);
   };
 
-  const { data } = useQuery(['job-offer', id, 'others'], fetchJobOfferOthers, { staleTime: Infinity });
+  const { data } = useQuery({
+    queryFn: fetchJobOfferOthers,
+    queryKey: ['job-offer', id, 'others'],
+    staleTime: Infinity,
+  });
 
   if (!data || !data.length) {
     return null;

@@ -1,10 +1,8 @@
+import { useQuery } from '@tanstack/react-query';
 import React from 'react';
-import { useQuery } from 'react-query';
 
-import { useNotifications } from '../../hooks/useNotifications';
 import { useSession } from '../../hooks/useSession';
 import { requestDashboardData } from '../../services/dashboard';
-import { getErrorMessage } from '../../utils/getErrorMessage';
 
 interface Context {
   earnedToday: number;
@@ -30,15 +28,12 @@ export const DashboardContext = React.createContext<Context>(initialContext);
 
 export const DashboardContextProvider = ({ children }: Props) => {
   const { currentUser } = useSession();
-  const { pushNotification } = useNotifications();
 
-  const { data } = useQuery('dashboard', requestDashboardData, {
-    onError: (error) => {
-      pushNotification({
-        message: getErrorMessage(error),
-        color: 'danger',
-        icon: 'error',
-      });
+  const { data } = useQuery({
+    queryKey: ['dashboard'],
+    queryFn: requestDashboardData,
+    meta: {
+      showErrorNotification: true,
     },
   });
 

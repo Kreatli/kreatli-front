@@ -1,6 +1,6 @@
 import { Button, Card, CardBody, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger, Tooltip } from '@nextui-org/react';
+import { InfiniteData, useMutation, useQueryClient } from '@tanstack/react-query';
 import React from 'react';
-import { InfiniteData, useMutation, useQueryClient } from 'react-query';
 
 import { useImagesUpload } from '../../../hooks/useImagesUpload';
 import { useNotifications } from '../../../hooks/useNotifications';
@@ -44,12 +44,13 @@ export const CreatePost = ({ defaultValue, onEdit }: Props) => {
   const { filter } = usePostsFilters();
   const { currentUser } = useSession();
 
-  const { isLoading: isCreating, mutate: createPost } = useMutation(requestPostCreation, {
+  const { isPending: isCreating, mutate: createPost } = useMutation({
+    mutationFn: requestPostCreation,
     onSuccess: () => {
       setContent('');
       setImages([]);
       setVideoIds([]);
-      queryClient.invalidateQueries('posts');
+      queryClient.invalidateQueries({ queryKey: ['posts'] });
       pushNotification({
         message: 'The post was published',
         color: 'success',
@@ -65,7 +66,8 @@ export const CreatePost = ({ defaultValue, onEdit }: Props) => {
     },
   });
 
-  const { isLoading: isEditing, mutate: editPost } = useMutation(requestPostEdit, {
+  const { isPending: isEditing, mutate: editPost } = useMutation({
+    mutationFn: requestPostEdit,
     onSuccess: (updatedPost) => {
       onEdit?.();
 

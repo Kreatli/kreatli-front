@@ -12,7 +12,7 @@ interface Props {
 
 export const SignInModal = ({ isOpen, onClose }: Props) => {
   const [mode, setMode] = React.useState<'signIn' | 'resetPassword'>('signIn');
-  const { signInMutation: { isLoading } } = useSession();
+  const { signInMutation: { isPending } } = useSession();
 
   const handleSignInChange = React.useCallback(() => {
     setMode('resetPassword');
@@ -27,7 +27,7 @@ export const SignInModal = ({ isOpen, onClose }: Props) => {
       placement="center"
       backdrop="blur"
       size="sm"
-      isDismissable={!isLoading}
+      isDismissable={!isPending}
       isOpen={isOpen}
       onClose={onClose}
     >

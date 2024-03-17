@@ -1,11 +1,9 @@
+import { useInfiniteQuery } from '@tanstack/react-query';
 import React from 'react';
-import { useInfiniteQuery } from 'react-query';
 
-import { useNotifications } from '../../../hooks/useNotifications';
 import { useSession } from '../../../hooks/useSession';
 import { requestUserConnections } from '../../../services/user';
 import { Common } from '../../../typings/common';
-import { getErrorMessage } from '../../../utils/getErrorMessage';
 import { EmptyState } from '../../various/EmptyState';
 import { LazyList } from '../../various/LazyList';
 import { ConnectionCard } from './ConnectionCard';
@@ -20,23 +18,21 @@ const LIMIT = 10;
 
 export const Connections = ({ userId }: Props) => {
   const { currentUserId } = useSession();
-  const { pushNotification } = useNotifications();
 
-  const { isFetchingNextPage, isFetching, data, hasNextPage, fetchNextPage } = useInfiniteQuery(
-    ['user', userId, 'connections'],
-    ({ pageParam = 1 }) => userId && requestUserConnections(userId, { limit: LIMIT, offset: (pageParam - 1) * LIMIT }),
+  const { isFetchingNextPage, isFetching, isLoading, data, hasNextPage, fetchNextPage } = useInfiniteQuery(
     {
+      meta: {
+        showErrorNotification: true,
+      },
+      initialPageParam: 1,
+      queryKey: ['user', userId, 'connections'],
+      queryFn: userId
+        ? ({ pageParam = 1 }) => requestUserConnections(userId, { limit: LIMIT, offset: (pageParam - 1) * LIMIT })
+        : undefined,
       getNextPageParam: (lastPage, allPages) => {
         return allPages.length * LIMIT < (lastPage?.connectionsCount ?? 0)
           ? allPages.length + 1
           : undefined;
-      },
-      onError: (error) => {
-        pushNotification({
-          message: getErrorMessage(error),
-          color: 'danger',
-          icon: 'error',
-        });
       },
     },
   );
@@ -57,7 +53,6 @@ export const Connections = ({ userId }: Props) => {
   const hasInvitations = invitations.length > 0;
   const hasConnections = connections.length > 0;
 
-  const shouldShowSkeleton = isFetching && !hasConnections;
   const shouldShowEmptyState = !isFetching && !hasConnections;
 
   return (
@@ -78,7 +73,7 @@ export const Connections = ({ userId }: Props) => {
           {connections?.map((connection) => (
             <ConnectionCard key={connection._id} user={connection} isMyAccount={isMyAccount} />
           ))}
-          {shouldShowSkeleton && <ConnectionsSkeleton />}
+          {isLoading && <ConnectionsSkeleton />}
         </div>
       </LazyList>
       {shouldShowEmptyState && (

@@ -1,18 +1,15 @@
+import { useQuery } from '@tanstack/react-query';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import React from 'react';
-import { useQuery } from 'react-query';
 
 import { JobPage } from '../../components/jobs/JobPage';
-import { useNotifications } from '../../hooks/useNotifications';
 import { useProtectedPage } from '../../hooks/useProtectedPage';
 import { requestJobOffer } from '../../services/job';
 import { Common } from '../../typings/common';
-import { getErrorMessage } from '../../utils/getErrorMessage';
 
 const JobOffer = () => {
   const { isSignedIn } = useProtectedPage();
-  const { pushNotification } = useNotifications();
   const router = useRouter();
   const jobOfferId = router.query.id as Common.MaybeId;
 
@@ -24,14 +21,12 @@ const JobOffer = () => {
     return undefined;
   };
 
-  const { data } = useQuery(['job-offer', jobOfferId], fetchJobOffer, {
-    onError: (error) => {
-      pushNotification({
-        message: getErrorMessage(error),
-        color: 'danger',
-        icon: 'error',
-      });
+  const { data } = useQuery({
+    meta: {
+      showNotificationError: true,
     },
+    queryKey: ['job-offer', jobOfferId],
+    queryFn: fetchJobOffer,
   });
 
   if (!isSignedIn) {

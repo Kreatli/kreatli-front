@@ -1,5 +1,5 @@
+import { useMutation } from '@tanstack/react-query';
 import React from 'react';
-import { useMutation } from 'react-query';
 
 import { ChatContext } from '../../../contexts/Chat';
 import { useSession } from '../../../hooks/useSession';
@@ -22,7 +22,10 @@ export const ChatMessages = () => {
     participantId,
   } = React.useContext(ChatContext);
   const { currentUserId } = useSession();
-  const { mutate } = useMutation(requestChatMessagesRead);
+
+  const { mutate } = useMutation({
+    mutationFn: requestChatMessagesRead,
+  });
 
   React.useEffect(() => {
     if (!currentUserId || !participantId) {

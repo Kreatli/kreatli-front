@@ -1,6 +1,6 @@
 import { Avatar, Button, Textarea } from '@nextui-org/react';
+import { useMutation } from '@tanstack/react-query';
 import React from 'react';
-import { useMutation } from 'react-query';
 
 import { PostContext } from '../../../contexts/Post';
 import { useNotifications } from '../../../hooks/useNotifications';
@@ -23,7 +23,8 @@ export const AddComment = () => {
 
   const { pushNotification } = useNotifications();
 
-  const { isLoading, mutate } = useMutation(requestPostCommentCreation, {
+  const { isPending, mutate } = useMutation({
+    mutationFn: requestPostCommentCreation,
     onSuccess: (post) => {
       setComment('');
       setPost(post);
@@ -68,15 +69,15 @@ export const AddComment = () => {
           ref={addCommentRef}
           value={comment}
           minRows={2}
-          disabled={isLoading}
+          disabled={isPending}
           placeholder="Type your comment"
           onChange={handleChange}
         />
         <Button
           type="submit"
-          isLoading={isLoading}
+          isLoading={isPending}
           isDisabled={comment.trim() === '' || currentUser?.role === 'admin'}
-          startContent={!isLoading && <Icon icon="send" />}
+          startContent={!isPending && <Icon icon="send" />}
           isIconOnly
           variant="light"
           radius="full"

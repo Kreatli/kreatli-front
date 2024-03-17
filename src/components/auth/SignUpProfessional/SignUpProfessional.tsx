@@ -1,7 +1,7 @@
 import { Accordion, AccordionItem, Button, Progress, Selection } from '@nextui-org/react';
+import { useMutation } from '@tanstack/react-query';
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { useMutation } from 'react-query';
 
 import { useNotifications } from '../../../hooks/useNotifications';
 import { requestSignUpProfessional } from '../../../services/auth';
@@ -66,7 +66,8 @@ export const SignUpProfessional = () => {
     return ((filledStepsLength + 1) / 4) * 100;
   }, [isFilledByStep]);
 
-  const { mutate, isLoading, isSuccess } = useMutation(requestSignUpProfessional, {
+  const { mutate, isPending, isSuccess } = useMutation({
+    mutationFn: requestSignUpProfessional,
     onSuccess: () => {
       pushNotification({
         message: 'Great! Check your inbox to complete the registration',
@@ -126,7 +127,7 @@ export const SignUpProfessional = () => {
   const disabledKeys = new Set(
     steps
       .map((_, index) => index)
-      .filter((index) => isSuccess || isLoading || (index > 0 && !isFilledByStep[index - 1]))
+      .filter((index) => isSuccess || isPending || (index > 0 && !isFilledByStep[index - 1]))
       .map((index) => index.toString()),
   );
 
@@ -161,7 +162,7 @@ export const SignUpProfessional = () => {
                   <Button variant="flat" color="secondary" onClick={handleNext}>Next</Button>
                 )}
                 {index === steps.length - 1 && (
-                  <Button type="submit" color="secondary" isLoading={isLoading}>Create profile</Button>
+                  <Button type="submit" color="secondary" isLoading={isPending}>Create profile</Button>
                 )}
               </div>
             </AccordionItem>

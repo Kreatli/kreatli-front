@@ -1,7 +1,7 @@
 import { Button } from '@nextui-org/react';
+import { useMutation } from '@tanstack/react-query';
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { useMutation } from 'react-query';
 
 import { VALIDATION_RULES } from '../../../constants/validationRules';
 import { useNotifications } from '../../../hooks/useNotifications';
@@ -23,9 +23,15 @@ interface Props {
 }
 
 export const ChangePasswordForm = ({ token, onSuccess, onError }: Props) => {
+  const { register, handleSubmit, formState: { errors } } = useForm({
+    defaultValues: DEFAULT_VALUES,
+    mode: 'onTouched',
+  });
+
   const pushNotification = useNotifications((state) => state.pushNotification);
-  const { register, handleSubmit, formState: { errors } } = useForm({ defaultValues: DEFAULT_VALUES, mode: 'onTouched' });
-  const { isLoading, mutate } = useMutation(requestChangePassword, {
+
+  const { isPending, mutate } = useMutation({
+    mutationFn: requestChangePassword,
     onSuccess: () => {
       onSuccess();
       pushNotification({
@@ -55,7 +61,7 @@ export const ChangePasswordForm = ({ token, onSuccess, onError }: Props) => {
         <InputPassword
           placeholder="New password"
           aria-label="New password"
-          isDisabled={isLoading}
+          isDisabled={isPending}
           labelPlacement="outside"
           isInvalid={!!errors.password}
           errorMessage={errors.password?.message}
@@ -64,14 +70,14 @@ export const ChangePasswordForm = ({ token, onSuccess, onError }: Props) => {
         <InputPassword
           placeholder="Repeat new password"
           aria-label="Repeat new password"
-          isDisabled={isLoading}
+          isDisabled={isPending}
           labelPlacement="outside"
           isInvalid={!!errors.passwordRepeat}
           errorMessage={errors.passwordRepeat?.message}
           {...register('passwordRepeat', VALIDATION_RULES.PASSWORD)}
         />
         <div>
-          <Button type="submit" color="secondary" isLoading={isLoading}>
+          <Button type="submit" color="secondary" isLoading={isPending}>
             Change password
           </Button>
         </div>

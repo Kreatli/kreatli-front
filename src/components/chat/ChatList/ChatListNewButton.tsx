@@ -1,7 +1,7 @@
 import { Avatar, Button, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger, Tooltip } from '@nextui-org/react';
+import { useQuery } from '@tanstack/react-query';
 import { useRouter } from 'next/router';
 import React from 'react';
-import { useQuery } from 'react-query';
 
 import { COUNTRY_LABELS } from '../../../constants/countries';
 import { useSession } from '../../../hooks/useSession';
@@ -13,8 +13,11 @@ export const ChatListNewButton = () => {
   const { currentUser } = useSession();
 
   const userIds = (currentUser?.connections ?? []).slice(0, 10);
-  const { data: connections = [] } = useQuery(['users', ...userIds], () => requestUsersByIds(userIds), {
+
+  const { data: connections = [] } = useQuery({
     refetchOnMount: false,
+    queryKey: ['users', ...userIds],
+    queryFn: () => requestUsersByIds(userIds),
   });
 
   const handleAction = (key: React.Key) => {

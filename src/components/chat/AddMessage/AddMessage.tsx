@@ -1,8 +1,8 @@
 import { Button, Link, Popover, PopoverContent, PopoverTrigger, Textarea, Tooltip } from '@nextui-org/react';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import cx from 'classnames';
 import { omit } from 'ramda';
 import React from 'react';
-import { useMutation, useQueryClient } from 'react-query';
 
 import { ChatContext } from '../../../contexts/Chat/ChatContext';
 import { useFilesUpload } from '../../../hooks/useFilesUpload';
@@ -43,10 +43,11 @@ export const AddMessage = () => {
     setFiles,
   } = useFilesUpload();
 
-  const { mutate: moveRequestToChat } = useMutation(() => requestChatUpdate([participantId!, { isRequest: false }]), {
+  const { mutate: moveRequestToChat } = useMutation({
+    mutationFn: () => requestChatUpdate([participantId!, { isRequest: false }]),
     onSuccess: () => {
-      queryClient.invalidateQueries(['chat', participantId]);
-      queryClient.invalidateQueries(['chat-requests']);
+      queryClient.invalidateQueries({ queryKey: ['chat', participantId] });
+      queryClient.invalidateQueries({ queryKey: ['chat-requests'] });
     },
     onError: (error) => {
       pushNotification({

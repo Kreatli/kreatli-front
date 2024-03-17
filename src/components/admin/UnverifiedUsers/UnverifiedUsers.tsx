@@ -1,7 +1,7 @@
 import { Button, Chip, Pagination, Table, TableBody, TableCell, TableColumn, TableHeader, TableRow, Tooltip, User } from '@nextui-org/react';
+import { keepPreviousData, useQuery } from '@tanstack/react-query';
 import Link from 'next/link';
 import React from 'react';
-import { useQuery } from 'react-query';
 
 import { COUNTRY_LABELS } from '../../../constants/countries';
 import { getUnverifiedUsers } from '../../../services/admin';
@@ -22,7 +22,7 @@ export const UnverifiedUsers = () => {
   const [isUpdateModalOpen, setIsUpdateModalOpen] = React.useState(false);
 
   const { data, isLoading } = useQuery({
-    keepPreviousData: true,
+    placeholderData: keepPreviousData,
     queryKey: ['unverifiedUsers', page],
     queryFn: () => getUnverifiedUsers({ offset: (page - 1) * LIMIT, limit: LIMIT }),
   });

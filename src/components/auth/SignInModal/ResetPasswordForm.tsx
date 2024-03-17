@@ -1,7 +1,7 @@
 import { Button, Input } from '@nextui-org/react';
+import { useMutation } from '@tanstack/react-query';
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { useMutation } from 'react-query';
 
 import { VALIDATION_RULES } from '../../../constants/validationRules';
 import { useNotifications } from '../../../hooks/useNotifications';
@@ -20,9 +20,15 @@ const DEFAULT_VALUES = {
 type DefaultValues = typeof DEFAULT_VALUES;
 
 export const ResetPasswordForm = ({ onClick, onSuccess }: Props) => {
-  const { register, handleSubmit, formState: { errors }, setError } = useForm({ defaultValues: DEFAULT_VALUES, mode: 'onTouched' });
+  const { register, handleSubmit, formState: { errors }, setError } = useForm({
+    defaultValues: DEFAULT_VALUES,
+    mode: 'onTouched',
+  });
+
   const pushNotification = useNotifications((state) => state.pushNotification);
-  const { mutate, isLoading } = useMutation(requestResetPassword, {
+
+  const { mutate, isPending } = useMutation({
+    mutationFn: requestResetPassword,
     onSuccess: () => {
       onSuccess();
       pushNotification({
@@ -54,14 +60,14 @@ export const ResetPasswordForm = ({ onClick, onSuccess }: Props) => {
       <Input
         placeholder="Email"
         aria-label="Email"
-        isDisabled={isLoading}
+        isDisabled={isPending}
         isInvalid={!!errors.email}
         labelPlacement="outside"
         {...register('email', VALIDATION_RULES.REQUIRED)}
       />
       <div className="flex justify-between gap-4 mt-8 mb-2">
         <Button variant="light" color="secondary" onClick={onClick}>Sign in</Button>
-        <Button type="submit" variant="flat" color="secondary" isLoading={isLoading}>
+        <Button type="submit" variant="flat" color="secondary" isLoading={isPending}>
           Send email
         </Button>
       </div>

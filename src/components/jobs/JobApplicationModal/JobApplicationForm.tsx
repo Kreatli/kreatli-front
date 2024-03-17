@@ -1,7 +1,7 @@
 import { Button, Textarea } from '@nextui-org/react';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { useMutation, useQueryClient } from 'react-query';
 
 import { VALIDATION_RULES } from '../../../constants/validationRules';
 import { useNotifications } from '../../../hooks/useNotifications';
@@ -30,15 +30,16 @@ export const JobApplicationForm = ({ jobOfferId, onCancel, onSuccess }: Props) =
   const pushNotification = useNotifications((state) => state.pushNotification);
 
   const queryClient = useQueryClient();
-  const { mutate, isLoading } = useMutation(requestJobApplicationCreation, {
+  const { mutate, isPending } = useMutation({
+    mutationFn: requestJobApplicationCreation,
     onSuccess: (jobOffer) => {
       pushNotification({
         message: 'Successfully applied',
         color: 'success',
         icon: 'success',
       });
-      queryClient.refetchQueries('user');
-      queryClient.invalidateQueries(['job-offers']);
+      queryClient.refetchQueries({ queryKey: ['user'] });
+      queryClient.invalidateQueries({ queryKey: ['job-offers'] });
       queryClient.setQueryData(['job-offer', jobOfferId], jobOffer);
       onSuccess();
     },
@@ -60,7 +61,7 @@ export const JobApplicationForm = ({ jobOfferId, onCancel, onSuccess }: Props) =
       <Textarea
         placeholder={COVER_LETTER_PLACEHOLDER}
         aria-label="Any information you want to add to your application"
-        isDisabled={isLoading}
+        isDisabled={isPending}
         isInvalid={!!errors.coverLetter}
         fullWidth
         errorMessage={errors.coverLetter?.message}
@@ -68,7 +69,7 @@ export const JobApplicationForm = ({ jobOfferId, onCancel, onSuccess }: Props) =
       />
       <div className="flex justify-center gap-2 mt-4">
         <Button variant="light" color="secondary" onClick={onCancel}>Cancel</Button>
-        <Button type="submit" variant="flat" color="secondary" isLoading={isLoading}>
+        <Button type="submit" variant="flat" color="secondary" isLoading={isPending}>
           Apply for a job
         </Button>
       </div>

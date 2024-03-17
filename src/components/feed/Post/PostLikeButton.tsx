@@ -1,6 +1,6 @@
 import { Button } from '@nextui-org/react';
+import { useMutation } from '@tanstack/react-query';
 import React from 'react';
-import { useMutation } from 'react-query';
 
 import { useSession } from '../../../hooks/useSession';
 import { requestLikePost } from '../../../services/feed';
@@ -18,7 +18,9 @@ export const PostLikeButton = ({ hasLiked, likeCount, postId }: Props) => {
   const [isLiked, setIsLiked] = React.useState(hasLiked);
 
   const { currentUser } = useSession();
-  const { mutate } = useMutation(requestLikePost);
+  const { mutate } = useMutation({
+    mutationFn: requestLikePost,
+  });
 
   const toggleIsLiked = () => {
     mutate(postId);

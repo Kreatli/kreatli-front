@@ -1,6 +1,6 @@
+import { useMutation } from '@tanstack/react-query';
 import React from 'react';
 import { FileRejection, useDropzone } from 'react-dropzone';
-import { useMutation } from 'react-query';
 
 import { requestImageUpload } from '../services/upload';
 import { useNotifications } from './useNotifications';
@@ -15,7 +15,9 @@ export const useImagesUpload = (defaultImages?: Image[]) => {
 
   const pushNotification = useNotifications((state) => state.pushNotification);
 
-  const { isLoading, mutateAsync } = useMutation(requestImageUpload);
+  const { isPending, mutateAsync } = useMutation({
+    mutationFn: requestImageUpload,
+  });
 
   const removeImage = (src: string) => {
     // TODO: remove images from database
@@ -83,7 +85,7 @@ export const useImagesUpload = (defaultImages?: Image[]) => {
       'image/avif': ['.avif'],
       'image/gif': ['.gif'],
     },
-    disabled: isLoading || images.length === 5,
+    disabled: isPending || images.length === 5,
     multiple: true,
     onDrop: handleDrop,
     maxFiles: 5 - images.length,

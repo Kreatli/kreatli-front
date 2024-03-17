@@ -1,6 +1,6 @@
 import { Button, Chip, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger, useDisclosure } from '@nextui-org/react';
+import { useMutation } from '@tanstack/react-query';
 import React from 'react';
-import { useMutation } from 'react-query';
 
 import { JOB_APPLICATION_STATUS_COLORS, JOB_APPLICATION_STATUS_LABELS, JOB_OFFER_STATUS_COLORS, JOB_OFFER_STATUS_LABELS } from '../../../constants/job';
 import { useNotifications } from '../../../hooks/useNotifications';
@@ -32,7 +32,8 @@ export const MyJobsApplication = ({ jobOffer, onCancel, onComplete }: Props) => 
   const hasLeftReview = !!jobOffer.reviews.professional;
 
   const pushNotification = useNotifications((state) => state.pushNotification);
-  const { mutate: mutateCancel, isLoading: isCanceling } = useMutation(requestJobApplicationCancel, {
+  const { mutate: mutateCancel, isPending: isCanceling } = useMutation({
+    mutationFn: requestJobApplicationCancel,
     onSuccess: () => {
       onCancel?.();
       pushNotification({

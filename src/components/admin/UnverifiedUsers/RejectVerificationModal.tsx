@@ -1,6 +1,6 @@
 import { Button, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, Textarea } from '@nextui-org/react';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import React from 'react';
-import { useMutation, useQueryClient } from 'react-query';
 
 import { useNotifications } from '../../../hooks/useNotifications';
 import { rejectUserVerification } from '../../../services/admin';
@@ -18,7 +18,8 @@ export const RejectVerificationModal = ({ isOpen, userId, onClose }: Props) => {
   const { pushNotification } = useNotifications();
   const queryClient = useQueryClient();
 
-  const { mutate, isLoading } = useMutation(rejectUserVerification, {
+  const { mutate, isPending } = useMutation({
+    mutationFn: rejectUserVerification,
     onSuccess: ({ message }) => {
       pushNotification({ message, color: 'success', icon: 'success' });
       onClose();
@@ -53,7 +54,7 @@ export const RejectVerificationModal = ({ isOpen, userId, onClose }: Props) => {
         </ModalBody>
         <ModalFooter>
           <Button variant="light" color="secondary" onClick={onClose}>Cancel</Button>
-          <Button variant="flat" color="secondary" onClick={handleClick} isLoading={isLoading}>Send email</Button>
+          <Button variant="flat" color="secondary" onClick={handleClick} isLoading={isPending}>Send email</Button>
         </ModalFooter>
       </ModalContent>
     </Modal>

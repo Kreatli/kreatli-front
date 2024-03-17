@@ -1,6 +1,6 @@
 import { Link } from '@nextui-org/react';
+import { useMutation } from '@tanstack/react-query';
 import React from 'react';
-import { useMutation } from 'react-query';
 
 import { requestNotificationsMarkAsRead } from '../../../services/notifications';
 import { Notifications as NotificationsI } from '../../../typings/notifications';
@@ -23,7 +23,8 @@ export const Notifications = (props: Props) => {
   const shouldShowEmptyState = notifications.length === 0;
   const hasMoreNotifications = notifications.length < totalCount;
 
-  const { mutate, isLoading: isDisabled } = useMutation(requestNotificationsMarkAsRead, {
+  const { mutate, isPending: isDisabled } = useMutation({
+    mutationFn: requestNotificationsMarkAsRead,
     onSuccess: onReadAll,
   });
 

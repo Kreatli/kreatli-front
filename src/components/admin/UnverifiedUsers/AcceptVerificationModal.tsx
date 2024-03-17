@@ -1,6 +1,6 @@
 import { Button, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader } from '@nextui-org/react';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import React from 'react';
-import { useMutation, useQueryClient } from 'react-query';
 
 import { useNotifications } from '../../../hooks/useNotifications';
 import { acceptUserVerification } from '../../../services/admin';
@@ -17,7 +17,8 @@ export const AcceptVerificationModal = ({ isOpen, userId, onClose }: Props) => {
   const { pushNotification } = useNotifications();
   const queryClient = useQueryClient();
 
-  const { mutate, isLoading } = useMutation(acceptUserVerification, {
+  const { mutate, isPending } = useMutation({
+    mutationFn: acceptUserVerification,
     onSuccess: () => {
       pushNotification({ message: 'The user was marked as verified!', color: 'success', icon: 'success' });
       onClose();
@@ -50,7 +51,7 @@ export const AcceptVerificationModal = ({ isOpen, userId, onClose }: Props) => {
         </ModalBody>
         <ModalFooter>
           <Button variant="light" color="secondary" onClick={onClose}>Cancel</Button>
-          <Button variant="flat" color="secondary" onClick={handleClick} isLoading={isLoading}>Mark as verified</Button>
+          <Button variant="flat" color="secondary" onClick={handleClick} isLoading={isPending}>Mark as verified</Button>
         </ModalFooter>
       </ModalContent>
     </Modal>

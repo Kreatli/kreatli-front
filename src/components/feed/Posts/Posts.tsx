@@ -1,5 +1,5 @@
+import { useInfiniteQuery } from '@tanstack/react-query';
 import React from 'react';
-import { useInfiniteQuery } from 'react-query';
 
 import { PostContextProvider } from '../../../contexts/Post';
 import { usePostsFilters } from '../../../hooks/usePostsFilters';
@@ -20,9 +20,8 @@ const EMPTY_STATE_TITLES = {
 export const Posts = () => {
   const { filter } = usePostsFilters();
 
-  const { data, fetchNextPage, hasNextPage, isFetching, isFetchingNextPage } = useInfiniteQuery({
-    cacheTime: 0,
-    keepPreviousData: true,
+  const { data, fetchNextPage, hasNextPage, isFetching, isLoading, isFetchingNextPage } = useInfiniteQuery({
+    initialPageParam: 1,
     queryKey: ['posts', filter],
     queryFn: ({ pageParam = 1 }) => {
       return requestPosts({
@@ -43,8 +42,6 @@ export const Posts = () => {
     return data?.pages.flatMap((page) => page?.posts ?? []) ?? [];
   }, [data?.pages]);
 
-  const shouldShowSkeleton = isFetching && !posts.length;
-  const shouldShowLoader = isFetching && !isFetchingNextPage && posts.length;
   const shouldShowEmptyState = !isFetching && !posts.length;
 
   if (shouldShowEmptyState) {
@@ -58,14 +55,14 @@ export const Posts = () => {
 
   return (
     <LazyList isLoading={isFetchingNextPage} hasMore={hasNextPage} onLoadMore={fetchNextPage}>
-      <div className={`relative flex flex-col gap-8 ${shouldShowLoader ? 'pointer-events-none' : ''}`}>
+      <div className="relative flex flex-col gap-8">
         {posts.map((post) => (
           <PostContextProvider key={post._id} post={post}>
             <Post />
           </PostContextProvider>
         ))}
-        {shouldShowSkeleton && <PostsSkeleton />}
-        <div className={`absolute -inset-4 md:-inset-x-8 pointer-events-none transition-all rounded-large ${shouldShowLoader ? 'z-10 bg-background/70' : ''}`} />
+        {(isLoading || isFetchingNextPage) && <PostsSkeleton />}
+        <div className="absolute -inset-4 md:-inset-x-8 pointer-events-none transition-all rounded-large" />
       </div>
     </LazyList>
   );

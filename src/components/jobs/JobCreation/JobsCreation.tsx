@@ -1,9 +1,9 @@
 import { Accordion, AccordionItem, Button, Progress, Selection } from '@nextui-org/react';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useRouter } from 'next/router';
 import { omit } from 'ramda';
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { useMutation, useQueryClient } from 'react-query';
 
 import { useNotifications } from '../../../hooks/useNotifications';
 import { useSession } from '../../../hooks/useSession';
@@ -67,14 +67,15 @@ export const JobsCreation = () => {
     setSelectedKeys([(index - 1).toString()]);
   };
 
-  const { mutate, isLoading, isSuccess } = useMutation(requestJobOfferCreation, {
+  const { mutate, isPending, isSuccess } = useMutation({
+    mutationFn: requestJobOfferCreation,
     onSuccess: () => {
       pushNotification({
         message: 'Job posting was created!',
         color: 'success',
         icon: 'success',
       });
-      queryClient.refetchQueries('user');
+      queryClient.refetchQueries({ queryKey: ['user'] });
       router.push(`/profile/${currentUserId}/jobs`);
     },
     onError: (error) => {
@@ -129,7 +130,7 @@ export const JobsCreation = () => {
   const description = 'Create a job posting to attract and hire the most relevant professionals. Make it unique so that it stands out!';
   const disabledKeys = steps
     .map((_, index) => index)
-    .filter((index) => isSuccess || isLoading || (index > 0 && !isFilledByStep[index - 1]))
+    .filter((index) => isSuccess || isPending || (index > 0 && !isFilledByStep[index - 1]))
     .map((index) => index.toString());
 
   return (
@@ -164,7 +165,7 @@ export const JobsCreation = () => {
                   <Button variant="flat" color="secondary" onClick={handleNext}>Next</Button>
                 )}
                 {index === steps.length - 1 && (
-                  <Button type="submit" color="secondary" disabled={currentUser?.role === 'admin'} isLoading={isLoading}>
+                  <Button type="submit" color="secondary" disabled={currentUser?.role === 'admin'} isLoading={isPending}>
                     Create job posting
                   </Button>
                 )}

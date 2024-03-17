@@ -3,17 +3,26 @@ import 'react-image-crop/dist/ReactCrop.css';
 
 import { GoogleTagManager } from '@next/third-parties/google';
 import { NextUIProvider } from '@nextui-org/react';
+import { Query, QueryCache, QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import React from 'react';
-import { QueryClient, QueryClientProvider } from 'react-query';
 
 import { ApplicationLoader } from '../components/app/ApplicationLoader';
 import { DashboardTiersModal } from '../components/dashboard/DashboardTiers';
 import { Header } from '../components/layout/Header';
 import { Notifications } from '../components/various/Notifications';
+import { useNotifications } from '../hooks/useNotifications';
+import { getErrorMessage } from '../utils/getErrorMessage';
+
+interface QueryErrorMeta {
+  showErrorNotification?: boolean;
+  errorMessage?: string;
+}
 
 export default function App({ Component, pageProps }: AppProps) {
+  const { pushNotification } = useNotifications();
+
   const [queryClient] = React.useState(
     () => new QueryClient({
       defaultOptions: {
@@ -22,6 +31,19 @@ export default function App({ Component, pageProps }: AppProps) {
           retry: false,
         },
       },
+      queryCache: new QueryCache({
+        onError: (error, meta: Query<any, any, any> & QueryErrorMeta) => {
+          if (!meta.showErrorNotification && !meta.errorMessage) {
+            return;
+          }
+
+          pushNotification({
+            message: meta.errorMessage || getErrorMessage(error),
+            color: 'danger',
+            icon: 'error',
+          });
+        },
+      }),
     }),
   );
 

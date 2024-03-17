@@ -1,7 +1,7 @@
 import { Button, Input, Textarea } from '@nextui-org/react';
+import { useMutation } from '@tanstack/react-query';
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { useMutation } from 'react-query';
 
 import { VALIDATION_RULES } from '../../../constants/validationRules';
 import { useNotifications } from '../../../hooks/useNotifications';
@@ -24,7 +24,8 @@ export const ContactForm = () => {
     mode: 'onTouched',
   });
 
-  const { isLoading, mutate } = useMutation(requestContactFormSubmission, {
+  const { isPending, mutate } = useMutation({
+    mutationFn: requestContactFormSubmission,
     onSuccess: () => {
       reset();
       pushNotification({
@@ -52,7 +53,7 @@ export const ContactForm = () => {
         <Input
           label="Email"
           placeholder="john.doe@domain.com"
-          isDisabled={isLoading}
+          isDisabled={isPending}
           isInvalid={!!errors.email}
           errorMessage={errors.email?.message}
           {...register('email', VALIDATION_RULES.EMAIL)}
@@ -60,7 +61,7 @@ export const ContactForm = () => {
         <Input
           label="Name"
           placeholder="John Doe"
-          isDisabled={isLoading}
+          isDisabled={isPending}
           isInvalid={!!errors.name}
           errorMessage={errors.name?.message}
           {...register('name', VALIDATION_RULES.SHORT_TEXT)}
@@ -71,13 +72,13 @@ export const ContactForm = () => {
         label="Message"
         placeholder="Hi there! I would like to know more about your platform..."
         minRows={8}
-        isDisabled={isLoading}
+        isDisabled={isPending}
         isInvalid={!!errors.message}
         errorMessage={errors.message?.message}
         {...register('message', VALIDATION_RULES.REQUIRED)}
       />
       <div className="mt-4 text-center">
-        <Button type="submit" color="secondary" variant="flat" isLoading={isLoading} className="px-12">
+        <Button type="submit" color="secondary" variant="flat" isLoading={isPending} className="px-12">
           Submit
         </Button>
       </div>

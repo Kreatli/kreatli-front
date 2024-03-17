@@ -38,7 +38,14 @@ export const SideMenu = () => {
                 <Icon icon="chevronDown" />
               </Link>
             </DropdownTrigger>
-            <DropdownMenu selectionMode="single" selectedKeys={[filter]} color="secondary" variant="flat" onSelectionChange={handleChange}>
+            <DropdownMenu
+              selectionMode="single"
+              selectedKeys={[filter]}
+              disallowEmptySelection
+              color="secondary"
+              variant="flat"
+              onSelectionChange={handleChange}
+            >
               <DropdownItem key="allPosts">{FILTER_LABELS.allPosts}</DropdownItem>
               <DropdownItem key="feedbackPosts">{FILTER_LABELS.feedbackPosts}</DropdownItem>
               <DropdownItem key="myPosts">{FILTER_LABELS.myPosts}</DropdownItem>

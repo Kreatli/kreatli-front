@@ -1,6 +1,6 @@
 import { Skeleton } from '@nextui-org/react';
+import { useQuery } from '@tanstack/react-query';
 import React from 'react';
-import { useQuery } from 'react-query';
 
 import { requestProfessionalJobs } from '../../../services/professional';
 import { Common } from '../../../typings/common';
@@ -16,7 +16,10 @@ interface Props {
 }
 
 export const RecentJobs = ({ id }: Props) => {
-  const { data, isLoading } = useQuery(['professional', id, 'job-applications'], () => requestProfessionalJobs(id));
+  const { data, isLoading } = useQuery({
+    queryKey: ['professional', id, 'job-applications'],
+    queryFn: () => requestProfessionalJobs(id),
+  });
 
   const getCardFooter = (jobOffer: Job.Offer) => {
     const creatorReview = jobOffer.reviews.creator;
