@@ -34,7 +34,7 @@ export const Hero = () => {
                   </Button>
                 </DropdownTrigger>
                 <DropdownMenu aria-label="Sign up" variant="flat" color="secondary">
-                  <DropdownItem as={NextLink} href="/signup/creator" key="creator">As Creator</DropdownItem>
+                  <DropdownItem as={NextLink} href="/signup/creator" key="creator">As YouTube Creator</DropdownItem>
                   <DropdownItem as={NextLink} href="/signup/professional" key="professional">As Professional</DropdownItem>
                 </DropdownMenu>
               </Dropdown>

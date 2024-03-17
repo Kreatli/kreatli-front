@@ -204,7 +204,7 @@ export const Header = () => {
                 <Button variant="flat" color="secondary">Sign up</Button>
               </DropdownTrigger>
               <DropdownMenu aria-label="Sign up" variant="flat" color="secondary" onAction={handleSignUpAction}>
-                <DropdownItem key="creator">As Creator</DropdownItem>
+                <DropdownItem key="creator">As YouTube Creator</DropdownItem>
                 <DropdownItem key="professional">As Professional</DropdownItem>
               </DropdownMenu>
             </Dropdown>

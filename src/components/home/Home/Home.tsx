@@ -67,7 +67,7 @@ export const Home = () => {
             <TextLinear>Collaborate</TextLinear> <br />Seamlessly
           </h2>
           <p className="text-lg text-foreground-500 max-w-[480px]">
-            Explore a world of exciting job opportunities with Kreatli&apos;s powerful job search feature. Designed for seamless collaboration, it connects professionals and creators, making it effortless to find the perfect match for your next venture.
+            Explore a world of exciting job opportunities with Kreatli&apos;s powerful job search feature. Designed for seamless collaboration, it connects professionals and YouTube creators, making it effortless to find the perfect match for your next venture.
           </p>
         </div>
         <DesktopFrame>
@@ -99,7 +99,7 @@ export const Home = () => {
             Recognize Your <br /><TextLinear>Progress</TextLinear>
           </h2>
           <p className="text-lg text-foreground-500 max-w-[480px]">
-            Explore a world of exciting job opportunities with Kreatli&apos;s powerful job search feature. Designed for seamless collaboration, it connects professionals and creators, making it effortless to find the perfect match for your next venture.
+            Explore a world of exciting job opportunities with Kreatli&apos;s powerful job search feature. Designed for seamless collaboration, it connects professionals and YouTube creators, making it effortless to find the perfect match for your next venture.
           </p>
         </div>
         <DesktopFrame>
@@ -120,7 +120,7 @@ export const Home = () => {
             <Card className="col-start-1 col-end-5 sm:col-end-3 xl:col-end-2">
               <CardHeader className="block p-8">
                 <span className="text-lg font-semibold">For</span>
-                <h3 className="text-4xl font-semibold text-secondary">Creators</h3>
+                <h3 className="text-4xl font-semibold text-secondary">YouTube Creators</h3>
               </CardHeader>
               <CardBody className="p-8 pt-0">
                 <ul className="flex flex-col gap-2 list-disc list-outside pl-4 marker:text-secondary xl:max-w-[250px] text-foreground-500">
@@ -130,7 +130,7 @@ export const Home = () => {
                 </ul>
               </CardBody>
               <CardFooter className="p-8">
-                <Button as={NextLink} href="/signup/creator" color="secondary" radius="full">Join as Creator</Button>
+                <Button as={NextLink} href="/signup/creator" color="secondary" radius="full">Join as YouTube Creator</Button>
               </CardFooter>
             </Card>
             <div className="col-start-1 col-end-5 sm:col-end-3 xl:col-start-2 relative rounded-large overflow-hidden shadow-small max-h-[500px]">
@@ -149,8 +149,8 @@ export const Home = () => {
               </CardHeader>
               <CardBody className="p-8 pt-0">
                 <ul className="flex flex-col gap-2 list-disc list-outside pl-4 marker:text-secondary xl:max-w-[250px] text-foreground-500">
-                  <li>Grow your professional network.</li>
-                  <li>Grow your professional network.</li>
+                  <li>Grow your professional network and connect with enthusiastic creators.</li>
+                  <li>Unleash your creativity by collaborating with talented creators.</li>
                   <li>Showcase your amazing skills effectively to potential clients. </li>
                 </ul>
               </CardBody>
