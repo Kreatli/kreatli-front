@@ -1,6 +1,8 @@
 import { Button, Chip, Pagination, Table, TableBody, TableCell, TableColumn, TableHeader, TableRow, Tooltip, User } from '@nextui-org/react';
 import { keepPreviousData, useQuery } from '@tanstack/react-query';
 import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
+import { useRouter } from 'next/router';
 import React from 'react';
 
 import { COUNTRY_LABELS } from '../../../constants/countries';
@@ -20,6 +22,13 @@ export const UnverifiedUsers = () => {
   const [isAcceptModalOpen, setIsAcceptModalOpen] = React.useState(false);
   const [isRejectModalOpen, setIsRejectModalOpen] = React.useState(false);
   const [isUpdateModalOpen, setIsUpdateModalOpen] = React.useState(false);
+
+  const searchParams = useSearchParams();
+  const router = useRouter();
+
+  React.useEffect(() => {
+    setPage(Number(searchParams.get('page')) || 1);
+  }, [searchParams]);
 
   const { data, isLoading } = useQuery({
     placeholderData: keepPreviousData,
@@ -60,6 +69,14 @@ export const UnverifiedUsers = () => {
     setIsUpdateModalOpen(false);
   };
 
+  const handlePageChange = (newPage: number) => {
+    const currentSearchParams = new URLSearchParams(Array.from(searchParams.entries()));
+    currentSearchParams.set('page', newPage.toString());
+
+    const search = currentSearchParams.toString();
+    router.replace({ search: `?${search}` });
+  };
+
   const dateFormatter = new Intl.DateTimeFormat('en', { dateStyle: 'medium', timeStyle: 'medium' }).format;
 
   const pagination = pages > 1 && (
@@ -70,7 +87,7 @@ export const UnverifiedUsers = () => {
       color="secondary"
       page={page}
       total={pages}
-      onChange={setPage}
+      onChange={handlePageChange}
     />
   );
 
