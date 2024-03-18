@@ -1,4 +1,6 @@
 import { Tab, Tabs } from '@nextui-org/react';
+import { useSearchParams } from 'next/navigation';
+import { useRouter } from 'next/router';
 import React from 'react';
 
 import { Creators } from '../Creators';
@@ -6,8 +8,17 @@ import { RejectedUsers } from '../RejectedUsers.tsx';
 import { UnverifiedUsers } from '../UnverifiedUsers';
 
 export const AdminPanel = () => {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
+  const selectedTab = searchParams.get('tab');
+
+  const handleSelectionChange = (key: React.Key) => {
+    router.push({ search: `?tab=${key}` });
+  };
+
   return (
-    <Tabs>
+    <Tabs selectedKey={selectedTab ?? 'unverified-users'} onSelectionChange={handleSelectionChange}>
       <Tab key="unverified-users" title="Unverified users">
         <UnverifiedUsers />
       </Tab>
