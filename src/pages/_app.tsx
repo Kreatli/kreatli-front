@@ -9,6 +9,7 @@ import Head from 'next/head';
 import React from 'react';
 
 import { ApplicationLoader } from '../components/app/ApplicationLoader';
+import { SignUpCreatorModal } from '../components/auth/SignUpCreator';
 import { DashboardTiersModal } from '../components/dashboard/DashboardTiers';
 import { Header } from '../components/layout/Header';
 import { Notifications } from '../components/various/Notifications';
@@ -66,6 +67,7 @@ export default function App({ Component, pageProps }: AppProps) {
             </main>
             <footer />
             <Notifications />
+            <SignUpCreatorModal />
           </ApplicationLoader>
           <DashboardTiersModal />
         </NextUIProvider>

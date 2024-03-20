@@ -6,7 +6,6 @@ import React from 'react';
 
 import LogoIcon from '../../../assets/images/logo.svg';
 import { useSignUpCreatorModal } from '../../../hooks/useSignUpCreatorModal';
-import { SignUpCreatorModal } from '../../auth/SignUpCreator';
 import { ContactForm } from '../../contact/ContactForm';
 import { Faq } from '../../contact/Faq';
 import { Video } from '../../various/Video';
@@ -239,7 +238,6 @@ export const Home = () => {
           </div>
         </div>
       </footer>
-      <SignUpCreatorModal />
     </>
     // </GoogleOAuthProvider>
   );

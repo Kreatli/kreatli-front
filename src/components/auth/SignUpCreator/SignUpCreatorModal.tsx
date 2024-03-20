@@ -1,11 +1,17 @@
 import { Modal, ModalBody, ModalContent, ModalFooter, ModalHeader } from '@nextui-org/react';
 import React from 'react';
 
+import { useSession } from '../../../hooks/useSession';
 import { useSignUpCreatorModal } from '../../../hooks/useSignUpCreatorModal';
 import { SignUpCreatorForm } from './SignUpCreatorForm';
 
 export const SignUpCreatorModal = () => {
+  const { isSignedIn } = useSession();
   const { isOpen, close } = useSignUpCreatorModal();
+
+  if (isSignedIn) {
+    return null;
+  }
 
   return (
     <Modal isOpen={isOpen} onClose={close}>
