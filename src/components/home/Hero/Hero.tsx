@@ -2,6 +2,7 @@ import { Button, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger } from '@
 import NextLink from 'next/link';
 import React from 'react';
 
+import { useSignUpCreatorModal } from '../../../hooks/useSignUpCreatorModal';
 import { SignInModal } from '../../auth/SignInModal';
 import { Icon } from '../../various/Icon';
 import { Video } from '../../various/Video';
@@ -10,6 +11,14 @@ import { TextLinear } from '../TextLinear';
 
 export const Hero = () => {
   const [isSignedInModalOpen, setIsSignedInModalOpen] = React.useState(false);
+
+  const { open } = useSignUpCreatorModal();
+
+  const handleSignUpAction = (key: React.Key) => {
+    if (key === 'creator') {
+      open();
+    }
+  };
 
   return (
     <div className="relative overflow-x-clip">
@@ -33,8 +42,8 @@ export const Hero = () => {
                     Join Kreatli
                   </Button>
                 </DropdownTrigger>
-                <DropdownMenu aria-label="Sign up" variant="flat" color="secondary">
-                  <DropdownItem as={NextLink} href="/signup/creator" key="creator">As YouTube Creator</DropdownItem>
+                <DropdownMenu aria-label="Sign up" variant="flat" color="secondary" onAction={handleSignUpAction}>
+                  <DropdownItem key="creator">As YouTube Creator</DropdownItem>
                   <DropdownItem as={NextLink} href="/signup/professional" key="professional">As Professional</DropdownItem>
                 </DropdownMenu>
               </Dropdown>

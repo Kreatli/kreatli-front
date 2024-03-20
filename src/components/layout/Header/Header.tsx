@@ -5,6 +5,7 @@ import React from 'react';
 
 import LogoIcon from '../../../assets/images/logo.svg';
 import { useSession } from '../../../hooks/useSession';
+import { useSignUpCreatorModal } from '../../../hooks/useSignUpCreatorModal';
 import { SignInModal } from '../../auth/SignInModal';
 import { NotificationButton } from '../../notifications/NotificationButton';
 import { Icon } from '../../various/Icon';
@@ -14,6 +15,7 @@ export const Header = () => {
   const [isNavbarOpen, setIsNavbarOpen] = React.useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { isSignedIn, currentUser, signOut } = useSession();
+  const { open: openSignUpCreatorModal } = useSignUpCreatorModal();
 
   React.useEffect(() => {
     setIsNavbarOpen(false);
@@ -134,6 +136,12 @@ export const Header = () => {
   };
 
   const handleSignUpAction = (key: React.Key) => {
+    if (key === 'creator') {
+      openSignUpCreatorModal();
+
+      return;
+    }
+
     router.push(`/signup/${key}`);
   };
 

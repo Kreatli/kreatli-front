@@ -227,7 +227,11 @@ export namespace Api {
   }
 
   export interface PostPayload {
-    '/auth/signup-creator': any; // TODO: change to payload type
+    '/auth/signup-creator': {
+      email: string;
+      password: string;
+      youtubeUrl: string;
+    };
     '/auth/signup-professional': any; // TODO: change to payload type
     '/auth/signin': {
       email: string;

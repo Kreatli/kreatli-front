@@ -27,17 +27,19 @@ export const CreatorProfile = ({ userId }: Props) => {
       )}
       <div className="flex gap-10 mt-4">
         <div className="flex-1">
-          <p className="mb-4">{user?.description}</p>
-          <div className="flex flex-wrap items-center gap-2">
-            <div>
-              <p>{user?.name} is looking for</p>
-            </div>
-            {user?.interestSkills.map((skill) => (
-              <div key={skill}>
-                <Tag disabled>{SKILL_LABELS_FOR_CREATOR[skill]}</Tag>
+          <p>{user?.description}</p>
+          {(user?.interestSkills.length ?? 0) > 0 && (
+            <div className="flex flex-wrap items-center gap-2 mt-4">
+              <div>
+                <p>{user?.name} is looking for</p>
               </div>
-            ))}
-          </div>
+              {user?.interestSkills.map((skill) => (
+                <div key={skill}>
+                  <Tag disabled>{SKILL_LABELS_FOR_CREATOR[skill]}</Tag>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
         {user && (
           <div className="flex flex-col gap-2">

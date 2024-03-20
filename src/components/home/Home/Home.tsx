@@ -1,9 +1,12 @@
 /* eslint-disable max-len */
 import { Button, Card, CardBody, CardFooter, CardHeader, Chip, Image, Link } from '@nextui-org/react';
+// import { GoogleOAuthProvider } from '@react-oauth/google';
 import NextLink from 'next/link';
 import React from 'react';
 
 import LogoIcon from '../../../assets/images/logo.svg';
+import { useSignUpCreatorModal } from '../../../hooks/useSignUpCreatorModal';
+import { SignUpCreatorModal } from '../../auth/SignUpCreator';
 import { ContactForm } from '../../contact/ContactForm';
 import { Faq } from '../../contact/Faq';
 import { Video } from '../../various/Video';
@@ -16,6 +19,8 @@ import creatorsImage from './assets/creators.jpg';
 import professionalsImage from './assets/professionals.jpg';
 
 export const Home = () => {
+  const { open: openSignUpCreatorModal } = useSignUpCreatorModal();
+
   const creatorFeatures = [
     {
       icon: 'certification' as const,
@@ -35,7 +40,8 @@ export const Home = () => {
   ];
 
   return (
-    <div>
+    // <GoogleOAuthProvider clientId={process.env.GOOGLE_OAUTH_CLIENT_ID as string}>
+    <>
       <Hero />
       <section className="relative flex flex-col gap-2 items-center container max-w-screen-xl mx-auto px-6 text-center mb-20 sm:mb-32">
         <Chip variant="flat" color="secondary" classNames={{ content: 'font-semibold' }}>
@@ -130,7 +136,7 @@ export const Home = () => {
                 </ul>
               </CardBody>
               <CardFooter className="p-8">
-                <Button as={NextLink} href="/signup/creator" color="secondary" radius="full">Join as YouTube Creator</Button>
+                <Button color="secondary" radius="full" onClick={openSignUpCreatorModal}>Join as YouTube Creator</Button>
               </CardFooter>
             </Card>
             <div className="col-start-1 col-end-5 sm:col-end-3 xl:col-start-2 relative rounded-large overflow-hidden shadow-small max-h-[500px]">
@@ -233,6 +239,8 @@ export const Home = () => {
           </div>
         </div>
       </footer>
-    </div>
+      <SignUpCreatorModal />
+    </>
+    // </GoogleOAuthProvider>
   );
 };
