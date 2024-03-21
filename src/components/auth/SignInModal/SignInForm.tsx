@@ -56,6 +56,7 @@ export const SignInForm = ({ onClick, onSuccess }: Props) => {
     <form noValidate onSubmit={handleSubmit(onSubmit)}>
       <div className="flex flex-col gap-4">
         <Input
+          type="email"
           placeholder="Email"
           aria-label="Email"
           isDisabled={isPending}
