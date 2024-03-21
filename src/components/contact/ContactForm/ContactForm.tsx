@@ -51,6 +51,7 @@ export const ContactForm = () => {
     <form noValidate className="flex flex-col gap-4 text-start" onSubmit={handleSubmit(onSubmit)}>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <Input
+          type="email"
           label="Email"
           placeholder="john.doe@domain.com"
           isDisabled={isPending}

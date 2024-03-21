@@ -58,6 +58,7 @@ export const ResetPasswordForm = ({ onClick, onSuccess }: Props) => {
   return (
     <form noValidate onSubmit={handleSubmit(onSubmit)}>
       <Input
+        type="email"
         placeholder="Email"
         aria-label="Email"
         isDisabled={isPending}
