@@ -4,8 +4,10 @@ import { useRouter } from 'next/router';
 import React from 'react';
 
 import LogoIcon from '../../../assets/images/logo.svg';
+import { useLocalStorage } from '../../../hooks/useLocalStorage';
 import { useSession } from '../../../hooks/useSession';
 import { useSignUpCreatorModal } from '../../../hooks/useSignUpCreatorModal';
+import { Layout } from '../../../typings/layout';
 import { SignInModal } from '../../auth/SignInModal';
 import { NotificationButton } from '../../notifications/NotificationButton';
 import { Icon } from '../../various/Icon';
@@ -16,6 +18,7 @@ export const Header = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { isSignedIn, currentUser, signOut } = useSession();
   const { open: openSignUpCreatorModal } = useSignUpCreatorModal();
+  const [theme, setTheme] = useLocalStorage<Layout.Theme>({ key: 'theme', defaultValue: 'light' });
 
   React.useEffect(() => {
     setIsNavbarOpen(false);
@@ -146,7 +149,7 @@ export const Header = () => {
   };
 
   const toggleTheme = () => {
-    document.documentElement.classList.toggle('dark');
+    setTheme(theme === 'light' ? 'dark' : 'light');
   };
 
   const userInitials = React.useMemo(() => {
