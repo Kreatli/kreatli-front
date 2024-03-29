@@ -22,7 +22,7 @@ export const KreatliPremium = () => {
         <ul className="text-sm list-disc pl-4 mt-2 marker:text-secondary text-default-500">
           <li><span className="font-semibold">Increased limit:</span> Enjoy an increased daily limit of 500 points</li>
           <li><span className="font-semibold">Boosted Points:</span> 50% bonus on points earned from all tasks</li>
-          <li><span className="font-semibold">Unlock Pro and Legend Tiers:</span> Get access to the &quot;Pro&quot; and &quot;Legend&quot; tiers to enjoy their unique benefits</li>
+          <li><span className="font-semibold">Unlock Expert and Legend Tiers:</span> Get access to the &quot;Expert&quot; and &quot;Legend&quot; tiers to enjoy their unique benefits</li>
         </ul>
       </CardBody>
     </Card>

@@ -45,7 +45,7 @@ export const ProfileHeader = ({ user }: Props) => {
       </ProfileBadge>
       <div className="flex-1">
         {portfolioUrl && (
-          <Link href={portfolioUrl} target="_blank" className="flex items-center gap-1 text-gray-400">
+          <Link href={portfolioUrl} target="_blank" underline="hover" className="flex items-center gap-1">
             <Icon icon="link" size={16} />
             portfolio
           </Link>
@@ -55,7 +55,7 @@ export const ProfileHeader = ({ user }: Props) => {
           {name}
           <TierImage tier={tier} className="w-10 h-10" isInline />
         </h2>
-        <Link as={NextLink} href={`/profile/${userId}/connections`} className="text-small">
+        <Link as={NextLink} href={`/profile/${userId}/connections`} color="foreground" underline="hover" className="text-small  text-gray-400">
           {`${connectionsCount} connection${connectionsCount === 1 ? '' : 's'}`}
           {user.invitations.length > 0 && isMyAccount ? ` • ${user.invitations.length} invite${connectionsCount === 1 ? '' : 's'}` : ''}
         </Link>

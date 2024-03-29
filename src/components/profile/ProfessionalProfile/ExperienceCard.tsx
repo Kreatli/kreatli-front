@@ -25,7 +25,7 @@ export const ExperienceCard = ({ description, companyName, companyUrl, imageUrl 
             />
             <div>
               <p className="text-lg font-semibold">{companyName}</p>
-              <Link href={companyUrl} target="_blank" className="flex items-center gap-1">
+              <Link href={companyUrl} target="_blank" underline="hover" className="flex items-center gap-1">
                 <Icon icon="link" size={16} />
                 link
               </Link>
