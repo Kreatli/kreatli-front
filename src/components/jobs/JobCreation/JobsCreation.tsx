@@ -155,6 +155,7 @@ export const JobsCreation = () => {
               aria-label={title}
               subtitle={subtitle}
               startContent={!isValidByStep[index] && <Icon className="fill-danger" icon="error" />}
+              onKeyDown={(e) => e.stopPropagation()}
             >
               {render}
               <div className="flex gap-2 mt-6">

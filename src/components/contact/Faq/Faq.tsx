@@ -45,7 +45,11 @@ export const Faq = () => {
     <div className="w-full text-left">
       <Accordion>
         {faqItems.map(({ question, answer }) => (
-          <AccordionItem key={question} title={question} aria-label={question}>
+          <AccordionItem
+            key={question}
+            title={question}
+            aria-label={question}
+          >
             <span className="text-foreground-500">{answer}</span>
           </AccordionItem>
         ))}

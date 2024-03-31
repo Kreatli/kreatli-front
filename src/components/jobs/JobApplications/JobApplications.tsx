@@ -34,6 +34,7 @@ export const JobApplications = ({ jobOfferId, jobOfferStatus, applications, onRe
             startContent={(
               <Avatar src={application.professional.avatarUrl} />
             )}
+            onKeyDown={(e) => e.stopPropagation()}
           >
             <JobApplicationContent
               jobOfferId={jobOfferId}
