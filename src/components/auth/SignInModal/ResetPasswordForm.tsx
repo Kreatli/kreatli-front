@@ -64,7 +64,7 @@ export const ResetPasswordForm = ({ onClick, onSuccess }: Props) => {
         isDisabled={isPending}
         isInvalid={!!errors.email}
         labelPlacement="outside"
-        {...register('email', VALIDATION_RULES.REQUIRED)}
+        {...register('email', VALIDATION_RULES.EMAIL)}
       />
       <div className="flex justify-between gap-4 mt-8 mb-2">
         <Button type="submit" variant="flat" color="secondary" isLoading={isPending}>

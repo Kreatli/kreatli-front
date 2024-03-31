@@ -1,4 +1,4 @@
-import { Button, Input } from '@nextui-org/react';
+import { Button, Input, Link } from '@nextui-org/react';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { useForm } from 'react-hook-form';
@@ -63,26 +63,28 @@ export const SignInForm = ({ onClick, onSuccess }: Props) => {
           isDisabled={isPending}
           isInvalid={!!errors.email}
           labelPlacement="outside"
-          {...register('email', VALIDATION_RULES.REQUIRED)}
+          {...register('email', VALIDATION_RULES.EMAIL)}
         />
-        <InputPassword
-          placeholder="Password"
-          aria-label="Password"
-          isDisabled={isPending}
-          labelPlacement="outside"
-          isInvalid={!!errors.password}
-          {...register('password', VALIDATION_RULES.REQUIRED)}
-        />
+        <div className="flex flex-col gap-2 items-end">
+          <InputPassword
+            placeholder="Password"
+            aria-label="Password"
+            isDisabled={isPending}
+            labelPlacement="outside"
+            isInvalid={!!errors.password}
+            {...register('password', VALIDATION_RULES.REQUIRED)}
+          />
+          <Link as="button" color="secondary" size="sm" onClick={onClick}>Forgot password?</Link>
+        </div>
       </div>
-      <div className="flex justify-between gap-2 mt-6 mb-4">
-        <Button type="submit" variant="flat" color="secondary" isLoading={isPending}>
+      <div className="mt-4 mb-6">
+        <Button type="submit" variant="flat" fullWidth color="secondary" isLoading={isPending}>
           Sign in
         </Button>
-        <Button variant="light" color="secondary" onClick={onClick}>Forgot password?</Button>
       </div>
       {process.env.ENABLE_GOOGLE_OAUTH === 'true' && (
         <>
-          <div className="flex items-center mb-4 text-sm text-foreground-500 after:flex-1 after:content-[''] after:p-[0.5px] after:bg-foreground-200 after:m-2 before:flex-1 before:content-[''] before:p-[0.5px] before:bg-foreground-200 before:m-2">YouTube creator?</div>
+          <div className="flex items-center mb-6 text-sm text-foreground-500 after:flex-1 after:content-[''] after:p-[0.5px] after:bg-foreground-200 after:m-2 before:flex-1 before:content-[''] before:p-[0.5px] before:bg-foreground-200 before:m-2">YouTube creator?</div>
           <SignInCreatorSSO onSuccess={onSuccess} />
         </>
       )}
