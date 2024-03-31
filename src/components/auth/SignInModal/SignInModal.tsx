@@ -24,7 +24,6 @@ export const SignInModal = ({ isOpen, onClose }: Props) => {
 
   return (
     <Modal
-      placement="center"
       backdrop="blur"
       size="sm"
       isDismissable={!isPending}
