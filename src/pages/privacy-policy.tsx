@@ -1,3 +1,4 @@
+import { Link } from '@nextui-org/react';
 import Head from 'next/head';
 import React from 'react';
 
@@ -89,13 +90,13 @@ export default function HomePage() {
           </li>
           <li>
             <span className="font-semibold">Website</span> refers to Kreatli, accessible from{' '}
-            <a
+            <Link
               href="https://kreatli.com/"
               rel="external nofollow noopener noreferrer"
               target="_blank"
             >
               https://kreatli.com/
-            </a>
+            </Link>
           </li>
           <li>
             <span className="font-semibold">You</span> means the individual accessing or using the
@@ -177,13 +178,13 @@ export default function HomePage() {
           remain on Your personal computer or mobile device when You go offline,
           while Session Cookies are deleted as soon as You close Your web
           browser. You can learn more about cookies on{' '}
-          <a
+          <Link
             href="https://www.termsfeed.com/blog/cookies/#What_Are_Cookies"
             target="_blank"
             rel="noreferrer"
           >
             TermsFeed website
-          </a>{' '}
+          </Link>{' '}
           article.
         </p>
         <p className="text-foreground-500 mb-2">
@@ -461,6 +462,10 @@ export default function HomePage() {
           You are advised to review this Privacy Policy periodically for any
           changes. Changes to this Privacy Policy are effective when they are
           posted on this page.
+        </p>
+        <h2 className="text-xl font-semibold mt-4 mb-2">Google API Services User Data Policy</h2>
+        <p className="text-foreground-500 mb-2">
+          Kreatli&quot;s use and transfer to any other app of information received from Google Accounts will adhere to <Link href="https://developers.google.com/terms/api-services-user-data-policy#additional_requirements_for_specific_api_scopes" target="_blank" rel="noreferrer">Google API Services User Data Policy</Link>, including the Limited Use requirements.
         </p>
         <h2 className="text-xl font-semibold mt-4 mb-2">Contact Us</h2>
         <p className="text-foreground-500 mb-2">
