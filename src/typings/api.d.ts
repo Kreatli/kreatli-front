@@ -65,6 +65,7 @@ export namespace Api {
   export type Post =
     | '/auth/signup-creator'
     | '/auth/signup-professional'
+    | '/auth/sso-creator'
     | '/auth/signin'
     | '/auth/activate'
     | '/auth/reset-password'
@@ -95,11 +96,7 @@ export namespace Api {
     | '/unverified-users/:id/reject'
     | '/unverified-users/:id/resend-activation-link';
 
-  export type Put =
-    | '/post/:id'
-    | '/chat/:id'
-    | '/notification/:id'
-    | '/user';
+  export type Put = '/post/:id' | '/chat/:id' | '/notification/:id' | '/user';
 
   export interface GetParams {
     '/professionals': {
@@ -121,7 +118,9 @@ export namespace Api {
     '/user/:id/connections': Pagination.Params;
     '/creator/job-offers': { status: Job.Offer['status'] } & Pagination.Params;
     '/creator/:id/job-offers': Pagination.Params;
-    '/professional/job-applications': { status: Job.Application['status'] } & Pagination.Params;
+    '/professional/job-applications': {
+      status: Job.Application['status'];
+    } & Pagination.Params;
     '/professional/:id/job-applications': Pagination.Params;
     '/posts': {
       isFeedback?: boolean;
@@ -140,7 +139,7 @@ export namespace Api {
         jobOffers: boolean;
         jobApplications: boolean;
         invitations: boolean;
-      }
+      };
     };
     '/user/posts': {
       posts: Feed.Post[];
@@ -233,6 +232,7 @@ export namespace Api {
       youtubeUrl: string;
     };
     '/auth/signup-professional': any; // TODO: change to payload type
+    '/auth/sso-creator': any; // TODO: change to payload type
     '/auth/signin': {
       email: string;
       password: string;
@@ -291,6 +291,10 @@ export namespace Api {
   export interface PostResponse {
     '/auth/signup-creator': User.Creator;
     '/auth/signup-professional': User.Professional;
+    '/auth/sso-creator': {
+      user: User.Creator;
+      token: string;
+    };
     '/auth/signin': {
       user: User.Type;
       token: string;

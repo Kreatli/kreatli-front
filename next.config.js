@@ -10,10 +10,14 @@ const nextConfig = {
   env: {
     API_URL: process.env.API_URL,
     GTM_ID: process.env.GTM_ID,
+    GOOGLE_OAUTH_CLIENT_ID: process.env.GOOGLE_OAUTH_CLIENT_ID,
+    ENABLE_GOOGLE_OAUTH: process.env.ENABLE_GOOGLE_OAUTH,
   },
   swcMinify: false,
   webpack(config) {
-    const fileLoaderRule = config.module.rules.find((rule) => rule.test?.test?.('.svg'));
+    const fileLoaderRule = config.module.rules.find((rule) =>
+      rule.test?.test?.('.svg'),
+    );
 
     config.module.rules.push(
       {

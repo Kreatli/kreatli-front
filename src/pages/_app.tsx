@@ -3,6 +3,7 @@ import 'react-image-crop/dist/ReactCrop.css';
 
 import { GoogleTagManager } from '@next/third-parties/google';
 import { NextUIProvider } from '@nextui-org/react';
+import { GoogleOAuthProvider } from '@react-oauth/google';
 import { Query, QueryCache, QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
@@ -61,13 +62,15 @@ export default function App({ Component, pageProps }: AppProps) {
       <QueryClientProvider client={queryClient}>
         <NextUIProvider id="nextUiProvider">
           <ApplicationLoader>
-            <Header />
-            <main>
-              {getLayout(<Component {...pageProps} />)}
-            </main>
-            <footer />
-            <Notifications />
-            <SignUpCreatorModal />
+            <GoogleOAuthProvider clientId={process.env.GOOGLE_OAUTH_CLIENT_ID as string}>
+              <Header />
+              <main>
+                {getLayout(<Component {...pageProps} />)}
+              </main>
+              <footer />
+              <Notifications />
+              <SignUpCreatorModal />
+            </GoogleOAuthProvider>
           </ApplicationLoader>
           <DashboardTiersModal />
         </NextUIProvider>

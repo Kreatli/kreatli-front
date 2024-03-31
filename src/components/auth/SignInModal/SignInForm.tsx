@@ -8,6 +8,7 @@ import { useNotifications } from '../../../hooks/useNotifications';
 import { useSession } from '../../../hooks/useSession';
 import { getErrorMessage } from '../../../utils/getErrorMessage';
 import { InputPassword } from '../../various/InputPassword';
+import { SignInCreatorSSO } from './SignInCreatorSSO';
 
 interface Props {
   onClick: () => void;
@@ -73,12 +74,18 @@ export const SignInForm = ({ onClick, onSuccess }: Props) => {
           {...register('password', VALIDATION_RULES.REQUIRED)}
         />
       </div>
-      <div className="flex justify-between gap-4 mt-8 mb-2">
-        <Button variant="light" color="secondary" onClick={onClick}>Forgot password?</Button>
+      <div className="flex justify-between gap-2 mt-6 mb-4">
         <Button type="submit" variant="flat" color="secondary" isLoading={isPending}>
           Sign in
         </Button>
+        <Button variant="light" color="secondary" onClick={onClick}>Forgot password?</Button>
       </div>
+      {process.env.ENABLE_GOOGLE_OAUTH === 'true' && (
+        <>
+          <div className="flex items-center mb-4 text-sm text-foreground-500 after:flex-1 after:content-[''] after:p-[0.5px] after:bg-foreground-200 after:m-2 before:flex-1 before:content-[''] before:p-[0.5px] before:bg-foreground-200 before:m-2">YouTube creator?</div>
+          <SignInCreatorSSO onSuccess={onSuccess} />
+        </>
+      )}
     </form>
   );
 };

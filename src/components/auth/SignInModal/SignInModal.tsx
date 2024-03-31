@@ -1,4 +1,4 @@
-import { Modal, ModalBody, ModalContent, ModalHeader } from '@nextui-org/react';
+import { Modal, ModalBody, ModalContent, ModalFooter, ModalHeader } from '@nextui-org/react';
 import React from 'react';
 
 import { useSession } from '../../../hooks/useSession';
@@ -42,6 +42,7 @@ export const SignInModal = ({ isOpen, onClose }: Props) => {
           {mode === 'signIn' && <SignInForm onSuccess={onClose} onClick={handleSignInChange} />}
           {mode === 'resetPassword' && <ResetPasswordForm onSuccess={onClose} onClick={handleResetPasswordChange} />}
         </ModalBody>
+        <ModalFooter className="py-2" />
       </ModalContent>
     </Modal>
   );

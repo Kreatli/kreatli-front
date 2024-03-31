@@ -1,6 +1,5 @@
 /* eslint-disable max-len */
 import { Button, Card, CardBody, CardFooter, CardHeader, Chip, Image, Link } from '@nextui-org/react';
-// import { GoogleOAuthProvider } from '@react-oauth/google';
 import NextLink from 'next/link';
 import React from 'react';
 
@@ -39,7 +38,6 @@ export const Home = () => {
   ];
 
   return (
-    // <GoogleOAuthProvider clientId={process.env.GOOGLE_OAUTH_CLIENT_ID as string}>
     <>
       <Hero />
       <section className="relative flex flex-col gap-2 items-center container max-w-screen-xl mx-auto px-6 text-center mb-20 sm:mb-32">
@@ -239,6 +237,5 @@ export const Home = () => {
         </div>
       </footer>
     </>
-    // </GoogleOAuthProvider>
   );
 };
