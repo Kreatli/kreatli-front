@@ -74,7 +74,7 @@ export const SignInForm = ({ onClick, onSuccess }: Props) => {
             isInvalid={!!errors.password}
             {...register('password', VALIDATION_RULES.REQUIRED)}
           />
-          <Link as="button" color="secondary" size="sm" onClick={onClick}>Forgot password?</Link>
+          <Link as="button" type="button" color="secondary" size="sm" onClick={onClick}>Forgot password?</Link>
         </div>
       </div>
       <div className="mt-4 mb-6">
