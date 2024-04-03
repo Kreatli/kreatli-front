@@ -1,4 +1,16 @@
-import { Button, Chip, Pagination, Table, TableBody, TableCell, TableColumn, TableHeader, TableRow, Tooltip, User } from '@nextui-org/react';
+import {
+  Button,
+  Chip,
+  Pagination,
+  Table,
+  TableBody,
+  TableCell,
+  TableColumn,
+  TableHeader,
+  TableRow,
+  Tooltip,
+  User,
+} from '@nextui-org/react';
 import { keepPreviousData, useQuery } from '@tanstack/react-query';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
@@ -98,7 +110,7 @@ export const UnverifiedUsers = () => {
 
     const registrationDate = new Date(user.registrationDate);
 
-    return (Date.now() - registrationDate.getTime()) < (3 * 1000 * 60 * 60 * 24);
+    return Date.now() - registrationDate.getTime() < 3 * 1000 * 60 * 60 * 24;
   };
 
   return (
@@ -124,9 +136,7 @@ export const UnverifiedUsers = () => {
                 </Link>
               </TableCell>
               <TableCell>{dateFormatter(new Date(user.registrationDate))}</TableCell>
-              <TableCell>
-                {user.role}
-              </TableCell>
+              <TableCell>{user.role}</TableCell>
               <TableCell>
                 <Chip variant="flat" color={user.isEmailVerified ? 'success' : 'danger'}>
                   {user.isEmailVerified ? 'Yes' : 'No'}

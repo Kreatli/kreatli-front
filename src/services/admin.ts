@@ -14,7 +14,10 @@ export const acceptUserVerification = async (id: Common.Id) => {
   return api.post(`/unverified-users/${id}/accept`, {}).then((res) => res.data);
 };
 
-export const rejectUserVerification = async ([id, data]: [Common.Id, Api.PostPayload['/unverified-users/:id/reject']]) => {
+export const rejectUserVerification = async ([id, data]: [
+  Common.Id,
+  Api.PostPayload['/unverified-users/:id/reject'],
+]) => {
   return api.post(`/unverified-users/${id}/reject`, data).then((res) => res.data);
 };
 
@@ -24,4 +27,8 @@ export const resendActivationLink = async (id: Common.Id) => {
 
 export const getCreators = async (params: Api.GetParams['/creators']) => {
   return api.get('/creators', params).then((res) => res.data);
+};
+
+export const sendEmail = async ([id, data]: [Common.Id, Api.PostPayload['/user/:id/send-email']]) => {
+  return api.post(`/user/${id}/send-email`, data).then((res) => res.data);
 };

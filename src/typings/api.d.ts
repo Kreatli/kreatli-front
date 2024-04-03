@@ -36,65 +36,66 @@ export interface UploadApiResponse {
 
 export namespace Api {
   export type Get =
-    | '/user'
-    | '/user/posts'
-    | '/user/tasks'
-    | '/user/:id'
-    | '/user/:id/connections'
-    | '/user/:id/posts'
-    | '/users'
+    | '/chat-requests'
+    | '/chat/:id'
+    | '/chat/:id/messages'
+    | '/creator/:id/job-offers'
+    | '/creator/job-offers'
     | '/creators'
-    | '/professionals'
+    | '/dashboard'
     | '/job-offer/:id'
     | '/job-offer/:id/others'
     | '/job-offers'
-    | '/creator/job-offers'
-    | '/creator/:id/job-offers'
-    | '/professional/job-applications'
-    | '/professional/:id/job-applications'
-    | '/posts'
-    | '/chat/:id'
-    | '/chat/:id/messages'
-    | '/chat-requests'
-    | '/dashboard'
     | '/leaderboard'
     | '/notifications'
+    | '/posts'
+    | '/professional/:id/job-applications'
+    | '/professional/job-applications'
+    | '/professionals'
+    | '/rejected-users'
     | '/unverified-users'
-    | '/rejected-users';
+    | '/user'
+    | '/user/:id'
+    | '/user/:id/connections'
+    | '/user/:id/posts'
+    | '/user/posts'
+    | '/user/tasks'
+    | '/users';
 
   export type Post =
+    | '/auth/activate'
+    | '/auth/change-password'
+    | '/auth/reset-password'
+    | '/auth/signin'
     | '/auth/signup-creator'
     | '/auth/signup-professional'
     | '/auth/sso-creator'
-    | '/auth/signin'
-    | '/auth/activate'
-    | '/auth/reset-password'
-    | '/auth/change-password'
-    | '/upload/image'
+    | '/buy-points'
+    | '/chat/:id/messages/read'
     | '/contact'
-    | '/upload/file'
-    | '/user/update-youtube-info'
-    | '/user/:id/invitation'
-    | '/user/:id/invitation/accept'
-    | '/user/:id/invitation/reject'
     | '/job-offer'
+    | '/job-offer/:id/application'
+    | '/job-offer/:id/application/:id/accept'
+    | '/job-offer/:id/application/:id/cancel'
+    | '/job-offer/:id/application/:id/reject'
     | '/job-offer/:id/cancel'
     | '/job-offer/:id/complete'
     | '/job-offer/:id/review'
-    | '/job-offer/:id/application'
-    | '/job-offer/:id/application/:id/reject'
-    | '/job-offer/:id/application/:id/accept'
-    | '/job-offer/:id/application/:id/cancel'
+    | '/notifications/mark-all-read'
     | '/post'
-    | '/post/:id/like'
     | '/post/:id/comment'
     | '/post/:id/comment/:id/like'
-    | '/chat/:id/messages/read'
-    | '/notifications/mark-all-read'
-    | '/buy-points'
+    | '/post/:id/like'
     | '/unverified-users/:id/accept'
     | '/unverified-users/:id/reject'
-    | '/unverified-users/:id/resend-activation-link';
+    | '/unverified-users/:id/resend-activation-link'
+    | '/upload/file'
+    | '/upload/image'
+    | '/user/:id/invitation'
+    | '/user/:id/invitation/accept'
+    | '/user/:id/invitation/reject'
+    | '/user/:id/send-email'
+    | '/user/update-youtube-info';
 
   export type Put = '/post/:id' | '/chat/:id' | '/notification/:id' | '/user';
 
@@ -286,6 +287,9 @@ export namespace Api {
       message: string;
     };
     '/unverified-users/:id/resend-activation-link': {};
+    '/user/:id/send-email': {
+      message: string;
+    };
   }
 
   export interface PostResponse {

@@ -1,4 +1,15 @@
-import { Pagination, Table, TableBody, TableCell, TableColumn, TableHeader, TableRow, User } from '@nextui-org/react';
+import {
+  Button,
+  Pagination,
+  Table,
+  TableBody,
+  TableCell,
+  TableColumn,
+  TableHeader,
+  TableRow,
+  Tooltip,
+  User,
+} from '@nextui-org/react';
 import { keepPreviousData, useQuery } from '@tanstack/react-query';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
@@ -7,11 +18,15 @@ import React from 'react';
 
 import { COUNTRY_LABELS } from '../../../constants/countries';
 import { getCreators } from '../../../services/admin';
+import { Common } from '../../../typings/common';
+import { Icon } from '../../various/Icon';
+import { SendEmailModal } from './SendEmailModal';
 
 const LIMIT = 10;
 
 export const Creators = () => {
   const [page, setPage] = React.useState(1);
+  const [userId, setUserId] = React.useState<Common.Nullable<Common.Id>>(null);
 
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -37,7 +52,10 @@ export const Creators = () => {
     router.replace({ search: `?${search}` });
   };
 
-  const dateFormatter = new Intl.DateTimeFormat('en', { dateStyle: 'medium', timeStyle: 'medium' }).format;
+  const dateFormatter = new Intl.DateTimeFormat('en', {
+    dateStyle: 'medium',
+    timeStyle: 'medium',
+  }).format;
 
   const pagination = pages > 1 && (
     <Pagination
@@ -52,27 +70,44 @@ export const Creators = () => {
   );
 
   return (
-    <Table isHeaderSticky bottomContent={pagination}>
-      <TableHeader>
-        <TableColumn>NAME</TableColumn>
-        <TableColumn>REGISTRATION DATE</TableColumn>
-      </TableHeader>
-      <TableBody isLoading={isLoading} emptyContent="There are creators">
-        {users.map((user) => (
-          <TableRow key={user._id}>
-            <TableCell>
-              <Link href={`/profile/${user._id}`}>
-                <User
-                  name={user.name}
-                  description={COUNTRY_LABELS[user.country]}
-                  avatarProps={{ src: user.avatarUrl, radius: 'sm' }}
-                />
-              </Link>
-            </TableCell>
-            <TableCell>{dateFormatter(new Date(user.registrationDate))}</TableCell>
-          </TableRow>
-        ))}
-      </TableBody>
-    </Table>
+    <>
+      <Table isHeaderSticky bottomContent={pagination}>
+        <TableHeader>
+          <TableColumn>NAME</TableColumn>
+          <TableColumn>REGISTRATION DATE</TableColumn>
+          <TableColumn>ACTIONS</TableColumn>
+        </TableHeader>
+        <TableBody isLoading={isLoading} emptyContent="There are no creators">
+          {users.map((user) => (
+            <TableRow key={user._id}>
+              <TableCell>
+                <Link href={`/profile/${user._id}`}>
+                  <User
+                    name={user.name}
+                    description={COUNTRY_LABELS[user.country]}
+                    avatarProps={{ src: user.avatarUrl, radius: 'sm' }}
+                  />
+                </Link>
+              </TableCell>
+              <TableCell>{dateFormatter(new Date(user.registrationDate))}</TableCell>
+              <TableCell>
+                <Tooltip content="Send email">
+                  <Button
+                    size="sm"
+                    variant="flat"
+                    isIconOnly
+                    aria-label="Send email"
+                    onClick={() => setUserId(user._id)}
+                  >
+                    <Icon icon="mail" size={18} />
+                  </Button>
+                </Tooltip>
+              </TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+      <SendEmailModal userId={userId} isOpen={!!userId} onClose={() => setUserId(null)} />
+    </>
   );
 };
