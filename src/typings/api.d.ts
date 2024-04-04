@@ -288,6 +288,7 @@ export namespace Api {
     };
     '/unverified-users/:id/resend-activation-link': {};
     '/user/:id/send-email': {
+      subject: string;
       message: string;
     };
   }

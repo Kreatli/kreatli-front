@@ -48,13 +48,18 @@ export const RejectVerificationModal = ({ isOpen, userId, onClose }: Props) => {
           <Textarea
             value={reason}
             label="Reason"
+            isRequired
             placeholder="Please provide a reason for rejecting user's verification"
             onChange={(event) => setReason(event.target.value)}
           />
         </ModalBody>
         <ModalFooter>
-          <Button variant="light" color="secondary" onClick={onClose}>Cancel</Button>
-          <Button variant="flat" color="secondary" onClick={handleClick} isLoading={isPending}>Send email</Button>
+          <Button variant="light" color="secondary" onClick={onClose}>
+            Cancel
+          </Button>
+          <Button variant="flat" color="secondary" onClick={handleClick} isLoading={isPending}>
+            Send email
+          </Button>
         </ModalFooter>
       </ModalContent>
     </Modal>
