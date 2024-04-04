@@ -172,6 +172,7 @@ export const CreatePost = ({ defaultValue, onEdit }: Props) => {
         <CardBody className="px-5 py-2">
           <TextEditor
             value={content}
+            initialValue={defaultContent}
             namespace="createPost"
             placeholder="Share your thoughts or ask for a feedback..."
             onChange={setContent}

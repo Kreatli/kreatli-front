@@ -10,6 +10,7 @@ import { Toolbar } from './Toolbar';
 
 interface Props {
   value?: string;
+  initialValue?: string;
   children?: React.ReactNode;
   namespace: string;
   placeholder: string;
@@ -20,7 +21,7 @@ const Placeholder = ({ placeholder }: { placeholder: string }) => (
   <div className={styles.placeholder}>{placeholder}</div>
 );
 
-export const TextEditor = ({ children, value, namespace, placeholder, onChange }: Props) => {
+export const TextEditor = ({ children, value, initialValue, namespace, placeholder, onChange }: Props) => {
   const initialConfig = {
     namespace,
     theme: {
@@ -47,7 +48,7 @@ export const TextEditor = ({ children, value, namespace, placeholder, onChange }
           ErrorBoundary={LexicalErrorBoundary}
         />
       </div>
-      <EditorPlugin value={value} onChange={onChange} />
+      <EditorPlugin value={value} initialValue={initialValue} onChange={onChange} />
     </LexicalComposer>
   );
 };

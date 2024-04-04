@@ -7,11 +7,13 @@ import React from 'react';
 
 interface Props {
   value?: string;
+  initialValue?: string;
   onChange: (content: string) => void;
 }
 
-export const EditorPlugin = ({ value, onChange }: Props) => {
+export const EditorPlugin = ({ value, initialValue, onChange }: Props) => {
   const [editor] = useLexicalComposerContext();
+  const [isInitialValueSet, setIsInitialValueSet] = React.useState(false);
 
   React.useEffect(() => {
     editor.registerCommand(
@@ -33,6 +35,12 @@ export const EditorPlugin = ({ value, onChange }: Props) => {
   }, []);
 
   React.useEffect(() => {
+    if (!isInitialValueSet && !initialValue) {
+      setIsInitialValueSet(true);
+
+      return;
+    }
+
     editor.dispatchCommand(CLEAR_EDITOR_COMMAND, undefined);
     editor.update(() => {
       const parser = new DOMParser();
@@ -44,7 +52,7 @@ export const EditorPlugin = ({ value, onChange }: Props) => {
 
       $insertNodes(nodes);
     });
-  }, [value]);
+  }, [initialValue, value]);
 
   return <ClearEditorPlugin />;
 };
