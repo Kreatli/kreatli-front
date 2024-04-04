@@ -14,21 +14,29 @@ export const EditorPlugin = ({ value, onChange }: Props) => {
   const [editor] = useLexicalComposerContext();
 
   React.useEffect(() => {
-    editor.registerCommand(BLUR_COMMAND, () => {
-      if ($isRootTextContentEmpty(false)) {
-        onChange('');
+    editor.registerCommand(
+      BLUR_COMMAND,
+      () => {
+        if ($isRootTextContentEmpty(false)) {
+          onChange('');
+
+          return false;
+        }
+
+        const htmlString = $generateHtmlFromNodes(editor, null);
+        onChange(htmlString);
 
         return false;
-      }
-
-      const htmlString = $generateHtmlFromNodes(editor, null);
-      onChange(htmlString);
-
-      return false;
-    }, 1);
+      },
+      1,
+    );
   }, []);
 
   React.useEffect(() => {
+    if (!value) {
+      return;
+    }
+
     editor.dispatchCommand(CLEAR_EDITOR_COMMAND, undefined);
     editor.update(() => {
       const parser = new DOMParser();
