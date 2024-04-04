@@ -33,10 +33,6 @@ export const EditorPlugin = ({ value, onChange }: Props) => {
   }, []);
 
   React.useEffect(() => {
-    if (!value) {
-      return;
-    }
-
     editor.dispatchCommand(CLEAR_EDITOR_COMMAND, undefined);
     editor.update(() => {
       const parser = new DOMParser();
