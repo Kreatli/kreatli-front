@@ -25,6 +25,7 @@ interface Props extends Omit<Job.Offer, '_id' | 'applications'> {
 export const JobPage = (props: Props) => {
   const {
     _id: id,
+    additionalInformation,
     applicationsCount,
     availability,
     availabilityDuration,
@@ -116,6 +117,8 @@ export const JobPage = (props: Props) => {
             ))}
           </div>
           <p className={styles.description}>{description}</p>
+          <h2 className="text-lg font-semibold mt-6">Additional information</h2>
+          <p className={styles.description}>{additionalInformation}</p>
         </div>
         {!isMobile && <div className={styles.userCard}>{userCardContent}</div>}
       </div>
