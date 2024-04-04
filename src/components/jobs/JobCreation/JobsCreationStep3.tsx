@@ -31,7 +31,22 @@ export const JobsCreationStep3 = ({ control, errors, register }: Props) => {
         {...register('paymentType', VALIDATION_RULES.REQUIRED)}
       >
         {PAYMENT_TYPE_OPTIONS.map((paymentType) => (
-          <SelectItem key={paymentType.value} value={paymentType.value}>{paymentType.label}</SelectItem>
+          <SelectItem key={paymentType.value} value={paymentType.value}>
+            {paymentType.label}
+          </SelectItem>
+        ))}
+      </Select>
+      <Select
+        label="Payment preferences (optional)"
+        placeholder="Select payment preferences"
+        selectionMode="multiple"
+        isInvalid={!!errors.paymentPreferences}
+        onChange={handlePaymentPreferencesChange}
+      >
+        {PAYMENT_PREFERENCE_OPTIONS.map((paymentPreference) => (
+          <SelectItem key={paymentPreference.value} value={paymentPreference.value}>
+            {paymentPreference.label}
+          </SelectItem>
         ))}
       </Select>
       <Controller
@@ -39,15 +54,20 @@ export const JobsCreationStep3 = ({ control, errors, register }: Props) => {
           <NumericFormat
             value={field.value || ''}
             onValueChange={({ floatValue }) => field.onChange(floatValue)}
+            onBlur={field.onBlur}
             customInput={Input}
             allowNegative={false}
             thousandSeparator
             decimalScale={0}
             prefix="$"
             min={1}
-            label="Budget ($)"
-            placeholder="Specify your budget"
-            endContent={<span className="pointer-events-none whitespace-nowrap text-small text-gray-400">{PAYMENT_TYPE_SHORTS[paymentTypeField.value]}</span>}
+            label="Budget from ($)"
+            placeholder="Specify your minimum budget"
+            endContent={
+              <span className="pointer-events-none whitespace-nowrap text-small text-gray-400">
+                {PAYMENT_TYPE_SHORTS[paymentTypeField.value]}
+              </span>
+            }
             fullWidth
             isInvalid={!!errors.paymentValue}
             errorMessage={errors.paymentValue?.message}
@@ -57,22 +77,38 @@ export const JobsCreationStep3 = ({ control, errors, register }: Props) => {
         control={control}
         rules={VALIDATION_RULES.NUMBER}
       />
-
-      <div className="col-span-2">
-        <Select
-          label="Payment preferences (optional)"
-          placeholder="Select payment preferences"
-          selectionMode="multiple"
-          isInvalid={!!errors.paymentPreferences}
-          onChange={handlePaymentPreferencesChange}
-        >
-          {PAYMENT_PREFERENCE_OPTIONS.map((paymentPreference) => (
-            <SelectItem key={paymentPreference.value} value={paymentPreference.value}>
-              {paymentPreference.label}
-            </SelectItem>
-          ))}
-        </Select>
-      </div>
+      <Controller
+        render={({ field }) => (
+          <NumericFormat
+            value={field.value || ''}
+            onValueChange={({ floatValue }) => field.onChange(floatValue)}
+            onBlur={field.onBlur}
+            customInput={Input}
+            allowNegative={false}
+            thousandSeparator
+            decimalScale={0}
+            prefix="$"
+            min={1}
+            label="Budget to ($)"
+            placeholder="Specify your maximum budget"
+            endContent={
+              <span className="pointer-events-none whitespace-nowrap text-small text-gray-400">
+                {PAYMENT_TYPE_SHORTS[paymentTypeField.value]}
+              </span>
+            }
+            fullWidth
+            isInvalid={!!errors.paymentValueTo}
+            errorMessage={errors.paymentValueTo?.message}
+          />
+        )}
+        name="paymentValueTo"
+        control={control}
+        rules={{
+          ...VALIDATION_RULES.NUMBER,
+          validate: (value, { paymentValue }) =>
+            value >= paymentValue || 'Must be greater than or equal to the minimum budget',
+        }}
+      />
     </div>
   );
 };

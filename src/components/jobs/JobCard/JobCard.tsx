@@ -20,13 +20,7 @@ interface Props {
 }
 
 export const JobCard = (props: Props) => {
-  const {
-    className,
-    footer = null,
-    header = null,
-    hideCreator = false,
-    jobOffer,
-  } = props;
+  const { className, footer = null, header = null, hideCreator = false, jobOffer } = props;
 
   const {
     _id: jobOfferId,
@@ -38,6 +32,7 @@ export const JobCard = (props: Props) => {
     location,
     paymentType,
     paymentValue,
+    paymentValueTo,
     shortDescription,
     skills,
     title,
@@ -57,7 +52,11 @@ export const JobCard = (props: Props) => {
     return skills.map((skill) => SKILL_EMOJIS[skill]).join(' ');
   }, [skills]);
 
-  const cardTitle = <h4 className="text-xl font-semibold">{title} {skillEmojis}</h4>;
+  const cardTitle = (
+    <h4 className="text-xl font-semibold">
+      {title} {skillEmojis}
+    </h4>
+  );
 
   const creatorBlock = !hideCreator && (
     <User
@@ -77,9 +76,13 @@ export const JobCard = (props: Props) => {
         {header}
         {!hideCreator && (
           <div className="flex items-center justify-between mb-2">
-            {!shouldWrapInLink
-              ? <NextLink href={`/profile/${creator._id}`} className="flex">{creatorBlock}</NextLink>
-              : creatorBlock}
+            {!shouldWrapInLink ? (
+              <NextLink href={`/profile/${creator._id}`} className="flex">
+                {creatorBlock}
+              </NextLink>
+            ) : (
+              creatorBlock
+            )}
             {shouldWrapInLink && isProfessional && (
               <Button as="div" className={styles.applyButton} color="secondary" isDisabled={hasApplied} size="sm">
                 {hasApplied ? 'Applied' : 'Apply for a job'}
@@ -88,9 +91,13 @@ export const JobCard = (props: Props) => {
           </div>
         )}
         <div className={styles.content}>
-          {hasFooter && jobOfferId
-            ? <Link as={NextLink} href={`/jobs/${jobOfferId}`} color="foreground" underline="hover">{cardTitle}</Link>
-            : cardTitle}
+          {hasFooter && jobOfferId ? (
+            <Link as={NextLink} href={`/jobs/${jobOfferId}`} color="foreground" underline="hover">
+              {cardTitle}
+            </Link>
+          ) : (
+            cardTitle
+          )}
           <p className="mb-4">{shortDescription}</p>
         </div>
         <div className={styles.footer}>
@@ -100,6 +107,7 @@ export const JobCard = (props: Props) => {
             availabilityDuration={availabilityDuration}
             paymentType={paymentType}
             paymentValue={paymentValue}
+            paymentValueTo={paymentValueTo}
           />
           <p className="text-sm text-gray-400">Posted {relativeCreationDate}</p>
         </div>
@@ -107,9 +115,7 @@ export const JobCard = (props: Props) => {
       {hasFooter && (
         <>
           <Divider />
-          <CardFooter>
-            {footer}
-          </CardFooter>
+          <CardFooter>{footer}</CardFooter>
         </>
       )}
     </Card>

@@ -20,7 +20,7 @@ import { JobsCreationStep5 } from './JobsCreationStep5';
 const FIELDS_BY_STEP = [
   ['title', 'shortDescription', 'description'],
   ['skills'],
-  ['paymentType', 'paymentPreferences', 'paymentValue'],
+  ['paymentType', 'paymentPreferences', 'paymentValue', 'paymentValueTo'],
   ['availability', 'availabilityDuration', 'location'],
   ['additionalInformation'],
 ] as const;
@@ -88,9 +88,7 @@ export const JobsCreation = () => {
   });
 
   const onSubmit = (data: DefaultValues) => {
-    mutate(data.availabilityDuration
-      ? data
-      : omit(['availabilityDuration'], data));
+    mutate(data.availabilityDuration ? data : omit(['availabilityDuration'], data));
   };
 
   const progressValue = React.useMemo(() => {
@@ -102,7 +100,8 @@ export const JobsCreation = () => {
   const steps = [
     {
       title: 'Step 1 - Job title and description',
-      subtitle: 'Clearly describe the job you\'re hiring for and the responsibilities that come with it. Be specific about the skills and experience you\'re looking for',
+      subtitle:
+        "Clearly describe the job you're hiring for and the responsibilities that come with it. Be specific about the skills and experience you're looking for",
       render: <JobsCreationStep1 register={register} errors={errors} />,
     },
     {
@@ -112,7 +111,8 @@ export const JobsCreation = () => {
     },
     {
       title: 'Step 3 - Payment and Budget',
-      subtitle: 'Be transparent about the budget for the job, whether it\'s a flat rate or an hourly rate. Specify how payment will be made and when it will be paid',
+      subtitle:
+        "Be transparent about the budget for the job, whether it's a flat rate or an hourly rate. Specify how payment will be made and when it will be paid",
       render: <JobsCreationStep3 register={register} control={control} errors={errors} />,
     },
     {
@@ -127,7 +127,8 @@ export const JobsCreation = () => {
     },
   ];
 
-  const description = 'Create a job posting to attract and hire the most relevant professionals. Make it unique so that it stands out!';
+  const description =
+    'Create a job posting to attract and hire the most relevant professionals. Make it unique so that it stands out!';
   const disabledKeys = steps
     .map((_, index) => index)
     .filter((index) => isSuccess || isPending || (index > 0 && !isFilledByStep[index - 1]))
@@ -160,13 +161,22 @@ export const JobsCreation = () => {
               {render}
               <div className="flex gap-2 mt-6">
                 {index > 0 && (
-                  <Button variant="light" color="secondary" onClick={handleBack}>Back</Button>
+                  <Button variant="light" color="secondary" onClick={handleBack}>
+                    Back
+                  </Button>
                 )}
                 {index !== steps.length - 1 && (
-                  <Button variant="flat" color="secondary" onClick={handleNext}>Next</Button>
+                  <Button variant="flat" color="secondary" onClick={handleNext}>
+                    Next
+                  </Button>
                 )}
                 {index === steps.length - 1 && (
-                  <Button type="submit" color="secondary" disabled={currentUser?.role === 'admin'} isLoading={isPending}>
+                  <Button
+                    type="submit"
+                    color="secondary"
+                    disabled={currentUser?.role === 'admin'}
+                    isLoading={isPending}
+                  >
                     Create job posting
                   </Button>
                 )}

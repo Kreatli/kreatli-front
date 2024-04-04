@@ -18,8 +18,7 @@ import { JobFeatures } from '../JobFeatures';
 import { JobOthers } from '../JobOthers';
 import styles from './JobPage.module.scss';
 
-interface Props
-  extends Omit<Job.Offer, '_id' | 'applications'> {
+interface Props extends Omit<Job.Offer, '_id' | 'applications'> {
   _id?: Common.Id;
 }
 
@@ -37,6 +36,7 @@ export const JobPage = (props: Props) => {
     paymentPreferences,
     paymentType,
     paymentValue,
+    paymentValueTo,
     shortDescription,
     skills,
     status,
@@ -68,16 +68,17 @@ export const JobPage = (props: Props) => {
       </NextLink>
       {!isMobile && <PaymentMethods methods={paymentPreferences} />}
       <div className="flex flex-col items-center gap-1">
-        {isProfessional && (
-          !isPosted || hasApplied ? (
+        {isProfessional &&
+          (!isPosted || hasApplied ? (
             <Button isDisabled color="secondary" onClick={onOpen}>
-              {hasApplied
-                ? 'Applied'
-                : 'The job is not active'}
+              {hasApplied ? 'Applied' : 'The job is not active'}
             </Button>
           ) : (
             <ProfileUnverifiedTooltip>
-              <Tooltip isDisabled={!isExceededLimits} content="You've reached your job applications limit. Get to the next tier to increase the limit">
+              <Tooltip
+                isDisabled={!isExceededLimits}
+                content="You've reached your job applications limit. Get to the next tier to increase the limit"
+              >
                 <div>
                   <Button isDisabled={isExceededLimits || !currentUser.isVerified} color="secondary" onClick={onOpen}>
                     Apply for a job
@@ -85,9 +86,10 @@ export const JobPage = (props: Props) => {
                 </div>
               </Tooltip>
             </ProfileUnverifiedTooltip>
-          )
-        )}
-        <p className="text-sm text-gray-400">{applicationsCount} application{applicationsCount === 1 ? '' : 's'} so far</p>
+          ))}
+        <p className="text-sm text-gray-400">
+          {applicationsCount} application{applicationsCount === 1 ? '' : 's'} so far
+        </p>
       </div>
     </>
   );
@@ -104,26 +106,21 @@ export const JobPage = (props: Props) => {
             availabilityDuration={availabilityDuration}
             paymentType={paymentType}
             paymentValue={paymentValue}
+            paymentValueTo={paymentValueTo}
           />
           <div className={styles.tags}>
             {skills.map((skill) => (
-              <Tag key={skill} disabled>{SKILL_LABELS_FOR_PROFESSIONAL[skill]}</Tag>
+              <Tag key={skill} disabled>
+                {SKILL_LABELS_FOR_PROFESSIONAL[skill]}
+              </Tag>
             ))}
           </div>
           <p className={styles.description}>{description}</p>
         </div>
-        {!isMobile && (
-          <div className={styles.userCard}>
-            {userCardContent}
-          </div>
-        )}
+        {!isMobile && <div className={styles.userCard}>{userCardContent}</div>}
       </div>
       <JobOthers id={id} creatorName={creator.name} />
-      {isMobile && (
-        <BottomBar className="flex items-center justify-between gap-4">
-          {userCardContent}
-        </BottomBar>
-      )}
+      {isMobile && <BottomBar className="flex items-center justify-between gap-4">{userCardContent}</BottomBar>}
       {id && (
         <JobApplicationModal
           isOpen={isOpen}

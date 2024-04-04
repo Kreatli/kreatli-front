@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/indent */
 import { Availability } from './availability';
 import { Common } from './common';
 import { Payment } from './payment';
@@ -21,6 +22,7 @@ export namespace Job {
     paymentPreferences: Payment.Preference[];
     paymentType: Payment.Type;
     paymentValue: number;
+    paymentValueTo: number;
     reviews: {
       creator: Review | null;
       professional: Review | null;
@@ -48,5 +50,15 @@ export namespace Job {
   }
 
   export type OfferReviewPayload = Omit<Review, '_id' | 'creationDate'>;
-  export type OfferPayload = Omit<Offer, '_id' | 'applications' | 'creator' | 'applicationsCount' | 'creationDate' | 'status' | 'hiredProfessional' | 'reviews'>;
+  export type OfferPayload = Omit<
+    Offer,
+    | '_id'
+    | 'applications'
+    | 'creator'
+    | 'applicationsCount'
+    | 'creationDate'
+    | 'status'
+    | 'hiredProfessional'
+    | 'reviews'
+  >;
 }
