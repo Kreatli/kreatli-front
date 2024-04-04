@@ -1,10 +1,20 @@
-import { Button, Card, CardBody, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger, Tooltip } from '@nextui-org/react';
+/* eslint-disable @typescript-eslint/indent */
+import {
+  Button,
+  Card,
+  CardBody,
+  Dropdown,
+  DropdownItem,
+  DropdownMenu,
+  DropdownTrigger,
+  Tooltip,
+} from '@nextui-org/react';
 import { InfiniteData, useMutation, useQueryClient } from '@tanstack/react-query';
+import { useSearchParams } from 'next/navigation';
 import React from 'react';
 
 import { useImagesUpload } from '../../../hooks/useImagesUpload';
 import { useNotifications } from '../../../hooks/useNotifications';
-import { usePostsFilters } from '../../../hooks/usePostsFilters';
 import { useSession } from '../../../hooks/useSession';
 import { requestPostCreation, requestPostEdit } from '../../../services/feed';
 import { Feed } from '../../../typings/feed';
@@ -23,11 +33,7 @@ interface Props {
 
 export const CreatePost = ({ defaultValue, onEdit }: Props) => {
   const isEditMode = !!defaultValue;
-  const {
-    _id: editPostId,
-    content: defaultContent = '',
-    media: defaultMedia = [],
-  } = defaultValue ?? {};
+  const { _id: editPostId, content: defaultContent = '', media: defaultMedia = [] } = defaultValue ?? {};
 
   const defaultImages = defaultMedia.filter(({ type }) => type === 'image') as Media.Image[];
   const defaultImageEntries = defaultImages.map(({ src }) => ({ src, isLoading: false }));
@@ -41,7 +47,8 @@ export const CreatePost = ({ defaultValue, onEdit }: Props) => {
   const { images, getInputProps, getRootProps, removeImage, setImages } = useImagesUpload(defaultImageEntries);
   const { pushNotification } = useNotifications();
   const queryClient = useQueryClient();
-  const { filter } = usePostsFilters();
+  const searchParams = useSearchParams();
+  const filter = (searchParams.get('filter') ?? 'allPosts') as Feed.Filter;
   const { currentUser } = useSession();
 
   const { isPending: isCreating, mutate: createPost } = useMutation({
@@ -71,10 +78,12 @@ export const CreatePost = ({ defaultValue, onEdit }: Props) => {
     onSuccess: (updatedPost) => {
       onEdit?.();
 
-      queryClient.setQueryData<InfiniteData<{
-        posts: Feed.Post[];
-        postsCount: number;
-      }>>(['posts', filter], (prevData) => {
+      queryClient.setQueryData<
+        InfiniteData<{
+          posts: Feed.Post[];
+          postsCount: number;
+        }>
+      >(['posts', filter], (prevData) => {
         if (!prevData) {
           return {
             pages: [],
@@ -145,10 +154,13 @@ export const CreatePost = ({ defaultValue, onEdit }: Props) => {
       ...videoIds.map((id) => ({ type: 'video' as const, videoId: id, src: `https://www.youtube.com/embed/${id}` })),
     ];
 
-    editPost([editPostId, {
-      content,
-      media,
-    }]);
+    editPost([
+      editPostId,
+      {
+        content,
+        media,
+      },
+    ]);
   };
 
   const isImageUploadDisabled = images.length > 4;
@@ -164,7 +176,10 @@ export const CreatePost = ({ defaultValue, onEdit }: Props) => {
             placeholder="Share your thoughts or ask for a feedback..."
             onChange={setContent}
           >
-            <Tooltip isDisabled={!isImageUploadDisabled} content="You've already uploaded 5 images, which is the maximum limit allowed">
+            <Tooltip
+              isDisabled={!isImageUploadDisabled}
+              content="You've already uploaded 5 images, which is the maximum limit allowed"
+            >
               <Button
                 tabIndex={-1}
                 className="text-default-400"
@@ -179,7 +194,10 @@ export const CreatePost = ({ defaultValue, onEdit }: Props) => {
                 </div>
               </Button>
             </Tooltip>
-            <Tooltip isDisabled={!isVideoUploadDisabled} content="You've already uploaded 5 videos, which is the maximum limit allowed">
+            <Tooltip
+              isDisabled={!isVideoUploadDisabled}
+              content="You've already uploaded 5 videos, which is the maximum limit allowed"
+            >
               <span>
                 <Button
                   className="text-default-400"
@@ -235,9 +253,7 @@ export const CreatePost = ({ defaultValue, onEdit }: Props) => {
                   />
                 </DropdownTrigger>
                 <DropdownMenu variant="flat" onAction={handlePublishPost}>
-                  <DropdownItem key="post">
-                    Post
-                  </DropdownItem>
+                  <DropdownItem key="post">Post</DropdownItem>
                   <DropdownItem key="feedbackPost" color="secondary">
                     Feedback Post
                   </DropdownItem>

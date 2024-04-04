@@ -1,7 +1,9 @@
 import { Card, CardBody, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger, Link } from '@nextui-org/react';
+import { useSearchParams } from 'next/navigation';
+import { useRouter } from 'next/router';
 import React from 'react';
 
-import { usePostsFilters } from '../../../hooks/usePostsFilters';
+import { Feed } from '../../../typings/feed';
 import { Icon } from '../../various/Icon';
 
 const FILTER_LABELS = {
@@ -11,17 +13,18 @@ const FILTER_LABELS = {
 };
 
 export const SideMenu = () => {
-  const { filter, setFilter } = usePostsFilters();
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
+  const filter = (searchParams.get('filter') ?? 'allPosts') as Feed.Filter;
 
   const handleChange = (keys: 'all' | Set<React.Key>) => {
     if (keys === 'all') {
       return;
     }
 
-    setFilter(Array.from(keys)[0] as 'allPosts' | 'feedbackPosts');
-    requestAnimationFrame(() => {
-      window.scrollTo({ top: 0 });
-    });
+    const key = Array.from(keys)[0] as Feed.Filter;
+    router.replace({ search: `?filter=${key}` });
   };
 
   return (

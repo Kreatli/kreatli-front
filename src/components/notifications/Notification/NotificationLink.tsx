@@ -52,11 +52,11 @@ export const NotificationLink = ({ notification }: Props) => {
     },
     [NOTIFICATION_TYPE.POST_LIKE]: {
       label: 'Go to My posts',
-      href: '/',
+      href: '/?filter=myPosts',
     },
     [NOTIFICATION_TYPE.POST_COMMENT]: {
       label: 'Go to My posts',
-      href: '/',
+      href: '/?filter=myPosts',
     },
     [NOTIFICATION_TYPE.NEW_MESSAGE]: {
       label: 'Check Messages',
@@ -104,7 +104,15 @@ export const NotificationLink = ({ notification }: Props) => {
     const { href, label } = notificationLinks[type] ?? {};
 
     return (
-      <Link as={NextLink} size="sm" color="foreground" underline="always" href={href} className="mt-1" onClick={handleClick}>
+      <Link
+        as={NextLink}
+        size="sm"
+        color="foreground"
+        underline="always"
+        href={href}
+        className="mt-1"
+        onClick={handleClick}
+      >
         {label}
       </Link>
     );

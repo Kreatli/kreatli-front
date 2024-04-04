@@ -1,9 +1,10 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
+import { useSearchParams } from 'next/navigation';
 import React from 'react';
 
 import { PostContextProvider } from '../../../contexts/Post';
-import { usePostsFilters } from '../../../hooks/usePostsFilters';
 import { requestPosts } from '../../../services/feed';
+import { Feed } from '../../../typings/feed';
 import { EmptyState } from '../../chat/EmptyState';
 import { LazyList } from '../../various/LazyList';
 import { Post } from '../Post';
@@ -18,7 +19,8 @@ const EMPTY_STATE_TITLES = {
 };
 
 export const Posts = () => {
-  const { filter } = usePostsFilters();
+  const searchParams = useSearchParams();
+  const filter = (searchParams.get('filter') ?? 'allPosts') as Feed.Filter;
 
   const { data, fetchNextPage, hasNextPage, isFetching, isLoading, isFetchingNextPage } = useInfiniteQuery({
     initialPageParam: 1,
@@ -32,9 +34,7 @@ export const Posts = () => {
       });
     },
     getNextPageParam: (lastPage, allPages) => {
-      return allPages.length * LIMIT < (lastPage?.postsCount ?? 0)
-        ? allPages.length + 1
-        : undefined;
+      return allPages.length * LIMIT < (lastPage?.postsCount ?? 0) ? allPages.length + 1 : undefined;
     },
   });
 
@@ -45,12 +45,7 @@ export const Posts = () => {
   const shouldShowEmptyState = !isFetching && !posts.length;
 
   if (shouldShowEmptyState) {
-    return (
-      <EmptyState
-        title={EMPTY_STATE_TITLES[filter]}
-        text="Go ahead and create the one!"
-      />
-    );
+    return <EmptyState title={EMPTY_STATE_TITLES[filter]} text="Go ahead and create the one!" />;
   }
 
   return (

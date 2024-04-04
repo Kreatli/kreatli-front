@@ -29,4 +29,6 @@ export namespace Feed {
 
   export type PostPayload = Pick<Post, 'content' | 'isFeedback'> & { media: Omit<Media.Any, '_id'>[] };
   export type CommentPayload = Pick<Post, 'content'> & { parentCommentId?: string };
+
+  export type Filter = 'allPosts' | 'feedbackPosts' | 'myPosts';
 }
