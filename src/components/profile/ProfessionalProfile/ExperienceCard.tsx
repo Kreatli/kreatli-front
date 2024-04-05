@@ -34,7 +34,7 @@ export const ExperienceCard = ({ description, companyName, companyUrl, imageUrl 
         </div>
       </CardHeader>
       <CardFooter>
-        <p className="whitespace-pre-wrap">{description}</p>
+        <p className="whitespace-pre-line">{description}</p>
       </CardFooter>
     </Card>
   );

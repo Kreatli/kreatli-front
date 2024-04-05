@@ -45,9 +45,14 @@ export const ChannelDetails = ({ id, youtubeUrl, details }: Props) => {
   const topics = details.topics.join(', ').toLowerCase();
   const lastUpdateAt = new Date(details.lastUpdateAt);
   const canUpdateYoutubeInfo = Date.now() - lastUpdateAt.getTime() > DAY_IN_MSEC;
-  const tooltipContent = canUpdateYoutubeInfo
-    ? 'Update YouTube info'
-    : <>Update limit: Once a day <br />Last update: {lastUpdateAt.toLocaleString()}</>;
+  const tooltipContent = canUpdateYoutubeInfo ? (
+    'Update YouTube info'
+  ) : (
+    <>
+      Update limit: Once a day <br />
+      Last update: {lastUpdateAt.toLocaleString()}
+    </>
+  );
 
   return (
     <Card>
@@ -57,7 +62,7 @@ export const ChannelDetails = ({ id, youtubeUrl, details }: Props) => {
             name={details.title}
             className="gap-3 bg-transparent"
             classNames={{ name: 'font-medium' }}
-            description={(
+            description={
               <>
                 <Link as={NextLink} href={youtubeUrl} target="_blank" className="text-xs">
                   {details.customUrl}
@@ -66,16 +71,13 @@ export const ChannelDetails = ({ id, youtubeUrl, details }: Props) => {
                   {videos} videos • {subscribers} subscribers • {views} views
                 </div>
               </>
-            )}
+            }
             avatarProps={{ src: '/youtube.svg', className: 'bg-transparent' }}
           >
             <br />
           </User>
           {isMyAccount && (
-            <Tooltip
-              content={tooltipContent}
-              color={canUpdateYoutubeInfo ? 'secondary' : 'default'}
-            >
+            <Tooltip content={tooltipContent} color={canUpdateYoutubeInfo ? 'secondary' : 'default'}>
               <Button
                 isIconOnly
                 size="sm"
@@ -83,9 +85,7 @@ export const ChannelDetails = ({ id, youtubeUrl, details }: Props) => {
                 variant="flat"
                 aria-label="Update YouTube information"
                 disabled={!canUpdateYoutubeInfo}
-                color={canUpdateYoutubeInfo
-                  ? 'secondary'
-                  : 'default'}
+                color={canUpdateYoutubeInfo ? 'secondary' : 'default'}
                 onClick={() => mutate()}
               >
                 <Icon icon="update" size={20} />
@@ -107,10 +107,16 @@ export const ChannelDetails = ({ id, youtubeUrl, details }: Props) => {
       {(topics || details.description) && (
         <CardFooter className="flex-col items-start">
           {topics && (
-            <p className="text-small"><span className="font-bold">Topics: </span>{topics}</p>
+            <p className="text-small">
+              <span className="font-bold">Topics: </span>
+              {topics}
+            </p>
           )}
           {details.description && (
-            <p className="text-small"><span className="font-bold">Description: </span>{details.description}</p>
+            <p className="text-small whitespace-pre-line">
+              <span className="font-bold">Description: </span>
+              {details.description.trim()}
+            </p>
           )}
         </CardFooter>
       )}

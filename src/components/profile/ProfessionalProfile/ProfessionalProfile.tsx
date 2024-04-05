@@ -23,26 +23,29 @@ export const ProfessionalProfile = ({ userId }: Props) => {
 
   return (
     <div className="container max-w-screen-lg mx-auto px-6">
-      {user
-        ? <ProfileHeader user={user} />
-        : <ProfileHeaderSkeleton />}
+      {user ? <ProfileHeader user={user} /> : <ProfileHeaderSkeleton />}
       <div className="flex gap-10 mt-4">
         <div className="flex-1">
-          {user
-            ? (
-              <>
-                <p className="mb-4">{user?.description}</p>
-                <div className="flex flex-wrap items-center gap-2">
-                  <p>Skills</p>
-                  {user?.skills.map((skill) => (
-                    <Badge key={skill} size="sm" color="secondary" content={SKILL_LEVEL_LABELS[user?.skillLevels[skill] ?? 'intermediate']}>
-                      <Tag disabled>{SKILL_LABELS_FOR_PROFESSIONAL[skill]}</Tag>
-                    </Badge>
-                  ))}
-                </div>
-              </>
-            )
-            : <Skeleton className="rounded-xl w-full h-24" />}
+          {user ? (
+            <>
+              <p className="mb-4 whitespace-pre-line">{user?.description.trim()}</p>
+              <div className="flex flex-wrap items-center gap-2">
+                <p>Skills</p>
+                {user?.skills.map((skill) => (
+                  <Badge
+                    key={skill}
+                    size="sm"
+                    color="secondary"
+                    content={SKILL_LEVEL_LABELS[user?.skillLevels[skill] ?? 'intermediate']}
+                  >
+                    <Tag disabled>{SKILL_LABELS_FOR_PROFESSIONAL[skill]}</Tag>
+                  </Badge>
+                ))}
+              </div>
+            </>
+          ) : (
+            <Skeleton className="rounded-xl w-full h-24" />
+          )}
         </div>
         {user && (
           <div className="flex flex-col gap-2">
@@ -51,9 +54,7 @@ export const ProfessionalProfile = ({ userId }: Props) => {
                 <Icon icon="instagram" size="2rem" />
               </Link>
             )}
-            {user.discordUsername && (
-              <ProfileDiscordButton discordUsername={user.discordUsername} />
-            )}
+            {user.discordUsername && <ProfileDiscordButton discordUsername={user.discordUsername} />}
             {user.twitterUrl && (
               <Link href={user.twitterUrl} color="foreground" target="_blank">
                 <Icon icon="twitter" size="2rem" />
@@ -66,9 +67,7 @@ export const ProfessionalProfile = ({ userId }: Props) => {
         {user ? 'Experience' : <Skeleton className="rounded-xl w-48 h-8" />}
       </h3>
       <div className="flex flex-col gap-4">
-        {!user && (
-          <Skeleton className="rounded-xl w-full h-36" />
-        )}
+        {!user && <Skeleton className="rounded-xl w-full h-36" />}
         {user?.experiences.map((experience) => (
           <ExperienceCard
             key={experience._id}
@@ -80,9 +79,7 @@ export const ProfessionalProfile = ({ userId }: Props) => {
         ))}
       </div>
       <RecentJobs id={userId} />
-      {user && (
-        <RecentConnections ids={user.connections} />
-      )}
+      {user && <RecentConnections ids={user.connections} />}
     </div>
   );
 };
