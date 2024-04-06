@@ -117,8 +117,12 @@ export const JobPage = (props: Props) => {
             ))}
           </div>
           <p className={styles.description}>{description}</p>
-          <h2 className="text-lg font-semibold mt-6">Additional information</h2>
-          <p className={styles.description}>{additionalInformation}</p>
+          {additionalInformation && (
+            <>
+              <h2 className="text-lg font-semibold mt-6">Additional information</h2>
+              <p className={styles.description}>{additionalInformation}</p>
+            </>
+          )}
         </div>
         {!isMobile && <div className={styles.userCard}>{userCardContent}</div>}
       </div>
