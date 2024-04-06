@@ -29,6 +29,7 @@ export const Post = () => {
   const [isContentExpanded, setIsContentExpanded] = React.useState(false);
   const [areCommentsExpanded, setAreCommentsExpanded] = React.useState(false);
   const [openedMedia, setOpenedMedia] = React.useState<Media.Image | null>(null);
+  const [isLightboxOpen, setIsLightboxOpen] = React.useState(false);
 
   const { currentUser, currentUserId } = useSession();
   const isMobile = useBreakpointValue({ SM: false }, true);
@@ -46,21 +47,37 @@ export const Post = () => {
       return (
         <>
           <div dangerouslySetInnerHTML={{ __html: content }} />
-          <Link as="button" color="secondary" onClick={() => setIsContentExpanded(false)}>show less</Link>
+          <Link as="button" color="secondary" onClick={() => setIsContentExpanded(false)}>
+            show less
+          </Link>
         </>
       );
     }
 
     return (
       <>
-        <div className="contents [&>*]:contents" dangerouslySetInnerHTML={{ __html: `${content.slice(0, POST_CONTENT_LIMIT)}... ` }} />
-        <Link as="button" color="secondary" onClick={() => setIsContentExpanded(true)}>show more</Link>
+        <div
+          className="contents [&>*]:contents"
+          dangerouslySetInnerHTML={{ __html: `${content.slice(0, POST_CONTENT_LIMIT)}... ` }}
+        />
+        <Link as="button" color="secondary" onClick={() => setIsContentExpanded(true)}>
+          show more
+        </Link>
       </>
     );
   }, [isContentExpanded, content]);
 
   const toggleComments = () => {
     setAreCommentsExpanded((isExpanded) => !isExpanded);
+  };
+
+  const handleMediaClick = (index: number) => {
+    setOpenedMedia(media[index] as Media.Image);
+    setIsLightboxOpen(true);
+  };
+
+  const handleLightboxClose = () => {
+    setIsLightboxOpen(false);
   };
 
   const userName = (
@@ -90,52 +107,51 @@ export const Post = () => {
           </NextLink>
           <div className="flex gap-3">
             <PostLikeButton postId={postId} hasLiked={hasLiked} likeCount={likeCount} />
-            {isMyPost
-              ? (
-                <>
-                  <Button
-                    variant="flat"
-                    color="secondary"
-                    isIconOnly={isMobile}
-                    startContent={<Icon icon="edit" size={20} />}
-                    onClick={() => setIsEditModalOpen(true)}
-                  >
-                    {!isMobile && 'Edit post'}
-                  </Button>
-                  <EditPostModal isOpen={isEditModalOpen} post={post} onClose={() => setIsEditModalOpen(false)} />
-                </>
-              ) : (
-                <ConnectionButton
-                  hasConnection={hasConnection ?? false}
-                  hasInvitation={hasInvitation ?? false}
-                  inviteeName={authorName}
-                  userId={authorId}
-                  mode="redirect"
-                />
-              )}
+            {isMyPost ? (
+              <>
+                <Button
+                  variant="flat"
+                  color="secondary"
+                  isIconOnly={isMobile}
+                  startContent={<Icon icon="edit" size={20} />}
+                  onClick={() => setIsEditModalOpen(true)}
+                >
+                  {!isMobile && 'Edit post'}
+                </Button>
+                <EditPostModal isOpen={isEditModalOpen} post={post} onClose={() => setIsEditModalOpen(false)} />
+              </>
+            ) : (
+              <ConnectionButton
+                hasConnection={hasConnection ?? false}
+                hasInvitation={hasInvitation ?? false}
+                inviteeName={authorName}
+                userId={authorId}
+                mode="redirect"
+              />
+            )}
           </div>
         </CardHeader>
         <CardBody className="px-5 py-0 gap-4">
           <div className="whitespace-pre-wrap">{postContent}</div>
-          {media.length > 0 && (
-            <MediaSlider media={media} onClick={(index) => setOpenedMedia(media[index] as Media.Image)} />
-          )}
+          {media.length > 0 && <MediaSlider media={media} onClick={handleMediaClick} />}
         </CardBody>
         <CardFooter className="px-5 flex-col items-start">
           <ProfileUnverifiedTooltip>
-            <Button variant="light" isDisabled={!currentUser?.isVerified} color={areCommentsExpanded ? 'secondary' : 'default'} size="sm" onClick={toggleComments}>
+            <Button
+              variant="light"
+              isDisabled={!currentUser?.isVerified}
+              color={areCommentsExpanded ? 'secondary' : 'default'}
+              size="sm"
+              onClick={toggleComments}
+            >
               <Icon icon="chat" size={20} />
               {commentCount}
             </Button>
           </ProfileUnverifiedTooltip>
-          {areCommentsExpanded && (
-            <Comments />
-          )}
+          {areCommentsExpanded && <Comments />}
         </CardFooter>
       </Card>
-      {!!openedMedia && (
-        <Lightbox isOpen image={openedMedia} onOpenChange={() => setOpenedMedia(null)} />
-      )}
+      {media.length > 0 && <Lightbox isOpen={isLightboxOpen} image={openedMedia} onClose={handleLightboxClose} />}
     </div>
   );
 };
