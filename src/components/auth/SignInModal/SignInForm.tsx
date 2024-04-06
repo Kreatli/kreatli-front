@@ -24,8 +24,15 @@ type DefaultValues = typeof DEFAULT_VALUES;
 
 export const SignInForm = ({ onClick, onSuccess }: Props) => {
   const router = useRouter();
-  const { register, handleSubmit, formState: { errors }, setError } = useForm({ defaultValues: DEFAULT_VALUES, mode: 'onTouched' });
-  const { signInMutation: { mutate, isPending } } = useSession();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    setError,
+  } = useForm({ defaultValues: DEFAULT_VALUES, mode: 'onTouched' });
+  const {
+    signInMutation: { mutate, isPending },
+  } = useSession();
   const pushNotification = useNotifications((state) => state.pushNotification);
 
   const onSubmit = (data: DefaultValues) => {
@@ -74,7 +81,9 @@ export const SignInForm = ({ onClick, onSuccess }: Props) => {
             isInvalid={!!errors.password}
             {...register('password', VALIDATION_RULES.REQUIRED)}
           />
-          <Link as="button" type="button" color="secondary" size="sm" onClick={onClick}>Forgot password?</Link>
+          <Link as="button" type="button" color="secondary" size="sm" onClick={onClick}>
+            Forgot password?
+          </Link>
         </div>
       </div>
       <div className="mt-4 mb-6">
@@ -82,12 +91,10 @@ export const SignInForm = ({ onClick, onSuccess }: Props) => {
           Sign in
         </Button>
       </div>
-      {process.env.ENABLE_GOOGLE_OAUTH === 'true' && (
-        <>
-          <div className="flex items-center mb-6 text-sm text-foreground-500 after:flex-1 after:content-[''] after:p-[0.5px] after:bg-foreground-200 after:m-2 before:flex-1 before:content-[''] before:p-[0.5px] before:bg-foreground-200 before:m-2">YouTube creator?</div>
-          <SignInCreatorSSO onSuccess={onSuccess} />
-        </>
-      )}
+      <div className="flex items-center mb-6 text-sm text-foreground-500 after:flex-1 after:content-[''] after:p-[0.5px] after:bg-foreground-200 after:m-2 before:flex-1 before:content-[''] before:p-[0.5px] before:bg-foreground-200 before:m-2">
+        YouTube creator?
+      </div>
+      <SignInCreatorSSO onSuccess={onSuccess} />
     </form>
   );
 };

@@ -11,7 +11,6 @@ const nextConfig = {
     API_URL: process.env.API_URL,
     GTM_ID: process.env.GTM_ID,
     GOOGLE_OAUTH_CLIENT_ID: process.env.GOOGLE_OAUTH_CLIENT_ID,
-    ENABLE_GOOGLE_OAUTH: process.env.ENABLE_GOOGLE_OAUTH,
     ENABLE_REDDIT_PIXEL: process.env.ENABLE_REDDIT_PIXEL,
   },
   swcMinify: false,

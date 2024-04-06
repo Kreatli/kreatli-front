@@ -20,12 +20,10 @@ export const SignUpCreatorModal = () => {
         <ModalHeader>Join Kreatli as YouTube creator</ModalHeader>
         <ModalBody className="gap-6">
           <SignUpCreatorForm onSuccess={close} />
-          {process.env.ENABLE_GOOGLE_OAUTH === 'true' && (
-            <>
-              <div className="flex items-center text-foreground-500 after:flex-1 after:content-[''] after:p-[0.5px] after:bg-foreground-200 after:m-2 before:flex-1 before:content-[''] before:p-[0.5px] before:bg-foreground-200 before:m-2">or</div>
-              <SignUpCreatorSSO onSuccess={close} />
-            </>
-          )}
+          <div className="flex items-center text-foreground-500 after:flex-1 after:content-[''] after:p-[0.5px] after:bg-foreground-200 after:m-2 before:flex-1 before:content-[''] before:p-[0.5px] before:bg-foreground-200 before:m-2">
+            or
+          </div>
+          <SignUpCreatorSSO onSuccess={close} />
         </ModalBody>
         <ModalFooter />
       </ModalContent>
