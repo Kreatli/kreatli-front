@@ -42,7 +42,7 @@ export const SignUpCreatorForm = ({ onSuccess }: Props) => {
         icon: 'success',
       });
       onSuccess?.();
-      window.rdt?.('track', 'Custom', { role: 'creator' });
+      window.rdt?.('track', 'Custom', { customEventName: 'CreatorSignUp' });
     },
     onError: (error) => {
       pushNotification({
