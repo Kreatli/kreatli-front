@@ -22,7 +22,11 @@ interface Props {
 }
 
 export const SignUpCreatorForm = ({ onSuccess }: Props) => {
-  const { register, handleSubmit, formState: { errors } } = useForm({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
     mode: 'onTouched',
     defaultValues: DEFAULT_VALUES,
   });
@@ -38,6 +42,7 @@ export const SignUpCreatorForm = ({ onSuccess }: Props) => {
         icon: 'success',
       });
       onSuccess?.();
+      window.rdt?.('track', 'SignUp', { value: 'creator' });
     },
     onError: (error) => {
       pushNotification({

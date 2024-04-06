@@ -1,10 +1,4 @@
-import {
-  Accordion,
-  AccordionItem,
-  Button,
-  Progress,
-  Selection,
-} from '@nextui-org/react';
+import { Accordion, AccordionItem, Button, Progress, Selection } from '@nextui-org/react';
 import { useMutation } from '@tanstack/react-query';
 import React from 'react';
 import { useForm } from 'react-hook-form';
@@ -22,28 +16,15 @@ import { SignUpProfessionalStep5 } from './SignUpProfessionalStep5';
 
 const FIELDS_BY_STEP = [
   ['email', 'password', 'name', 'country'],
-  [
-    'avatarUrl',
-    'description',
-    'portfolioUrl',
-    'twitterUrl',
-    'discordUsername',
-    'instagramUsername',
-  ],
+  ['avatarUrl', 'description', 'portfolioUrl', 'twitterUrl', 'discordUsername', 'instagramUsername'],
   ['skills', 'skillLevels'],
   ['experiences'],
   ['certificates'],
 ] as const;
 
 export const SignUpProfessional = () => {
-  const [selectedKeys, setSelectedKeys] = React.useState<Set<string | number>>(
-    new Set(['0']),
-  );
-  const [isFilledByStep, setIsFilledByStep] = React.useState([
-    false,
-    false,
-    false,
-  ]);
+  const [selectedKeys, setSelectedKeys] = React.useState<Set<string | number>>(new Set(['0']));
+  const [isFilledByStep, setIsFilledByStep] = React.useState([false, false, false]);
 
   const pushNotification = useNotifications((state) => state.pushNotification);
   const {
@@ -54,9 +35,7 @@ export const SignUpProfessional = () => {
     trigger,
   } = useForm({ defaultValues: DEFAULT_VALUES, mode: 'onBlur' });
 
-  const isValidByStep = FIELDS_BY_STEP.map(
-    (fields) => !fields.some((field) => errors[field]),
-  );
+  const isValidByStep = FIELDS_BY_STEP.map((fields) => !fields.some((field) => errors[field]));
 
   const handleSelectionChange = (keys: Selection) => {
     if (keys !== 'all') {
@@ -82,10 +61,7 @@ export const SignUpProfessional = () => {
   };
 
   const progressValue = React.useMemo(() => {
-    const filledStepsLength = isFilledByStep.reduce(
-      (acc, isFilled) => acc + Number(isFilled),
-      0,
-    );
+    const filledStepsLength = isFilledByStep.reduce((acc, isFilled) => acc + Number(isFilled), 0);
 
     return ((filledStepsLength + 1) / 4) * 100;
   }, [isFilledByStep]);
@@ -99,6 +75,7 @@ export const SignUpProfessional = () => {
         icon: 'success',
       });
       handleNext();
+      window.rdt?.('track', 'SignUp', { value: 'professional' });
     },
     onError: (error) => {
       pushNotification({
@@ -122,44 +99,38 @@ export const SignUpProfessional = () => {
   const steps = [
     {
       title: 'Step 1 - Basic Information',
-      subtitle: 'Fill out a form that includes i.a. your name, email, and password to create an account on the platform',
+      subtitle:
+        'Fill out a form that includes i.a. your name, email, and password to create an account on the platform',
       render: <SignUpProfessionalStep1 register={register} errors={errors} />,
     },
     {
       title: 'Step 2 - Creating a Profile',
-      subtitle: 'Introduce yourself to the Kreatli community. This information helps you stand out and make great connections especially with YouTube creators looking to hire professionals',
-      render: (
-        <SignUpProfessionalStep2
-          control={control}
-          register={register}
-          errors={errors}
-        />
-      ),
+      subtitle:
+        'Introduce yourself to the Kreatli community. This information helps you stand out and make great connections especially with YouTube creators looking to hire professionals',
+      render: <SignUpProfessionalStep2 control={control} register={register} errors={errors} />,
     },
     {
       title: 'Step 3 - Qualifications',
-      subtitle: 'Provide information about the skills you possess and their level. Be sure to accurately represent your qualifications and skill level to build trust with potential clients',
-      render: (
-        <SignUpProfessionalStep3
-          control={control}
-          register={register}
-          errors={errors}
-        />
-      ),
+      subtitle:
+        'Provide information about the skills you possess and their level. Be sure to accurately represent your qualifications and skill level to build trust with potential clients',
+      render: <SignUpProfessionalStep3 control={control} register={register} errors={errors} />,
     },
     {
       title: 'Step 4 - Experience',
-      subtitle: 'Provide details about your relevant work experience, including past projects and clients you\'ve worked with. Be sure to highlight your most impressive work to attract potential clients',
+      subtitle:
+        "Provide details about your relevant work experience, including past projects and clients you've worked with. Be sure to highlight your most impressive work to attract potential clients",
       render: <SignUpProfessionalStep4 control={control} errors={errors} />,
     },
     {
       title: 'Step 5 - Certifications and Licenses (optional)',
-      subtitle: 'Provide information about any relevant certifications or licenses you hold. This information helps YouTube creators understand your level of expertise. Keep in mind that we manually verify information you provide!',
+      subtitle:
+        'Provide information about any relevant certifications or licenses you hold. This information helps YouTube creators understand your level of expertise. Keep in mind that we manually verify information you provide!',
       render: <SignUpProfessionalStep5 control={control} errors={errors} />,
     },
   ];
 
-  const description = 'Kreatli will help you find the best YouTube creators to collaborate and network with. The registration process only takes 7 minutes, so join today and become a part of our community';
+  const description =
+    'Kreatli will help you find the best YouTube creators to collaborate and network with. The registration process only takes 7 minutes, so join today and become a part of our community';
   const disabledKeys = new Set(
     steps
       .map((_, index) => index)
@@ -187,21 +158,13 @@ export const SignUpProfessional = () => {
               key={`${index}`}
               title={title}
               subtitle={subtitle}
-              startContent={
-                !isValidByStep[index] && (
-                  <Icon className="fill-danger" icon="error" />
-                )
-              }
+              startContent={!isValidByStep[index] && <Icon className="fill-danger" icon="error" />}
               onKeyDown={(e) => e.stopPropagation()}
             >
               {render}
               <div className="flex gap-2 mt-6">
                 {index > 0 && (
-                  <Button
-                    variant="light"
-                    color="secondary"
-                    onClick={handleBack}
-                  >
+                  <Button variant="light" color="secondary" onClick={handleBack}>
                     Back
                   </Button>
                 )}
