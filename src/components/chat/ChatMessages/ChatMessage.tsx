@@ -21,25 +21,17 @@ export const ChatMessage = ({ message }: Props) => {
 
   const isCurrentUserMessage = message.sender === currentUserId;
   const isLightboxOpen = openedMediaIndex !== null;
-  const openedMedia = isLightboxOpen
-    ? message.media[openedMediaIndex]
-    : null;
+  const openedMedia = isLightboxOpen ? message.media[openedMediaIndex] : null;
 
   const handleLightboxClose = () => {
     setOpenedMediaIndex(null);
   };
 
-  const senderName = isCurrentUserMessage
-    ? currentUser?.name
-    : participant?.name;
+  const senderName = isCurrentUserMessage ? currentUser?.name : participant?.name;
 
-  const senderAvatar = isCurrentUserMessage
-    ? currentUser?.avatarUrl
-    : participant?.avatarUrl;
+  const senderAvatar = isCurrentUserMessage ? currentUser?.avatarUrl : participant?.avatarUrl;
 
-  const name = (
-    <div className="text-xs font-semibold">{senderName}</div>
-  );
+  const name = <div className="text-xs font-semibold">{senderName}</div>;
 
   const date = (
     <div className="text-xs font-medium text-default-400">{formatChatMessageTime(message.creationDate)}</div>
@@ -83,7 +75,7 @@ export const ChatMessage = ({ message }: Props) => {
           </div>
         )}
         {message.media.length > 0 && (
-          <Lightbox isOpen={isLightboxOpen} image={openedMedia} onOpenChange={handleLightboxClose} />
+          <Lightbox isOpen={isLightboxOpen} image={openedMedia} onClose={handleLightboxClose} />
         )}
       </div>
     </div>
