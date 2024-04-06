@@ -39,7 +39,7 @@ export const SignUpCreatorSSO = ({ onSuccess }: Props) => {
     scope: 'https://www.googleapis.com/auth/youtube.readonly',
     onSuccess: (response) => {
       mutate(response);
-      window.rdt?.('track', 'SignUp', { value: 'creator' });
+      window.rdt?.('track', 'Custom', { role: 'creator' });
     },
     onError: () => {
       pushNotification({
