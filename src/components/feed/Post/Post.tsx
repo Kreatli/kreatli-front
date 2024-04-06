@@ -5,7 +5,6 @@ import React from 'react';
 import { PostContext } from '../../../contexts/Post';
 import { useBreakpointValue } from '../../../hooks/useBreakpointValue';
 import { useSession } from '../../../hooks/useSession';
-import { Media } from '../../../typings/media';
 import { formatRelativeTime } from '../../../utils/dates';
 import { ConnectionButton } from '../../profile/Connections/ConnectionButton';
 import { ProfileUnverifiedTooltip } from '../../profile/Profile/ProfileUnverifiedTooltip';
@@ -28,7 +27,7 @@ export const Post = () => {
   const [isEditModalOpen, setIsEditModalOpen] = React.useState(false);
   const [isContentExpanded, setIsContentExpanded] = React.useState(false);
   const [areCommentsExpanded, setAreCommentsExpanded] = React.useState(false);
-  const [openedMedia, setOpenedMedia] = React.useState<Media.Image | null>(null);
+  const [openedMediaIndex, setOpenedMediaIndex] = React.useState<number>(0);
   const [isLightboxOpen, setIsLightboxOpen] = React.useState(false);
 
   const { currentUser, currentUserId } = useSession();
@@ -72,7 +71,7 @@ export const Post = () => {
   };
 
   const handleMediaClick = (index: number) => {
-    setOpenedMedia(media[index] as Media.Image);
+    setOpenedMediaIndex(index);
     setIsLightboxOpen(true);
   };
 
@@ -151,7 +150,9 @@ export const Post = () => {
           {areCommentsExpanded && <Comments />}
         </CardFooter>
       </Card>
-      {media.length > 0 && <Lightbox isOpen={isLightboxOpen} image={openedMedia} onClose={handleLightboxClose} />}
+      {media.length > 0 && (
+        <Lightbox defaultIndex={openedMediaIndex} isOpen={isLightboxOpen} media={media} onClose={handleLightboxClose} />
+      )}
     </div>
   );
 };

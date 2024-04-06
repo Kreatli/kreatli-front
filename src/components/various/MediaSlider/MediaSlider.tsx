@@ -34,9 +34,16 @@ export const MediaSlider = ({ media, onClick }: Props) => {
 
   return (
     <div className="relative">
-      <div ref={slidesRef} className="flex gap-4 overflow-x-auto no-scrollbar snap-x snap-mandatory" onScroll={handleScroll}>
+      <div
+        ref={slidesRef}
+        className="flex gap-4 overflow-x-auto no-scrollbar snap-x snap-mandatory"
+        onScroll={handleScroll}
+      >
         {media.map((mediaItem, index) => (
-          <div key={mediaItem._id} className="min-w-full h-56 md:h-80 overflow-hidden snap-center snap-always">
+          <div
+            key={mediaItem._id}
+            className="min-w-full min-h-[50px] md:min-h-[100px] max-h-[300px] md:max-h-[500px] overflow-hidden snap-center snap-always rounded-large"
+          >
             {mediaItem.type === 'image' && <ImageSlide {...mediaItem} onClick={() => onClick(index)} />}
             {mediaItem.type === 'video' && <VideoSlide {...mediaItem} />}
           </div>
@@ -65,7 +72,11 @@ export const MediaSlider = ({ media, onClick }: Props) => {
       <div className="flex justify-center mt-4">
         {media.map((mediaItem, index) => (
           <button key={mediaItem._id} type="button" className="px-1" onClick={() => scrollToSlide(index)}>
-            <div className={`w-1.5 h-1.5 bg-default-300 rounded-full transition-all ${index === activeIndex ? 'w-6 bg-default-600' : ''}`} />
+            <div
+              className={`w-1.5 h-1.5 bg-default-300 rounded-full transition-all ${
+                index === activeIndex ? 'w-6 bg-default-600' : ''
+              }`}
+            />
           </button>
         ))}
       </div>

@@ -10,7 +10,7 @@ export const VideoSlide = ({ videoId }: Props) => {
       title={videoId}
       src={`https://www.youtube.com/embed/${videoId}`}
       loading="lazy"
-      className="w-full h-full rounded-large"
+      className="w-full h-full min-h-[200px] md:min-h-[320px]"
       frameBorder="0"
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
       allowFullScreen

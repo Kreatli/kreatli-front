@@ -17,14 +17,18 @@ interface Props {
 export const ChatMessage = ({ message }: Props) => {
   const { participant } = React.useContext(ChatContext);
   const { currentUser, currentUserId } = useSession();
-  const [openedMediaIndex, setOpenedMediaIndex] = React.useState<number | null>(null);
+  const [openedMediaIndex, setOpenedMediaIndex] = React.useState<number>(0);
+  const [isLightboxOpen, setIsLightboxOpen] = React.useState(false);
 
   const isCurrentUserMessage = message.sender === currentUserId;
-  const isLightboxOpen = openedMediaIndex !== null;
-  const openedMedia = isLightboxOpen ? message.media[openedMediaIndex] : null;
 
   const handleLightboxClose = () => {
-    setOpenedMediaIndex(null);
+    setIsLightboxOpen(false);
+  };
+
+  const handleMediaClick = (index: number) => () => {
+    setOpenedMediaIndex(index);
+    setIsLightboxOpen(true);
   };
 
   const senderName = isCurrentUserMessage ? currentUser?.name : participant?.name;
@@ -61,7 +65,7 @@ export const ChatMessage = ({ message }: Props) => {
         {message.media.length > 0 && (
           <div className="mt-2 flex flex-col gap-2">
             {message.media.map(({ _id, src }, index) => (
-              <button key={_id} type="button" className="w-fit" onClick={() => setOpenedMediaIndex(index)}>
+              <button key={_id} type="button" className="w-fit" onClick={handleMediaClick(index)}>
                 <Image src={src} className="max-w-[240px] w-auto" width={240} />
               </button>
             ))}
@@ -75,7 +79,12 @@ export const ChatMessage = ({ message }: Props) => {
           </div>
         )}
         {message.media.length > 0 && (
-          <Lightbox isOpen={isLightboxOpen} image={openedMedia} onClose={handleLightboxClose} />
+          <Lightbox
+            defaultIndex={openedMediaIndex}
+            isOpen={isLightboxOpen}
+            media={message.media}
+            onClose={handleLightboxClose}
+          />
         )}
       </div>
     </div>

@@ -10,8 +10,10 @@ interface Props extends Media.Image {
 export const ImageSlide = ({ src, onClick }: Props) => {
   return (
     <Image
-      classNames={{ wrapper: 'h-full !max-w-full cursor-pointer', img: 'w-full h-full object-cover' }}
+      classNames={{ wrapper: 'h-full !max-w-full cursor-pointer', img: 'w-full h-full object-contain' }}
       loading="lazy"
+      radius="none"
+      isBlurred
       src={src}
       onClick={onClick}
     />
