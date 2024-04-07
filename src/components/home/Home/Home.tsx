@@ -274,14 +274,14 @@ export const Home = () => {
         <div className="max-w-screen-xl mx-auto px-6 py-10 flex justify-between">
           <LogoIcon viewBox="0 0 90 22" />
           <div className="flex flex-col sm:flex-row items-end gap-1">
-            <span className="text-sm text-foreground-400">© Kreatli 2024. All rights reserved.</span>
-            <Link as={NextLink} href="/privacy-policy" size="sm" className="text-foreground-400" underline="hover">
+            <span className="text-sm text-foreground-500">© Kreatli 2024. All rights reserved.</span>
+            <Link as={NextLink} href="/privacy-policy" size="sm" className="text-foreground-500" underline="hover">
               Privacy policy
             </Link>
-            <Link as={NextLink} href="terms-and-conditions" size="sm" className="text-foreground-400" underline="hover">
+            <Link as={NextLink} href="terms-and-conditions" size="sm" className="text-foreground-500" underline="hover">
               Terms and conditions
             </Link>
-            <Link href="mailto:support@kreatli.com" size="sm" className="text-foreground-400" underline="hover">
+            <Link href="mailto:support@kreatli.com" size="sm" className="text-foreground-500" underline="hover">
               support@kreatli.com
             </Link>
           </div>

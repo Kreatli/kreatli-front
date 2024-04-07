@@ -1,4 +1,23 @@
-import { Avatar, Badge, Button, Dropdown, DropdownItem, DropdownMenu, DropdownSection, DropdownTrigger, Link, Navbar, NavbarBrand, NavbarContent, NavbarItem, NavbarMenu, NavbarMenuItem, NavbarMenuToggle, useDisclosure } from '@nextui-org/react';
+/* eslint-disable @typescript-eslint/indent */
+import {
+  Avatar,
+  Badge,
+  Button,
+  Dropdown,
+  DropdownItem,
+  DropdownMenu,
+  DropdownSection,
+  DropdownTrigger,
+  Link,
+  Navbar,
+  NavbarBrand,
+  NavbarContent,
+  NavbarItem,
+  NavbarMenu,
+  NavbarMenuItem,
+  NavbarMenuToggle,
+  useDisclosure,
+} from '@nextui-org/react';
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
@@ -25,28 +44,34 @@ export const Header = () => {
   }, [router.pathname]);
 
   const navigationItems = [
-    ...(isSignedIn ? [
-      {
-        label: 'Feed',
-        href: '/',
-      },
-      {
-        label: 'Jobs',
-        href: '/jobs',
-      },
-      {
-        label: 'Professionals',
-        href: '/professionals',
-      },
-      {
-        label: 'Dashboard',
-        href: '/dashboard',
-      },
-      ...(currentUser?.role === 'admin' ? [{
-        label: 'Admin panel',
-        href: '/admin',
-      }] : []),
-    ] : []),
+    ...(isSignedIn
+      ? [
+          {
+            label: 'Feed',
+            href: '/',
+          },
+          {
+            label: 'Jobs',
+            href: '/jobs',
+          },
+          {
+            label: 'Professionals',
+            href: '/professionals',
+          },
+          {
+            label: 'Dashboard',
+            href: '/dashboard',
+          },
+          ...(currentUser?.role === 'admin'
+            ? [
+                {
+                  label: 'Admin panel',
+                  href: '/admin',
+                },
+              ]
+            : []),
+        ]
+      : []),
   ];
 
   const commonItems = [
@@ -64,13 +89,15 @@ export const Header = () => {
     },
   ];
 
-  const anonymousSections = [[
-    {
-      label: 'Sign in',
-      key: 'signIn',
-    },
-    ...commonItems,
-  ]];
+  const anonymousSections = [
+    [
+      {
+        label: 'Sign in',
+        key: 'signIn',
+      },
+      ...commonItems,
+    ],
+  ];
 
   const signedSections = [
     [
@@ -123,9 +150,7 @@ export const Header = () => {
     ],
   ];
 
-  const userWidgetSections = isSignedIn
-    ? signedSections
-    : anonymousSections;
+  const userWidgetSections = isSignedIn ? signedSections : anonymousSections;
 
   const dropdownActions = {
     signIn: onOpen,
@@ -153,31 +178,48 @@ export const Header = () => {
   };
 
   const userInitials = React.useMemo(() => {
-    return currentUser?.name?.split(' ').map((part: string) => part[0]).join('') ?? '';
+    return (
+      currentUser?.name
+        ?.split(' ')
+        .map((part: string) => part[0])
+        .join('') ?? ''
+    );
   }, [currentUser?.name]);
 
   return (
-    <Navbar isBlurred maxWidth="xl" className="shadow-medium z-50" isMenuOpen={isNavbarOpen} onMenuOpenChange={setIsNavbarOpen}>
+    <Navbar
+      isBlurred
+      maxWidth="xl"
+      className="shadow-medium z-50"
+      isMenuOpen={isNavbarOpen}
+      onMenuOpenChange={setIsNavbarOpen}
+    >
       <NavbarContent>
         {isSignedIn && <NavbarMenuToggle className="sm:hidden" aria-label="Toggle navigation" />}
-        <NavbarBrand>
-          <NextLink href="/">
-            <LogoIcon viewBox="0 0 90 22" />
-          </NextLink>
-          {currentUser?.role === 'admin' && (
-            <Badge content="admin" size="sm" color="secondary" variant="flat">
-              <div className="opacity-0">__</div>
-            </Badge>
-          )}
-        </NavbarBrand>
+        <NavbarItem>
+          <NavbarBrand>
+            <NextLink href="/" aria-label="Kreatli">
+              <LogoIcon viewBox="0 0 90 22" />
+            </NextLink>
+            {currentUser?.role === 'admin' && (
+              <Badge content="admin" size="sm" color="secondary" variant="flat">
+                <div className="opacity-0">__</div>
+              </Badge>
+            )}
+          </NavbarBrand>
+        </NavbarItem>
       </NavbarContent>
-      <NavbarContent justify="center" className="hidden sm:flex">
-        {navigationItems.map(({ label, ...rest }) => (
-          <NavbarItem key={label} isActive={router.pathname === rest.href}>
-            <Link as={NextLink} color="foreground" {...rest}>{label}</Link>
-          </NavbarItem>
-        ))}
-      </NavbarContent>
+      {navigationItems.length > 0 && (
+        <NavbarContent justify="center" className="hidden sm:flex">
+          {navigationItems.map(({ label, ...rest }) => (
+            <NavbarItem key={label} isActive={router.pathname === rest.href}>
+              <Link as={NextLink} color="foreground" {...rest}>
+                {label}
+              </Link>
+            </NavbarItem>
+          ))}
+        </NavbarContent>
+      )}
       <NavbarContent justify="end">
         <NavbarItem className="flex items-center">
           {isSignedIn && (
@@ -212,7 +254,9 @@ export const Header = () => {
           <NavbarItem>
             <Dropdown>
               <DropdownTrigger>
-                <Button variant="flat" color="secondary">Sign up</Button>
+                <Button variant="flat" color="secondary">
+                  Sign up
+                </Button>
               </DropdownTrigger>
               <DropdownMenu aria-label="Sign up" variant="flat" color="secondary" onAction={handleSignUpAction}>
                 <DropdownItem key="creator">As YouTube Creator</DropdownItem>
@@ -221,27 +265,34 @@ export const Header = () => {
             </Dropdown>
           </NavbarItem>
         )}
-        <Dropdown>
-          <DropdownTrigger>
-            <Avatar
-              as="button"
-              src={currentUser?.avatarUrl}
-              color="secondary"
-              className="bg-secondary/20 text-secondary"
-              name={userInitials}
-              icon={!isSignedIn && <Icon icon="user" size={20} />}
-            />
-          </DropdownTrigger>
-          <DropdownMenu aria-label="User menu" disabledKeys={['kreatli-premium']} variant="flat" onAction={handleUserMenuAction}>
-            {userWidgetSections.map((section, index) => (
-              <DropdownSection key={index} showDivider={userWidgetSections.length - 1 !== index}>
-                {section.map(({ label, ...rest }) => (
-                  <DropdownItem {...rest}>{label}</DropdownItem>
-                ))}
-              </DropdownSection>
-            ))}
-          </DropdownMenu>
-        </Dropdown>
+        <NavbarItem>
+          <Dropdown>
+            <DropdownTrigger>
+              <Avatar
+                as="button"
+                src={currentUser?.avatarUrl}
+                color="secondary"
+                className="bg-secondary/20 text-secondary"
+                name={userInitials}
+                icon={!isSignedIn && <Icon icon="user" size={20} />}
+              />
+            </DropdownTrigger>
+            <DropdownMenu
+              aria-label="User menu"
+              disabledKeys={['kreatli-premium']}
+              variant="flat"
+              onAction={handleUserMenuAction}
+            >
+              {userWidgetSections.map((section, index) => (
+                <DropdownSection key={index} showDivider={userWidgetSections.length - 1 !== index}>
+                  {section.map(({ label, ...rest }) => (
+                    <DropdownItem {...rest}>{label}</DropdownItem>
+                  ))}
+                </DropdownSection>
+              ))}
+            </DropdownMenu>
+          </Dropdown>
+        </NavbarItem>
       </NavbarContent>
       <NavbarMenu className="pt-4">
         {navigationItems.map(({ label, ...rest }) => (

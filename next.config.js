@@ -13,6 +13,7 @@ const nextConfig = {
     GOOGLE_OAUTH_CLIENT_ID: process.env.GOOGLE_OAUTH_CLIENT_ID,
     ENABLE_REDDIT_PIXEL: process.env.ENABLE_REDDIT_PIXEL,
   },
+  productionBrowserSourceMaps: true,
   swcMinify: false,
   webpack(config) {
     const fileLoaderRule = config.module.rules.find((rule) => rule.test?.test?.('.svg'));
