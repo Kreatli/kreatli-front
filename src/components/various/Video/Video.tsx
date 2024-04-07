@@ -5,7 +5,6 @@ interface Props {
   width?: number;
   height?: number;
   className?: string;
-  loading?: 'eager' | 'lazy';
 }
 
 const observerOptions = {
@@ -13,19 +12,20 @@ const observerOptions = {
   threshold: 0,
 };
 
-export const Video = ({ src, className, height, width, loading = 'lazy' }: Props) => {
+export const Video = ({ src, className, height, width }: Props) => {
   const videoRef = React.useRef<HTMLVideoElement>(null);
-  const [shouldRender, setShouldRender] = React.useState(loading === 'eager');
 
   React.useEffect(() => {
     const target = videoRef.current;
 
-    if (!target || shouldRender) {
+    if (!target) {
       return;
     }
 
     const observer = new IntersectionObserver(([entry]) => {
-      setShouldRender(entry.isIntersecting);
+      if (entry.isIntersecting && target.paused) {
+        target.play();
+      }
     }, observerOptions);
 
     observer.observe(target);
@@ -33,7 +33,7 @@ export const Video = ({ src, className, height, width, loading = 'lazy' }: Props
     return () => {
       observer.unobserve(target);
     };
-  }, [shouldRender]);
+  }, []);
 
   return (
     <video
@@ -41,13 +41,13 @@ export const Video = ({ src, className, height, width, loading = 'lazy' }: Props
       width={width}
       height={height}
       className={className}
+      src={src}
       playsInline
-      autoPlay
       loop
       muted
       controls={false}
     >
-      {shouldRender && <source src={src} type="video/mp4" />}
+      <source src={src} type="video/mp4" />
     </video>
   );
 };

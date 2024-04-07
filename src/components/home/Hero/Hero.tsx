@@ -67,7 +67,6 @@ export const Hero = () => {
               <Video
                 src="https://d13dfrcfnxyv50.cloudfront.net/videos/job-offers.mp4"
                 className="scale-110 w-full aspect-[4/3]"
-                loading="eager"
               />
             </DesktopFrame>
             <div className="absolute -bottom-16 right-0 hidden lg:block">
@@ -75,7 +74,6 @@ export const Hero = () => {
                 <Video
                   src="https://d13dfrcfnxyv50.cloudfront.net/videos/chat-mobile.mp4"
                   className="w-36 rounded-2xl aspect-[9/20]"
-                  loading="eager"
                 />
               </MobileFrame>
             </div>
