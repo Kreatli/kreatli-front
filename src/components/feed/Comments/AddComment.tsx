@@ -58,17 +58,14 @@ export const AddComment = () => {
   };
 
   return (
-    <form
-      className="flex w-full gap-4 items-center z-10"
-      noValidate
-      onSubmit={handleSubmit}
-    >
+    <form className="flex w-full gap-4 items-center z-10" noValidate onSubmit={handleSubmit}>
       <Avatar src={currentUser?.avatarUrl} className="shrink-0" />
       <div className="relative w-full">
         <Textarea
           ref={addCommentRef}
           value={comment}
           minRows={2}
+          classNames={{ input: 'pr-10' }}
           disabled={isPending}
           placeholder="Type your comment"
           onChange={handleChange}
