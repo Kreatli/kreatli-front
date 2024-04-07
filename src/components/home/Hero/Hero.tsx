@@ -65,14 +65,20 @@ export const Hero = () => {
           <div className="relative lg:pr-16">
             <DesktopFrame>
               <Video
-                src="https://d13dfrcfnxyv50.cloudfront.net/videos/job-offers.mp4"
+                sources={[
+                  { src: 'https://d13dfrcfnxyv50.cloudfront.net/videos/job-offers.webm', type: 'video/webm' },
+                  { src: 'https://d13dfrcfnxyv50.cloudfront.net/videos/job-offers.mp4', type: 'video/mp4' },
+                ]}
                 className="scale-110 w-full aspect-[4/3]"
               />
             </DesktopFrame>
             <div className="absolute -bottom-16 right-0 hidden lg:block">
               <MobileFrame>
                 <Video
-                  src="https://d13dfrcfnxyv50.cloudfront.net/videos/chat-mobile.mp4"
+                  sources={[
+                    { src: 'https://d13dfrcfnxyv50.cloudfront.net/videos/chat-mobile.webm', type: 'video/webm' },
+                    { src: 'https://d13dfrcfnxyv50.cloudfront.net/videos/chat-mobile.mp4', type: 'video/mp4' },
+                  ]}
                   className="w-36 rounded-2xl aspect-[9/20]"
                 />
               </MobileFrame>

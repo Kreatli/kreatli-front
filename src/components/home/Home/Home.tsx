@@ -77,12 +77,24 @@ export const Home = () => {
           </p>
         </div>
         <DesktopFrame>
-          <Video src="https://d13dfrcfnxyv50.cloudfront.net/videos/chat.mp4" className="scale-85 w-full aspect-[4/3]" />
+          <Video
+            sources={[
+              { src: 'https://d13dfrcfnxyv50.cloudfront.net/videos/chat.webm', type: 'video/webm' },
+              { src: 'https://d13dfrcfnxyv50.cloudfront.net/videos/chat.mp4', type: 'video/mp4' },
+            ]}
+            className="scale-85 w-full aspect-[4/3]"
+          />
         </DesktopFrame>
       </section>
       <section className="grid grid-cols-1 sm:grid-cols-2 gap-x-20 gap-y-8 items-center container max-w-screen-xl mx-auto px-6 mb-20 sm:mb-40">
         <DesktopFrame>
-          <Video src="https://d13dfrcfnxyv50.cloudfront.net/videos/feed.mp4" className="w-full aspect-[4/3]" />
+          <Video
+            sources={[
+              { src: 'https://d13dfrcfnxyv50.cloudfront.net/videos/feed.webm', type: 'video/webm' },
+              { src: 'https://d13dfrcfnxyv50.cloudfront.net/videos/feed.mp4', type: 'video/mp4' },
+            ]}
+            className="w-full aspect-[4/3]"
+          />
         </DesktopFrame>
         <div className="-order-1 sm:order-1 flex flex-col gap-4 max-w-[480px] sm:ml-auto">
           <Chip variant="flat" color="secondary" classNames={{ content: 'font-semibold' }}>
@@ -115,7 +127,10 @@ export const Home = () => {
         </div>
         <DesktopFrame>
           <Video
-            src="https://d13dfrcfnxyv50.cloudfront.net/videos/dashboard.mp4"
+            sources={[
+              { src: 'https://d13dfrcfnxyv50.cloudfront.net/videos/dashboard.webm', type: 'video/webm' },
+              { src: 'https://d13dfrcfnxyv50.cloudfront.net/videos/dashboard.mp4', type: 'video/mp4' },
+            ]}
             className="scale-[1.01] w-full aspect-[4/3]"
           />
         </DesktopFrame>

@@ -1,10 +1,10 @@
 import React from 'react';
 
 interface Props {
-  src: string;
   width?: number;
   height?: number;
   className?: string;
+  sources: { src: string; type: string }[];
 }
 
 const observerOptions = {
@@ -12,7 +12,7 @@ const observerOptions = {
   threshold: 0,
 };
 
-export const Video = ({ src, className, height, width }: Props) => {
+export const Video = ({ sources = [], className, height, width }: Props) => {
   const videoRef = React.useRef<HTMLVideoElement>(null);
 
   React.useEffect(() => {
@@ -36,18 +36,10 @@ export const Video = ({ src, className, height, width }: Props) => {
   }, []);
 
   return (
-    <video
-      ref={videoRef}
-      width={width}
-      height={height}
-      className={className}
-      src={src}
-      playsInline
-      loop
-      muted
-      controls={false}
-    >
-      <source src={src} type="video/mp4" />
+    <video ref={videoRef} width={width} height={height} className={className} playsInline loop muted controls={false}>
+      {sources.map((source) => (
+        <source key={source.src} src={source.src} type={source.type} />
+      ))}
     </video>
   );
 };
