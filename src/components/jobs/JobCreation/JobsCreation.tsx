@@ -106,7 +106,7 @@ export const JobsCreation = () => {
     },
     {
       title: 'Step 2 - Required qualifications',
-      subtitle: 'Choose the qualifications required for the job. Feel free to choose multiple options',
+      subtitle: 'Choose the qualifications required for the job. Feel free to choose multiple options up to 3 skills',
       render: <JobsCreationStep2 control={control} errors={errors} />,
     },
     {

@@ -20,7 +20,7 @@ export const SignUpProfessionalStep3 = ({ errors, control, register }: Props) =>
   const [selectedSkills, setSelectedSkills] = React.useState<Skill[]>(skillsField.value ?? []);
 
   return (
-    <Tag.Group name="skills" control={control} rules={VALIDATION_RULES.REQUIRED} onChange={setSelectedSkills}>
+    <Tag.Group name="skills" max={3} control={control} rules={VALIDATION_RULES.REQUIRED} onChange={setSelectedSkills}>
       <div className="flex flex-wrap gap-2">
         {SKILL_OPTIONS.map((area) => (
           <Tag key={area.value} value={area.value} status={errors.skills && 'danger'}>
@@ -33,21 +33,22 @@ export const SignUpProfessionalStep3 = ({ errors, control, register }: Props) =>
           <h4 className="text-md font-semibold mb-2">Specify level of expertise:</h4>
           {selectedSkills.map((skill) => (
             <div key={skill} className="flex items-center gap-4">
-              <p className="text-sm whitespace-nowrap">
-                {SKILL_LABELS_FOR_PROFESSIONAL[skill]}
-              </p>
+              <p className="text-sm whitespace-nowrap">{SKILL_LABELS_FOR_PROFESSIONAL[skill]}</p>
               <Select
                 label="Select level"
                 size="sm"
                 className="w-36"
                 defaultSelectedKeys={
-                  skillLevelsField.value?.[skill] && new Set([skillLevelsField.value?.[skill]]) as Iterable<SkillLevel>
+                  skillLevelsField.value?.[skill] &&
+                  (new Set([skillLevelsField.value?.[skill]]) as Iterable<SkillLevel>)
                 }
                 isInvalid={!!errors.skillLevels?.[skill]}
                 {...register(`skillLevels.${skill}`, VALIDATION_RULES.REQUIRED)}
               >
                 {SKILL_LEVEL_OPTIONS.map((skillLevel) => (
-                  <SelectItem key={skillLevel.value} value={skillLevel.value}>{skillLevel.label}</SelectItem>
+                  <SelectItem key={skillLevel.value} value={skillLevel.value}>
+                    {skillLevel.label}
+                  </SelectItem>
                 ))}
               </Select>
             </div>

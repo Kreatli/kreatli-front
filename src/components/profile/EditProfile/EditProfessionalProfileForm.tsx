@@ -45,20 +45,24 @@ export const EditProfessionalProfileForm = ({ user, onCancel, onSuccess }: Props
       });
     },
   });
-  const defaultValues = React.useMemo(() => ({
-    avatarUrl: user.avatarUrl,
-    name: user.name,
-    country: user.country,
-    certificates: user.certificates,
-    description: user.description,
-    discordUsername: user.discordUsername,
-    experiences: user.experiences,
-    skills: user.skills,
-    skillLevels: user.skillLevels,
-    twitterUrl: user.twitterUrl,
-    instagramUsername: user.instagramUsername,
-    portfolioUrl: user.portfolioUrl,
-  } as unknown as DefaultValues), [user]);
+  const defaultValues = React.useMemo(
+    () =>
+      ({
+        avatarUrl: user.avatarUrl,
+        name: user.name,
+        country: user.country,
+        certificates: user.certificates,
+        description: user.description,
+        discordUsername: user.discordUsername,
+        experiences: user.experiences,
+        skills: user.skills,
+        skillLevels: user.skillLevels,
+        twitterUrl: user.twitterUrl,
+        instagramUsername: user.instagramUsername,
+        portfolioUrl: user.portfolioUrl,
+      } as unknown as DefaultValues),
+    [user],
+  );
 
   const {
     control,
@@ -107,7 +111,9 @@ export const EditProfessionalProfileForm = ({ user, onCancel, onSuccess }: Props
                 {...register('country', VALIDATION_RULES.REQUIRED)}
               >
                 {COUNTRIES.map((country) => (
-                  <SelectItem key={country.value} value={country.value}>{country.label}</SelectItem>
+                  <SelectItem key={country.value} value={country.value}>
+                    {country.label}
+                  </SelectItem>
                 ))}
               </Select>
             </div>
@@ -116,9 +122,9 @@ export const EditProfessionalProfileForm = ({ user, onCancel, onSuccess }: Props
         <Tab value="profile-details" title="Profile Details">
           <h2 className="text-medium font-semibold">Profile Details</h2>
           <p className="text-small text-foreground-400 mb-2">
-            Introduce yourself to the Kreatli community.{' '}
-            {/* eslint-disable-next-line max-len */}
-            This information helps you stand out and make great connections especially with YouTube creators looking to hire professionals
+            Introduce yourself to the Kreatli community. {/* eslint-disable-next-line max-len */}
+            This information helps you stand out and make great connections especially with YouTube creators looking to
+            hire professionals
           </p>
           <div className="grid grid-cols-2 gap-4 items-start">
             <div className="col-span-2 flex gap-4">
@@ -193,8 +199,8 @@ export const EditProfessionalProfileForm = ({ user, onCancel, onSuccess }: Props
         <Tab value="qualifications" title="Qualifications">
           <h2 className="text-medium font-semibold">Qualifications</h2>
           <p className="text-small text-foreground-400 mb-2">
-            Provide information about the skills you possess and their level.
-            Be sure to accurately represent your qualifications and skill level to build trust with potential clients
+            Provide information about the skills you possess and their level. Be sure to accurately represent your
+            qualifications and skill level to build trust with potential clients. You can select up to 3 qualifications
           </p>
           <SignUpProfessionalStep3 register={register} control={control} errors={errors} />
         </Tab>
@@ -202,23 +208,27 @@ export const EditProfessionalProfileForm = ({ user, onCancel, onSuccess }: Props
           <h2 className="text-medium font-semibold">Experience</h2>
           <p className="text-small text-foreground-400 mb-2">
             {/* eslint-disable-next-line max-len */}
-            Provide details about your relevant work experience, including past projects and clients you&apos;ve worked with.
-            Be sure to highlight your most impressive work to attract potential clients
+            Provide details about your relevant work experience, including past projects and clients you&apos;ve worked
+            with. Be sure to highlight your most impressive work to attract potential clients
           </p>
           <SignUpProfessionalStep4 control={control} errors={errors} />
         </Tab>
         <Tab value="certifications-and-licenses" title="Certifications and Licenses">
           <h2 className="text-medium font-semibold">Certifications and Licenses</h2>
           <p className="text-small text-foreground-400 mb-2">
-            Provide information about any relevant certifications or licenses you hold.
-            This information helps YouTube creators understand your level of expertise.
+            Provide information about any relevant certifications or licenses you hold. This information helps YouTube
+            creators understand your level of expertise.
           </p>
           <SignUpProfessionalStep5 control={control} errors={errors} />
         </Tab>
       </Tabs>
       <div className="flex gap-4 my-4 justify-end">
-        <Button color="secondary" variant="light" onClick={onCancel}>Cancel</Button>
-        <Button type="submit" color="secondary" variant="flat">Update information</Button>
+        <Button color="secondary" variant="light" onClick={onCancel}>
+          Cancel
+        </Button>
+        <Button type="submit" color="secondary" variant="flat">
+          Update information
+        </Button>
       </div>
     </form>
   );

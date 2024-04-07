@@ -13,7 +13,7 @@ interface Props {
 
 export const JobsCreationStep2 = ({ control, errors }: Props) => {
   return (
-    <Tag.Group name="skills" control={control} rules={VALIDATION_RULES.REQUIRED}>
+    <Tag.Group name="skills" max={3} control={control} rules={VALIDATION_RULES.REQUIRED}>
       <div className="flex flex-wrap gap-2">
         {SKILL_OPTIONS.map((area) => (
           <Tag key={area.value} value={area.value} status={errors.skills && 'danger'}>

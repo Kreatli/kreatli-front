@@ -112,7 +112,7 @@ export const SignUpProfessional = () => {
     {
       title: 'Step 3 - Qualifications',
       subtitle:
-        'Provide information about the skills you possess and their level. Be sure to accurately represent your qualifications and skill level to build trust with potential clients',
+        'Provide information about the skills you possess and their level. Be sure to accurately represent your qualifications and skill level to build trust with potential clients. You can select up to 3 qualifications',
       render: <SignUpProfessionalStep3 control={control} register={register} errors={errors} />,
     },
     {
