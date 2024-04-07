@@ -32,7 +32,8 @@ export const Hero = () => {
             </h1>
             <p className="text-lg text-foreground-500 sm:w-11/12">
               {/* eslint-disable-next-line max-len */}
-              Kreatli brings YouTube Creators and Professionals together, empowering their collaboration and success in a vibrant community designed for growth and creativity
+              Kreatli brings YouTube Creators and Professionals together, empowering their collaboration and success in
+              a vibrant community designed for growth and creativity
             </p>
             <div className="flex gap-4">
               <Dropdown>
@@ -44,10 +45,18 @@ export const Hero = () => {
                 </DropdownTrigger>
                 <DropdownMenu aria-label="Sign up" variant="flat" color="secondary" onAction={handleSignUpAction}>
                   <DropdownItem key="creator">As YouTube Creator</DropdownItem>
-                  <DropdownItem as={NextLink} href="/signup/professional" key="professional">As Professional</DropdownItem>
+                  <DropdownItem as={NextLink} href="/signup/professional" key="professional">
+                    As Professional
+                  </DropdownItem>
                 </DropdownMenu>
               </Dropdown>
-              <Button variant="bordered" radius="full" size="lg" className="pl-8" onClick={() => setIsSignedInModalOpen(true)}>
+              <Button
+                variant="bordered"
+                radius="full"
+                size="lg"
+                className="pl-8"
+                onClick={() => setIsSignedInModalOpen(true)}
+              >
                 Sign in
                 <Icon icon="arrowRight" size={20} className="group-hover:translate-x-1 transition-transform" />
               </Button>
@@ -55,11 +64,19 @@ export const Hero = () => {
           </div>
           <div className="relative lg:pr-16">
             <DesktopFrame>
-              <Video src="/videos/job-offers.mp4" className="scale-110 w-full aspect-[4/3]" loading="eager" />
+              <Video
+                src="https://d13dfrcfnxyv50.cloudfront.net/videos/job-offers.mp4"
+                className="scale-110 w-full aspect-[4/3]"
+                loading="eager"
+              />
             </DesktopFrame>
             <div className="absolute -bottom-16 right-0 hidden lg:block">
               <MobileFrame>
-                <Video src="/videos/chat-mobile.mp4" className="w-36 rounded-2xl aspect-[9/20]" loading="eager" />
+                <Video
+                  src="https://d13dfrcfnxyv50.cloudfront.net/videos/chat-mobile.mp4"
+                  className="w-36 rounded-2xl aspect-[9/20]"
+                  loading="eager"
+                />
               </MobileFrame>
             </div>
           </div>

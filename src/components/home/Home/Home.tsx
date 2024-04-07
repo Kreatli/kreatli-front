@@ -67,29 +67,34 @@ export const Home = () => {
             Job search
           </Chip>
           <h2 className="text-4xl font-semibold leading-tight">
-            <TextLinear>Collaborate</TextLinear> <br />Seamlessly
+            <TextLinear>Collaborate</TextLinear> <br />
+            Seamlessly
           </h2>
           <p className="text-lg text-foreground-500 max-w-[480px]">
-            Explore a world of exciting job opportunities with Kreatli&apos;s powerful job search feature. Designed for seamless collaboration, it connects professionals and YouTube creators, making it effortless to find the perfect match for your next venture.
+            Explore a world of exciting job opportunities with Kreatli&apos;s powerful job search feature. Designed for
+            seamless collaboration, it connects professionals and YouTube creators, making it effortless to find the
+            perfect match for your next venture.
           </p>
         </div>
         <DesktopFrame>
-          <Video src="/videos/chat.mp4" className="scale-85 w-full aspect-[4/3]" />
+          <Video src="https://d13dfrcfnxyv50.cloudfront.net/videos/chat.mp4" className="scale-85 w-full aspect-[4/3]" />
         </DesktopFrame>
       </section>
       <section className="grid grid-cols-1 sm:grid-cols-2 gap-x-20 gap-y-8 items-center container max-w-screen-xl mx-auto px-6 mb-20 sm:mb-40">
         <DesktopFrame>
-          <Video src="/videos/feed.mp4" className="w-full aspect-[4/3]" />
+          <Video src="https://d13dfrcfnxyv50.cloudfront.net/videos/feed.mp4" className="w-full aspect-[4/3]" />
         </DesktopFrame>
         <div className="-order-1 sm:order-1 flex flex-col gap-4 max-w-[480px] sm:ml-auto">
           <Chip variant="flat" color="secondary" classNames={{ content: 'font-semibold' }}>
             Kreatli feed
           </Chip>
           <h2 className="text-4xl font-semibold leading-tight">
-            Fuel Your <br /><TextLinear>Creativity</TextLinear>
+            Fuel Your <br />
+            <TextLinear>Creativity</TextLinear>
           </h2>
           <p className="text-lg text-foreground-500">
-            Immerse yourself in our vibrant community. The Kreatli Feed keeps you in the loop on the latest trends, collaborations, and opportunities. Stay inspired and informed about the buzzing activities within Kreatli.
+            Immerse yourself in our vibrant community. The Kreatli Feed keeps you in the loop on the latest trends,
+            collaborations, and opportunities. Stay inspired and informed about the buzzing activities within Kreatli.
           </p>
         </div>
       </section>
@@ -99,14 +104,20 @@ export const Home = () => {
             Tier and point system
           </Chip>
           <h2 className="text-4xl font-semibold leading-tight">
-            Recognize Your <br /><TextLinear>Progress</TextLinear>
+            Recognize Your <br />
+            <TextLinear>Progress</TextLinear>
           </h2>
           <p className="text-lg text-foreground-500 max-w-[480px]">
-            Explore a world of exciting job opportunities with Kreatli&apos;s powerful job search feature. Designed for seamless collaboration, it connects professionals and YouTube creators, making it effortless to find the perfect match for your next venture.
+            Explore a world of exciting job opportunities with Kreatli&apos;s powerful job search feature. Designed for
+            seamless collaboration, it connects professionals and YouTube creators, making it effortless to find the
+            perfect match for your next venture.
           </p>
         </div>
         <DesktopFrame>
-          <Video src="/videos/dashboard.mp4" className="scale-[1.01] w-full aspect-[4/3]" />
+          <Video
+            src="https://d13dfrcfnxyv50.cloudfront.net/videos/dashboard.mp4"
+            className="scale-[1.01] w-full aspect-[4/3]"
+          />
         </DesktopFrame>
       </section>
       <section className="relative py-20 sm:py-32 mb-10 sm:mb-40">
@@ -116,7 +127,8 @@ export const Home = () => {
               Welcome
             </Chip>
             <h2 className="text-4xl font-semibold leading-tight mx-auto mb-8 sm:mb-16">
-              Join the <br /><TextLinear>Community</TextLinear>
+              Join the <br />
+              <TextLinear>Community</TextLinear>
             </h2>
           </div>
           <div className="grid grid-cols-4 gap-4">
@@ -129,21 +141,21 @@ export const Home = () => {
                 <ul className="flex flex-col gap-2 list-disc list-outside pl-4 marker:text-secondary xl:max-w-[250px] text-foreground-500">
                   <li>Discover the right talent with ease.</li>
                   <li>Collaborate with experts effortlessly.</li>
-                  <li>Simplify your hiring process by easily finding, evaluating, and hiring the perfect professionals for your job.</li>
+                  <li>
+                    Simplify your hiring process by easily finding, evaluating, and hiring the perfect professionals for
+                    your job.
+                  </li>
                 </ul>
               </CardBody>
               <CardFooter className="p-8">
-                <Button color="secondary" radius="full" onClick={openSignUpCreatorModal}>Join as YouTube Creator</Button>
+                <Button color="secondary" radius="full" onClick={openSignUpCreatorModal}>
+                  Join as YouTube Creator
+                </Button>
               </CardFooter>
             </Card>
             <div className="col-start-1 col-end-5 sm:col-end-3 xl:col-start-2 relative rounded-large overflow-hidden shadow-small max-h-[500px]">
               <div className="absolute inset-0 z-20 bg-gradient-to-bl from-secondary/20 to-black/60" />
-              <Image
-                src={creatorsImage.src}
-                alt="Creators"
-                removeWrapper
-                className="w-full h-full object-cover"
-              />
+              <Image src={creatorsImage.src} alt="Creators" removeWrapper className="w-full h-full object-cover" />
             </div>
             <Card className="col-start-1 col-end-5 sm:col-start-3 xl:col-end-4 sm:row-start-1">
               <CardHeader className="block p-8">
@@ -158,7 +170,9 @@ export const Home = () => {
                 </ul>
               </CardBody>
               <CardFooter className="p-8">
-                <Button as={NextLink} href="/signup/professional" color="secondary" radius="full">Join as Professional</Button>
+                <Button as={NextLink} href="/signup/professional" color="secondary" radius="full">
+                  Join as Professional
+                </Button>
               </CardFooter>
             </Card>
             <div className="col-start-1 col-end-5 sm:col-start-3 xl:col-start-4 relative rounded-large overflow-hidden shadow-small max-h-[500px]">
@@ -190,22 +204,32 @@ export const Home = () => {
             Why us
           </Chip>
           <h2 className="text-4xl font-semibold leading-tight mb-12">
-            Why Should <TextLinear>Professionals</TextLinear><br /> Choose Kreatli?
+            Why Should <TextLinear>Professionals</TextLinear>
+            <br /> Choose Kreatli?
           </h2>
           <article className="mb-6">
             <div className="text-6xl font-bold text-secondary mb-2">1</div>
             <h3 className="text-xl font-semibold mb-2">Unified Platform</h3>
-            <p className="text-lg text-foreground-500 max-w-[500px]">End the endless search across Reddit, Twitter, Discord, Fiverr, or Upwork. Find jobs and opportunities, all in one convenient place.</p>
+            <p className="text-lg text-foreground-500 max-w-[500px]">
+              End the endless search across Reddit, Twitter, Discord, Fiverr, or Upwork. Find jobs and opportunities,
+              all in one convenient place.
+            </p>
           </article>
           <article className="mb-6">
             <div className="text-6xl font-bold text-secondary mb-2">2</div>
             <h3 className="text-xl font-semibold mb-2">Community Engagement</h3>
-            <p className="text-lg text-foreground-500 max-w-[500px]">Join a network of like-minded professionals, share experiences, receive valuable feedback, and collaborate on creative projects.</p>
+            <p className="text-lg text-foreground-500 max-w-[500px]">
+              Join a network of like-minded professionals, share experiences, receive valuable feedback, and collaborate
+              on creative projects.
+            </p>
           </article>
           <article>
             <div className="text-6xl font-bold text-secondary mb-2">3</div>
             <h3 className="text-xl font-semibold mb-2">Compete Fairly</h3>
-            <p className="text-lg text-foreground-500 max-w-[500px]">Bid farewell to battles with bots. Here you compete with other human professionals, ensuring a level playing field.</p>
+            <p className="text-lg text-foreground-500 max-w-[500px]">
+              Bid farewell to battles with bots. Here you compete with other human professionals, ensuring a level
+              playing field.
+            </p>
           </article>
         </div>
       </section>
@@ -214,13 +238,19 @@ export const Home = () => {
           FAQ
         </Chip>
         <h2 className="text-4xl font-semibold leading-tight max-w-lg mx-auto mb-8">
-          Frequently Asked <br /><TextLinear>Questions</TextLinear>
+          Frequently Asked <br />
+          <TextLinear>Questions</TextLinear>
         </h2>
         <Faq />
       </section>
       <section className="container max-w-screen-xl mx-auto px-6 text-center mb-20">
-        <h2 className="text-4xl font-semibold leading-tight mb-2">Still have some questions?<br /> <TextLinear>Contact us</TextLinear></h2>
-        <p className="mb-8 text-large text-foreground-500">We&apos;re all ears! Fill out the form below and let&apos;s chat!</p>
+        <h2 className="text-4xl font-semibold leading-tight mb-2">
+          Still have some questions?
+          <br /> <TextLinear>Contact us</TextLinear>
+        </h2>
+        <p className="mb-8 text-large text-foreground-500">
+          We&apos;re all ears! Fill out the form below and let&apos;s chat!
+        </p>
         <div className="max-w-[600px] mx-auto">
           <ContactForm />
         </div>
@@ -230,9 +260,15 @@ export const Home = () => {
           <LogoIcon viewBox="0 0 90 22" />
           <div className="flex flex-col sm:flex-row items-end gap-1">
             <span className="text-sm text-foreground-400">© Kreatli 2024. All rights reserved.</span>
-            <Link as={NextLink} href="/privacy-policy" size="sm" className="text-foreground-400" underline="hover">Privacy policy</Link>
-            <Link as={NextLink} href="terms-and-conditions" size="sm" className="text-foreground-400" underline="hover">Terms and conditions</Link>
-            <Link href="mailto:support@kreatli.com" size="sm" className="text-foreground-400" underline="hover">support@kreatli.com</Link>
+            <Link as={NextLink} href="/privacy-policy" size="sm" className="text-foreground-400" underline="hover">
+              Privacy policy
+            </Link>
+            <Link as={NextLink} href="terms-and-conditions" size="sm" className="text-foreground-400" underline="hover">
+              Terms and conditions
+            </Link>
+            <Link href="mailto:support@kreatli.com" size="sm" className="text-foreground-400" underline="hover">
+              support@kreatli.com
+            </Link>
           </div>
         </div>
       </footer>
