@@ -30,20 +30,17 @@ export const SignUpProfessionalStep4 = ({ control, errors }: Props) => {
 
   return (
     <div className="flex flex-col gap-8">
-      {fields.map(({ id }, index) => (
+      {fields.map(({ id, companyName, companyUrl, description }, index) => (
         <div key={id} className="flex gap-4">
           <div className="flex-1 grid grid-cols-[auto_1fr] gap-4">
             <div>
-              <AvatarUploader
-                label="logo"
-                control={control}
-                name={`experiences.${index}.imageUrl`}
-              />
+              <AvatarUploader label="logo" control={control} name={`experiences.${index}.imageUrl`} />
             </div>
             <div className="flex flex-col gap-4">
               <Input
                 placeholder="Channel/Company"
                 aria-label="Channel/Company"
+                defaultValue={companyName}
                 startContent={<Icon className="text-gray-400" icon="building" size={20} />}
                 labelPlacement="outside"
                 isInvalid={!!errors.experiences?.[index]?.companyName}
@@ -53,6 +50,7 @@ export const SignUpProfessionalStep4 = ({ control, errors }: Props) => {
               <Input
                 placeholder="Channel/Company link"
                 aria-label="Channel/Company link"
+                defaultValue={companyUrl}
                 startContent={<Icon className="text-gray-400" icon="link" size={20} />}
                 labelPlacement="outside"
                 isInvalid={!!errors.experiences?.[index]?.companyUrl}
@@ -63,6 +61,7 @@ export const SignUpProfessionalStep4 = ({ control, errors }: Props) => {
             <div className="col-span-2">
               <Textarea
                 label="Description"
+                defaultValue={description}
                 placeholder="Highlight key responsibilities, projects, and achievements from this job. Focus on demonstrating your expertise, skills, and the value you can bring to potential clients."
                 isInvalid={!!errors.experiences?.[index]?.description}
                 errorMessage={errors.experiences?.[index]?.description?.message}
@@ -86,7 +85,14 @@ export const SignUpProfessionalStep4 = ({ control, errors }: Props) => {
         </div>
       ))}
       <div>
-        <Button size="sm" radius="full" variant="flat" color="secondary" startContent={<Icon icon="plus" size={18} />} onClick={handleAddMore}>
+        <Button
+          size="sm"
+          radius="full"
+          variant="flat"
+          color="secondary"
+          startContent={<Icon icon="plus" size={18} />}
+          onClick={handleAddMore}
+        >
           Add more
         </Button>
       </div>

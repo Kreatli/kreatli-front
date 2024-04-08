@@ -21,20 +21,11 @@ export const TagGroup = <T extends FieldValues, K extends string>(props: TagGrou
   const { field } = useController({ control, name, rules });
   const [checkedTags, setCheckedTags] = React.useState<K[]>(field.value ?? []);
 
-  React.useEffect(() => {
-    if (checkedTags.length > max) {
-      setCheckedTags(checkedTags.slice(0, max));
-      onChange?.(checkedTags.slice(0, max));
-      field.onChange(checkedTags.slice(0, max));
-      field.onBlur();
-    }
-  }, [checkedTags]);
-
   const toggleTag = React.useCallback(
     (value: K) => {
       const tags = checkedTags.includes(value) ? without([value], checkedTags) : [...checkedTags, value];
 
-      if (tags.length > max) {
+      if (tags.length > max && tags.length > checkedTags.length) {
         return;
       }
 

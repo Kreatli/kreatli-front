@@ -21,8 +21,13 @@
     color: hsl(var(--nextui-danger));
   }
 
-  &.danger:not(.checked) {
+  &.danger {
     background-color: hsl(var(--nextui-danger-50));
+  }
+
+  &.danger.checked {
+    background-color: hsl(var(--nextui-danger-200));
+    color: hsl(var(--nextui-danger-600));
   }
 }
 

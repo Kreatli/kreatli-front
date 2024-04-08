@@ -19,15 +19,36 @@ export const SignUpProfessionalStep3 = ({ errors, control, register }: Props) =>
   const { field: skillLevelsField } = useController({ control, name: 'skillLevels' });
   const [selectedSkills, setSelectedSkills] = React.useState<Skill[]>(skillsField.value ?? []);
 
+  const validateSkills = (skills: any) => {
+    if (skills.length === 0) {
+      return false;
+    }
+
+    if (skills.length > 3) {
+      return 'You can select up to 3 skills';
+    }
+
+    return true;
+  };
+
   return (
-    <Tag.Group name="skills" max={3} control={control} rules={VALIDATION_RULES.REQUIRED} onChange={setSelectedSkills}>
-      <div className="flex flex-wrap gap-2">
-        {SKILL_OPTIONS.map((area) => (
-          <Tag key={area.value} value={area.value} status={errors.skills && 'danger'}>
-            {area.label}
-          </Tag>
-        ))}
-      </div>
+    <>
+      <Tag.Group
+        name="skills"
+        max={3}
+        control={control}
+        rules={{ validate: validateSkills }}
+        onChange={setSelectedSkills}
+      >
+        <div className="flex flex-wrap gap-2">
+          {SKILL_OPTIONS.map((area) => (
+            <Tag key={area.value} value={area.value} status={errors.skills && 'danger'}>
+              {area.label}
+            </Tag>
+          ))}
+        </div>
+      </Tag.Group>
+      {errors.skills && <p className="text-danger text-sm mt-2">{errors.skills.message}</p>}
       {selectedSkills.length > 0 && (
         <div className="flex flex-col gap-2 mt-6">
           <h4 className="text-md font-semibold mb-2">Specify level of expertise:</h4>
@@ -55,6 +76,6 @@ export const SignUpProfessionalStep3 = ({ errors, control, register }: Props) =>
           ))}
         </div>
       )}
-    </Tag.Group>
+    </>
   );
 };
