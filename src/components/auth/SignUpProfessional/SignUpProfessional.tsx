@@ -75,7 +75,7 @@ export const SignUpProfessional = () => {
         icon: 'success',
       });
       handleNext();
-      window.rdt?.('track', 'Custom', { customEventName: 'ProfessionalSignUp' });
+      window.rdt?.('track', 'SignUp');
     },
     onError: (error) => {
       pushNotification({
