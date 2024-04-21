@@ -28,34 +28,50 @@ export const SideMenu = () => {
   };
 
   return (
-    <Card className="sticky z-20 top-20 md:top-24">
-      <CardBody className="px-5 py-4">
-        <div className="flex justify-between">
-          <p className="text-default-400">Filter:</p>
-          <Dropdown>
-            <DropdownTrigger>
-              {/* Disabled since it renders as button */}
-              {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-              <Link as="button" color="secondary" className="font-semibold">
-                {FILTER_LABELS[filter]}
-                <Icon icon="chevronDown" />
-              </Link>
-            </DropdownTrigger>
-            <DropdownMenu
-              selectionMode="single"
-              selectedKeys={[filter]}
-              disallowEmptySelection
-              color="secondary"
-              variant="flat"
-              onSelectionChange={handleChange}
-            >
-              <DropdownItem key="allPosts">{FILTER_LABELS.allPosts}</DropdownItem>
-              <DropdownItem key="feedbackPosts">{FILTER_LABELS.feedbackPosts}</DropdownItem>
-              <DropdownItem key="myPosts">{FILTER_LABELS.myPosts}</DropdownItem>
-            </DropdownMenu>
-          </Dropdown>
-        </div>
-      </CardBody>
-    </Card>
+    <div className="flex flex-col gap-4 sticky z-20 top-20 md:top-24">
+      <Card>
+        <CardBody className="px-5 py-4">
+          <div className="flex justify-between">
+            <p className="text-default-400">Filter:</p>
+            <Dropdown>
+              <DropdownTrigger>
+                {/* Disabled since it renders as button */}
+                {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+                <Link as="button" color="secondary" className="font-semibold">
+                  {FILTER_LABELS[filter]}
+                  <Icon icon="chevronDown" />
+                </Link>
+              </DropdownTrigger>
+              <DropdownMenu
+                selectionMode="single"
+                selectedKeys={[filter]}
+                disallowEmptySelection
+                color="secondary"
+                variant="flat"
+                onSelectionChange={handleChange}
+              >
+                <DropdownItem key="allPosts">{FILTER_LABELS.allPosts}</DropdownItem>
+                <DropdownItem key="feedbackPosts">{FILTER_LABELS.feedbackPosts}</DropdownItem>
+                <DropdownItem key="myPosts">{FILTER_LABELS.myPosts}</DropdownItem>
+              </DropdownMenu>
+            </Dropdown>
+          </div>
+        </CardBody>
+      </Card>
+      <a
+        href="https://www.producthunt.com/posts/kreatli?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-kreatli"
+        target="_blank"
+        style={{ width: 250 }}
+        rel="noreferrer"
+      >
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=453251&theme=light"
+          alt="Kreatli - Platform that connects YouTube Creators and Professionals | Product Hunt"
+          width="250"
+          height="54"
+        />
+      </a>
+    </div>
   );
 };
