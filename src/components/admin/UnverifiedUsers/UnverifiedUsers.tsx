@@ -31,7 +31,7 @@ import { AcceptVerificationModal } from './AcceptVerificationModal';
 import { RejectVerificationModal } from './RejectVerificationModal';
 import { ResendVerificationModal } from './ResendVerificationModal';
 
-const LIMIT = 3;
+const LIMIT = 10;
 
 export const UnverifiedUsers = () => {
   const [page, setPage] = React.useState(1);

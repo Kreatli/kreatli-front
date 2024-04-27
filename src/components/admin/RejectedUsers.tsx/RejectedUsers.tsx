@@ -29,7 +29,7 @@ import { Icon } from '../../various/Icon';
 import { AcceptVerificationModal } from '../UnverifiedUsers/AcceptVerificationModal';
 import { RejectVerificationModal } from '../UnverifiedUsers/RejectVerificationModal';
 
-const LIMIT = 3;
+const LIMIT = 10;
 
 export const RejectedUsers = () => {
   const [page, setPage] = React.useState(1);
