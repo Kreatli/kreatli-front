@@ -88,6 +88,7 @@ export namespace Api {
     | '/post/:id/like'
     | '/unverified-users/:id/accept'
     | '/unverified-users/:id/reject'
+    | '/unverified-users/reject'
     | '/unverified-users/:id/resend-activation-link'
     | '/upload/file'
     | '/upload/image'
@@ -286,6 +287,10 @@ export namespace Api {
     '/unverified-users/:id/reject': {
       message: string;
     };
+    '/unverified-users/reject': {
+      message: string;
+      ids: Common.Id[];
+    };
     '/unverified-users/:id/resend-activation-link': {};
     '/user/:id/send-email': {
       subject: string;
@@ -339,6 +344,7 @@ export namespace Api {
     '/buy-points': { paymentLink: string };
     '/unverified-users/:id/accept': User.Type;
     '/unverified-users/:id/reject': { message: string };
+    '/unverified-users/reject': { message: string };
     '/unverified-users/:id/resend-activation-link': { message: string };
   }
 

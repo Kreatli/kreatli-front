@@ -1,4 +1,19 @@
-import { Button, Chip, Pagination, Table, TableBody, TableCell, TableColumn, TableHeader, TableRow, Tooltip, User } from '@nextui-org/react';
+import {
+  Button,
+  Chip,
+  Dropdown,
+  DropdownItem,
+  DropdownMenu,
+  DropdownTrigger,
+  Pagination,
+  Table,
+  TableBody,
+  TableCell,
+  TableColumn,
+  TableHeader,
+  TableRow,
+  User,
+} from '@nextui-org/react';
 import { keepPreviousData, useQuery } from '@tanstack/react-query';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
@@ -6,13 +21,15 @@ import { useRouter } from 'next/router';
 import React from 'react';
 
 import { COUNTRY_LABELS } from '../../../constants/countries';
+import { useUsersTable } from '../../../hooks/useUsersTable';
 import { getRejectedUsers } from '../../../services/admin';
+import { Api } from '../../../typings/api';
 import { Common } from '../../../typings/common';
 import { Icon } from '../../various/Icon';
 import { AcceptVerificationModal } from '../UnverifiedUsers/AcceptVerificationModal';
 import { RejectVerificationModal } from '../UnverifiedUsers/RejectVerificationModal';
 
-const LIMIT = 10;
+const LIMIT = 3;
 
 export const RejectedUsers = () => {
   const [page, setPage] = React.useState(1);
@@ -33,8 +50,14 @@ export const RejectedUsers = () => {
     queryFn: () => getRejectedUsers({ offset: (page - 1) * LIMIT, limit: LIMIT }),
   });
 
-  const users = data?.users ?? [];
-  const pages = Math.ceil((data?.total ?? 0) / LIMIT);
+  const users = React.useMemo(() => data?.users ?? [], [data?.users]);
+  const total = React.useMemo(() => data?.total ?? 0, [data?.total]);
+  const pages = React.useMemo(() => Math.ceil((total ?? 0) / LIMIT), [total]);
+
+  const { selectedUsers, selectedUsersCount, hasSelectedUsers, handleSelectionChange } = useUsersTable({
+    users,
+    total,
+  });
 
   const handleAccept = (id: Common.Id) => () => {
     setUserId(id);
@@ -78,15 +101,60 @@ export const RejectedUsers = () => {
     />
   );
 
+  const getDisabledActionKeys = (user: Api.GetResponse['/unverified-users']['users'][number]) => {
+    return [...(!user.isEmailVerified ? ['accept', 'reject'] : [])];
+  };
+
+  const selectedUsersArray = React.useMemo(() => {
+    if (userId) {
+      return [];
+    }
+
+    if (selectedUsers === 'all') {
+      return users.map((user) => user._id);
+    }
+
+    return Array.from(selectedUsers) as Common.Id[];
+  }, [selectedUsers, userId, users]);
+
   return (
     <>
-      <Table isHeaderSticky bottomContent={pagination}>
+      <div className="text-foreground-400 text-sm pl-4 mb-2">
+        {selectedUsersCount} of {total} selected
+      </div>
+      <Table
+        isHeaderSticky
+        aria-label="Rejected users"
+        selectionMode="multiple"
+        selectedKeys={selectedUsers}
+        onSelectionChange={handleSelectionChange}
+        bottomContent={pagination}
+      >
         <TableHeader>
           <TableColumn>NAME</TableColumn>
           <TableColumn>REGISTRATION DATE</TableColumn>
           <TableColumn>ROLE</TableColumn>
           <TableColumn>IS EMAIL VERIFIED</TableColumn>
-          <TableColumn>ACTIONS</TableColumn>
+          <TableColumn className="w-1">
+            <Dropdown>
+              <DropdownTrigger>
+                <Button
+                  variant="light"
+                  size="sm"
+                  isDisabled={!hasSelectedUsers}
+                  className="text-foreground-500"
+                  isIconOnly
+                >
+                  <Icon icon="dots" className="rotate-90" />
+                </Button>
+              </DropdownTrigger>
+              <DropdownMenu variant="flat">
+                <DropdownItem color="danger" className="text-danger" onClick={() => setIsRejectModalOpen(true)}>
+                  {selectedUsersCount > 1 ? `Reject selected users (${selectedUsersCount})` : 'Reject selected user'}
+                </DropdownItem>
+              </DropdownMenu>
+            </Dropdown>
+          </TableColumn>
         </TableHeader>
         <TableBody isLoading={isLoading} emptyContent="There are no rejected users">
           {users.map((user) => (
@@ -101,48 +169,59 @@ export const RejectedUsers = () => {
                 </Link>
               </TableCell>
               <TableCell>{dateFormatter(new Date(user.registrationDate))}</TableCell>
-              <TableCell>
-                {user.role}
-              </TableCell>
+              <TableCell>{user.role}</TableCell>
               <TableCell>
                 <Chip variant="flat" color={user.isEmailVerified ? 'success' : 'danger'}>
                   {user.isEmailVerified ? 'Yes' : 'No'}
                 </Chip>
               </TableCell>
-              <TableCell className="flex gap-2">
-                <Tooltip content="Reject verification">
-                  <Button
-                    size="sm"
-                    variant="flat"
-                    color="danger"
-                    isIconOnly
-                    isDisabled={!user.isEmailVerified}
-                    aria-label="Reject verification"
-                    onClick={handleReject(user._id)}
-                  >
-                    <Icon icon="cross" size={18} />
-                  </Button>
-                </Tooltip>
-                <Tooltip content="Mark user as verified">
-                  <Button
-                    size="sm"
-                    variant="flat"
-                    color="success"
-                    isIconOnly
-                    isDisabled={!user.isEmailVerified}
-                    aria-label="Mark user as verified"
-                    onClick={handleAccept(user._id)}
-                  >
-                    <Icon icon="check" size={18} />
-                  </Button>
-                </Tooltip>
+              <TableCell>
+                <Dropdown>
+                  <DropdownTrigger>
+                    <Button
+                      variant="light"
+                      className="text-foreground-500"
+                      isDisabled={hasSelectedUsers}
+                      size="sm"
+                      isIconOnly
+                    >
+                      <Icon icon="dots" className="rotate-90" />
+                    </Button>
+                  </DropdownTrigger>
+                  <DropdownMenu variant="flat" disabledKeys={getDisabledActionKeys(user)}>
+                    <DropdownItem
+                      key="accept"
+                      color="success"
+                      className="text-success"
+                      startContent={<Icon icon="check" size={20} />}
+                      onClick={handleAccept(user._id)}
+                    >
+                      Mark as verified
+                    </DropdownItem>
+                    <DropdownItem
+                      key="reject"
+                      color="danger"
+                      className="text-danger"
+                      startContent={<Icon icon="cross" size={20} />}
+                      onClick={handleReject(user._id)}
+                    >
+                      Reject verification
+                    </DropdownItem>
+                  </DropdownMenu>
+                </Dropdown>
               </TableCell>
             </TableRow>
           ))}
         </TableBody>
       </Table>
       <AcceptVerificationModal isOpen={isAcceptModalOpen} userId={userId} onClose={handleAcceptModalClose} />
-      <RejectVerificationModal isOpen={isRejectModalOpen} userId={userId} onClose={handleRejectModalClose} />
+      <RejectVerificationModal
+        isOpen={isRejectModalOpen}
+        userId={userId}
+        userIds={selectedUsersArray}
+        onClose={handleRejectModalClose}
+        onSuccess={() => handleSelectionChange(new Set([]))}
+      />
     </>
   );
 };

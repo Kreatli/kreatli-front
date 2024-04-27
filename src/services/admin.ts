@@ -21,6 +21,10 @@ export const rejectUserVerification = async ([id, data]: [
   return api.post(`/unverified-users/${id}/reject`, data).then((res) => res.data);
 };
 
+export const rejectUserVerifications = async (data: Api.PostPayload['/unverified-users/reject']) => {
+  return api.post('/unverified-users/reject', data).then((res) => res.data);
+};
+
 export const resendActivationLink = async (id: Common.Id) => {
   return api.post(`/unverified-users/${id}/resend-activation-link`, {}).then((res) => res.data);
 };

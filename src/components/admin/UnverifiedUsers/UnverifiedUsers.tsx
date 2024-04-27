@@ -1,6 +1,10 @@
 import {
   Button,
   Chip,
+  Dropdown,
+  DropdownItem,
+  DropdownMenu,
+  DropdownTrigger,
   Pagination,
   Table,
   TableBody,
@@ -8,16 +12,17 @@ import {
   TableColumn,
   TableHeader,
   TableRow,
-  Tooltip,
   User,
 } from '@nextui-org/react';
 import { keepPreviousData, useQuery } from '@tanstack/react-query';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import { useRouter } from 'next/router';
+import { uniq } from 'ramda';
 import React from 'react';
 
 import { COUNTRY_LABELS } from '../../../constants/countries';
+import { useUsersTable } from '../../../hooks/useUsersTable';
 import { getUnverifiedUsers } from '../../../services/admin';
 import { Api } from '../../../typings/api';
 import { Common } from '../../../typings/common';
@@ -26,7 +31,7 @@ import { AcceptVerificationModal } from './AcceptVerificationModal';
 import { RejectVerificationModal } from './RejectVerificationModal';
 import { ResendVerificationModal } from './ResendVerificationModal';
 
-const LIMIT = 10;
+const LIMIT = 3;
 
 export const UnverifiedUsers = () => {
   const [page, setPage] = React.useState(1);
@@ -48,8 +53,26 @@ export const UnverifiedUsers = () => {
     queryFn: () => getUnverifiedUsers({ offset: (page - 1) * LIMIT, limit: LIMIT }),
   });
 
-  const users = data?.users ?? [];
-  const pages = Math.ceil((data?.total ?? 0) / LIMIT);
+  const users = React.useMemo(() => data?.users ?? [], [data?.users]);
+  const total = React.useMemo(() => data?.total ?? 0, [data?.total]);
+  const pages = React.useMemo(() => Math.ceil((total ?? 0) / LIMIT), [total]);
+
+  const {
+    selectedUsers,
+    selectedUsersCount,
+    hasSelectedUsers,
+    handleSelectionChange,
+    setUsersWithUnverifiedEmails,
+    shouldEnableBulkActions,
+  } = useUsersTable({ users, total });
+
+  React.useEffect(() => {
+    setUsersWithUnverifiedEmails(
+      (currentUsers) =>
+        uniq([...currentUsers, ...users.filter((user) => !user.isEmailVerified).map((user) => user._id)]),
+      // eslint-disable-next-line function-paren-newline
+    );
+  }, [setUsersWithUnverifiedEmails, users]);
 
   const handleAccept = (id: Common.Id) => () => {
     setUserId(id);
@@ -113,15 +136,63 @@ export const UnverifiedUsers = () => {
     return Date.now() - registrationDate.getTime() < 3 * 1000 * 60 * 60 * 24;
   };
 
+  const getDisabledActionKeys = (user: Api.GetResponse['/unverified-users']['users'][number]) => {
+    return [
+      ...(getIsUpdateButtonDisabled(user) ? ['resend'] : []),
+      ...(!user.isEmailVerified ? ['accept', 'reject'] : []),
+    ];
+  };
+
+  const selectedUsersArray = React.useMemo(() => {
+    if (userId) {
+      return [];
+    }
+
+    if (selectedUsers === 'all') {
+      return users.map((user) => user._id);
+    }
+
+    return Array.from(selectedUsers) as Common.Id[];
+  }, [selectedUsers, userId, users]);
+
   return (
     <>
-      <Table isHeaderSticky bottomContent={pagination}>
+      <div className="text-foreground-400 text-sm pl-4 mb-2">
+        {selectedUsersCount} of {total} selected
+      </div>
+      <Table
+        isHeaderSticky
+        aria-label="Unverified users"
+        selectionMode="multiple"
+        selectedKeys={selectedUsers}
+        onSelectionChange={handleSelectionChange}
+        bottomContent={pagination}
+      >
         <TableHeader>
           <TableColumn>NAME</TableColumn>
           <TableColumn>REGISTRATION DATE</TableColumn>
           <TableColumn>ROLE</TableColumn>
           <TableColumn>IS EMAIL VERIFIED</TableColumn>
-          <TableColumn>ACTIONS</TableColumn>
+          <TableColumn className="w-1">
+            <Dropdown>
+              <DropdownTrigger>
+                <Button
+                  variant="light"
+                  size="sm"
+                  isDisabled={!shouldEnableBulkActions}
+                  className="text-foreground-500"
+                  isIconOnly
+                >
+                  <Icon icon="dots" className="rotate-90" />
+                </Button>
+              </DropdownTrigger>
+              <DropdownMenu variant="flat">
+                <DropdownItem color="danger" className="text-danger" onClick={() => setIsRejectModalOpen(true)}>
+                  {selectedUsersCount > 1 ? `Reject selected users (${selectedUsersCount})` : 'Reject selected user'}
+                </DropdownItem>
+              </DropdownMenu>
+            </Dropdown>
+          </TableColumn>
         </TableHeader>
         <TableBody isLoading={isLoading} emptyContent="There are no unverified users">
           {users.map((user) => (
@@ -142,53 +213,60 @@ export const UnverifiedUsers = () => {
                   {user.isEmailVerified ? 'Yes' : 'No'}
                 </Chip>
               </TableCell>
-              <TableCell className="flex gap-2">
-                <Tooltip content="Reject verification">
-                  <Button
-                    size="sm"
-                    variant="flat"
-                    color="danger"
-                    isIconOnly
-                    isDisabled={!user.isEmailVerified}
-                    aria-label="Reject verification"
-                    onClick={handleReject(user._id)}
-                  >
-                    <Icon icon="cross" size={18} />
-                  </Button>
-                </Tooltip>
-                <Tooltip content="Mark user as verified">
-                  <Button
-                    size="sm"
-                    variant="flat"
-                    color="success"
-                    isIconOnly
-                    isDisabled={!user.isEmailVerified}
-                    aria-label="Mark user as verified"
-                    onClick={handleAccept(user._id)}
-                  >
-                    <Icon icon="check" size={18} />
-                  </Button>
-                </Tooltip>
-                <Tooltip content="Resend activation link">
-                  <Button
-                    size="sm"
-                    variant="flat"
-                    color="default"
-                    isIconOnly
-                    isDisabled={getIsUpdateButtonDisabled(user)}
-                    aria-label="Resend verification email"
-                    onClick={handleUpdate(user._id)}
-                  >
-                    <Icon icon="update" size={18} />
-                  </Button>
-                </Tooltip>
+              <TableCell className="text-right">
+                <Dropdown>
+                  <DropdownTrigger>
+                    <Button
+                      variant="light"
+                      className="text-foreground-500"
+                      isDisabled={hasSelectedUsers}
+                      size="sm"
+                      isIconOnly
+                    >
+                      <Icon icon="dots" className="rotate-90" />
+                    </Button>
+                  </DropdownTrigger>
+                  <DropdownMenu variant="flat" disabledKeys={getDisabledActionKeys(user)}>
+                    <DropdownItem
+                      key="accept"
+                      color="success"
+                      className="text-success"
+                      startContent={<Icon icon="check" size={20} />}
+                      onClick={handleAccept(user._id)}
+                    >
+                      Mark as verified
+                    </DropdownItem>
+                    <DropdownItem
+                      key="reject"
+                      color="danger"
+                      className="text-danger"
+                      startContent={<Icon icon="cross" size={20} />}
+                      onClick={handleReject(user._id)}
+                    >
+                      Reject verification
+                    </DropdownItem>
+                    <DropdownItem
+                      key="resend"
+                      startContent={<Icon icon="update" size={16} />}
+                      onClick={handleUpdate(user._id)}
+                    >
+                      Resend activation link
+                    </DropdownItem>
+                  </DropdownMenu>
+                </Dropdown>
               </TableCell>
             </TableRow>
           ))}
         </TableBody>
       </Table>
       <AcceptVerificationModal isOpen={isAcceptModalOpen} userId={userId} onClose={handleAcceptModalClose} />
-      <RejectVerificationModal isOpen={isRejectModalOpen} userId={userId} onClose={handleRejectModalClose} />
+      <RejectVerificationModal
+        isOpen={isRejectModalOpen}
+        userId={userId}
+        userIds={selectedUsersArray}
+        onClose={handleRejectModalClose}
+        onSuccess={() => handleSelectionChange(new Set([]))}
+      />
       <ResendVerificationModal isOpen={isUpdateModalOpen} userId={userId} onClose={handleUpdateModalClose} />
     </>
   );
