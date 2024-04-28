@@ -30,7 +30,7 @@ export const SignUpProfessionalStep4 = ({ control, errors }: Props) => {
 
   return (
     <div className="flex flex-col gap-8">
-      {fields.map(({ id, companyName, companyUrl, description }, index) => (
+      {fields.map(({ id }, index) => (
         <div key={id} className="flex gap-4">
           <div className="flex-1 grid grid-cols-[auto_1fr] gap-4">
             <div>
@@ -40,7 +40,6 @@ export const SignUpProfessionalStep4 = ({ control, errors }: Props) => {
               <Input
                 placeholder="Channel/Company"
                 aria-label="Channel/Company"
-                defaultValue={companyName}
                 startContent={<Icon className="text-gray-400" icon="building" size={20} />}
                 labelPlacement="outside"
                 isInvalid={!!errors.experiences?.[index]?.companyName}
@@ -50,7 +49,6 @@ export const SignUpProfessionalStep4 = ({ control, errors }: Props) => {
               <Input
                 placeholder="Channel/Company link"
                 aria-label="Channel/Company link"
-                defaultValue={companyUrl}
                 startContent={<Icon className="text-gray-400" icon="link" size={20} />}
                 labelPlacement="outside"
                 isInvalid={!!errors.experiences?.[index]?.companyUrl}
@@ -61,7 +59,6 @@ export const SignUpProfessionalStep4 = ({ control, errors }: Props) => {
             <div className="col-span-2">
               <Textarea
                 label="Description"
-                defaultValue={description}
                 placeholder="Highlight key responsibilities, projects, and achievements from this job. Focus on demonstrating your expertise, skills, and the value you can bring to potential clients."
                 isInvalid={!!errors.experiences?.[index]?.description}
                 errorMessage={errors.experiences?.[index]?.description?.message}

@@ -12,7 +12,7 @@ interface Props {
 
 export const EditPostModal = ({ isOpen, post, onClose }: Props) => {
   return (
-    <Modal size="2xl" backdrop="blur" isOpen={isOpen} onClose={onClose}>
+    <Modal size="2xl" backdrop="blur" scrollBehavior="inside" isOpen={isOpen} onClose={onClose}>
       <ModalContent>
         <ModalHeader>Edit post</ModalHeader>
         <ModalBody className="pt-0 pb-4">

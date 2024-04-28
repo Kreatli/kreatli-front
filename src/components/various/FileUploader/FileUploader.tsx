@@ -42,30 +42,33 @@ export const FileUploader = <T extends FieldValues>({ control, name, status, rul
     },
   });
 
-  const onDrop = React.useCallback((files: File[]) => {
-    const file = files[0];
+  const onDrop = React.useCallback(
+    (files: File[]) => {
+      const file = files[0];
 
-    if (!file) {
-      return;
-    }
+      if (!file) {
+        return;
+      }
 
-    if ((file.size / (1024 * 1024)) >= 5) {
-      pushNotification({
-        color: 'danger',
-        icon: 'error',
-        message: 'The maximum file size is 5 MB',
-      });
+      if (file.size / (1024 * 1024) >= 5) {
+        pushNotification({
+          color: 'danger',
+          icon: 'error',
+          message: 'The maximum file size is 5 MB',
+        });
 
-      return;
-    }
+        return;
+      }
 
-    setSelectedFile(file);
+      setSelectedFile(file);
 
-    const formData = new FormData();
-    formData.append('file', file);
+      const formData = new FormData();
+      formData.append('file', file);
 
-    mutate(formData);
-  }, [mutate, pushNotification]);
+      mutate(formData);
+    },
+    [mutate, pushNotification],
+  );
 
   const { isDragActive, getRootProps, getInputProps } = useDropzone({
     accept: {
@@ -82,15 +85,11 @@ export const FileUploader = <T extends FieldValues>({ control, name, status, rul
     onDrop,
   });
 
-  const icon = selectedFile
-    ? <Icon icon="file" />
-    : <Icon icon="upload" />;
+  const hasFile = !!selectedFile || !!field.value;
+  const icon = hasFile ? <Icon icon="file" /> : <Icon icon="upload" />;
+  const label = hasFile ? selectedFile?.name ?? field.value?.name : 'Upload file';
 
-  const label = selectedFile
-    ? selectedFile.name
-    : 'Upload file';
-
-  const isBordered = !isPending && (isDragActive || !!selectedFile);
+  const isBordered = !isPending && (isDragActive || hasFile);
 
   return (
     <Button

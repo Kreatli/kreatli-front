@@ -17,6 +17,7 @@ interface Props {
 export const JobReviewModal = ({ jobOfferId, jobOfferStatus, isOpen, onClose, onSuccess }: Props) => {
   const { currentUser } = useSession();
 
+  // prettier-ignore
   const modalDescription = `Share your feedback and rate the collaboration with ${currentUser?.role === 'creator' ? 'professional' : 'creator'}. Remember, once both sides have submitted their feedback, it will be displayed publicly`;
 
   const handleSuccess = () => {
@@ -25,7 +26,7 @@ export const JobReviewModal = ({ jobOfferId, jobOfferStatus, isOpen, onClose, on
   };
 
   return (
-    <Modal backdrop="blur" placement="center" size="lg" isOpen={isOpen} onClose={onClose}>
+    <Modal backdrop="blur" scrollBehavior="inside" placement="center" size="lg" isOpen={isOpen} onClose={onClose}>
       <ModalContent>
         <ModalHeader>Rate your experience</ModalHeader>
         <ModalBody className="gap-4">

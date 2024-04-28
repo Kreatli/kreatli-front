@@ -1,4 +1,4 @@
-import { Button, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader } from '@nextui-org/react';
+import { Button, Modal, ModalBody, ModalContent, ModalFooter } from '@nextui-org/react';
 import NextLink from 'next/link';
 import React from 'react';
 
@@ -17,29 +17,38 @@ export const DashboardTiersModal = () => {
   return (
     <Modal
       isOpen={isOpen}
-      className="w-full max-h-full overflow-y-auto max-w-screen-xl"
+      scrollBehavior="inside"
+      className="w-full max-h-full max-w-screen-xl"
+      classNames={{
+        closeButton: 'z-10',
+      }}
       size={screenWidth !== 'desktop' ? 'full' : undefined}
       backdrop="blur"
       onClose={closeModal}
     >
       <ModalContent>
-        <ModalHeader />
-        <ModalBody className="flex-none md:flex-row gap-5">
-          <TierStructure />
-          <div className="md:flex-[4] lg:flex-[7] flex flex-col gap-5">
-            <div className="flex flex-col lg:flex-row gap-5">
-              <EarningPoints />
-              <div className="flex flex-col gap-5">
-                <KreatliPremium />
-                <PointsPurchase />
+        <ModalBody className="py-8">
+          <div className="flex flex-col gap-5 flex-none md:flex-row">
+            <TierStructure />
+            <div className="md:flex-[4] lg:flex-[7] flex flex-col gap-5">
+              <div className="flex flex-col lg:flex-row gap-5">
+                <EarningPoints />
+                <div className="flex flex-col gap-5">
+                  <KreatliPremium />
+                  <PointsPurchase />
+                </div>
               </div>
+              <TierLegend />
             </div>
-            <TierLegend />
           </div>
         </ModalBody>
         <ModalFooter>
-          <Button variant="light" color="secondary" onClick={closeModal}>Close</Button>
-          <Button variant="flat" color="secondary" as={NextLink} href="/dashboard" onClick={closeModal}>Go to dashboard</Button>
+          <Button variant="light" color="secondary" onClick={closeModal}>
+            Close
+          </Button>
+          <Button variant="flat" color="secondary" as={NextLink} href="/dashboard" onClick={closeModal}>
+            Go to dashboard
+          </Button>
         </ModalFooter>
       </ModalContent>
     </Modal>

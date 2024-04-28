@@ -37,19 +37,20 @@ export const BuyPointsModal = ({ isOpen, onOpenChange }: Props) => {
       isOpen={isOpen}
       placement="center"
       backdrop="blur"
+      scrollBehavior="inside"
       size="3xl"
       onOpenChange={onOpenChange}
     >
       <ModalContent>
-        <ModalHeader>
-          Want to reach the next tier faster?
-        </ModalHeader>
-        <ModalBody className="grid grid-cols-2 sm:grid-cols-none sm:grid-flow-col sm:auto-cols-fr gap-4">
-          {POINTS_PLANS.map((plan) => (
-            <BuyPointsCard key={plan.pointsAmount} {...plan} />
-          ))}
+        <ModalHeader>Want to reach the next tier faster?</ModalHeader>
+        <ModalBody className="pt-8">
+          <div className="grid grid-cols-2 sm:grid-cols-none sm:grid-flow-col sm:auto-cols-fr gap-4">
+            {POINTS_PLANS.map((plan) => (
+              <BuyPointsCard key={plan.pointsAmount} {...plan} />
+            ))}
+          </div>
+          <Divider className="mt-8" />
         </ModalBody>
-        <Divider className="mt-10" />
         <ModalFooter>
           <Button variant="light" color="secondary" onClick={() => onOpenChange(false)}>
             Close

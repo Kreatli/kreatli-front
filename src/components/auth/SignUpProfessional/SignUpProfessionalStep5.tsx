@@ -26,11 +26,10 @@ export const SignUpProfessionalStep5 = ({ control, errors }: Props) => {
 
   return (
     <div className="flex flex-col gap-4">
-      {fields.map(({ id, name }, index) => (
+      {fields.map(({ id }, index) => (
         <div key={id} className="flex items-center gap-4">
           <Input
             label="Certificate's name"
-            defaultValue={name}
             placeholder="Adobe Certified Expert in Premiere Pro"
             isInvalid={!!errors.certificates?.[index]?.name}
             errorMessage={errors.certificates?.[index]?.name?.message}
@@ -59,7 +58,14 @@ export const SignUpProfessionalStep5 = ({ control, errors }: Props) => {
         </div>
       ))}
       <div>
-        <Button size="sm" radius="full" variant="flat" color="secondary" startContent={<Icon icon="plus" size={18} />} onClick={handleAddMore}>
+        <Button
+          size="sm"
+          radius="full"
+          variant="flat"
+          color="secondary"
+          startContent={<Icon icon="plus" size={18} />}
+          onClick={handleAddMore}
+        >
           Add certificate
         </Button>
       </div>

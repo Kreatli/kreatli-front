@@ -1,4 +1,4 @@
-import { Modal, ModalBody, ModalContent, ModalHeader } from '@nextui-org/react';
+import { Modal } from '@nextui-org/react';
 import React from 'react';
 
 import { useSession } from '../../../hooks/useSession';
@@ -18,19 +18,13 @@ export const EditProfileModal = ({ isOpen, onClose }: Props) => {
   }
 
   return (
-    <Modal
-      backdrop="blur"
-      size="5xl"
-      isOpen={isOpen}
-      onClose={onClose}
-    >
-      <ModalContent>
-        <ModalHeader>Edit Profile</ModalHeader>
-        <ModalBody className="pt-0">
-          {currentUser.role === 'creator' && <EditCreatorProfileForm user={currentUser} onSuccess={onClose} onCancel={onClose} />}
-          {currentUser.role === 'professional' && <EditProfessionalProfileForm user={currentUser} onSuccess={onClose} onCancel={onClose} />}
-        </ModalBody>
-      </ModalContent>
+    <Modal backdrop="blur" size="5xl" scrollBehavior="inside" isOpen={isOpen} onClose={onClose}>
+      {currentUser.role === 'creator' && (
+        <EditCreatorProfileForm user={currentUser} onSuccess={onClose} onCancel={onClose} />
+      )}
+      {currentUser.role === 'professional' && (
+        <EditProfessionalProfileForm user={currentUser} onSuccess={onClose} onCancel={onClose} />
+      )}
     </Modal>
   );
 };

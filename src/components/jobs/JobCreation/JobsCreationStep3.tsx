@@ -27,6 +27,7 @@ export const JobsCreationStep3 = ({ control, errors, register }: Props) => {
       <Select
         label="Payment type"
         placeholder="Select payment type"
+        disallowEmptySelection
         isInvalid={!!errors.paymentType}
         {...register('paymentType', VALIDATION_RULES.REQUIRED)}
       >

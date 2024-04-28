@@ -7,7 +7,8 @@ interface Props {
   onClose: () => void;
 }
 
-const YOUTUBE_VIDEO_PATTERN = /^https?:\/\/(?:www\.youtube(?:-nocookie)?\.com\/|m\.youtube\.com\/|youtube\.com\/)?(?:ytscreeningroom\?vi?=|youtu\.be\/|vi?\/|user\/.+\/u\/\w{1,2}\/|embed\/|watch\?(?:.*&)?vi?=|&vi?=|\?(?:.*&)?vi?=)([^#&?\n/<>"']+)/;
+const YOUTUBE_VIDEO_PATTERN =
+  /^https?:\/\/(?:www\.youtube(?:-nocookie)?\.com\/|m\.youtube\.com\/|youtube\.com\/)?(?:ytscreeningroom\?vi?=|youtu\.be\/|vi?\/|user\/.+\/u\/\w{1,2}\/|embed\/|watch\?(?:.*&)?vi?=|&vi?=|\?(?:.*&)?vi?=)([^#&?\n/<>"']+)/;
 
 export const VideoUploaderModal = ({ isOpen, onUpload, onClose }: Props) => {
   const [src, setUrl] = React.useState('');
@@ -42,13 +43,7 @@ export const VideoUploaderModal = ({ isOpen, onUpload, onClose }: Props) => {
   };
 
   return (
-    <Modal
-      placement="center"
-      backdrop="blur"
-      size="xl"
-      isOpen={isOpen}
-      onClose={handleClose}
-    >
+    <Modal placement="center" backdrop="blur" size="xl" scrollBehavior="inside" isOpen={isOpen} onClose={handleClose}>
       <ModalContent>
         <ModalHeader>
           <h3>Upload YouTube video</h3>
@@ -62,30 +57,32 @@ export const VideoUploaderModal = ({ isOpen, onUpload, onClose }: Props) => {
               placeholder="Paste the URL here"
               onChange={handleChange}
             />
-            {videoId
-              ? (
-                <div className="rounded-lg h-80 overflow-hidden">
-                  <iframe
-                    title={videoId}
-                    src={`https://www.youtube.com/embed/${videoId}`}
-                    className="w-full h-full"
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                    sandbox="allow-same-origin allow-scripts allow-presentation"
-                  />
-                </div>
-              )
-              : (
-                <div className="flex items-center justify-center text-default-400 p-4 text-center border-1 border-dashed border-default-200 rounded-lg h-80 text-sm">
-                  If the video URL is valid, the video preview will be displayed here
-                </div>
-              )}
+            {videoId ? (
+              <div className="rounded-lg h-80 overflow-hidden">
+                <iframe
+                  title={videoId}
+                  src={`https://www.youtube.com/embed/${videoId}`}
+                  className="w-full h-full"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  sandbox="allow-same-origin allow-scripts allow-presentation"
+                />
+              </div>
+            ) : (
+              <div className="flex items-center justify-center text-default-400 p-4 text-center border-1 border-dashed border-default-200 rounded-lg h-80 text-sm">
+                If the video URL is valid, the video preview will be displayed here
+              </div>
+            )}
           </div>
         </ModalBody>
         <ModalFooter className="justify-center">
-          <Button color="secondary" variant="light" onClick={handleClose}>Cancel</Button>
-          <Button color="secondary" variant="flat" onClick={handleAdd}>Add</Button>
+          <Button color="secondary" variant="light" onClick={handleClose}>
+            Cancel
+          </Button>
+          <Button color="secondary" variant="flat" onClick={handleAdd}>
+            Add
+          </Button>
         </ModalFooter>
       </ModalContent>
     </Modal>

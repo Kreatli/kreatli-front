@@ -39,11 +39,14 @@ export const SignUpProfessionalStep1 = ({ errors, register }: Props) => {
       <Select
         label="Country"
         placeholder="Select country"
+        disallowEmptySelection
         isInvalid={!!errors.country}
         {...register('country', VALIDATION_RULES.REQUIRED)}
       >
         {COUNTRIES.map((country) => (
-          <SelectItem key={country.value} value={country.value}>{country.label}</SelectItem>
+          <SelectItem key={country.value} value={country.value}>
+            {country.label}
+          </SelectItem>
         ))}
       </Select>
     </div>
