@@ -1,3 +1,4 @@
+import { sendGTMEvent } from '@next/third-parties/google';
 import { Button, Input, Tooltip } from '@nextui-org/react';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import NextLink from 'next/link';
@@ -36,11 +37,8 @@ export const JobsListing = () => {
     initialPageParam: 1,
     queryKey: ['job-offers', requestJobOffersQuery],
     queryFn: ({ pageParam = 1 }) => requestJobOffers({ ...requestJobOffersQuery, offset: (pageParam - 1) * LIMIT }),
-    getNextPageParam: (lastPage, allPages) => (
-      lastPage.jobOffersCount > allPages.length * LIMIT
-        ? allPages.length + 1
-        : undefined
-    ),
+    getNextPageParam: (lastPage, allPages) =>
+      (lastPage.jobOffersCount > allPages.length * LIMIT ? allPages.length + 1 : undefined), // prettier-ignore
   });
 
   const cards = React.useMemo(() => {
@@ -48,13 +46,16 @@ export const JobsListing = () => {
   }, [data?.pages]);
 
   const { setIsScrollDisabled } = useBodyScroll();
-  const { currentUser } = useSession();
+  const { currentUser, currentUserId } = useSession();
   const isCreator = currentUser?.role === 'creator';
   const isMobile = useBreakpointValue({ LG: false }, true);
 
-  React.useEffect(() => () => {
-    setIsScrollDisabled(false);
-  }, [setIsScrollDisabled]);
+  React.useEffect(
+    () => () => {
+      setIsScrollDisabled(false);
+    },
+    [setIsScrollDisabled],
+  );
 
   const handleFiltersChange = (filters: Api.GetParams['/job-offers']) => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -80,6 +81,13 @@ export const JobsListing = () => {
     setIsFilersOpen(false);
     setIsScrollDisabled(false);
   }, [setIsScrollDisabled]);
+
+  const onCreateJobPostingClicked = () => {
+    sendGTMEvent({
+      event: 'create-job-posting-clicked',
+      userId: currentUserId,
+    });
+  };
 
   React.useEffect(() => {
     if (!isMobile) {
@@ -115,7 +123,10 @@ export const JobsListing = () => {
           />
           {isCreator && (
             <div className="flex-initial">
-              <Tooltip isDisabled={!isExceededLimits} content="You've reached your job posting limit. Get to the next tier to increase the limit">
+              <Tooltip
+                isDisabled={!isExceededLimits}
+                content="You've reached your job posting limit. Get to the next tier to increase the limit"
+              >
                 <div>
                   <ProfileUnverifiedTooltip>
                     <Button
@@ -127,6 +138,7 @@ export const JobsListing = () => {
                       radius="full"
                       startContent={<Icon icon="plus" size={18} />}
                       aria-label="Create a job posting"
+                      onClick={onCreateJobPostingClicked}
                     >
                       {!isMobile ? 'Create a job posting' : null}
                     </Button>
@@ -150,18 +162,21 @@ export const JobsListing = () => {
             </div>
           )}
         </div>
-        {shouldShowEmptyState
-          ? <EmptyState title="No results" text="Oops! No results found. Try different criteria or check back later, we're growing 🚀" />
-          : (
-            <LazyList isLoading={isFetchingNextPage} hasMore={hasNextPage} onLoadMore={fetchNextPage}>
-              <div className={styles.cards}>
-                {cards.map((card) => (
-                  <JobCard key={card._id} jobOffer={card} />
-                ))}
-                {(isLoading || isFetchingNextPage) && <JobsListingSkeleton />}
-              </div>
-            </LazyList>
-          )}
+        {shouldShowEmptyState ? (
+          <EmptyState
+            title="No results"
+            text="Oops! No results found. Try different criteria or check back later, we're growing 🚀"
+          />
+        ) : (
+          <LazyList isLoading={isFetchingNextPage} hasMore={hasNextPage} onLoadMore={fetchNextPage}>
+            <div className={styles.cards}>
+              {cards.map((card) => (
+                <JobCard key={card._id} jobOffer={card} />
+              ))}
+              {(isLoading || isFetchingNextPage) && <JobsListingSkeleton />}
+            </div>
+          </LazyList>
+        )}
       </div>
     </div>
   );

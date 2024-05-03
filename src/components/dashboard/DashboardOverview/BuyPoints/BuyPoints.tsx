@@ -1,18 +1,29 @@
+import { sendGTMEvent } from '@next/third-parties/google';
 import { Button, Card, CardBody } from '@nextui-org/react';
 import React from 'react';
 
+import { useSession } from '../../../../hooks/useSession';
 import { BuyPointsModal } from './BuyPointsModal';
 
 export const BuyPoints = () => {
   const [isModalOpen, setIsModalOpen] = React.useState(false);
 
+  const { currentUserId } = useSession();
+
+  const handleClick = () => {
+    setIsModalOpen(true);
+
+    sendGTMEvent({
+      event: 'buy-points-modal-opened',
+      userId: currentUserId,
+    });
+  };
+
   return (
     <>
       <Card className="flex-1">
         <CardBody className="p-5 gap-4">
-          <div className="text-sm font-semibold text-center">
-            Want to reach the next tier faster?
-          </div>
+          <div className="text-sm font-semibold text-center">Want to reach the next tier faster?</div>
           <div className="flex flex-col items-center gap-1 w-full">
             <Button
               size="sm"
@@ -20,7 +31,7 @@ export const BuyPoints = () => {
               color="secondary"
               className="font-semibold text-sm"
               fullWidth
-              onClick={() => setIsModalOpen(true)}
+              onClick={handleClick}
             >
               Buy points
             </Button>

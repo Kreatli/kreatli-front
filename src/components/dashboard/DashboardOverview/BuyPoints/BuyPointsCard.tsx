@@ -1,7 +1,9 @@
+import { sendGTMEvent } from '@next/third-parties/google';
 import { Button, Card, CardBody } from '@nextui-org/react';
 import { useMutation } from '@tanstack/react-query';
 import React from 'react';
 
+import { useSession } from '../../../../hooks/useSession';
 import { requestBuyPoints } from '../../../../services/dashboard';
 import { Icon } from '../../../various/Icon';
 
@@ -14,6 +16,8 @@ export const BuyPointsCard = ({ pointsAmount, price }: Props) => {
   const pointsFormatter = new Intl.NumberFormat('fr');
   const priceFormatter = new Intl.NumberFormat('en', { style: 'currency', currency: 'USD' });
 
+  const { currentUserId } = useSession();
+
   const { mutate, isPending } = useMutation({
     mutationFn: () => requestBuyPoints({ points: pointsAmount }),
     onSuccess: ({ paymentLink }) => {
@@ -23,6 +27,12 @@ export const BuyPointsCard = ({ pointsAmount, price }: Props) => {
 
   const handleBuyPoints = () => {
     mutate();
+    sendGTMEvent({
+      event: 'buy-points-clicked',
+      pointsAmount,
+      price,
+      userId: currentUserId,
+    });
   };
 
   return (
@@ -33,7 +43,15 @@ export const BuyPointsCard = ({ pointsAmount, price }: Props) => {
         </div>
         <div className="text-sm font-semibold mb-2">{pointsFormatter.format(pointsAmount)} Points</div>
         <div className="text-success font-semibold mb-2">{priceFormatter.format(price)}</div>
-        <Button size="sm" color="secondary" isLoading={isPending} className="text-sm font-semibold" onClick={handleBuyPoints}>Buy</Button>
+        <Button
+          size="sm"
+          color="secondary"
+          isLoading={isPending}
+          className="text-sm font-semibold"
+          onClick={handleBuyPoints}
+        >
+          Buy
+        </Button>
       </CardBody>
     </Card>
   );

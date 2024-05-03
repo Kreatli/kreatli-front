@@ -12,6 +12,7 @@ interface Props {
   link?: {
     href: string;
     label: string;
+    onClick?: () => void;
   };
 }
 
@@ -22,7 +23,16 @@ export const EmptyState = ({ title, icon = 'emojiSad', text, link }: Props) => {
       <h4 className="text-xl font-semibold my-2">{title}</h4>
       {text && <p>{text}</p>}
       {link && (
-        <Button as={NextLink} href={link.href} color="secondary" variant="flat" className={styles.button}>{link.label}</Button>
+        <Button
+          as={NextLink}
+          href={link.href}
+          color="secondary"
+          variant="flat"
+          className={styles.button}
+          onClick={link.onClick}
+        >
+          {link.label}
+        </Button>
       )}
     </div>
   );

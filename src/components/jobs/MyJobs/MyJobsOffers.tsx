@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/indent */
+import { sendGTMEvent } from '@next/third-parties/google';
 import { Button, Pagination, Tab, Tabs, Tooltip } from '@nextui-org/react';
 import { keepPreviousData, useQuery } from '@tanstack/react-query';
 import cx from 'classnames';
@@ -21,7 +23,7 @@ export const MyJobsOffers = () => {
   const [page, setPage] = React.useState(1);
   const [selectedTab, setSelectedTab] = React.useState<Job.Offer['status']>('posted');
 
-  const { currentUser } = useSession();
+  const { currentUser, currentUserId } = useSession();
   const isMobile = useBreakpointValue({ SM: false }, true);
   const isExceededLimits = currentUser?.role === 'creator' && currentUser?.exceededLimits.jobOffers;
 
@@ -62,17 +64,25 @@ export const MyJobsOffers = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  const onCreateJobPostingClicked = React.useCallback(() => {
+    sendGTMEvent({
+      event: 'create-job-posting-clicked',
+      userId: currentUserId,
+    });
+  }, [currentUserId]);
+
   const emptyStateProps = React.useMemo(() => {
     if (selectedTab === 'ongoing') {
       return {
         title: 'No ongoing job postings',
-        text: 'You don\'t have any ongoing job postings yet. Let\'s fix this!',
-        ...(!isExceededLimits && currentUser?.isVerified && {
-          link: {
-            href: '/jobs/create',
-            label: 'Create a job posting',
-          },
-        }),
+        text: "You don't have any ongoing job postings yet. Let's fix this!",
+        ...(!isExceededLimits &&
+          currentUser?.isVerified && {
+            link: {
+              href: '/jobs/create',
+              label: 'Create a job posting',
+            },
+          }),
       };
     }
 
@@ -91,15 +101,17 @@ export const MyJobsOffers = () => {
 
     return {
       title: 'No job posting',
-      text: 'You don\'t have any job postings yet. Let\'s fix this!',
-      ...(!isExceededLimits && currentUser?.isVerified && {
-        link: {
-          href: '/jobs/create',
-          label: 'Create a job posting',
-        },
-      }),
+      text: "You don't have any job postings yet. Let's fix this!",
+      ...(!isExceededLimits &&
+        currentUser?.isVerified && {
+          link: {
+            href: '/jobs/create',
+            label: 'Create a job posting',
+            onClick: onCreateJobPostingClicked,
+          },
+        }),
     };
-  }, [currentUser?.isVerified, isExceededLimits, selectedTab]);
+  }, [currentUser?.isVerified, isExceededLimits, onCreateJobPostingClicked, selectedTab]);
 
   const totalPages = Math.ceil((data?.jobOffersCount ?? 0) / PAGE_LIMIT);
   const shouldShowSkeleton = (!data || data.jobOffers.length === 0) && isFetching;
@@ -110,25 +122,40 @@ export const MyJobsOffers = () => {
     <>
       <div className="flex items-center justify-between mb-4">
         <h3 className="text-2xl font-semibold">My job postings</h3>
-        <Tooltip isDisabled={!isExceededLimits} content="You've reached your job posting limit. Get to the next tier to increase the limit">
+        <Tooltip
+          isDisabled={!isExceededLimits}
+          content="You've reached your job posting limit. Get to the next tier to increase the limit"
+        >
           <div>
             <ProfileUnverifiedTooltip>
-              <Button as={NextLink} isDisabled={isExceededLimits || !currentUser?.isVerified} isIconOnly={isMobile} startContent={<Icon icon="plus" size={18} />} radius="full" color="secondary" href="/jobs/create">
+              <Button
+                as={NextLink}
+                isDisabled={isExceededLimits || !currentUser?.isVerified}
+                isIconOnly={isMobile}
+                startContent={<Icon icon="plus" size={18} />}
+                radius="full"
+                color="secondary"
+                href="/jobs/create"
+                onClick={onCreateJobPostingClicked}
+              >
                 {!isMobile && 'Create a job posting'}
               </Button>
             </ProfileUnverifiedTooltip>
           </div>
         </Tooltip>
       </div>
-      <Tabs aria-label="My job postings" selectedKey={selectedTab} className="mb-4" onSelectionChange={handleSelectionChange}>
+      <Tabs
+        aria-label="My job postings"
+        selectedKey={selectedTab}
+        className="mb-4"
+        onSelectionChange={handleSelectionChange}
+      >
         <Tab key="posted" title="Posted" />
         <Tab key="ongoing" title="Ongoing" />
         <Tab key="completed" title="Completed" />
         <Tab key="canceled" title="Cancelled" />
       </Tabs>
-      {shouldShowEmptyState && (
-        <EmptyState {...emptyStateProps} />
-      )}
+      {shouldShowEmptyState && <EmptyState {...emptyStateProps} />}
       <div className={cx(styles.cards, { [styles.loading]: shouldShowLoader })}>
         {shouldShowSkeleton && <MyJobsSkeleton />}
         {data?.jobOffers.map((jobOffer) => (
@@ -142,7 +169,9 @@ export const MyJobsOffers = () => {
           />
         ))}
       </div>
-      {totalPages > 1 && <Pagination className="mt-4" page={page} total={totalPages} color="secondary" onChange={handlePagination} />}
+      {totalPages > 1 && (
+        <Pagination className="mt-4" page={page} total={totalPages} color="secondary" onChange={handlePagination} />
+      )}
     </>
   );
 };
