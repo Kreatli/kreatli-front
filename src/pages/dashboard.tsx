@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import React from 'react';
 
 import { Dashboard } from '../components/dashboard/Dashboard';
@@ -23,5 +24,13 @@ const DashboardPage = () => {
     </>
   );
 };
+
+export async function getStaticProps({ locale }: { locale: string }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ['common'])),
+    },
+  };
+}
 
 export default DashboardPage;

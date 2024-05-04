@@ -10,6 +10,7 @@ import {
   Textarea,
 } from '@nextui-org/react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useTranslation } from 'next-i18next';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 
@@ -30,6 +31,8 @@ interface Props {
 }
 
 export const EditCreatorProfileForm = ({ user, onCancel, onSuccess }: Props) => {
+  const { t } = useTranslation(['common']);
+
   const queryClient = useQueryClient();
   const { pushNotification } = useNotifications();
   const { mutate } = useMutation({
@@ -82,7 +85,7 @@ export const EditCreatorProfileForm = ({ user, onCancel, onSuccess }: Props) => 
         <h2 className="text-medium font-semibold mb-2">Basic Information</h2>
         <div className="grid grid-cols-2 gap-4 mb-8">
           <div className="col-span-2 sm:col-span-1">
-            <Input label="Email" isDisabled value={user.email} />
+            <Input label={t('common:email')} isDisabled value={user.email} />
           </div>
           <div className="col-span-2 sm:col-span-1">
             <Input

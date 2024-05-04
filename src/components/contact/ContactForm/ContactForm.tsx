@@ -1,5 +1,6 @@
 import { Button, Input, Textarea } from '@nextui-org/react';
 import { useMutation } from '@tanstack/react-query';
+import { useTranslation } from 'next-i18next';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 
@@ -17,9 +18,15 @@ const initialValues = {
 type InitialValues = typeof initialValues;
 
 export const ContactForm = () => {
+  const { t } = useTranslation(['common']);
   const { pushNotification } = useNotifications();
 
-  const { register, handleSubmit, reset, formState: { errors } } = useForm({
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm({
     defaultValues: initialValues,
     mode: 'onTouched',
   });
@@ -52,7 +59,7 @@ export const ContactForm = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <Input
           type="email"
-          label="Email"
+          label={t('common:email')}
           placeholder="john.doe@domain.com"
           isDisabled={isPending}
           isInvalid={!!errors.email}
@@ -66,7 +73,6 @@ export const ContactForm = () => {
           isInvalid={!!errors.name}
           errorMessage={errors.name?.message}
           {...register('name', VALIDATION_RULES.SHORT_TEXT)}
-
         />
       </div>
       <Textarea
@@ -80,7 +86,7 @@ export const ContactForm = () => {
       />
       <div className="mt-4 text-center">
         <Button type="submit" color="secondary" variant="flat" isLoading={isPending} className="px-12">
-          Submit
+          {t('common:submit')}
         </Button>
       </div>
     </form>

@@ -1,5 +1,6 @@
 import { Card, CardBody } from '@nextui-org/react';
 import Head from 'next/head';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import React from 'react';
 
 import { ChatLayout } from '../../components/chat/ChatLayout';
@@ -24,10 +25,14 @@ const Chat = () => {
   );
 };
 
-Chat.getLayout = (page: any) => (
-  <ChatLayout>
-    {page}
-  </ChatLayout>
-);
+Chat.getLayout = (page: any) => <ChatLayout>{page}</ChatLayout>;
+
+export async function getStaticProps({ locale }: { locale: string }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ['common'])),
+    },
+  };
+}
 
 export default Chat;

@@ -1,5 +1,6 @@
 import { Button, Input, Link } from '@nextui-org/react';
 import { useRouter } from 'next/router';
+import { useTranslation } from 'next-i18next';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 
@@ -23,6 +24,8 @@ const DEFAULT_VALUES = {
 type DefaultValues = typeof DEFAULT_VALUES;
 
 export const SignInForm = ({ onClick, onSuccess }: Props) => {
+  const { t } = useTranslation(['common']);
+
   const router = useRouter();
   const {
     register,
@@ -65,8 +68,8 @@ export const SignInForm = ({ onClick, onSuccess }: Props) => {
       <div className="flex flex-col gap-4">
         <Input
           type="email"
-          placeholder="Email"
-          aria-label="Email"
+          placeholder={t('common:email')}
+          aria-label={t('common:email')}
           isDisabled={isPending}
           isInvalid={!!errors.email}
           labelPlacement="outside"

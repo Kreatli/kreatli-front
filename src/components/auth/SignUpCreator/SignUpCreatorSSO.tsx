@@ -2,6 +2,7 @@ import { Button } from '@nextui-org/react';
 import { useGoogleLogin } from '@react-oauth/google';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useRouter } from 'next/router';
+import { useTranslation } from 'next-i18next';
 import React from 'react';
 
 import { useNotifications } from '../../../hooks/useNotifications';
@@ -14,6 +15,7 @@ interface Props {
 }
 
 export const SignUpCreatorSSO = ({ onSuccess }: Props) => {
+  const { t } = useTranslation(['signUp']);
   const router = useRouter();
   const queryClient = useQueryClient();
   const pushNotification = useNotifications((state) => state.pushNotification);
@@ -43,7 +45,7 @@ export const SignUpCreatorSSO = ({ onSuccess }: Props) => {
     },
     onError: () => {
       pushNotification({
-        message: 'Failed to sign up with YouTube. Please try again.',
+        message: t('signUp:sign_up_with_youtube_failure'),
         color: 'danger',
         icon: 'error',
       });
@@ -53,7 +55,7 @@ export const SignUpCreatorSSO = ({ onSuccess }: Props) => {
   return (
     <Button size="lg" color="danger" variant="faded" isLoading={isPending} onClick={() => login()}>
       <Icon icon="youtube" />
-      Sign up with YouTube
+      {t('signUp:sign_up_with_youtube')}
     </Button>
   );
 };

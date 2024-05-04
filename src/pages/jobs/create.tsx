@@ -1,5 +1,6 @@
 import Error from 'next/error';
 import Head from 'next/head';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import React from 'react';
 
 import { JobsCreation } from '../../components/jobs/JobCreation';
@@ -30,5 +31,13 @@ const JobsCreate = () => {
     </>
   );
 };
+
+export async function getStaticProps({ locale }: { locale: string }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ['common'])),
+    },
+  };
+}
 
 export default JobsCreate;

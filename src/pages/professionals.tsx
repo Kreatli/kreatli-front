@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import React from 'react';
 
 import { ProfessionalListing } from '../components/professionals/ProfessionalListing';
@@ -23,5 +24,13 @@ const Professionals = () => {
     </>
   );
 };
+
+export async function getStaticProps({ locale }: { locale: string }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ['common'])),
+    },
+  };
+}
 
 export default Professionals;

@@ -12,6 +12,7 @@ import {
   Textarea,
 } from '@nextui-org/react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useTranslation } from 'next-i18next';
 import { omit } from 'ramda';
 import React from 'react';
 import { useForm } from 'react-hook-form';
@@ -46,6 +47,7 @@ const FIELDS_PER_TAB = {
 export const EditProfessionalProfileForm = ({ user, onCancel, onSuccess }: Props) => {
   const [selectedTab, setSelectedTab] = React.useState('basic-information');
 
+  const { t } = useTranslation(['common']);
   const { pushNotification } = useNotifications();
   const queryClient = useQueryClient();
 
@@ -132,7 +134,7 @@ export const EditProfessionalProfileForm = ({ user, onCancel, onSuccess }: Props
             </p>
             <div className="grid grid-cols-2 gap-4">
               <div className="col-span-2 sm:col-span-1">
-                <Input label="Email" isDisabled value={user.email} />
+                <Input label={t('common:email')} isDisabled value={user.email} />
               </div>
               <div className="col-span-2 sm:col-span-1">
                 <Input

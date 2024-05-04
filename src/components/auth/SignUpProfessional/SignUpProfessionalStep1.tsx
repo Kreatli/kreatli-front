@@ -1,4 +1,5 @@
 import { Input, Select, SelectItem } from '@nextui-org/react';
+import { useTranslation } from 'next-i18next';
 import React from 'react';
 import { FieldErrors, UseFormRegister } from 'react-hook-form';
 
@@ -13,11 +14,13 @@ interface Props {
 }
 
 export const SignUpProfessionalStep1 = ({ errors, register }: Props) => {
+  const { t } = useTranslation(['common']);
+
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 items-start gap-4">
       <Input
         type="email"
-        label="Email"
+        label={t('common:email')}
         placeholder="john.doe@domain.com"
         isInvalid={!!errors.email}
         errorMessage={errors.email?.message}

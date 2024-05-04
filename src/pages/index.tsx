@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import React from 'react';
 
 import { Feed } from '../components/feed/Feed';
@@ -17,4 +18,12 @@ export default function HomePage() {
       {isSignedIn ? <Feed /> : <Home />}
     </>
   );
+}
+
+export async function getStaticProps({ locale }: { locale: string }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ['common'])),
+    },
+  };
 }

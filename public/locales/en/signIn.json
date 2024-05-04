@@ -1,0 +1,8 @@
+{
+  "reset_password": "Reset your password",
+  "reset_password_success": "Follow the link sent to your email to reset your password",
+  "sign_in": "Sign in",
+  "sign_in_to_account": "Sign in to your account",
+  "sign_in_with_youtube": "Sign in with YouTube",
+  "sign_in_with_youtube_failure": "Failed to sign in with YouTube. Please try again."
+}

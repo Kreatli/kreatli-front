@@ -1,5 +1,6 @@
 import { Chip } from '@nextui-org/react';
 import Head from 'next/head';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import React from 'react';
 
 import { Faq } from '../components/contact/Faq';
@@ -17,12 +18,21 @@ const FaqPage = () => {
           FAQ
         </Chip>
         <h2 className="text-4xl font-semibold mx-auto mt-2 mb-8">
-          Frequently Asked <br /><TextLinear>Questions</TextLinear>
+          Frequently Asked <br />
+          <TextLinear>Questions</TextLinear>
         </h2>
         <Faq />
       </div>
     </>
   );
 };
+
+export async function getStaticProps({ locale }: { locale: string }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ['common'])),
+    },
+  };
+}
 
 export default FaqPage;

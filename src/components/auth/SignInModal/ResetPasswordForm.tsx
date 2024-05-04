@@ -1,5 +1,6 @@
 import { Button, Input } from '@nextui-org/react';
 import { useMutation } from '@tanstack/react-query';
+import { useTranslation } from 'next-i18next';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 
@@ -20,7 +21,14 @@ const DEFAULT_VALUES = {
 type DefaultValues = typeof DEFAULT_VALUES;
 
 export const ResetPasswordForm = ({ onClick, onSuccess }: Props) => {
-  const { register, handleSubmit, formState: { errors }, setError } = useForm({
+  const { t } = useTranslation(['common', 'signIn']);
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    setError,
+  } = useForm({
     defaultValues: DEFAULT_VALUES,
     mode: 'onTouched',
   });
@@ -32,7 +40,7 @@ export const ResetPasswordForm = ({ onClick, onSuccess }: Props) => {
     onSuccess: () => {
       onSuccess();
       pushNotification({
-        message: 'Follow the link sent to your email to reset your password',
+        message: t('signIn:reset_password_success'),
         color: 'success',
         icon: 'success',
       });
@@ -59,8 +67,8 @@ export const ResetPasswordForm = ({ onClick, onSuccess }: Props) => {
     <form noValidate onSubmit={handleSubmit(onSubmit)}>
       <Input
         type="email"
-        placeholder="Email"
-        aria-label="Email"
+        placeholder={t('common:email')}
+        aria-label={t('common:email')}
         isDisabled={isPending}
         isInvalid={!!errors.email}
         labelPlacement="outside"
@@ -68,9 +76,11 @@ export const ResetPasswordForm = ({ onClick, onSuccess }: Props) => {
       />
       <div className="flex justify-between gap-4 mt-8 mb-2">
         <Button type="submit" variant="flat" color="secondary" isLoading={isPending}>
-          Send email
+          {t('common:send_email')}
         </Button>
-        <Button variant="light" color="secondary" onClick={onClick}>Sign in</Button>
+        <Button variant="light" color="secondary" onClick={onClick}>
+          {t('signIn:sign_in')}
+        </Button>
       </div>
     </form>
   );

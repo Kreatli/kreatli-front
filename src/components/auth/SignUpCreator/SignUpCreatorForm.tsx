@@ -1,5 +1,6 @@
 import { Button, Input } from '@nextui-org/react';
 import { useMutation } from '@tanstack/react-query';
+import { useTranslation } from 'next-i18next';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 
@@ -22,6 +23,8 @@ interface Props {
 }
 
 export const SignUpCreatorForm = ({ onSuccess }: Props) => {
+  const { t } = useTranslation(['common']);
+
   const {
     register,
     handleSubmit,
@@ -62,7 +65,7 @@ export const SignUpCreatorForm = ({ onSuccess }: Props) => {
       <div className="flex flex-col gap-4">
         <Input
           type="email"
-          label="Email"
+          label={t('common:email')}
           size="sm"
           isDisabled={isPending}
           placeholder="john.doe@domain.com"

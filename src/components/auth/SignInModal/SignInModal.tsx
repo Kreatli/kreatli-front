@@ -1,4 +1,5 @@
 import { Modal, ModalBody, ModalContent, ModalFooter, ModalHeader } from '@nextui-org/react';
+import { useTranslation } from 'next-i18next';
 import React from 'react';
 
 import { useSession } from '../../../hooks/useSession';
@@ -11,8 +12,11 @@ interface Props {
 }
 
 export const SignInModal = ({ isOpen, onClose }: Props) => {
+  const { t } = useTranslation(['signIn']);
   const [mode, setMode] = React.useState<'signIn' | 'resetPassword'>('signIn');
-  const { signInMutation: { isPending } } = useSession();
+  const {
+    signInMutation: { isPending },
+  } = useSession();
 
   const handleSignInChange = React.useCallback(() => {
     setMode('resetPassword');
@@ -23,18 +27,12 @@ export const SignInModal = ({ isOpen, onClose }: Props) => {
   }, []);
 
   return (
-    <Modal
-      backdrop="blur"
-      size="sm"
-      isDismissable={!isPending}
-      isOpen={isOpen}
-      onClose={onClose}
-    >
+    <Modal backdrop="blur" size="sm" isDismissable={!isPending} isOpen={isOpen} onClose={onClose}>
       <ModalContent>
         <ModalHeader>
           <h3>
-            {mode === 'signIn' && 'Sign in to your account'}
-            {mode === 'resetPassword' && 'Reset your password'}
+            {mode === 'signIn' && t('signIn:sign_in_to_account')}
+            {mode === 'resetPassword' && t('signIn:reset_password')}
           </h3>
         </ModalHeader>
         <ModalBody>

@@ -8,6 +8,7 @@ import { Query, QueryCache, QueryClient, QueryClientProvider } from '@tanstack/r
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import Script from 'next/script';
+import { appWithTranslation } from 'next-i18next';
 import React from 'react';
 
 import { ApplicationLoader } from '../components/app/ApplicationLoader';
@@ -23,7 +24,7 @@ interface QueryErrorMeta {
   errorMessage?: string;
 }
 
-export default function App({ Component, pageProps }: AppProps) {
+const App = ({ Component, pageProps }: AppProps) => {
   const { pushNotification } = useNotifications();
 
   const [queryClient] = React.useState(
@@ -92,4 +93,6 @@ export default function App({ Component, pageProps }: AppProps) {
       )}
     </>
   );
-}
+};
+
+export default appWithTranslation(App);

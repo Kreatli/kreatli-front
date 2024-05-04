@@ -1,6 +1,7 @@
 import { Button, Chip } from '@nextui-org/react';
 import Head from 'next/head';
 import NextLink from 'next/link';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import React from 'react';
 
 const NotFound = () => {
@@ -15,7 +16,9 @@ const NotFound = () => {
           404
         </Chip>
         <h2 className="text-4xl font-semibold my-2">Page not found</h2>
-        <p className="mb-8 text-large text-foreground-500">Sorry, but the page you were looking for could not be found 😢</p>
+        <p className="mb-8 text-large text-foreground-500">
+          Sorry, but the page you were looking for could not be found 😢
+        </p>
         <Button as={NextLink} href="/" color="secondary">
           Go to home page
         </Button>
@@ -23,5 +26,13 @@ const NotFound = () => {
     </>
   );
 };
+
+export async function getStaticProps({ locale }: { locale: string }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ['common'])),
+    },
+  };
+}
 
 export default NotFound;

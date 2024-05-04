@@ -1,5 +1,6 @@
 import { Accordion, AccordionItem, Button, Progress, Selection } from '@nextui-org/react';
 import { useMutation } from '@tanstack/react-query';
+import { useTranslation } from 'next-i18next';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 
@@ -23,6 +24,7 @@ const FIELDS_BY_STEP = [
 ] as const;
 
 export const SignUpProfessional = () => {
+  const { t } = useTranslation(['common']);
   const [selectedKeys, setSelectedKeys] = React.useState<Set<string | number>>(new Set(['0']));
   const [isFilledByStep, setIsFilledByStep] = React.useState([false, false, false]);
 
@@ -165,12 +167,12 @@ export const SignUpProfessional = () => {
               <div className="flex gap-2 mt-6">
                 {index > 0 && (
                   <Button variant="light" color="secondary" onClick={handleBack}>
-                    Back
+                    {t('common:back')}
                   </Button>
                 )}
                 {index !== steps.length - 1 && (
                   <Button variant="flat" color="secondary" onClick={handleNext}>
-                    Next
+                    {t('common:next')}
                   </Button>
                 )}
                 {index === steps.length - 1 && (

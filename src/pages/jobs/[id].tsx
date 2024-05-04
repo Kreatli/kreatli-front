@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import React from 'react';
 
 import { JobPage } from '../../components/jobs/JobPage';
@@ -42,12 +43,18 @@ const JobOffer = () => {
         <meta name="description" content="Kreatli" />
       </Head>
       <div className="container max-w-screen-lg mx-auto px-6 flex-1 flex flex-col justify-between">
-        {data && (
-          <JobPage {...data} />
-        )}
+        {data && <JobPage {...data} />}
       </div>
     </>
   );
 };
+
+export async function getStaticProps({ locale }: { locale: string }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ['common'])),
+    },
+  };
+}
 
 export default JobOffer;
