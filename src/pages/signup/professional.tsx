@@ -34,7 +34,7 @@ const Professional = () => {
 export async function getStaticProps({ locale }: { locale: string }) {
   return {
     props: {
-      ...(await serverSideTranslations(locale, ['common'])),
+      ...(await serverSideTranslations(locale, ['common', 'signIn', 'signUp'])),
     },
   };
 }
