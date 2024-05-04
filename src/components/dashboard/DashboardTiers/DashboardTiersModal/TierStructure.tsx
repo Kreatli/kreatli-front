@@ -11,7 +11,7 @@ export const TierStructure = () => {
         <h3 className="text-medium font-semibold mb-4">Tier Structure</h3>
         <div className="flex flex-col gap-4">
           {TIER_OPTIONS.map(({ value }) => (
-            <TierStructureItem key={value} tier={value} />
+            <TierStructureItem key={value} tier={parseInt(value, 10)} />
           ))}
         </div>
       </CardBody>
