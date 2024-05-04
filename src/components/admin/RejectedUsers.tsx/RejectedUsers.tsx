@@ -138,13 +138,7 @@ export const RejectedUsers = () => {
           <TableColumn className="w-1">
             <Dropdown>
               <DropdownTrigger>
-                <Button
-                  variant="light"
-                  size="sm"
-                  isDisabled={!hasSelectedUsers}
-                  className="text-foreground-500"
-                  isIconOnly
-                >
+                <Button variant="light" size="sm" isDisabled className="text-foreground-500" isIconOnly>
                   <Icon icon="dots" className="rotate-90" />
                 </Button>
               </DropdownTrigger>
