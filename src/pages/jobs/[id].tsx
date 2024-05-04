@@ -49,6 +49,13 @@ const JobOffer = () => {
   );
 };
 
+export const getStaticPaths = async () => {
+  return {
+    paths: [],
+    fallback: true,
+  };
+};
+
 export async function getStaticProps({ locale }: { locale: string }) {
   return {
     props: {
