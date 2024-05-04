@@ -7,6 +7,7 @@ import React from 'react';
 import { useBodyScroll } from '../../../hooks/useBodyScroll';
 import { useBreakpointValue } from '../../../hooks/useBreakpointValue';
 import { useDebounce } from '../../../hooks/useDebounce';
+import { useSearchParams } from '../../../hooks/useSearchParams';
 import { useSession } from '../../../hooks/useSession';
 import { requestJobOffers } from '../../../services/job';
 import { Api } from '../../../typings/api';
@@ -22,14 +23,15 @@ import { JobsListingSkeleton } from './JobsListingSkeleton';
 const LIMIT = 10;
 
 export const JobsListing = () => {
-  const [selectedFilters, setSelectedFilters] = React.useState<Api.GetParams['/job-offers']>({});
+  const { searchParamsAsObject, setSearchParams } = useSearchParams<Api.GetParams['/job-offers']>();
+
   const [search, setSearch] = React.useState('');
   const [isFiltersOpen, setIsFilersOpen] = React.useState(false);
 
   const searchDebounced = useDebounce(search);
 
   const requestJobOffersQuery = {
-    ...selectedFilters,
+    ...searchParamsAsObject,
     ...(searchDebounced && { search: searchDebounced }),
   };
 
@@ -59,7 +61,7 @@ export const JobsListing = () => {
 
   const handleFiltersChange = (filters: Api.GetParams['/job-offers']) => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
-    setSelectedFilters(filters);
+    setSearchParams(filters);
   };
 
   const handleOpenFilters = () => {
@@ -104,7 +106,7 @@ export const JobsListing = () => {
       <JobsListingFilters
         isMobile={isMobile}
         isOpen={isFiltersOpen}
-        filters={selectedFilters}
+        filters={searchParamsAsObject}
         onClose={handleCloseFilters}
         onChange={handleFiltersChange}
       />

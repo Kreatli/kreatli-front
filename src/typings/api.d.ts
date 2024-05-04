@@ -102,18 +102,18 @@ export namespace Api {
 
   export interface GetParams {
     '/professionals': {
-      skills?: Skill[];
-      skillLevel?: SkillLevel;
-      tier?: string[];
-      country?: string[];
+      skills?: Skill | Skill[];
+      skillLevel?: SkillLevel | SkillLevel[];
+      tier?: string | string[];
+      location?: string | string[];
       search?: string;
     } & Pagination.Params;
     '/job-offers': {
-      skills?: Skill[];
-      country?: string[];
+      skills?: Skill | Skill[];
+      location?: string | string[];
       search?: string;
-      availability?: Availability.Type;
-      availabilityDuration?: Availability.ProjectBase;
+      availability?: Availability.Type | Availability.Type[];
+      availabilityDuration?: Availability.ProjectBase | Availability.ProjectBase[];
     } & Pagination.Params;
     '/user/posts': Pagination.Params;
     '/user/:id/posts': Pagination.Params;

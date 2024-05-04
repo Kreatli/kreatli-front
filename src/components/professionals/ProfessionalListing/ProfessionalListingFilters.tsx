@@ -6,6 +6,7 @@ import { COUNTRIES } from '../../../constants/countries';
 import { SKILL_DESCRIPTIONS, SKILL_EMOJIS, SKILL_LABELS, SKILL_LEVEL_OPTIONS, SKILLS } from '../../../constants/skills';
 import { TIER_OPTIONS } from '../../../constants/tier';
 import { Api } from '../../../typings/api';
+import { Skill } from '../../../typings/skill';
 import { Menu } from '../../various/Menu';
 import styles from './ProfessionalListing.module.scss';
 
@@ -20,55 +21,54 @@ interface Props {
 export const ProfessionalListingFilters = ({ filters, isOpen, isMobile, onChange, onClose }: Props) => {
   const ref = React.useRef<HTMLDivElement>(null);
 
-  const handleFilterSelect = (key: any) => (values?: string | string[] | React.MouseEvent<HTMLElement>) => {
-    if (Array.isArray(values)) {
-      if (values.length === 0) {
-        return onChange(omit([key], filters));
-      }
-
-      return onChange({
-        ...filters,
-        [key]: values,
-      });
-    }
-
-    if (typeof values === 'string') {
-      onChange(filters.skillLevel === values
-        ? omit([key], filters)
-        : { ...filters, [key]: values });
+  const handleFilterSelect = (key: any) => (values: string[]) => {
+    if (values.length === 0) {
+      return onChange(omit([key], filters));
     }
 
     return onChange({
       ...filters,
-      skills: filters.skills?.includes(key)
-        ? without([key], filters.skills)
-        : [...filters.skills ?? [], key],
+      [key]: values,
     });
   };
 
-  const filterOptions = [
-    {
-      key: 'skillLevel',
-      icon: 'ranking',
-      label: 'Skill level',
-      selectionMode: 'single',
-      options: SKILL_LEVEL_OPTIONS,
-    },
-    {
-      key: 'tier',
-      icon: 'diamond',
-      label: 'Tier',
-      selectionMode: 'multiple',
-      options: TIER_OPTIONS,
-    },
-    {
-      key: 'country',
-      icon: 'location',
-      label: 'Location',
-      selectionMode: 'multiple',
-      options: COUNTRIES,
-    },
-  ] as const;
+  const handleSkillClick = (skill: Skill) => () => {
+    const normalizedSkills = [filters.skills ?? []].flat();
+
+    onChange({
+      ...filters,
+      skills: normalizedSkills.includes(skill) ? without([skill], normalizedSkills) : [...normalizedSkills, skill],
+    });
+  };
+
+  const filterOptions = React.useMemo(() => {
+    return [
+      {
+        key: 'skillLevel',
+        icon: 'ranking',
+        label: 'Skill level',
+        selectionMode: 'single',
+        selectedKeys: new Set([filters.skillLevel ?? []].flat()),
+        options: SKILL_LEVEL_OPTIONS,
+      },
+      {
+        key: 'tier',
+        icon: 'diamond',
+        label: 'Tier',
+        selectionMode: 'multiple',
+        selectedKeys: new Set([filters.tier ?? []].flat()),
+        options: TIER_OPTIONS,
+      },
+      {
+        key: 'location',
+        icon: 'location',
+        label: 'Location',
+        selectionMode: 'multiple',
+        selectedKeys: new Set([filters.location ?? []].flat()),
+        options: COUNTRIES,
+      },
+    ] as const;
+  }, [filters.location, filters.skillLevel, filters.tier]);
 
   return (
     <>
@@ -78,8 +78,18 @@ export const ProfessionalListingFilters = ({ filters, isOpen, isMobile, onChange
         <div className={styles.filtersInner}>
           <Menu>
             <Menu.Group>
-              <Menu.Item href="/jobs" icon="suitcase" label="Job postings" description="Find YouTube creators to work with" />
-              <Menu.Item href="/professionals" icon="group" label="Professionals" description="Look for professionals to connect and work with" />
+              <Menu.Item
+                href="/jobs"
+                icon="suitcase"
+                label="Job postings"
+                description="Find YouTube creators to work with"
+              />
+              <Menu.Item
+                href="/professionals"
+                icon="group"
+                label="Professionals"
+                description="Look for professionals to connect and work with"
+              />
             </Menu.Group>
             <Menu.Group title="Qualifications">
               {Object.values(SKILLS).map((key) => (
@@ -89,12 +99,12 @@ export const ProfessionalListingFilters = ({ filters, isOpen, isMobile, onChange
                   label={SKILL_LABELS[key]}
                   emoji={SKILL_EMOJIS[key]}
                   description={SKILL_DESCRIPTIONS[key]}
-                  onClick={handleFilterSelect(key)}
+                  onClick={handleSkillClick(key)}
                 />
               ))}
             </Menu.Group>
             <Menu.Group title="Filters">
-              {filterOptions.map(({ key, label, icon, options, selectionMode }) => (
+              {filterOptions.map(({ selectedKeys, key, label, icon, options, selectionMode }) => (
                 <Menu.Item
                   key={key}
                   isSelected={Object.keys(filters).includes(key)}
@@ -102,6 +112,7 @@ export const ProfessionalListingFilters = ({ filters, isOpen, isMobile, onChange
                   icon={icon}
                   options={options}
                   selectionMode={selectionMode}
+                  selectedKeys={selectedKeys}
                   onSelect={handleFilterSelect(key)}
                 />
               ))}

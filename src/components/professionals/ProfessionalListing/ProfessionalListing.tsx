@@ -1,3 +1,4 @@
+/* eslint-disable no-confusing-arrow */
 import { Button, Input } from '@nextui-org/react';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import React from 'react';
@@ -5,6 +6,7 @@ import React from 'react';
 import { useBodyScroll } from '../../../hooks/useBodyScroll';
 import { useBreakpointValue } from '../../../hooks/useBreakpointValue';
 import { useDebounce } from '../../../hooks/useDebounce';
+import { useSearchParams } from '../../../hooks/useSearchParams';
 import { requestProfessionals } from '../../../services/users';
 import { Api } from '../../../typings/api';
 import { EmptyState } from '../../various/EmptyState';
@@ -18,28 +20,25 @@ import { ProfessionalListingSkeleton } from './ProfessionalListingSkeleton';
 const LIMIT = 12;
 
 export const ProfessionalListing = () => {
-  const [selectedFilters, setSelectedFilters] = React.useState<Api.GetParams['/professionals']>({});
+  const { searchParamsAsObject, setSearchParams } = useSearchParams<Api.GetParams['/professionals']>();
+
   const [search, setSearch] = React.useState('');
   const [isFiltersOpen, setIsFilersOpen] = React.useState(false);
 
   const searchDebounced = useDebounce(search);
 
   const requestProfessionalsQuery = {
-    ...selectedFilters,
+    ...searchParamsAsObject,
     ...(searchDebounced && { search: searchDebounced }),
   };
 
   const { data, isFetching, isLoading, isFetchingNextPage, hasNextPage, fetchNextPage } = useInfiniteQuery({
     initialPageParam: 1,
     queryKey: ['professionals', requestProfessionalsQuery],
-    queryFn: ({ pageParam = 1 }) => (
-      requestProfessionals({ ...requestProfessionalsQuery, offset: (pageParam - 1) * LIMIT })
-    ),
-    getNextPageParam: (lastPage, allPages) => (
-      lastPage.professionalsCount > allPages.length * LIMIT
-        ? allPages.length + 1
-        : undefined
-    ),
+    queryFn: ({ pageParam = 1 }) =>
+      requestProfessionals({ ...requestProfessionalsQuery, offset: (pageParam - 1) * LIMIT }),
+    getNextPageParam: (lastPage, allPages) =>
+      lastPage.professionalsCount > allPages.length * LIMIT ? allPages.length + 1 : undefined,
   });
 
   const cards = React.useMemo(() => {
@@ -49,13 +48,16 @@ export const ProfessionalListing = () => {
   const { setIsScrollDisabled } = useBodyScroll();
   const isMobile = useBreakpointValue({ LG: false }, true);
 
-  React.useEffect(() => () => {
-    setIsScrollDisabled(false);
-  }, [setIsScrollDisabled]);
+  React.useEffect(
+    () => () => {
+      setIsScrollDisabled(false);
+    },
+    [setIsScrollDisabled],
+  );
 
   const handleFiltersChange = (filters: Api.GetParams['/professionals']) => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
-    setSelectedFilters(filters);
+    setSearchParams(filters);
   };
 
   const handleOpenFilters = () => {
@@ -91,7 +93,7 @@ export const ProfessionalListing = () => {
       <ProfessionalListingFilters
         isMobile={isMobile}
         isOpen={isFiltersOpen}
-        filters={selectedFilters}
+        filters={searchParamsAsObject}
         onClose={handleCloseFilters}
         onChange={handleFiltersChange}
       />
@@ -123,16 +125,19 @@ export const ProfessionalListing = () => {
             </Button>
           )}
         </div>
-        {shouldShowEmptyState
-          ? <EmptyState title="No results" text="Oops! No results found. Try different criteria or check back later, we're growing 🚀" />
-          : (
-            <LazyList isLoading={isFetchingNextPage} hasMore={hasNextPage} onLoadMore={fetchNextPage}>
-              <div className={styles.cards}>
-                <ProfessionalListingCards cards={cards} />
-                {(isLoading || isFetchingNextPage) && <ProfessionalListingSkeleton />}
-              </div>
-            </LazyList>
-          )}
+        {shouldShowEmptyState ? (
+          <EmptyState
+            title="No results"
+            text="Oops! No results found. Try different criteria or check back later, we're growing 🚀"
+          />
+        ) : (
+          <LazyList isLoading={isFetchingNextPage} hasMore={hasNextPage} onLoadMore={fetchNextPage}>
+            <div className={styles.cards}>
+              <ProfessionalListingCards cards={cards} />
+              {(isLoading || isFetchingNextPage) && <ProfessionalListingSkeleton />}
+            </div>
+          </LazyList>
+        )}
       </div>
     </div>
   );

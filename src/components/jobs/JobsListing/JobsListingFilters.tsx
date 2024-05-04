@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/indent */
 import cx from 'classnames';
 import { omit, without } from 'ramda';
 import React from 'react';
@@ -6,6 +7,7 @@ import { AVAILABILITY_OPTIONS, DURATION_OPTIONS } from '../../../constants/avail
 import { LOCATION_OPTIONS } from '../../../constants/location';
 import { SKILL_DESCRIPTIONS, SKILL_EMOJIS, SKILL_LABELS, SKILLS } from '../../../constants/skills';
 import { Api } from '../../../typings/api';
+import { Skill } from '../../../typings/skill';
 import { Menu } from '../../various/Menu';
 import styles from './JobsListing.module.scss';
 
@@ -20,57 +22,66 @@ interface Props {
 export const JobsListingFilters = ({ filters, isOpen, isMobile, onChange, onClose }: Props) => {
   const ref = React.useRef<HTMLDivElement>(null);
 
-  const handleFilterSelect = (key: any) => (values?: string | string[] | React.MouseEvent<HTMLElement>) => {
-    if (Array.isArray(values)) {
-      if (key === 'availability' && !values.includes('project-base')) {
-        if (values.length === 0) {
-          return onChange(omit([key, 'availabilityDuration'], filters));
-        }
-
-        return onChange(omit(['availabilityDuration'], { ...filters, [key]: values }));
-      }
-
+  const handleFilterSelect = (key: any) => (values: string[]) => {
+    if (key === 'availability' && !values.includes('project-base')) {
       if (values.length === 0) {
-        return onChange(omit([key], filters));
+        return onChange(omit([key, 'availabilityDuration'], filters));
       }
 
-      return onChange({
-        ...filters,
-        [key]: values,
-      });
+      return onChange(omit(['availabilityDuration'], { ...filters, [key]: values }));
     }
 
-    return onChange({
+    if (values.length === 0) {
+      return onChange(omit([key], filters));
+    }
+
+    onChange({
       ...filters,
-      skills: filters.skills?.includes(key)
-        ? without([key], filters.skills)
-        : [...filters.skills ?? [], key],
+      [key]: values,
     });
   };
 
-  const filterOptions = [
-    {
-      key: 'location',
-      icon: 'location',
-      label: 'Location',
-      selectionMode: 'multiple',
-      options: LOCATION_OPTIONS,
-    },
-    {
-      key: 'availability',
-      icon: 'calendar',
-      label: 'Availability',
-      selectionMode: 'single',
-      options: AVAILABILITY_OPTIONS,
-    },
-    ...(filters.availability?.includes('project-base') ? [{
-      key: 'availabilityDuration',
-      icon: 'time',
-      label: 'Duration',
-      selectionMode: 'multiple',
-      options: DURATION_OPTIONS,
-    }] as const : []),
-  ] as const;
+  const handleSkillSelect = (skill: Skill) => () => {
+    const normalizedSkills = [filters.skills ?? []].flat();
+
+    onChange({
+      ...filters,
+      skills: normalizedSkills.includes(skill) ? without([skill], normalizedSkills) : [...normalizedSkills, skill],
+    });
+  };
+
+  const filterOptions = React.useMemo(() => {
+    return [
+      {
+        key: 'location',
+        icon: 'location',
+        label: 'Location',
+        selectionMode: 'multiple',
+        selectedKeys: new Set([filters.location ?? []].flat()),
+        options: LOCATION_OPTIONS,
+      },
+      {
+        key: 'availability',
+        icon: 'calendar',
+        label: 'Availability',
+        selectionMode: 'single',
+        selectedKeys: new Set([filters.availability ?? []].flat()),
+        options: AVAILABILITY_OPTIONS,
+      },
+      ...(filters.availability?.includes('project-base')
+        ? ([
+            {
+              key: 'availabilityDuration',
+              icon: 'time',
+              label: 'Duration',
+              selectionMode: 'multiple',
+              selectedKeys: new Set([filters.availabilityDuration ?? []].flat()),
+              options: DURATION_OPTIONS,
+            },
+          ] as const)
+        : []),
+    ] as const;
+  }, [filters.availability, filters.availabilityDuration, filters.location]);
 
   return (
     <>
@@ -80,8 +91,18 @@ export const JobsListingFilters = ({ filters, isOpen, isMobile, onChange, onClos
         <div className={styles.filtersInner}>
           <Menu>
             <Menu.Group>
-              <Menu.Item href="/jobs" icon="suitcase" label="Job postings" description="Find YouTube creators to work with" />
-              <Menu.Item href="/professionals" icon="group" label="Professionals" description="Look for professionals to connect and work with" />
+              <Menu.Item
+                href="/jobs"
+                icon="suitcase"
+                label="Job postings"
+                description="Find YouTube creators to work with"
+              />
+              <Menu.Item
+                href="/professionals"
+                icon="group"
+                label="Professionals"
+                description="Look for professionals to connect and work with"
+              />
             </Menu.Group>
             <Menu.Group title="Qualifications">
               {Object.values(SKILLS).map((key) => (
@@ -91,12 +112,12 @@ export const JobsListingFilters = ({ filters, isOpen, isMobile, onChange, onClos
                   label={SKILL_LABELS[key]}
                   emoji={SKILL_EMOJIS[key]}
                   description={SKILL_DESCRIPTIONS[key]}
-                  onClick={handleFilterSelect(key)}
+                  onClick={handleSkillSelect(key)}
                 />
               ))}
             </Menu.Group>
             <Menu.Group title="Filters">
-              {filterOptions.map(({ key, label, icon, options, selectionMode }) => (
+              {filterOptions.map(({ key, label, icon, options, selectionMode, selectedKeys }) => (
                 <Menu.Item
                   key={key}
                   isSelected={Object.keys(filters).includes(key)}
@@ -104,6 +125,7 @@ export const JobsListingFilters = ({ filters, isOpen, isMobile, onChange, onClos
                   icon={icon}
                   options={options}
                   selectionMode={selectionMode}
+                  selectedKeys={selectedKeys}
                   onSelect={handleFilterSelect(key)}
                 />
               ))}

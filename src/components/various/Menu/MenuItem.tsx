@@ -16,29 +16,44 @@ interface Props {
   emoji?: Common.Emoji;
   options?: { label: string; value: string | number }[];
   selectionMode?: 'single' | 'multiple';
+  selectedKeys?: Set<string | number>;
   isSelected?: boolean;
   onClick?: (event: React.MouseEvent<HTMLElement>) => void;
   onSelect?: (values: string[]) => void;
 }
 
-export const MenuItem = ({ href, label, description, icon, emoji, options, selectionMode = 'multiple', isSelected, onClick, onSelect }: Props) => {
+export const MenuItem = ({
+  href,
+  label,
+  description,
+  icon,
+  emoji,
+  options,
+  selectionMode = 'multiple',
+  selectedKeys = new Set([]),
+  isSelected,
+  onClick,
+  onSelect,
+}: Props) => {
   const { pathname } = useRouter();
   const [isCancelable, setIsCancelable] = React.useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = React.useState(false);
-  const [selected, setSelected] = React.useState<Set<string | number>>(new Set([]));
 
-  const handleSelectChange = React.useCallback((keys: 'all' | Set<string | number>) => {
-    if (keys === 'all') {
-      return;
-    }
+  const handleSelectChange = React.useCallback(
+    (keys: 'all' | Set<string | number>) => {
+      if (keys === 'all') {
+        return;
+      }
 
-    setSelected(keys);
-
-    onSelect?.(Array.from(keys) as string[]);
-  }, [onSelect]);
+      onSelect?.(Array.from(keys) as string[]);
+    },
+    [onSelect],
+  );
 
   const menuItemContent = React.useMemo(() => {
-    const selectDescription = Array.from(selected).map((key) => options?.find(({ value }) => value === key)?.label).join(', ');
+    const selectDescription = Array.from(selectedKeys)
+      .map((key) => options?.find(({ value }) => value === key)?.label)
+      .join(', ');
 
     return (
       <>
@@ -50,7 +65,9 @@ export const MenuItem = ({ href, label, description, icon, emoji, options, selec
         )}
         <span className={styles.content}>
           <p className="text-xs font-semibold mb-0.5">{label}</p>
-          {(description || selectDescription) && <p className="text-[0.65rem] tracking-tight text-gray-400">{description || selectDescription}</p>}
+          {(description || selectDescription) && (
+            <p className="text-[0.65rem] tracking-tight text-gray-400">{description || selectDescription}</p>
+          )}
         </span>
         {isSelected && (
           <>
@@ -60,7 +77,7 @@ export const MenuItem = ({ href, label, description, icon, emoji, options, selec
         )}
       </>
     );
-  }, [description, emoji, icon, isSelected, label, options, selected]);
+  }, [description, emoji, icon, isSelected, label, options, selectedKeys]);
 
   const classNames = cx(styles.item, {
     [styles.active]: pathname === href || isDropdownOpen,
@@ -90,13 +107,11 @@ export const MenuItem = ({ href, label, description, icon, emoji, options, selec
             variant="flat"
             className="max-h-96 overflow-auto"
             selectionMode={selectionMode}
-            selectedKeys={selected}
+            selectedKeys={selectedKeys}
             onSelectionChange={handleSelectChange}
           >
             {options.map((option) => (
-              <DropdownItem key={option.value}>
-                {option.label}
-              </DropdownItem>
+              <DropdownItem key={option.value}>{option.label}</DropdownItem>
             ))}
           </DropdownMenu>
         </Dropdown>

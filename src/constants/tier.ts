@@ -33,23 +33,23 @@ export const TIER_POINTS = {
 export const TIER_OPTIONS = [
   {
     label: TIER_LABELS[TIERS.NOVICE],
-    value: 1,
+    value: '1',
   },
   {
     label: TIER_LABELS[TIERS.ENTHUSIAST],
-    value: 2,
+    value: '2',
   },
   {
     label: TIER_LABELS[TIERS.INNOVATOR],
-    value: 3,
+    value: '3',
   },
   {
     label: TIER_LABELS[TIERS.EXPERT],
-    value: 4,
+    value: '4',
   },
   {
     label: TIER_LABELS[TIERS.LEGEND],
-    value: 5,
+    value: '5',
   },
 ];
 
@@ -162,8 +162,12 @@ export const TIER_FEATURES = {
 
 export const TIER_STRUCTURES = {
   [TIERS.NOVICE]: 'The starting tier for all users, offering a basic level of access and features.',
-  [TIERS.ENTHUSIAST]: 'Achieved at 1,000 points, providing additional perks such as enhanced visibility and increased connection request limits.',
-  [TIERS.INNOVATOR]: 'Attained at 5,000 points, offering all benefits of Tier 2, featured profile placement in the search, and increased connection request limits.',
-  [TIERS.EXPERT]: 'Reached at 15,000 points, granting all benefits of Tier 3, new unique filters, an “Expert” visibility badge, and dedicated support.',
-  [TIERS.LEGEND]: 'The highest tier for elite members who accumulate 50,000+ points, providing unparalleled privileges such as early access to upcoming platform features and updates, a “Legend” visibility badge, VIP support, and a Private Discord Server.',
+  [TIERS.ENTHUSIAST]:
+    'Achieved at 1,000 points, providing additional perks such as enhanced visibility and increased connection request limits.',
+  [TIERS.INNOVATOR]:
+    'Attained at 5,000 points, offering all benefits of Tier 2, featured profile placement in the search, and increased connection request limits.',
+  [TIERS.EXPERT]:
+    'Reached at 15,000 points, granting all benefits of Tier 3, new unique filters, an “Expert” visibility badge, and dedicated support.',
+  [TIERS.LEGEND]:
+    'The highest tier for elite members who accumulate 50,000+ points, providing unparalleled privileges such as early access to upcoming platform features and updates, a “Legend” visibility badge, VIP support, and a Private Discord Server.',
 };
