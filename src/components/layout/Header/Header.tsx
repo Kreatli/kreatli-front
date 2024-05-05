@@ -28,8 +28,8 @@ import { useSession } from '../../../hooks/useSession';
 import { useSignUpCreatorModal } from '../../../hooks/useSignUpCreatorModal';
 import { Layout } from '../../../typings/layout';
 import { SignInModal } from '../../auth/SignInModal';
-import { NotificationButton } from '../../notifications/NotificationButton';
 import { Icon } from '../../various/Icon';
+import { HeaderNotificationsButtons } from './HeaderNotificationsButtons';
 
 export const Header = () => {
   const router = useRouter();
@@ -222,22 +222,7 @@ export const Header = () => {
       )}
       <NavbarContent justify="end">
         <NavbarItem className="flex items-center">
-          {isSignedIn && (
-            <>
-              <Button
-                as={NextLink}
-                href="/chat"
-                isIconOnly
-                aria-label="Open messages"
-                variant="light"
-                className="text-foreground"
-                radius="full"
-              >
-                <Icon icon="chat" size={20} />
-              </Button>
-              <NotificationButton />
-            </>
-          )}
+          {isSignedIn && <HeaderNotificationsButtons />}
           <Button
             isIconOnly
             aria-label="Toggle theme"

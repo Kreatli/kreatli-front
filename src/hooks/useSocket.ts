@@ -4,7 +4,7 @@ import io, { Socket } from 'socket.io-client';
 import { useSession } from './useSession';
 
 export const useSocket = (path: string) => {
-  const socketRef = React.useRef<Socket | null>(null);
+  const [socket, setSocket] = React.useState<Socket | null>(null);
 
   const { currentUserId } = useSession();
 
@@ -13,18 +13,20 @@ export const useSocket = (path: string) => {
       return;
     }
 
-    socketRef.current = io(process.env.API_URL as string, {
+    const newSocket = io(process.env.API_URL as string, {
       key: currentUserId,
       autoConnect: false,
       path,
       query: { userId: currentUserId },
     });
-    socketRef.current.connect();
+
+    newSocket.connect();
+    setSocket(newSocket);
 
     return () => {
-      socketRef.current?.disconnect();
+      newSocket.disconnect();
     };
   }, [currentUserId, path]);
 
-  return socketRef;
+  return socket;
 };

@@ -1,8 +1,10 @@
+/* eslint-disable function-paren-newline */
+/* eslint-disable no-confusing-arrow */
 import { Badge, Button, Popover, PopoverContent, PopoverTrigger } from '@nextui-org/react';
 import React from 'react';
+import { Socket } from 'socket.io-client';
 
 import { useNotificationsPopoverVisibility } from '../../../hooks/useNotificationsPopoverVisibility';
-import { useSocket } from '../../../hooks/useSocket';
 import { requestNotifications } from '../../../services/notifications';
 import { Notifications as NotificationsI } from '../../../typings/notifications';
 import { Icon } from '../../various/Icon';
@@ -10,8 +12,11 @@ import { Notifications } from '../Notifications';
 
 const NOTIFICATIONS_LIMIT = 20;
 
-export const NotificationButton = () => {
-  const socketRef = useSocket('/notifications-server');
+interface Props {
+  socket: Socket | null;
+}
+
+export const NotificationButton = ({ socket }: Props) => {
   const { isOpen, onOpenChange } = useNotificationsPopoverVisibility();
   const [notifications, setNotifications] = React.useState<NotificationsI.Notification[]>([]);
   const [totalCount, setTotalCount] = React.useState(0);
@@ -50,8 +55,6 @@ export const NotificationButton = () => {
   React.useEffect(loadInitialNotifications, []);
 
   React.useEffect(() => {
-    const socket = socketRef.current;
-
     if (!socket) {
       return;
     }
@@ -64,14 +67,12 @@ export const NotificationButton = () => {
 
     socket.on('notificationUpdate', (updatedNotification: NotificationsI.Notification) => {
       setNotifications((prevNotifications) => {
-        return prevNotifications.map((notification) => (notification._id === updatedNotification._id
-          ? updatedNotification
-          : notification));
+        return prevNotifications.map((notification) =>
+          notification._id === updatedNotification._id ? updatedNotification : notification,
+        );
       });
       setUnreadCount((count) => {
-        return updatedNotification.isRead
-          ? count - 1
-          : count + 1;
+        return updatedNotification.isRead ? count - 1 : count + 1;
       });
     });
 
@@ -79,7 +80,7 @@ export const NotificationButton = () => {
       socket.off('notification');
       socket.off('notificationUpdate');
     };
-  }, [socketRef]);
+  }, [socket]);
 
   return (
     <Popover isOpen={isOpen} onOpenChange={onOpenChange} shouldBlockScroll>

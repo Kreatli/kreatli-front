@@ -68,7 +68,7 @@ export const ChatContextProvider = ({ children }: Props) => {
   const router = useRouter();
   const { currentUserId } = useSession();
   const { pushNotification } = useNotifications();
-  const socketRef = useSocket('/chat-server');
+  const socket = useSocket('/chat-server');
 
   const [chats, setChats] = React.useState<Chat.Type[]>([]);
   const [chatListMode, setChatListMode] = React.useState<'chats' | 'requests'>('chats');
@@ -80,7 +80,7 @@ export const ChatContextProvider = ({ children }: Props) => {
   const [messagesOffset, setMessagesOffset] = React.useState(0);
 
   const participantId = React.useMemo(() => {
-    return router.query.userId as Common.Id ?? null;
+    return (router.query.userId as Common.Id) ?? null;
   }, [router.query.userId]);
 
   const { data: chatRequests = [] } = useQuery({
@@ -137,8 +137,6 @@ export const ChatContextProvider = ({ children }: Props) => {
   }, [loadInitialMessages]);
 
   React.useEffect(() => {
-    const socket = socketRef.current;
-
     if (!socket) {
       return;
     }
@@ -156,11 +154,9 @@ export const ChatContextProvider = ({ children }: Props) => {
       socket.off('chats');
       socket.off('message');
     };
-  }, [socketRef]);
+  }, [socket]);
 
   React.useEffect(() => {
-    const socket = socketRef.current;
-
     if (!participantId || !currentUserId || !socket) {
       return;
     }
@@ -176,15 +172,18 @@ export const ChatContextProvider = ({ children }: Props) => {
         receiverId: participantId,
       });
     };
-  }, [currentUserId, participantId, socketRef]);
+  }, [currentUserId, participantId, socket]);
 
-  const addMessage = React.useCallback((message: MessagePayload) => {
-    socketRef.current?.emit('message', {
-      senderId: currentUserId,
-      receiverId: participantId,
-      message,
-    });
-  }, [currentUserId, participantId, socketRef]);
+  const addMessage = React.useCallback(
+    (message: MessagePayload) => {
+      socket?.emit('message', {
+        senderId: currentUserId,
+        receiverId: participantId,
+        message,
+      });
+    },
+    [currentUserId, participantId, socket],
+  );
 
   const loadMoreMessages = React.useCallback(() => {
     setIsLoadingMoreMessages(true);
@@ -225,9 +224,5 @@ export const ChatContextProvider = ({ children }: Props) => {
     setChatListMode,
   };
 
-  return (
-    <ChatContext.Provider value={value}>
-      {children}
-    </ChatContext.Provider>
-  );
+  return <ChatContext.Provider value={value}>{children}</ChatContext.Provider>;
 };

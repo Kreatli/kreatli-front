@@ -48,6 +48,7 @@ export namespace Api {
     | '/job-offers'
     | '/leaderboard'
     | '/notifications'
+    | '/notifications/unread-messages-count'
     | '/posts'
     | '/professional/:id/job-applications'
     | '/professional/job-applications'
@@ -210,6 +211,9 @@ export namespace Api {
       notifications: Notifications.Notification[];
       notificationsCount: number;
       unreadNotificationsCount: number;
+    };
+    '/notifications/unread-messages-count': {
+      unreadMessagesCount: number;
     };
     '/unverified-users': {
       users: (User.ShortInfo & {
