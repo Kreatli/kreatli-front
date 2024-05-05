@@ -27,7 +27,7 @@ export const SignInModal = ({ isOpen, onClose }: Props) => {
   }, []);
 
   return (
-    <Modal backdrop="blur" size="sm" isDismissable={!isPending} isOpen={isOpen} onClose={onClose}>
+    <Modal backdrop="blur" placement="center" isDismissable={!isPending} isOpen={isOpen} onClose={onClose}>
       <ModalContent>
         <ModalHeader>
           <h3>

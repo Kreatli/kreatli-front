@@ -17,7 +17,7 @@ export const SignUpCreatorModal = () => {
   }
 
   return (
-    <Modal isOpen={isOpen} onClose={close}>
+    <Modal placement="center" isOpen={isOpen} onClose={close}>
       <ModalContent>
         <ModalHeader>{t('signUp:join_as_creator')}</ModalHeader>
         <ModalBody className="gap-6">
