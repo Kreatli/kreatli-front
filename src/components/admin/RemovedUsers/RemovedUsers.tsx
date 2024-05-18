@@ -27,7 +27,8 @@ export const RemovedUsers = () => {
   });
 
   const users = data?.users ?? [];
-  const pages = Math.ceil((data?.total ?? 0) / LIMIT);
+  const total = data?.total ?? 0;
+  const pages = Math.ceil(total / LIMIT);
 
   const handlePageChange = (newPage: number) => {
     const currentSearchParams = new URLSearchParams(Array.from(searchParams.entries()));
@@ -55,27 +56,30 @@ export const RemovedUsers = () => {
   );
 
   return (
-    <Table isHeaderSticky bottomContent={pagination}>
-      <TableHeader>
-        <TableColumn>NAME</TableColumn>
-        <TableColumn>REGISTRATION DATE</TableColumn>
-      </TableHeader>
-      <TableBody isLoading={isLoading} emptyContent="There are no removed users">
-        {users.map((user) => (
-          <TableRow key={user._id}>
-            <TableCell>
-              <Link href={`/profile/${user._id}`}>
-                <User
-                  name={user.name}
-                  description={COUNTRY_LABELS[user.country]}
-                  avatarProps={{ src: user.avatarUrl, radius: 'sm' }}
-                />
-              </Link>
-            </TableCell>
-            <TableCell>{dateFormatter(new Date(user.registrationDate))}</TableCell>
-          </TableRow>
-        ))}
-      </TableBody>
-    </Table>
+    <>
+      <div className="text-foreground-400 text-sm pl-4 mb-2">{total} removed users</div>
+      <Table isHeaderSticky bottomContent={pagination}>
+        <TableHeader>
+          <TableColumn>NAME</TableColumn>
+          <TableColumn>REGISTRATION DATE</TableColumn>
+        </TableHeader>
+        <TableBody isLoading={isLoading} emptyContent="There are no removed users">
+          {users.map((user) => (
+            <TableRow key={user._id}>
+              <TableCell>
+                <Link href={`/profile/${user._id}`}>
+                  <User
+                    name={user.name}
+                    description={COUNTRY_LABELS[user.country]}
+                    avatarProps={{ src: user.avatarUrl, radius: 'sm' }}
+                  />
+                </Link>
+              </TableCell>
+              <TableCell>{dateFormatter(new Date(user.registrationDate))}</TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </>
   );
 };

@@ -42,7 +42,8 @@ export const Creators = () => {
   });
 
   const users = data?.users ?? [];
-  const pages = Math.ceil((data?.total ?? 0) / LIMIT);
+  const total = data?.total ?? 0;
+  const pages = Math.ceil(total / LIMIT);
 
   const handlePageChange = (newPage: number) => {
     const currentSearchParams = new URLSearchParams(Array.from(searchParams.entries()));
@@ -71,6 +72,7 @@ export const Creators = () => {
 
   return (
     <>
+      <div className="text-foreground-400 text-sm pl-4 mb-2">{total} creators</div>
       <Table isHeaderSticky bottomContent={pagination}>
         <TableHeader>
           <TableColumn>NAME</TableColumn>
