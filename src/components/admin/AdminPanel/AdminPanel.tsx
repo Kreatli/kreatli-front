@@ -29,7 +29,7 @@ export const AdminPanel = () => {
       <Tab key="creators" title="Creators">
         <Creators />
       </Tab>
-      <Tab key="removeUsers" title="Removed users">
+      <Tab key="removeUsers" title="Deleted users">
         <RemovedUsers />
       </Tab>
     </Tabs>

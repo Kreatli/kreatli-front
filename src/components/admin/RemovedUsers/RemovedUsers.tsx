@@ -57,13 +57,13 @@ export const RemovedUsers = () => {
 
   return (
     <>
-      <div className="text-foreground-400 text-sm pl-4 mb-2">{total} removed users</div>
+      <div className="text-foreground-400 text-sm pl-4 mb-2">{total} deleted users</div>
       <Table isHeaderSticky bottomContent={pagination}>
         <TableHeader>
           <TableColumn>NAME</TableColumn>
           <TableColumn>REGISTRATION DATE</TableColumn>
         </TableHeader>
-        <TableBody isLoading={isLoading} emptyContent="There are no removed users">
+        <TableBody isLoading={isLoading} emptyContent="There are no deleted users">
           {users.map((user) => (
             <TableRow key={user._id}>
               <TableCell>
