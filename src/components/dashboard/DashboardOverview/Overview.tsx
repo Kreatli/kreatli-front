@@ -33,7 +33,7 @@ export const Overview = () => {
     <Card>
       <CardBody className="p-5 gap-5">
         <div className="flex items-center gap-3">
-          <Avatar src={currentUser?.avatarUrl} className="w-12 h-12" />
+          <Avatar src={currentUser?.avatarUrl} className="w-12 h-12" name={currentUser?.name} />
           <div>
             <div className="text-medium font-bold">{currentUser?.name}</div>
             {!isLastTier && <div className="text-small text-default-400">Progress: {progressValue}%</div>}

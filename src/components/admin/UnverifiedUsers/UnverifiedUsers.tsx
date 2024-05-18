@@ -29,6 +29,7 @@ import { Common } from '../../../typings/common';
 import { Icon } from '../../various/Icon';
 import { AcceptVerificationModal } from './AcceptVerificationModal';
 import { RejectVerificationModal } from './RejectVerificationModal';
+import { RemoveUserModal } from './RemoveUserModal';
 import { ResendVerificationModal } from './ResendVerificationModal';
 
 const LIMIT = 10;
@@ -39,6 +40,7 @@ export const UnverifiedUsers = () => {
   const [isAcceptModalOpen, setIsAcceptModalOpen] = React.useState(false);
   const [isRejectModalOpen, setIsRejectModalOpen] = React.useState(false);
   const [isUpdateModalOpen, setIsUpdateModalOpen] = React.useState(false);
+  const [isRemoveModalOpen, setIsRemoveModalOpen] = React.useState(false);
 
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -63,7 +65,7 @@ export const UnverifiedUsers = () => {
     hasSelectedUsers,
     handleSelectionChange,
     setUsersWithUnverifiedEmails,
-    shouldEnableBulkActions,
+    shouldEnableBulkRejection,
   } = useUsersTable({ users, total });
 
   React.useEffect(() => {
@@ -89,6 +91,11 @@ export const UnverifiedUsers = () => {
     setIsUpdateModalOpen(true);
   };
 
+  const handleRemove = (id: Common.Id) => () => {
+    setUserId(id);
+    setIsRemoveModalOpen(true);
+  };
+
   const handleAcceptModalClose = () => {
     setUserId(null);
     setIsAcceptModalOpen(false);
@@ -102,6 +109,11 @@ export const UnverifiedUsers = () => {
   const handleUpdateModalClose = () => {
     setUserId(null);
     setIsUpdateModalOpen(false);
+  };
+
+  const handleRemoveModalClose = () => {
+    setUserId(null);
+    setIsRemoveModalOpen(false);
   };
 
   const handlePageChange = (newPage: number) => {
@@ -179,16 +191,31 @@ export const UnverifiedUsers = () => {
                 <Button
                   variant="light"
                   size="sm"
-                  isDisabled={!shouldEnableBulkActions}
+                  isDisabled={selectedUsersCount === 0}
                   className="text-foreground-500"
                   isIconOnly
                 >
                   <Icon icon="dots" className="rotate-90" />
                 </Button>
               </DropdownTrigger>
-              <DropdownMenu variant="flat">
-                <DropdownItem color="danger" className="text-danger" onClick={() => setIsRejectModalOpen(true)}>
+              <DropdownMenu variant="flat" disabledKeys={!shouldEnableBulkRejection ? new Set(['reject']) : undefined}>
+                <DropdownItem
+                  key="reject"
+                  color="danger"
+                  className="text-danger"
+                  startContent={<Icon icon="cross" size={16} />}
+                  onClick={() => setIsRejectModalOpen(true)}
+                >
                   {selectedUsersCount > 1 ? `Reject selected users (${selectedUsersCount})` : 'Reject selected user'}
+                </DropdownItem>
+                <DropdownItem
+                  key="remove"
+                  color="danger"
+                  className="text-danger"
+                  startContent={<Icon icon="trash" size={16} />}
+                  onClick={() => setIsRemoveModalOpen(true)}
+                >
+                  {selectedUsersCount > 1 ? `Delete selected users (${selectedUsersCount})` : 'Delete selected user'}
                 </DropdownItem>
               </DropdownMenu>
             </Dropdown>
@@ -231,7 +258,7 @@ export const UnverifiedUsers = () => {
                       key="accept"
                       color="success"
                       className="text-success"
-                      startContent={<Icon icon="check" size={20} />}
+                      startContent={<Icon icon="check" size={16} />}
                       onClick={handleAccept(user._id)}
                     >
                       Mark as verified
@@ -240,7 +267,7 @@ export const UnverifiedUsers = () => {
                       key="reject"
                       color="danger"
                       className="text-danger"
-                      startContent={<Icon icon="cross" size={20} />}
+                      startContent={<Icon icon="cross" size={16} />}
                       onClick={handleReject(user._id)}
                     >
                       Reject verification
@@ -251,6 +278,15 @@ export const UnverifiedUsers = () => {
                       onClick={handleUpdate(user._id)}
                     >
                       Resend activation link
+                    </DropdownItem>
+                    <DropdownItem
+                      key="remove"
+                      color="danger"
+                      className="text-danger"
+                      startContent={<Icon icon="trash" size={16} />}
+                      onClick={handleRemove(user._id)}
+                    >
+                      Delete user
                     </DropdownItem>
                   </DropdownMenu>
                 </Dropdown>
@@ -268,6 +304,14 @@ export const UnverifiedUsers = () => {
         onSuccess={() => handleSelectionChange(new Set([]))}
       />
       <ResendVerificationModal isOpen={isUpdateModalOpen} userId={userId} onClose={handleUpdateModalClose} />
+      <RemoveUserModal
+        isOpen={isRemoveModalOpen}
+        userId={userId}
+        userIds={selectedUsersArray}
+        userName={users.find((user) => user._id === userId)?.name}
+        onClose={handleRemoveModalClose}
+        onSuccess={() => handleSelectionChange(new Set([]))}
+      />
     </>
   );
 };

@@ -26,8 +26,13 @@ const put = <T extends Api.Put>(path: T, data: Api.PutPayload[T], params?: any) 
   return axios.put<Api.PutResponse[T]>(`${process.env.API_URL}${path}`, data, { params, headers: getHeaders() });
 };
 
+const axiosDelete = <T extends Api.Delete>(path: T, params?: any) => {
+  return axios.delete<Api.DeleteResponse[T]>(`${process.env.API_URL}${path}`, { params, headers: getHeaders() });
+};
+
 export const api = {
   get,
   post,
   put,
+  delete: axiosDelete,
 };

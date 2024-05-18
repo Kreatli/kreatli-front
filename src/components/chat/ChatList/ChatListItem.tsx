@@ -44,16 +44,14 @@ export const ChatListItem = ({ chat }: Props) => {
       <Card shadow="none" className={cx('border-1 border-default-200', { 'bg-secondary-50/75': isActive })}>
         <CardBody className="relative flex-row gap-3 px-3 py-4">
           <ProfileBadge isVerified={participant.isVerified} size="sm">
-            <Avatar src={participant.avatarUrl} />
+            <Avatar src={participant.avatarUrl} name={participant.name} />
           </ProfileBadge>
           <div className="flex-1">
             <div className="text-sm font-medium">{participant.name}</div>
             <div className="text-xs text-default-400 line-clamp-2 [word-break:break-word]">{chatPreview}</div>
           </div>
           {lastMessageDate && (
-            <div className="text-xs font-medium text-default-500">
-              {formatChatMessageDate(lastMessageDate)}
-            </div>
+            <div className="text-xs font-medium text-default-500">{formatChatMessageDate(lastMessageDate)}</div>
           )}
           {hasNewMessages && <div className="absolute bottom-5 right-4 w-3 h-3 bg-secondary-500 rounded-full" />}
         </CardBody>

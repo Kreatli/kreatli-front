@@ -59,7 +59,7 @@ export const AddComment = () => {
 
   return (
     <form className="flex w-full gap-4 items-center z-10" noValidate onSubmit={handleSubmit}>
-      <Avatar src={currentUser?.avatarUrl} className="shrink-0" />
+      <Avatar src={currentUser?.avatarUrl} className="shrink-0" name={currentUser?.name} />
       <div className="relative w-full">
         <Textarea
           ref={addCommentRef}

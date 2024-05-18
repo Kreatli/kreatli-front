@@ -13,7 +13,7 @@ export const useUsersTable = ({ users, total }: UseUsersTableProps) => {
   const [selectedUsers, setSelectedUsers] = React.useState<Selection>(new Set([]));
   const [usersWithUnverifiedEmails, setUsersWithUnverifiedEmails] = React.useState<Common.Id[]>([]);
 
-  const shouldEnableBulkActions = React.useMemo(() => {
+  const shouldEnableBulkRejection = React.useMemo(() => {
     if (selectedUsers === 'all') {
       return usersWithUnverifiedEmails.length === 0;
     }
@@ -67,6 +67,6 @@ export const useUsersTable = ({ users, total }: UseUsersTableProps) => {
     hasSelectedUsers,
     handleSelectionChange,
     setUsersWithUnverifiedEmails,
-    shouldEnableBulkActions,
+    shouldEnableBulkRejection,
   };
 };

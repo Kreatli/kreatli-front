@@ -45,7 +45,7 @@ export const ChatListNewButton = () => {
         {connections.map((user) => (
           <DropdownItem
             key={user._id}
-            startContent={<Avatar src={user.avatarUrl} className="h-10 max-h-8" />}
+            startContent={<Avatar src={user.avatarUrl} name={user.name} className="h-10 max-h-8" />}
             description={COUNTRY_LABELS[user.country]}
           >
             {user.name}

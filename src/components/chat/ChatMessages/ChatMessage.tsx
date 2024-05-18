@@ -45,7 +45,7 @@ export const ChatMessage = ({ message }: Props) => {
     <div className={cx('flex gap-3', { 'flex-row-reverse': isCurrentUserMessage })}>
       <div>
         <NextLink href={`/profile/${message.sender}`}>
-          <Avatar src={senderAvatar} size="sm" />
+          <Avatar src={senderAvatar} name={senderName} size="sm" />
         </NextLink>
       </div>
       <div className={cx('flex flex-col w-full', { 'items-end': isCurrentUserMessage })}>

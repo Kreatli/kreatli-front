@@ -1,4 +1,13 @@
-import { Avatar, Button, Card, CardBody, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger } from '@nextui-org/react';
+import {
+  Avatar,
+  Button,
+  Card,
+  CardBody,
+  Dropdown,
+  DropdownItem,
+  DropdownMenu,
+  DropdownTrigger,
+} from '@nextui-org/react';
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
@@ -25,7 +34,9 @@ export const ConnectionCard = ({ user, isMyAccount }: Props) => {
       {isMyAccount && (
         <Dropdown>
           <DropdownTrigger>
-            <Button className="absolute top-2 right-2" size="sm" variant="light" radius="full" isIconOnly><Icon icon="dots" size={20} /></Button>
+            <Button className="absolute top-2 right-2" size="sm" variant="light" radius="full" isIconOnly>
+              <Icon icon="dots" size={20} />
+            </Button>
           </DropdownTrigger>
           <DropdownMenu variant="flat" onAction={handleAction}>
             <DropdownItem startContent={<Icon icon="chat" size={18} />}>Message</DropdownItem>
@@ -35,7 +46,7 @@ export const ConnectionCard = ({ user, isMyAccount }: Props) => {
       <NextLink href={`/profile/${user._id}`}>
         <CardBody className="p-4">
           <div className="flex gap-6 items-center">
-            <Avatar src={user.avatarUrl} isBordered className="w-14 h-14" />
+            <Avatar name={user.name} src={user.avatarUrl} isBordered className="w-14 h-14" />
             <div className="flex-1">
               <p className="text-lg font-semibold">
                 {user.name}

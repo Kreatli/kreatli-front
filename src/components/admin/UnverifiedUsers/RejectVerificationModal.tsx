@@ -43,7 +43,7 @@ export const RejectVerificationModal = ({ isOpen, userId, userIds, onClose, onSu
     onError: handleError,
   });
 
-  const { mutate: mutateInBulk, isPending: isBulkPending } = useMutation({
+  const { mutate: bulkMutate, isPending: isBulkPending } = useMutation({
     mutationFn: rejectUserVerifications,
     onSuccess: handleSuccess,
     onError: handleError,
@@ -75,7 +75,7 @@ export const RejectVerificationModal = ({ isOpen, userId, userIds, onClose, onSu
     }
 
     if (userIds) {
-      mutateInBulk({ ids: userIds, message: reason });
+      bulkMutate({ ids: userIds, message: reason });
     }
   };
 

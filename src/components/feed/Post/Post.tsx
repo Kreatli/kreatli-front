@@ -98,7 +98,7 @@ export const Post = () => {
       <Card>
         <CardHeader className="p-5 gap-4 justify-between">
           <NextLink href={`/profile/${authorId}`} className="flex items-center gap-4">
-            <Avatar src={author.avatarUrl} className="w-12 h-12 shrink-0" />
+            <Avatar src={author.avatarUrl} className="w-12 h-12 shrink-0" name={author.name} />
             <div>
               <h3 className="text-md font-semibold">{userName}</h3>
               <p className="text-xs text-default-400">{formatRelativeTime(creationDate)}</p>

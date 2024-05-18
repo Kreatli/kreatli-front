@@ -177,15 +177,6 @@ export const Header = () => {
     setTheme(theme === 'light' ? 'dark' : 'light');
   };
 
-  const userInitials = React.useMemo(() => {
-    return (
-      currentUser?.name
-        ?.split(' ')
-        .map((part: string) => part[0])
-        .join('') ?? ''
-    );
-  }, [currentUser?.name]);
-
   return (
     <Navbar
       isBlurred
@@ -258,7 +249,7 @@ export const Header = () => {
                 src={currentUser?.avatarUrl}
                 color="secondary"
                 className="bg-secondary/20 text-secondary"
-                name={userInitials}
+                name={currentUser?.name}
                 icon={!isSignedIn && <Icon icon="user" size={20} />}
               />
             </DropdownTrigger>

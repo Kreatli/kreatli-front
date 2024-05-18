@@ -61,7 +61,8 @@ export namespace Api {
     | '/user/:id/posts'
     | '/user/posts'
     | '/user/tasks'
-    | '/users';
+    | '/users'
+    | '/users/removed';
 
   export type Post =
     | '/auth/activate'
@@ -97,9 +98,12 @@ export namespace Api {
     | '/user/:id/invitation/accept'
     | '/user/:id/invitation/reject'
     | '/user/:id/send-email'
-    | '/user/update-youtube-info';
+    | '/user/update-youtube-info'
+    | '/users/remove';
 
   export type Put = '/post/:id' | '/chat/:id' | '/notification/:id' | '/user';
+
+  export type Delete = '/user/:id';
 
   export interface GetParams {
     '/professionals': {
@@ -134,6 +138,7 @@ export namespace Api {
     '/creators': Pagination.Params;
     '/unverified-users': Pagination.Params;
     '/rejected-users': Pagination.Params;
+    '/users/removed': Pagination.Params;
   }
 
   export interface GetResponse {
@@ -229,6 +234,13 @@ export namespace Api {
       })[];
       total: number;
     };
+    '/users/removed': {
+      users: (User.ShortInfo & {
+        isEmailVerified: boolean;
+        registrationDate: string;
+      })[];
+      total: number;
+    };
   }
 
   export interface PostPayload {
@@ -300,6 +312,9 @@ export namespace Api {
       subject: string;
       message: string;
     };
+    '/users/remove': {
+      ids: Common.Id[];
+    };
   }
 
   export interface PostResponse {
@@ -363,5 +378,9 @@ export namespace Api {
     '/post/:id': Feed.Post;
     '/chat/:id': Chat.Type;
     '/notification/:id': Notifications.Notification;
+  }
+
+  export interface DeleteResponse {
+    '/user/:id': User.Type;
   }
 }

@@ -5,6 +5,7 @@ import React from 'react';
 
 import { Creators } from '../Creators';
 import { RejectedUsers } from '../RejectedUsers.tsx';
+import { RemovedUsers } from '../RemovedUsers';
 import { UnverifiedUsers } from '../UnverifiedUsers';
 
 export const AdminPanel = () => {
@@ -27,6 +28,9 @@ export const AdminPanel = () => {
       </Tab>
       <Tab key="creators" title="Creators">
         <Creators />
+      </Tab>
+      <Tab key="removeUsers" title="Removed users">
+        <RemovedUsers />
       </Tab>
     </Tabs>
   );

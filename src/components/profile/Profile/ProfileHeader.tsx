@@ -22,26 +22,13 @@ export const ProfileHeader = ({ user }: Props) => {
   const isMobile = useBreakpointValue({ SM: false }, true);
 
   const isMyAccount = currentUserId === userId;
-  const youtubeUsername = role === 'creator'
-    ? user.youtube.customUrl
-    : undefined;
-  const portfolioUrl = role === 'professional'
-    ? user.portfolioUrl
-    : undefined;
-
-  const userInitials = React.useMemo(() => {
-    return name.split(' ').map((part: string) => part[0]).join('') ?? '';
-  }, [name]);
+  const youtubeUsername = role === 'creator' ? user.youtube.customUrl : undefined;
+  const portfolioUrl = role === 'professional' ? user.portfolioUrl : undefined;
 
   return (
     <div className="flex items-center gap-6 sm:gap-10">
       <ProfileBadge size="lg" isVerified={isVerified}>
-        <Avatar
-          name={userInitials}
-          isBordered
-          className="w-24 h-24 sm:w-28 sm:h-28"
-          src={avatarUrl}
-        />
+        <Avatar name={name} isBordered className="w-24 h-24 sm:w-28 sm:h-28" src={avatarUrl} />
       </ProfileBadge>
       <div className="flex-1">
         {portfolioUrl && (
@@ -55,27 +42,41 @@ export const ProfileHeader = ({ user }: Props) => {
           {name}
           <TierImage tier={tier} className="w-10 h-10" isInline />
         </h2>
-        <Link as={NextLink} href={`/profile/${userId}/connections`} color="foreground" underline="hover" className="text-small  text-gray-400">
+        <Link
+          as={NextLink}
+          href={`/profile/${userId}/connections`}
+          color="foreground"
+          underline="hover"
+          className="text-small  text-gray-400"
+        >
           {`${connectionsCount} connection${connectionsCount === 1 ? '' : 's'}`}
-          {user.invitations.length > 0 && isMyAccount ? ` • ${user.invitations.length} invite${connectionsCount === 1 ? '' : 's'}` : ''}
+          {user.invitations.length > 0 && isMyAccount
+            ? ` • ${user.invitations.length} invite${connectionsCount === 1 ? '' : 's'}`
+            : ''}
         </Link>
       </div>
-      {isMyAccount
-        ? (
-          <>
-            <Button aria-label="Edit profile" isIconOnly={isMobile} variant="flat" color="secondary" startContent={<Icon icon="edit" size={20} />} onClick={() => setIsEditModalOpen(true)}>
-              {!isMobile && 'Edit profile'}
-            </Button>
-            <EditProfileModal isOpen={isEditModalOpen} onClose={() => setIsEditModalOpen(false)} />
-          </>
-        ) : (
-          <ConnectionButton
-            userId={user._id}
-            inviteeName={user.name}
-            hasInvitation={user.hasInvitation ?? false}
-            hasConnection={user.hasConnection ?? false}
-          />
-        )}
+      {isMyAccount ? (
+        <>
+          <Button
+            aria-label="Edit profile"
+            isIconOnly={isMobile}
+            variant="flat"
+            color="secondary"
+            startContent={<Icon icon="edit" size={20} />}
+            onClick={() => setIsEditModalOpen(true)}
+          >
+            {!isMobile && 'Edit profile'}
+          </Button>
+          <EditProfileModal isOpen={isEditModalOpen} onClose={() => setIsEditModalOpen(false)} />
+        </>
+      ) : (
+        <ConnectionButton
+          userId={user._id}
+          inviteeName={user.name}
+          hasInvitation={user.hasInvitation ?? false}
+          hasConnection={user.hasConnection ?? false}
+        />
+      )}
     </div>
   );
 };

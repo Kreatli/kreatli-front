@@ -58,7 +58,13 @@ export const JobPage = (props: Props) => {
   const userCardContent = (
     <>
       <NextLink href={`/profile/${creator._id}`} className="flex sm:flex-col items-center gap-4">
-        <Avatar src={creator.avatarUrl} className="w-14 h-14 sm:w-20 sm:h-20" radius="full" isBordered />
+        <Avatar
+          src={creator.avatarUrl}
+          name={creator.name}
+          className="w-14 h-14 sm:w-20 sm:h-20"
+          radius="full"
+          isBordered
+        />
         <div>
           <p className="text-lg font-semibold leading-6">
             {creator.name}

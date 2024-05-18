@@ -26,11 +26,17 @@ export const DashboardLeaderBoardItem = ({ user, points, place }: Props) => {
   return (
     <div className="flex gap-4 items-center">
       <div className="relative w-5 h-5">
-        <div className={`absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 font-semibold text-default-600 ${Image ? 'text-white text-[0.625rem]' : 'text-sm'}`}>{place}</div>
+        <div
+          className={`absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 font-semibold text-default-600 ${
+            Image ? 'text-white text-[0.625rem]' : 'text-sm'
+          }`}
+        >
+          {place}
+        </div>
         {Image && <Image className="w-5 h-5" viewBox="0 0 24 24" />}
       </div>
       <NextLink href={`/profile/${user._id}`} className="flex-1 flex gap-3">
-        <Avatar src={user.avatarUrl} className="w-9 h-9" />
+        <Avatar src={user.avatarUrl} className="w-9 h-9" name={user.name} />
         <div>
           <div className="text-xs text-default-400">Name</div>
           <div className="text-sm font-semibold">{user.name}</div>

@@ -23,17 +23,19 @@ export const JobApplications = ({ jobOfferId, jobOfferStatus, applications, onRe
         {applications.map((application) => (
           <AccordionItem
             key={application._id}
-            title={(
+            title={
               <JobApplicationHeader
                 professional={application.professional}
                 status={application.status}
                 creationDate={application.creationDate}
               />
-            )}
-            subtitle={<Link as={NextLink} href={`/profile/${application.professional._id}`} className="text-sm">View profile</Link>}
-            startContent={(
-              <Avatar src={application.professional.avatarUrl} />
-            )}
+            }
+            subtitle={
+              <Link as={NextLink} href={`/profile/${application.professional._id}`} className="text-sm">
+                View profile
+              </Link>
+            }
+            startContent={<Avatar src={application.professional.avatarUrl} name={application.professional.name} />}
             onKeyDown={(e) => e.stopPropagation()}
           >
             <JobApplicationContent

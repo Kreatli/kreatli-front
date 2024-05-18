@@ -36,3 +36,15 @@ export const getCreators = async (params: Api.GetParams['/creators']) => {
 export const sendEmail = async ([id, data]: [Common.Id, Api.PostPayload['/user/:id/send-email']]) => {
   return api.post(`/user/${id}/send-email`, data).then((res) => res.data);
 };
+
+export const removeUser = async (id: Common.Id) => {
+  return api.delete(`/user/${id}`).then((res) => res.data);
+};
+
+export const removeUsers = async (data: Api.PostPayload['/users/remove']) => {
+  return api.post('/users/remove', data).then((res) => res.data);
+};
+
+export const getRemovedUsers = async (params: Api.GetParams['/users/removed']) => {
+  return api.get('/users/removed', params).then((res) => res.data);
+};

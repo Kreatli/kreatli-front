@@ -28,6 +28,7 @@ import { Common } from '../../../typings/common';
 import { Icon } from '../../various/Icon';
 import { AcceptVerificationModal } from '../UnverifiedUsers/AcceptVerificationModal';
 import { RejectVerificationModal } from '../UnverifiedUsers/RejectVerificationModal';
+import { RemoveUserModal } from '../UnverifiedUsers/RemoveUserModal';
 
 const LIMIT = 10;
 
@@ -36,6 +37,7 @@ export const RejectedUsers = () => {
   const [userId, setUserId] = React.useState<Common.Id | null>(null);
   const [isAcceptModalOpen, setIsAcceptModalOpen] = React.useState(false);
   const [isRejectModalOpen, setIsRejectModalOpen] = React.useState(false);
+  const [isRemoveModalOpen, setIsRemoveModalOpen] = React.useState(false);
 
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -69,6 +71,11 @@ export const RejectedUsers = () => {
     setIsRejectModalOpen(true);
   };
 
+  const handleRemove = (id: Common.Id) => () => {
+    setUserId(id);
+    setIsRemoveModalOpen(true);
+  };
+
   const handleAcceptModalClose = () => {
     setUserId(null);
     setIsAcceptModalOpen(false);
@@ -77,6 +84,11 @@ export const RejectedUsers = () => {
   const handleRejectModalClose = () => {
     setUserId(null);
     setIsRejectModalOpen(false);
+  };
+
+  const handleRemoveModalClose = () => {
+    setUserId(null);
+    setIsRemoveModalOpen(false);
   };
 
   const handlePageChange = (newPage: number) => {
@@ -138,13 +150,34 @@ export const RejectedUsers = () => {
           <TableColumn className="w-1">
             <Dropdown>
               <DropdownTrigger>
-                <Button variant="light" size="sm" isDisabled className="text-foreground-500" isIconOnly>
+                <Button
+                  variant="light"
+                  size="sm"
+                  isDisabled={!hasSelectedUsers}
+                  className="text-foreground-500"
+                  isIconOnly
+                >
                   <Icon icon="dots" className="rotate-90" />
                 </Button>
               </DropdownTrigger>
               <DropdownMenu variant="flat">
-                <DropdownItem color="danger" className="text-danger" onClick={() => setIsRejectModalOpen(true)}>
+                <DropdownItem
+                  key="reject"
+                  color="danger"
+                  className="text-danger"
+                  startContent={<Icon icon="cross" size={16} />}
+                  onClick={() => setIsRejectModalOpen(true)}
+                >
                   {selectedUsersCount > 1 ? `Reject selected users (${selectedUsersCount})` : 'Reject selected user'}
+                </DropdownItem>
+                <DropdownItem
+                  key="remove"
+                  color="danger"
+                  className="text-danger"
+                  startContent={<Icon icon="trash" size={16} />}
+                  onClick={() => setIsRemoveModalOpen(true)}
+                >
+                  {selectedUsersCount > 1 ? `Delete selected users (${selectedUsersCount})` : 'Delete selected user'}
                 </DropdownItem>
               </DropdownMenu>
             </Dropdown>
@@ -187,7 +220,7 @@ export const RejectedUsers = () => {
                       key="accept"
                       color="success"
                       className="text-success"
-                      startContent={<Icon icon="check" size={20} />}
+                      startContent={<Icon icon="check" size={16} />}
                       onClick={handleAccept(user._id)}
                     >
                       Mark as verified
@@ -196,10 +229,19 @@ export const RejectedUsers = () => {
                       key="reject"
                       color="danger"
                       className="text-danger"
-                      startContent={<Icon icon="cross" size={20} />}
+                      startContent={<Icon icon="cross" size={16} />}
                       onClick={handleReject(user._id)}
                     >
                       Reject verification
+                    </DropdownItem>
+                    <DropdownItem
+                      key="remove"
+                      color="danger"
+                      className="text-danger"
+                      startContent={<Icon icon="trash" size={16} />}
+                      onClick={handleRemove(user._id)}
+                    >
+                      Delete user
                     </DropdownItem>
                   </DropdownMenu>
                 </Dropdown>
@@ -214,6 +256,14 @@ export const RejectedUsers = () => {
         userId={userId}
         userIds={selectedUsersArray}
         onClose={handleRejectModalClose}
+        onSuccess={() => handleSelectionChange(new Set([]))}
+      />
+      <RemoveUserModal
+        isOpen={isRemoveModalOpen}
+        userId={userId}
+        userIds={selectedUsersArray}
+        userName={users.find((user) => user._id === userId)?.name}
+        onClose={handleRemoveModalClose}
         onSuccess={() => handleSelectionChange(new Set([]))}
       />
     </>
