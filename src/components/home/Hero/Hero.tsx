@@ -61,20 +61,6 @@ export const Hero = () => {
                 <Icon icon="arrowRight" size={20} className="group-hover:translate-x-1 transition-transform" />
               </Button>
             </div>
-            <a
-              href="https://www.producthunt.com/posts/kreatli?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-kreatli"
-              target="_blank"
-              style={{ width: 250 }}
-              rel="noreferrer"
-            >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=453251&theme=light"
-                alt="Kreatli - Platform that connects YouTube Creators and Professionals | Product Hunt"
-                width="250"
-                height="54"
-              />
-            </a>
           </div>
           <div className="relative lg:pr-16">
             <DesktopFrame>
