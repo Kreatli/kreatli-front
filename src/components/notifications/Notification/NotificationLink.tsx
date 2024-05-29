@@ -58,10 +58,6 @@ export const NotificationLink = ({ notification }: Props) => {
       label: 'Go to My posts',
       href: '/?filter=myPosts',
     },
-    [NOTIFICATION_TYPE.NEW_MESSAGE]: {
-      label: 'Check Messages',
-      href: '/chat',
-    },
     [NOTIFICATION_TYPE.FEEDBACK_RECEIVED]: {
       label: 'Go to My jobs',
       href: `/profile/${currentUserId}/jobs`,

@@ -52,13 +52,6 @@ export namespace Notifications {
     };
   }
 
-  export interface NewMessageNotification extends NotificationBase {
-    type: 'new-message';
-    data: {
-      user: User.ShortInfo;
-    };
-  }
-
   export interface ProfileVerificationNotification extends NotificationBase {
     type: 'profile-verification';
   }
@@ -130,7 +123,6 @@ export namespace Notifications {
     | PostLikeNotification
     | PostCommentNotification
     | FeedbackReceivedNotification
-    | NewMessageNotification
     | ProfileVerificationNotification
     | CollaborationCompletedNotification
     | NewJobApplication

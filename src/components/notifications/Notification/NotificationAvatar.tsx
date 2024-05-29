@@ -48,7 +48,6 @@ export const NotificationAvatar = ({ notification }: Props) => {
       type === NOTIFICATION_TYPE.INVITATION ||
       type === NOTIFICATION_TYPE.INVITATION_ACCEPT ||
       type === NOTIFICATION_TYPE.POST_LIKE ||
-      type === NOTIFICATION_TYPE.NEW_MESSAGE ||
       type === NOTIFICATION_TYPE.POST_COMMENT ||
       type === NOTIFICATION_TYPE.NEW_JOB_APPLICATION
     ) {

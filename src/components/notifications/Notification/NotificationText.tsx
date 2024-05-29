@@ -18,8 +18,8 @@ export const NotificationText = ({ notification }: Props) => {
     return (
       <>
         Congratulations! You&apos;ve successfully completed a task
-        <span className={`font-semibold text-${TASK_COLOR_BY_TYPE[task.type]}`}> {task.label}</span>.
-        Head to your dashboard to explore your achievements.
+        <span className={`font-semibold text-${TASK_COLOR_BY_TYPE[task.type]}`}> {task.label}</span>. Head to your
+        dashboard to explore your achievements.
       </>
     );
   }
@@ -29,8 +29,8 @@ export const NotificationText = ({ notification }: Props) => {
 
     return (
       <>
-        {user.name} wants to connect with you.
-        Expand your professional network and collaborate on exciting projects together.
+        {user.name} wants to connect with you. Expand your professional network and collaborate on exciting projects
+        together.
       </>
     );
   }
@@ -39,10 +39,7 @@ export const NotificationText = ({ notification }: Props) => {
     const { user } = notification.data;
 
     return (
-      <>
-        {user.name} accepted your connection request.
-        Start networking and exploring collaborative opportunities!
-      </>
+      <>{user.name} accepted your connection request. Start networking and exploring collaborative opportunities!</>
     );
   }
 
@@ -59,17 +56,15 @@ export const NotificationText = ({ notification }: Props) => {
 
   if (type === NOTIFICATION_TYPE.POINTS_PURCHASE) {
     return (
-      <>
-        Your points purchase was a success. Check your updated balance now and discover the possibilities on Kreatli.
-      </>
+      <>Your points purchase was a success. Check your updated balance now and discover the possibilities on Kreatli.</>
     );
   }
 
   if (type === NOTIFICATION_TYPE.POST_LIKE) {
     return (
       <>
-        Your post received likes.
-        It&apos;s gaining attention, keep engaging with your audience and watch your influence grow.
+        Your post received likes. It&apos;s gaining attention, keep engaging with your audience and watch your influence
+        grow.
       </>
     );
   }
@@ -78,10 +73,7 @@ export const NotificationText = ({ notification }: Props) => {
     const { user } = notification.data;
 
     return (
-      <>
-        {user.name} has commented on your post.
-        Join the conversation and respond to connect with your audience.
-      </>
+      <>{user.name} has commented on your post. Join the conversation and respond to connect with your audience.</>
     );
   }
 
@@ -90,18 +82,8 @@ export const NotificationText = ({ notification }: Props) => {
 
     return (
       <>
-        {user.name} shared feedback on <span className="font-semibold">{jobOffer.title}</span>.
-        Review and respond to enhance collaboration and improve your profile.
-      </>
-    );
-  }
-
-  if (type === NOTIFICATION_TYPE.NEW_MESSAGE) {
-    const { user } = notification.data;
-
-    return (
-      <>
-        {user.name} sent you a message. Check your inbox and respond to stay connected and engaged.
+        {user.name} shared feedback on <span className="font-semibold">{jobOffer.title}</span>. Review and respond to
+        enhance collaboration and improve your profile.
       </>
     );
   }
@@ -109,8 +91,8 @@ export const NotificationText = ({ notification }: Props) => {
   if (type === NOTIFICATION_TYPE.PROFILE_VERIFICATION) {
     return (
       <>
-        Your profile has been successfully verified and now is active.
-        Explore the platform, showcase your skills, and connect with others in the Kreatli community.
+        Your profile has been successfully verified and now is active. Explore the platform, showcase your skills, and
+        connect with others in the Kreatli community.
       </>
     );
   }
@@ -121,8 +103,8 @@ export const NotificationText = ({ notification }: Props) => {
 
     return (
       <>
-        {user.name} has completed the collaboration on <span className="font-semibold">{title}</span>.
-        It&apos;s time to leave feedback and celebrate the success of your project.
+        {user.name} has completed the collaboration on <span className="font-semibold">{title}</span>. It&apos;s time to
+        leave feedback and celebrate the success of your project.
       </>
     );
   }
@@ -132,8 +114,8 @@ export const NotificationText = ({ notification }: Props) => {
 
     return (
       <>
-        Great news! Your job posting <span className="font-semibold">{jobOffer.title}</span> has garnered attention, and a creative mind has applied.
-        Review their application and start collaborating!
+        Great news! Your job posting <span className="font-semibold">{jobOffer.title}</span> has garnered attention, and
+        a creative mind has applied. Review their application and start collaborating!
       </>
     );
   }
@@ -144,8 +126,8 @@ export const NotificationText = ({ notification }: Props) => {
 
     return (
       <>
-        Congratulations! You&apos;ve been hired for a new project <span className="font-semibold">{title}</span>.
-        Get started on your exciting new opportunity.
+        Congratulations! You&apos;ve been hired for a new project <span className="font-semibold">{title}</span>. Get
+        started on your exciting new opportunity.
       </>
     );
   }
@@ -156,8 +138,8 @@ export const NotificationText = ({ notification }: Props) => {
 
     return (
       <>
-        Your job application for <span className="font-semibold">{title}</span> was rejected.
-        Keep applying for new opportunities to find the perfect match.
+        Your job application for <span className="font-semibold">{title}</span> was rejected. Keep applying for new
+        opportunities to find the perfect match.
       </>
     );
   }
@@ -165,8 +147,8 @@ export const NotificationText = ({ notification }: Props) => {
   if (type === NOTIFICATION_TYPE.JOB_APPLICATION_LIMIT) {
     return (
       <>
-        You&apos;ve run out of Job Application Credits. Want more?
-        Explore the benefits of upgrading to Premium or purchasing points for more Job Application Credits.
+        You&apos;ve run out of Job Application Credits. Want more? Explore the benefits of upgrading to Premium or
+        purchasing points for more Job Application Credits.
       </>
     );
   }
@@ -174,26 +156,23 @@ export const NotificationText = ({ notification }: Props) => {
   if (type === NOTIFICATION_TYPE.JOB_OFFER_LIMIT) {
     return (
       <>
-        You&apos;ve run out of Job Posting Credits. Want more?
-        Explore the benefits of upgrading to Premium or purchasing points for more Job Posting Credits.
+        You&apos;ve run out of Job Posting Credits. Want more? Explore the benefits of upgrading to Premium or
+        purchasing points for more Job Posting Credits.
       </>
     );
   }
 
   if (type === NOTIFICATION_TYPE.INVITATION_LIMIT) {
     return (
-      <>
-        You&apos;ve run out of Connection Requests. Need more?
-        Consider upgrading to Premium or purchasing points.
-      </>
+      <>You&apos;ve run out of Connection Requests. Need more? Consider upgrading to Premium or purchasing points.</>
     );
   }
 
   if (type === NOTIFICATION_TYPE.DAILY_POINTS_LIMIT) {
     return (
       <>
-        You&apos;ve reached your daily points limit. Progress on tasks is not being tracked. Want more points?
-        Consider upgrading to Premium or purchasing points.
+        You&apos;ve reached your daily points limit. Progress on tasks is not being tracked. Want more points? Consider
+        upgrading to Premium or purchasing points.
       </>
     );
   }

@@ -5,7 +5,6 @@ export const NOTIFICATION_TYPE = {
   NEW_TIER: 'new-tier',
   POST_LIKE: 'post-like',
   POST_COMMENT: 'post-comment',
-  NEW_MESSAGE: 'new-message',
   PROFILE_VERIFICATION: 'profile-verification',
   NEW_JOB_APPLICATION: 'new-job-application',
   JOB_APPLICATION_ACCEPT: 'job-application-accept',
