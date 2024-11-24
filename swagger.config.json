@@ -1,0 +1,8 @@
+{
+  "url": "http://localhost:3000/api-json",
+  "dir": "./src/services/review-tool",
+  "language": "typescript",
+  "keepJson": true,
+  "reactHooks": true,
+  "mock": false
+}

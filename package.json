@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "tsc": "tsc"
+    "tsc": "tsc",
+    "swagger": "swag-ts"
   },
   "engines": {
     "node": "18.*"
@@ -33,6 +34,7 @@
     "nanoid": "^5.0.1",
     "next": "^14.2.3",
     "next-i18next": "^15.3.0",
+    "qs": "^6.13.1",
     "ramda": "^0.29.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -43,6 +45,7 @@
     "react-number-format": "^5.3.1",
     "sass": "^1.68.0",
     "socket.io-client": "^4.7.2",
+    "swagger-typescript": "^6.8.0",
     "zustand": "^4.5.2"
   },
   "devDependencies": {

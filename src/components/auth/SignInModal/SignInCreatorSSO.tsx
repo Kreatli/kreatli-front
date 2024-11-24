@@ -19,7 +19,6 @@ export const SignInCreatorSSO = ({ onSuccess }: Props) => {
   const router = useRouter();
   const queryClient = useQueryClient();
   const pushNotification = useNotifications((state) => state.pushNotification);
-
   const { mutate, isPending } = useMutation({
     mutationFn: requestSsoCreator,
     onSuccess: ({ token, user }) => {

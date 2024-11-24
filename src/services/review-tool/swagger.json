@@ -1,0 +1,1110 @@
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/": {
+      "get": {
+        "operationId": "ReviewToolController_getHello",
+        "parameters": [],
+        "responses": { "200": { "description": "" } }
+      }
+    },
+    "/user/{id}": {
+      "get": {
+        "operationId": "UserController_getUserById",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/UserDto" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/user/avatar": {
+      "post": {
+        "operationId": "UserController_test",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/UserDto" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/sign-up": {
+      "post": {
+        "operationId": "AuthController_signUp",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/SignUpBodyDto" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/SignUpResultDto" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/sign-up-invitation": {
+      "post": {
+        "operationId": "AuthController_signUpInvitation",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SignUpWithTokenBodyDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/SignInResultDto" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/sign-in": {
+      "post": {
+        "operationId": "AuthController_signIn",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/SignInBodyDto" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/SignInResultDto" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/verify-email": {
+      "post": {
+        "operationId": "AuthController_verifyEmail",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/TokenBodyDto" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/SignInResultDto" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/sso-google": {
+      "post": {
+        "operationId": "AuthController_ssoGoogle",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/TokenBodyDto" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/SignInResultDto" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/project": {
+      "post": {
+        "operationId": "ProjectController_createProject",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/ProjectBodyDto" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ProjectDto" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/project/{id}": {
+      "put": {
+        "operationId": "ProjectController_editProject",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/ProjectEditBodyDto" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ProjectDto" }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "ProjectController_getProject",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ProjectDto" }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "ProjectController_removeProject",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ProjectDto" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/project/{id}/cover": {
+      "post": {
+        "operationId": "ProjectController_updateProjectCover",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ProjectDto" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/project/{id}/status": {
+      "put": {
+        "operationId": "ProjectController_updateProjectStatus",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/ProjectStatusBodyDto" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ProjectDto" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/project/{id}/member": {
+      "post": {
+        "operationId": "ProjectController_addProjectMember",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/ProjectMemberBodyDto" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ProjectDto" }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "ProjectController_leaveProject",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ProjectDto" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/project/{id}/member/{memberId}": {
+      "delete": {
+        "operationId": "ProjectController_removeProjectMember",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ProjectDto" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/project/{id}/file": {
+      "post": {
+        "operationId": "ProjectController_uploadFile",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ProjectDto" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/project/{id}/file/{fileId}": {
+      "put": {
+        "operationId": "ProjectController_editFile",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/FileEditBodyDto" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ProjectDto" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/project/{id}/folder": {
+      "post": {
+        "operationId": "ProjectController_createFolder",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/FolderBodyDto" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ProjectDto" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/project/{id}/folder/{folderId}": {
+      "put": {
+        "operationId": "ProjectController_editFolder",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/FolderEditBodyDto" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ProjectDto" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/project/{id}/assets/archive": {
+      "post": {
+        "operationId": "ProjectController_archiveAssets",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/AssetRemoveBodyDto" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ProjectDto" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/project/{id}/assets/restore": {
+      "post": {
+        "operationId": "ProjectController_restoreAssets",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/AssetRemoveBodyDto" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ProjectDto" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/project/{id}/assets": {
+      "delete": {
+        "operationId": "ProjectController_removeAssets",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/AssetRemoveBodyDto" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ProjectDto" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/project/{id}/chat": {
+      "post": {
+        "operationId": "ProjectController_createChat",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/ChatBodyDto" }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ChatDto" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/project/{id}/chats": {
+      "get": {
+        "operationId": "ProjectController_getProjectChats",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/ChatDto" }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/project/{id}/logs": {
+      "get": {
+        "operationId": "ProjectController_getProjectLogs",
+        "parameters": [
+          {
+            "name": "offset",
+            "required": true,
+            "in": "query",
+            "schema": { "type": "number" }
+          },
+          {
+            "name": "limit",
+            "required": true,
+            "in": "query",
+            "schema": { "type": "number" }
+          },
+          {
+            "name": "userIds",
+            "required": true,
+            "in": "query",
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "createAtFrom",
+            "required": true,
+            "in": "query",
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "createAtTo",
+            "required": true,
+            "in": "query",
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ProjectLogsDto" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/projects": {
+      "get": {
+        "operationId": "ProjectsController_getProjects",
+        "parameters": [
+          {
+            "name": "status",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "enum": ["all", "active", "completed", "archived"],
+              "type": "string"
+            }
+          },
+          {
+            "name": "search",
+            "required": false,
+            "in": "query",
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": { "200": { "description": "" } }
+      }
+    },
+    "/chat/{id}": {
+      "get": {
+        "operationId": "ChatController_getChat",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "offset",
+            "required": true,
+            "in": "query",
+            "schema": { "type": "number" }
+          },
+          {
+            "name": "limit",
+            "required": true,
+            "in": "query",
+            "schema": { "type": "number" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ChatResponseDto" }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "operationId": "ChatController_updateChat",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": { "type": "string" }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/ChatEditBodyDto" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ChatDto" }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "info": {
+    "title": "Kreatli review tool",
+    "description": "The Kreatli review tool API description",
+    "version": "1.0",
+    "contact": {}
+  },
+  "tags": [],
+  "servers": [],
+  "components": {
+    "schemas": {
+      "InterfaceImageDto": {
+        "type": "object",
+        "properties": {
+          "url": { "type": "string" },
+          "originalFileName": { "type": "string" },
+          "fileSize": { "type": "number" },
+          "width": { "type": "number" },
+          "height": { "type": "number" },
+          "createdAt": { "type": "string" },
+          "description": { "type": "string" }
+        },
+        "required": [
+          "url",
+          "originalFileName",
+          "fileSize",
+          "width",
+          "height",
+          "createdAt",
+          "description"
+        ]
+      },
+      "UserDto": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "email": { "type": "string" },
+          "name": { "type": "string" },
+          "avatar": {
+            "nullable": true,
+            "allOf": [{ "$ref": "#/components/schemas/InterfaceImageDto" }]
+          }
+        },
+        "required": ["id", "email", "name", "avatar"]
+      },
+      "SignUpBodyDto": {
+        "type": "object",
+        "properties": {
+          "email": { "type": "string" },
+          "password": { "type": "string" },
+          "name": { "type": "string" },
+          "isEmailVerified": { "type": "boolean" }
+        },
+        "required": ["email", "password", "name"]
+      },
+      "SignUpResultDto": {
+        "type": "object",
+        "properties": {
+          "link": { "type": "string" },
+          "user": { "$ref": "#/components/schemas/UserDto" }
+        },
+        "required": ["link", "user"]
+      },
+      "SignUpWithTokenBodyDto": {
+        "type": "object",
+        "properties": {
+          "token": { "type": "string" },
+          "password": { "type": "string" },
+          "name": { "type": "string" }
+        },
+        "required": ["token", "password", "name"]
+      },
+      "SignInResultDto": {
+        "type": "object",
+        "properties": {
+          "token": { "type": "string" },
+          "user": { "$ref": "#/components/schemas/UserDto" }
+        },
+        "required": ["token", "user"]
+      },
+      "SignInBodyDto": {
+        "type": "object",
+        "properties": {
+          "email": { "type": "string" },
+          "password": { "type": "string" }
+        },
+        "required": ["email", "password"]
+      },
+      "TokenBodyDto": {
+        "type": "object",
+        "properties": { "token": { "type": "string" } },
+        "required": ["token"]
+      },
+      "ProjectBodyDto": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "description": { "type": "string" },
+          "members": { "type": "array", "items": { "type": "string" } }
+        },
+        "required": ["name", "description", "members"]
+      },
+      "ProjectFileDto": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "name": { "type": "string" },
+          "description": { "type": "string" },
+          "createdAt": { "type": "string" },
+          "createdBy": {
+            "nullable": true,
+            "allOf": [{ "$ref": "#/components/schemas/UserDto" }]
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "review-needed",
+              "in-progress",
+              "changes-required",
+              "approved"
+            ],
+            "nullable": true
+          },
+          "assignee": {
+            "nullable": true,
+            "allOf": [{ "$ref": "#/components/schemas/UserDto" }]
+          },
+          "fileSize": { "type": "number" },
+          "fileType": { "type": "string" },
+          "format": { "type": "string" },
+          "url": { "type": "string" },
+          "metadata": { "type": "object" },
+          "type": { "type": "string", "enum": ["file"] }
+        },
+        "required": [
+          "id",
+          "name",
+          "description",
+          "createdAt",
+          "createdBy",
+          "status",
+          "assignee",
+          "fileSize",
+          "fileType",
+          "format",
+          "url",
+          "metadata",
+          "type"
+        ]
+      },
+      "ProjectFolderChild": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "name": { "type": "string" },
+          "description": { "type": "string" },
+          "type": { "type": "string", "enum": ["folder", "file"] },
+          "url": { "type": "string" }
+        },
+        "required": ["id", "name", "description", "type"]
+      },
+      "ProjectFolderDto": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "name": { "type": "string" },
+          "description": { "type": "string" },
+          "createdAt": { "type": "string" },
+          "createdBy": {
+            "nullable": true,
+            "allOf": [{ "$ref": "#/components/schemas/UserDto" }]
+          },
+          "children": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/ProjectFolderChild" }
+          },
+          "fileCount": { "type": "number" },
+          "totalFileSize": { "type": "number" },
+          "type": { "type": "string", "enum": ["folder"] }
+        },
+        "required": [
+          "id",
+          "name",
+          "description",
+          "createdAt",
+          "createdBy",
+          "children",
+          "fileCount",
+          "totalFileSize",
+          "type"
+        ]
+      },
+      "ProjectMemberDto": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "user": { "$ref": "#/components/schemas/UserDto" },
+          "status": {
+            "type": "string",
+            "enum": ["invited", "joined", "removed", "left"]
+          },
+          "email": { "type": "string" },
+          "invitedAt": { "type": "string" },
+          "role": { "type": "string", "enum": ["owner", "contributor"] }
+        },
+        "required": ["id", "user", "status", "email", "invitedAt", "role"]
+      },
+      "ProjectDto": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "name": { "type": "string" },
+          "description": { "type": "string" },
+          "cover": {
+            "nullable": true,
+            "allOf": [{ "$ref": "#/components/schemas/InterfaceImageDto" }]
+          },
+          "createdAt": { "type": "string" },
+          "createdBy": {
+            "nullable": true,
+            "allOf": [{ "$ref": "#/components/schemas/UserDto" }]
+          },
+          "updatedAt": { "type": "string", "nullable": true },
+          "updatedBy": {
+            "nullable": true,
+            "allOf": [{ "$ref": "#/components/schemas/UserDto" }]
+          },
+          "members": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/ProjectMemberDto" }
+          },
+          "status": {
+            "type": "string",
+            "enum": ["active", "completed", "archived"]
+          },
+          "fileCount": { "type": "number" },
+          "totalFileSize": { "type": "number" },
+          "assets": {
+            "type": "array",
+            "items": {
+              "oneOf": [
+                { "$ref": "#/components/schemas/ProjectFolderDto" },
+                { "$ref": "#/components/schemas/ProjectFileDto" }
+              ]
+            },
+            "description": "An array of assets which can be folders or files."
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "description",
+          "cover",
+          "createdAt",
+          "createdBy",
+          "updatedAt",
+          "updatedBy",
+          "members",
+          "status",
+          "fileCount",
+          "totalFileSize",
+          "assets"
+        ]
+      },
+      "ProjectEditBodyDto": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "description": { "type": "string" },
+          "assets": { "type": "array", "items": { "type": "string" } }
+        },
+        "required": ["name", "description", "assets"]
+      },
+      "ProjectStatusBodyDto": {
+        "type": "object",
+        "properties": { "status": { "type": "string" } },
+        "required": ["status"]
+      },
+      "ProjectMemberBodyDto": {
+        "type": "object",
+        "properties": {
+          "email": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["owner", "contributor"],
+            "default": "contributor"
+          }
+        },
+        "required": ["email", "role"]
+      },
+      "FileEditBodyDto": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "description": { "type": "string" },
+          "parentId": { "type": "string", "nullable": true },
+          "status": {
+            "type": "string",
+            "enum": [
+              "review-needed",
+              "in-progress",
+              "changes-required",
+              "approved"
+            ],
+            "nullable": true
+          },
+          "assigneeId": { "type": "string", "nullable": true }
+        },
+        "required": ["status"]
+      },
+      "FolderBodyDto": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "parentId": { "type": "string" }
+        },
+        "required": ["name"]
+      },
+      "FolderEditBodyDto": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "description": { "type": "string" },
+          "parentId": { "type": "string", "nullable": true }
+        }
+      },
+      "AssetRemoveBodyDto": {
+        "type": "object",
+        "properties": {
+          "assetIds": { "type": "array", "items": { "type": "string" } }
+        },
+        "required": ["assetIds"]
+      },
+      "ChatBodyDto": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "members": { "type": "string" }
+        },
+        "required": ["members"]
+      },
+      "ProjectAssetDto": { "type": "object", "properties": {} },
+      "ChatMessageDto": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "sender": { "$ref": "#/components/schemas/UserDto" },
+          "assets": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/ProjectAssetDto" }
+          },
+          "content": { "type": "string" },
+          "createdAt": { "type": "string" },
+          "readBy": { "type": "array", "items": { "type": "string" } },
+          "isPinned": { "type": "boolean" }
+        },
+        "required": [
+          "id",
+          "sender",
+          "assets",
+          "content",
+          "createdAt",
+          "readBy",
+          "isPinned"
+        ]
+      },
+      "ChatDto": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "name": { "type": "string" },
+          "members": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/UserDto" }
+          },
+          "cover": {
+            "nullable": true,
+            "allOf": [{ "$ref": "#/components/schemas/InterfaceImageDto" }]
+          },
+          "createdAt": { "type": "string" },
+          "createdBy": {
+            "nullable": true,
+            "allOf": [{ "$ref": "#/components/schemas/UserDto" }]
+          },
+          "updatedAt": { "type": "string", "nullable": true },
+          "updatedBy": {
+            "nullable": true,
+            "allOf": [{ "$ref": "#/components/schemas/UserDto" }]
+          },
+          "lastMessage": {
+            "nullable": true,
+            "allOf": [{ "$ref": "#/components/schemas/ChatMessageDto" }]
+          },
+          "pinnedMessages": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/ChatMessageDto" }
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "members",
+          "cover",
+          "createdAt",
+          "createdBy",
+          "updatedAt",
+          "updatedBy",
+          "lastMessage",
+          "pinnedMessages"
+        ]
+      },
+      "ProjectLogsDto": {
+        "type": "object",
+        "properties": {
+          "logs": { "type": "string" },
+          "logsCount": { "type": "number" }
+        },
+        "required": ["logs", "logsCount"]
+      },
+      "ChatResponseDto": {
+        "type": "object",
+        "properties": {
+          "chat": { "$ref": "#/components/schemas/ChatDto" },
+          "messages": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/ChatMessageDto" }
+          },
+          "messagesCount": { "type": "number" }
+        },
+        "required": ["chat", "messages", "messagesCount"]
+      },
+      "ChatEditBodyDto": {
+        "type": "object",
+        "properties": { "name": { "type": "string" } },
+        "required": ["name"]
+      }
+    }
+  }
+}

@@ -58,5 +58,8 @@
   },
   "parserOptions": {
     "project": "./tsconfig.json"
-  }
+  },
+  "ignorePatterns": [
+    "src/services/review-tool/**/*"
+  ]
 }
