@@ -54,7 +54,9 @@
       }
     ],
     "react/no-array-index-key": "warn",
-    "jsx-a11y/anchor-is-valid": "warn"
+    "jsx-a11y/anchor-is-valid": "warn",
+    "no-confusing-arrow": "off",
+    "function-paren-newline": "off"
   },
   "parserOptions": {
     "project": "./tsconfig.json"

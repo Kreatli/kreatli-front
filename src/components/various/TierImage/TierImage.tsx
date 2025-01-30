@@ -6,8 +6,8 @@ import Tier2Image from '../../../assets/images/tiers/tier-2.svg';
 import Tier3Image from '../../../assets/images/tiers/tier-3.svg';
 import Tier4Image from '../../../assets/images/tiers/tier-4.svg';
 import Tier5Image from '../../../assets/images/tiers/tier-5.svg';
-import { TIER_LABELS, TIERS } from '../../../constants/tier';
-import { useTiersModal } from '../../../hooks/useTiersModal';
+import { TIER_LABELS, TIERS } from '../../../constants/marketplace/tier';
+import { useTiersModal } from '../../../hooks/marketplace/useTiersModal';
 
 interface Props {
   tier: number;

@@ -11,21 +11,22 @@ import Script from 'next/script';
 import { appWithTranslation } from 'next-i18next';
 import React from 'react';
 
-import { ApplicationLoader } from '../components/app/ApplicationLoader';
-import { SignUpCreatorModal } from '../components/auth/SignUpCreator';
-import { DashboardTiersModal } from '../components/dashboard/DashboardTiers';
-import { Header } from '../components/layout/Header';
+import { DashboardTiersModal } from '../components/marketplace/dashboard/DashboardTiers';
+import { Layout as MarketplaceLayout } from '../components/marketplace/layout/Layout';
+import { Layout as ReviewToolLayout } from '../components/review-tool/layout/Layout';
 import { Notifications } from '../components/various/Notifications';
 import { useNotifications } from '../hooks/useNotifications';
-import { getErrorMessage } from '../utils/getErrorMessage';
+import { getErrorMessage } from '../utils/marketplace/getErrorMessage';
 
 interface QueryErrorMeta {
   showErrorNotification?: boolean;
   errorMessage?: string;
 }
 
-const App = ({ Component, pageProps }: AppProps) => {
+const App = ({ Component, pageProps, router }: AppProps) => {
   const { pushNotification } = useNotifications();
+
+  const AppLayout = router.pathname.startsWith('/marketplace') ? MarketplaceLayout : ReviewToolLayout;
 
   const [queryClient] = React.useState(
     () =>
@@ -67,15 +68,12 @@ const App = ({ Component, pageProps }: AppProps) => {
       </Head>
       <QueryClientProvider client={queryClient}>
         <NextUIProvider id="nextUiProvider">
-          <ApplicationLoader>
-            <GoogleOAuthProvider clientId={process.env.GOOGLE_OAUTH_CLIENT_ID as string}>
-              <Header />
-              <main>{getLayout(<Component {...pageProps} />)}</main>
-              <footer />
+          <GoogleOAuthProvider clientId={process.env.GOOGLE_OAUTH_CLIENT_ID as string}>
+            <AppLayout>
+              {getLayout(<Component {...pageProps} />)}
               <Notifications />
-              <SignUpCreatorModal />
-            </GoogleOAuthProvider>
-          </ApplicationLoader>
+            </AppLayout>
+          </GoogleOAuthProvider>
           <DashboardTiersModal />
         </NextUIProvider>
       </QueryClientProvider>

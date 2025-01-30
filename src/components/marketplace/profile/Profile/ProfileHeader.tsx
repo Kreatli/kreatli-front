@@ -1,0 +1,82 @@
+import { Avatar, Button, Link } from '@nextui-org/react';
+import NextLink from 'next/link';
+import React from 'react';
+
+import { useSession } from '../../../../hooks/marketplace/useSession';
+import { useBreakpointValue } from '../../../../hooks/useBreakpointValue';
+import { User } from '../../../../typings/marketplace/user';
+import { Icon } from '../../../various/Icon';
+import { TierImage } from '../../../various/TierImage';
+import { ConnectionButton } from '../Connections/ConnectionButton';
+import { EditProfileModal } from '../EditProfile';
+import { ProfileBadge } from './ProfileBadge';
+
+interface Props {
+  user: User.Type;
+}
+
+export const ProfileHeader = ({ user }: Props) => {
+  const { _id: userId, connectionsCount, role, name, avatarUrl, isVerified, tier } = user;
+  const [isEditModalOpen, setIsEditModalOpen] = React.useState(false);
+  const { currentUserId } = useSession();
+  const isMobile = useBreakpointValue({ SM: false }, true);
+
+  const isMyAccount = currentUserId === userId;
+  const youtubeUsername = role === 'creator' ? user.youtube.customUrl : undefined;
+  const portfolioUrl = role === 'professional' ? user.portfolioUrl : undefined;
+
+  return (
+    <div className="flex items-center gap-6 sm:gap-10">
+      <ProfileBadge size="lg" isVerified={isVerified}>
+        <Avatar name={name} isBordered className="w-24 h-24 sm:w-28 sm:h-28" src={avatarUrl} />
+      </ProfileBadge>
+      <div className="flex-1">
+        {portfolioUrl && (
+          <Link href={portfolioUrl} target="_blank" underline="hover" className="flex items-center gap-1">
+            <Icon icon="link" size={16} />
+            portfolio
+          </Link>
+        )}
+        {youtubeUsername && <p className="text-small text-gray-400">{youtubeUsername}</p>}
+        <h2 className="text-3xl font-semibold">
+          {name}
+          <TierImage tier={tier} className="w-10 h-10" isInline />
+        </h2>
+        <Link
+          as={NextLink}
+          href={`/marketplace/profile/${userId}/connections`}
+          color="foreground"
+          underline="hover"
+          className="text-small  text-gray-400"
+        >
+          {`${connectionsCount} connection${connectionsCount === 1 ? '' : 's'}`}
+          {user.invitations.length > 0 && isMyAccount
+            ? ` • ${user.invitations.length} invite${connectionsCount === 1 ? '' : 's'}`
+            : ''}
+        </Link>
+      </div>
+      {isMyAccount ? (
+        <>
+          <Button
+            aria-label="Edit profile"
+            isIconOnly={isMobile}
+            variant="flat"
+            color="secondary"
+            startContent={<Icon icon="edit" size={20} />}
+            onClick={() => setIsEditModalOpen(true)}
+          >
+            {!isMobile && 'Edit profile'}
+          </Button>
+          <EditProfileModal isOpen={isEditModalOpen} onClose={() => setIsEditModalOpen(false)} />
+        </>
+      ) : (
+        <ConnectionButton
+          userId={user._id}
+          inviteeName={user.name}
+          hasInvitation={user.hasInvitation ?? false}
+          hasConnection={user.hasConnection ?? false}
+        />
+      )}
+    </div>
+  );
+};

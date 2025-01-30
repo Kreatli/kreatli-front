@@ -24,15 +24,24 @@ import type {
   ProjectBodyDto,
   ProjectDto,
   ProjectEditBodyDto,
+  ProjectInvitationDto,
+  ProjectCoverDto,
   ProjectStatusBodyDto,
   ProjectMemberBodyDto,
+  UpdateProjectMemberDto,
+  ProjectFileBodyDto,
+  FolderDto,
+  ProjectAssetEditDto,
   FileEditBodyDto,
   FolderBodyDto,
   FolderEditBodyDto,
+  ProjectPathDto,
   AssetRemoveBodyDto,
+  ProjectArchivedAssetsDto,
   ChatBodyDto,
   ChatDto,
   ProjectLogsDto,
+  ProjectsResponseDto,
   ChatResponseDto,
   ChatEditBodyDto,
 } from "./types";
@@ -95,10 +104,11 @@ function objToUrlencoded(requestBody: object) {
 }
 
 export const deleteProjectId = (
+  id: string,
   configOverride?: AxiosRequestConfig,
 ): Promise<SwaggerResponse<ProjectDto>> => {
   return Http.deleteRequest(
-    deleteProjectId.key,
+    template(deleteProjectId.key, { id }),
     undefined,
     undefined,
     undefined,
@@ -110,11 +120,12 @@ export const deleteProjectId = (
 deleteProjectId.key = "/project/{id}";
 
 export const deleteProjectIdAssets = (
+  id: string,
   requestBody: AssetRemoveBodyDto,
   configOverride?: AxiosRequestConfig,
 ): Promise<SwaggerResponse<ProjectDto>> => {
   return Http.deleteRequest(
-    deleteProjectIdAssets.key,
+    template(deleteProjectIdAssets.key, { id }),
     undefined,
     requestBody,
     undefined,
@@ -126,10 +137,11 @@ export const deleteProjectIdAssets = (
 deleteProjectIdAssets.key = "/project/{id}/assets";
 
 export const deleteProjectIdMember = (
+  id: string,
   configOverride?: AxiosRequestConfig,
 ): Promise<SwaggerResponse<ProjectDto>> => {
   return Http.deleteRequest(
-    deleteProjectIdMember.key,
+    template(deleteProjectIdMember.key, { id }),
     undefined,
     undefined,
     undefined,
@@ -141,10 +153,12 @@ export const deleteProjectIdMember = (
 deleteProjectIdMember.key = "/project/{id}/member";
 
 export const deleteProjectIdMemberMemberId = (
+  id: string,
+  memberId: string,
   configOverride?: AxiosRequestConfig,
 ): Promise<SwaggerResponse<ProjectDto>> => {
   return Http.deleteRequest(
-    deleteProjectIdMemberMemberId.key,
+    template(deleteProjectIdMemberMemberId.key, { id, memberId }),
     undefined,
     undefined,
     undefined,
@@ -170,6 +184,22 @@ export const get = (
 /** Key is end point string without base url */
 get.key = "/";
 
+export const getAssetFolderId = (
+  id: string,
+  configOverride?: AxiosRequestConfig,
+): Promise<SwaggerResponse<FolderDto>> => {
+  return Http.getRequest(
+    template(getAssetFolderId.key, { id }),
+    undefined,
+    undefined,
+    undefined,
+    overrideConfig(_CONSTANT0, configOverride),
+  );
+};
+
+/** Key is end point string without base url */
+getAssetFolderId.key = "/asset/folder/{id}";
+
 export const getChatId = (
   id: string,
   queryParams: GetChatIdQueryParams,
@@ -187,11 +217,27 @@ export const getChatId = (
 /** Key is end point string without base url */
 getChatId.key = "/chat/{id}";
 
+export const getProject = (
+  configOverride?: AxiosRequestConfig,
+): Promise<SwaggerResponse<ProjectInvitationDto>> => {
+  return Http.getRequest(
+    getProject.key,
+    undefined,
+    undefined,
+    undefined,
+    overrideConfig(_CONSTANT0, configOverride),
+  );
+};
+
+/** Key is end point string without base url */
+getProject.key = "/project";
+
 export const getProjectId = (
+  id: string,
   configOverride?: AxiosRequestConfig,
 ): Promise<SwaggerResponse<ProjectDto>> => {
   return Http.getRequest(
-    getProjectId.key,
+    template(getProjectId.key, { id }),
     undefined,
     undefined,
     undefined,
@@ -202,11 +248,28 @@ export const getProjectId = (
 /** Key is end point string without base url */
 getProjectId.key = "/project/{id}";
 
+export const getProjectIdAssetsArchived = (
+  id: string,
+  configOverride?: AxiosRequestConfig,
+): Promise<SwaggerResponse<ProjectArchivedAssetsDto>> => {
+  return Http.getRequest(
+    template(getProjectIdAssetsArchived.key, { id }),
+    undefined,
+    undefined,
+    undefined,
+    overrideConfig(_CONSTANT0, configOverride),
+  );
+};
+
+/** Key is end point string without base url */
+getProjectIdAssetsArchived.key = "/project/{id}/assets/archived";
+
 export const getProjectIdChats = (
+  id: string,
   configOverride?: AxiosRequestConfig,
 ): Promise<SwaggerResponse<ChatDto[]>> => {
   return Http.getRequest(
-    getProjectIdChats.key,
+    template(getProjectIdChats.key, { id }),
     undefined,
     undefined,
     undefined,
@@ -218,11 +281,12 @@ export const getProjectIdChats = (
 getProjectIdChats.key = "/project/{id}/chats";
 
 export const getProjectIdLogs = (
-  queryParams: GetProjectIdLogsQueryParams,
+  id: string,
+  queryParams?: GetProjectIdLogsQueryParams,
   configOverride?: AxiosRequestConfig,
 ): Promise<SwaggerResponse<ProjectLogsDto>> => {
   return Http.getRequest(
-    getProjectIdLogs.key,
+    template(getProjectIdLogs.key, { id }),
     queryParams,
     undefined,
     undefined,
@@ -233,10 +297,26 @@ export const getProjectIdLogs = (
 /** Key is end point string without base url */
 getProjectIdLogs.key = "/project/{id}/logs";
 
+export const getProjectIdPaths = (
+  id: string,
+  configOverride?: AxiosRequestConfig,
+): Promise<SwaggerResponse<ProjectPathDto[]>> => {
+  return Http.getRequest(
+    template(getProjectIdPaths.key, { id }),
+    undefined,
+    undefined,
+    undefined,
+    overrideConfig(_CONSTANT0, configOverride),
+  );
+};
+
+/** Key is end point string without base url */
+getProjectIdPaths.key = "/project/{id}/paths";
+
 export const getProjects = (
   queryParams?: GetProjectsQueryParams,
   configOverride?: AxiosRequestConfig,
-): Promise<SwaggerResponse<any>> => {
+): Promise<SwaggerResponse<ProjectsResponseDto>> => {
   return Http.getRequest(
     getProjects.key,
     queryParams,
@@ -249,11 +329,27 @@ export const getProjects = (
 /** Key is end point string without base url */
 getProjects.key = "/projects";
 
-export const getUserId = (
+export const getUser = (
   configOverride?: AxiosRequestConfig,
 ): Promise<SwaggerResponse<UserDto>> => {
   return Http.getRequest(
-    getUserId.key,
+    getUser.key,
+    undefined,
+    undefined,
+    undefined,
+    overrideConfig(_CONSTANT0, configOverride),
+  );
+};
+
+/** Key is end point string without base url */
+getUser.key = "/user";
+
+export const getUserId = (
+  id: string,
+  configOverride?: AxiosRequestConfig,
+): Promise<SwaggerResponse<UserDto>> => {
+  return Http.getRequest(
+    template(getUserId.key, { id }),
     undefined,
     undefined,
     undefined,
@@ -361,11 +457,12 @@ export const postProject = (
 postProject.key = "/project";
 
 export const postProjectIdAssetsArchive = (
+  id: string,
   requestBody: AssetRemoveBodyDto,
   configOverride?: AxiosRequestConfig,
-): Promise<SwaggerResponse<ProjectDto>> => {
+): Promise<SwaggerResponse<ProjectAssetEditDto>> => {
   return Http.postRequest(
-    postProjectIdAssetsArchive.key,
+    template(postProjectIdAssetsArchive.key, { id }),
     undefined,
     requestBody,
     undefined,
@@ -377,11 +474,12 @@ export const postProjectIdAssetsArchive = (
 postProjectIdAssetsArchive.key = "/project/{id}/assets/archive";
 
 export const postProjectIdAssetsRestore = (
+  id: string,
   requestBody: AssetRemoveBodyDto,
   configOverride?: AxiosRequestConfig,
 ): Promise<SwaggerResponse<ProjectDto>> => {
   return Http.postRequest(
-    postProjectIdAssetsRestore.key,
+    template(postProjectIdAssetsRestore.key, { id }),
     undefined,
     requestBody,
     undefined,
@@ -393,11 +491,12 @@ export const postProjectIdAssetsRestore = (
 postProjectIdAssetsRestore.key = "/project/{id}/assets/restore";
 
 export const postProjectIdChat = (
+  id: string,
   requestBody: ChatBodyDto,
   configOverride?: AxiosRequestConfig,
 ): Promise<SwaggerResponse<any>> => {
   return Http.postRequest(
-    postProjectIdChat.key,
+    template(postProjectIdChat.key, { id }),
     undefined,
     requestBody,
     undefined,
@@ -409,14 +508,16 @@ export const postProjectIdChat = (
 postProjectIdChat.key = "/project/{id}/chat";
 
 export const postProjectIdCover = (
+  id: string,
+  requestBody: ProjectCoverDto,
   configOverride?: AxiosRequestConfig,
 ): Promise<SwaggerResponse<ProjectDto>> => {
   return Http.postRequest(
-    postProjectIdCover.key,
+    template(postProjectIdCover.key, { id }),
     undefined,
+    objToForm(requestBody),
     undefined,
-    undefined,
-    overrideConfig(_CONSTANT0, configOverride),
+    overrideConfig(_CONSTANT1, configOverride),
   );
 };
 
@@ -424,14 +525,16 @@ export const postProjectIdCover = (
 postProjectIdCover.key = "/project/{id}/cover";
 
 export const postProjectIdFile = (
+  id: string,
+  requestBody: ProjectFileBodyDto,
   configOverride?: AxiosRequestConfig,
-): Promise<SwaggerResponse<ProjectDto>> => {
+): Promise<SwaggerResponse<ProjectAssetEditDto>> => {
   return Http.postRequest(
-    postProjectIdFile.key,
+    template(postProjectIdFile.key, { id }),
     undefined,
+    objToForm(requestBody),
     undefined,
-    undefined,
-    overrideConfig(_CONSTANT0, configOverride),
+    overrideConfig(_CONSTANT1, configOverride),
   );
 };
 
@@ -439,11 +542,12 @@ export const postProjectIdFile = (
 postProjectIdFile.key = "/project/{id}/file";
 
 export const postProjectIdFolder = (
+  id: string,
   requestBody: FolderBodyDto,
   configOverride?: AxiosRequestConfig,
-): Promise<SwaggerResponse<ProjectDto>> => {
+): Promise<SwaggerResponse<ProjectAssetEditDto>> => {
   return Http.postRequest(
-    postProjectIdFolder.key,
+    template(postProjectIdFolder.key, { id }),
     undefined,
     requestBody,
     undefined,
@@ -455,11 +559,12 @@ export const postProjectIdFolder = (
 postProjectIdFolder.key = "/project/{id}/folder";
 
 export const postProjectIdMember = (
+  id: string,
   requestBody: ProjectMemberBodyDto,
   configOverride?: AxiosRequestConfig,
 ): Promise<SwaggerResponse<ProjectDto>> => {
   return Http.postRequest(
-    postProjectIdMember.key,
+    template(postProjectIdMember.key, { id }),
     undefined,
     requestBody,
     undefined,
@@ -503,11 +608,12 @@ export const putChatId = (
 putChatId.key = "/chat/{id}";
 
 export const putProjectId = (
+  id: string,
   requestBody: ProjectEditBodyDto,
   configOverride?: AxiosRequestConfig,
 ): Promise<SwaggerResponse<ProjectDto>> => {
   return Http.putRequest(
-    putProjectId.key,
+    template(putProjectId.key, { id }),
     undefined,
     requestBody,
     undefined,
@@ -519,11 +625,13 @@ export const putProjectId = (
 putProjectId.key = "/project/{id}";
 
 export const putProjectIdFileFileId = (
+  id: string,
+  fileId: string,
   requestBody: FileEditBodyDto,
   configOverride?: AxiosRequestConfig,
-): Promise<SwaggerResponse<ProjectDto>> => {
+): Promise<SwaggerResponse<ProjectAssetEditDto>> => {
   return Http.putRequest(
-    putProjectIdFileFileId.key,
+    template(putProjectIdFileFileId.key, { id, fileId }),
     undefined,
     requestBody,
     undefined,
@@ -535,11 +643,13 @@ export const putProjectIdFileFileId = (
 putProjectIdFileFileId.key = "/project/{id}/file/{fileId}";
 
 export const putProjectIdFolderFolderId = (
+  id: string,
+  folderId: string,
   requestBody: FolderEditBodyDto,
   configOverride?: AxiosRequestConfig,
-): Promise<SwaggerResponse<ProjectDto>> => {
+): Promise<SwaggerResponse<ProjectAssetEditDto>> => {
   return Http.putRequest(
-    putProjectIdFolderFolderId.key,
+    template(putProjectIdFolderFolderId.key, { id, folderId }),
     undefined,
     requestBody,
     undefined,
@@ -550,12 +660,30 @@ export const putProjectIdFolderFolderId = (
 /** Key is end point string without base url */
 putProjectIdFolderFolderId.key = "/project/{id}/folder/{folderId}";
 
+export const putProjectIdMember = (
+  id: string,
+  requestBody: UpdateProjectMemberDto,
+  configOverride?: AxiosRequestConfig,
+): Promise<SwaggerResponse<ProjectDto>> => {
+  return Http.putRequest(
+    template(putProjectIdMember.key, { id }),
+    undefined,
+    requestBody,
+    undefined,
+    overrideConfig(_CONSTANT0, configOverride),
+  );
+};
+
+/** Key is end point string without base url */
+putProjectIdMember.key = "/project/{id}/member";
+
 export const putProjectIdStatus = (
+  id: string,
   requestBody: ProjectStatusBodyDto,
   configOverride?: AxiosRequestConfig,
 ): Promise<SwaggerResponse<ProjectDto>> => {
   return Http.putRequest(
-    putProjectIdStatus.key,
+    template(putProjectIdStatus.key, { id }),
     undefined,
     requestBody,
     undefined,
@@ -568,6 +696,12 @@ putProjectIdStatus.key = "/project/{id}/status";
 export const _CONSTANT0 = {
   headers: {
     "Content-Type": "application/json",
+    Accept: "application/json",
+  },
+};
+export const _CONSTANT1 = {
+  headers: {
+    "Content-Type": "multipart/form-data",
     Accept: "application/json",
   },
 };

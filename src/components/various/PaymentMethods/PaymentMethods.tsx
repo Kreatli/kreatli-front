@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { PAYMENT_PREFERENCES_ICONS, PAYMENT_PREFERENCES_LABELS } from '../../../constants/payment';
-import { Payment } from '../../../typings/payment';
+import { PAYMENT_PREFERENCES_ICONS, PAYMENT_PREFERENCES_LABELS } from '../../../constants/marketplace/payment';
+import { Payment } from '../../../typings/marketplace/payment';
 import { PaymentMethod } from './PaymentMethod';
 
 interface Props {

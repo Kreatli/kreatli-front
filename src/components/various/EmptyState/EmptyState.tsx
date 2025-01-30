@@ -14,9 +14,10 @@ interface Props {
     label: string;
     onClick?: () => void;
   };
+  children?: React.ReactNode;
 }
 
-export const EmptyState = ({ title, icon = 'emojiSad', text, link }: Props) => {
+export const EmptyState = ({ title, icon = 'inbox', text, link, children }: Props) => {
   return (
     <div className={styles.wrapper}>
       <Icon icon={icon} size={36} className={styles.icon} />
@@ -34,6 +35,7 @@ export const EmptyState = ({ title, icon = 'emojiSad', text, link }: Props) => {
           {link.label}
         </Button>
       )}
+      {children}
     </div>
   );
 };

@@ -5,8 +5,8 @@ import { useDropzone } from 'react-dropzone';
 import { Control, FieldPath, FieldValues, useController, UseControllerProps } from 'react-hook-form';
 
 import { useNotifications } from '../../../hooks/useNotifications';
-import { requestFileUpload } from '../../../services/upload';
-import { getErrorMessage } from '../../../utils/getErrorMessage';
+import { requestFileUpload } from '../../../services/marketplace/upload';
+import { getErrorMessage } from '../../../utils/marketplace/getErrorMessage';
 import { Icon } from '../Icon';
 import styles from './FileUploader.module.scss';
 
@@ -87,7 +87,7 @@ export const FileUploader = <T extends FieldValues>({ control, name, status, rul
 
   const hasFile = !!selectedFile || !!field.value;
   const icon = hasFile ? <Icon icon="file" /> : <Icon icon="upload" />;
-  const label = hasFile ? selectedFile?.name ?? field.value?.name : 'Upload file';
+  const label = hasFile ? (selectedFile?.name ?? field.value?.name) : 'Upload file';
 
   const isBordered = !isPending && (isDragActive || hasFile);
 

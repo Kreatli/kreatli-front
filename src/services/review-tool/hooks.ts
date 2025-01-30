@@ -24,22 +24,31 @@ import type {
   ChatResponseDto,
   FileEditBodyDto,
   FolderBodyDto,
+  FolderDto,
   FolderEditBodyDto,
   GetChatIdQueryParams,
   GetProjectIdLogsQueryParams,
   GetProjectsQueryParams,
+  ProjectArchivedAssetsDto,
+  ProjectAssetEditDto,
   ProjectBodyDto,
+  ProjectCoverDto,
   ProjectDto,
   ProjectEditBodyDto,
+  ProjectFileBodyDto,
+  ProjectInvitationDto,
   ProjectLogsDto,
   ProjectMemberBodyDto,
+  ProjectPathDto,
   ProjectStatusBodyDto,
+  ProjectsResponseDto,
   SignInBodyDto,
   SignInResultDto,
   SignUpBodyDto,
   SignUpResultDto,
   SignUpWithTokenBodyDto,
   TokenBodyDto,
+  UpdateProjectMemberDto,
   UserDto,
 } from "./types";
 import {
@@ -48,11 +57,16 @@ import {
   deleteProjectIdMember,
   deleteProjectIdMemberMemberId,
   get,
+  getAssetFolderId,
   getChatId,
+  getProject,
   getProjectId,
+  getProjectIdAssetsArchived,
   getProjectIdChats,
   getProjectIdLogs,
+  getProjectIdPaths,
   getProjects,
+  getUser,
   getUserId,
   postAuthSignIn,
   postAuthSignUp,
@@ -72,6 +86,7 @@ import {
   putProjectId,
   putProjectIdFileFileId,
   putProjectIdFolderFolderId,
+  putProjectIdMember,
   putProjectIdStatus,
 } from "./services";
 
@@ -99,13 +114,25 @@ type SwaggerTypescriptUseMutationOptionsVoid<TData, TExtra> =
   >;
 
 export const useDeleteProjectId = <TExtra,>(
-  options?: SwaggerTypescriptUseMutationOptionsVoid<ProjectDto, TExtra>,
+  options?: SwaggerTypescriptUseMutationOptions<
+    ProjectDto,
+    { id: string },
+    TExtra
+  >,
 ) => {
   return useMutation({
     mutationFn: (_o) => {
-      const { configOverride } = _o || {};
+      const {
+        id,
 
-      return deleteProjectId(configOverride);
+        configOverride,
+      } = _o || {};
+
+      return deleteProjectId(
+        id,
+
+        configOverride,
+      );
     },
     ...options,
   });
@@ -114,19 +141,21 @@ export const useDeleteProjectId = <TExtra,>(
 export const useDeleteProjectIdAssets = <TExtra,>(
   options?: SwaggerTypescriptUseMutationOptions<
     ProjectDto,
-    { requestBody: AssetRemoveBodyDto },
+    { id: string; requestBody: AssetRemoveBodyDto },
     TExtra
   >,
 ) => {
   return useMutation({
     mutationFn: (_o) => {
       const {
+        id,
         requestBody,
 
         configOverride,
       } = _o || {};
 
       return deleteProjectIdAssets(
+        id,
         requestBody,
 
         configOverride,
@@ -137,26 +166,52 @@ export const useDeleteProjectIdAssets = <TExtra,>(
 };
 
 export const useDeleteProjectIdMember = <TExtra,>(
-  options?: SwaggerTypescriptUseMutationOptionsVoid<ProjectDto, TExtra>,
+  options?: SwaggerTypescriptUseMutationOptions<
+    ProjectDto,
+    { id: string },
+    TExtra
+  >,
 ) => {
   return useMutation({
     mutationFn: (_o) => {
-      const { configOverride } = _o || {};
+      const {
+        id,
 
-      return deleteProjectIdMember(configOverride);
+        configOverride,
+      } = _o || {};
+
+      return deleteProjectIdMember(
+        id,
+
+        configOverride,
+      );
     },
     ...options,
   });
 };
 
 export const useDeleteProjectIdMemberMemberId = <TExtra,>(
-  options?: SwaggerTypescriptUseMutationOptionsVoid<ProjectDto, TExtra>,
+  options?: SwaggerTypescriptUseMutationOptions<
+    ProjectDto,
+    { id: string; memberId: string },
+    TExtra
+  >,
 ) => {
   return useMutation({
     mutationFn: (_o) => {
-      const { configOverride } = _o || {};
+      const {
+        id,
+        memberId,
 
-      return deleteProjectIdMemberMemberId(configOverride);
+        configOverride,
+      } = _o || {};
+
+      return deleteProjectIdMemberMemberId(
+        id,
+        memberId,
+
+        configOverride,
+      );
     },
     ...options,
   });
@@ -185,6 +240,56 @@ useGet.prefetch = (
   configOverride?: AxiosRequestConfig,
 ) => {
   const { key, fun } = useGet.info(configOverride);
+
+  return client.getQueryData(key)
+    ? Promise.resolve()
+    : client.prefetchQuery({
+        queryKey: key,
+        queryFn: () => fun(),
+        ...options,
+      });
+};
+export const useGetAssetFolderId = (
+  id: string,
+  options?: SwaggerTypescriptUseQueryOptions<FolderDto>,
+  configOverride?: AxiosRequestConfig,
+) => {
+  const { key, fun } = useGetAssetFolderId.info(
+    id,
+
+    configOverride,
+  );
+  return useQuery({
+    queryKey: key,
+    queryFn: fun,
+    ...options,
+  });
+};
+useGetAssetFolderId.info = (
+  id: string,
+  configOverride?: AxiosRequestConfig,
+) => {
+  return {
+    key: [getAssetFolderId.key, id] as QueryKey,
+    fun: () =>
+      getAssetFolderId(
+        id,
+
+        configOverride,
+      ),
+  };
+};
+useGetAssetFolderId.prefetch = (
+  client: QueryClient,
+  id: string,
+  options?: SwaggerTypescriptUseQueryOptions<FolderDto>,
+  configOverride?: AxiosRequestConfig,
+) => {
+  const { key, fun } = useGetAssetFolderId.info(
+    id,
+
+    configOverride,
+  );
 
   return client.getQueryData(key)
     ? Promise.resolve()
@@ -251,29 +356,126 @@ useGetChatId.prefetch = (
         ...options,
       });
 };
-export const useGetProjectId = (
-  options?: SwaggerTypescriptUseQueryOptions<ProjectDto>,
+export const useGetProject = (
+  options?: SwaggerTypescriptUseQueryOptions<ProjectInvitationDto>,
   configOverride?: AxiosRequestConfig,
 ) => {
-  const { key, fun } = useGetProjectId.info(configOverride);
+  const { key, fun } = useGetProject.info(configOverride);
   return useQuery({
     queryKey: key,
     queryFn: fun,
     ...options,
   });
 };
-useGetProjectId.info = (configOverride?: AxiosRequestConfig) => {
+useGetProject.info = (configOverride?: AxiosRequestConfig) => {
   return {
-    key: [getProjectId.key] as QueryKey,
-    fun: () => getProjectId(configOverride),
+    key: [getProject.key] as QueryKey,
+    fun: () => getProject(configOverride),
+  };
+};
+useGetProject.prefetch = (
+  client: QueryClient,
+  options?: SwaggerTypescriptUseQueryOptions<ProjectInvitationDto>,
+  configOverride?: AxiosRequestConfig,
+) => {
+  const { key, fun } = useGetProject.info(configOverride);
+
+  return client.getQueryData(key)
+    ? Promise.resolve()
+    : client.prefetchQuery({
+        queryKey: key,
+        queryFn: () => fun(),
+        ...options,
+      });
+};
+export const useGetProjectId = (
+  id: string,
+  options?: SwaggerTypescriptUseQueryOptions<ProjectDto>,
+  configOverride?: AxiosRequestConfig,
+) => {
+  const { key, fun } = useGetProjectId.info(
+    id,
+
+    configOverride,
+  );
+  return useQuery({
+    queryKey: key,
+    queryFn: fun,
+    ...options,
+  });
+};
+useGetProjectId.info = (id: string, configOverride?: AxiosRequestConfig) => {
+  return {
+    key: [getProjectId.key, id] as QueryKey,
+    fun: () =>
+      getProjectId(
+        id,
+
+        configOverride,
+      ),
   };
 };
 useGetProjectId.prefetch = (
   client: QueryClient,
+  id: string,
   options?: SwaggerTypescriptUseQueryOptions<ProjectDto>,
   configOverride?: AxiosRequestConfig,
 ) => {
-  const { key, fun } = useGetProjectId.info(configOverride);
+  const { key, fun } = useGetProjectId.info(
+    id,
+
+    configOverride,
+  );
+
+  return client.getQueryData(key)
+    ? Promise.resolve()
+    : client.prefetchQuery({
+        queryKey: key,
+        queryFn: () => fun(),
+        ...options,
+      });
+};
+export const useGetProjectIdAssetsArchived = (
+  id: string,
+  options?: SwaggerTypescriptUseQueryOptions<ProjectArchivedAssetsDto>,
+  configOverride?: AxiosRequestConfig,
+) => {
+  const { key, fun } = useGetProjectIdAssetsArchived.info(
+    id,
+
+    configOverride,
+  );
+  return useQuery({
+    queryKey: key,
+    queryFn: fun,
+    ...options,
+  });
+};
+useGetProjectIdAssetsArchived.info = (
+  id: string,
+  configOverride?: AxiosRequestConfig,
+) => {
+  return {
+    key: [getProjectIdAssetsArchived.key, id] as QueryKey,
+    fun: () =>
+      getProjectIdAssetsArchived(
+        id,
+
+        configOverride,
+      ),
+  };
+};
+useGetProjectIdAssetsArchived.prefetch = (
+  client: QueryClient,
+  id: string,
+  options?: SwaggerTypescriptUseQueryOptions<ProjectArchivedAssetsDto>,
+  configOverride?: AxiosRequestConfig,
+) => {
+  const { key, fun } = useGetProjectIdAssetsArchived.info(
+    id,
+
+    configOverride,
+  );
 
   return client.getQueryData(key)
     ? Promise.resolve()
@@ -284,28 +486,46 @@ useGetProjectId.prefetch = (
       });
 };
 export const useGetProjectIdChats = (
+  id: string,
   options?: SwaggerTypescriptUseQueryOptions<ChatDto[]>,
   configOverride?: AxiosRequestConfig,
 ) => {
-  const { key, fun } = useGetProjectIdChats.info(configOverride);
+  const { key, fun } = useGetProjectIdChats.info(
+    id,
+
+    configOverride,
+  );
   return useQuery({
     queryKey: key,
     queryFn: fun,
     ...options,
   });
 };
-useGetProjectIdChats.info = (configOverride?: AxiosRequestConfig) => {
+useGetProjectIdChats.info = (
+  id: string,
+  configOverride?: AxiosRequestConfig,
+) => {
   return {
-    key: [getProjectIdChats.key] as QueryKey,
-    fun: () => getProjectIdChats(configOverride),
+    key: [getProjectIdChats.key, id] as QueryKey,
+    fun: () =>
+      getProjectIdChats(
+        id,
+
+        configOverride,
+      ),
   };
 };
 useGetProjectIdChats.prefetch = (
   client: QueryClient,
+  id: string,
   options?: SwaggerTypescriptUseQueryOptions<ChatDto[]>,
   configOverride?: AxiosRequestConfig,
 ) => {
-  const { key, fun } = useGetProjectIdChats.info(configOverride);
+  const { key, fun } = useGetProjectIdChats.info(
+    id,
+
+    configOverride,
+  );
 
   return client.getQueryData(key)
     ? Promise.resolve()
@@ -316,11 +536,17 @@ useGetProjectIdChats.prefetch = (
       });
 };
 export const useGetProjectIdLogs = (
-  queryParams: GetProjectIdLogsQueryParams,
+  id: string,
+  queryParams?: GetProjectIdLogsQueryParams,
   options?: SwaggerTypescriptUseQueryOptions<ProjectLogsDto>,
   configOverride?: AxiosRequestConfig,
 ) => {
-  const { key, fun } = useGetProjectIdLogs.info(queryParams, configOverride);
+  const { key, fun } = useGetProjectIdLogs.info(
+    id,
+
+    queryParams,
+    configOverride,
+  );
   return useQuery({
     queryKey: key,
     queryFn: fun,
@@ -328,13 +554,16 @@ export const useGetProjectIdLogs = (
   });
 };
 useGetProjectIdLogs.info = (
-  queryParams: GetProjectIdLogsQueryParams,
+  id: string,
+  queryParams?: GetProjectIdLogsQueryParams,
   configOverride?: AxiosRequestConfig,
 ) => {
   return {
-    key: [getProjectIdLogs.key, queryParams] as QueryKey,
+    key: [getProjectIdLogs.key, id, queryParams] as QueryKey,
     fun: () =>
       getProjectIdLogs(
+        id,
+
         queryParams,
 
         configOverride,
@@ -343,11 +572,67 @@ useGetProjectIdLogs.info = (
 };
 useGetProjectIdLogs.prefetch = (
   client: QueryClient,
-  queryParams: GetProjectIdLogsQueryParams,
+  id: string,
+  queryParams?: GetProjectIdLogsQueryParams,
   options?: SwaggerTypescriptUseQueryOptions<ProjectLogsDto>,
   configOverride?: AxiosRequestConfig,
 ) => {
-  const { key, fun } = useGetProjectIdLogs.info(queryParams, configOverride);
+  const { key, fun } = useGetProjectIdLogs.info(
+    id,
+
+    queryParams,
+    configOverride,
+  );
+
+  return client.getQueryData(key)
+    ? Promise.resolve()
+    : client.prefetchQuery({
+        queryKey: key,
+        queryFn: () => fun(),
+        ...options,
+      });
+};
+export const useGetProjectIdPaths = (
+  id: string,
+  options?: SwaggerTypescriptUseQueryOptions<ProjectPathDto[]>,
+  configOverride?: AxiosRequestConfig,
+) => {
+  const { key, fun } = useGetProjectIdPaths.info(
+    id,
+
+    configOverride,
+  );
+  return useQuery({
+    queryKey: key,
+    queryFn: fun,
+    ...options,
+  });
+};
+useGetProjectIdPaths.info = (
+  id: string,
+  configOverride?: AxiosRequestConfig,
+) => {
+  return {
+    key: [getProjectIdPaths.key, id] as QueryKey,
+    fun: () =>
+      getProjectIdPaths(
+        id,
+
+        configOverride,
+      ),
+  };
+};
+useGetProjectIdPaths.prefetch = (
+  client: QueryClient,
+  id: string,
+  options?: SwaggerTypescriptUseQueryOptions<ProjectPathDto[]>,
+  configOverride?: AxiosRequestConfig,
+) => {
+  const { key, fun } = useGetProjectIdPaths.info(
+    id,
+
+    configOverride,
+  );
 
   return client.getQueryData(key)
     ? Promise.resolve()
@@ -359,7 +644,7 @@ useGetProjectIdLogs.prefetch = (
 };
 export const useGetProjects = (
   queryParams?: GetProjectsQueryParams,
-  options?: SwaggerTypescriptUseQueryOptions<any>,
+  options?: SwaggerTypescriptUseQueryOptions<ProjectsResponseDto>,
   configOverride?: AxiosRequestConfig,
 ) => {
   const { key, fun } = useGetProjects.info(queryParams, configOverride);
@@ -386,7 +671,7 @@ useGetProjects.info = (
 useGetProjects.prefetch = (
   client: QueryClient,
   queryParams?: GetProjectsQueryParams,
-  options?: SwaggerTypescriptUseQueryOptions<any>,
+  options?: SwaggerTypescriptUseQueryOptions<ProjectsResponseDto>,
   configOverride?: AxiosRequestConfig,
 ) => {
   const { key, fun } = useGetProjects.info(queryParams, configOverride);
@@ -399,29 +684,76 @@ useGetProjects.prefetch = (
         ...options,
       });
 };
-export const useGetUserId = (
+export const useGetUser = (
   options?: SwaggerTypescriptUseQueryOptions<UserDto>,
   configOverride?: AxiosRequestConfig,
 ) => {
-  const { key, fun } = useGetUserId.info(configOverride);
+  const { key, fun } = useGetUser.info(configOverride);
   return useQuery({
     queryKey: key,
     queryFn: fun,
     ...options,
   });
 };
-useGetUserId.info = (configOverride?: AxiosRequestConfig) => {
+useGetUser.info = (configOverride?: AxiosRequestConfig) => {
   return {
-    key: [getUserId.key] as QueryKey,
-    fun: () => getUserId(configOverride),
+    key: [getUser.key] as QueryKey,
+    fun: () => getUser(configOverride),
   };
 };
-useGetUserId.prefetch = (
+useGetUser.prefetch = (
   client: QueryClient,
   options?: SwaggerTypescriptUseQueryOptions<UserDto>,
   configOverride?: AxiosRequestConfig,
 ) => {
-  const { key, fun } = useGetUserId.info(configOverride);
+  const { key, fun } = useGetUser.info(configOverride);
+
+  return client.getQueryData(key)
+    ? Promise.resolve()
+    : client.prefetchQuery({
+        queryKey: key,
+        queryFn: () => fun(),
+        ...options,
+      });
+};
+export const useGetUserId = (
+  id: string,
+  options?: SwaggerTypescriptUseQueryOptions<UserDto>,
+  configOverride?: AxiosRequestConfig,
+) => {
+  const { key, fun } = useGetUserId.info(
+    id,
+
+    configOverride,
+  );
+  return useQuery({
+    queryKey: key,
+    queryFn: fun,
+    ...options,
+  });
+};
+useGetUserId.info = (id: string, configOverride?: AxiosRequestConfig) => {
+  return {
+    key: [getUserId.key, id] as QueryKey,
+    fun: () =>
+      getUserId(
+        id,
+
+        configOverride,
+      ),
+  };
+};
+useGetUserId.prefetch = (
+  client: QueryClient,
+  id: string,
+  options?: SwaggerTypescriptUseQueryOptions<UserDto>,
+  configOverride?: AxiosRequestConfig,
+) => {
+  const { key, fun } = useGetUserId.info(
+    id,
+
+    configOverride,
+  );
 
   return client.getQueryData(key)
     ? Promise.resolve()
@@ -583,20 +915,22 @@ export const usePostProject = <TExtra,>(
 
 export const usePostProjectIdAssetsArchive = <TExtra,>(
   options?: SwaggerTypescriptUseMutationOptions<
-    ProjectDto,
-    { requestBody: AssetRemoveBodyDto },
+    ProjectAssetEditDto,
+    { id: string; requestBody: AssetRemoveBodyDto },
     TExtra
   >,
 ) => {
   return useMutation({
     mutationFn: (_o) => {
       const {
+        id,
         requestBody,
 
         configOverride,
       } = _o || {};
 
       return postProjectIdAssetsArchive(
+        id,
         requestBody,
 
         configOverride,
@@ -609,19 +943,21 @@ export const usePostProjectIdAssetsArchive = <TExtra,>(
 export const usePostProjectIdAssetsRestore = <TExtra,>(
   options?: SwaggerTypescriptUseMutationOptions<
     ProjectDto,
-    { requestBody: AssetRemoveBodyDto },
+    { id: string; requestBody: AssetRemoveBodyDto },
     TExtra
   >,
 ) => {
   return useMutation({
     mutationFn: (_o) => {
       const {
+        id,
         requestBody,
 
         configOverride,
       } = _o || {};
 
       return postProjectIdAssetsRestore(
+        id,
         requestBody,
 
         configOverride,
@@ -634,19 +970,21 @@ export const usePostProjectIdAssetsRestore = <TExtra,>(
 export const usePostProjectIdChat = <TExtra,>(
   options?: SwaggerTypescriptUseMutationOptions<
     any,
-    { requestBody: ChatBodyDto },
+    { id: string; requestBody: ChatBodyDto },
     TExtra
   >,
 ) => {
   return useMutation({
     mutationFn: (_o) => {
       const {
+        id,
         requestBody,
 
         configOverride,
       } = _o || {};
 
       return postProjectIdChat(
+        id,
         requestBody,
 
         configOverride,
@@ -657,26 +995,54 @@ export const usePostProjectIdChat = <TExtra,>(
 };
 
 export const usePostProjectIdCover = <TExtra,>(
-  options?: SwaggerTypescriptUseMutationOptionsVoid<ProjectDto, TExtra>,
+  options?: SwaggerTypescriptUseMutationOptions<
+    ProjectDto,
+    { id: string; requestBody: ProjectCoverDto },
+    TExtra
+  >,
 ) => {
   return useMutation({
     mutationFn: (_o) => {
-      const { configOverride } = _o || {};
+      const {
+        id,
+        requestBody,
 
-      return postProjectIdCover(configOverride);
+        configOverride,
+      } = _o || {};
+
+      return postProjectIdCover(
+        id,
+        requestBody,
+
+        configOverride,
+      );
     },
     ...options,
   });
 };
 
 export const usePostProjectIdFile = <TExtra,>(
-  options?: SwaggerTypescriptUseMutationOptionsVoid<ProjectDto, TExtra>,
+  options?: SwaggerTypescriptUseMutationOptions<
+    ProjectAssetEditDto,
+    { id: string; requestBody: ProjectFileBodyDto },
+    TExtra
+  >,
 ) => {
   return useMutation({
     mutationFn: (_o) => {
-      const { configOverride } = _o || {};
+      const {
+        id,
+        requestBody,
 
-      return postProjectIdFile(configOverride);
+        configOverride,
+      } = _o || {};
+
+      return postProjectIdFile(
+        id,
+        requestBody,
+
+        configOverride,
+      );
     },
     ...options,
   });
@@ -684,20 +1050,22 @@ export const usePostProjectIdFile = <TExtra,>(
 
 export const usePostProjectIdFolder = <TExtra,>(
   options?: SwaggerTypescriptUseMutationOptions<
-    ProjectDto,
-    { requestBody: FolderBodyDto },
+    ProjectAssetEditDto,
+    { id: string; requestBody: FolderBodyDto },
     TExtra
   >,
 ) => {
   return useMutation({
     mutationFn: (_o) => {
       const {
+        id,
         requestBody,
 
         configOverride,
       } = _o || {};
 
       return postProjectIdFolder(
+        id,
         requestBody,
 
         configOverride,
@@ -710,19 +1078,21 @@ export const usePostProjectIdFolder = <TExtra,>(
 export const usePostProjectIdMember = <TExtra,>(
   options?: SwaggerTypescriptUseMutationOptions<
     ProjectDto,
-    { requestBody: ProjectMemberBodyDto },
+    { id: string; requestBody: ProjectMemberBodyDto },
     TExtra
   >,
 ) => {
   return useMutation({
     mutationFn: (_o) => {
       const {
+        id,
         requestBody,
 
         configOverride,
       } = _o || {};
 
       return postProjectIdMember(
+        id,
         requestBody,
 
         configOverride,
@@ -775,19 +1145,21 @@ export const usePutChatId = <TExtra,>(
 export const usePutProjectId = <TExtra,>(
   options?: SwaggerTypescriptUseMutationOptions<
     ProjectDto,
-    { requestBody: ProjectEditBodyDto },
+    { id: string; requestBody: ProjectEditBodyDto },
     TExtra
   >,
 ) => {
   return useMutation({
     mutationFn: (_o) => {
       const {
+        id,
         requestBody,
 
         configOverride,
       } = _o || {};
 
       return putProjectId(
+        id,
         requestBody,
 
         configOverride,
@@ -799,20 +1171,24 @@ export const usePutProjectId = <TExtra,>(
 
 export const usePutProjectIdFileFileId = <TExtra,>(
   options?: SwaggerTypescriptUseMutationOptions<
-    ProjectDto,
-    { requestBody: FileEditBodyDto },
+    ProjectAssetEditDto,
+    { id: string; fileId: string; requestBody: FileEditBodyDto },
     TExtra
   >,
 ) => {
   return useMutation({
     mutationFn: (_o) => {
       const {
+        id,
+        fileId,
         requestBody,
 
         configOverride,
       } = _o || {};
 
       return putProjectIdFileFileId(
+        id,
+        fileId,
         requestBody,
 
         configOverride,
@@ -824,20 +1200,51 @@ export const usePutProjectIdFileFileId = <TExtra,>(
 
 export const usePutProjectIdFolderFolderId = <TExtra,>(
   options?: SwaggerTypescriptUseMutationOptions<
-    ProjectDto,
-    { requestBody: FolderEditBodyDto },
+    ProjectAssetEditDto,
+    { id: string; folderId: string; requestBody: FolderEditBodyDto },
     TExtra
   >,
 ) => {
   return useMutation({
     mutationFn: (_o) => {
       const {
+        id,
+        folderId,
         requestBody,
 
         configOverride,
       } = _o || {};
 
       return putProjectIdFolderFolderId(
+        id,
+        folderId,
+        requestBody,
+
+        configOverride,
+      );
+    },
+    ...options,
+  });
+};
+
+export const usePutProjectIdMember = <TExtra,>(
+  options?: SwaggerTypescriptUseMutationOptions<
+    ProjectDto,
+    { id: string; requestBody: UpdateProjectMemberDto },
+    TExtra
+  >,
+) => {
+  return useMutation({
+    mutationFn: (_o) => {
+      const {
+        id,
+        requestBody,
+
+        configOverride,
+      } = _o || {};
+
+      return putProjectIdMember(
+        id,
         requestBody,
 
         configOverride,
@@ -850,19 +1257,21 @@ export const usePutProjectIdFolderFolderId = <TExtra,>(
 export const usePutProjectIdStatus = <TExtra,>(
   options?: SwaggerTypescriptUseMutationOptions<
     ProjectDto,
-    { requestBody: ProjectStatusBodyDto },
+    { id: string; requestBody: ProjectStatusBodyDto },
     TExtra
   >,
 ) => {
   return useMutation({
     mutationFn: (_o) => {
       const {
+        id,
         requestBody,
 
         configOverride,
       } = _o || {};
 
       return putProjectIdStatus(
+        id,
         requestBody,
 
         configOverride,

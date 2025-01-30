@@ -8,8 +8,8 @@ import { Control, FieldPath, FieldValues, useController, UseControllerProps } fr
 import ReactCrop, { centerCrop, Crop, makeAspectCrop } from 'react-image-crop';
 
 import { useNotifications } from '../../../hooks/useNotifications';
-import { requestImageUpload } from '../../../services/upload';
-import { getErrorMessage } from '../../../utils/getErrorMessage';
+import { requestImageUpload } from '../../../services/marketplace/upload';
+import { getErrorMessage } from '../../../utils/marketplace/getErrorMessage';
 import { Icon } from '../Icon';
 import styles from './AvatarUploader.module.scss';
 
@@ -21,13 +21,8 @@ interface Props<T extends FieldValues> {
   rules?: UseControllerProps<T>['rules'];
 }
 
-const centerAspectCrop = (width: number, height: number) => (
-  centerCrop(
-    makeAspectCrop({ unit: '%', width: 70 }, 1, width, height),
-    width,
-    height,
-  )
-);
+const centerAspectCrop = (width: number, height: number) =>
+  centerCrop(makeAspectCrop({ unit: '%', width: 70 }, 1, width, height), width, height);
 
 const getCropDimensions = (crop: Crop | undefined, originalDimensions: { width: number; height: number }) => {
   return {
@@ -64,26 +59,29 @@ export const AvatarUploader = <T extends FieldValues>({ control, name, rules, st
     };
   }, [selectedFile]);
 
-  const onDrop = React.useCallback((selectedFiles: File[]) => {
-    const file = selectedFiles[0];
+  const onDrop = React.useCallback(
+    (selectedFiles: File[]) => {
+      const file = selectedFiles[0];
 
-    if (!file) {
-      return;
-    }
+      if (!file) {
+        return;
+      }
 
-    if ((file.size / (1024 * 1024)) >= 5) {
-      pushNotification({
-        color: 'warning',
-        icon: 'warning',
-        message: 'The maximum file size for images is 5 MB',
-      });
+      if (file.size / (1024 * 1024) >= 5) {
+        pushNotification({
+          color: 'warning',
+          icon: 'warning',
+          message: 'The maximum file size for images is 5 MB',
+        });
 
-      return;
-    }
+        return;
+      }
 
-    setSelectedFile(file);
-    onOpen();
-  }, [onOpen, pushNotification]);
+      setSelectedFile(file);
+      onOpen();
+    },
+    [onOpen, pushNotification],
+  );
 
   const handleImageLoad = React.useCallback((event: React.SyntheticEvent<HTMLImageElement>) => {
     const { naturalWidth: width, naturalHeight: height } = event.currentTarget;
@@ -165,32 +163,20 @@ export const AvatarUploader = <T extends FieldValues>({ control, name, rules, st
       <div className={classNames} {...getRootProps()}>
         <input {...getInputProps()} />
         {uploadedImageUrl && (
-          <Image
-            src={uploadedImageUrl}
-            className={styles.image}
-            fill
-            alt="Avatar"
-            onLoad={handleUploadImageLoad}
-          />
+          <Image src={uploadedImageUrl} className={styles.image} fill alt="Avatar" onLoad={handleUploadImageLoad} />
         )}
-        {isLoading
-          ? (
-            <span className={styles.placeholder}>
-              <Spinner color="secondary" />
-            </span>
-          ) : (
-            <span className={styles.placeholder}>
-              <p className="text-xs text-current">{uploadedImageUrl ? `Change ${label}` : `Upload ${label}`}</p>
-              <Icon icon="addImage" size={20} />
-            </span>
-          )}
+        {isLoading ? (
+          <span className={styles.placeholder}>
+            <Spinner color="secondary" />
+          </span>
+        ) : (
+          <span className={styles.placeholder}>
+            <p className="text-xs text-current">{uploadedImageUrl ? `Change ${label}` : `Upload ${label}`}</p>
+            <Icon icon="addImage" size={20} />
+          </span>
+        )}
       </div>
-      <Modal
-        isOpen={isOpen}
-        placement="center"
-        backdrop="blur"
-        isDismissable={!isLoading}
-      >
+      <Modal isOpen={isOpen} placement="center" backdrop="blur" isDismissable={!isLoading}>
         <ModalContent>
           <ReactCrop
             aspect={1}

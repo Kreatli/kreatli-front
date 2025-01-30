@@ -8,10 +8,33 @@
         "responses": { "200": { "description": "" } }
       }
     },
+    "/user": {
+      "get": {
+        "operationId": "UserController_getUser",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/UserDto" }
+              }
+            }
+          }
+        }
+      }
+    },
     "/user/{id}": {
       "get": {
         "operationId": "UserController_getUserById",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": { "type": "string" }
+          }
+        ],
         "responses": {
           "200": {
             "description": "",
@@ -184,12 +207,35 @@
             }
           }
         }
+      },
+      "get": {
+        "operationId": "ProjectController_getProject",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProjectInvitationDto"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/project/{id}": {
       "put": {
         "operationId": "ProjectController_editProject",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": { "type": "string" }
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -210,8 +256,15 @@
         }
       },
       "get": {
-        "operationId": "ProjectController_getProject",
-        "parameters": [],
+        "operationId": "ProjectController_getProjectById",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": { "type": "string" }
+          }
+        ],
         "responses": {
           "200": {
             "description": "",
@@ -225,7 +278,14 @@
       },
       "delete": {
         "operationId": "ProjectController_removeProject",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": { "type": "string" }
+          }
+        ],
         "responses": {
           "200": {
             "description": "",
@@ -241,7 +301,22 @@
     "/project/{id}/cover": {
       "post": {
         "operationId": "ProjectController_updateProjectCover",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": { "type": "string" }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": { "$ref": "#/components/schemas/ProjectCoverDto" }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "",
@@ -257,7 +332,14 @@
     "/project/{id}/status": {
       "put": {
         "operationId": "ProjectController_updateProjectStatus",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": { "type": "string" }
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -281,7 +363,14 @@
     "/project/{id}/member": {
       "post": {
         "operationId": "ProjectController_addProjectMember",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": { "type": "string" }
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -301,9 +390,47 @@
           }
         }
       },
+      "put": {
+        "operationId": "ProjectController_updateProjectMember",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": { "type": "string" }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateProjectMemberDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ProjectDto" }
+              }
+            }
+          }
+        }
+      },
       "delete": {
         "operationId": "ProjectController_leaveProject",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": { "type": "string" }
+          }
+        ],
         "responses": {
           "200": {
             "description": "",
@@ -319,7 +446,20 @@
     "/project/{id}/member/{memberId}": {
       "delete": {
         "operationId": "ProjectController_removeProjectMember",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "memberId",
+            "required": true,
+            "in": "path",
+            "schema": { "type": "string" }
+          }
+        ],
         "responses": {
           "200": {
             "description": "",
@@ -335,13 +475,28 @@
     "/project/{id}/file": {
       "post": {
         "operationId": "ProjectController_uploadFile",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": { "type": "string" }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": { "$ref": "#/components/schemas/ProjectFileBodyDto" }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "",
             "content": {
               "application/json": {
-                "schema": { "$ref": "#/components/schemas/ProjectDto" }
+                "schema": { "$ref": "#/components/schemas/ProjectAssetEditDto" }
               }
             }
           }
@@ -351,7 +506,20 @@
     "/project/{id}/file/{fileId}": {
       "put": {
         "operationId": "ProjectController_editFile",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "fileId",
+            "required": true,
+            "in": "path",
+            "schema": { "type": "string" }
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -365,7 +533,7 @@
             "description": "",
             "content": {
               "application/json": {
-                "schema": { "$ref": "#/components/schemas/ProjectDto" }
+                "schema": { "$ref": "#/components/schemas/ProjectAssetEditDto" }
               }
             }
           }
@@ -375,7 +543,14 @@
     "/project/{id}/folder": {
       "post": {
         "operationId": "ProjectController_createFolder",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": { "type": "string" }
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -389,7 +564,7 @@
             "description": "",
             "content": {
               "application/json": {
-                "schema": { "$ref": "#/components/schemas/ProjectDto" }
+                "schema": { "$ref": "#/components/schemas/ProjectAssetEditDto" }
               }
             }
           }
@@ -399,7 +574,20 @@
     "/project/{id}/folder/{folderId}": {
       "put": {
         "operationId": "ProjectController_editFolder",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "folderId",
+            "required": true,
+            "in": "path",
+            "schema": { "type": "string" }
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -413,7 +601,33 @@
             "description": "",
             "content": {
               "application/json": {
-                "schema": { "$ref": "#/components/schemas/ProjectDto" }
+                "schema": { "$ref": "#/components/schemas/ProjectAssetEditDto" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/project/{id}/paths": {
+      "get": {
+        "operationId": "ProjectController_getProjectPaths",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/ProjectPathDto" }
+                }
               }
             }
           }
@@ -423,7 +637,14 @@
     "/project/{id}/assets/archive": {
       "post": {
         "operationId": "ProjectController_archiveAssets",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": { "type": "string" }
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -437,7 +658,32 @@
             "description": "",
             "content": {
               "application/json": {
-                "schema": { "$ref": "#/components/schemas/ProjectDto" }
+                "schema": { "$ref": "#/components/schemas/ProjectAssetEditDto" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/project/{id}/assets/archived": {
+      "get": {
+        "operationId": "ProjectController_getArchivedAssets",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProjectArchivedAssetsDto"
+                }
               }
             }
           }
@@ -447,7 +693,14 @@
     "/project/{id}/assets/restore": {
       "post": {
         "operationId": "ProjectController_restoreAssets",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": { "type": "string" }
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -471,7 +724,14 @@
     "/project/{id}/assets": {
       "delete": {
         "operationId": "ProjectController_removeAssets",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": { "type": "string" }
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -495,7 +755,14 @@
     "/project/{id}/chat": {
       "post": {
         "operationId": "ProjectController_createChat",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": { "type": "string" }
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -519,7 +786,14 @@
     "/project/{id}/chats": {
       "get": {
         "operationId": "ProjectController_getProjectChats",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": { "type": "string" }
+          }
+        ],
         "responses": {
           "200": {
             "description": "",
@@ -540,32 +814,38 @@
         "operationId": "ProjectController_getProjectLogs",
         "parameters": [
           {
-            "name": "offset",
+            "name": "id",
             "required": true,
+            "in": "path",
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "offset",
+            "required": false,
             "in": "query",
             "schema": { "type": "number" }
           },
           {
             "name": "limit",
-            "required": true,
+            "required": false,
             "in": "query",
             "schema": { "type": "number" }
           },
           {
             "name": "userIds",
-            "required": true,
+            "required": false,
             "in": "query",
             "schema": { "type": "string" }
           },
           {
             "name": "createAtFrom",
-            "required": true,
+            "required": false,
             "in": "query",
             "schema": { "type": "string" }
           },
           {
             "name": "createAtTo",
-            "required": true,
+            "required": false,
             "in": "query",
             "schema": { "type": "string" }
           }
@@ -602,7 +882,16 @@
             "schema": { "type": "string" }
           }
         ],
-        "responses": { "200": { "description": "" } }
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ProjectsResponseDto" }
+              }
+            }
+          }
+        }
       }
     },
     "/chat/{id}": {
@@ -668,6 +957,29 @@
           }
         }
       }
+    },
+    "/asset/folder/{id}": {
+      "get": {
+        "operationId": "AssetController_getFolder",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/FolderDto" }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "info": {
@@ -719,18 +1031,14 @@
         "properties": {
           "email": { "type": "string" },
           "password": { "type": "string" },
-          "name": { "type": "string" },
-          "isEmailVerified": { "type": "boolean" }
+          "name": { "type": "string" }
         },
         "required": ["email", "password", "name"]
       },
       "SignUpResultDto": {
         "type": "object",
-        "properties": {
-          "link": { "type": "string" },
-          "user": { "$ref": "#/components/schemas/UserDto" }
-        },
-        "required": ["link", "user"]
+        "properties": { "user": { "$ref": "#/components/schemas/UserDto" } },
+        "required": ["user"]
       },
       "SignUpWithTokenBodyDto": {
         "type": "object",
@@ -769,7 +1077,7 @@
           "description": { "type": "string" },
           "members": { "type": "array", "items": { "type": "string" } }
         },
-        "required": ["name", "description", "members"]
+        "required": ["name", "description"]
       },
       "ProjectFileDto": {
         "type": "object",
@@ -865,7 +1173,10 @@
         "type": "object",
         "properties": {
           "id": { "type": "string" },
-          "user": { "$ref": "#/components/schemas/UserDto" },
+          "user": {
+            "nullable": true,
+            "allOf": [{ "$ref": "#/components/schemas/UserDto" }]
+          },
           "status": {
             "type": "string",
             "enum": ["invited", "joined", "removed", "left"]
@@ -939,12 +1250,38 @@
           "name": { "type": "string" },
           "description": { "type": "string" },
           "assets": { "type": "array", "items": { "type": "string" } }
+        }
+      },
+      "ProjectInvitationDto": {
+        "type": "object",
+        "properties": {
+          "email": { "type": "string" },
+          "projectId": { "type": "string" },
+          "projectName": { "type": "string" },
+          "projectCover": { "$ref": "#/components/schemas/InterfaceImageDto" }
         },
-        "required": ["name", "description", "assets"]
+        "required": ["email", "projectId", "projectName"]
+      },
+      "Blob": { "type": "object", "properties": {} },
+      "ProjectCoverDto": {
+        "type": "object",
+        "properties": {
+          "cover": {
+            "format": "binary",
+            "nullable": true,
+            "allOf": [{ "$ref": "#/components/schemas/Blob" }]
+          }
+        },
+        "required": ["cover"]
       },
       "ProjectStatusBodyDto": {
         "type": "object",
-        "properties": { "status": { "type": "string" } },
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": ["active", "completed", "archived"]
+          }
+        },
         "required": ["status"]
       },
       "ProjectMemberBodyDto": {
@@ -958,6 +1295,77 @@
           }
         },
         "required": ["email", "role"]
+      },
+      "UpdateProjectMemberDto": {
+        "type": "object",
+        "properties": { "token": { "type": "string" } },
+        "required": ["token"]
+      },
+      "ProjectFileBodyDto": {
+        "type": "object",
+        "properties": {
+          "file": {
+            "format": "binary",
+            "allOf": [{ "$ref": "#/components/schemas/Blob" }]
+          },
+          "parentId": { "type": "string" }
+        },
+        "required": ["file"]
+      },
+      "FolderDto": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "name": { "type": "string" },
+          "description": { "type": "string" },
+          "createdAt": { "type": "string" },
+          "createdBy": {
+            "nullable": true,
+            "allOf": [{ "$ref": "#/components/schemas/UserDto" }]
+          },
+          "parent": {
+            "nullable": true,
+            "allOf": [{ "$ref": "#/components/schemas/FolderDto" }]
+          },
+          "path": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/FolderDto" }
+          },
+          "children": {
+            "type": "array",
+            "items": {
+              "oneOf": [
+                { "$ref": "#/components/schemas/ProjectFolderDto" },
+                { "$ref": "#/components/schemas/ProjectFileDto" }
+              ]
+            },
+            "description": "An array of assets which can be folders or files."
+          },
+          "fileCount": { "type": "number" },
+          "totalFileSize": { "type": "number" }
+        },
+        "required": [
+          "id",
+          "name",
+          "description",
+          "createdAt",
+          "createdBy",
+          "parent",
+          "path",
+          "children",
+          "fileCount",
+          "totalFileSize"
+        ]
+      },
+      "ProjectAssetEditDto": {
+        "type": "object",
+        "properties": {
+          "project": { "$ref": "#/components/schemas/ProjectDto" },
+          "file": { "$ref": "#/components/schemas/ProjectFileDto" },
+          "folder": { "$ref": "#/components/schemas/FolderDto" },
+          "parent": { "$ref": "#/components/schemas/FolderDto" }
+        },
+        "required": ["project"]
       },
       "FileEditBodyDto": {
         "type": "object",
@@ -992,8 +1400,29 @@
         "properties": {
           "name": { "type": "string" },
           "description": { "type": "string" },
-          "parentId": { "type": "string", "nullable": true }
+          "parentId": { "type": "string", "nullable": true },
+          "children": { "type": "array", "items": { "type": "string" } }
         }
+      },
+      "ProjectPathFolderDto": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "name": { "type": "string" }
+        },
+        "required": ["id", "name"]
+      },
+      "ProjectPathDto": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "name": { "type": "string" },
+          "path": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/ProjectPathFolderDto" }
+          }
+        },
+        "required": ["id", "name", "path"]
       },
       "AssetRemoveBodyDto": {
         "type": "object",
@@ -1001,6 +1430,22 @@
           "assetIds": { "type": "array", "items": { "type": "string" } }
         },
         "required": ["assetIds"]
+      },
+      "ProjectArchivedAssetsDto": {
+        "type": "object",
+        "properties": {
+          "assets": {
+            "type": "array",
+            "items": {
+              "oneOf": [
+                { "$ref": "#/components/schemas/ProjectFolderDto" },
+                { "$ref": "#/components/schemas/ProjectFileDto" }
+              ]
+            },
+            "description": "An array of assets which can be folders or files."
+          }
+        },
+        "required": ["assets"]
       },
       "ChatBodyDto": {
         "type": "object",
@@ -1080,13 +1525,546 @@
           "pinnedMessages"
         ]
       },
+      "FileDetails": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "name": { "type": "string" }
+        },
+        "required": ["id", "name"]
+      },
+      "CommentDetails": {
+        "type": "object",
+        "properties": { "id": { "type": "string" } },
+        "required": ["id"]
+      },
+      "FileCommentAddedDetails": {
+        "type": "object",
+        "properties": {
+          "asset": { "$ref": "#/components/schemas/FileDetails" },
+          "comment": { "$ref": "#/components/schemas/CommentDetails" }
+        },
+        "required": ["asset", "comment"]
+      },
+      "AssetCommentAddedLogDto": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "user": { "$ref": "#/components/schemas/UserDto" },
+          "createdAt": { "type": "string" },
+          "type": { "type": "string", "enum": ["ASSET_COMMENT_ADDED"] },
+          "details": { "$ref": "#/components/schemas/FileCommentAddedDetails" }
+        },
+        "required": ["id", "user", "createdAt", "type", "details"]
+      },
+      "AssetDetails": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "name": { "type": "string" },
+          "type": { "type": "string", "enum": ["file", "folder"] }
+        },
+        "required": ["id", "name", "type"]
+      },
+      "AssetDownloadedDetails": {
+        "type": "object",
+        "properties": {
+          "asset": { "$ref": "#/components/schemas/AssetDetails" }
+        },
+        "required": ["asset"]
+      },
+      "AssetCommentDownloadedLogDto": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "user": { "$ref": "#/components/schemas/UserDto" },
+          "createdAt": { "type": "string" },
+          "type": { "type": "string", "enum": ["ASSET_DOWNLOADED"] },
+          "details": { "$ref": "#/components/schemas/AssetDownloadedDetails" }
+        },
+        "required": ["id", "user", "createdAt", "type", "details"]
+      },
+      "FileCommentResolvedDetails": {
+        "type": "object",
+        "properties": {
+          "asset": { "$ref": "#/components/schemas/FileDetails" },
+          "comment": { "$ref": "#/components/schemas/CommentDetails" }
+        },
+        "required": ["asset", "comment"]
+      },
+      "AssetCommentResolvedLogDto": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "user": { "$ref": "#/components/schemas/UserDto" },
+          "createdAt": { "type": "string" },
+          "type": { "type": "string", "enum": ["ASSET_COMMENT_RESOLVED"] },
+          "details": {
+            "$ref": "#/components/schemas/FileCommentResolvedDetails"
+          }
+        },
+        "required": ["id", "user", "createdAt", "type", "details"]
+      },
+      "FileNewVersionUploadedDetails": {
+        "type": "object",
+        "properties": {
+          "asset": { "$ref": "#/components/schemas/FileDetails" }
+        },
+        "required": ["asset"]
+      },
+      "AssetNewVersionUploadedLogDto": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "user": { "$ref": "#/components/schemas/UserDto" },
+          "createdAt": { "type": "string" },
+          "type": { "type": "string", "enum": ["ASSET_NEW_VERSION_UPLOADED"] },
+          "details": {
+            "$ref": "#/components/schemas/FileNewVersionUploadedDetails"
+          }
+        },
+        "required": ["id", "user", "createdAt", "type", "details"]
+      },
+      "AssetsArchivedDetails": {
+        "type": "object",
+        "properties": {
+          "assets": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/AssetDetails" }
+          }
+        },
+        "required": ["assets"]
+      },
+      "AssetsArchivedLogDto": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "user": { "$ref": "#/components/schemas/UserDto" },
+          "createdAt": { "type": "string" },
+          "type": { "type": "string", "enum": ["ASSETS_ARCHIVED"] },
+          "details": { "$ref": "#/components/schemas/AssetsArchivedDetails" }
+        },
+        "required": ["id", "user", "createdAt", "type", "details"]
+      },
+      "AssetsDownloadedDetails": {
+        "type": "object",
+        "properties": {
+          "assets": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/AssetDetails" }
+          }
+        },
+        "required": ["assets"]
+      },
+      "AssetsDownloadedLogDto": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "user": { "$ref": "#/components/schemas/UserDto" },
+          "createdAt": { "type": "string" },
+          "type": { "type": "string", "enum": ["ASSETS_DOWNLOADED"] },
+          "details": { "$ref": "#/components/schemas/AssetsDownloadedDetails" }
+        },
+        "required": ["id", "user", "createdAt", "type", "details"]
+      },
+      "FolderDetails": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "name": { "type": "string" }
+        },
+        "required": ["id", "name"]
+      },
+      "AssetsMovedDetails": {
+        "type": "object",
+        "properties": {
+          "assets": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/AssetDetails" }
+          },
+          "from": {
+            "nullable": true,
+            "allOf": [{ "$ref": "#/components/schemas/FolderDetails" }]
+          },
+          "to": {
+            "nullable": true,
+            "allOf": [{ "$ref": "#/components/schemas/FolderDetails" }]
+          }
+        },
+        "required": ["assets", "from", "to"]
+      },
+      "AssetsMovedLogDto": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "user": { "$ref": "#/components/schemas/UserDto" },
+          "createdAt": { "type": "string" },
+          "type": { "type": "string", "enum": ["ASSETS_MOVED"] },
+          "details": { "$ref": "#/components/schemas/AssetsMovedDetails" }
+        },
+        "required": ["id", "user", "createdAt", "type", "details"]
+      },
+      "AssetsRemovedDetails": {
+        "type": "object",
+        "properties": {
+          "assets": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/AssetDetails" }
+          }
+        },
+        "required": ["assets"]
+      },
+      "AssetsRemovedLogDto": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "user": { "$ref": "#/components/schemas/UserDto" },
+          "createdAt": { "type": "string" },
+          "type": { "type": "string", "enum": ["ASSETS_REMOVED"] },
+          "details": { "$ref": "#/components/schemas/AssetsRemovedDetails" }
+        },
+        "required": ["id", "user", "createdAt", "type", "details"]
+      },
+      "AssetsRestoredDetails": {
+        "type": "object",
+        "properties": {
+          "assets": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/AssetDetails" }
+          }
+        },
+        "required": ["assets"]
+      },
+      "AssetsRestoredLogDto": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "user": { "$ref": "#/components/schemas/UserDto" },
+          "createdAt": { "type": "string" },
+          "type": { "type": "string", "enum": ["ASSETS_RESTORED"] },
+          "details": { "$ref": "#/components/schemas/AssetsRestoredDetails" }
+        },
+        "required": ["id", "user", "createdAt", "type", "details"]
+      },
+      "FilesUploadedDetails": {
+        "type": "object",
+        "properties": {
+          "assets": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/FileDetails" }
+          }
+        },
+        "required": ["assets"]
+      },
+      "AssetsUploadedLogDto": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "user": { "$ref": "#/components/schemas/UserDto" },
+          "createdAt": { "type": "string" },
+          "type": { "type": "string", "enum": ["ASSETS_UPLOADED"] },
+          "details": { "$ref": "#/components/schemas/FilesUploadedDetails" }
+        },
+        "required": ["id", "user", "createdAt", "type", "details"]
+      },
+      "UserDetails": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "name": { "type": "string" }
+        },
+        "required": ["id", "name"]
+      },
+      "AssetBeforeDetails": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "name": { "type": "string" },
+          "type": { "type": "string", "enum": ["file", "folder"] },
+          "status": {
+            "type": "string",
+            "enum": [
+              null,
+              "review-needed",
+              "in-progress",
+              "changes-required",
+              "approved"
+            ],
+            "nullable": true
+          },
+          "assignee": {
+            "nullable": true,
+            "allOf": [{ "$ref": "#/components/schemas/UserDetails" }]
+          },
+          "parent": {
+            "nullable": true,
+            "allOf": [{ "$ref": "#/components/schemas/FolderDetails" }]
+          }
+        },
+        "required": ["id", "name", "type", "status", "assignee", "parent"]
+      },
+      "AssetAfterDetails": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string", "nullable": true },
+          "description": { "type": "string", "nullable": true },
+          "status": {
+            "type": "string",
+            "enum": [
+              null,
+              "review-needed",
+              "in-progress",
+              "changes-required",
+              "approved"
+            ],
+            "nullable": true
+          },
+          "assignee": {
+            "nullable": true,
+            "allOf": [{ "$ref": "#/components/schemas/UserDetails" }]
+          },
+          "parent": {
+            "nullable": true,
+            "allOf": [{ "$ref": "#/components/schemas/FolderDetails" }]
+          }
+        },
+        "required": ["name", "description", "status", "assignee", "parent"]
+      },
+      "AssetUpdatedDetails": {
+        "type": "object",
+        "properties": {
+          "asset": { "$ref": "#/components/schemas/AssetBeforeDetails" },
+          "updatedFields": { "$ref": "#/components/schemas/AssetAfterDetails" }
+        },
+        "required": ["asset", "updatedFields"]
+      },
+      "AssetUpdatedLogDto": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "user": { "$ref": "#/components/schemas/UserDto" },
+          "createdAt": { "type": "string" },
+          "type": { "type": "string", "enum": ["ASSET_UPDATED"] },
+          "details": { "$ref": "#/components/schemas/AssetUpdatedDetails" }
+        },
+        "required": ["id", "user", "createdAt", "type", "details"]
+      },
+      "FileUploadedDetails": {
+        "type": "object",
+        "properties": {
+          "asset": { "$ref": "#/components/schemas/FileDetails" }
+        },
+        "required": ["asset"]
+      },
+      "AssetUploadedLogDto": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "user": { "$ref": "#/components/schemas/UserDto" },
+          "createdAt": { "type": "string" },
+          "type": { "type": "string", "enum": ["ASSET_UPLOADED"] },
+          "details": { "$ref": "#/components/schemas/FileUploadedDetails" }
+        },
+        "required": ["id", "user", "createdAt", "type", "details"]
+      },
+      "FolderCreatedDetails": {
+        "type": "object",
+        "properties": {
+          "folder": { "$ref": "#/components/schemas/FolderDetails" }
+        },
+        "required": ["folder"]
+      },
+      "FolderCreatedLogDto": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "user": { "$ref": "#/components/schemas/UserDto" },
+          "createdAt": { "type": "string" },
+          "type": { "type": "string", "enum": ["FOLDER_CREATED"] },
+          "details": { "$ref": "#/components/schemas/FolderCreatedDetails" }
+        },
+        "required": ["id", "user", "createdAt", "type", "details"]
+      },
+      "ProjectCreatedLogDto": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "user": { "$ref": "#/components/schemas/UserDto" },
+          "createdAt": { "type": "string" },
+          "type": { "type": "string", "enum": ["PROJECT_CREATED"] },
+          "details": { "type": "object" }
+        },
+        "required": ["id", "user", "createdAt", "type", "details"]
+      },
+      "MemberDetails": {
+        "type": "object",
+        "properties": { "email": { "type": "string" } },
+        "required": ["email"]
+      },
+      "ProjectMemberInvitedDetails": {
+        "type": "object",
+        "properties": {
+          "user": { "$ref": "#/components/schemas/MemberDetails" }
+        },
+        "required": ["user"]
+      },
+      "ProjectMemberInvitedLogDto": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "user": { "$ref": "#/components/schemas/UserDto" },
+          "createdAt": { "type": "string" },
+          "type": { "type": "string", "enum": ["PROJECT_MEMBER_INVITED"] },
+          "details": {
+            "$ref": "#/components/schemas/ProjectMemberInvitedDetails"
+          }
+        },
+        "required": ["id", "user", "createdAt", "type", "details"]
+      },
+      "ProjectMemberJoinedDetails": {
+        "type": "object",
+        "properties": {
+          "user": { "$ref": "#/components/schemas/UserDetails" }
+        },
+        "required": ["user"]
+      },
+      "ProjectMemberJoinedLogDto": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "user": { "$ref": "#/components/schemas/UserDto" },
+          "createdAt": { "type": "string" },
+          "type": { "type": "string", "enum": ["PROJECT_MEMBER_JOINED"] },
+          "details": {
+            "$ref": "#/components/schemas/ProjectMemberJoinedDetails"
+          }
+        },
+        "required": ["id", "user", "createdAt", "type", "details"]
+      },
+      "ProjectMemberLeftLogDto": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "user": { "$ref": "#/components/schemas/UserDto" },
+          "createdAt": { "type": "string" },
+          "type": { "type": "string", "enum": ["PROJECT_MEMBER_LEFT"] },
+          "details": { "type": "object" }
+        },
+        "required": ["id", "user", "createdAt", "type", "details"]
+      },
+      "ProjectMemberRemovedDetails": {
+        "type": "object",
+        "properties": {
+          "user": { "$ref": "#/components/schemas/UserDetails" }
+        },
+        "required": ["user"]
+      },
+      "ProjectMemberRemovedLogDto": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "user": { "$ref": "#/components/schemas/UserDto" },
+          "createdAt": { "type": "string" },
+          "type": { "type": "string", "enum": ["PROJECT_MEMBER_REMOVED"] },
+          "details": {
+            "$ref": "#/components/schemas/ProjectMemberRemovedDetails"
+          }
+        },
+        "required": ["id", "user", "createdAt", "type", "details"]
+      },
+      "ProjectRemovedLogDto": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "user": { "$ref": "#/components/schemas/UserDto" },
+          "createdAt": { "type": "string" },
+          "type": { "type": "string", "enum": ["PROJECT_REMOVED"] },
+          "details": { "type": "object" }
+        },
+        "required": ["id", "user", "createdAt", "type", "details"]
+      },
+      "ProjectUpdatedDetails": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string", "nullable": true },
+          "description": { "type": "string", "nullable": true },
+          "isCoverChanged": { "type": "boolean", "nullable": true },
+          "status": {
+            "type": "string",
+            "enum": ["active", "completed", "archived"],
+            "nullable": true
+          }
+        },
+        "required": ["name", "description", "isCoverChanged", "status"]
+      },
+      "ProjectUpdatedLogDto": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "user": { "$ref": "#/components/schemas/UserDto" },
+          "createdAt": { "type": "string" },
+          "type": { "type": "string", "enum": ["PROJECT_UPDATED"] },
+          "details": { "$ref": "#/components/schemas/ProjectUpdatedDetails" }
+        },
+        "required": ["id", "user", "createdAt", "type", "details"]
+      },
       "ProjectLogsDto": {
         "type": "object",
         "properties": {
-          "logs": { "type": "string" },
+          "logs": {
+            "type": "array",
+            "items": {
+              "oneOf": [
+                { "$ref": "#/components/schemas/AssetCommentAddedLogDto" },
+                { "$ref": "#/components/schemas/AssetCommentResolvedLogDto" },
+                { "$ref": "#/components/schemas/AssetCommentDownloadedLogDto" },
+                {
+                  "$ref": "#/components/schemas/AssetNewVersionUploadedLogDto"
+                },
+                { "$ref": "#/components/schemas/AssetsArchivedLogDto" },
+                { "$ref": "#/components/schemas/AssetsDownloadedLogDto" },
+                { "$ref": "#/components/schemas/AssetsMovedLogDto" },
+                { "$ref": "#/components/schemas/AssetsRemovedLogDto" },
+                { "$ref": "#/components/schemas/AssetsRestoredLogDto" },
+                { "$ref": "#/components/schemas/AssetsUploadedLogDto" },
+                { "$ref": "#/components/schemas/AssetUpdatedLogDto" },
+                { "$ref": "#/components/schemas/AssetUploadedLogDto" },
+                { "$ref": "#/components/schemas/FolderCreatedLogDto" },
+                { "$ref": "#/components/schemas/ProjectCreatedLogDto" },
+                { "$ref": "#/components/schemas/ProjectMemberInvitedLogDto" },
+                { "$ref": "#/components/schemas/ProjectMemberJoinedLogDto" },
+                { "$ref": "#/components/schemas/ProjectMemberLeftLogDto" },
+                { "$ref": "#/components/schemas/ProjectMemberRemovedLogDto" },
+                { "$ref": "#/components/schemas/ProjectRemovedLogDto" },
+                { "$ref": "#/components/schemas/ProjectUpdatedLogDto" }
+              ]
+            },
+            "description": "An array of assets which can be folders or files."
+          },
           "logsCount": { "type": "number" }
         },
         "required": ["logs", "logsCount"]
+      },
+      "ProjectTotals": {
+        "type": "object",
+        "properties": {
+          "all": { "type": "number" },
+          "active": { "type": "number" },
+          "completed": { "type": "number" },
+          "archived": { "type": "number" }
+        },
+        "required": ["all", "active", "completed", "archived"]
+      },
+      "ProjectsResponseDto": {
+        "type": "object",
+        "properties": {
+          "projects": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/ProjectDto" }
+          },
+          "totals": { "$ref": "#/components/schemas/ProjectTotals" }
+        },
+        "required": ["projects", "totals"]
       },
       "ChatResponseDto": {
         "type": "object",

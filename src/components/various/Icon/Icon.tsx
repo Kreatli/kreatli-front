@@ -27,6 +27,7 @@ import DiamondIcon from '../../../assets/icons/diamond.svg';
 import DiscordIcon from '../../../assets/icons/discord.svg';
 import DollarIcon from '../../../assets/icons/dollar.svg';
 import DotsIcon from '../../../assets/icons/dots.svg';
+import Download from '../../../assets/icons/download.svg';
 import EditIcon from '../../../assets/icons/edit.svg';
 import EmojiHappyIcon from '../../../assets/icons/emoji/happy.svg';
 import EmojiSadIcon from '../../../assets/icons/emoji/sad.svg';
@@ -39,10 +40,13 @@ import FilePdfIcon from '../../../assets/icons/file-pdf.svg';
 import FilePngIcon from '../../../assets/icons/file-png.svg';
 import FileSolidIcon from '../../../assets/icons/file-solid.svg';
 import FilterIcon from '../../../assets/icons/filter.svg';
+import FolderIcon from '../../../assets/icons/folder.svg';
+import GoogleIcon from '../../../assets/icons/google.svg';
 import GroupIcon from '../../../assets/icons/group.svg';
 import HeartIcon from '../../../assets/icons/heart.svg';
 import HelpCircleIcon from '../../../assets/icons/help-circle.svg';
 import HideIcon from '../../../assets/icons/hide.svg';
+import InboxIcon from '../../../assets/icons/inbox.svg';
 import InfoIcon from '../../../assets/icons/info.svg';
 import InstagramIcon from '../../../assets/icons/instagram.svg';
 import ItalicIcon from '../../../assets/icons/italic.svg';
@@ -59,6 +63,7 @@ import ReplyIcon from '../../../assets/icons/reply.svg';
 import SearchIcon from '../../../assets/icons/search.svg';
 import SendIcon from '../../../assets/icons/send.svg';
 import ShowIcon from '../../../assets/icons/show.svg';
+import SlidesIcon from '../../../assets/icons/slides.svg';
 import StarIcon from '../../../assets/icons/star.svg';
 import StrikethroughIcon from '../../../assets/icons/strikethrough.svg';
 import SuccessIcon from '../../../assets/icons/success.svg';
@@ -109,6 +114,7 @@ const ICONS = {
   discord: DiscordIcon,
   dollar: DollarIcon,
   dots: DotsIcon,
+  download: Download,
   edit: EditIcon,
   emojiHappy: EmojiHappyIcon,
   emojiSad: EmojiSadIcon,
@@ -120,11 +126,14 @@ const ICONS = {
   filePdf: FilePdfIcon,
   filePng: FilePngIcon,
   fileSolid: FileSolidIcon,
+  google: GoogleIcon,
   filter: FilterIcon,
+  folder: FolderIcon,
   group: GroupIcon,
   helpCircle: HelpCircleIcon,
   heart: HeartIcon,
   hide: HideIcon,
+  inbox: InboxIcon,
   info: InfoIcon,
   instagram: InstagramIcon,
   italic: ItalicIcon,
@@ -141,6 +150,7 @@ const ICONS = {
   search: SearchIcon,
   send: SendIcon,
   show: ShowIcon,
+  slides: SlidesIcon,
   star: StarIcon,
   strikethrough: StrikethroughIcon,
   success: SuccessIcon,
@@ -174,13 +184,5 @@ interface Props extends React.SVGProps<SVGElement> {
 export const Icon = ({ icon, size = 24, fill = 'currentcolor', className }: Props) => {
   const IconToRender = ICONS[icon];
 
-  return (
-    <IconToRender
-      className={className}
-      width={size}
-      height={size}
-      viewBox="0 0 24 24"
-      fill={fill}
-    />
-  );
+  return <IconToRender className={className} width={size} height={size} viewBox="0 0 24 24" fill={fill} />;
 };

@@ -38,12 +38,6 @@ main {
   scrollbar-width: none;
 }
 
-@media screen and (max-width: 960px) {
-  html {
-    font-size: 14px;
-  }
-}
-
 .EmojiPickerReact {
   --epr-emoji-size: 1.5rem !important;
   --epr-header-padding: 10px !important;
@@ -67,4 +61,12 @@ main {
 
 .textUnderlineStrikethrough {
   text-decoration: underline line-through;
+}
+
+.absolute-cursor {
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+  }
 }

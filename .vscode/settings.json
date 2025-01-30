@@ -27,4 +27,7 @@
   "i18n-ally.pathMatcher": "{locale}/{namespaces}.json",
   "i18n-ally.keystyle": "nested",
   "i18n-ally.sortKeys": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  }
 }

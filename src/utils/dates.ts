@@ -4,6 +4,12 @@ const HOUR_IN_MILLISECONDS = 3600 * ONE_SECOND_IN_MILLISECONDS;
 const DAY_IN_MILLISECONDS = 24 * HOUR_IN_MILLISECONDS;
 const WEEK_IN_MILLISECONDS = 7 * DAY_IN_MILLISECONDS;
 
+export const formatFullDate = (dateString: Date | string) => {
+  const date = new Date(dateString);
+
+  return date.toLocaleString('en', { dateStyle: 'medium', timeStyle: 'medium' });
+};
+
 export const formatRelativeTime = (dateString: Date | string) => {
   const currentDate = new Date();
   const dateToCompare = new Date(dateString);

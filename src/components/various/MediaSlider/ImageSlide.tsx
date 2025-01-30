@@ -1,7 +1,7 @@
 import { Image } from '@nextui-org/react';
 import React from 'react';
 
-import { Media } from '../../../typings/media';
+import { Media } from '../../../typings/marketplace/media';
 
 interface Props extends Media.Image {
   onClick: () => void;
