@@ -3,8 +3,23 @@ import React from 'react';
 
 import { SignUpForm } from '../components/review-tool/auth/SignUpForm';
 import { StartPageLayout } from '../components/review-tool/layout/StartPageLayout';
+import { useSession } from '../hooks/review-tool/useSession';
+import { useRouter } from 'next/router';
 
 export default function SignUp() {
+  const router = useRouter();
+  const { isSignedIn } = useSession();
+
+  React.useEffect(() => {
+    if (isSignedIn) {
+      router.replace('/');
+    }
+  }, [isSignedIn, router]);
+
+  if (isSignedIn) {
+    return null;
+  }
+
   return (
     <>
       <Head>

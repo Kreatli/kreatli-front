@@ -70,7 +70,7 @@ export const SignInForm = ({ email, showSignUpLink = true, onSuccess }: Props) =
     },
     onError: () => {
       pushNotification({
-        message: 'Failed to sign in with YouTube. Please try again later.',
+        message: 'Failed to sign in with Google. Please try again later.',
         color: 'danger',
         icon: 'error',
       });
@@ -85,6 +85,7 @@ export const SignInForm = ({ email, showSignUpLink = true, onSuccess }: Props) =
           placeholder="example@mail.com"
           variant="faded"
           labelPlacement="outside"
+          isReadOnly={!!email}
           type="email"
           isInvalid={!!errors.email}
           errorMessage={errors.email?.message}

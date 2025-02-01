@@ -11,6 +11,7 @@ import { useNotifications } from '../../../hooks/useNotifications';
 import { useGetProject, useGetUser, usePutProjectIdMember } from '../../../services/review-tool/hooks';
 import { getErrorMessage } from '../../../utils/review-tool/getErrorMessage';
 import { getHasToken } from '../../../utils/token';
+import { SignUpForm } from '../../../components/review-tool/auth/SignUpForm';
 
 export default function JoinProject() {
   const hasUserToken = getHasToken();
@@ -64,11 +65,11 @@ export default function JoinProject() {
     );
   };
 
+  const title = `Join "${data?.projectName}" | Kreatli`;
+
   if (isLoading) {
     return null;
   }
-
-  const title = `Join "${data?.projectName}" | Kreatli`;
 
   return (
     <>
@@ -93,8 +94,8 @@ export default function JoinProject() {
           </div>
         ) : (
           <div>
-            <p className="mb-4 text-foreground-500">Please log in to join the project.</p>
-            <SignInForm email={data?.email} showSignUpLink={false} onSuccess={handleSignInSuccess} />
+            <p className="mb-4 text-foreground-500">Please create an account to join the project.</p>
+            <SignUpForm email={data?.email} showSignInLink={false} onSuccess={handleSignInSuccess} />
           </div>
         )}
       </StartPageLayout>
