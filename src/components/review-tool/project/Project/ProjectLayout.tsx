@@ -1,10 +1,14 @@
-import { Tab, Tabs } from '@nextui-org/react';
+import { Button, Tab, Tabs } from '@nextui-org/react';
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
 
 import { ProjectContextProvider } from '../../../../contexts/review-tool/Project';
+import { useProtectedPage } from '../../../../hooks/review-tool/useProtectedPage';
+import { useNotifications } from '../../../../hooks/useNotifications';
 import { useGetProjectId } from '../../../../services/review-tool/hooks';
+import { getErrorMessage } from '../../../../utils/review-tool/getErrorMessage';
+import { EmptyState } from '../../../various/EmptyState';
 import { Header } from '../../layout/Header';
 import { ProjectHeader } from './ProjectHeader';
 
@@ -13,16 +17,42 @@ interface Props {
 }
 
 export const ProjectLayout = ({ children, hideHeader = false }: React.PropsWithChildren<Props>) => {
+  const { isSignedIn } = useProtectedPage();
   const router = useRouter();
+  const { pushNotification } = useNotifications();
 
   const {
     data: project,
     isPending,
     isError,
+    error,
   } = useGetProjectId(router.query.id as string, {
     enabled: !!router.query.id,
     refetchInterval: 10000,
   });
+
+  React.useEffect(() => {
+    if (isError && 'status' in error && error.status !== 403) {
+      pushNotification({ icon: 'error', message: getErrorMessage(error) });
+    }
+  }, [isError, error, router, pushNotification]);
+
+  if (!isSignedIn) {
+    return;
+  }
+
+  if (isError && 'status' in error && error.status === 403) {
+    return (
+      <>
+        <Header />
+        <EmptyState title="You do not have permission to view this project">
+          <Button as={NextLink} href="/" className="text-content1 bg-foreground mt-2">
+            Browse my projects
+          </Button>
+        </EmptyState>
+      </>
+    );
+  }
 
   return (
     <>

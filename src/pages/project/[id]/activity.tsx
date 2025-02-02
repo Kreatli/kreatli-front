@@ -4,12 +4,10 @@ import React from 'react';
 
 import { ProjectLayout } from '../../../components/review-tool/project/Project';
 import { ProjectActivity } from '../../../components/review-tool/project/ProjectActivity';
-import { useProtectedPage } from '../../../hooks/review-tool/useProtectedPage';
 import { useGetProjectIdLogs } from '../../../services/review-tool/hooks';
 
 export default function ProjectActivityPage() {
   const router = useRouter();
-  const { isSignedIn } = useProtectedPage();
 
   const [currentPage, setCurrentPage] = React.useState(1);
 
@@ -17,10 +15,6 @@ export default function ProjectActivityPage() {
     limit: 20,
     offset: (currentPage - 1) * 20,
   });
-
-  if (!isSignedIn) {
-    return null;
-  }
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
