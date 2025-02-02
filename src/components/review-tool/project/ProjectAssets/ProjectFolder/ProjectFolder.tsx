@@ -6,6 +6,8 @@ import { useRouter } from 'next/router';
 import React from 'react';
 
 import { useAssetContext } from '../../../../../contexts/review-tool/Asset';
+import { useProjectContext } from '../../../../../contexts/review-tool/Project';
+import { useSession } from '../../../../../hooks/review-tool/useSession';
 import { ProjectFolderDto } from '../../../../../services/review-tool/types';
 import { formatBytes } from '../../../../../utils/formatBytes';
 import { handleSpaceAndEnter } from '../../../../../utils/keydown';
@@ -20,8 +22,10 @@ interface Props {
 }
 
 export const ProjectFolder = ({ isSelected, isDisabled, folder, onSelectionChange }: Props) => {
-  const { name } = folder;
+  const { name, createdBy } = folder;
 
+  const { user } = useSession();
+  const { isProjectOwner } = useProjectContext();
   const { getAssetActions } = useAssetContext();
   const router = useRouter();
 
@@ -41,10 +45,13 @@ export const ProjectFolder = ({ isSelected, isDisabled, folder, onSelectionChang
     setDroppableNodeRef,
   } = useSortable({
     id: folder.id,
+    disabled: !isProjectOwner && user?.id !== createdBy?.id,
     animateLayoutChanges: () => true,
   });
 
   const { setNodeRef, isOver } = useDroppable({ id: `folder-${folder.id}` });
+
+  const actions = getAssetActions(folder);
 
   return (
     <div
@@ -90,26 +97,28 @@ export const ProjectFolder = ({ isSelected, isDisabled, folder, onSelectionChang
       <div className="mt-3">
         <div className="flex gap-2 justify-between">
           <div className="text-lg font-semibold break-words overflow-hidden">{name}</div>
-          <Dropdown placement="bottom-end">
-            <DropdownTrigger>
-              <Button size="sm" radius="full" variant="light" isDisabled={isDisabled} isIconOnly>
-                <Icon icon="dots" />
-              </Button>
-            </DropdownTrigger>
-            <DropdownMenu variant="flat">
-              {getAssetActions(folder).map((action) => (
-                <DropdownItem
-                  key={action.label}
-                  color={action.color}
-                  showDivider={action.showDivider}
-                  startContent={<Icon icon={action.icon} size={16} />}
-                  onPress={action.onClick}
-                >
-                  {action.label}
-                </DropdownItem>
-              ))}
-            </DropdownMenu>
-          </Dropdown>
+          {actions.length > 0 && (
+            <Dropdown placement="bottom-end">
+              <DropdownTrigger>
+                <Button size="sm" radius="full" variant="light" isDisabled={isDisabled} isIconOnly>
+                  <Icon icon="dots" />
+                </Button>
+              </DropdownTrigger>
+              <DropdownMenu variant="flat">
+                {actions.map((action) => (
+                  <DropdownItem
+                    key={action.label}
+                    color={action.color}
+                    showDivider={action.showDivider}
+                    startContent={<Icon icon={action.icon} size={16} />}
+                    onPress={action.onClick}
+                  >
+                    {action.label}
+                  </DropdownItem>
+                ))}
+              </DropdownMenu>
+            </Dropdown>
+          )}
         </div>
         <div className="text-foreground-500">
           {folder.fileCount} items, {formatBytes(folder.totalFileSize)}

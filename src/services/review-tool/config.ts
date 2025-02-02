@@ -4,21 +4,16 @@
  * @version 6
  *
  */
-import Axios, {
-  AxiosError,
-  AxiosInstance,
-  AxiosRequestConfig,
-  AxiosResponse,
-} from "axios";
+import Axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 // @ts-ignore
-import qs from "qs";
-import { getHasToken, getToken } from "../../utils/token";
+import qs from 'qs';
+import { getHasToken, getToken } from '../../utils/token';
 
 const baseConfig: AxiosRequestConfig = {
-  baseURL: "http://localhost:3000", // <--- Add your base url
+  baseURL: 'http://localhost:3000', // <--- Add your base url
   headers: {
-    Accept: "application/json",
-    "Content-Type": "application/json-patch+json",
+    Accept: 'application/json',
+    'Content-Type': 'application/json-patch+json',
     Authorization: getHasToken() ? `Bearer ${getToken()}` : undefined,
   },
   paramsSerializer: (param) => qs.stringify(param, { indices: false }),
@@ -67,17 +62,11 @@ function getAxiosInstance(security: Security): AxiosInstance {
         // Do something with response error
 
         if (error.response) {
-          return Promise.reject(
-            new RequestError(
-              error.response.data as string,
-              error.response.status,
-              error.response,
-            ),
-          );
+          return Promise.reject(new RequestError(error.response.data as string, error.response.status, error.response));
         }
 
         if (error.isAxiosError) {
-          return Promise.reject(new RequestError("noInternetConnection"));
+          return Promise.reject(new RequestError('noInternetConnection'));
         }
         return Promise.reject(error);
       },

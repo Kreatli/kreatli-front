@@ -96,7 +96,7 @@ export const MoveToForm = ({ asset, onSuccess }: Props) => {
       </Select>
       <div className="flex justify-end gap-2">
         <Button variant="light">Cancel</Button>
-        <Button type="submit" isDisabled={isPending} className="text-content1 bg-foreground">
+        <Button type="submit" isLoading={isPending} className="text-content1 bg-foreground">
           Move
         </Button>
       </div>

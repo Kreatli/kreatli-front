@@ -12,6 +12,7 @@ import { EditProjectModal } from '../../../components/review-tool/project/Projec
 import { RenameProjectModal } from '../../../components/review-tool/project/ProjectModals/RenameProjectModal';
 import { RestoreProjectModal } from '../../../components/review-tool/project/ProjectModals/RestoreProjectModal';
 import { IconType } from '../../../components/various/Icon';
+import { useSession } from '../../../hooks/review-tool/useSession';
 import { ProjectDto } from '../../../services/review-tool/types';
 
 interface Context {
@@ -22,6 +23,7 @@ interface Context {
     color?: MenuItemProps['color'];
     onClick: () => void;
   }[];
+  isProjectOwner: boolean;
   uploadingFiles: File[];
   setUploadingFiles: React.Dispatch<React.SetStateAction<File[]>>;
   project: ProjectDto;
@@ -59,10 +61,28 @@ export const ProjectContextProvider = ({
   const [isDeleteModalOpen, setIsDeleteModalOpen] = React.useState(false);
 
   const [uploadingFiles, setUploadingFiles] = React.useState<File[]>([]);
-
+  const { user } = useSession();
   const router = useRouter();
 
+  const isProjectOwner = selectedProject?.createdBy?.id === user?.id;
+
   const getProjectActions = (project: ProjectDto) => {
+    if (project.createdBy?.id !== user?.id) {
+      if (project.status === 'active') {
+        return [
+          {
+            label: 'Archived media',
+            icon: 'trash' as const,
+            onClick: () => {
+              router.push(`/project/${project.id}/assets/archived`);
+            },
+          },
+        ];
+      }
+
+      return [];
+    }
+
     return [
       ...(project.status === 'active'
         ? [
@@ -173,7 +193,13 @@ export const ProjectContextProvider = ({
 
   return (
     <ProjectContext.Provider
-      value={{ getProjectActions, project: selectedProject as ProjectDto, uploadingFiles, setUploadingFiles }}
+      value={{
+        getProjectActions,
+        project: selectedProject as ProjectDto,
+        uploadingFiles,
+        setUploadingFiles,
+        isProjectOwner,
+      }}
     >
       {children}
       <RenameProjectModal

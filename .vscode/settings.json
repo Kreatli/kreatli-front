@@ -15,19 +15,14 @@
   ],
   "typescript.preferences.importModuleSpecifier": "relative",
   "editor.formatOnSave": true,
-  "i18n-ally.namespace": true,
-  "i18n-ally.localesPaths": [
-    "public/locales"
-  ],
-  "i18n-ally.enabledFrameworks": [
-    "react",
-    "i18next",
-    "general"
-  ],
-  "i18n-ally.pathMatcher": "{locale}/{namespaces}.json",
-  "i18n-ally.keystyle": "nested",
-  "i18n-ally.sortKeys": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit"
-  }
+  },
+  "i18n-ally.namespace": true,
+  "i18n-ally.localesPaths": ["public/locales"],
+  "i18n-ally.enabledFrameworks": ["react", "i18next", "general"],
+  "i18n-ally.pathMatcher": "{locale}/{namespaces}.json",
+  "i18n-ally.keystyle": "nested",
+  "i18n-ally.sortKeys": true
 }

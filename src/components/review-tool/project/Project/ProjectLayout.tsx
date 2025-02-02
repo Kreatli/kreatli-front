@@ -21,6 +21,7 @@ export const ProjectLayout = ({ children, hideHeader = false }: React.PropsWithC
     isError,
   } = useGetProjectId(router.query.id as string, {
     enabled: !!router.query.id,
+    refetchInterval: 10000,
   });
 
   return (

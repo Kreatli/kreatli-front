@@ -25,8 +25,9 @@ export const ProjectFileCover = ({ file, isLoading = false }: Props) => {
       <Image
         src={previewUrl}
         radius="none"
-        classNames={{ wrapper: 'flex items-center' }}
+        classNames={{ wrapper: 'flex items-center select-none' }}
         className="max-h-full"
+        draggable={false}
         alt={file.name}
       />
       <ProjectFileStatus projectId={project.id} file={file} memberRole={memberRole} />

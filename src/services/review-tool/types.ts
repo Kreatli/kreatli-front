@@ -10,33 +10,23 @@ export interface AssetAfterDetails {
   description?: string;
   name?: string;
   parent?: FolderDetails;
-  status?:
-    | null
-    | "review-needed"
-    | "in-progress"
-    | "changes-required"
-    | "approved";
+  status?: null | 'review-needed' | 'in-progress' | 'changes-required' | 'approved';
 }
 
 export interface AssetBeforeDetails {
   id: string;
   name: string;
-  type: "file" | "folder";
+  type: 'file' | 'folder';
   assignee?: UserDetails;
   parent?: FolderDetails;
-  status?:
-    | null
-    | "review-needed"
-    | "in-progress"
-    | "changes-required"
-    | "approved";
+  status?: null | 'review-needed' | 'in-progress' | 'changes-required' | 'approved';
 }
 
 export interface AssetCommentAddedLogDto {
   createdAt: string;
   details: FileCommentAddedDetails;
   id: string;
-  type: "ASSET_COMMENT_ADDED";
+  type: 'ASSET_COMMENT_ADDED';
   user: UserDto;
 }
 
@@ -44,7 +34,7 @@ export interface AssetCommentDownloadedLogDto {
   createdAt: string;
   details: AssetDownloadedDetails;
   id: string;
-  type: "ASSET_DOWNLOADED";
+  type: 'ASSET_DOWNLOADED';
   user: UserDto;
 }
 
@@ -52,14 +42,14 @@ export interface AssetCommentResolvedLogDto {
   createdAt: string;
   details: FileCommentResolvedDetails;
   id: string;
-  type: "ASSET_COMMENT_RESOLVED";
+  type: 'ASSET_COMMENT_RESOLVED';
   user: UserDto;
 }
 
 export interface AssetDetails {
   id: string;
   name: string;
-  type: "file" | "folder";
+  type: 'file' | 'folder';
 }
 
 export interface AssetDownloadedDetails {
@@ -70,7 +60,7 @@ export interface AssetNewVersionUploadedLogDto {
   createdAt: string;
   details: FileNewVersionUploadedDetails;
   id: string;
-  type: "ASSET_NEW_VERSION_UPLOADED";
+  type: 'ASSET_NEW_VERSION_UPLOADED';
   user: UserDto;
 }
 
@@ -87,7 +77,7 @@ export interface AssetUpdatedLogDto {
   createdAt: string;
   details: AssetUpdatedDetails;
   id: string;
-  type: "ASSET_UPDATED";
+  type: 'ASSET_UPDATED';
   user: UserDto;
 }
 
@@ -95,7 +85,7 @@ export interface AssetUploadedLogDto {
   createdAt: string;
   details: FileUploadedDetails;
   id: string;
-  type: "ASSET_UPLOADED";
+  type: 'ASSET_UPLOADED';
   user: UserDto;
 }
 
@@ -107,7 +97,7 @@ export interface AssetsArchivedLogDto {
   createdAt: string;
   details: AssetsArchivedDetails;
   id: string;
-  type: "ASSETS_ARCHIVED";
+  type: 'ASSETS_ARCHIVED';
   user: UserDto;
 }
 
@@ -119,7 +109,7 @@ export interface AssetsDownloadedLogDto {
   createdAt: string;
   details: AssetsDownloadedDetails;
   id: string;
-  type: "ASSETS_DOWNLOADED";
+  type: 'ASSETS_DOWNLOADED';
   user: UserDto;
 }
 
@@ -133,7 +123,7 @@ export interface AssetsMovedLogDto {
   createdAt: string;
   details: AssetsMovedDetails;
   id: string;
-  type: "ASSETS_MOVED";
+  type: 'ASSETS_MOVED';
   user: UserDto;
 }
 
@@ -145,7 +135,7 @@ export interface AssetsRemovedLogDto {
   createdAt: string;
   details: AssetsRemovedDetails;
   id: string;
-  type: "ASSETS_REMOVED";
+  type: 'ASSETS_REMOVED';
   user: UserDto;
 }
 
@@ -157,7 +147,7 @@ export interface AssetsRestoredLogDto {
   createdAt: string;
   details: AssetsRestoredDetails;
   id: string;
-  type: "ASSETS_RESTORED";
+  type: 'ASSETS_RESTORED';
   user: UserDto;
 }
 
@@ -165,7 +155,7 @@ export interface AssetsUploadedLogDto {
   createdAt: string;
   details: FilesUploadedDetails;
   id: string;
-  type: "ASSETS_UPLOADED";
+  type: 'ASSETS_UPLOADED';
   user: UserDto;
 }
 
@@ -235,7 +225,7 @@ export interface FileEditBodyDto {
   description?: string;
   name?: string;
   parentId?: string;
-  status?: "review-needed" | "in-progress" | "changes-required" | "approved";
+  status?: 'review-needed' | 'in-progress' | 'changes-required' | 'approved';
 }
 
 export interface FileNewVersionUploadedDetails {
@@ -263,7 +253,7 @@ export interface FolderCreatedLogDto {
   createdAt: string;
   details: FolderCreatedDetails;
   id: string;
-  type: "FOLDER_CREATED";
+  type: 'FOLDER_CREATED';
   user: UserDto;
 }
 
@@ -311,7 +301,7 @@ export interface GetProjectIdLogsQueryParams {
 
 export interface GetProjectsQueryParams {
   search?: string;
-  status?: "all" | "active" | "completed" | "archived";
+  status?: 'all' | 'active' | 'completed' | 'archived';
 }
 
 export interface InterfaceImageDto {
@@ -365,7 +355,7 @@ export interface ProjectCreatedLogDto {
   createdAt: string;
   details: { [x in string | number]: any };
   id: string;
-  type: "PROJECT_CREATED";
+  type: 'PROJECT_CREATED';
   user: UserDto;
 }
 
@@ -381,7 +371,7 @@ export interface ProjectDto {
   id: string;
   members: ProjectMemberDto[];
   name: string;
-  status: "active" | "completed" | "archived";
+  status: 'active' | 'completed' | 'archived';
   totalFileSize: number;
   cover?: InterfaceImageDto;
   createdBy?: UserDto;
@@ -413,18 +403,18 @@ export interface ProjectFileDto {
   id: string;
   metadata: { [x in string | number]: any };
   name: string;
-  type: "file";
+  type: 'file';
   url: string;
   assignee?: UserDto;
   createdBy?: UserDto;
-  status?: "review-needed" | "in-progress" | "changes-required" | "approved";
+  status?: 'review-needed' | 'in-progress' | 'changes-required' | 'approved';
 }
 
 export interface ProjectFolderChild {
   description: string;
   id: string;
   name: string;
-  type: "folder" | "file";
+  type: 'folder' | 'file';
   url?: string;
 }
 
@@ -436,7 +426,7 @@ export interface ProjectFolderDto {
   id: string;
   name: string;
   totalFileSize: number;
-  type: "folder";
+  type: 'folder';
   createdBy?: UserDto;
 }
 
@@ -479,15 +469,15 @@ export interface ProjectLogsDto {
 
 export interface ProjectMemberBodyDto {
   email: string;
-  role: "owner" | "contributor";
+  role: 'owner' | 'contributor';
 }
 
 export interface ProjectMemberDto {
   email: string;
   id: string;
   invitedAt: string;
-  role: "owner" | "contributor";
-  status: "invited" | "joined" | "removed" | "left";
+  role: 'owner' | 'contributor';
+  status: 'invited' | 'joined' | 'removed' | 'left';
   user?: UserDto;
 }
 
@@ -499,7 +489,7 @@ export interface ProjectMemberInvitedLogDto {
   createdAt: string;
   details: ProjectMemberInvitedDetails;
   id: string;
-  type: "PROJECT_MEMBER_INVITED";
+  type: 'PROJECT_MEMBER_INVITED';
   user: UserDto;
 }
 
@@ -511,7 +501,7 @@ export interface ProjectMemberJoinedLogDto {
   createdAt: string;
   details: ProjectMemberJoinedDetails;
   id: string;
-  type: "PROJECT_MEMBER_JOINED";
+  type: 'PROJECT_MEMBER_JOINED';
   user: UserDto;
 }
 
@@ -519,7 +509,7 @@ export interface ProjectMemberLeftLogDto {
   createdAt: string;
   details: { [x in string | number]: any };
   id: string;
-  type: "PROJECT_MEMBER_LEFT";
+  type: 'PROJECT_MEMBER_LEFT';
   user: UserDto;
 }
 
@@ -531,7 +521,7 @@ export interface ProjectMemberRemovedLogDto {
   createdAt: string;
   details: ProjectMemberRemovedDetails;
   id: string;
-  type: "PROJECT_MEMBER_REMOVED";
+  type: 'PROJECT_MEMBER_REMOVED';
   user: UserDto;
 }
 
@@ -550,12 +540,12 @@ export interface ProjectRemovedLogDto {
   createdAt: string;
   details: { [x in string | number]: any };
   id: string;
-  type: "PROJECT_REMOVED";
+  type: 'PROJECT_REMOVED';
   user: UserDto;
 }
 
 export interface ProjectStatusBodyDto {
-  status: "active" | "completed" | "archived";
+  status: 'active' | 'completed' | 'archived';
 }
 
 export interface ProjectTotals {
@@ -567,16 +557,17 @@ export interface ProjectTotals {
 
 export interface ProjectUpdatedDetails {
   description?: string;
+  isAssetsOrderChanged?: boolean;
   isCoverChanged?: boolean;
   name?: string;
-  status?: "active" | "completed" | "archived";
+  status?: 'active' | 'completed' | 'archived';
 }
 
 export interface ProjectUpdatedLogDto {
   createdAt: string;
   details: ProjectUpdatedDetails;
   id: string;
-  type: "PROJECT_UPDATED";
+  type: 'PROJECT_UPDATED';
   user: UserDto;
 }
 

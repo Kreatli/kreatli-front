@@ -6,6 +6,7 @@ import React from 'react';
 
 import { useAssetContext } from '../../../../../contexts/review-tool/Asset';
 import { useProjectContext } from '../../../../../contexts/review-tool/Project';
+import { useSession } from '../../../../../hooks/review-tool/useSession';
 import { ProjectFileDto } from '../../../../../services/review-tool/types';
 import { handleSpaceAndEnter } from '../../../../../utils/keydown';
 import { Icon } from '../../../../various/Icon';
@@ -20,11 +21,12 @@ interface Props {
 }
 
 export const ProjectFile = ({ isDisabled, isSelected, file, onSelectionChange }: Props) => {
-  const { name, metadata } = file;
+  const { name, metadata, createdBy } = file;
   const { isUploading = false } = metadata;
 
+  const { user } = useSession();
   const router = useRouter();
-  const { project } = useProjectContext();
+  const { project, isProjectOwner } = useProjectContext();
   const { getAssetActions } = useAssetContext();
 
   const handleClick = () => {
@@ -43,10 +45,9 @@ export const ProjectFile = ({ isDisabled, isSelected, file, onSelectionChange }:
     setDroppableNodeRef,
   } = useSortable({
     id: file.id,
+    disabled: !isProjectOwner && user?.id !== createdBy?.id,
     animateLayoutChanges: () => true,
   });
-
-  console.log(activeIndex);
 
   return (
     <div

@@ -1,4 +1,4 @@
-import { Chip, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger, Selection } from '@nextui-org/react';
+import { Chip, cn, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger, Selection } from '@nextui-org/react';
 import React from 'react';
 
 import { useSession } from '../../../../../hooks/review-tool/useSession';
@@ -32,6 +32,9 @@ export const ProjectFileStatus = ({ file, projectId, memberRole }: Props) => {
   const { user } = useSession();
   const [selectedKeys, setSelectedKeys] = React.useState<Set<string>>(new Set([status ?? 'none']));
 
+  const hasAssigneeStatuses =
+    file.assignee?.id === user?.id || (memberRole === 'contributor' && file.createdBy?.id === user?.id);
+
   const isEditable = React.useMemo(() => {
     if (memberRole === 'owner') {
       return true;
@@ -62,7 +65,7 @@ export const ProjectFileStatus = ({ file, projectId, memberRole }: Props) => {
       size="sm"
       variant="dot"
       color={STATUS_COLOR[selectedKeys.values().next().value]}
-      className="absolute border-1 top-2 right-2 z-10 bg-default-100 cursor-pointer"
+      className={cn('absolute border-1 top-2 right-2 z-10 bg-default-100', { 'cursor-pointer': isEditable })}
     >
       {STATUS_LABEL[selectedKeys.values().next().value]}
     </Chip>
@@ -87,15 +90,21 @@ export const ProjectFileStatus = ({ file, projectId, memberRole }: Props) => {
         <DropdownItem key="in-progress" startContent={<span className="w-2 h-2 rounded-full bg-primary" />}>
           In progress
         </DropdownItem>
-        <DropdownItem key="changes-required" startContent={<span className="w-2 h-2 rounded-full bg-danger" />}>
-          Changes required
-        </DropdownItem>
-        <DropdownItem key="review-needed" startContent={<span className="w-2 h-2 rounded-full bg-warning" />}>
-          Review needed
-        </DropdownItem>
-        <DropdownItem key="approved" startContent={<span className="w-2 h-2 rounded-full bg-success" />}>
-          Approved
-        </DropdownItem>
+        {!hasAssigneeStatuses && (
+          <DropdownItem key="changes-required" startContent={<span className="w-2 h-2 rounded-full bg-danger" />}>
+            Changes required
+          </DropdownItem>
+        )}
+        {hasAssigneeStatuses && (
+          <DropdownItem key="review-needed" startContent={<span className="w-2 h-2 rounded-full bg-warning" />}>
+            Review needed
+          </DropdownItem>
+        )}
+        {!hasAssigneeStatuses && (
+          <DropdownItem key="approved" startContent={<span className="w-2 h-2 rounded-full bg-success" />}>
+            Approved
+          </DropdownItem>
+        )}
       </DropdownMenu>
     </Dropdown>
   );

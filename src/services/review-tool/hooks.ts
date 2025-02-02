@@ -5,7 +5,7 @@
  * @version 6
  */
 
-import { AxiosRequestConfig } from "axios";
+import { AxiosRequestConfig } from 'axios';
 import {
   UseQueryOptions,
   useQuery,
@@ -13,8 +13,8 @@ import {
   UseMutationOptions,
   QueryClient,
   QueryKey,
-} from "@tanstack/react-query";
-import { RequestError, SwaggerResponse } from "./config";
+} from '@tanstack/react-query';
+import { RequestError, SwaggerResponse } from './config';
 
 import type {
   AssetRemoveBodyDto,
@@ -50,7 +50,7 @@ import type {
   TokenBodyDto,
   UpdateProjectMemberDto,
   UserDto,
-} from "./types";
+} from './types';
 import {
   deleteProjectId,
   deleteProjectIdAssets,
@@ -88,7 +88,7 @@ import {
   putProjectIdFolderFolderId,
   putProjectIdMember,
   putProjectIdStatus,
-} from "./services";
+} from './services';
 
 export type SwaggerTypescriptMutationDefaultParams<TExtra> = {
   _extraVariables?: TExtra;
@@ -96,29 +96,23 @@ export type SwaggerTypescriptMutationDefaultParams<TExtra> = {
 };
 type SwaggerTypescriptUseQueryOptions<TData> = Omit<
   UseQueryOptions<SwaggerResponse<TData>, RequestError | Error>,
-  "queryKey"
+  'queryKey'
 >;
 
-type SwaggerTypescriptUseMutationOptions<TData, TRequest, TExtra> =
-  UseMutationOptions<
-    SwaggerResponse<TData>,
-    RequestError | Error,
-    TRequest & SwaggerTypescriptMutationDefaultParams<TExtra>
-  >;
+type SwaggerTypescriptUseMutationOptions<TData, TRequest, TExtra> = UseMutationOptions<
+  SwaggerResponse<TData>,
+  RequestError | Error,
+  TRequest & SwaggerTypescriptMutationDefaultParams<TExtra>
+>;
 
-type SwaggerTypescriptUseMutationOptionsVoid<TData, TExtra> =
-  UseMutationOptions<
-    SwaggerResponse<TData>,
-    RequestError | Error,
-    SwaggerTypescriptMutationDefaultParams<TExtra> | void
-  >;
+type SwaggerTypescriptUseMutationOptionsVoid<TData, TExtra> = UseMutationOptions<
+  SwaggerResponse<TData>,
+  RequestError | Error,
+  SwaggerTypescriptMutationDefaultParams<TExtra> | void
+>;
 
 export const useDeleteProjectId = <TExtra,>(
-  options?: SwaggerTypescriptUseMutationOptions<
-    ProjectDto,
-    { id: string },
-    TExtra
-  >,
+  options?: SwaggerTypescriptUseMutationOptions<ProjectDto, { id: string }, TExtra>,
 ) => {
   return useMutation({
     mutationFn: (_o) => {
@@ -139,11 +133,7 @@ export const useDeleteProjectId = <TExtra,>(
 };
 
 export const useDeleteProjectIdAssets = <TExtra,>(
-  options?: SwaggerTypescriptUseMutationOptions<
-    ProjectDto,
-    { id: string; requestBody: AssetRemoveBodyDto },
-    TExtra
-  >,
+  options?: SwaggerTypescriptUseMutationOptions<ProjectDto, { id: string; requestBody: AssetRemoveBodyDto }, TExtra>,
 ) => {
   return useMutation({
     mutationFn: (_o) => {
@@ -166,11 +156,7 @@ export const useDeleteProjectIdAssets = <TExtra,>(
 };
 
 export const useDeleteProjectIdMember = <TExtra,>(
-  options?: SwaggerTypescriptUseMutationOptions<
-    ProjectDto,
-    { id: string },
-    TExtra
-  >,
+  options?: SwaggerTypescriptUseMutationOptions<ProjectDto, { id: string }, TExtra>,
 ) => {
   return useMutation({
     mutationFn: (_o) => {
@@ -191,11 +177,7 @@ export const useDeleteProjectIdMember = <TExtra,>(
 };
 
 export const useDeleteProjectIdMemberMemberId = <TExtra,>(
-  options?: SwaggerTypescriptUseMutationOptions<
-    ProjectDto,
-    { id: string; memberId: string },
-    TExtra
-  >,
+  options?: SwaggerTypescriptUseMutationOptions<ProjectDto, { id: string; memberId: string }, TExtra>,
 ) => {
   return useMutation({
     mutationFn: (_o) => {
@@ -217,10 +199,7 @@ export const useDeleteProjectIdMemberMemberId = <TExtra,>(
   });
 };
 
-export const useGet = (
-  options?: SwaggerTypescriptUseQueryOptions<any>,
-  configOverride?: AxiosRequestConfig,
-) => {
+export const useGet = (options?: SwaggerTypescriptUseQueryOptions<any>, configOverride?: AxiosRequestConfig) => {
   const { key, fun } = useGet.info(configOverride);
   return useQuery({
     queryKey: key,
@@ -265,10 +244,7 @@ export const useGetAssetFolderId = (
     ...options,
   });
 };
-useGetAssetFolderId.info = (
-  id: string,
-  configOverride?: AxiosRequestConfig,
-) => {
+useGetAssetFolderId.info = (id: string, configOverride?: AxiosRequestConfig) => {
   return {
     key: [getAssetFolderId.key, id] as QueryKey,
     fun: () =>
@@ -317,11 +293,7 @@ export const useGetChatId = (
     ...options,
   });
 };
-useGetChatId.info = (
-  id: string,
-  queryParams: GetChatIdQueryParams,
-  configOverride?: AxiosRequestConfig,
-) => {
+useGetChatId.info = (id: string, queryParams: GetChatIdQueryParams, configOverride?: AxiosRequestConfig) => {
   return {
     key: [getChatId.key, id, queryParams] as QueryKey,
     fun: () =>
@@ -451,10 +423,7 @@ export const useGetProjectIdAssetsArchived = (
     ...options,
   });
 };
-useGetProjectIdAssetsArchived.info = (
-  id: string,
-  configOverride?: AxiosRequestConfig,
-) => {
+useGetProjectIdAssetsArchived.info = (id: string, configOverride?: AxiosRequestConfig) => {
   return {
     key: [getProjectIdAssetsArchived.key, id] as QueryKey,
     fun: () =>
@@ -501,10 +470,7 @@ export const useGetProjectIdChats = (
     ...options,
   });
 };
-useGetProjectIdChats.info = (
-  id: string,
-  configOverride?: AxiosRequestConfig,
-) => {
+useGetProjectIdChats.info = (id: string, configOverride?: AxiosRequestConfig) => {
   return {
     key: [getProjectIdChats.key, id] as QueryKey,
     fun: () =>
@@ -608,10 +574,7 @@ export const useGetProjectIdPaths = (
     ...options,
   });
 };
-useGetProjectIdPaths.info = (
-  id: string,
-  configOverride?: AxiosRequestConfig,
-) => {
+useGetProjectIdPaths.info = (id: string, configOverride?: AxiosRequestConfig) => {
   return {
     key: [getProjectIdPaths.key, id] as QueryKey,
     fun: () =>
@@ -654,10 +617,7 @@ export const useGetProjects = (
     ...options,
   });
 };
-useGetProjects.info = (
-  queryParams?: GetProjectsQueryParams,
-  configOverride?: AxiosRequestConfig,
-) => {
+useGetProjects.info = (queryParams?: GetProjectsQueryParams, configOverride?: AxiosRequestConfig) => {
   return {
     key: [getProjects.key, queryParams] as QueryKey,
     fun: () =>
@@ -764,11 +724,7 @@ useGetUserId.prefetch = (
       });
 };
 export const usePostAuthSignIn = <TExtra,>(
-  options?: SwaggerTypescriptUseMutationOptions<
-    SignInResultDto,
-    { requestBody: SignInBodyDto },
-    TExtra
-  >,
+  options?: SwaggerTypescriptUseMutationOptions<SignInResultDto, { requestBody: SignInBodyDto }, TExtra>,
 ) => {
   return useMutation({
     mutationFn: (_o) => {
@@ -789,11 +745,7 @@ export const usePostAuthSignIn = <TExtra,>(
 };
 
 export const usePostAuthSignUp = <TExtra,>(
-  options?: SwaggerTypescriptUseMutationOptions<
-    SignUpResultDto,
-    { requestBody: SignUpBodyDto },
-    TExtra
-  >,
+  options?: SwaggerTypescriptUseMutationOptions<SignUpResultDto, { requestBody: SignUpBodyDto }, TExtra>,
 ) => {
   return useMutation({
     mutationFn: (_o) => {
@@ -814,11 +766,7 @@ export const usePostAuthSignUp = <TExtra,>(
 };
 
 export const usePostAuthSignUpInvitation = <TExtra,>(
-  options?: SwaggerTypescriptUseMutationOptions<
-    SignInResultDto,
-    { requestBody: SignUpWithTokenBodyDto },
-    TExtra
-  >,
+  options?: SwaggerTypescriptUseMutationOptions<SignInResultDto, { requestBody: SignUpWithTokenBodyDto }, TExtra>,
 ) => {
   return useMutation({
     mutationFn: (_o) => {
@@ -839,11 +787,7 @@ export const usePostAuthSignUpInvitation = <TExtra,>(
 };
 
 export const usePostAuthSsoGoogle = <TExtra,>(
-  options?: SwaggerTypescriptUseMutationOptions<
-    SignInResultDto,
-    { requestBody: TokenBodyDto },
-    TExtra
-  >,
+  options?: SwaggerTypescriptUseMutationOptions<SignInResultDto, { requestBody: TokenBodyDto }, TExtra>,
 ) => {
   return useMutation({
     mutationFn: (_o) => {
@@ -864,11 +808,7 @@ export const usePostAuthSsoGoogle = <TExtra,>(
 };
 
 export const usePostAuthVerifyEmail = <TExtra,>(
-  options?: SwaggerTypescriptUseMutationOptions<
-    SignInResultDto,
-    { requestBody: TokenBodyDto },
-    TExtra
-  >,
+  options?: SwaggerTypescriptUseMutationOptions<SignInResultDto, { requestBody: TokenBodyDto }, TExtra>,
 ) => {
   return useMutation({
     mutationFn: (_o) => {
@@ -889,11 +829,7 @@ export const usePostAuthVerifyEmail = <TExtra,>(
 };
 
 export const usePostProject = <TExtra,>(
-  options?: SwaggerTypescriptUseMutationOptions<
-    ProjectDto,
-    { requestBody: ProjectBodyDto },
-    TExtra
-  >,
+  options?: SwaggerTypescriptUseMutationOptions<ProjectDto, { requestBody: ProjectBodyDto }, TExtra>,
 ) => {
   return useMutation({
     mutationFn: (_o) => {
@@ -941,11 +877,7 @@ export const usePostProjectIdAssetsArchive = <TExtra,>(
 };
 
 export const usePostProjectIdAssetsRestore = <TExtra,>(
-  options?: SwaggerTypescriptUseMutationOptions<
-    ProjectDto,
-    { id: string; requestBody: AssetRemoveBodyDto },
-    TExtra
-  >,
+  options?: SwaggerTypescriptUseMutationOptions<ProjectDto, { id: string; requestBody: AssetRemoveBodyDto }, TExtra>,
 ) => {
   return useMutation({
     mutationFn: (_o) => {
@@ -968,11 +900,7 @@ export const usePostProjectIdAssetsRestore = <TExtra,>(
 };
 
 export const usePostProjectIdChat = <TExtra,>(
-  options?: SwaggerTypescriptUseMutationOptions<
-    any,
-    { id: string; requestBody: ChatBodyDto },
-    TExtra
-  >,
+  options?: SwaggerTypescriptUseMutationOptions<any, { id: string; requestBody: ChatBodyDto }, TExtra>,
 ) => {
   return useMutation({
     mutationFn: (_o) => {
@@ -995,11 +923,7 @@ export const usePostProjectIdChat = <TExtra,>(
 };
 
 export const usePostProjectIdCover = <TExtra,>(
-  options?: SwaggerTypescriptUseMutationOptions<
-    ProjectDto,
-    { id: string; requestBody: ProjectCoverDto },
-    TExtra
-  >,
+  options?: SwaggerTypescriptUseMutationOptions<ProjectDto, { id: string; requestBody: ProjectCoverDto }, TExtra>,
 ) => {
   return useMutation({
     mutationFn: (_o) => {
@@ -1076,11 +1000,7 @@ export const usePostProjectIdFolder = <TExtra,>(
 };
 
 export const usePostProjectIdMember = <TExtra,>(
-  options?: SwaggerTypescriptUseMutationOptions<
-    ProjectDto,
-    { id: string; requestBody: ProjectMemberBodyDto },
-    TExtra
-  >,
+  options?: SwaggerTypescriptUseMutationOptions<ProjectDto, { id: string; requestBody: ProjectMemberBodyDto }, TExtra>,
 ) => {
   return useMutation({
     mutationFn: (_o) => {
@@ -1102,9 +1022,7 @@ export const usePostProjectIdMember = <TExtra,>(
   });
 };
 
-export const usePostUserAvatar = <TExtra,>(
-  options?: SwaggerTypescriptUseMutationOptionsVoid<UserDto, TExtra>,
-) => {
+export const usePostUserAvatar = <TExtra,>(options?: SwaggerTypescriptUseMutationOptionsVoid<UserDto, TExtra>) => {
   return useMutation({
     mutationFn: (_o) => {
       const { configOverride } = _o || {};
@@ -1116,11 +1034,7 @@ export const usePostUserAvatar = <TExtra,>(
 };
 
 export const usePutChatId = <TExtra,>(
-  options?: SwaggerTypescriptUseMutationOptions<
-    ChatDto,
-    { id: string; requestBody: ChatEditBodyDto },
-    TExtra
-  >,
+  options?: SwaggerTypescriptUseMutationOptions<ChatDto, { id: string; requestBody: ChatEditBodyDto }, TExtra>,
 ) => {
   return useMutation({
     mutationFn: (_o) => {
@@ -1143,11 +1057,7 @@ export const usePutChatId = <TExtra,>(
 };
 
 export const usePutProjectId = <TExtra,>(
-  options?: SwaggerTypescriptUseMutationOptions<
-    ProjectDto,
-    { id: string; requestBody: ProjectEditBodyDto },
-    TExtra
-  >,
+  options?: SwaggerTypescriptUseMutationOptions<ProjectDto, { id: string; requestBody: ProjectEditBodyDto }, TExtra>,
 ) => {
   return useMutation({
     mutationFn: (_o) => {
@@ -1255,11 +1165,7 @@ export const usePutProjectIdMember = <TExtra,>(
 };
 
 export const usePutProjectIdStatus = <TExtra,>(
-  options?: SwaggerTypescriptUseMutationOptions<
-    ProjectDto,
-    { id: string; requestBody: ProjectStatusBodyDto },
-    TExtra
-  >,
+  options?: SwaggerTypescriptUseMutationOptions<ProjectDto, { id: string; requestBody: ProjectStatusBodyDto }, TExtra>,
 ) => {
   return useMutation({
     mutationFn: (_o) => {

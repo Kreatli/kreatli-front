@@ -58,6 +58,8 @@ export const ProjectHeader = ({ project }: Props) => {
     }
   };
 
+  const projectActions = getProjectActions(project);
+
   return (
     <div className="flex gap-4 justify-between">
       <ProjectBreadcrumbs
@@ -66,26 +68,28 @@ export const ProjectHeader = ({ project }: Props) => {
         totalFileSize={project.totalFileSize}
         path={[{ name: project.name, url: '#' }]}
       >
-        <Dropdown>
-          <DropdownTrigger>
-            <Button isIconOnly size="sm" variant="light" radius="full">
-              <Icon icon="dots" />
-            </Button>
-          </DropdownTrigger>
-          <DropdownMenu variant="flat">
-            {getProjectActions(project).map((action) => (
-              <DropdownItem
-                key={action.label}
-                color={action.color}
-                showDivider={action.showDivider}
-                startContent={<Icon icon={action.icon} size={16} />}
-                onPress={action.onClick}
-              >
-                {action.label}
-              </DropdownItem>
-            ))}
-          </DropdownMenu>
-        </Dropdown>
+        {projectActions.length > 0 && (
+          <Dropdown>
+            <DropdownTrigger>
+              <Button isIconOnly size="sm" variant="light" radius="full">
+                <Icon icon="dots" />
+              </Button>
+            </DropdownTrigger>
+            <DropdownMenu variant="flat">
+              {projectActions.map((action) => (
+                <DropdownItem
+                  key={action.label}
+                  color={action.color}
+                  showDivider={action.showDivider}
+                  startContent={<Icon icon={action.icon} size={16} />}
+                  onPress={action.onClick}
+                >
+                  {action.label}
+                </DropdownItem>
+              ))}
+            </DropdownMenu>
+          </Dropdown>
+        )}
       </ProjectBreadcrumbs>
       <div className="flex gap-4">
         <div className="p-1">

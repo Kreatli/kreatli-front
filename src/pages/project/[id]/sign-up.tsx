@@ -1,17 +1,12 @@
-import { Button } from '@nextui-org/react';
 import Head from 'next/head';
-import NextLink from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
 
-import { SignInForm } from '../../../components/review-tool/auth/SignInForm';
+import { InvitationSignUpForm } from '../../../components/review-tool/auth/SignUpForm/InvitationSignUpForm';
 import { StartPageLayout } from '../../../components/review-tool/layout/StartPageLayout';
 import { useReviewToolLoader } from '../../../hooks/review-tool/useReviewToolLoader';
-import { useNotifications } from '../../../hooks/useNotifications';
-import { useGetProject, useGetUser, usePutProjectIdMember } from '../../../services/review-tool/hooks';
-import { getErrorMessage } from '../../../utils/review-tool/getErrorMessage';
+import { useGetProject, useGetUser } from '../../../services/review-tool/hooks';
 import { getHasToken } from '../../../utils/token';
-import { SignUpForm } from '../../../components/review-tool/auth/SignUpForm';
 
 export default function JoinProject() {
   const hasUserToken = getHasToken();
@@ -27,9 +22,7 @@ export default function JoinProject() {
 
   const isLoading = useReviewToolLoader((state) => state.isLoading);
   const setIsLoading = useReviewToolLoader((state) => state.setIsLoading);
-  const { pushNotification } = useNotifications();
   const { data } = useGetProject({ enabled: !!token }, { headers: { Authorization: token } });
-  const { mutate, isPending: isJoining } = usePutProjectIdMember();
 
   React.useEffect(() => {
     if (data && (user || !hasUserToken)) {
@@ -43,31 +36,13 @@ export default function JoinProject() {
     }
   }, [router, user, isSignedIn, data]);
 
-  const handleSignInSuccess = () => {
-    router.reload();
-  };
-
-  const joinProject = () => {
-    if (!data || !token) {
-      return;
-    }
-
-    mutate(
-      { id: data.projectId, requestBody: { token } },
-      {
-        onSuccess: () => {
-          router.push(`/project/${data.projectId}`);
-        },
-        onError: (error) => {
-          pushNotification({ icon: 'error', message: getErrorMessage(error) });
-        },
-      },
-    );
+  const handleSignUpSuccess = () => {
+    router.push(`/project/${data?.projectId}`);
   };
 
   const title = `Join "${data?.projectName}" | Kreatli`;
 
-  if (isLoading) {
+  if (isLoading || !data || !token) {
     return null;
   }
 
@@ -82,22 +57,8 @@ export default function JoinProject() {
         backgroundUrl={data?.projectCover?.url}
         backgroundType="light"
       >
-        {isSignedIn ? (
-          <div className="flex flex-col gap-4">
-            <p className="mb-4 text-foreground-500">To join the project click the button below.</p>
-            <Button className="text-content1 bg-foreground" isLoading={isJoining} onClick={joinProject}>
-              Join project
-            </Button>
-            <Button as={NextLink} href="/" variant="light">
-              Back to my projects
-            </Button>
-          </div>
-        ) : (
-          <div>
-            <p className="mb-4 text-foreground-500">Please create an account to join the project.</p>
-            <SignUpForm email={data?.email} showSignInLink={false} onSuccess={handleSignInSuccess} />
-          </div>
-        )}
+        <p className="mb-4 text-foreground-500">Please create an account to join the project.</p>
+        <InvitationSignUpForm email={data?.email} token={token} onSuccess={handleSignUpSuccess} />
       </StartPageLayout>
     </>
   );

@@ -5,9 +5,9 @@
  * @version 6
  */
 
-import axios, { AxiosRequestConfig, CancelToken } from "axios";
-import { getAxiosInstance } from "./config";
-import type { Security, SwaggerResponse } from "./config";
+import axios, { AxiosRequestConfig, CancelToken } from 'axios';
+import { getAxiosInstance } from './config';
+import type { Security, SwaggerResponse } from './config';
 
 /**
  * Cancellation handled here, you can cancel request by call promise.cancel()
@@ -20,14 +20,12 @@ import type { Security, SwaggerResponse } from "./config";
  * @param getPromise
  * @returns
  */
-function cancellation<T>(
-  getPromise: (cancelToken: CancelToken) => Promise<T>,
-): Promise<T> {
+function cancellation<T>(getPromise: (cancelToken: CancelToken) => Promise<T>): Promise<T> {
   const source = axios.CancelToken.source();
   const promise = getPromise(source.token);
   //@ts-ignore
   promise.cancel = () => {
-    source.cancel("request canceled");
+    source.cancel('request canceled');
   };
 
   return promise;

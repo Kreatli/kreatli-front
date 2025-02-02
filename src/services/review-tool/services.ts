@@ -5,11 +5,11 @@
  * @version 6
  */
 
-import type { AxiosRequestConfig } from "axios";
-import type { SwaggerResponse } from "./config";
-import { Http } from "./httpRequest";
+import type { AxiosRequestConfig } from 'axios';
+import type { SwaggerResponse } from './config';
+import { Http } from './httpRequest';
 //@ts-ignore
-import qs from "qs";
+import qs from 'qs';
 import type {
   GetProjectIdLogsQueryParams,
   GetProjectsQueryParams,
@@ -44,16 +44,13 @@ import type {
   ProjectsResponseDto,
   ChatResponseDto,
   ChatEditBodyDto,
-} from "./types";
+} from './types';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-const __DEV__ = process.env.NODE_ENV !== "production";
+const __DEV__ = process.env.NODE_ENV !== 'production';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-function overrideConfig(
-  config?: AxiosRequestConfig,
-  configOverride?: AxiosRequestConfig,
-): AxiosRequestConfig {
+function overrideConfig(config?: AxiosRequestConfig, configOverride?: AxiosRequestConfig): AxiosRequestConfig {
   return {
     ...config,
     ...configOverride,
@@ -67,7 +64,7 @@ function overrideConfig(
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export function template(path: string, obj: { [x: string]: any } = {}) {
   Object.keys(obj).forEach((key) => {
-    const re = new RegExp(`{${key}}`, "i");
+    const re = new RegExp(`{${key}}`, 'i');
     path = path.replace(re, obj[key]);
   });
 
@@ -77,10 +74,8 @@ export function template(path: string, obj: { [x: string]: any } = {}) {
 function isFormData(obj: any) {
   // This checks for the append method which should exist on FormData instances
   return (
-    (typeof obj === "object" &&
-      typeof obj.append === "function" &&
-      obj[Symbol.toStringTag] === undefined) ||
-    obj[Symbol.toStringTag] === "FormData"
+    (typeof obj === 'object' && typeof obj.append === 'function' && obj[Symbol.toStringTag] === undefined) ||
+    obj[Symbol.toStringTag] === 'FormData'
   );
 }
 
@@ -117,7 +112,7 @@ export const deleteProjectId = (
 };
 
 /** Key is end point string without base url */
-deleteProjectId.key = "/project/{id}";
+deleteProjectId.key = '/project/{id}';
 
 export const deleteProjectIdAssets = (
   id: string,
@@ -134,7 +129,7 @@ export const deleteProjectIdAssets = (
 };
 
 /** Key is end point string without base url */
-deleteProjectIdAssets.key = "/project/{id}/assets";
+deleteProjectIdAssets.key = '/project/{id}/assets';
 
 export const deleteProjectIdMember = (
   id: string,
@@ -150,7 +145,7 @@ export const deleteProjectIdMember = (
 };
 
 /** Key is end point string without base url */
-deleteProjectIdMember.key = "/project/{id}/member";
+deleteProjectIdMember.key = '/project/{id}/member';
 
 export const deleteProjectIdMemberMemberId = (
   id: string,
@@ -167,22 +162,14 @@ export const deleteProjectIdMemberMemberId = (
 };
 
 /** Key is end point string without base url */
-deleteProjectIdMemberMemberId.key = "/project/{id}/member/{memberId}";
+deleteProjectIdMemberMemberId.key = '/project/{id}/member/{memberId}';
 
-export const get = (
-  configOverride?: AxiosRequestConfig,
-): Promise<SwaggerResponse<any>> => {
-  return Http.getRequest(
-    get.key,
-    undefined,
-    undefined,
-    undefined,
-    overrideConfig(_CONSTANT0, configOverride),
-  );
+export const get = (configOverride?: AxiosRequestConfig): Promise<SwaggerResponse<any>> => {
+  return Http.getRequest(get.key, undefined, undefined, undefined, overrideConfig(_CONSTANT0, configOverride));
 };
 
 /** Key is end point string without base url */
-get.key = "/";
+get.key = '/';
 
 export const getAssetFolderId = (
   id: string,
@@ -198,7 +185,7 @@ export const getAssetFolderId = (
 };
 
 /** Key is end point string without base url */
-getAssetFolderId.key = "/asset/folder/{id}";
+getAssetFolderId.key = '/asset/folder/{id}';
 
 export const getChatId = (
   id: string,
@@ -215,27 +202,16 @@ export const getChatId = (
 };
 
 /** Key is end point string without base url */
-getChatId.key = "/chat/{id}";
+getChatId.key = '/chat/{id}';
 
-export const getProject = (
-  configOverride?: AxiosRequestConfig,
-): Promise<SwaggerResponse<ProjectInvitationDto>> => {
-  return Http.getRequest(
-    getProject.key,
-    undefined,
-    undefined,
-    undefined,
-    overrideConfig(_CONSTANT0, configOverride),
-  );
+export const getProject = (configOverride?: AxiosRequestConfig): Promise<SwaggerResponse<ProjectInvitationDto>> => {
+  return Http.getRequest(getProject.key, undefined, undefined, undefined, overrideConfig(_CONSTANT0, configOverride));
 };
 
 /** Key is end point string without base url */
-getProject.key = "/project";
+getProject.key = '/project';
 
-export const getProjectId = (
-  id: string,
-  configOverride?: AxiosRequestConfig,
-): Promise<SwaggerResponse<ProjectDto>> => {
+export const getProjectId = (id: string, configOverride?: AxiosRequestConfig): Promise<SwaggerResponse<ProjectDto>> => {
   return Http.getRequest(
     template(getProjectId.key, { id }),
     undefined,
@@ -246,7 +222,7 @@ export const getProjectId = (
 };
 
 /** Key is end point string without base url */
-getProjectId.key = "/project/{id}";
+getProjectId.key = '/project/{id}';
 
 export const getProjectIdAssetsArchived = (
   id: string,
@@ -262,7 +238,7 @@ export const getProjectIdAssetsArchived = (
 };
 
 /** Key is end point string without base url */
-getProjectIdAssetsArchived.key = "/project/{id}/assets/archived";
+getProjectIdAssetsArchived.key = '/project/{id}/assets/archived';
 
 export const getProjectIdChats = (
   id: string,
@@ -278,7 +254,7 @@ export const getProjectIdChats = (
 };
 
 /** Key is end point string without base url */
-getProjectIdChats.key = "/project/{id}/chats";
+getProjectIdChats.key = '/project/{id}/chats';
 
 export const getProjectIdLogs = (
   id: string,
@@ -295,7 +271,7 @@ export const getProjectIdLogs = (
 };
 
 /** Key is end point string without base url */
-getProjectIdLogs.key = "/project/{id}/logs";
+getProjectIdLogs.key = '/project/{id}/logs';
 
 export const getProjectIdPaths = (
   id: string,
@@ -311,7 +287,7 @@ export const getProjectIdPaths = (
 };
 
 /** Key is end point string without base url */
-getProjectIdPaths.key = "/project/{id}/paths";
+getProjectIdPaths.key = '/project/{id}/paths';
 
 export const getProjects = (
   queryParams?: GetProjectsQueryParams,
@@ -327,27 +303,16 @@ export const getProjects = (
 };
 
 /** Key is end point string without base url */
-getProjects.key = "/projects";
+getProjects.key = '/projects';
 
-export const getUser = (
-  configOverride?: AxiosRequestConfig,
-): Promise<SwaggerResponse<UserDto>> => {
-  return Http.getRequest(
-    getUser.key,
-    undefined,
-    undefined,
-    undefined,
-    overrideConfig(_CONSTANT0, configOverride),
-  );
+export const getUser = (configOverride?: AxiosRequestConfig): Promise<SwaggerResponse<UserDto>> => {
+  return Http.getRequest(getUser.key, undefined, undefined, undefined, overrideConfig(_CONSTANT0, configOverride));
 };
 
 /** Key is end point string without base url */
-getUser.key = "/user";
+getUser.key = '/user';
 
-export const getUserId = (
-  id: string,
-  configOverride?: AxiosRequestConfig,
-): Promise<SwaggerResponse<UserDto>> => {
+export const getUserId = (id: string, configOverride?: AxiosRequestConfig): Promise<SwaggerResponse<UserDto>> => {
   return Http.getRequest(
     template(getUserId.key, { id }),
     undefined,
@@ -358,7 +323,7 @@ export const getUserId = (
 };
 
 /** Key is end point string without base url */
-getUserId.key = "/user/{id}";
+getUserId.key = '/user/{id}';
 
 export const postAuthSignIn = (
   requestBody: SignInBodyDto,
@@ -374,7 +339,7 @@ export const postAuthSignIn = (
 };
 
 /** Key is end point string without base url */
-postAuthSignIn.key = "/auth/sign-in";
+postAuthSignIn.key = '/auth/sign-in';
 
 export const postAuthSignUp = (
   requestBody: SignUpBodyDto,
@@ -390,7 +355,7 @@ export const postAuthSignUp = (
 };
 
 /** Key is end point string without base url */
-postAuthSignUp.key = "/auth/sign-up";
+postAuthSignUp.key = '/auth/sign-up';
 
 export const postAuthSignUpInvitation = (
   requestBody: SignUpWithTokenBodyDto,
@@ -406,7 +371,7 @@ export const postAuthSignUpInvitation = (
 };
 
 /** Key is end point string without base url */
-postAuthSignUpInvitation.key = "/auth/sign-up-invitation";
+postAuthSignUpInvitation.key = '/auth/sign-up-invitation';
 
 export const postAuthSsoGoogle = (
   requestBody: TokenBodyDto,
@@ -422,7 +387,7 @@ export const postAuthSsoGoogle = (
 };
 
 /** Key is end point string without base url */
-postAuthSsoGoogle.key = "/auth/sso-google";
+postAuthSsoGoogle.key = '/auth/sso-google';
 
 export const postAuthVerifyEmail = (
   requestBody: TokenBodyDto,
@@ -438,7 +403,7 @@ export const postAuthVerifyEmail = (
 };
 
 /** Key is end point string without base url */
-postAuthVerifyEmail.key = "/auth/verify-email";
+postAuthVerifyEmail.key = '/auth/verify-email';
 
 export const postProject = (
   requestBody: ProjectBodyDto,
@@ -454,7 +419,7 @@ export const postProject = (
 };
 
 /** Key is end point string without base url */
-postProject.key = "/project";
+postProject.key = '/project';
 
 export const postProjectIdAssetsArchive = (
   id: string,
@@ -471,7 +436,7 @@ export const postProjectIdAssetsArchive = (
 };
 
 /** Key is end point string without base url */
-postProjectIdAssetsArchive.key = "/project/{id}/assets/archive";
+postProjectIdAssetsArchive.key = '/project/{id}/assets/archive';
 
 export const postProjectIdAssetsRestore = (
   id: string,
@@ -488,7 +453,7 @@ export const postProjectIdAssetsRestore = (
 };
 
 /** Key is end point string without base url */
-postProjectIdAssetsRestore.key = "/project/{id}/assets/restore";
+postProjectIdAssetsRestore.key = '/project/{id}/assets/restore';
 
 export const postProjectIdChat = (
   id: string,
@@ -505,7 +470,7 @@ export const postProjectIdChat = (
 };
 
 /** Key is end point string without base url */
-postProjectIdChat.key = "/project/{id}/chat";
+postProjectIdChat.key = '/project/{id}/chat';
 
 export const postProjectIdCover = (
   id: string,
@@ -522,7 +487,7 @@ export const postProjectIdCover = (
 };
 
 /** Key is end point string without base url */
-postProjectIdCover.key = "/project/{id}/cover";
+postProjectIdCover.key = '/project/{id}/cover';
 
 export const postProjectIdFile = (
   id: string,
@@ -539,7 +504,7 @@ export const postProjectIdFile = (
 };
 
 /** Key is end point string without base url */
-postProjectIdFile.key = "/project/{id}/file";
+postProjectIdFile.key = '/project/{id}/file';
 
 export const postProjectIdFolder = (
   id: string,
@@ -556,7 +521,7 @@ export const postProjectIdFolder = (
 };
 
 /** Key is end point string without base url */
-postProjectIdFolder.key = "/project/{id}/folder";
+postProjectIdFolder.key = '/project/{id}/folder';
 
 export const postProjectIdMember = (
   id: string,
@@ -573,11 +538,9 @@ export const postProjectIdMember = (
 };
 
 /** Key is end point string without base url */
-postProjectIdMember.key = "/project/{id}/member";
+postProjectIdMember.key = '/project/{id}/member';
 
-export const postUserAvatar = (
-  configOverride?: AxiosRequestConfig,
-): Promise<SwaggerResponse<UserDto>> => {
+export const postUserAvatar = (configOverride?: AxiosRequestConfig): Promise<SwaggerResponse<UserDto>> => {
   return Http.postRequest(
     postUserAvatar.key,
     undefined,
@@ -588,7 +551,7 @@ export const postUserAvatar = (
 };
 
 /** Key is end point string without base url */
-postUserAvatar.key = "/user/avatar";
+postUserAvatar.key = '/user/avatar';
 
 export const putChatId = (
   id: string,
@@ -605,7 +568,7 @@ export const putChatId = (
 };
 
 /** Key is end point string without base url */
-putChatId.key = "/chat/{id}";
+putChatId.key = '/chat/{id}';
 
 export const putProjectId = (
   id: string,
@@ -622,7 +585,7 @@ export const putProjectId = (
 };
 
 /** Key is end point string without base url */
-putProjectId.key = "/project/{id}";
+putProjectId.key = '/project/{id}';
 
 export const putProjectIdFileFileId = (
   id: string,
@@ -640,7 +603,7 @@ export const putProjectIdFileFileId = (
 };
 
 /** Key is end point string without base url */
-putProjectIdFileFileId.key = "/project/{id}/file/{fileId}";
+putProjectIdFileFileId.key = '/project/{id}/file/{fileId}';
 
 export const putProjectIdFolderFolderId = (
   id: string,
@@ -658,7 +621,7 @@ export const putProjectIdFolderFolderId = (
 };
 
 /** Key is end point string without base url */
-putProjectIdFolderFolderId.key = "/project/{id}/folder/{folderId}";
+putProjectIdFolderFolderId.key = '/project/{id}/folder/{folderId}';
 
 export const putProjectIdMember = (
   id: string,
@@ -675,7 +638,7 @@ export const putProjectIdMember = (
 };
 
 /** Key is end point string without base url */
-putProjectIdMember.key = "/project/{id}/member";
+putProjectIdMember.key = '/project/{id}/member';
 
 export const putProjectIdStatus = (
   id: string,
@@ -692,16 +655,16 @@ export const putProjectIdStatus = (
 };
 
 /** Key is end point string without base url */
-putProjectIdStatus.key = "/project/{id}/status";
+putProjectIdStatus.key = '/project/{id}/status';
 export const _CONSTANT0 = {
   headers: {
-    "Content-Type": "application/json",
-    Accept: "application/json",
+    'Content-Type': 'application/json',
+    Accept: 'application/json',
   },
 };
 export const _CONSTANT1 = {
   headers: {
-    "Content-Type": "multipart/form-data",
-    Accept: "application/json",
+    'Content-Type': 'multipart/form-data',
+    Accept: 'application/json',
   },
 };

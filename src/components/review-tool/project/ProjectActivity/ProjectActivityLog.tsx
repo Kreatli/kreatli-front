@@ -257,7 +257,7 @@ const AssetsRemovedLog = ({ log }: { log: AssetsRemovedLogDto }) => {
 };
 
 const ProjectUpdatedLog = ({ log }: { log: ProjectUpdatedLogDto }) => {
-  const { name, description, isCoverChanged, status } = log.details;
+  const { name, description, isCoverChanged, isAssetsOrderChanged, status } = log.details;
 
   if (name) {
     return `Renamed project to "${name}"`;
@@ -269,6 +269,10 @@ const ProjectUpdatedLog = ({ log }: { log: ProjectUpdatedLogDto }) => {
 
   if (isCoverChanged) {
     return 'Updated project cover image';
+  }
+
+  if (isAssetsOrderChanged) {
+    return 'Reordered assets in the project structure';
   }
 
   if (status === 'archived') {

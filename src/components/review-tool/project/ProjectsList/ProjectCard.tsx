@@ -23,6 +23,8 @@ export const ProjectCard = ({ project }: Props) => {
     router.push(`/project/${project.id}`);
   };
 
+  const projectActions = getProjectActions(project);
+
   return (
     <div className="group/project-card relative flex flex-col">
       <button
@@ -48,33 +50,35 @@ export const ProjectCard = ({ project }: Props) => {
           <ProjectMembersThumbnails members={project.members} />
         </div>
       </div>
-      <Dropdown>
-        <DropdownTrigger>
-          <Button
-            type="button"
-            size="sm"
-            isIconOnly
-            variant="faded"
-            aria-label={`Open project ${project.name} options`}
-            className="absolute top-2 right-2 opacity-0 group-focus-within/project-card:opacity-100 group-hover/project-card:opacity-100"
-          >
-            <Icon icon="dots" />
-          </Button>
-        </DropdownTrigger>
-        <DropdownMenu variant="flat">
-          {getProjectActions(project).map((action) => (
-            <DropdownItem
-              key={action.label}
-              color={action.color}
-              showDivider={action.showDivider}
-              startContent={<Icon icon={action.icon} size={16} />}
-              onPress={action.onClick}
+      {projectActions.length > 0 && (
+        <Dropdown>
+          <DropdownTrigger>
+            <Button
+              type="button"
+              size="sm"
+              isIconOnly
+              variant="faded"
+              aria-label={`Open project ${project.name} options`}
+              className="absolute top-2 right-2 opacity-0 group-focus-within/project-card:opacity-100 group-hover/project-card:opacity-100"
             >
-              {action.label}
-            </DropdownItem>
-          ))}
-        </DropdownMenu>
-      </Dropdown>
+              <Icon icon="dots" />
+            </Button>
+          </DropdownTrigger>
+          <DropdownMenu variant="flat">
+            {projectActions.map((action) => (
+              <DropdownItem
+                key={action.label}
+                color={action.color}
+                showDivider={action.showDivider}
+                startContent={<Icon icon={action.icon} size={16} />}
+                onPress={action.onClick}
+              >
+                {action.label}
+              </DropdownItem>
+            ))}
+          </DropdownMenu>
+        </Dropdown>
+      )}
     </div>
   );
 };

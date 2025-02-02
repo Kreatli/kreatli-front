@@ -15,11 +15,7 @@
         "responses": {
           "200": {
             "description": "",
-            "content": {
-              "application/json": {
-                "schema": { "$ref": "#/components/schemas/UserDto" }
-              }
-            }
+            "content": { "application/json": { "schema": { "$ref": "#/components/schemas/UserDto" } } }
           }
         }
       }
@@ -27,22 +23,11 @@
     "/user/{id}": {
       "get": {
         "operationId": "UserController_getUserById",
-        "parameters": [
-          {
-            "name": "id",
-            "required": true,
-            "in": "path",
-            "schema": { "type": "string" }
-          }
-        ],
+        "parameters": [{ "name": "id", "required": true, "in": "path", "schema": { "type": "string" } }],
         "responses": {
           "200": {
             "description": "",
-            "content": {
-              "application/json": {
-                "schema": { "$ref": "#/components/schemas/UserDto" }
-              }
-            }
+            "content": { "application/json": { "schema": { "$ref": "#/components/schemas/UserDto" } } }
           }
         }
       }
@@ -54,11 +39,7 @@
         "responses": {
           "200": {
             "description": "",
-            "content": {
-              "application/json": {
-                "schema": { "$ref": "#/components/schemas/UserDto" }
-              }
-            }
+            "content": { "application/json": { "schema": { "$ref": "#/components/schemas/UserDto" } } }
           }
         }
       }
@@ -69,20 +50,12 @@
         "parameters": [],
         "requestBody": {
           "required": true,
-          "content": {
-            "application/json": {
-              "schema": { "$ref": "#/components/schemas/SignUpBodyDto" }
-            }
-          }
+          "content": { "application/json": { "schema": { "$ref": "#/components/schemas/SignUpBodyDto" } } }
         },
         "responses": {
           "200": {
             "description": "",
-            "content": {
-              "application/json": {
-                "schema": { "$ref": "#/components/schemas/SignUpResultDto" }
-              }
-            }
+            "content": { "application/json": { "schema": { "$ref": "#/components/schemas/SignUpResultDto" } } }
           }
         }
       }
@@ -93,22 +66,12 @@
         "parameters": [],
         "requestBody": {
           "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/SignUpWithTokenBodyDto"
-              }
-            }
-          }
+          "content": { "application/json": { "schema": { "$ref": "#/components/schemas/SignUpWithTokenBodyDto" } } }
         },
         "responses": {
           "200": {
             "description": "",
-            "content": {
-              "application/json": {
-                "schema": { "$ref": "#/components/schemas/SignInResultDto" }
-              }
-            }
+            "content": { "application/json": { "schema": { "$ref": "#/components/schemas/SignInResultDto" } } }
           }
         }
       }
@@ -119,20 +82,12 @@
         "parameters": [],
         "requestBody": {
           "required": true,
-          "content": {
-            "application/json": {
-              "schema": { "$ref": "#/components/schemas/SignInBodyDto" }
-            }
-          }
+          "content": { "application/json": { "schema": { "$ref": "#/components/schemas/SignInBodyDto" } } }
         },
         "responses": {
           "200": {
             "description": "",
-            "content": {
-              "application/json": {
-                "schema": { "$ref": "#/components/schemas/SignInResultDto" }
-              }
-            }
+            "content": { "application/json": { "schema": { "$ref": "#/components/schemas/SignInResultDto" } } }
           }
         }
       }
@@ -143,20 +98,12 @@
         "parameters": [],
         "requestBody": {
           "required": true,
-          "content": {
-            "application/json": {
-              "schema": { "$ref": "#/components/schemas/TokenBodyDto" }
-            }
-          }
+          "content": { "application/json": { "schema": { "$ref": "#/components/schemas/TokenBodyDto" } } }
         },
         "responses": {
           "200": {
             "description": "",
-            "content": {
-              "application/json": {
-                "schema": { "$ref": "#/components/schemas/SignInResultDto" }
-              }
-            }
+            "content": { "application/json": { "schema": { "$ref": "#/components/schemas/SignInResultDto" } } }
           }
         }
       }
@@ -167,20 +114,12 @@
         "parameters": [],
         "requestBody": {
           "required": true,
-          "content": {
-            "application/json": {
-              "schema": { "$ref": "#/components/schemas/TokenBodyDto" }
-            }
-          }
+          "content": { "application/json": { "schema": { "$ref": "#/components/schemas/TokenBodyDto" } } }
         },
         "responses": {
           "200": {
             "description": "",
-            "content": {
-              "application/json": {
-                "schema": { "$ref": "#/components/schemas/SignInResultDto" }
-              }
-            }
+            "content": { "application/json": { "schema": { "$ref": "#/components/schemas/SignInResultDto" } } }
           }
         }
       }
@@ -191,20 +130,12 @@
         "parameters": [],
         "requestBody": {
           "required": true,
-          "content": {
-            "application/json": {
-              "schema": { "$ref": "#/components/schemas/ProjectBodyDto" }
-            }
-          }
+          "content": { "application/json": { "schema": { "$ref": "#/components/schemas/ProjectBodyDto" } } }
         },
         "responses": {
           "200": {
             "description": "",
-            "content": {
-              "application/json": {
-                "schema": { "$ref": "#/components/schemas/ProjectDto" }
-              }
-            }
+            "content": { "application/json": { "schema": { "$ref": "#/components/schemas/ProjectDto" } } }
           }
         }
       },
@@ -214,13 +145,7 @@
         "responses": {
           "200": {
             "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProjectInvitationDto"
-                }
-              }
-            }
+            "content": { "application/json": { "schema": { "$ref": "#/components/schemas/ProjectInvitationDto" } } }
           }
         }
       }
@@ -228,72 +153,35 @@
     "/project/{id}": {
       "put": {
         "operationId": "ProjectController_editProject",
-        "parameters": [
-          {
-            "name": "id",
-            "required": true,
-            "in": "path",
-            "schema": { "type": "string" }
-          }
-        ],
+        "parameters": [{ "name": "id", "required": true, "in": "path", "schema": { "type": "string" } }],
         "requestBody": {
           "required": true,
-          "content": {
-            "application/json": {
-              "schema": { "$ref": "#/components/schemas/ProjectEditBodyDto" }
-            }
-          }
+          "content": { "application/json": { "schema": { "$ref": "#/components/schemas/ProjectEditBodyDto" } } }
         },
         "responses": {
           "200": {
             "description": "",
-            "content": {
-              "application/json": {
-                "schema": { "$ref": "#/components/schemas/ProjectDto" }
-              }
-            }
+            "content": { "application/json": { "schema": { "$ref": "#/components/schemas/ProjectDto" } } }
           }
         }
       },
       "get": {
         "operationId": "ProjectController_getProjectById",
-        "parameters": [
-          {
-            "name": "id",
-            "required": true,
-            "in": "path",
-            "schema": { "type": "string" }
-          }
-        ],
+        "parameters": [{ "name": "id", "required": true, "in": "path", "schema": { "type": "string" } }],
         "responses": {
           "200": {
             "description": "",
-            "content": {
-              "application/json": {
-                "schema": { "$ref": "#/components/schemas/ProjectDto" }
-              }
-            }
+            "content": { "application/json": { "schema": { "$ref": "#/components/schemas/ProjectDto" } } }
           }
         }
       },
       "delete": {
         "operationId": "ProjectController_removeProject",
-        "parameters": [
-          {
-            "name": "id",
-            "required": true,
-            "in": "path",
-            "schema": { "type": "string" }
-          }
-        ],
+        "parameters": [{ "name": "id", "required": true, "in": "path", "schema": { "type": "string" } }],
         "responses": {
           "200": {
             "description": "",
-            "content": {
-              "application/json": {
-                "schema": { "$ref": "#/components/schemas/ProjectDto" }
-              }
-            }
+            "content": { "application/json": { "schema": { "$ref": "#/components/schemas/ProjectDto" } } }
           }
         }
       }
@@ -301,30 +189,15 @@
     "/project/{id}/cover": {
       "post": {
         "operationId": "ProjectController_updateProjectCover",
-        "parameters": [
-          {
-            "name": "id",
-            "required": true,
-            "in": "path",
-            "schema": { "type": "string" }
-          }
-        ],
+        "parameters": [{ "name": "id", "required": true, "in": "path", "schema": { "type": "string" } }],
         "requestBody": {
           "required": true,
-          "content": {
-            "multipart/form-data": {
-              "schema": { "$ref": "#/components/schemas/ProjectCoverDto" }
-            }
-          }
+          "content": { "multipart/form-data": { "schema": { "$ref": "#/components/schemas/ProjectCoverDto" } } }
         },
         "responses": {
           "200": {
             "description": "",
-            "content": {
-              "application/json": {
-                "schema": { "$ref": "#/components/schemas/ProjectDto" }
-              }
-            }
+            "content": { "application/json": { "schema": { "$ref": "#/components/schemas/ProjectDto" } } }
           }
         }
       }
@@ -332,30 +205,15 @@
     "/project/{id}/status": {
       "put": {
         "operationId": "ProjectController_updateProjectStatus",
-        "parameters": [
-          {
-            "name": "id",
-            "required": true,
-            "in": "path",
-            "schema": { "type": "string" }
-          }
-        ],
+        "parameters": [{ "name": "id", "required": true, "in": "path", "schema": { "type": "string" } }],
         "requestBody": {
           "required": true,
-          "content": {
-            "application/json": {
-              "schema": { "$ref": "#/components/schemas/ProjectStatusBodyDto" }
-            }
-          }
+          "content": { "application/json": { "schema": { "$ref": "#/components/schemas/ProjectStatusBodyDto" } } }
         },
         "responses": {
           "200": {
             "description": "",
-            "content": {
-              "application/json": {
-                "schema": { "$ref": "#/components/schemas/ProjectDto" }
-              }
-            }
+            "content": { "application/json": { "schema": { "$ref": "#/components/schemas/ProjectDto" } } }
           }
         }
       }
@@ -363,82 +221,39 @@
     "/project/{id}/member": {
       "post": {
         "operationId": "ProjectController_addProjectMember",
-        "parameters": [
-          {
-            "name": "id",
-            "required": true,
-            "in": "path",
-            "schema": { "type": "string" }
-          }
-        ],
+        "parameters": [{ "name": "id", "required": true, "in": "path", "schema": { "type": "string" } }],
         "requestBody": {
           "required": true,
-          "content": {
-            "application/json": {
-              "schema": { "$ref": "#/components/schemas/ProjectMemberBodyDto" }
-            }
-          }
+          "content": { "application/json": { "schema": { "$ref": "#/components/schemas/ProjectMemberBodyDto" } } }
         },
         "responses": {
           "200": {
             "description": "",
-            "content": {
-              "application/json": {
-                "schema": { "$ref": "#/components/schemas/ProjectDto" }
-              }
-            }
+            "content": { "application/json": { "schema": { "$ref": "#/components/schemas/ProjectDto" } } }
           }
         }
       },
       "put": {
         "operationId": "ProjectController_updateProjectMember",
-        "parameters": [
-          {
-            "name": "id",
-            "required": true,
-            "in": "path",
-            "schema": { "type": "string" }
-          }
-        ],
+        "parameters": [{ "name": "id", "required": true, "in": "path", "schema": { "type": "string" } }],
         "requestBody": {
           "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UpdateProjectMemberDto"
-              }
-            }
-          }
+          "content": { "application/json": { "schema": { "$ref": "#/components/schemas/UpdateProjectMemberDto" } } }
         },
         "responses": {
           "200": {
             "description": "",
-            "content": {
-              "application/json": {
-                "schema": { "$ref": "#/components/schemas/ProjectDto" }
-              }
-            }
+            "content": { "application/json": { "schema": { "$ref": "#/components/schemas/ProjectDto" } } }
           }
         }
       },
       "delete": {
         "operationId": "ProjectController_leaveProject",
-        "parameters": [
-          {
-            "name": "id",
-            "required": true,
-            "in": "path",
-            "schema": { "type": "string" }
-          }
-        ],
+        "parameters": [{ "name": "id", "required": true, "in": "path", "schema": { "type": "string" } }],
         "responses": {
           "200": {
             "description": "",
-            "content": {
-              "application/json": {
-                "schema": { "$ref": "#/components/schemas/ProjectDto" }
-              }
-            }
+            "content": { "application/json": { "schema": { "$ref": "#/components/schemas/ProjectDto" } } }
           }
         }
       }
@@ -447,27 +262,13 @@
       "delete": {
         "operationId": "ProjectController_removeProjectMember",
         "parameters": [
-          {
-            "name": "id",
-            "required": true,
-            "in": "path",
-            "schema": { "type": "string" }
-          },
-          {
-            "name": "memberId",
-            "required": true,
-            "in": "path",
-            "schema": { "type": "string" }
-          }
+          { "name": "id", "required": true, "in": "path", "schema": { "type": "string" } },
+          { "name": "memberId", "required": true, "in": "path", "schema": { "type": "string" } }
         ],
         "responses": {
           "200": {
             "description": "",
-            "content": {
-              "application/json": {
-                "schema": { "$ref": "#/components/schemas/ProjectDto" }
-              }
-            }
+            "content": { "application/json": { "schema": { "$ref": "#/components/schemas/ProjectDto" } } }
           }
         }
       }
@@ -475,30 +276,15 @@
     "/project/{id}/file": {
       "post": {
         "operationId": "ProjectController_uploadFile",
-        "parameters": [
-          {
-            "name": "id",
-            "required": true,
-            "in": "path",
-            "schema": { "type": "string" }
-          }
-        ],
+        "parameters": [{ "name": "id", "required": true, "in": "path", "schema": { "type": "string" } }],
         "requestBody": {
           "required": true,
-          "content": {
-            "multipart/form-data": {
-              "schema": { "$ref": "#/components/schemas/ProjectFileBodyDto" }
-            }
-          }
+          "content": { "multipart/form-data": { "schema": { "$ref": "#/components/schemas/ProjectFileBodyDto" } } }
         },
         "responses": {
           "200": {
             "description": "",
-            "content": {
-              "application/json": {
-                "schema": { "$ref": "#/components/schemas/ProjectAssetEditDto" }
-              }
-            }
+            "content": { "application/json": { "schema": { "$ref": "#/components/schemas/ProjectAssetEditDto" } } }
           }
         }
       }
@@ -507,35 +293,17 @@
       "put": {
         "operationId": "ProjectController_editFile",
         "parameters": [
-          {
-            "name": "id",
-            "required": true,
-            "in": "path",
-            "schema": { "type": "string" }
-          },
-          {
-            "name": "fileId",
-            "required": true,
-            "in": "path",
-            "schema": { "type": "string" }
-          }
+          { "name": "id", "required": true, "in": "path", "schema": { "type": "string" } },
+          { "name": "fileId", "required": true, "in": "path", "schema": { "type": "string" } }
         ],
         "requestBody": {
           "required": true,
-          "content": {
-            "application/json": {
-              "schema": { "$ref": "#/components/schemas/FileEditBodyDto" }
-            }
-          }
+          "content": { "application/json": { "schema": { "$ref": "#/components/schemas/FileEditBodyDto" } } }
         },
         "responses": {
           "200": {
             "description": "",
-            "content": {
-              "application/json": {
-                "schema": { "$ref": "#/components/schemas/ProjectAssetEditDto" }
-              }
-            }
+            "content": { "application/json": { "schema": { "$ref": "#/components/schemas/ProjectAssetEditDto" } } }
           }
         }
       }
@@ -543,30 +311,15 @@
     "/project/{id}/folder": {
       "post": {
         "operationId": "ProjectController_createFolder",
-        "parameters": [
-          {
-            "name": "id",
-            "required": true,
-            "in": "path",
-            "schema": { "type": "string" }
-          }
-        ],
+        "parameters": [{ "name": "id", "required": true, "in": "path", "schema": { "type": "string" } }],
         "requestBody": {
           "required": true,
-          "content": {
-            "application/json": {
-              "schema": { "$ref": "#/components/schemas/FolderBodyDto" }
-            }
-          }
+          "content": { "application/json": { "schema": { "$ref": "#/components/schemas/FolderBodyDto" } } }
         },
         "responses": {
           "200": {
             "description": "",
-            "content": {
-              "application/json": {
-                "schema": { "$ref": "#/components/schemas/ProjectAssetEditDto" }
-              }
-            }
+            "content": { "application/json": { "schema": { "$ref": "#/components/schemas/ProjectAssetEditDto" } } }
           }
         }
       }
@@ -575,35 +328,17 @@
       "put": {
         "operationId": "ProjectController_editFolder",
         "parameters": [
-          {
-            "name": "id",
-            "required": true,
-            "in": "path",
-            "schema": { "type": "string" }
-          },
-          {
-            "name": "folderId",
-            "required": true,
-            "in": "path",
-            "schema": { "type": "string" }
-          }
+          { "name": "id", "required": true, "in": "path", "schema": { "type": "string" } },
+          { "name": "folderId", "required": true, "in": "path", "schema": { "type": "string" } }
         ],
         "requestBody": {
           "required": true,
-          "content": {
-            "application/json": {
-              "schema": { "$ref": "#/components/schemas/FolderEditBodyDto" }
-            }
-          }
+          "content": { "application/json": { "schema": { "$ref": "#/components/schemas/FolderEditBodyDto" } } }
         },
         "responses": {
           "200": {
             "description": "",
-            "content": {
-              "application/json": {
-                "schema": { "$ref": "#/components/schemas/ProjectAssetEditDto" }
-              }
-            }
+            "content": { "application/json": { "schema": { "$ref": "#/components/schemas/ProjectAssetEditDto" } } }
           }
         }
       }
@@ -611,23 +346,13 @@
     "/project/{id}/paths": {
       "get": {
         "operationId": "ProjectController_getProjectPaths",
-        "parameters": [
-          {
-            "name": "id",
-            "required": true,
-            "in": "path",
-            "schema": { "type": "string" }
-          }
-        ],
+        "parameters": [{ "name": "id", "required": true, "in": "path", "schema": { "type": "string" } }],
         "responses": {
           "200": {
             "description": "",
             "content": {
               "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": { "$ref": "#/components/schemas/ProjectPathDto" }
-                }
+                "schema": { "type": "array", "items": { "$ref": "#/components/schemas/ProjectPathDto" } }
               }
             }
           }
@@ -637,30 +362,15 @@
     "/project/{id}/assets/archive": {
       "post": {
         "operationId": "ProjectController_archiveAssets",
-        "parameters": [
-          {
-            "name": "id",
-            "required": true,
-            "in": "path",
-            "schema": { "type": "string" }
-          }
-        ],
+        "parameters": [{ "name": "id", "required": true, "in": "path", "schema": { "type": "string" } }],
         "requestBody": {
           "required": true,
-          "content": {
-            "application/json": {
-              "schema": { "$ref": "#/components/schemas/AssetRemoveBodyDto" }
-            }
-          }
+          "content": { "application/json": { "schema": { "$ref": "#/components/schemas/AssetRemoveBodyDto" } } }
         },
         "responses": {
           "200": {
             "description": "",
-            "content": {
-              "application/json": {
-                "schema": { "$ref": "#/components/schemas/ProjectAssetEditDto" }
-              }
-            }
+            "content": { "application/json": { "schema": { "$ref": "#/components/schemas/ProjectAssetEditDto" } } }
           }
         }
       }
@@ -668,24 +378,11 @@
     "/project/{id}/assets/archived": {
       "get": {
         "operationId": "ProjectController_getArchivedAssets",
-        "parameters": [
-          {
-            "name": "id",
-            "required": true,
-            "in": "path",
-            "schema": { "type": "string" }
-          }
-        ],
+        "parameters": [{ "name": "id", "required": true, "in": "path", "schema": { "type": "string" } }],
         "responses": {
           "200": {
             "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProjectArchivedAssetsDto"
-                }
-              }
-            }
+            "content": { "application/json": { "schema": { "$ref": "#/components/schemas/ProjectArchivedAssetsDto" } } }
           }
         }
       }
@@ -693,30 +390,15 @@
     "/project/{id}/assets/restore": {
       "post": {
         "operationId": "ProjectController_restoreAssets",
-        "parameters": [
-          {
-            "name": "id",
-            "required": true,
-            "in": "path",
-            "schema": { "type": "string" }
-          }
-        ],
+        "parameters": [{ "name": "id", "required": true, "in": "path", "schema": { "type": "string" } }],
         "requestBody": {
           "required": true,
-          "content": {
-            "application/json": {
-              "schema": { "$ref": "#/components/schemas/AssetRemoveBodyDto" }
-            }
-          }
+          "content": { "application/json": { "schema": { "$ref": "#/components/schemas/AssetRemoveBodyDto" } } }
         },
         "responses": {
           "200": {
             "description": "",
-            "content": {
-              "application/json": {
-                "schema": { "$ref": "#/components/schemas/ProjectDto" }
-              }
-            }
+            "content": { "application/json": { "schema": { "$ref": "#/components/schemas/ProjectDto" } } }
           }
         }
       }
@@ -724,30 +406,15 @@
     "/project/{id}/assets": {
       "delete": {
         "operationId": "ProjectController_removeAssets",
-        "parameters": [
-          {
-            "name": "id",
-            "required": true,
-            "in": "path",
-            "schema": { "type": "string" }
-          }
-        ],
+        "parameters": [{ "name": "id", "required": true, "in": "path", "schema": { "type": "string" } }],
         "requestBody": {
           "required": true,
-          "content": {
-            "application/json": {
-              "schema": { "$ref": "#/components/schemas/AssetRemoveBodyDto" }
-            }
-          }
+          "content": { "application/json": { "schema": { "$ref": "#/components/schemas/AssetRemoveBodyDto" } } }
         },
         "responses": {
           "200": {
             "description": "",
-            "content": {
-              "application/json": {
-                "schema": { "$ref": "#/components/schemas/ProjectDto" }
-              }
-            }
+            "content": { "application/json": { "schema": { "$ref": "#/components/schemas/ProjectDto" } } }
           }
         }
       }
@@ -755,30 +422,15 @@
     "/project/{id}/chat": {
       "post": {
         "operationId": "ProjectController_createChat",
-        "parameters": [
-          {
-            "name": "id",
-            "required": true,
-            "in": "path",
-            "schema": { "type": "string" }
-          }
-        ],
+        "parameters": [{ "name": "id", "required": true, "in": "path", "schema": { "type": "string" } }],
         "requestBody": {
           "required": true,
-          "content": {
-            "application/json": {
-              "schema": { "$ref": "#/components/schemas/ChatBodyDto" }
-            }
-          }
+          "content": { "application/json": { "schema": { "$ref": "#/components/schemas/ChatBodyDto" } } }
         },
         "responses": {
           "201": {
             "description": "",
-            "content": {
-              "application/json": {
-                "schema": { "$ref": "#/components/schemas/ChatDto" }
-              }
-            }
+            "content": { "application/json": { "schema": { "$ref": "#/components/schemas/ChatDto" } } }
           }
         }
       }
@@ -786,24 +438,12 @@
     "/project/{id}/chats": {
       "get": {
         "operationId": "ProjectController_getProjectChats",
-        "parameters": [
-          {
-            "name": "id",
-            "required": true,
-            "in": "path",
-            "schema": { "type": "string" }
-          }
-        ],
+        "parameters": [{ "name": "id", "required": true, "in": "path", "schema": { "type": "string" } }],
         "responses": {
           "200": {
             "description": "",
             "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": { "$ref": "#/components/schemas/ChatDto" }
-                }
-              }
+              "application/json": { "schema": { "type": "array", "items": { "$ref": "#/components/schemas/ChatDto" } } }
             }
           }
         }
@@ -813,51 +453,17 @@
       "get": {
         "operationId": "ProjectController_getProjectLogs",
         "parameters": [
-          {
-            "name": "id",
-            "required": true,
-            "in": "path",
-            "schema": { "type": "string" }
-          },
-          {
-            "name": "offset",
-            "required": false,
-            "in": "query",
-            "schema": { "type": "number" }
-          },
-          {
-            "name": "limit",
-            "required": false,
-            "in": "query",
-            "schema": { "type": "number" }
-          },
-          {
-            "name": "userIds",
-            "required": false,
-            "in": "query",
-            "schema": { "type": "string" }
-          },
-          {
-            "name": "createAtFrom",
-            "required": false,
-            "in": "query",
-            "schema": { "type": "string" }
-          },
-          {
-            "name": "createAtTo",
-            "required": false,
-            "in": "query",
-            "schema": { "type": "string" }
-          }
+          { "name": "id", "required": true, "in": "path", "schema": { "type": "string" } },
+          { "name": "offset", "required": false, "in": "query", "schema": { "type": "number" } },
+          { "name": "limit", "required": false, "in": "query", "schema": { "type": "number" } },
+          { "name": "userIds", "required": false, "in": "query", "schema": { "type": "string" } },
+          { "name": "createAtFrom", "required": false, "in": "query", "schema": { "type": "string" } },
+          { "name": "createAtTo", "required": false, "in": "query", "schema": { "type": "string" } }
         ],
         "responses": {
           "200": {
             "description": "",
-            "content": {
-              "application/json": {
-                "schema": { "$ref": "#/components/schemas/ProjectLogsDto" }
-              }
-            }
+            "content": { "application/json": { "schema": { "$ref": "#/components/schemas/ProjectLogsDto" } } }
           }
         }
       }
@@ -870,26 +476,14 @@
             "name": "status",
             "required": false,
             "in": "query",
-            "schema": {
-              "enum": ["all", "active", "completed", "archived"],
-              "type": "string"
-            }
+            "schema": { "enum": ["all", "active", "completed", "archived"], "type": "string" }
           },
-          {
-            "name": "search",
-            "required": false,
-            "in": "query",
-            "schema": { "type": "string" }
-          }
+          { "name": "search", "required": false, "in": "query", "schema": { "type": "string" } }
         ],
         "responses": {
           "200": {
             "description": "",
-            "content": {
-              "application/json": {
-                "schema": { "$ref": "#/components/schemas/ProjectsResponseDto" }
-              }
-            }
+            "content": { "application/json": { "schema": { "$ref": "#/components/schemas/ProjectsResponseDto" } } }
           }
         }
       }
@@ -898,62 +492,28 @@
       "get": {
         "operationId": "ChatController_getChat",
         "parameters": [
-          {
-            "name": "id",
-            "required": true,
-            "in": "path",
-            "schema": { "type": "string" }
-          },
-          {
-            "name": "offset",
-            "required": true,
-            "in": "query",
-            "schema": { "type": "number" }
-          },
-          {
-            "name": "limit",
-            "required": true,
-            "in": "query",
-            "schema": { "type": "number" }
-          }
+          { "name": "id", "required": true, "in": "path", "schema": { "type": "string" } },
+          { "name": "offset", "required": true, "in": "query", "schema": { "type": "number" } },
+          { "name": "limit", "required": true, "in": "query", "schema": { "type": "number" } }
         ],
         "responses": {
           "200": {
             "description": "",
-            "content": {
-              "application/json": {
-                "schema": { "$ref": "#/components/schemas/ChatResponseDto" }
-              }
-            }
+            "content": { "application/json": { "schema": { "$ref": "#/components/schemas/ChatResponseDto" } } }
           }
         }
       },
       "put": {
         "operationId": "ChatController_updateChat",
-        "parameters": [
-          {
-            "name": "id",
-            "required": true,
-            "in": "path",
-            "schema": { "type": "string" }
-          }
-        ],
+        "parameters": [{ "name": "id", "required": true, "in": "path", "schema": { "type": "string" } }],
         "requestBody": {
           "required": true,
-          "content": {
-            "application/json": {
-              "schema": { "$ref": "#/components/schemas/ChatEditBodyDto" }
-            }
-          }
+          "content": { "application/json": { "schema": { "$ref": "#/components/schemas/ChatEditBodyDto" } } }
         },
         "responses": {
           "200": {
             "description": "",
-            "content": {
-              "application/json": {
-                "schema": { "$ref": "#/components/schemas/ChatDto" }
-              }
-            }
+            "content": { "application/json": { "schema": { "$ref": "#/components/schemas/ChatDto" } } }
           }
         }
       }
@@ -961,22 +521,11 @@
     "/asset/folder/{id}": {
       "get": {
         "operationId": "AssetController_getFolder",
-        "parameters": [
-          {
-            "name": "id",
-            "required": true,
-            "in": "path",
-            "schema": { "type": "string" }
-          }
-        ],
+        "parameters": [{ "name": "id", "required": true, "in": "path", "schema": { "type": "string" } }],
         "responses": {
           "200": {
             "description": "",
-            "content": {
-              "application/json": {
-                "schema": { "$ref": "#/components/schemas/FolderDto" }
-              }
-            }
+            "content": { "application/json": { "schema": { "$ref": "#/components/schemas/FolderDto" } } }
           }
         }
       }
@@ -1003,15 +552,7 @@
           "createdAt": { "type": "string" },
           "description": { "type": "string" }
         },
-        "required": [
-          "url",
-          "originalFileName",
-          "fileSize",
-          "width",
-          "height",
-          "createdAt",
-          "description"
-        ]
+        "required": ["url", "originalFileName", "fileSize", "width", "height", "createdAt", "description"]
       },
       "UserDto": {
         "type": "object",
@@ -1019,20 +560,13 @@
           "id": { "type": "string" },
           "email": { "type": "string" },
           "name": { "type": "string" },
-          "avatar": {
-            "nullable": true,
-            "allOf": [{ "$ref": "#/components/schemas/InterfaceImageDto" }]
-          }
+          "avatar": { "nullable": true, "allOf": [{ "$ref": "#/components/schemas/InterfaceImageDto" }] }
         },
         "required": ["id", "email", "name", "avatar"]
       },
       "SignUpBodyDto": {
         "type": "object",
-        "properties": {
-          "email": { "type": "string" },
-          "password": { "type": "string" },
-          "name": { "type": "string" }
-        },
+        "properties": { "email": { "type": "string" }, "password": { "type": "string" }, "name": { "type": "string" } },
         "required": ["email", "password", "name"]
       },
       "SignUpResultDto": {
@@ -1042,34 +576,20 @@
       },
       "SignUpWithTokenBodyDto": {
         "type": "object",
-        "properties": {
-          "token": { "type": "string" },
-          "password": { "type": "string" },
-          "name": { "type": "string" }
-        },
+        "properties": { "token": { "type": "string" }, "password": { "type": "string" }, "name": { "type": "string" } },
         "required": ["token", "password", "name"]
       },
       "SignInResultDto": {
         "type": "object",
-        "properties": {
-          "token": { "type": "string" },
-          "user": { "$ref": "#/components/schemas/UserDto" }
-        },
+        "properties": { "token": { "type": "string" }, "user": { "$ref": "#/components/schemas/UserDto" } },
         "required": ["token", "user"]
       },
       "SignInBodyDto": {
         "type": "object",
-        "properties": {
-          "email": { "type": "string" },
-          "password": { "type": "string" }
-        },
+        "properties": { "email": { "type": "string" }, "password": { "type": "string" } },
         "required": ["email", "password"]
       },
-      "TokenBodyDto": {
-        "type": "object",
-        "properties": { "token": { "type": "string" } },
-        "required": ["token"]
-      },
+      "TokenBodyDto": { "type": "object", "properties": { "token": { "type": "string" } }, "required": ["token"] },
       "ProjectBodyDto": {
         "type": "object",
         "properties": {
@@ -1086,24 +606,13 @@
           "name": { "type": "string" },
           "description": { "type": "string" },
           "createdAt": { "type": "string" },
-          "createdBy": {
-            "nullable": true,
-            "allOf": [{ "$ref": "#/components/schemas/UserDto" }]
-          },
+          "createdBy": { "nullable": true, "allOf": [{ "$ref": "#/components/schemas/UserDto" }] },
           "status": {
             "type": "string",
-            "enum": [
-              "review-needed",
-              "in-progress",
-              "changes-required",
-              "approved"
-            ],
+            "enum": ["review-needed", "in-progress", "changes-required", "approved"],
             "nullable": true
           },
-          "assignee": {
-            "nullable": true,
-            "allOf": [{ "$ref": "#/components/schemas/UserDto" }]
-          },
+          "assignee": { "nullable": true, "allOf": [{ "$ref": "#/components/schemas/UserDto" }] },
           "fileSize": { "type": "number" },
           "fileType": { "type": "string" },
           "format": { "type": "string" },
@@ -1145,14 +654,8 @@
           "name": { "type": "string" },
           "description": { "type": "string" },
           "createdAt": { "type": "string" },
-          "createdBy": {
-            "nullable": true,
-            "allOf": [{ "$ref": "#/components/schemas/UserDto" }]
-          },
-          "children": {
-            "type": "array",
-            "items": { "$ref": "#/components/schemas/ProjectFolderChild" }
-          },
+          "createdBy": { "nullable": true, "allOf": [{ "$ref": "#/components/schemas/UserDto" }] },
+          "children": { "type": "array", "items": { "$ref": "#/components/schemas/ProjectFolderChild" } },
           "fileCount": { "type": "number" },
           "totalFileSize": { "type": "number" },
           "type": { "type": "string", "enum": ["folder"] }
@@ -1173,14 +676,8 @@
         "type": "object",
         "properties": {
           "id": { "type": "string" },
-          "user": {
-            "nullable": true,
-            "allOf": [{ "$ref": "#/components/schemas/UserDto" }]
-          },
-          "status": {
-            "type": "string",
-            "enum": ["invited", "joined", "removed", "left"]
-          },
+          "user": { "nullable": true, "allOf": [{ "$ref": "#/components/schemas/UserDto" }] },
+          "status": { "type": "string", "enum": ["invited", "joined", "removed", "left"] },
           "email": { "type": "string" },
           "invitedAt": { "type": "string" },
           "role": { "type": "string", "enum": ["owner", "contributor"] }
@@ -1193,28 +690,13 @@
           "id": { "type": "string" },
           "name": { "type": "string" },
           "description": { "type": "string" },
-          "cover": {
-            "nullable": true,
-            "allOf": [{ "$ref": "#/components/schemas/InterfaceImageDto" }]
-          },
+          "cover": { "nullable": true, "allOf": [{ "$ref": "#/components/schemas/InterfaceImageDto" }] },
           "createdAt": { "type": "string" },
-          "createdBy": {
-            "nullable": true,
-            "allOf": [{ "$ref": "#/components/schemas/UserDto" }]
-          },
+          "createdBy": { "nullable": true, "allOf": [{ "$ref": "#/components/schemas/UserDto" }] },
           "updatedAt": { "type": "string", "nullable": true },
-          "updatedBy": {
-            "nullable": true,
-            "allOf": [{ "$ref": "#/components/schemas/UserDto" }]
-          },
-          "members": {
-            "type": "array",
-            "items": { "$ref": "#/components/schemas/ProjectMemberDto" }
-          },
-          "status": {
-            "type": "string",
-            "enum": ["active", "completed", "archived"]
-          },
+          "updatedBy": { "nullable": true, "allOf": [{ "$ref": "#/components/schemas/UserDto" }] },
+          "members": { "type": "array", "items": { "$ref": "#/components/schemas/ProjectMemberDto" } },
+          "status": { "type": "string", "enum": ["active", "completed", "archived"] },
           "fileCount": { "type": "number" },
           "totalFileSize": { "type": "number" },
           "assets": {
@@ -1266,33 +748,20 @@
       "ProjectCoverDto": {
         "type": "object",
         "properties": {
-          "cover": {
-            "format": "binary",
-            "nullable": true,
-            "allOf": [{ "$ref": "#/components/schemas/Blob" }]
-          }
+          "cover": { "format": "binary", "nullable": true, "allOf": [{ "$ref": "#/components/schemas/Blob" }] }
         },
         "required": ["cover"]
       },
       "ProjectStatusBodyDto": {
         "type": "object",
-        "properties": {
-          "status": {
-            "type": "string",
-            "enum": ["active", "completed", "archived"]
-          }
-        },
+        "properties": { "status": { "type": "string", "enum": ["active", "completed", "archived"] } },
         "required": ["status"]
       },
       "ProjectMemberBodyDto": {
         "type": "object",
         "properties": {
           "email": { "type": "string" },
-          "role": {
-            "type": "string",
-            "enum": ["owner", "contributor"],
-            "default": "contributor"
-          }
+          "role": { "type": "string", "enum": ["owner", "contributor"], "default": "contributor" }
         },
         "required": ["email", "role"]
       },
@@ -1304,10 +773,7 @@
       "ProjectFileBodyDto": {
         "type": "object",
         "properties": {
-          "file": {
-            "format": "binary",
-            "allOf": [{ "$ref": "#/components/schemas/Blob" }]
-          },
+          "file": { "format": "binary", "allOf": [{ "$ref": "#/components/schemas/Blob" }] },
           "parentId": { "type": "string" }
         },
         "required": ["file"]
@@ -1319,18 +785,9 @@
           "name": { "type": "string" },
           "description": { "type": "string" },
           "createdAt": { "type": "string" },
-          "createdBy": {
-            "nullable": true,
-            "allOf": [{ "$ref": "#/components/schemas/UserDto" }]
-          },
-          "parent": {
-            "nullable": true,
-            "allOf": [{ "$ref": "#/components/schemas/FolderDto" }]
-          },
-          "path": {
-            "type": "array",
-            "items": { "$ref": "#/components/schemas/FolderDto" }
-          },
+          "createdBy": { "nullable": true, "allOf": [{ "$ref": "#/components/schemas/UserDto" }] },
+          "parent": { "nullable": true, "allOf": [{ "$ref": "#/components/schemas/FolderDto" }] },
+          "path": { "type": "array", "items": { "$ref": "#/components/schemas/FolderDto" } },
           "children": {
             "type": "array",
             "items": {
@@ -1375,12 +832,7 @@
           "parentId": { "type": "string", "nullable": true },
           "status": {
             "type": "string",
-            "enum": [
-              "review-needed",
-              "in-progress",
-              "changes-required",
-              "approved"
-            ],
+            "enum": ["review-needed", "in-progress", "changes-required", "approved"],
             "nullable": true
           },
           "assigneeId": { "type": "string", "nullable": true }
@@ -1389,10 +841,7 @@
       },
       "FolderBodyDto": {
         "type": "object",
-        "properties": {
-          "name": { "type": "string" },
-          "parentId": { "type": "string" }
-        },
+        "properties": { "name": { "type": "string" }, "parentId": { "type": "string" } },
         "required": ["name"]
       },
       "FolderEditBodyDto": {
@@ -1406,10 +855,7 @@
       },
       "ProjectPathFolderDto": {
         "type": "object",
-        "properties": {
-          "id": { "type": "string" },
-          "name": { "type": "string" }
-        },
+        "properties": { "id": { "type": "string" }, "name": { "type": "string" } },
         "required": ["id", "name"]
       },
       "ProjectPathDto": {
@@ -1417,18 +863,13 @@
         "properties": {
           "id": { "type": "string" },
           "name": { "type": "string" },
-          "path": {
-            "type": "array",
-            "items": { "$ref": "#/components/schemas/ProjectPathFolderDto" }
-          }
+          "path": { "type": "array", "items": { "$ref": "#/components/schemas/ProjectPathFolderDto" } }
         },
         "required": ["id", "name", "path"]
       },
       "AssetRemoveBodyDto": {
         "type": "object",
-        "properties": {
-          "assetIds": { "type": "array", "items": { "type": "string" } }
-        },
+        "properties": { "assetIds": { "type": "array", "items": { "type": "string" } } },
         "required": ["assetIds"]
       },
       "ProjectArchivedAssetsDto": {
@@ -1449,10 +890,7 @@
       },
       "ChatBodyDto": {
         "type": "object",
-        "properties": {
-          "name": { "type": "string" },
-          "members": { "type": "string" }
-        },
+        "properties": { "name": { "type": "string" }, "members": { "type": "string" } },
         "required": ["members"]
       },
       "ProjectAssetDto": { "type": "object", "properties": {} },
@@ -1461,56 +899,27 @@
         "properties": {
           "id": { "type": "string" },
           "sender": { "$ref": "#/components/schemas/UserDto" },
-          "assets": {
-            "type": "array",
-            "items": { "$ref": "#/components/schemas/ProjectAssetDto" }
-          },
+          "assets": { "type": "array", "items": { "$ref": "#/components/schemas/ProjectAssetDto" } },
           "content": { "type": "string" },
           "createdAt": { "type": "string" },
           "readBy": { "type": "array", "items": { "type": "string" } },
           "isPinned": { "type": "boolean" }
         },
-        "required": [
-          "id",
-          "sender",
-          "assets",
-          "content",
-          "createdAt",
-          "readBy",
-          "isPinned"
-        ]
+        "required": ["id", "sender", "assets", "content", "createdAt", "readBy", "isPinned"]
       },
       "ChatDto": {
         "type": "object",
         "properties": {
           "id": { "type": "string" },
           "name": { "type": "string" },
-          "members": {
-            "type": "array",
-            "items": { "$ref": "#/components/schemas/UserDto" }
-          },
-          "cover": {
-            "nullable": true,
-            "allOf": [{ "$ref": "#/components/schemas/InterfaceImageDto" }]
-          },
+          "members": { "type": "array", "items": { "$ref": "#/components/schemas/UserDto" } },
+          "cover": { "nullable": true, "allOf": [{ "$ref": "#/components/schemas/InterfaceImageDto" }] },
           "createdAt": { "type": "string" },
-          "createdBy": {
-            "nullable": true,
-            "allOf": [{ "$ref": "#/components/schemas/UserDto" }]
-          },
+          "createdBy": { "nullable": true, "allOf": [{ "$ref": "#/components/schemas/UserDto" }] },
           "updatedAt": { "type": "string", "nullable": true },
-          "updatedBy": {
-            "nullable": true,
-            "allOf": [{ "$ref": "#/components/schemas/UserDto" }]
-          },
-          "lastMessage": {
-            "nullable": true,
-            "allOf": [{ "$ref": "#/components/schemas/ChatMessageDto" }]
-          },
-          "pinnedMessages": {
-            "type": "array",
-            "items": { "$ref": "#/components/schemas/ChatMessageDto" }
-          }
+          "updatedBy": { "nullable": true, "allOf": [{ "$ref": "#/components/schemas/UserDto" }] },
+          "lastMessage": { "nullable": true, "allOf": [{ "$ref": "#/components/schemas/ChatMessageDto" }] },
+          "pinnedMessages": { "type": "array", "items": { "$ref": "#/components/schemas/ChatMessageDto" } }
         },
         "required": [
           "id",
@@ -1527,17 +936,10 @@
       },
       "FileDetails": {
         "type": "object",
-        "properties": {
-          "id": { "type": "string" },
-          "name": { "type": "string" }
-        },
+        "properties": { "id": { "type": "string" }, "name": { "type": "string" } },
         "required": ["id", "name"]
       },
-      "CommentDetails": {
-        "type": "object",
-        "properties": { "id": { "type": "string" } },
-        "required": ["id"]
-      },
+      "CommentDetails": { "type": "object", "properties": { "id": { "type": "string" } }, "required": ["id"] },
       "FileCommentAddedDetails": {
         "type": "object",
         "properties": {
@@ -1568,9 +970,7 @@
       },
       "AssetDownloadedDetails": {
         "type": "object",
-        "properties": {
-          "asset": { "$ref": "#/components/schemas/AssetDetails" }
-        },
+        "properties": { "asset": { "$ref": "#/components/schemas/AssetDetails" } },
         "required": ["asset"]
       },
       "AssetCommentDownloadedLogDto": {
@@ -1599,17 +999,13 @@
           "user": { "$ref": "#/components/schemas/UserDto" },
           "createdAt": { "type": "string" },
           "type": { "type": "string", "enum": ["ASSET_COMMENT_RESOLVED"] },
-          "details": {
-            "$ref": "#/components/schemas/FileCommentResolvedDetails"
-          }
+          "details": { "$ref": "#/components/schemas/FileCommentResolvedDetails" }
         },
         "required": ["id", "user", "createdAt", "type", "details"]
       },
       "FileNewVersionUploadedDetails": {
         "type": "object",
-        "properties": {
-          "asset": { "$ref": "#/components/schemas/FileDetails" }
-        },
+        "properties": { "asset": { "$ref": "#/components/schemas/FileDetails" } },
         "required": ["asset"]
       },
       "AssetNewVersionUploadedLogDto": {
@@ -1619,20 +1015,13 @@
           "user": { "$ref": "#/components/schemas/UserDto" },
           "createdAt": { "type": "string" },
           "type": { "type": "string", "enum": ["ASSET_NEW_VERSION_UPLOADED"] },
-          "details": {
-            "$ref": "#/components/schemas/FileNewVersionUploadedDetails"
-          }
+          "details": { "$ref": "#/components/schemas/FileNewVersionUploadedDetails" }
         },
         "required": ["id", "user", "createdAt", "type", "details"]
       },
       "AssetsArchivedDetails": {
         "type": "object",
-        "properties": {
-          "assets": {
-            "type": "array",
-            "items": { "$ref": "#/components/schemas/AssetDetails" }
-          }
-        },
+        "properties": { "assets": { "type": "array", "items": { "$ref": "#/components/schemas/AssetDetails" } } },
         "required": ["assets"]
       },
       "AssetsArchivedLogDto": {
@@ -1648,12 +1037,7 @@
       },
       "AssetsDownloadedDetails": {
         "type": "object",
-        "properties": {
-          "assets": {
-            "type": "array",
-            "items": { "$ref": "#/components/schemas/AssetDetails" }
-          }
-        },
+        "properties": { "assets": { "type": "array", "items": { "$ref": "#/components/schemas/AssetDetails" } } },
         "required": ["assets"]
       },
       "AssetsDownloadedLogDto": {
@@ -1669,27 +1053,15 @@
       },
       "FolderDetails": {
         "type": "object",
-        "properties": {
-          "id": { "type": "string" },
-          "name": { "type": "string" }
-        },
+        "properties": { "id": { "type": "string" }, "name": { "type": "string" } },
         "required": ["id", "name"]
       },
       "AssetsMovedDetails": {
         "type": "object",
         "properties": {
-          "assets": {
-            "type": "array",
-            "items": { "$ref": "#/components/schemas/AssetDetails" }
-          },
-          "from": {
-            "nullable": true,
-            "allOf": [{ "$ref": "#/components/schemas/FolderDetails" }]
-          },
-          "to": {
-            "nullable": true,
-            "allOf": [{ "$ref": "#/components/schemas/FolderDetails" }]
-          }
+          "assets": { "type": "array", "items": { "$ref": "#/components/schemas/AssetDetails" } },
+          "from": { "nullable": true, "allOf": [{ "$ref": "#/components/schemas/FolderDetails" }] },
+          "to": { "nullable": true, "allOf": [{ "$ref": "#/components/schemas/FolderDetails" }] }
         },
         "required": ["assets", "from", "to"]
       },
@@ -1706,12 +1078,7 @@
       },
       "AssetsRemovedDetails": {
         "type": "object",
-        "properties": {
-          "assets": {
-            "type": "array",
-            "items": { "$ref": "#/components/schemas/AssetDetails" }
-          }
-        },
+        "properties": { "assets": { "type": "array", "items": { "$ref": "#/components/schemas/AssetDetails" } } },
         "required": ["assets"]
       },
       "AssetsRemovedLogDto": {
@@ -1727,12 +1094,7 @@
       },
       "AssetsRestoredDetails": {
         "type": "object",
-        "properties": {
-          "assets": {
-            "type": "array",
-            "items": { "$ref": "#/components/schemas/AssetDetails" }
-          }
-        },
+        "properties": { "assets": { "type": "array", "items": { "$ref": "#/components/schemas/AssetDetails" } } },
         "required": ["assets"]
       },
       "AssetsRestoredLogDto": {
@@ -1748,12 +1110,7 @@
       },
       "FilesUploadedDetails": {
         "type": "object",
-        "properties": {
-          "assets": {
-            "type": "array",
-            "items": { "$ref": "#/components/schemas/FileDetails" }
-          }
-        },
+        "properties": { "assets": { "type": "array", "items": { "$ref": "#/components/schemas/FileDetails" } } },
         "required": ["assets"]
       },
       "AssetsUploadedLogDto": {
@@ -1769,10 +1126,7 @@
       },
       "UserDetails": {
         "type": "object",
-        "properties": {
-          "id": { "type": "string" },
-          "name": { "type": "string" }
-        },
+        "properties": { "id": { "type": "string" }, "name": { "type": "string" } },
         "required": ["id", "name"]
       },
       "AssetBeforeDetails": {
@@ -1783,23 +1137,11 @@
           "type": { "type": "string", "enum": ["file", "folder"] },
           "status": {
             "type": "string",
-            "enum": [
-              null,
-              "review-needed",
-              "in-progress",
-              "changes-required",
-              "approved"
-            ],
+            "enum": [null, "review-needed", "in-progress", "changes-required", "approved"],
             "nullable": true
           },
-          "assignee": {
-            "nullable": true,
-            "allOf": [{ "$ref": "#/components/schemas/UserDetails" }]
-          },
-          "parent": {
-            "nullable": true,
-            "allOf": [{ "$ref": "#/components/schemas/FolderDetails" }]
-          }
+          "assignee": { "nullable": true, "allOf": [{ "$ref": "#/components/schemas/UserDetails" }] },
+          "parent": { "nullable": true, "allOf": [{ "$ref": "#/components/schemas/FolderDetails" }] }
         },
         "required": ["id", "name", "type", "status", "assignee", "parent"]
       },
@@ -1810,23 +1152,11 @@
           "description": { "type": "string", "nullable": true },
           "status": {
             "type": "string",
-            "enum": [
-              null,
-              "review-needed",
-              "in-progress",
-              "changes-required",
-              "approved"
-            ],
+            "enum": [null, "review-needed", "in-progress", "changes-required", "approved"],
             "nullable": true
           },
-          "assignee": {
-            "nullable": true,
-            "allOf": [{ "$ref": "#/components/schemas/UserDetails" }]
-          },
-          "parent": {
-            "nullable": true,
-            "allOf": [{ "$ref": "#/components/schemas/FolderDetails" }]
-          }
+          "assignee": { "nullable": true, "allOf": [{ "$ref": "#/components/schemas/UserDetails" }] },
+          "parent": { "nullable": true, "allOf": [{ "$ref": "#/components/schemas/FolderDetails" }] }
         },
         "required": ["name", "description", "status", "assignee", "parent"]
       },
@@ -1851,9 +1181,7 @@
       },
       "FileUploadedDetails": {
         "type": "object",
-        "properties": {
-          "asset": { "$ref": "#/components/schemas/FileDetails" }
-        },
+        "properties": { "asset": { "$ref": "#/components/schemas/FileDetails" } },
         "required": ["asset"]
       },
       "AssetUploadedLogDto": {
@@ -1869,9 +1197,7 @@
       },
       "FolderCreatedDetails": {
         "type": "object",
-        "properties": {
-          "folder": { "$ref": "#/components/schemas/FolderDetails" }
-        },
+        "properties": { "folder": { "$ref": "#/components/schemas/FolderDetails" } },
         "required": ["folder"]
       },
       "FolderCreatedLogDto": {
@@ -1896,16 +1222,10 @@
         },
         "required": ["id", "user", "createdAt", "type", "details"]
       },
-      "MemberDetails": {
-        "type": "object",
-        "properties": { "email": { "type": "string" } },
-        "required": ["email"]
-      },
+      "MemberDetails": { "type": "object", "properties": { "email": { "type": "string" } }, "required": ["email"] },
       "ProjectMemberInvitedDetails": {
         "type": "object",
-        "properties": {
-          "user": { "$ref": "#/components/schemas/MemberDetails" }
-        },
+        "properties": { "user": { "$ref": "#/components/schemas/MemberDetails" } },
         "required": ["user"]
       },
       "ProjectMemberInvitedLogDto": {
@@ -1915,17 +1235,13 @@
           "user": { "$ref": "#/components/schemas/UserDto" },
           "createdAt": { "type": "string" },
           "type": { "type": "string", "enum": ["PROJECT_MEMBER_INVITED"] },
-          "details": {
-            "$ref": "#/components/schemas/ProjectMemberInvitedDetails"
-          }
+          "details": { "$ref": "#/components/schemas/ProjectMemberInvitedDetails" }
         },
         "required": ["id", "user", "createdAt", "type", "details"]
       },
       "ProjectMemberJoinedDetails": {
         "type": "object",
-        "properties": {
-          "user": { "$ref": "#/components/schemas/UserDetails" }
-        },
+        "properties": { "user": { "$ref": "#/components/schemas/UserDetails" } },
         "required": ["user"]
       },
       "ProjectMemberJoinedLogDto": {
@@ -1935,9 +1251,7 @@
           "user": { "$ref": "#/components/schemas/UserDto" },
           "createdAt": { "type": "string" },
           "type": { "type": "string", "enum": ["PROJECT_MEMBER_JOINED"] },
-          "details": {
-            "$ref": "#/components/schemas/ProjectMemberJoinedDetails"
-          }
+          "details": { "$ref": "#/components/schemas/ProjectMemberJoinedDetails" }
         },
         "required": ["id", "user", "createdAt", "type", "details"]
       },
@@ -1954,9 +1268,7 @@
       },
       "ProjectMemberRemovedDetails": {
         "type": "object",
-        "properties": {
-          "user": { "$ref": "#/components/schemas/UserDetails" }
-        },
+        "properties": { "user": { "$ref": "#/components/schemas/UserDetails" } },
         "required": ["user"]
       },
       "ProjectMemberRemovedLogDto": {
@@ -1966,9 +1278,7 @@
           "user": { "$ref": "#/components/schemas/UserDto" },
           "createdAt": { "type": "string" },
           "type": { "type": "string", "enum": ["PROJECT_MEMBER_REMOVED"] },
-          "details": {
-            "$ref": "#/components/schemas/ProjectMemberRemovedDetails"
-          }
+          "details": { "$ref": "#/components/schemas/ProjectMemberRemovedDetails" }
         },
         "required": ["id", "user", "createdAt", "type", "details"]
       },
@@ -1989,11 +1299,8 @@
           "name": { "type": "string", "nullable": true },
           "description": { "type": "string", "nullable": true },
           "isCoverChanged": { "type": "boolean", "nullable": true },
-          "status": {
-            "type": "string",
-            "enum": ["active", "completed", "archived"],
-            "nullable": true
-          }
+          "isAssetsOrderChanged": { "type": "boolean", "nullable": true },
+          "status": { "type": "string", "enum": ["active", "completed", "archived"], "nullable": true }
         },
         "required": ["name", "description", "isCoverChanged", "status"]
       },
@@ -2018,9 +1325,7 @@
                 { "$ref": "#/components/schemas/AssetCommentAddedLogDto" },
                 { "$ref": "#/components/schemas/AssetCommentResolvedLogDto" },
                 { "$ref": "#/components/schemas/AssetCommentDownloadedLogDto" },
-                {
-                  "$ref": "#/components/schemas/AssetNewVersionUploadedLogDto"
-                },
+                { "$ref": "#/components/schemas/AssetNewVersionUploadedLogDto" },
                 { "$ref": "#/components/schemas/AssetsArchivedLogDto" },
                 { "$ref": "#/components/schemas/AssetsDownloadedLogDto" },
                 { "$ref": "#/components/schemas/AssetsMovedLogDto" },
@@ -2058,10 +1363,7 @@
       "ProjectsResponseDto": {
         "type": "object",
         "properties": {
-          "projects": {
-            "type": "array",
-            "items": { "$ref": "#/components/schemas/ProjectDto" }
-          },
+          "projects": { "type": "array", "items": { "$ref": "#/components/schemas/ProjectDto" } },
           "totals": { "$ref": "#/components/schemas/ProjectTotals" }
         },
         "required": ["projects", "totals"]
@@ -2070,19 +1372,12 @@
         "type": "object",
         "properties": {
           "chat": { "$ref": "#/components/schemas/ChatDto" },
-          "messages": {
-            "type": "array",
-            "items": { "$ref": "#/components/schemas/ChatMessageDto" }
-          },
+          "messages": { "type": "array", "items": { "$ref": "#/components/schemas/ChatMessageDto" } },
           "messagesCount": { "type": "number" }
         },
         "required": ["chat", "messages", "messagesCount"]
       },
-      "ChatEditBodyDto": {
-        "type": "object",
-        "properties": { "name": { "type": "string" } },
-        "required": ["name"]
-      }
+      "ChatEditBodyDto": { "type": "object", "properties": { "name": { "type": "string" } }, "required": ["name"] }
     }
   }
 }

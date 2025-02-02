@@ -8,8 +8,10 @@ import { MoveToModal } from '../../../components/review-tool/asset/AssetModals/M
 import { RenameAssetModal } from '../../../components/review-tool/asset/AssetModals/RenameAssetModal';
 import { RestoreAssetModal } from '../../../components/review-tool/asset/AssetModals/RestoreAssetModal';
 import { IconType } from '../../../components/various/Icon';
+import { useSession } from '../../../hooks/review-tool/useSession';
 import { ProjectFileDto, ProjectFolderDto } from '../../../services/review-tool/types';
 import { downloadFromUrl } from '../../../utils/download';
+import { useProjectContext } from '../Project';
 
 interface Context {
   getAssetActions: (asset: ProjectFileDto | ProjectFolderDto) => {
@@ -54,7 +56,26 @@ export const AssetContextProvider = ({
   const [isDeleteModalOpen, setIsDeleteModalOpen] = React.useState(false);
   const [isRestoreModalOpen, setIsRestoreModalOpen] = React.useState(false);
 
+  const { user } = useSession();
+  const { isProjectOwner } = useProjectContext();
+
   const getAssetActions = (asset: ProjectFolderDto | ProjectFileDto) => {
+    if (!isProjectOwner && user?.id !== asset?.createdBy?.id) {
+      if (asset?.type === 'file') {
+        return [
+          {
+            label: 'Download',
+            icon: 'download' as const,
+            onClick: () => {
+              downloadFromUrl(asset.url, asset.name);
+            },
+          },
+        ];
+      }
+
+      return [];
+    }
+
     if (isArchived) {
       return [
         ...(asset.type === 'folder'
