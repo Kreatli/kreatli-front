@@ -5,6 +5,10 @@ const capitalizeFirstLetter = (value: string) => {
 export const getErrorMessage = (error: any) => {
   const errorMessage = error?.message;
 
+  if (typeof errorMessage === 'string') {
+    return errorMessage;
+  }
+
   if ('message' in errorMessage && typeof errorMessage.message === 'string') {
     return capitalizeFirstLetter(errorMessage.message);
   }
