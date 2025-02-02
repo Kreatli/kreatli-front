@@ -12,6 +12,7 @@ import {
   FolderCreatedLogDto,
   ProjectLogsDto,
   ProjectMemberInvitedLogDto,
+  ProjectMemberRemovedLogDto,
   ProjectUpdatedLogDto,
 } from '../../../../services/review-tool/types';
 import { STATUS_LABEL } from '../ProjectAssets/ProjectFile/ProjectFileStatus';
@@ -302,6 +303,14 @@ export const ProjectMemberInvitedLog = ({ log }: { log: ProjectMemberInvitedLogD
   );
 };
 
+export const ProjectMemberJoinedLog = () => {
+  return <>Joined the project</>;
+};
+
+export const ProjectMemberRemovedLog = ({ log }: { log: ProjectMemberRemovedLogDto }) => {
+  return <>Removed {log.details.user.name} from the project</>;
+};
+
 export const ProjectActivityLog = ({ log }: Props) => {
   if (log.type === 'ASSET_UPLOADED') {
     return <AssetUploadedLog log={log} />;
@@ -341,6 +350,14 @@ export const ProjectActivityLog = ({ log }: Props) => {
 
   if (log.type === 'PROJECT_MEMBER_INVITED') {
     return <ProjectMemberInvitedLog log={log} />;
+  }
+
+  if (log.type === 'PROJECT_MEMBER_JOINED') {
+    return <ProjectMemberJoinedLog />;
+  }
+
+  if (log.type === 'PROJECT_MEMBER_REMOVED') {
+    return <ProjectMemberRemovedLog log={log} />;
   }
 
   return <div>{log.type}</div>;
