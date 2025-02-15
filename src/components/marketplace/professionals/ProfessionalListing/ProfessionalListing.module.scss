@@ -1,4 +1,4 @@
-@use "../../../styles/breakpoints" as *;
+@use '../../../../styles/breakpoints' as *;
 
 .wrapper {
   display: flex;
@@ -43,7 +43,7 @@
   grid-template-columns: 1fr 1fr;
 
   &::after {
-    content: "";
+    content: '';
     position: absolute;
     inset: -1rem;
     pointer-events: none;
@@ -60,13 +60,13 @@
   z-index: 10;
 }
 
-@include screen-min("sm") {
+@include screen-min('sm') {
   .cards {
     grid-template-columns: 1fr 1fr 1fr;
   }
 }
 
-@include screen-min("lg") {
+@include screen-min('lg') {
   .filters {
     all: unset;
     flex: 0 0 280px;
@@ -89,7 +89,7 @@
   }
 }
 
-@include screen-min("xl") {
+@include screen-min('xl') {
   .cards {
     grid-template-columns: 1fr 1fr 1fr 1fr;
   }
