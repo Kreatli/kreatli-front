@@ -19,6 +19,7 @@ import { ProjectMemberRowActions } from './ProjectMemberRowActions';
 interface Props {
   members: ProjectMemberDto[];
   isLoading?: boolean;
+  isEditable?: boolean;
   onRemove: (member: ProjectMemberDto) => void;
   onResendInvite: (member: ProjectMemberDto) => void;
 }
@@ -30,7 +31,7 @@ const STATUS_COLORS = {
   removed: 'danger',
 } as const;
 
-export const ProjectMembersTable = ({ members, isLoading, onRemove, onResendInvite }: Props) => {
+export const ProjectMembersTable = ({ members, isLoading, isEditable = false, onRemove, onResendInvite }: Props) => {
   return (
     <Table removeWrapper>
       <TableHeader>
@@ -66,12 +67,14 @@ export const ProjectMembersTable = ({ members, isLoading, onRemove, onResendInvi
               </Chip>
             </TableCell>
             <TableCell>
-              <ProjectMemberRowActions
-                member={member}
-                isDisabled={isLoading}
-                onResendInvite={() => onResendInvite(member)}
-                onRemove={() => onRemove(member)}
-              />
+              {isEditable && (
+                <ProjectMemberRowActions
+                  member={member}
+                  isDisabled={isLoading}
+                  onResendInvite={() => onResendInvite(member)}
+                  onRemove={() => onRemove(member)}
+                />
+              )}
             </TableCell>
           </TableRow>
         ))}

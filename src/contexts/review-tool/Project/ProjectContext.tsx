@@ -9,6 +9,7 @@ import { ChangeProjectCoverModal } from '../../../components/review-tool/project
 import { CompleteProjectModal } from '../../../components/review-tool/project/ProjectModals/CompleteProjectModal';
 import { DeleteProjectModal } from '../../../components/review-tool/project/ProjectModals/DeleteProjectModal';
 import { EditProjectModal } from '../../../components/review-tool/project/ProjectModals/EditProjectModal';
+import { LeaveProjectModal } from '../../../components/review-tool/project/ProjectModals/LeaveProjectModal';
 import { RenameProjectModal } from '../../../components/review-tool/project/ProjectModals/RenameProjectModal';
 import { RestoreProjectModal } from '../../../components/review-tool/project/ProjectModals/RestoreProjectModal';
 import { IconType } from '../../../components/various/Icon';
@@ -59,6 +60,7 @@ export const ProjectContextProvider = ({
   const [isArchiveModalOpen, setIsArchiveModalOpen] = React.useState(false);
   const [isRestoreModalOpen, setIsRestoreModalOpen] = React.useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = React.useState(false);
+  const [isLeaveModalOpen, setIsLeaveModalOpen] = React.useState(false);
 
   const [uploadingFiles, setUploadingFiles] = React.useState<File[]>([]);
   const { user } = useSession();
@@ -75,6 +77,14 @@ export const ProjectContextProvider = ({
             icon: 'trash' as const,
             onClick: () => {
               router.push(`/project/${project.id}/assets/archived`);
+            },
+          },
+          {
+            label: 'Leave project',
+            icon: 'door' as const,
+            color: 'danger' as const,
+            onClick: () => {
+              setIsLeaveModalOpen(true);
             },
           },
         ];
@@ -237,6 +247,11 @@ export const ProjectContextProvider = ({
         project={selectedProject}
         isOpen={isDeleteModalOpen}
         onClose={() => setIsDeleteModalOpen(false)}
+      />
+      <LeaveProjectModal
+        project={selectedProject}
+        isOpen={isLeaveModalOpen}
+        onClose={() => setIsLeaveModalOpen(false)}
       />
     </ProjectContext.Provider>
   );

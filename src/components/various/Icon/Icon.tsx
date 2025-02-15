@@ -26,6 +26,7 @@ import CrossCircleIcon from '../../../assets/icons/cross-circle.svg';
 import DiamondIcon from '../../../assets/icons/diamond.svg';
 import DiscordIcon from '../../../assets/icons/discord.svg';
 import DollarIcon from '../../../assets/icons/dollar.svg';
+import DoorIcon from '../../../assets/icons/door.svg';
 import DotsIcon from '../../../assets/icons/dots.svg';
 import Download from '../../../assets/icons/download.svg';
 import EditIcon from '../../../assets/icons/edit.svg';
@@ -113,6 +114,7 @@ const ICONS = {
   diamond: DiamondIcon,
   discord: DiscordIcon,
   dollar: DollarIcon,
+  door: DoorIcon,
   dots: DotsIcon,
   download: Download,
   edit: EditIcon,

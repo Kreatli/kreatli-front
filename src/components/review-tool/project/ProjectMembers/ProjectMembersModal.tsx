@@ -2,6 +2,7 @@ import { Modal, ModalBody, ModalContent, ModalHeader } from '@nextui-org/react';
 import { useQueryClient } from '@tanstack/react-query';
 import React from 'react';
 
+import { useSession } from '../../../../hooks/review-tool/useSession';
 import { useNotifications } from '../../../../hooks/useNotifications';
 import { useDeleteProjectIdMemberMemberId, usePostProjectIdMember } from '../../../../services/review-tool/hooks';
 import { getProjectId, getProjects } from '../../../../services/review-tool/services';
@@ -20,6 +21,8 @@ export const ProjectMembersModal = ({ project, isOpen, onClose }: Props) => {
   const { mutate: deleteProjectMember, isPending: isRemoving } = useDeleteProjectIdMemberMemberId();
   const { mutate: resendInvitation, isPending: isResendingInvitation } = usePostProjectIdMember();
 
+  const { user } = useSession();
+  const isProjectOwner = project?.createdBy?.id === user?.id;
   const queryClient = useQueryClient();
   const { pushNotification } = useNotifications();
 
@@ -72,11 +75,12 @@ export const ProjectMembersModal = ({ project, isOpen, onClose }: Props) => {
             <div className="flex flex-col gap-8">
               <ProjectMembersTable
                 members={project.members}
+                isEditable={isProjectOwner}
                 isLoading={isRemoving || isResendingInvitation}
                 onRemove={handleRemove}
                 onResendInvite={handleResetInvite}
               />
-              <InviteProjectMemberForm project={project} onCancel={onClose} />
+              {isProjectOwner && <InviteProjectMemberForm project={project} onCancel={onClose} />}
             </div>
           )}
         </ModalBody>
