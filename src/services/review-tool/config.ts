@@ -10,7 +10,7 @@ import qs from 'qs';
 import { getHasToken, getToken } from '../../utils/token';
 
 const baseConfig: AxiosRequestConfig = {
-  baseURL: 'http://localhost:3000', // <--- Add your base url
+  baseURL: process.env.REVIEW_TOOL_API_URL,
   headers: {
     Accept: 'application/json',
     'Content-Type': 'application/json-patch+json',

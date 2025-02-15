@@ -11,7 +11,8 @@ const nextConfig = {
     scrollRestoration: true,
   },
   env: {
-    API_URL: process.env.MARKETPLACE_API_URL,
+    MARKETPLACE_API_URL: process.env.MARKETPLACE_API_URL,
+    REVIEW_TOOL_API_URL: process.env.REVIEW_TOOL_API_URL,
     GTM_ID: process.env.GTM_ID,
     GOOGLE_OAUTH_CLIENT_ID: process.env.GOOGLE_OAUTH_CLIENT_ID,
     ENABLE_REDDIT_PIXEL: process.env.ENABLE_REDDIT_PIXEL,
