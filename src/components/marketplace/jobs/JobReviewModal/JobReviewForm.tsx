@@ -4,8 +4,8 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 
 import { VALIDATION_RULES } from '../../../../constants/validationRules';
-import { useNotifications } from '../../../../hooks/useNotifications';
 import { useSession } from '../../../../hooks/marketplace/useSession';
+import { useNotifications } from '../../../../hooks/useNotifications';
 import { requestJobOfferComplete, requestJobOfferReview } from '../../../../services/marketplace/job';
 import { Common } from '../../../../typings/common';
 import { Job } from '../../../../typings/marketplace/job';

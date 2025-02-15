@@ -1,5 +1,5 @@
-import { Api } from '../../typings/marketplace/api';
 import { Common } from '../../typings/common';
+import { Api } from '../../typings/marketplace/api';
 import { api } from './api';
 
 export const requestCurrentProfessionalJobs = async (params?: Api.GetParams['/professional/job-applications']) => {

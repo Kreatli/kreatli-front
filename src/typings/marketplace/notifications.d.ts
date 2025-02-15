@@ -1,7 +1,7 @@
 import { Common } from '../common';
+import { Job } from './job';
 import { Tasks } from './tasks';
 import { User } from './user';
-import { Job } from './job';
 
 export namespace Notifications {
   interface NotificationBase {

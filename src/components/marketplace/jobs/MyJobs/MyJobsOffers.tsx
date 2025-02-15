@@ -6,13 +6,13 @@ import cx from 'classnames';
 import NextLink from 'next/link';
 import React from 'react';
 
-import { useBreakpointValue } from '../../../../hooks/useBreakpointValue';
 import { useSession } from '../../../../hooks/marketplace/useSession';
+import { useBreakpointValue } from '../../../../hooks/useBreakpointValue';
 import { requestCurrentCreatorJobs } from '../../../../services/marketplace/creator';
 import { Job } from '../../../../typings/marketplace/job';
-import { ProfileUnverifiedTooltip } from '../../profile/Profile/ProfileUnverifiedTooltip';
 import { EmptyState } from '../../../various/EmptyState';
 import { Icon } from '../../../various/Icon';
+import { ProfileUnverifiedTooltip } from '../../profile/Profile/ProfileUnverifiedTooltip';
 import styles from './MyJobs.module.scss';
 import { MyJobsOffer } from './MyJobsOffer';
 import { MyJobsSkeleton } from './MyJobsSkeleton';

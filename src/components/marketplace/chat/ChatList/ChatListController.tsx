@@ -15,9 +15,7 @@ export const ListController = ({ isActive, label, count, onClick }: Props) => {
       as="button"
       size="sm"
       className="font-semibold"
-      color={isActive
-        ? 'secondary'
-        : 'foreground'}
+      color={isActive ? 'secondary' : 'foreground'}
       onClick={onClick}
     >
       {label} ({count})

@@ -3,16 +3,16 @@ import NextLink from 'next/link';
 import React from 'react';
 
 import { SKILL_LABELS_FOR_PROFESSIONAL } from '../../../../constants/marketplace/skills';
-import { useBreakpointValue } from '../../../../hooks/useBreakpointValue';
 import { useSession } from '../../../../hooks/marketplace/useSession';
+import { useBreakpointValue } from '../../../../hooks/useBreakpointValue';
 import { Common } from '../../../../typings/common';
 import { Job } from '../../../../typings/marketplace/job';
 import { formatRelativeTime } from '../../../../utils/dates';
-import { ProfileUnverifiedTooltip } from '../../profile/Profile/ProfileUnverifiedTooltip';
 import { BottomBar } from '../../../various/BottomBar';
 import { PaymentMethods } from '../../../various/PaymentMethods';
 import { Tag } from '../../../various/Tag';
 import { TierImage } from '../../../various/TierImage';
+import { ProfileUnverifiedTooltip } from '../../profile/Profile/ProfileUnverifiedTooltip';
 import { JobApplicationModal } from '../JobApplicationModal';
 import { JobFeatures } from '../JobFeatures';
 import { JobOthers } from '../JobOthers';

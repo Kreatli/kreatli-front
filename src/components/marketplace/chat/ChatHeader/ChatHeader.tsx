@@ -5,9 +5,9 @@ import React from 'react';
 import { ChatContext } from '../../../../contexts/marketplace/Chat';
 import { useBreakpointValue } from '../../../../hooks/useBreakpointValue';
 import { getUserSkills } from '../../../../utils/marketplace/user';
-import { ProfileBadge } from '../../profile/Profile/ProfileBadge';
 import { Icon } from '../../../various/Icon';
 import { TierImage } from '../../../various/TierImage';
+import { ProfileBadge } from '../../profile/Profile/ProfileBadge';
 
 export const ChatHeader = () => {
   const { participant } = React.useContext(ChatContext);

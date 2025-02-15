@@ -2,13 +2,13 @@ import { useQuery } from '@tanstack/react-query';
 import { useRouter } from 'next/router';
 import React from 'react';
 
-import { useNotifications } from '../../../hooks/useNotifications';
 import { useSession } from '../../../hooks/marketplace/useSession';
 import { useSocket } from '../../../hooks/marketplace/useSocket';
+import { useNotifications } from '../../../hooks/useNotifications';
 import { requestChat, requestChatMessages } from '../../../services/marketplace/chat';
 import { requestChatRequests } from '../../../services/marketplace/chats';
-import { Chat } from '../../../typings/marketplace/chat';
 import { Common } from '../../../typings/common';
+import { Chat } from '../../../typings/marketplace/chat';
 import { File } from '../../../typings/marketplace/file';
 import { Media } from '../../../typings/marketplace/media';
 import { User } from '../../../typings/marketplace/user';

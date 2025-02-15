@@ -21,12 +21,11 @@ export const useBreakpointValue = <T>(values: { [bp in Breakpoints]?: T }, defau
 
     const breakpoint = [...breakpoints]
       .sort((a, b) => BREAKPOINTS[a] - BREAKPOINTS[b])
-      .find((bp, index, arr) => (
-        BREAKPOINTS[bp] <= clientWidth && (index + 1 === arr.length || BREAKPOINTS[arr[index + 1]] > clientWidth)
-      ));
+      .find(
+        (bp, index, arr) =>
+          BREAKPOINTS[bp] <= clientWidth && (index + 1 === arr.length || BREAKPOINTS[arr[index + 1]] > clientWidth),
+      );
 
-    return breakpoint
-      ? values[breakpoint]
-      : defaultValue;
+    return breakpoint ? values[breakpoint] : defaultValue;
   }, [values, defaultValue, clientWidth]) as T;
 };

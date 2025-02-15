@@ -3,15 +3,15 @@ import NextLink from 'next/link';
 import React from 'react';
 
 import { PostContext } from '../../../../contexts/marketplace/Post';
-import { useBreakpointValue } from '../../../../hooks/useBreakpointValue';
 import { useSession } from '../../../../hooks/marketplace/useSession';
+import { useBreakpointValue } from '../../../../hooks/useBreakpointValue';
 import { formatRelativeTime } from '../../../../utils/dates';
-import { ConnectionButton } from '../../profile/Connections/ConnectionButton';
-import { ProfileUnverifiedTooltip } from '../../profile/Profile/ProfileUnverifiedTooltip';
 import { Icon } from '../../../various/Icon';
 import { Lightbox } from '../../../various/Lightbox';
 import { MediaSlider } from '../../../various/MediaSlider';
 import { TierImage } from '../../../various/TierImage';
+import { ConnectionButton } from '../../profile/Connections/ConnectionButton';
+import { ProfileUnverifiedTooltip } from '../../profile/Profile/ProfileUnverifiedTooltip';
 import { Comments } from '../Comments';
 import { EditPostModal } from './EditPostModal';
 import { PostLikeButton } from './PostLikeButton';

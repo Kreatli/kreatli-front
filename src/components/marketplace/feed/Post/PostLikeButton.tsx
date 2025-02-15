@@ -5,8 +5,8 @@ import React from 'react';
 import { useSession } from '../../../../hooks/marketplace/useSession';
 import { requestLikePost } from '../../../../services/marketplace/feed';
 import { Common } from '../../../../typings/common';
-import { ProfileUnverifiedTooltip } from '../../profile/Profile/ProfileUnverifiedTooltip';
 import { Icon } from '../../../various/Icon';
+import { ProfileUnverifiedTooltip } from '../../profile/Profile/ProfileUnverifiedTooltip';
 
 interface Props {
   postId: Common.Id;

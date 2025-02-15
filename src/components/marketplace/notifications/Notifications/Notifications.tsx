@@ -4,9 +4,9 @@ import React from 'react';
 
 import { requestNotificationsMarkAsRead } from '../../../../services/marketplace/notifications';
 import { Notifications as NotificationsI } from '../../../../typings/marketplace/notifications';
-import { EmptyState } from '../../chat/EmptyState';
 import { Icon } from '../../../various/Icon';
 import { LazyList } from '../../../various/LazyList';
+import { EmptyState } from '../../chat/EmptyState';
 import { Notification } from '../Notification';
 
 interface Props {

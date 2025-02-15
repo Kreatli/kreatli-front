@@ -1,5 +1,5 @@
-import { Api } from '../../typings/marketplace/api';
 import { Common } from '../../typings/common';
+import { Api } from '../../typings/marketplace/api';
 import { api } from './api';
 
 export const requestCurrentUser = async () => {

@@ -2,8 +2,9 @@ import { Button, Chip } from '@nextui-org/react';
 import Head from 'next/head';
 import NextLink from 'next/link';
 import React from 'react';
-import { useSession } from '../hooks/review-tool/useSession';
+
 import { Header } from '../components/review-tool/layout/Header';
+import { useSession } from '../hooks/review-tool/useSession';
 
 const NotFound = () => {
   const { isSignedIn } = useSession();

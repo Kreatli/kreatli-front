@@ -1,5 +1,6 @@
-import { Tooltip, Button, Popover, PopoverTrigger, PopoverContent } from '@nextui-org/react';
+import { Button, Popover, PopoverContent, PopoverTrigger, Tooltip } from '@nextui-org/react';
 import React from 'react';
+
 import { ProjectMemberDto } from '../../../../../services/review-tool/types';
 import { Icon } from '../../../../various/Icon';
 

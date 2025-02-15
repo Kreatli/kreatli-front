@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/indent */
 import React from 'react';
 
-import { AVAILABILITY_LABELS, DURATION_LABELS } from '../../../../constants/marketplace/availability';
 import { COUNTRY_LABELS } from '../../../../constants/countries';
+import { AVAILABILITY_LABELS, DURATION_LABELS } from '../../../../constants/marketplace/availability';
 import { PAYMENT_TYPE_SHORTS } from '../../../../constants/marketplace/payment';
 import { Job } from '../../../../typings/marketplace/job';
 import { JobFeature } from './JobFeature';

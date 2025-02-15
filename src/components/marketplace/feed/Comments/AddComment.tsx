@@ -3,8 +3,8 @@ import { useMutation } from '@tanstack/react-query';
 import React from 'react';
 
 import { PostContext } from '../../../../contexts/marketplace/Post';
-import { useNotifications } from '../../../../hooks/useNotifications';
 import { useSession } from '../../../../hooks/marketplace/useSession';
+import { useNotifications } from '../../../../hooks/useNotifications';
 import { requestPostCommentCreation } from '../../../../services/marketplace/feed';
 import { getErrorMessage } from '../../../../utils/marketplace/getErrorMessage';
 import { Icon } from '../../../various/Icon';

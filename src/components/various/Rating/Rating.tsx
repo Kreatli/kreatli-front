@@ -9,10 +9,7 @@ interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
   invalid?: boolean;
 }
 
-export const Rating = React.forwardRef<HTMLInputElement, Props>((
-  { invalid, onChange, label, ...props },
-  ref,
-) => {
+export const Rating = React.forwardRef<HTMLInputElement, Props>(({ invalid, onChange, label, ...props }, ref) => {
   const [value, setValue] = React.useState(props.value);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -34,7 +31,14 @@ export const Rating = React.forwardRef<HTMLInputElement, Props>((
               [styles.readOnly]: props.readOnly,
             })}
           >
-            <input ref={ref} type="radio" className={styles.input} value={5 - index} {...props} onChange={handleChange} />
+            <input
+              ref={ref}
+              type="radio"
+              className={styles.input}
+              value={5 - index}
+              {...props}
+              onChange={handleChange}
+            />
             <Icon icon="star" size="1.25rem" className={styles.icon} />
           </label>
         ))}

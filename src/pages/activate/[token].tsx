@@ -1,9 +1,10 @@
 import { useRouter } from 'next/router';
 import React from 'react';
-import { usePostAuthVerifyEmail } from '../../services/review-tool/hooks';
-import { getHasToken } from '../../utils/token';
+
 import { useNotifications } from '../../hooks/useNotifications';
+import { usePostAuthVerifyEmail } from '../../services/review-tool/hooks';
 import { getErrorMessage } from '../../utils/review-tool/getErrorMessage';
+import { getHasToken } from '../../utils/token';
 
 export default function Activate() {
   const router = useRouter();

@@ -5,9 +5,9 @@ import React from 'react';
 import { requestProfessionalJobs } from '../../../../services/marketplace/professional';
 import { Common } from '../../../../typings/common';
 import { Job } from '../../../../typings/marketplace/job';
-import { JobCard } from '../../jobs/JobCard';
 import { EmptyState } from '../../../various/EmptyState';
 import { Rating } from '../../../various/Rating';
+import { JobCard } from '../../jobs/JobCard';
 import styles from './RecentJob.module.scss';
 import { RecentJobsSkeleton } from './RecentJobsSkeleton';
 

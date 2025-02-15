@@ -9,11 +9,7 @@ interface Options<T> {
   asJson?: boolean;
 }
 
-export const useLocalStorage = <T>({
-  key,
-  defaultValue,
-  asJson = false,
-}: Options<T>): [T, (value: T) => void] => {
+export const useLocalStorage = <T>({ key, defaultValue, asJson = false }: Options<T>): [T, (value: T) => void] => {
   const returnValueRef = React.useRef<{
     storageValue: string | null;
     parsedValue: T;
@@ -47,9 +43,7 @@ export const useLocalStorage = <T>({
     }
 
     if (storageValue !== returnValueRef.current.storageValue) {
-      const parsed = asJson
-        ? parseString(storageValue) ?? defaultValue
-        : storageValue;
+      const parsed = asJson ? (parseString(storageValue) ?? defaultValue) : storageValue;
 
       returnValueRef.current = {
         parsedValue: parsed as T,
@@ -80,11 +74,7 @@ export const useLocalStorage = <T>({
     [asJson, key],
   );
 
-  const value = React.useSyncExternalStore(
-    subscribe,
-    getSnapshot,
-    getServerSnapshot,
-  );
+  const value = React.useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
 
   return [value, setValue];
 };

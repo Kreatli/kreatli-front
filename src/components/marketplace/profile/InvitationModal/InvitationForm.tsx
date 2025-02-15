@@ -3,8 +3,8 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 
-import { useNotifications } from '../../../../hooks/useNotifications';
 import { useSession } from '../../../../hooks/marketplace/useSession';
+import { useNotifications } from '../../../../hooks/useNotifications';
 import { requestUserInvitation } from '../../../../services/marketplace/user';
 import { Common } from '../../../../typings/common';
 import { getErrorMessage } from '../../../../utils/marketplace/getErrorMessage';

@@ -3,8 +3,8 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import NextLink from 'next/link';
 import React from 'react';
 
-import { useNotifications } from '../../../../hooks/useNotifications';
 import { useSession } from '../../../../hooks/marketplace/useSession';
+import { useNotifications } from '../../../../hooks/useNotifications';
 import { requestYoutubeInfoUpdate } from '../../../../services/marketplace/user';
 import { Common } from '../../../../typings/common';
 import { User as IUser } from '../../../../typings/marketplace/user';

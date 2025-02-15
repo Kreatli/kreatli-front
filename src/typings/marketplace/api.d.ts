@@ -1,14 +1,14 @@
 import { Common } from '../common';
-import { Invitation } from './invitation';
-import { Job } from './job';
-import { Notifications } from './notifications';
 import { Pagination } from '../pagination';
-import { Skill, SkillLevel } from './skill';
-import { Tasks } from './tasks';
-import { User } from './user';
 import { Availability } from './availability';
 import { Chat } from './chat';
 import { Feed } from './feed';
+import { Invitation } from './invitation';
+import { Job } from './job';
+import { Notifications } from './notifications';
+import { Skill, SkillLevel } from './skill';
+import { Tasks } from './tasks';
+import { User } from './user';
 
 export interface UploadApiResponse {
   public_id: string;

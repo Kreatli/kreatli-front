@@ -3,8 +3,8 @@ import React from 'react';
 
 import { requestCreatorJobs } from '../../../../services/marketplace/creator';
 import { Common } from '../../../../typings/common';
-import { JobCard } from '../../jobs/JobCard';
 import { EmptyState } from '../../../various/EmptyState';
+import { JobCard } from '../../jobs/JobCard';
 import { PostedJobsSkeleton } from './PostedJobsSkeleton';
 
 interface Props {

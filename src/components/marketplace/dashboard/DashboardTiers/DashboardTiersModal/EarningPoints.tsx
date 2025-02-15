@@ -45,6 +45,7 @@ export const EarningPoints = () => {
             <div key={title} className="flex gap-3">
               {/* eslint-disable-next-line max-len */}
               <div
+                // eslint-disable-next-line max-len
                 className={`w-8 h-8 shrink-0 rounded-medium flex items-center justify-center bg-${color}-50 text-${color}-500`}
               >
                 <Icon icon={icon} size={24} />

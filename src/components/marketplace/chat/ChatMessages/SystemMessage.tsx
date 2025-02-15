@@ -6,9 +6,9 @@ import { JOB_APPLICATION_STATUSES } from '../../../../constants/marketplace/job'
 import { ChatContext } from '../../../../contexts/marketplace/Chat';
 import { useSession } from '../../../../hooks/marketplace/useSession';
 import { Chat } from '../../../../typings/marketplace/chat';
-import { JobApplicationButtons } from '../../jobs/JobApplications/JobApplicationButtons';
 import { Alert } from '../../../various/Alert';
 import { Icon } from '../../../various/Icon';
+import { JobApplicationButtons } from '../../jobs/JobApplications/JobApplicationButtons';
 
 interface Props {
   message: Chat.SystemMessage;

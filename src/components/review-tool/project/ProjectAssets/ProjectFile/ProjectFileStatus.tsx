@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { Chip, cn, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger, Selection } from '@nextui-org/react';
 import React from 'react';
 

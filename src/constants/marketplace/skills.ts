@@ -79,11 +79,15 @@ export const SKILL_LABELS_FOR_CREATOR = {
   [SKILLS.VIDEO_PRODUCTION]: `${SKILL_EMOJIS[SKILLS.VIDEO_PRODUCTION]} Producers`,
 } as const;
 
-export const SKILL_OPTIONS_FOR_CREATOR = Object.entries(SKILL_LABELS_FOR_CREATOR)
-  .map(([value, label]) => ({ label, value: value as keyof typeof SKILLS }));
+export const SKILL_OPTIONS_FOR_CREATOR = Object.entries(SKILL_LABELS_FOR_CREATOR).map(([value, label]) => ({
+  label,
+  value: value as keyof typeof SKILLS,
+}));
 
-export const SKILL_OPTIONS = Object.entries(SKILL_LABELS_FOR_PROFESSIONAL)
-  .map(([value, label]) => ({ label, value: value as keyof typeof SKILLS }));
+export const SKILL_OPTIONS = Object.entries(SKILL_LABELS_FOR_PROFESSIONAL).map(([value, label]) => ({
+  label,
+  value: value as keyof typeof SKILLS,
+}));
 
 export const SKILL_LEVEL_OPTIONS = [
   { label: SKILL_LEVEL_LABELS[SKILL_LEVELS.BEGINNER], value: SKILL_LEVELS.BEGINNER },

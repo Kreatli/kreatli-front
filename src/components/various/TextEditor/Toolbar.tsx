@@ -76,57 +76,39 @@ export const Toolbar = ({ children }: Props) => {
   const widgets = [
     {
       icon: 'bold',
-      className: isBold
-        ? ''
-        : 'text-foreground-400',
+      className: isBold ? '' : 'text-foreground-400',
       variant: 'light',
       label: 'Format bold',
-      color: isBold
-        ? 'secondary'
-        : undefined,
+      color: isBold ? 'secondary' : undefined,
       onClick: () => formatText('bold'),
     },
     {
       icon: 'italic',
-      className: isItalic
-        ? ''
-        : 'text-foreground-400',
+      className: isItalic ? '' : 'text-foreground-400',
       variant: 'light',
       label: 'Format italic',
-      color: isItalic
-        ? 'secondary'
-        : undefined,
+      color: isItalic ? 'secondary' : undefined,
       onClick: () => formatText('italic'),
     },
     {
       icon: 'underline',
-      className: isUnderline
-        ? ''
-        : 'text-foreground-400',
+      className: isUnderline ? '' : 'text-foreground-400',
       variant: 'light',
       label: 'Format underline',
-      color: isUnderline
-        ? 'secondary'
-        : undefined,
+      color: isUnderline ? 'secondary' : undefined,
       onClick: () => formatText('underline'),
     },
     {
       icon: 'strikethrough',
-      className: isStrikethrough
-        ? ''
-        : 'text-foreground-400',
+      className: isStrikethrough ? '' : 'text-foreground-400',
       variant: 'light',
       label: 'Format strikethrough',
-      color: isStrikethrough
-        ? 'secondary'
-        : undefined,
+      color: isStrikethrough ? 'secondary' : undefined,
       onClick: () => formatText('strikethrough'),
     },
   ] as const;
 
-  const emojiTriggerClassName = isTouchScreen
-    ? 'hidden'
-    : 'text-foreground-400';
+  const emojiTriggerClassName = isTouchScreen ? 'hidden' : 'text-foreground-400';
 
   return (
     <div className={styles.widgets}>
@@ -156,10 +138,7 @@ export const Toolbar = ({ children }: Props) => {
           />
         </PopoverTrigger>
         <PopoverContent className="p-0">
-          <EmojiPicker
-            maxFrequentRows={2}
-            onEmojiSelect={handleEmojiClick}
-          />
+          <EmojiPicker maxFrequentRows={2} onEmojiSelect={handleEmojiClick} />
         </PopoverContent>
       </Popover>
     </div>

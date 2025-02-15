@@ -23,12 +23,12 @@ import { useNotifications } from '../../../../hooks/useNotifications';
 import { requestCurrentUserUpdate } from '../../../../services/marketplace/user';
 import { User } from '../../../../typings/marketplace/user';
 import { getErrorMessage } from '../../../../utils/marketplace/getErrorMessage';
+import { AvatarUploader } from '../../../various/AvatarUploader';
+import { Icon } from '../../../various/Icon';
 import { DefaultValues } from '../../auth/SignUpProfessional/constants';
 import { SignUpProfessionalStep3 } from '../../auth/SignUpProfessional/SignUpProfessionalStep3';
 import { SignUpProfessionalStep4 } from '../../auth/SignUpProfessional/SignUpProfessionalStep4';
 import { SignUpProfessionalStep5 } from '../../auth/SignUpProfessional/SignUpProfessionalStep5';
-import { AvatarUploader } from '../../../various/AvatarUploader';
-import { Icon } from '../../../various/Icon';
 
 interface Props {
   user: User.Professional;

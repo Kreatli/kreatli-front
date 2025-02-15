@@ -19,7 +19,9 @@ export const ImagePreview = ({ src, isLoading, onRemove }: Props) => {
         removeWrapper
         className={`w-full h-full object-cover shadow-small ${isLoading && loadingClassNames}`}
       />
-      {isLoading && <Spinner size="sm" color="white" className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 z-10" />}
+      {isLoading && (
+        <Spinner size="sm" color="white" className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 z-10" />
+      )}
       {!isLoading && (
         <div className="absolute inset-0 flex items-center justify-center bg-red-500/30 text-red-500 z-10 rounded-xl opacity-0 hover:opacity-100 transition-all">
           <Icon icon="cross" />

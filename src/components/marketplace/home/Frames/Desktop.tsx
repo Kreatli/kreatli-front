@@ -12,9 +12,7 @@ export const DesktopFrame = ({ children }: Props) => {
         <div className="w-2.5 h-2.5 bg-warning rounded-full" />
         <div className="w-2.5 h-2.5 bg-success rounded-full" />
       </div>
-      <div className="overflow-hidden bg-white">
-        {children}
-      </div>
+      <div className="overflow-hidden bg-white">{children}</div>
     </div>
   );
 };

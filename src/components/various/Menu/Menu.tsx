@@ -9,11 +9,7 @@ interface Props {
 }
 
 const Menu = ({ children }: Props) => {
-  return (
-    <div className={styles.menu}>
-      {children}
-    </div>
-  );
+  return <div className={styles.menu}>{children}</div>;
 };
 
 Menu.Group = MenuGroup;

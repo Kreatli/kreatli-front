@@ -1,8 +1,8 @@
 import React from 'react';
 
 import { ChatContext, ChatContextProvider } from '../../../../contexts/marketplace/Chat';
-import { useBreakpointValue } from '../../../../hooks/useBreakpointValue';
 import { useProtectedPage } from '../../../../hooks/marketplace/useProtectedPage';
+import { useBreakpointValue } from '../../../../hooks/useBreakpointValue';
 import { ChatList } from '../ChatList';
 
 interface Props {

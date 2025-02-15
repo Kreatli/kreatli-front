@@ -3,9 +3,9 @@ import NextLink from 'next/link';
 import React from 'react';
 
 import { useSignUpCreatorModal } from '../../../../hooks/marketplace/useSignUpCreatorModal';
-import { SignInModal } from '../../auth/SignInModal';
 import { Icon } from '../../../various/Icon';
 import { Video } from '../../../various/Video';
+import { SignInModal } from '../../auth/SignInModal';
 import { DesktopFrame, MobileFrame } from '../Frames';
 import { TextLinear } from '../TextLinear';
 

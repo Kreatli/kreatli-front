@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/indent */
 import { Button, Chip, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger, useDisclosure } from '@nextui-org/react';
 import { useMutation } from '@tanstack/react-query';
 import React from 'react';
@@ -8,8 +9,8 @@ import {
   JOB_OFFER_STATUS_COLORS,
   JOB_OFFER_STATUS_LABELS,
 } from '../../../../constants/marketplace/job';
-import { useNotifications } from '../../../../hooks/useNotifications';
 import { useSession } from '../../../../hooks/marketplace/useSession';
+import { useNotifications } from '../../../../hooks/useNotifications';
 import { requestJobApplicationCancel } from '../../../../services/marketplace/job';
 import { Job } from '../../../../typings/marketplace/job';
 import { getErrorMessage } from '../../../../utils/marketplace/getErrorMessage';

@@ -14,8 +14,8 @@ import { useSearchParams } from 'next/navigation';
 import React from 'react';
 
 import { useImagesUpload } from '../../../../hooks/marketplace/useImagesUpload';
-import { useNotifications } from '../../../../hooks/useNotifications';
 import { useSession } from '../../../../hooks/marketplace/useSession';
+import { useNotifications } from '../../../../hooks/useNotifications';
 import { requestPostCreation, requestPostEdit } from '../../../../services/marketplace/feed';
 import { Feed } from '../../../../typings/marketplace/feed';
 import { Media } from '../../../../typings/marketplace/media';
