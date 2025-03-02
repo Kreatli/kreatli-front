@@ -82,6 +82,7 @@ export const ProjectFileStatus = ({ file, projectId, memberRole }: Props) => {
       <DropdownMenu
         variant="flat"
         selectionMode="single"
+        disallowEmptySelection
         selectedKeys={selectedKeys}
         onSelectionChange={handleSelectionChange}
       >
