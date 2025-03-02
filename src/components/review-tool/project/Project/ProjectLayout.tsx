@@ -57,7 +57,7 @@ export const ProjectLayout = ({ children, hideHeader = false }: React.PropsWithC
   return (
     <>
       <Header />
-      <div className="p-6 border-t border-foreground-200">
+      <div className="p-6 pt-2 border-t border-foreground-200">
         {isPending || isError ? (
           'Loading'
         ) : (

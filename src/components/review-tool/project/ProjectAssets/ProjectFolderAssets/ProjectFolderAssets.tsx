@@ -1,5 +1,6 @@
-import { Button, ButtonGroup, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger } from '@nextui-org/react';
+import { Button, ButtonGroup, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger, Link } from '@nextui-org/react';
 import { useQueryClient } from '@tanstack/react-query';
+import NextLink from 'next/link';
 import React from 'react';
 
 import { useFolderContext } from '../../../../../contexts/review-tool/Folder';
@@ -75,48 +76,66 @@ export const ProjectFolderAssets = ({ folderId }: Props) => {
     ];
   }, [folder, project]);
 
+  const backLink = React.useMemo(() => {
+    if (!folder?.parent) {
+      return { name: project.name, href: `/project/${project.id}` };
+    }
+
+    return { name: folder.parent.name, href: `/project/${project.id}/assets/folder/${folder?.parent?.id}` };
+  }, [folder?.parent, project.id, project.name]);
+
   return (
-    <div className="flex flex-col gap-4">
-      <div className="flex gap-4 justify-between">
-        <ProjectBreadcrumbs
-          fileCount={folder?.fileCount ?? 0}
-          totalFileSize={folder?.totalFileSize ?? 0}
-          path={path}
-          coverUrl={project.cover?.url}
-        />
-        <div>
-          <ButtonGroup>
-            <Button className="text-content1 bg-foreground pr-1" onClick={uploadAssets}>
-              <Icon icon="plus" size={16} />
-              New
-            </Button>
-            <Dropdown>
-              <DropdownTrigger>
-                <Button isIconOnly className="text-content1 bg-foreground">
-                  <Icon icon="chevronDown" size={20} />
-                </Button>
-              </DropdownTrigger>
-              <DropdownMenu variant="flat">
-                <DropdownItem startContent={<Icon icon="upload" size={18} />} onPress={uploadAssets}>
-                  Upload files
-                </DropdownItem>
-                <DropdownItem startContent={<Icon icon="plus" size={16} />} onPress={() => setIsFolderModalOpen(true)}>
-                  Create folder
-                </DropdownItem>
-              </DropdownMenu>
-            </Dropdown>
-          </ButtonGroup>
-          <input ref={inputRef} multiple type="file" className="sr-only" onChange={handleInputChange} />
+    <div>
+      {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+      <Link as={NextLink} href={backLink.href} className="gap-0.5 text-foreground-500">
+        <Icon icon="arrowLeft" size={18} />
+        {backLink.name}
+      </Link>
+      <div className="flex flex-col gap-4">
+        <div className="flex gap-4 justify-between">
+          <ProjectBreadcrumbs
+            fileCount={folder?.fileCount ?? 0}
+            totalFileSize={folder?.totalFileSize ?? 0}
+            path={path}
+            coverUrl={project.cover?.url}
+          />
+          <div>
+            <ButtonGroup>
+              <Button className="text-content1 bg-foreground pr-1" onClick={uploadAssets}>
+                <Icon icon="plus" size={16} />
+                New
+              </Button>
+              <Dropdown>
+                <DropdownTrigger>
+                  <Button isIconOnly className="text-content1 bg-foreground">
+                    <Icon icon="chevronDown" size={20} />
+                  </Button>
+                </DropdownTrigger>
+                <DropdownMenu variant="flat">
+                  <DropdownItem startContent={<Icon icon="upload" size={18} />} onPress={uploadAssets}>
+                    Upload files
+                  </DropdownItem>
+                  <DropdownItem
+                    startContent={<Icon icon="plus" size={16} />}
+                    onPress={() => setIsFolderModalOpen(true)}
+                  >
+                    Create folder
+                  </DropdownItem>
+                </DropdownMenu>
+              </Dropdown>
+            </ButtonGroup>
+            <input ref={inputRef} multiple type="file" className="sr-only" onChange={handleInputChange} />
+          </div>
         </div>
+        {/* TODO: add loading state */}
+        {folder && <ProjectFolderAssetsList project={project} folder={folder} />}
+        <CreateFolderModal
+          isOpen={isFolderModalOpen}
+          projectId={project.id}
+          folderId={folderId}
+          onClose={() => setIsFolderModalOpen(false)}
+        />
       </div>
-      {/* TODO: add loading state */}
-      {folder && <ProjectFolderAssetsList project={project} folder={folder} />}
-      <CreateFolderModal
-        isOpen={isFolderModalOpen}
-        projectId={project.id}
-        folderId={folderId}
-        onClose={() => setIsFolderModalOpen(false)}
-      />
     </div>
   );
 };

@@ -1,5 +1,15 @@
-import { Avatar, Button, ButtonGroup, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger } from '@nextui-org/react';
+import {
+  Avatar,
+  Button,
+  ButtonGroup,
+  Dropdown,
+  DropdownItem,
+  DropdownMenu,
+  DropdownTrigger,
+  Link,
+} from '@nextui-org/react';
 import { useQueryClient } from '@tanstack/react-query';
+import NextLink from 'next/link';
 import React from 'react';
 
 import { useProjectContext } from '../../../../contexts/review-tool/Project';
@@ -61,89 +71,103 @@ export const ProjectHeader = ({ project }: Props) => {
   const projectActions = getProjectActions(project);
 
   return (
-    <div className="flex gap-4 justify-between">
-      <ProjectBreadcrumbs
-        fileCount={project.fileCount}
-        coverUrl={coverUrl}
-        totalFileSize={project.totalFileSize}
-        path={[{ name: project.name, url: '#' }]}
-      >
-        {projectActions.length > 0 && (
-          <Dropdown>
-            <DropdownTrigger>
-              <Button isIconOnly size="sm" variant="light" radius="full">
-                <Icon icon="dots" />
-              </Button>
-            </DropdownTrigger>
-            <DropdownMenu variant="flat">
-              {projectActions.map((action) => (
-                <DropdownItem
-                  key={action.label}
-                  color={action.color}
-                  showDivider={action.showDivider}
-                  startContent={<Icon icon={action.icon} size={16} />}
-                  onPress={action.onClick}
-                >
-                  {action.label}
-                </DropdownItem>
-              ))}
-            </DropdownMenu>
-          </Dropdown>
-        )}
-      </ProjectBreadcrumbs>
-      <div className="flex gap-4">
-        <div className="p-1">
-          <Avatar
-            as="button"
-            aria-label="Add project member"
-            fallback="+"
-            isBordered
-            size="sm"
-            className="text-lg font-medium text-foreground-500"
-            onClick={() => setIsMembersModalOpen(true)}
-          />
-        </div>
-        <div className="p-1">
-          <button
-            type="button"
-            aria-label="Project members"
-            className="outline-offset-4 rounded-full"
-            onClick={() => setIsMembersModalOpen(true)}
-          >
-            <ProjectMembersThumbnails members={project.members} />
-          </button>
-        </div>
-        <div>
-          <ButtonGroup>
-            <Button className="text-content1 bg-foreground pr-1" onClick={uploadAssets}>
-              <Icon icon="plus" size={16} />
-              New
-            </Button>
+    <div>
+      {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+      <Link as={NextLink} href="/" className="gap-0.5 text-foreground-500">
+        <Icon icon="arrowLeft" size={18} />
+        Projects
+      </Link>
+      <div className="flex gap-4 justify-between">
+        <ProjectBreadcrumbs
+          fileCount={project.fileCount}
+          coverUrl={coverUrl}
+          totalFileSize={project.totalFileSize}
+          path={[{ name: project.name, url: '#' }]}
+        >
+          {projectActions.length > 0 && (
             <Dropdown>
               <DropdownTrigger>
-                <Button isIconOnly className="text-content1 bg-foreground">
-                  <Icon icon="chevronDown" size={20} />
+                <Button isIconOnly size="sm" variant="light" radius="full">
+                  <Icon icon="dots" />
                 </Button>
               </DropdownTrigger>
               <DropdownMenu variant="flat">
-                <DropdownItem startContent={<Icon icon="upload" size={18} />} onPress={uploadAssets}>
-                  Upload files
-                </DropdownItem>
-                <DropdownItem startContent={<Icon icon="plus" size={16} />} onPress={() => setIsFolderModalOpen(true)}>
-                  Create folder
-                </DropdownItem>
+                {projectActions.map((action) => (
+                  <DropdownItem
+                    key={action.label}
+                    color={action.color}
+                    showDivider={action.showDivider}
+                    startContent={<Icon icon={action.icon} size={16} />}
+                    onPress={action.onClick}
+                  >
+                    {action.label}
+                  </DropdownItem>
+                ))}
               </DropdownMenu>
             </Dropdown>
-          </ButtonGroup>
-          <input ref={inputRef} multiple type="file" className="sr-only" onChange={handleInputChange} />
+          )}
+        </ProjectBreadcrumbs>
+        <div className="flex gap-4">
+          <div className="p-1">
+            <Avatar
+              as="button"
+              aria-label="Add project member"
+              fallback="+"
+              isBordered
+              size="sm"
+              className="text-lg font-medium text-foreground-500"
+              onClick={() => setIsMembersModalOpen(true)}
+            />
+          </div>
+          <div className="p-1">
+            <button
+              type="button"
+              aria-label="Project members"
+              className="outline-offset-4 rounded-full"
+              onClick={() => setIsMembersModalOpen(true)}
+            >
+              <ProjectMembersThumbnails members={project.members} />
+            </button>
+          </div>
+          <div>
+            <ButtonGroup>
+              <Button className="text-content1 bg-foreground pr-1" onClick={uploadAssets}>
+                <Icon icon="plus" size={16} />
+                New
+              </Button>
+              <Dropdown>
+                <DropdownTrigger>
+                  <Button isIconOnly className="text-content1 bg-foreground">
+                    <Icon icon="chevronDown" size={20} />
+                  </Button>
+                </DropdownTrigger>
+                <DropdownMenu variant="flat">
+                  <DropdownItem startContent={<Icon icon="upload" size={18} />} onPress={uploadAssets}>
+                    Upload files
+                  </DropdownItem>
+                  <DropdownItem
+                    startContent={<Icon icon="plus" size={16} />}
+                    onPress={() => setIsFolderModalOpen(true)}
+                  >
+                    Create folder
+                  </DropdownItem>
+                </DropdownMenu>
+              </Dropdown>
+            </ButtonGroup>
+            <input ref={inputRef} multiple type="file" className="sr-only" onChange={handleInputChange} />
+          </div>
         </div>
+        <ProjectMembersModal
+          isOpen={isMembersModalOpen}
+          project={project}
+          onClose={() => setIsMembersModalOpen(false)}
+        />
+        <CreateFolderModal
+          isOpen={isFolderModalOpen}
+          projectId={project.id}
+          onClose={() => setIsFolderModalOpen(false)}
+        />
       </div>
-      <ProjectMembersModal isOpen={isMembersModalOpen} project={project} onClose={() => setIsMembersModalOpen(false)} />
-      <CreateFolderModal
-        isOpen={isFolderModalOpen}
-        projectId={project.id}
-        onClose={() => setIsFolderModalOpen(false)}
-      />
     </div>
   );
 };
