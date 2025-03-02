@@ -45,9 +45,15 @@ const AssetUpdatedLog = ({ log }: { log: AssetUpdatedLogDto }) => {
   const href = type === 'file' ? `/project/${project.id}/assets/${id}` : `/project/${project.id}/assets/folder/${id}`;
   const link = (
     <Link as={NextLink} href={href} size="sm" color="foreground" underline="always">
-      {updatedFields.name ?? name}
+      {updatedFields?.name ?? name}
     </Link>
   );
+
+  if (!updatedFields) {
+    // TODO[sentry]: report error
+
+    return <>Updated {link}</>;
+  }
 
   if ('parent' in updatedFields) {
     if (updatedFields.parent) {
@@ -65,7 +71,7 @@ const AssetUpdatedLog = ({ log }: { log: AssetUpdatedLogDto }) => {
     );
   }
 
-  if (updatedFields?.name) {
+  if (updatedFields.name) {
     return (
       <>
         Renamed {link} {type}
