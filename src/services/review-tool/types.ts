@@ -407,6 +407,7 @@ export interface ProjectFileDto {
   url: string;
   assignee?: UserDto;
   createdBy?: UserDto;
+  parentId?: string;
   status?: 'review-needed' | 'in-progress' | 'changes-required' | 'approved';
 }
 
@@ -428,6 +429,7 @@ export interface ProjectFolderDto {
   totalFileSize: number;
   type: 'folder';
   createdBy?: UserDto;
+  parentId?: string;
 }
 
 export interface ProjectInvitationDto {

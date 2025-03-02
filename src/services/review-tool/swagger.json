@@ -617,6 +617,7 @@
           "fileType": { "type": "string" },
           "format": { "type": "string" },
           "url": { "type": "string" },
+          "parentId": { "type": "string", "nullable": true },
           "metadata": { "type": "object" },
           "type": { "type": "string", "enum": ["file"] }
         },
@@ -632,6 +633,7 @@
           "fileType",
           "format",
           "url",
+          "parentId",
           "metadata",
           "type"
         ]
@@ -658,6 +660,7 @@
           "children": { "type": "array", "items": { "$ref": "#/components/schemas/ProjectFolderChild" } },
           "fileCount": { "type": "number" },
           "totalFileSize": { "type": "number" },
+          "parentId": { "type": "string", "nullable": true },
           "type": { "type": "string", "enum": ["folder"] }
         },
         "required": [
@@ -669,6 +672,7 @@
           "children",
           "fileCount",
           "totalFileSize",
+          "parentId",
           "type"
         ]
       },

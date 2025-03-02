@@ -15,7 +15,9 @@ export const MoveToModal = ({ asset, isOpen, onClose }: Props) => {
     <Modal isOpen={isOpen} onClose={onClose}>
       <ModalContent>
         <ModalHeader>Move &quot;{asset?.name}&quot;</ModalHeader>
-        <ModalBody className="pb-6">{asset && <MoveToForm asset={asset} onSuccess={onClose} />}</ModalBody>
+        <ModalBody className="pb-6">
+          {asset && <MoveToForm asset={asset} onCancel={onClose} onSuccess={onClose} />}
+        </ModalBody>
       </ModalContent>
     </Modal>
   );

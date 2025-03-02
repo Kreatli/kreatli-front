@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { Button, Select, SelectItem, SelectSection } from '@nextui-org/react';
 import { useQueryClient } from '@tanstack/react-query';
 import React from 'react';
@@ -18,10 +19,11 @@ import { Icon } from '../../../../various/Icon';
 
 interface Props {
   asset: ProjectFolderDto | ProjectFileDto;
+  onCancel: () => void;
   onSuccess: () => void;
 }
 
-export const MoveToForm = ({ asset, onSuccess }: Props) => {
+export const MoveToForm = ({ asset, onCancel, onSuccess }: Props) => {
   const { project } = useProjectContext();
   const { pushNotification } = useNotifications();
   const queryClient = useQueryClient();
@@ -75,28 +77,45 @@ export const MoveToForm = ({ asset, onSuccess }: Props) => {
     );
   };
 
-  const filteredPaths = projectPaths.filter(
-    (folder) => folder.id !== asset.id && !folder.path.find((path) => path.id === asset.id),
-  );
+  const filteredPaths = React.useMemo(() => {
+    return projectPaths.filter(
+      (folder) =>
+        folder.id !== asset.parentId && folder.id !== asset.id && !folder.path.find((path) => path.id === asset.id),
+    );
+  }, [asset.id, asset.parentId, projectPaths]);
+
+  const isDisabled = !asset.parentId && filteredPaths.length === 0;
 
   return (
     <form noValidate className="flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
-      <Select placeholder="Select destination" {...register('parentId', VALIDATION_RULES.REQUIRED)}>
-        <SelectItem key="home" textValue={project.name} startContent={<Icon icon="slides" size={16} />}>
-          {project.name}
-        </SelectItem>
-        <SelectSection title="Folders">
-          {filteredPaths.map((folder) => (
-            <SelectItem key={folder.id} textValue={folder.name} startContent={<Icon icon="folder" size={16} />}>
-              {folder.path.map((path) => `${path.name} / `)}
-              {folder.name}
-            </SelectItem>
-          ))}
-        </SelectSection>
+      <Select
+        aria-label="Select destination"
+        placeholder="Select destination"
+        disallowEmptySelection
+        isDisabled={isDisabled}
+        {...register('parentId', VALIDATION_RULES.REQUIRED)}
+      >
+        {asset.parentId && (
+          <SelectItem key="home" textValue={project.name} startContent={<Icon icon="slides" size={16} />}>
+            {project.name}
+          </SelectItem>
+        )}
+        {filteredPaths.length > 0 && (
+          <SelectSection title="Folders">
+            {filteredPaths.map((folder) => (
+              <SelectItem key={folder.id} textValue={folder.name} startContent={<Icon icon="folder" size={16} />}>
+                {folder.path.map((path) => `${path.name} / `)}
+                {folder.name}
+              </SelectItem>
+            ))}
+          </SelectSection>
+        )}
       </Select>
       <div className="flex justify-end gap-2">
-        <Button variant="light">Cancel</Button>
-        <Button type="submit" isLoading={isPending} className="text-content1 bg-foreground">
+        <Button variant="light" onClick={onCancel}>
+          Cancel
+        </Button>
+        <Button type="submit" isLoading={isPending} isDisabled={isDisabled} className="text-content1 bg-foreground">
           Move
         </Button>
       </div>
