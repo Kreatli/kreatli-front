@@ -66,7 +66,7 @@ export const AssetComments = ({ fileId }: Props) => {
     <div className="p-3 pt-0 pb-9 flex flex-col gap-2">
       <div className="text-medium">
         <span className="font-semibold">
-          {comments.length} comment{comments.length > 1 ? 's' : ''}
+          {comments.length} comment{comments.length === 1 ? '' : 's'}
         </span>
       </div>
       <Tabs size="sm" selectedKey={commentsStatus} onSelectionChange={handleTabsChange}>
