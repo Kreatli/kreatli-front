@@ -2,7 +2,7 @@ import { cn } from '@nextui-org/react';
 import React from 'react';
 
 import { EDITOR_COLORS } from '../../../../constants/review-tool/colors';
-import { useReviewToolContext, useReviewToolCanvasShapesContext } from '../../../../contexts/review-tool/ReviewTool';
+import { useReviewToolCanvasShapesContext, useReviewToolContext } from '../../../../contexts/review-tool/ReviewTool';
 import { ReviewTool } from '../../../../typings/marketplace/reviewTool';
 
 export const ReviewToolColors = () => {

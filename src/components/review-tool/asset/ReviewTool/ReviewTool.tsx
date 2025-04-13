@@ -2,8 +2,8 @@ import React from 'react';
 
 import { useFileContext } from '../../../../contexts/review-tool/File';
 import {
-  ReviewToolContextProvider,
   ReviewToolCanvasShapesContextProvider,
+  ReviewToolContextProvider,
 } from '../../../../contexts/review-tool/ReviewTool';
 import { ReviewToolCanvas } from './ReviewToolCanvas';
 import { ReviewToolFooter } from './ReviewToolFooter';

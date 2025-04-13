@@ -2,9 +2,9 @@ import React from 'react';
 
 import { ReviewToolColors } from './ReviewToolColors';
 import { ReviewToolHistoryButtons } from './ReviewToolHistoryButtons';
-import { ReviewToolTimestamp } from './ReviewToolTimestamp';
 import { ReviewToolShapes } from './ReviewToolShapes';
 import { ReviewToolTextarea } from './ReviewToolTextarea';
+import { ReviewToolTimestamp } from './ReviewToolTimestamp';
 
 export const ReviewToolFooter = () => {
   return (

@@ -1,10 +1,10 @@
 import { Button, Tooltip } from '@nextui-org/react';
 import React from 'react';
 
-import { useReviewToolContext, useReviewToolCanvasShapesContext } from '../../../../contexts/review-tool/ReviewTool';
-import { Icon } from '../../../various/Icon';
-import { getIsMediaHtmlElement } from '../../../../utils/review-tool/getIsMediaHtmlElement';
+import { useReviewToolCanvasShapesContext, useReviewToolContext } from '../../../../contexts/review-tool/ReviewTool';
 import { formatDuration } from '../../../../utils/review-tool/formatDuration';
+import { getIsMediaHtmlElement } from '../../../../utils/review-tool/getIsMediaHtmlElement';
+import { Icon } from '../../../various/Icon';
 
 export const ReviewToolTimestamp = () => {
   const { resetCanvas } = useReviewToolCanvasShapesContext();

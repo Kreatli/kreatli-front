@@ -1,7 +1,7 @@
+import { Stage } from 'konva/lib/Stage';
 import React from 'react';
 
 import { ReviewTool } from '../../../typings/marketplace/reviewTool';
-import { Stage } from 'konva/lib/Stage';
 
 interface Context {
   activeTool: ReviewTool.ToolType | null;

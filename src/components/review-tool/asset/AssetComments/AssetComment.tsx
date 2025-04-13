@@ -1,4 +1,4 @@
-import { Avatar, Button, Checkbox, cn, Textarea, Tooltip } from '@nextui-org/react';
+import { Avatar, Button, Checkbox, cn, Tooltip } from '@nextui-org/react';
 import React, { useEffect, useState } from 'react';
 
 import { useFileContext } from '../../../../contexts/review-tool/File';
@@ -9,8 +9,8 @@ import {
 } from '../../../../services/review-tool/hooks';
 import { AssetCommentDto } from '../../../../services/review-tool/types';
 import { formatRelativeTime } from '../../../../utils/dates';
-import { Icon } from '../../../various/Icon';
 import { formatDuration } from '../../../../utils/review-tool/formatDuration';
+import { Icon } from '../../../various/Icon';
 
 interface Props {
   fileId: string;

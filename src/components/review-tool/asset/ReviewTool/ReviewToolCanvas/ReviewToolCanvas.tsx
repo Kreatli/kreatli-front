@@ -4,7 +4,7 @@ import { Vector2d } from 'konva/lib/types';
 import React from 'react';
 import { Layer, Stage } from 'react-konva';
 
-import { useReviewToolContext, useReviewToolCanvasShapesContext } from '../../../../../contexts/review-tool/ReviewTool';
+import { useReviewToolCanvasShapesContext, useReviewToolContext } from '../../../../../contexts/review-tool/ReviewTool';
 import { useScreenResize } from '../../../../../hooks/useScreenResize';
 import { FileDto } from '../../../../../services/review-tool/types';
 import { ReviewTool } from '../../../../../typings/marketplace/reviewTool';

@@ -1,11 +1,10 @@
-import { Link, Tab, Tabs } from '@nextui-org/react';
+import { Tab, Tabs } from '@nextui-org/react';
 import { useQueryClient } from '@tanstack/react-query';
 import React, { useState } from 'react';
 
 import { useGetAssetFileIdComments } from '../../../../services/review-tool/hooks';
 import { getAssetFileIdComments } from '../../../../services/review-tool/services';
 import { AssetCommentsResponse } from '../../../../services/review-tool/types';
-import { Icon } from '../../../various/Icon';
 import { AssetComment } from './AssetComment';
 
 type CommentsStatus = 'all' | 'unresolved' | 'resolved';

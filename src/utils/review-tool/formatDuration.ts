@@ -7,7 +7,7 @@ export const formatDuration = (seconds: number) => {
 
   if (hrs > 0) {
     return `${padded(hrs)}:${padded(mins)}:${padded(secs)}`;
-  } else {
-    return `${padded(mins)}:${padded(secs)}`;
   }
+
+  return `${padded(mins)}:${padded(secs)}`;
 };

@@ -1,10 +1,11 @@
+/* eslint-disable @typescript-eslint/indent */
 import { Avatar, Button, Textarea } from '@nextui-org/react';
 import { useQueryClient } from '@tanstack/react-query';
 import { nanoid } from 'nanoid';
 import React, { useRef, useState } from 'react';
 
 import { useFileContext } from '../../../../contexts/review-tool/File';
-import { useReviewToolContext, useReviewToolCanvasShapesContext } from '../../../../contexts/review-tool/ReviewTool';
+import { useReviewToolCanvasShapesContext, useReviewToolContext } from '../../../../contexts/review-tool/ReviewTool';
 import { useSession } from '../../../../hooks/review-tool/useSession';
 import { usePostAssetFileIdComment } from '../../../../services/review-tool/hooks';
 import { getAssetFileIdComments } from '../../../../services/review-tool/services';
