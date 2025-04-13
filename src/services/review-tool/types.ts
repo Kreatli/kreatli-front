@@ -30,6 +30,27 @@ export interface AssetCommentAddedLogDto {
   user: UserDto;
 }
 
+export interface AssetCommentBodyDto {
+  /**
+   *
+   * - maxLength: 1000
+   */
+  message: string;
+  canvas?: AssetCommentCanvas;
+  parent?: string;
+  timestamp?: number[];
+}
+
+export interface AssetCommentCanvas {
+  shapes: AssetCommentCanvasShape[];
+}
+
+export interface AssetCommentCanvasShape {
+  color: 'white' | 'black' | 'red' | 'blue' | 'purple' | 'green' | 'pink' | 'yellow' | 'cyan' | 'zinc';
+  points: number[];
+  type: 'line' | 'arrow';
+}
+
 export interface AssetCommentDownloadedLogDto {
   createdAt: string;
   details: AssetDownloadedDetails;
@@ -38,12 +59,36 @@ export interface AssetCommentDownloadedLogDto {
   user: UserDto;
 }
 
+export interface AssetCommentDto {
+  /**
+   *
+   * - Format: date-time
+   */
+  createdAt: string;
+  createdBy: UserDto;
+  id: string;
+  isResolved: boolean;
+  message: string;
+  replies: AssetCommentDto[];
+  canvas?: AssetCommentCanvas;
+  parent?: string;
+  timestamp?: number[];
+}
+
+export interface AssetCommentEditDto {
+  isResolved: boolean;
+}
+
 export interface AssetCommentResolvedLogDto {
   createdAt: string;
   details: FileCommentResolvedDetails;
   id: string;
   type: 'ASSET_COMMENT_RESOLVED';
   user: UserDto;
+}
+
+export interface AssetCommentsResponse {
+  comments: AssetCommentDto[];
 }
 
 export interface AssetDetails {
@@ -218,6 +263,24 @@ export interface FileCommentResolvedDetails {
 export interface FileDetails {
   id: string;
   name: string;
+}
+
+export interface FileDto {
+  createdAt: string;
+  description: string;
+  fileSize: number;
+  fileType: string;
+  format: string;
+  id: string;
+  metadata: { [x in string | number]: any };
+  name: string;
+  path: FolderDto[];
+  type: 'file';
+  url: string;
+  assignee?: UserDto;
+  createdBy?: UserDto;
+  parent?: FolderDto;
+  status?: 'review-needed' | 'in-progress' | 'changes-required' | 'approved';
 }
 
 export interface FileEditBodyDto {

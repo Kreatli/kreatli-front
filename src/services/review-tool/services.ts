@@ -44,6 +44,11 @@ import type {
   ProjectsResponseDto,
   ChatResponseDto,
   ChatEditBodyDto,
+  FileDto,
+  AssetCommentBodyDto,
+  AssetCommentDto,
+  AssetCommentsResponse,
+  AssetCommentEditDto,
 } from './types';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -97,6 +102,23 @@ function objToForm(requestBody: object) {
 function objToUrlencoded(requestBody: object) {
   return qs.stringify(requestBody);
 }
+
+export const deleteAssetFileIdCommentCommentId = (
+  id: string,
+  commentId: string,
+  configOverride?: AxiosRequestConfig,
+): Promise<SwaggerResponse<AssetCommentDto>> => {
+  return Http.deleteRequest(
+    template(deleteAssetFileIdCommentCommentId.key, { id, commentId }),
+    undefined,
+    undefined,
+    undefined,
+    overrideConfig(_CONSTANT0, configOverride),
+  );
+};
+
+/** Key is end point string without base url */
+deleteAssetFileIdCommentCommentId.key = '/asset/file/{id}/comment/{commentId}';
 
 export const deleteProjectId = (
   id: string,
@@ -170,6 +192,35 @@ export const get = (configOverride?: AxiosRequestConfig): Promise<SwaggerRespons
 
 /** Key is end point string without base url */
 get.key = '/';
+
+export const getAssetFileId = (id: string, configOverride?: AxiosRequestConfig): Promise<SwaggerResponse<FileDto>> => {
+  return Http.getRequest(
+    template(getAssetFileId.key, { id }),
+    undefined,
+    undefined,
+    undefined,
+    overrideConfig(_CONSTANT0, configOverride),
+  );
+};
+
+/** Key is end point string without base url */
+getAssetFileId.key = '/asset/file/{id}';
+
+export const getAssetFileIdComments = (
+  id: string,
+  configOverride?: AxiosRequestConfig,
+): Promise<SwaggerResponse<AssetCommentsResponse>> => {
+  return Http.getRequest(
+    template(getAssetFileIdComments.key, { id }),
+    undefined,
+    undefined,
+    undefined,
+    overrideConfig(_CONSTANT0, configOverride),
+  );
+};
+
+/** Key is end point string without base url */
+getAssetFileIdComments.key = '/asset/file/{id}/comments';
 
 export const getAssetFolderId = (
   id: string,
@@ -324,6 +375,41 @@ export const getUserId = (id: string, configOverride?: AxiosRequestConfig): Prom
 
 /** Key is end point string without base url */
 getUserId.key = '/user/{id}';
+
+export const patchAssetFileIdCommentCommentId = (
+  id: string,
+  commentId: string,
+  requestBody: AssetCommentEditDto,
+  configOverride?: AxiosRequestConfig,
+): Promise<SwaggerResponse<AssetCommentDto>> => {
+  return Http.patchRequest(
+    template(patchAssetFileIdCommentCommentId.key, { id, commentId }),
+    undefined,
+    requestBody,
+    undefined,
+    overrideConfig(_CONSTANT0, configOverride),
+  );
+};
+
+/** Key is end point string without base url */
+patchAssetFileIdCommentCommentId.key = '/asset/file/{id}/comment/{commentId}';
+
+export const postAssetFileIdComment = (
+  id: string,
+  requestBody: AssetCommentBodyDto,
+  configOverride?: AxiosRequestConfig,
+): Promise<SwaggerResponse<AssetCommentDto>> => {
+  return Http.postRequest(
+    template(postAssetFileIdComment.key, { id }),
+    undefined,
+    requestBody,
+    undefined,
+    overrideConfig(_CONSTANT0, configOverride),
+  );
+};
+
+/** Key is end point string without base url */
+postAssetFileIdComment.key = '/asset/file/{id}/comment';
 
 export const postAuthSignIn = (
   requestBody: SignInBodyDto,

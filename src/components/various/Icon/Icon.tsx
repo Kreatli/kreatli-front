@@ -2,6 +2,7 @@ import React from 'react';
 
 import AddImageIcon from '../../../assets/icons/add-image.svg';
 import AddVideoIcon from '../../../assets/icons/add-video.svg';
+import ArrowIcon from '../../../assets/icons/arrow.svg';
 import ArrowLeftIcon from '../../../assets/icons/arrow-left.svg';
 import ArrowRightIcon from '../../../assets/icons/arrow-right.svg';
 import ArrowRightTopIcon from '../../../assets/icons/arrow-right-top.svg';
@@ -32,6 +33,7 @@ import Download from '../../../assets/icons/download.svg';
 import EditIcon from '../../../assets/icons/edit.svg';
 import EmojiHappyIcon from '../../../assets/icons/emoji/happy.svg';
 import EmojiSadIcon from '../../../assets/icons/emoji/sad.svg';
+import EraserIcon from '../../../assets/icons/eraser.svg';
 import ErrorIcon from '../../../assets/icons/error.svg';
 import FileIcon from '../../../assets/icons/file.svg';
 import FileDocIcon from '../../../assets/icons/file-doc.svg';
@@ -57,9 +59,11 @@ import LogoIcon from '../../../assets/icons/logo.svg';
 import MailIcon from '../../../assets/icons/mail.svg';
 import MedalIcon from '../../../assets/icons/medal.svg';
 import MoonIcon from '../../../assets/icons/moon.svg';
+import PaintIcon from '../../../assets/icons/paint.svg';
 import PaypalIcon from '../../../assets/icons/paypal.svg';
 import PlusIcon from '../../../assets/icons/plus.svg';
 import RankingIcon from '../../../assets/icons/ranking.svg';
+import RedoIcon from '../../../assets/icons/redo.svg';
 import ReplyIcon from '../../../assets/icons/reply.svg';
 import SearchIcon from '../../../assets/icons/search.svg';
 import SendIcon from '../../../assets/icons/send.svg';
@@ -80,6 +84,7 @@ import TimerIcon from '../../../assets/icons/timer.svg';
 import TrashIcon from '../../../assets/icons/trash.svg';
 import TwitterIcon from '../../../assets/icons/twitter.svg';
 import UnderlineIcon from '../../../assets/icons/underline.svg';
+import UndoIcon from '../../../assets/icons/undo.svg';
 import UpdateIcon from '../../../assets/icons/update.svg';
 import UploadIcon from '../../../assets/icons/upload.svg';
 import UserIcon from '../../../assets/icons/user.svg';
@@ -90,6 +95,7 @@ import YoutubeIcon from '../../../assets/icons/youtube.svg';
 const ICONS = {
   addImage: AddImageIcon,
   addVideo: AddVideoIcon,
+  arrow: ArrowIcon,
   arrowLeft: ArrowLeftIcon,
   arrowRight: ArrowRightIcon,
   arrowRightTop: ArrowRightTopIcon,
@@ -120,6 +126,7 @@ const ICONS = {
   edit: EditIcon,
   emojiHappy: EmojiHappyIcon,
   emojiSad: EmojiSadIcon,
+  eraser: EraserIcon,
   error: ErrorIcon,
   file: FileIcon,
   fileDoc: FileDocIcon,
@@ -145,9 +152,11 @@ const ICONS = {
   mail: MailIcon,
   medal: MedalIcon,
   moon: MoonIcon,
+  paint: PaintIcon,
   paypal: PaypalIcon,
   plus: PlusIcon,
   ranking: RankingIcon,
+  redo: RedoIcon,
   reply: ReplyIcon,
   search: SearchIcon,
   send: SendIcon,
@@ -168,6 +177,7 @@ const ICONS = {
   trash: TrashIcon,
   twitter: TwitterIcon,
   underline: UnderlineIcon,
+  undo: UndoIcon,
   update: UpdateIcon,
   upload: UploadIcon,
   user: UserIcon,

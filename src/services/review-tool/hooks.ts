@@ -17,11 +17,16 @@ import {
 import { RequestError, SwaggerResponse } from './config';
 
 import type {
+  AssetCommentBodyDto,
+  AssetCommentDto,
+  AssetCommentEditDto,
+  AssetCommentsResponse,
   AssetRemoveBodyDto,
   ChatBodyDto,
   ChatDto,
   ChatEditBodyDto,
   ChatResponseDto,
+  FileDto,
   FileEditBodyDto,
   FolderBodyDto,
   FolderDto,
@@ -52,11 +57,14 @@ import type {
   UserDto,
 } from './types';
 import {
+  deleteAssetFileIdCommentCommentId,
   deleteProjectId,
   deleteProjectIdAssets,
   deleteProjectIdMember,
   deleteProjectIdMemberMemberId,
   get,
+  getAssetFileId,
+  getAssetFileIdComments,
   getAssetFolderId,
   getChatId,
   getProject,
@@ -68,6 +76,8 @@ import {
   getProjects,
   getUser,
   getUserId,
+  patchAssetFileIdCommentCommentId,
+  postAssetFileIdComment,
   postAuthSignIn,
   postAuthSignUp,
   postAuthSignUpInvitation,
@@ -110,6 +120,29 @@ type SwaggerTypescriptUseMutationOptionsVoid<TData, TExtra> = UseMutationOptions
   RequestError | Error,
   SwaggerTypescriptMutationDefaultParams<TExtra> | void
 >;
+
+export const useDeleteAssetFileIdCommentCommentId = <TExtra,>(
+  options?: SwaggerTypescriptUseMutationOptions<AssetCommentDto, { id: string; commentId: string }, TExtra>,
+) => {
+  return useMutation({
+    mutationFn: (_o) => {
+      const {
+        id,
+        commentId,
+
+        configOverride,
+      } = _o || {};
+
+      return deleteAssetFileIdCommentCommentId(
+        id,
+        commentId,
+
+        configOverride,
+      );
+    },
+    ...options,
+  });
+};
 
 export const useDeleteProjectId = <TExtra,>(
   options?: SwaggerTypescriptUseMutationOptions<ProjectDto, { id: string }, TExtra>,
@@ -219,6 +252,100 @@ useGet.prefetch = (
   configOverride?: AxiosRequestConfig,
 ) => {
   const { key, fun } = useGet.info(configOverride);
+
+  return client.getQueryData(key)
+    ? Promise.resolve()
+    : client.prefetchQuery({
+        queryKey: key,
+        queryFn: () => fun(),
+        ...options,
+      });
+};
+export const useGetAssetFileId = (
+  id: string,
+  options?: SwaggerTypescriptUseQueryOptions<FileDto>,
+  configOverride?: AxiosRequestConfig,
+) => {
+  const { key, fun } = useGetAssetFileId.info(
+    id,
+
+    configOverride,
+  );
+  return useQuery({
+    queryKey: key,
+    queryFn: fun,
+    ...options,
+  });
+};
+useGetAssetFileId.info = (id: string, configOverride?: AxiosRequestConfig) => {
+  return {
+    key: [getAssetFileId.key, id] as QueryKey,
+    fun: () =>
+      getAssetFileId(
+        id,
+
+        configOverride,
+      ),
+  };
+};
+useGetAssetFileId.prefetch = (
+  client: QueryClient,
+  id: string,
+  options?: SwaggerTypescriptUseQueryOptions<FileDto>,
+  configOverride?: AxiosRequestConfig,
+) => {
+  const { key, fun } = useGetAssetFileId.info(
+    id,
+
+    configOverride,
+  );
+
+  return client.getQueryData(key)
+    ? Promise.resolve()
+    : client.prefetchQuery({
+        queryKey: key,
+        queryFn: () => fun(),
+        ...options,
+      });
+};
+export const useGetAssetFileIdComments = (
+  id: string,
+  options?: SwaggerTypescriptUseQueryOptions<AssetCommentsResponse>,
+  configOverride?: AxiosRequestConfig,
+) => {
+  const { key, fun } = useGetAssetFileIdComments.info(
+    id,
+
+    configOverride,
+  );
+  return useQuery({
+    queryKey: key,
+    queryFn: fun,
+    ...options,
+  });
+};
+useGetAssetFileIdComments.info = (id: string, configOverride?: AxiosRequestConfig) => {
+  return {
+    key: [getAssetFileIdComments.key, id] as QueryKey,
+    fun: () =>
+      getAssetFileIdComments(
+        id,
+
+        configOverride,
+      ),
+  };
+};
+useGetAssetFileIdComments.prefetch = (
+  client: QueryClient,
+  id: string,
+  options?: SwaggerTypescriptUseQueryOptions<AssetCommentsResponse>,
+  configOverride?: AxiosRequestConfig,
+) => {
+  const { key, fun } = useGetAssetFileIdComments.info(
+    id,
+
+    configOverride,
+  );
 
   return client.getQueryData(key)
     ? Promise.resolve()
@@ -723,6 +850,62 @@ useGetUserId.prefetch = (
         ...options,
       });
 };
+export const usePatchAssetFileIdCommentCommentId = <TExtra,>(
+  options?: SwaggerTypescriptUseMutationOptions<
+    AssetCommentDto,
+    { id: string; commentId: string; requestBody: AssetCommentEditDto },
+    TExtra
+  >,
+) => {
+  return useMutation({
+    mutationFn: (_o) => {
+      const {
+        id,
+        commentId,
+        requestBody,
+
+        configOverride,
+      } = _o || {};
+
+      return patchAssetFileIdCommentCommentId(
+        id,
+        commentId,
+        requestBody,
+
+        configOverride,
+      );
+    },
+    ...options,
+  });
+};
+
+export const usePostAssetFileIdComment = <TExtra,>(
+  options?: SwaggerTypescriptUseMutationOptions<
+    AssetCommentDto,
+    { id: string; requestBody: AssetCommentBodyDto },
+    TExtra
+  >,
+) => {
+  return useMutation({
+    mutationFn: (_o) => {
+      const {
+        id,
+        requestBody,
+
+        configOverride,
+      } = _o || {};
+
+      return postAssetFileIdComment(
+        id,
+        requestBody,
+
+        configOverride,
+      );
+    },
+    ...options,
+  });
+};
+
 export const usePostAuthSignIn = <TExtra,>(
   options?: SwaggerTypescriptUseMutationOptions<SignInResultDto, { requestBody: SignInBodyDto }, TExtra>,
 ) => {

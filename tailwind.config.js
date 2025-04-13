@@ -1,11 +1,8 @@
-const { nextui } = require("@nextui-org/react");
+const { nextui } = require('@nextui-org/react');
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [
-    'src/**/*.{js,ts,jsx,tsx}',
-    'node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}',
-  ],
+  content: ['src/**/*.{js,ts,jsx,tsx}', 'node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {},
   },
@@ -18,6 +15,14 @@ module.exports = {
     'bg-warning-50',
     'bg-default-50',
     'bg-danger-50',
+    'bg-blue-500',
+    'bg-red-500',
+    'bg-purple-500',
+    'bg-cyan-500',
+    'bg-zinc-500',
+    'bg-green-500',
+    'bg-pink-500',
+    'bg-yellow-500',
     'text-primary-500',
     'text-secondary-500',
     'text-success-500',
@@ -32,4 +37,4 @@ module.exports = {
     'w-20',
     'h-20',
   ],
-}
+};

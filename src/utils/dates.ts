@@ -10,7 +10,7 @@ export const formatFullDate = (dateString: Date | string) => {
   return date.toLocaleString('en', { dateStyle: 'medium', timeStyle: 'medium' });
 };
 
-export const formatRelativeTime = (dateString: Date | string) => {
+export const formatRelativeTime = (dateString: Date | string, showTime?: boolean) => {
   const currentDate = new Date();
   const dateToCompare = new Date(dateString);
 
@@ -31,7 +31,12 @@ export const formatRelativeTime = (dateString: Date | string) => {
     return formatter.format(Math.round(relativeTimeDifference / DAY_IN_MILLISECONDS), 'day');
   }
 
-  return dateToCompare.toLocaleDateString('en', { dateStyle: 'medium' });
+  const dateFormatter = new Intl.DateTimeFormat('en', {
+    dateStyle: 'medium',
+    ...(showTime && { timeStyle: 'short' }),
+  }).format;
+
+  return dateFormatter(dateToCompare);
 };
 
 export const formatChatMessageTime = (dateString: Date | string) => {

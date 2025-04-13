@@ -5,7 +5,7 @@ const nextConfig = {
   i18n,
   reactStrictMode: false,
   images: {
-    domains: ['res.cloudinary.com'],
+    domains: ['res.cloudinary.com', 'kreatlimedia.s3.amazonaws.com'],
   },
   experimental: {
     scrollRestoration: true,

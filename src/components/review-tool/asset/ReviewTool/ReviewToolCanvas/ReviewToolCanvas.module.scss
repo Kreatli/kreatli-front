@@ -1,0 +1,8 @@
+.canvas {
+  position: absolute;
+  z-index: 10;
+
+  :global(.konvajs-content) {
+    transform: scale(var(--canvas-ratio, 1));
+  }
+}

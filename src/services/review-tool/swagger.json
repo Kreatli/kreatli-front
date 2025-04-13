@@ -529,6 +529,78 @@
           }
         }
       }
+    },
+    "/asset/file/{id}": {
+      "get": {
+        "operationId": "AssetController_getFile",
+        "parameters": [{ "name": "id", "required": true, "in": "path", "schema": { "type": "string" } }],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": { "application/json": { "schema": { "$ref": "#/components/schemas/FileDto" } } }
+          }
+        }
+      }
+    },
+    "/asset/file/{id}/comment": {
+      "post": {
+        "operationId": "AssetController_createFileComment",
+        "parameters": [{ "name": "id", "required": true, "in": "path", "schema": { "type": "string" } }],
+        "requestBody": {
+          "required": true,
+          "content": { "application/json": { "schema": { "$ref": "#/components/schemas/AssetCommentBodyDto" } } }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": { "application/json": { "schema": { "$ref": "#/components/schemas/AssetCommentDto" } } }
+          }
+        }
+      }
+    },
+    "/asset/file/{id}/comments": {
+      "get": {
+        "operationId": "AssetController_getFileComments",
+        "parameters": [{ "name": "id", "required": true, "in": "path", "schema": { "type": "string" } }],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": { "application/json": { "schema": { "$ref": "#/components/schemas/AssetCommentsResponse" } } }
+          }
+        }
+      }
+    },
+    "/asset/file/{id}/comment/{commentId}": {
+      "delete": {
+        "operationId": "AssetController_deleteFileComment",
+        "parameters": [
+          { "name": "id", "required": true, "in": "path", "schema": { "type": "string" } },
+          { "name": "commentId", "required": true, "in": "path", "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": { "application/json": { "schema": { "$ref": "#/components/schemas/AssetCommentDto" } } }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "AssetController_updateFileComment",
+        "parameters": [
+          { "name": "id", "required": true, "in": "path", "schema": { "type": "string" } },
+          { "name": "commentId", "required": true, "in": "path", "schema": { "type": "string" } }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": { "application/json": { "schema": { "$ref": "#/components/schemas/AssetCommentEditDto" } } }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": { "application/json": { "schema": { "$ref": "#/components/schemas/AssetCommentDto" } } }
+          }
+        }
+      }
     }
   },
   "info": {
@@ -1381,7 +1453,102 @@
         },
         "required": ["chat", "messages", "messagesCount"]
       },
-      "ChatEditBodyDto": { "type": "object", "properties": { "name": { "type": "string" } }, "required": ["name"] }
+      "ChatEditBodyDto": { "type": "object", "properties": { "name": { "type": "string" } }, "required": ["name"] },
+      "FileDto": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "name": { "type": "string" },
+          "description": { "type": "string" },
+          "createdAt": { "type": "string" },
+          "createdBy": { "nullable": true, "allOf": [{ "$ref": "#/components/schemas/UserDto" }] },
+          "parent": { "nullable": true, "allOf": [{ "$ref": "#/components/schemas/FolderDto" }] },
+          "path": { "type": "array", "items": { "$ref": "#/components/schemas/FolderDto" } },
+          "status": {
+            "type": "string",
+            "enum": ["review-needed", "in-progress", "changes-required", "approved"],
+            "nullable": true
+          },
+          "assignee": { "nullable": true, "allOf": [{ "$ref": "#/components/schemas/UserDto" }] },
+          "fileSize": { "type": "number" },
+          "fileType": { "type": "string" },
+          "format": { "type": "string" },
+          "url": { "type": "string" },
+          "metadata": { "type": "object" },
+          "type": { "type": "string", "enum": ["file"] }
+        },
+        "required": [
+          "id",
+          "name",
+          "description",
+          "createdAt",
+          "createdBy",
+          "parent",
+          "path",
+          "status",
+          "assignee",
+          "fileSize",
+          "fileType",
+          "format",
+          "url",
+          "metadata",
+          "type"
+        ]
+      },
+      "AssetCommentCanvasShape": {
+        "type": "object",
+        "properties": {
+          "type": { "type": "string", "enum": ["line", "arrow"] },
+          "points": { "type": "array", "items": { "type": "number" } },
+          "color": {
+            "type": "string",
+            "enum": ["white", "black", "red", "blue", "purple", "green", "pink", "yellow", "cyan", "zinc"]
+          }
+        },
+        "required": ["type", "points", "color"]
+      },
+      "AssetCommentCanvas": {
+        "type": "object",
+        "properties": {
+          "shapes": { "type": "array", "items": { "$ref": "#/components/schemas/AssetCommentCanvasShape" } }
+        },
+        "required": ["shapes"]
+      },
+      "AssetCommentBodyDto": {
+        "type": "object",
+        "properties": {
+          "message": { "type": "string", "maxLength": 1000 },
+          "parent": { "type": "string" },
+          "timestamp": { "type": "array", "items": { "type": "number" } },
+          "canvas": { "$ref": "#/components/schemas/AssetCommentCanvas" }
+        },
+        "required": ["message"]
+      },
+      "AssetCommentDto": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "message": { "type": "string" },
+          "createdAt": { "format": "date-time", "type": "string" },
+          "createdBy": { "$ref": "#/components/schemas/UserDto" },
+          "canvas": { "$ref": "#/components/schemas/AssetCommentCanvas" },
+          "timestamp": { "type": "array", "items": { "type": "number", "maxLength": 2, "minLength": 2 } },
+          "isResolved": { "type": "boolean" },
+          "replies": { "type": "array", "items": { "$ref": "#/components/schemas/AssetCommentDto" } },
+          "parent": { "type": "string" }
+        },
+        "required": ["id", "message", "createdAt", "createdBy", "isResolved", "replies"]
+      },
+      "AssetCommentsResponse": {
+        "type": "object",
+        "properties": { "comments": { "type": "array", "items": { "$ref": "#/components/schemas/AssetCommentDto" } } },
+        "required": ["comments"]
+      },
+      "AssetCommentEditDto": {
+        "type": "object",
+        "properties": { "isResolved": { "type": "boolean" } },
+        "required": ["isResolved"]
+      }
     }
   }
 }

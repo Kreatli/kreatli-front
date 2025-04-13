@@ -86,7 +86,7 @@ export const ProjectFile = ({ isDisabled, isSelected, file, onSelectionChange }:
         <Checkbox
           isSelected={isSelected}
           color="secondary"
-          className="absolute top-2 left-2"
+          className="absolute top-2 left-2 z-10"
           onChange={onSelectionChange}
         />
       )}

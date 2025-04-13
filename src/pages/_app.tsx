@@ -69,11 +69,9 @@ const App = ({ Component, pageProps, router }: AppProps) => {
       <QueryClientProvider client={queryClient}>
         <NextUIProvider id="nextUiProvider">
           <GoogleOAuthProvider clientId={process.env.GOOGLE_OAUTH_CLIENT_ID as string}>
-            <AppLayout>
-              {getLayout(<Component {...pageProps} />)}
-              <Notifications />
-            </AppLayout>
+            <AppLayout>{getLayout(<Component {...pageProps} />)}</AppLayout>
           </GoogleOAuthProvider>
+          <Notifications />
           <DashboardTiersModal />
         </NextUIProvider>
       </QueryClientProvider>

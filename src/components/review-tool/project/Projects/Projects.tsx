@@ -26,7 +26,7 @@ export const Projects = () => {
     if (activeTab !== status) {
       setStatus(activeTab as GetProjectsQueryParams['status']);
     }
-  }, []);
+  }, [activeTab]);
 
   const searchDebounced = useDebounce(search);
 
