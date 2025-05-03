@@ -28,11 +28,18 @@ export const AssetComment = ({ fileId, comment, isResolvable = true, onUpdate, o
   const { mutate: removeComment, isPending: isRemoving } = useDeleteAssetFileIdCommentCommentId();
   const { activeComment, replyingComment, project, setActiveComment, setReplyingComment } = useFileContext();
 
+  const commentRef = React.useRef<HTMLDivElement>(null);
   const [isResolved, setIsResolved] = useState(comment.isResolved || (rest.isResolved ?? false));
 
   useEffect(() => {
     setIsResolved(comment.isResolved || (rest.isResolved ?? false));
   }, [comment.isResolved, rest.isResolved]);
+
+  useEffect(() => {
+    if (activeComment?.id === id) {
+      commentRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  }, [activeComment, id]);
 
   const isProjectOwner = project?.createdBy?.id === user?.id;
   const isRemovable = user?.id === createdBy.id || isProjectOwner;
@@ -82,6 +89,7 @@ export const AssetComment = ({ fileId, comment, isResolvable = true, onUpdate, o
 
   return (
     <div
+      ref={commentRef}
       className={cn(
         'relative rounded-md p-2 border border-foreground-200 hover:bg-foreground-50 transition-[background-color,border,opacity]',
         {

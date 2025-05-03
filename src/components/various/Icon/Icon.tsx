@@ -44,6 +44,7 @@ import FilePngIcon from '../../../assets/icons/file-png.svg';
 import FileSolidIcon from '../../../assets/icons/file-solid.svg';
 import FilterIcon from '../../../assets/icons/filter.svg';
 import FolderIcon from '../../../assets/icons/folder.svg';
+import FullscreenIcon from '../../../assets/icons/fullscreen.svg';
 import GoogleIcon from '../../../assets/icons/google.svg';
 import GroupIcon from '../../../assets/icons/group.svg';
 import HeartIcon from '../../../assets/icons/heart.svg';
@@ -60,7 +61,9 @@ import MailIcon from '../../../assets/icons/mail.svg';
 import MedalIcon from '../../../assets/icons/medal.svg';
 import MoonIcon from '../../../assets/icons/moon.svg';
 import PaintIcon from '../../../assets/icons/paint.svg';
+import PauseIcon from '../../../assets/icons/pause.svg';
 import PaypalIcon from '../../../assets/icons/paypal.svg';
+import PlayIcon from '../../../assets/icons/play.svg';
 import PlusIcon from '../../../assets/icons/plus.svg';
 import RankingIcon from '../../../assets/icons/ranking.svg';
 import RedoIcon from '../../../assets/icons/redo.svg';
@@ -135,6 +138,7 @@ const ICONS = {
   filePdf: FilePdfIcon,
   filePng: FilePngIcon,
   fileSolid: FileSolidIcon,
+  fullscreen: FullscreenIcon,
   google: GoogleIcon,
   filter: FilterIcon,
   folder: FolderIcon,
@@ -153,7 +157,9 @@ const ICONS = {
   medal: MedalIcon,
   moon: MoonIcon,
   paint: PaintIcon,
+  pause: PauseIcon,
   paypal: PaypalIcon,
+  play: PlayIcon,
   plus: PlusIcon,
   ranking: RankingIcon,
   redo: RedoIcon,
