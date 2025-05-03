@@ -10,7 +10,6 @@ import { FileDto } from '../../../../../services/review-tool/types';
 import { ReviewTool } from '../../../../../typings/marketplace/reviewTool';
 import { simplifyLine } from '../../../../../utils/review-tool/canvas';
 import styles from './ReviewToolCanvas.module.scss';
-import { ReviewToolCanvasActiveComment } from './ReviewToolCanvasActiveComment';
 import { ReviewToolCanvasShapes } from './ReviewToolCanvasShapes';
 import { ReviewToolImage } from './ReviewToolImage';
 import { ReviewToolVideo } from './ReviewToolVideo';
@@ -218,7 +217,6 @@ export const ReviewToolCanvas = ({ file }: Props) => {
           />
         </Layer>
       </Stage>
-      <ReviewToolCanvasActiveComment />
     </div>
   );
 };
