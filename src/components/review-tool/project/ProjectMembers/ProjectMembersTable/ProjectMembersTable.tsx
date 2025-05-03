@@ -1,14 +1,4 @@
-import {
-  Avatar,
-  Chip,
-  Spinner,
-  Table,
-  TableBody,
-  TableCell,
-  TableColumn,
-  TableHeader,
-  TableRow,
-} from '@nextui-org/react';
+import { Avatar, Chip, Spinner, Table, TableBody, TableCell, TableColumn, TableHeader, TableRow } from '@heroui/react';
 import React from 'react';
 
 import { ProjectMemberDto } from '../../../../../services/review-tool/types';

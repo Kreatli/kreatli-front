@@ -1,4 +1,4 @@
-import { Link } from '@nextui-org/react';
+import { Link } from '@heroui/react';
 import React from 'react';
 
 import { SKILL_LABELS_FOR_CREATOR } from '../../../../constants/marketplace/skills';

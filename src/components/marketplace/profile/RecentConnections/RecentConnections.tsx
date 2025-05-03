@@ -1,4 +1,4 @@
-import { Avatar } from '@nextui-org/react';
+import { Avatar } from '@heroui/react';
 import { useQuery } from '@tanstack/react-query';
 import NextLink from 'next/link';
 import React from 'react';

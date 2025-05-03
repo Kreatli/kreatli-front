@@ -1,12 +1,11 @@
-import { Button, Input } from '@nextui-org/react';
+import { addToast, Button, Input } from '@heroui/react';
 import { useQueryClient } from '@tanstack/react-query';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 
 import { VALIDATION_RULES } from '../../../../../constants/validationRules';
-import { useNotifications } from '../../../../../hooks/useNotifications';
 import { usePostProjectIdFolder } from '../../../../../services/review-tool/hooks';
-import { getAssetFolderId, getProjectId } from '../../../../../services/review-tool/services';
+import { getAssetFolderId, getProjectId, getProjectIdAssets } from '../../../../../services/review-tool/services';
 import { getErrorMessage } from '../../../../../utils/review-tool/getErrorMessage';
 
 interface Props {
@@ -27,7 +26,6 @@ export const CreateFolderForm = ({ projectId, parentId, onSuccess }: Props) => {
   });
 
   const queryClient = useQueryClient();
-  const { pushNotification } = useNotifications();
   const { mutate, isPending } = usePostProjectIdFolder();
 
   const onSubmit = ({ name }: { name: string }) => {
@@ -40,10 +38,11 @@ export const CreateFolderForm = ({ projectId, parentId, onSuccess }: Props) => {
           }
 
           queryClient.setQueryData([getProjectId.key, projectId], project);
+          queryClient.invalidateQueries({ queryKey: [getProjectIdAssets.key, projectId] });
           onSuccess?.();
         },
         onError: (error) => {
-          pushNotification({ icon: 'error', message: getErrorMessage(error) });
+          addToast({ title: getErrorMessage(error), color: 'danger', variant: 'flat' });
         },
       },
     );

@@ -1,10 +1,9 @@
-import { Button, Input } from '@nextui-org/react';
+import { addToast, Button, Input } from '@heroui/react';
 import { useQueryClient } from '@tanstack/react-query';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 
 import { VALIDATION_RULES } from '../../../../constants/validationRules';
-import { useNotifications } from '../../../../hooks/useNotifications';
 import { usePostProjectIdMember } from '../../../../services/review-tool/hooks';
 import { getProjectId, getProjects } from '../../../../services/review-tool/services';
 import { ProjectDto } from '../../../../services/review-tool/types';
@@ -26,7 +25,6 @@ export const InviteProjectMemberForm = ({ project, onCancel, onSuccess }: Props)
   });
 
   const queryClient = useQueryClient();
-  const { pushNotification } = useNotifications();
   const { mutate, isPending } = usePostProjectIdMember();
 
   const onSubmit = ({ email }: { email: string }) => {
@@ -36,7 +34,7 @@ export const InviteProjectMemberForm = ({ project, onCancel, onSuccess }: Props)
         onSuccess: () => {
           queryClient.invalidateQueries({ queryKey: [getProjects.key] });
           queryClient.invalidateQueries({ queryKey: [getProjectId.key, project.id] });
-          pushNotification({ icon: 'success', color: 'success', message: 'The invitation was sent' });
+          addToast({ title: 'The invitation was sent', color: 'success', variant: 'flat' });
           reset();
           onSuccess?.();
         },

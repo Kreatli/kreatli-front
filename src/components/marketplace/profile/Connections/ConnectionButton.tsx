@@ -1,4 +1,4 @@
-import { Button, Tooltip, useDisclosure } from '@nextui-org/react';
+import { Button, Tooltip, useDisclosure } from '@heroui/react';
 import NextLink from 'next/link';
 import React from 'react';
 

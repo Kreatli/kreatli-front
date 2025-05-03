@@ -1,4 +1,4 @@
-import { Spinner } from '@nextui-org/react';
+import { Spinner } from '@heroui/react';
 import cx from 'classnames';
 import React from 'react';
 

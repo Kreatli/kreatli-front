@@ -1,8 +1,7 @@
-import { Button, Modal, ModalBody, ModalContent, ModalHeader } from '@nextui-org/react';
+import { addToast, Button, Modal, ModalBody, ModalContent, ModalHeader } from '@heroui/react';
 import { useQueryClient } from '@tanstack/react-query';
 import React from 'react';
 
-import { useNotifications } from '../../../../../hooks/useNotifications';
 import { useDeleteProjectId } from '../../../../../services/review-tool/hooks';
 import { getProjects } from '../../../../../services/review-tool/services';
 import { ProjectDto } from '../../../../../services/review-tool/types';
@@ -17,7 +16,6 @@ interface Props {
 export const DeleteProjectModal = ({ project, isOpen, onClose }: Props) => {
   const queryClient = useQueryClient();
   const { mutate, isPending } = useDeleteProjectId();
-  const { pushNotification } = useNotifications();
 
   const handleDelete = () => {
     if (!project) {
@@ -29,11 +27,11 @@ export const DeleteProjectModal = ({ project, isOpen, onClose }: Props) => {
       {
         onSuccess: () => {
           queryClient.invalidateQueries({ queryKey: [getProjects.key] });
-          pushNotification({ icon: 'success', color: 'success', message: 'The project was successfully deleted' });
+          addToast({ title: 'The project was successfully deleted', color: 'success', variant: 'flat' });
           onClose();
         },
         onError: (error) => {
-          pushNotification({ icon: 'error', message: getErrorMessage(error) });
+          addToast({ title: getErrorMessage(error), color: 'danger', variant: 'flat' });
         },
       },
     );

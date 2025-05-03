@@ -17,7 +17,7 @@ import {
   NavbarMenuItem,
   NavbarMenuToggle,
   useDisclosure,
-} from '@nextui-org/react';
+} from '@heroui/react';
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';

@@ -21,6 +21,7 @@ import type {
   AssetCommentDto,
   AssetCommentEditDto,
   AssetCommentsResponse,
+  AssetMoveBodyDto,
   AssetRemoveBodyDto,
   ChatBodyDto,
   ChatDto,
@@ -36,6 +37,7 @@ import type {
   GetProjectsQueryParams,
   ProjectArchivedAssetsDto,
   ProjectAssetEditDto,
+  ProjectAssetsResponseDto,
   ProjectBodyDto,
   ProjectCoverDto,
   ProjectDto,
@@ -69,6 +71,7 @@ import {
   getChatId,
   getProject,
   getProjectId,
+  getProjectIdAssets,
   getProjectIdAssetsArchived,
   getProjectIdChats,
   getProjectIdLogs,
@@ -85,6 +88,7 @@ import {
   postAuthVerifyEmail,
   postProject,
   postProjectIdAssetsArchive,
+  postProjectIdAssetsMove,
   postProjectIdAssetsRestore,
   postProjectIdChat,
   postProjectIdCover,
@@ -521,6 +525,53 @@ useGetProjectId.prefetch = (
   configOverride?: AxiosRequestConfig,
 ) => {
   const { key, fun } = useGetProjectId.info(
+    id,
+
+    configOverride,
+  );
+
+  return client.getQueryData(key)
+    ? Promise.resolve()
+    : client.prefetchQuery({
+        queryKey: key,
+        queryFn: () => fun(),
+        ...options,
+      });
+};
+export const useGetProjectIdAssets = (
+  id: string,
+  options?: SwaggerTypescriptUseQueryOptions<ProjectAssetsResponseDto>,
+  configOverride?: AxiosRequestConfig,
+) => {
+  const { key, fun } = useGetProjectIdAssets.info(
+    id,
+
+    configOverride,
+  );
+  return useQuery({
+    queryKey: key,
+    queryFn: fun,
+    ...options,
+  });
+};
+useGetProjectIdAssets.info = (id: string, configOverride?: AxiosRequestConfig) => {
+  return {
+    key: [getProjectIdAssets.key, id] as QueryKey,
+    fun: () =>
+      getProjectIdAssets(
+        id,
+
+        configOverride,
+      ),
+  };
+};
+useGetProjectIdAssets.prefetch = (
+  client: QueryClient,
+  id: string,
+  options?: SwaggerTypescriptUseQueryOptions<ProjectAssetsResponseDto>,
+  configOverride?: AxiosRequestConfig,
+) => {
+  const { key, fun } = useGetProjectIdAssets.info(
     id,
 
     configOverride,
@@ -1049,6 +1100,29 @@ export const usePostProjectIdAssetsArchive = <TExtra,>(
       } = _o || {};
 
       return postProjectIdAssetsArchive(
+        id,
+        requestBody,
+
+        configOverride,
+      );
+    },
+    ...options,
+  });
+};
+
+export const usePostProjectIdAssetsMove = <TExtra,>(
+  options?: SwaggerTypescriptUseMutationOptions<ProjectDto, { id: string; requestBody: AssetMoveBodyDto }, TExtra>,
+) => {
+  return useMutation({
+    mutationFn: (_o) => {
+      const {
+        id,
+        requestBody,
+
+        configOverride,
+      } = _o || {};
+
+      return postProjectIdAssetsMove(
         id,
         requestBody,
 

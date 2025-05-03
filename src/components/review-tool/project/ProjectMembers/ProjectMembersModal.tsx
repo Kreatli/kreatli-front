@@ -1,9 +1,8 @@
-import { Modal, ModalBody, ModalContent, ModalHeader } from '@nextui-org/react';
+import { addToast, Modal, ModalBody, ModalContent, ModalHeader } from '@heroui/react';
 import { useQueryClient } from '@tanstack/react-query';
 import React from 'react';
 
 import { useSession } from '../../../../hooks/review-tool/useSession';
-import { useNotifications } from '../../../../hooks/useNotifications';
 import { useDeleteProjectIdMemberMemberId, usePostProjectIdMember } from '../../../../services/review-tool/hooks';
 import { getProjectId, getProjects } from '../../../../services/review-tool/services';
 import { ProjectDto, ProjectMemberDto } from '../../../../services/review-tool/types';
@@ -24,7 +23,6 @@ export const ProjectMembersModal = ({ project, isOpen, onClose }: Props) => {
   const { user } = useSession();
   const isProjectOwner = project?.createdBy?.id === user?.id;
   const queryClient = useQueryClient();
-  const { pushNotification } = useNotifications();
 
   const handleRemove = (member: ProjectMemberDto) => {
     if (!project) {
@@ -37,10 +35,10 @@ export const ProjectMembersModal = ({ project, isOpen, onClose }: Props) => {
         onSuccess: () => {
           queryClient.invalidateQueries({ queryKey: [getProjects.key] });
           queryClient.invalidateQueries({ queryKey: [getProjectId.key, project.id] });
-          pushNotification({ icon: 'success', color: 'success', message: 'The member was removed' });
+          addToast({ title: 'The member was removed', color: 'success', variant: 'flat' });
         },
         onError: (error) => {
-          pushNotification({ icon: 'error', message: getErrorMessage(error) });
+          addToast({ title: getErrorMessage(error), color: 'danger', variant: 'flat' });
         },
       },
     );
@@ -57,10 +55,10 @@ export const ProjectMembersModal = ({ project, isOpen, onClose }: Props) => {
         onSuccess: () => {
           queryClient.invalidateQueries({ queryKey: [getProjects.key] });
           queryClient.invalidateQueries({ queryKey: [getProjectId.key, project.id] });
-          pushNotification({ icon: 'success', color: 'success', message: 'The invitation was resent' });
+          addToast({ title: 'The invitation was resent', color: 'success', variant: 'flat' });
         },
         onError: (error) => {
-          pushNotification({ icon: 'error', message: getErrorMessage(error) });
+          addToast({ title: getErrorMessage(error), color: 'danger', variant: 'flat' });
         },
       },
     );

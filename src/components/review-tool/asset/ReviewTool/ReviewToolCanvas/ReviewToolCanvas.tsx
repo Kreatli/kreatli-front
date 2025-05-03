@@ -1,4 +1,4 @@
-import { cn } from '@nextui-org/react';
+import { cn } from '@heroui/react';
 import Konva from 'konva';
 import { Vector2d } from 'konva/lib/types';
 import React from 'react';

@@ -1,4 +1,4 @@
-import { Modal } from '@nextui-org/react';
+import { Modal } from '@heroui/react';
 import React from 'react';
 
 import { useSession } from '../../../../hooks/marketplace/useSession';

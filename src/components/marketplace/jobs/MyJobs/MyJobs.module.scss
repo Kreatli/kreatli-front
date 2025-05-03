@@ -5,7 +5,7 @@
   grid-template-columns: 1fr;
 
   &::after {
-    content: "";
+    content: '';
     position: absolute;
     inset: -1rem;
     pointer-events: none;
@@ -16,7 +16,7 @@
     pointer-events: none;
 
     &::after {
-      background-color: hsl(var(--nextui-background) / 0.7);
+      background-color: hsl(var(--heroui-background) / 0.7);
       z-index: 10;
     }
   }

@@ -1,4 +1,4 @@
-import { Button, Checkbox, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger, Spinner } from '@nextui-org/react';
+import { Button, Checkbox, cn, Spinner } from '@heroui/react';
 import React from 'react';
 
 import { AssetContextProvider } from '../../../../../contexts/review-tool/Asset';
@@ -19,7 +19,6 @@ interface Props {
 
 export const ProjectArchivedAssetsList = ({ assets, isError, isPending }: Props) => {
   const { project } = useProjectContext();
-
   const [selectedAssetIds, setSelectedAssetIds] = React.useState<Set<string>>(new Set([]));
   const [selectedAssetId, setSelectedAssetId] = React.useState<string | null>(null);
 
@@ -67,40 +66,46 @@ export const ProjectArchivedAssetsList = ({ assets, isError, isPending }: Props)
   };
 
   return (
-    <>
-      <div className="flex gap-2 items-center pl-2">
-        <Checkbox
-          isSelected={selectedAssetIds.size === assets.length}
-          isIndeterminate={selectedAssetIds.size > 0 && selectedAssetIds.size < assets.length}
-          color="secondary"
-          onChange={handleSelectAllChange}
-        />
-        <Dropdown placement="bottom-start">
-          <DropdownTrigger>
-            <Button variant="flat" size="sm" isDisabled={!hasSelectedAssets}>
-              Actions
-              <Icon icon="chevronDown" size={18} />
-            </Button>
-          </DropdownTrigger>
-          <DropdownMenu variant="flat">
-            <DropdownItem startContent={<Icon icon="update" size={18} />} onPress={() => setIsRestoreModalOpen(true)}>
-              Restore items
-            </DropdownItem>
-            <DropdownItem
-              color="danger"
-              startContent={<Icon icon="trash" size={18} />}
-              onPress={() => setIsDeleteModalOpen(true)}
-            >
-              Delete items
-            </DropdownItem>
-          </DropdownMenu>
-        </Dropdown>
+    <div>
+      <div className="text-2xl font-semibold">Archived media</div>
+      <div
+        className={cn('sticky top-16 z-20 bg-background h-4 overflow-hidden opacity-0 transition-[height,opacity]', {
+          'h-12 opacity-100': hasSelectedAssets,
+        })}
+      >
+        <div className="py-2 pl-2 flex items-center gap-4">
+          <Checkbox
+            isDisabled={!hasSelectedAssets}
+            isSelected={selectedAssetIds.size === assets.length}
+            isIndeterminate={selectedAssetIds.size > 0 && selectedAssetIds.size < assets.length}
+            color="default"
+            onChange={handleSelectAllChange}
+          />
+          <div className="text-foreground-500 -ml-2">
+            {selectedAssetIds.size} item{selectedAssetIds.size === 1 ? '' : 's'} selected
+          </div>
+          <Button variant="light" size="sm" isDisabled={!hasSelectedAssets} onPress={() => setIsRestoreModalOpen(true)}>
+            <Icon icon="update" size={14} />
+            Restore
+          </Button>
+          <Button
+            variant="light"
+            size="sm"
+            color="danger"
+            isDisabled={!hasSelectedAssets}
+            onPress={() => setIsDeleteModalOpen(true)}
+          >
+            <Icon icon="trash" size={14} />
+            Delete
+          </Button>
+        </div>
       </div>
       <AssetContextProvider
         isArchived
         projectId={project.id}
         selectedAsset={selectedAsset}
         setSelectedAssetId={setSelectedAssetId}
+        project={project}
       >
         <div className="grid grid-cols-[repeat(auto-fill,minmax(280px,1fr))] gap-8">
           {assets.map((asset) =>
@@ -108,7 +113,7 @@ export const ProjectArchivedAssetsList = ({ assets, isError, isPending }: Props)
               <ProjectFolder
                 key={asset.id}
                 isSelected={selectedAssetIds.has(asset.id)}
-                isDisabled={hasSelectedAssets}
+                isDisabled
                 folder={asset}
                 onSelectionChange={() => handleSelectionChange(asset.id)}
               />
@@ -116,7 +121,7 @@ export const ProjectArchivedAssetsList = ({ assets, isError, isPending }: Props)
               <ProjectFile
                 key={asset.id}
                 isSelected={selectedAssetIds.has(asset.id)}
-                isDisabled={hasSelectedAssets}
+                isDisabled
                 file={asset}
                 onSelectionChange={() => handleSelectionChange(asset.id)}
               />
@@ -138,6 +143,6 @@ export const ProjectArchivedAssetsList = ({ assets, isError, isPending }: Props)
         onClose={() => setIsDeleteModalOpen(false)}
         onSuccess={() => setSelectedAssetIds(new Set())}
       />
-    </>
+    </div>
   );
 };

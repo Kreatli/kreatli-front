@@ -9,14 +9,14 @@
 }
 
 html {
-  font-family: "Source Sans 3", sans-serif;
+  font-family: 'Source Sans 3', sans-serif;
   letter-spacing: 0.25px;
 }
 
 html,
 body,
 #__next,
-#nextUiProvider,
+#heroUiProvider,
 main {
   flex: 1;
   display: flex;
@@ -56,7 +56,7 @@ main {
 }
 
 .textStrikethrough {
-  text-decoration: line-through
+  text-decoration: line-through;
 }
 
 .textUnderlineStrikethrough {
@@ -65,7 +65,7 @@ main {
 
 .absolute-cursor {
   &::after {
-    content: "";
+    content: '';
     position: absolute;
     inset: 0;
   }

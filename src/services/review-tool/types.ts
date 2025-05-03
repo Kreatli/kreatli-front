@@ -101,6 +101,12 @@ export interface AssetDownloadedDetails {
   asset: AssetDetails;
 }
 
+export interface AssetMoveBodyDto {
+  assetIds: string[];
+  fromId?: string;
+  toId?: string;
+}
+
 export interface AssetNewVersionUploadedLogDto {
   createdAt: string;
   details: FileNewVersionUploadedDetails;
@@ -266,6 +272,7 @@ export interface FileDetails {
 }
 
 export interface FileDto {
+  commentsCount: number;
   createdAt: string;
   description: string;
   fileSize: number;
@@ -400,6 +407,14 @@ export interface ProjectAssetEditDto {
   parent?: FolderDto;
 }
 
+export interface ProjectAssetsResponseDto {
+  /**
+   *
+   * An array of assets which can be folders or files.
+   */
+  assets: (ProjectFolderDto | ProjectFileDto)[];
+}
+
 export interface ProjectBodyDto {
   description: string;
   name: string;
@@ -458,6 +473,7 @@ export interface ProjectFileBodyDto {
 }
 
 export interface ProjectFileDto {
+  commentsCount: number;
   createdAt: string;
   description: string;
   fileSize: number;

@@ -1,4 +1,4 @@
-import { Tooltip } from '@nextui-org/react';
+import { Tooltip } from '@heroui/react';
 import React from 'react';
 
 import Tier1Image from '../../../assets/images/tiers/tier-1.svg';

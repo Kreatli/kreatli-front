@@ -1,4 +1,4 @@
-import { Button } from '@nextui-org/react';
+import { Button, cn } from '@heroui/react';
 import NextLink from 'next/link';
 import React from 'react';
 
@@ -15,14 +15,15 @@ interface Props {
     onClick?: () => void;
   };
   children?: React.ReactNode;
+  size?: 'sm' | 'md';
 }
 
-export const EmptyState = ({ title, icon = 'inbox', text, link, children }: Props) => {
+export const EmptyState = ({ title, icon = 'inbox', size = 'md', text, link, children }: Props) => {
   return (
     <div className={styles.wrapper}>
-      <Icon icon={icon} size={36} className={styles.icon} />
-      <h4 className="text-xl font-semibold my-2">{title}</h4>
-      {text && <p>{text}</p>}
+      <Icon icon={icon} size={size === 'sm' ? 36 : 48} className={styles.icon} />
+      <h4 className={cn('text-xl font-semibold my-2', size === 'sm' && 'text-lg')}>{title}</h4>
+      {text && <p className={cn(size === 'sm' && 'text-sm')}>{text}</p>}
       {link && (
         <Button
           as={NextLink}

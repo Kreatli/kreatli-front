@@ -1,4 +1,4 @@
-import { Image } from '@nextui-org/react';
+import { Image } from '@heroui/react';
 import Link from 'next/link';
 import React from 'react';
 
@@ -28,7 +28,9 @@ export const ProjectBreadcrumbs = ({
         {coverUrl ? (
           <Image src={coverUrl} width={48} height={48} radius="full" className="object-cover" />
         ) : (
-          <div className="size-12 bg-foreground-100 rounded-full" />
+          <div className="size-12 bg-foreground-100 text-foreground-500 rounded-full flex items-center justify-center">
+            <Icon icon="slides" size={20} />
+          </div>
         )}
       </div>
       <div>

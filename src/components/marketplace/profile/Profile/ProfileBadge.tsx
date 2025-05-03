@@ -1,4 +1,4 @@
-import { Badge, Tooltip } from '@nextui-org/react';
+import { Badge, Tooltip } from '@heroui/react';
 import React from 'react';
 
 import { Icon } from '../../../various/Icon';

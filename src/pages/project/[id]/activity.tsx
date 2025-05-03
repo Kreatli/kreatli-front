@@ -3,7 +3,8 @@ import { useRouter } from 'next/router';
 import React from 'react';
 
 import { ProjectLayout } from '../../../components/review-tool/project/Project';
-import { ProjectActivity } from '../../../components/review-tool/project/ProjectActivity';
+import { ProjectActivity } from '../../../components/review-tool/project/ProjectActivity/ProjectActivity';
+import { ProjectActivitySkeleton } from '../../../components/review-tool/project/ProjectActivity/ProjectActivitySkeleton';
 import { useGetProjectIdLogs } from '../../../services/review-tool/hooks';
 
 export default function ProjectActivityPage() {
@@ -20,13 +21,17 @@ export default function ProjectActivityPage() {
     setCurrentPage(page);
   };
 
+  if (isError) {
+    return <div>Error loading activity</div>;
+  }
+
   return (
     <>
       <Head>
         <meta name="description" content="Kreatli" />
       </Head>
-      {isPending || isError ? (
-        <div>Loading...</div>
+      {isPending ? (
+        <ProjectActivitySkeleton />
       ) : (
         <ProjectActivity
           logs={data.logs}

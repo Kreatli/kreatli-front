@@ -1,4 +1,4 @@
-import { Select, SelectItem } from '@nextui-org/react';
+import { Select, SelectItem } from '@heroui/react';
 import React from 'react';
 import { Control, FieldErrors, useController, UseFormRegister } from 'react-hook-form';
 
@@ -67,9 +67,7 @@ export const SignUpProfessionalStep3 = ({ errors, control, register }: Props) =>
                 {...register(`skillLevels.${skill}`, VALIDATION_RULES.REQUIRED)}
               >
                 {SKILL_LEVEL_OPTIONS.map((skillLevel) => (
-                  <SelectItem key={skillLevel.value} value={skillLevel.value}>
-                    {skillLevel.label}
-                  </SelectItem>
+                  <SelectItem key={skillLevel.value}>{skillLevel.label}</SelectItem>
                 ))}
               </Select>
             </div>

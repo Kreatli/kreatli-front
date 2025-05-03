@@ -8,7 +8,7 @@ import {
   Select,
   SelectItem,
   Textarea,
-} from '@nextui-org/react';
+} from '@heroui/react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useTranslation } from 'next-i18next';
 import React from 'react';
@@ -79,7 +79,7 @@ export const EditCreatorProfileForm = ({ user, onCancel, onSuccess }: Props) => 
   };
 
   return (
-    <ModalContent as="form" noValidate onSubmit={handleSubmit(onSubmit)}>
+    <ModalContent as="form" onSubmit={handleSubmit(onSubmit)}>
       <ModalHeader>Edit Profile</ModalHeader>
       <ModalBody>
         <h2 className="text-medium font-semibold mb-2">Basic Information</h2>
@@ -104,9 +104,7 @@ export const EditCreatorProfileForm = ({ user, onCancel, onSuccess }: Props) => 
               {...register('country', VALIDATION_RULES.REQUIRED)}
             >
               {COUNTRIES.map((country) => (
-                <SelectItem key={country.value} value={country.value}>
-                  {country.label}
-                </SelectItem>
+                <SelectItem key={country.value}>{country.label}</SelectItem>
               ))}
             </Select>
           </div>

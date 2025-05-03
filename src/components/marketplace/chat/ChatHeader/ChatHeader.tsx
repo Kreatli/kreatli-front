@@ -1,4 +1,4 @@
-import { Avatar, Button, Skeleton } from '@nextui-org/react';
+import { Avatar, Button, Skeleton } from '@heroui/react';
 import NextLink from 'next/link';
 import React from 'react';
 

@@ -1,26 +1,25 @@
-import { Button, Tab, Tabs } from '@nextui-org/react';
+import { addToast, Button, Tab, Tabs } from '@heroui/react';
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
 
 import { ProjectContextProvider } from '../../../../contexts/review-tool/Project';
 import { useProtectedPage } from '../../../../hooks/review-tool/useProtectedPage';
-import { useNotifications } from '../../../../hooks/useNotifications';
 import { useGetProjectId } from '../../../../services/review-tool/hooks';
 import { getErrorMessage } from '../../../../utils/review-tool/getErrorMessage';
 import { EmptyState } from '../../../various/EmptyState';
 import { Header } from '../../layout/Header';
 import { ProjectHeader } from './ProjectHeader';
+import { ProjectLoader } from './ProjectLoader';
 
 interface Props {
   hideHeader?: boolean;
+  actions?: React.ReactNode;
 }
 
-export const ProjectLayout = ({ children, hideHeader = false }: React.PropsWithChildren<Props>) => {
+export const ProjectLayout = ({ children, hideHeader = false, actions }: React.PropsWithChildren<Props>) => {
   const { isSignedIn } = useProtectedPage();
   const router = useRouter();
-  const { pushNotification } = useNotifications();
-
   const {
     data: project,
     isPending,
@@ -33,9 +32,9 @@ export const ProjectLayout = ({ children, hideHeader = false }: React.PropsWithC
 
   React.useEffect(() => {
     if (isError && 'status' in error && error.status !== 403) {
-      pushNotification({ icon: 'error', message: getErrorMessage(error) });
+      addToast({ title: getErrorMessage(error), color: 'danger', variant: 'flat' });
     }
-  }, [isError, error, router, pushNotification]);
+  }, [isError, error, router]);
 
   if (!isSignedIn) {
     return;
@@ -59,7 +58,7 @@ export const ProjectLayout = ({ children, hideHeader = false }: React.PropsWithC
       <Header />
       <div className="p-6 pt-2 border-t border-foreground-200">
         {isPending || isError ? (
-          'Loading'
+          <ProjectLoader />
         ) : (
           <ProjectContextProvider selectedProject={project}>
             {hideHeader ? (
@@ -67,11 +66,14 @@ export const ProjectLayout = ({ children, hideHeader = false }: React.PropsWithC
             ) : (
               <div className="flex flex-col gap-4">
                 <ProjectHeader project={project} />
-                <Tabs selectedKey={router.pathname.split('/')[3]}>
-                  <Tab as={NextLink} href={`/project/${project.id}/assets`} title="Media" key="assets" />
-                  <Tab as={NextLink} href={`/project/${project.id}/chat`} title="Chat" key="chat" />
-                  <Tab as={NextLink} href={`/project/${project.id}/activity`} title="Activity" key="activity" />
-                </Tabs>
+                <div className="flex gap-6">
+                  <Tabs selectedKey={router.pathname.split('/')[3]}>
+                    <Tab as={NextLink} href={`/project/${project.id}/assets`} title="Media" key="assets" />
+                    <Tab as={NextLink} href={`/project/${project.id}/chat`} title="Chat" key="chat" />
+                    <Tab as={NextLink} href={`/project/${project.id}/activity`} title="Activity" key="activity" />
+                  </Tabs>
+                  {actions}
+                </div>
                 <div>{children}</div>
               </div>
             )}

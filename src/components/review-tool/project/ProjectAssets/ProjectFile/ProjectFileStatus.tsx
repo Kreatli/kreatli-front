@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { Chip, cn, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger, Selection } from '@nextui-org/react';
+import { Chip, cn, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger, Selection, Tooltip } from '@heroui/react';
 import React from 'react';
 
 import { useSession } from '../../../../../hooks/review-tool/useSession';
@@ -10,6 +10,7 @@ interface Props {
   projectId: string;
   file: ProjectFileDto;
   memberRole?: ProjectMemberDto['role'];
+  className?: string;
 }
 
 export const STATUS_LABEL = {
@@ -28,7 +29,7 @@ const STATUS_COLOR = {
   approved: 'success',
 } as Record<string, 'default' | 'primary' | 'danger' | 'warning' | 'success'>;
 
-export const ProjectFileStatus = ({ file, projectId, memberRole }: Props) => {
+export const ProjectFileStatus = ({ file, projectId, memberRole, className }: Props) => {
   const { status } = file;
   const { user } = useSession();
   const [selectedKeys, setSelectedKeys] = React.useState<Set<string>>(new Set([status ?? 'none']));
@@ -41,8 +42,8 @@ export const ProjectFileStatus = ({ file, projectId, memberRole }: Props) => {
       return true;
     }
 
-    return user?.id === file.createdBy?.id || user?.id === file.assignee?.id;
-  }, [file, memberRole, user]);
+    return (user?.id === file.createdBy?.id || user?.id === file.assignee?.id) && status !== 'approved';
+  }, [file, memberRole, status, user]);
 
   React.useEffect(() => {
     setSelectedKeys(new Set([status ?? 'none']));
@@ -66,14 +67,14 @@ export const ProjectFileStatus = ({ file, projectId, memberRole }: Props) => {
       size="sm"
       variant="dot"
       color={STATUS_COLOR[selectedKeys.values().next().value]}
-      className={cn('absolute border-1 top-2 right-2 z-10 bg-default-100', { 'cursor-pointer': isEditable })}
+      className={cn('bg-default-100 cursor-pointer', className)}
     >
       {STATUS_LABEL[selectedKeys.values().next().value]}
     </Chip>
   );
 
   if (!isEditable) {
-    return chip;
+    return <Tooltip content="You can't change the status of this file">{chip}</Tooltip>;
   }
 
   return (
@@ -89,9 +90,11 @@ export const ProjectFileStatus = ({ file, projectId, memberRole }: Props) => {
         <DropdownItem key="none" startContent={<span className="w-2 h-2 rounded-full bg-default" />}>
           No status
         </DropdownItem>
-        <DropdownItem key="in-progress" startContent={<span className="w-2 h-2 rounded-full bg-primary" />}>
-          In progress
-        </DropdownItem>
+        {hasAssigneeStatuses && (
+          <DropdownItem key="in-progress" startContent={<span className="w-2 h-2 rounded-full bg-primary" />}>
+            In progress
+          </DropdownItem>
+        )}
         {!hasAssigneeStatuses && (
           <DropdownItem key="changes-required" startContent={<span className="w-2 h-2 rounded-full bg-danger" />}>
             Changes required

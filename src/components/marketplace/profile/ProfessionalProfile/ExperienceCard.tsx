@@ -1,4 +1,4 @@
-import { Avatar, Card, CardFooter, CardHeader, Link } from '@nextui-org/react';
+import { Avatar, Card, CardFooter, CardHeader, Link } from '@heroui/react';
 import React from 'react';
 
 import { Icon } from '../../../various/Icon';

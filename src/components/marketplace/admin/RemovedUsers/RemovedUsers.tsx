@@ -1,4 +1,4 @@
-import { Pagination, Table, TableBody, TableCell, TableColumn, TableHeader, TableRow, User } from '@nextui-org/react';
+import { Pagination, Table, TableBody, TableCell, TableColumn, TableHeader, TableRow, User } from '@heroui/react';
 import { keepPreviousData, useQuery } from '@tanstack/react-query';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';

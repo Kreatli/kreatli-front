@@ -1,4 +1,4 @@
-import { Button, Skeleton } from '@nextui-org/react';
+import { Button, Skeleton } from '@heroui/react';
 import React from 'react';
 
 import { ProjectContextProvider } from '../../../../contexts/review-tool/Project';

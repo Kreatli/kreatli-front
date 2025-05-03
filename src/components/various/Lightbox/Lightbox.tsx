@@ -1,4 +1,4 @@
-import { Image, Modal, ModalContent } from '@nextui-org/react';
+import { Image, Modal, ModalContent } from '@heroui/react';
 import React from 'react';
 
 import { Media } from '../../../typings/marketplace/media';

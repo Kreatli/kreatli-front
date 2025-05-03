@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/indent */
-import { MenuItemProps } from '@nextui-org/react';
+import { MenuItemProps } from '@heroui/react';
 import React from 'react';
 
 import { ArchiveAssetModal } from '../../../components/review-tool/asset/AssetModals/ArchiveAssetModal';
@@ -9,9 +9,8 @@ import { RenameAssetModal } from '../../../components/review-tool/asset/AssetMod
 import { RestoreAssetModal } from '../../../components/review-tool/asset/AssetModals/RestoreAssetModal';
 import { IconType } from '../../../components/various/Icon';
 import { useSession } from '../../../hooks/review-tool/useSession';
-import { ProjectFileDto, ProjectFolderDto } from '../../../services/review-tool/types';
+import { ProjectDto, ProjectFileDto, ProjectFolderDto } from '../../../services/review-tool/types';
 import { downloadFromUrl } from '../../../utils/download';
-import { useProjectContext } from '../Project';
 
 interface Context {
   getAssetActions: (asset: ProjectFileDto | ProjectFolderDto) => {
@@ -21,6 +20,7 @@ interface Context {
     color?: MenuItemProps['color'];
     onClick: () => void;
   }[];
+  isProjectOwner: boolean;
   asset: ProjectFileDto | ProjectFolderDto;
 }
 
@@ -41,6 +41,7 @@ interface Props {
   projectId: string;
   selectedAsset: ProjectFileDto | ProjectFolderDto | undefined;
   setSelectedAssetId?: (id: string) => void;
+  project: ProjectDto;
 }
 
 export const AssetContextProvider = ({
@@ -49,6 +50,7 @@ export const AssetContextProvider = ({
   projectId,
   selectedAsset,
   setSelectedAssetId,
+  project,
 }: React.PropsWithChildren<Props>) => {
   const [isRenameModalOpen, setIsRenameModalOpen] = React.useState(false);
   const [isMoveToModalOpen, setIsMoveToModalOpen] = React.useState(false);
@@ -57,7 +59,7 @@ export const AssetContextProvider = ({
   const [isRestoreModalOpen, setIsRestoreModalOpen] = React.useState(false);
 
   const { user } = useSession();
-  const { isProjectOwner } = useProjectContext();
+  const isProjectOwner = project.createdBy?.id === user?.id;
 
   const getAssetActions = (asset: ProjectFolderDto | ProjectFileDto) => {
     if (!isProjectOwner && user?.id !== asset?.createdBy?.id) {
@@ -171,7 +173,9 @@ export const AssetContextProvider = ({
   };
 
   return (
-    <AssetContext.Provider value={{ getAssetActions, asset: selectedAsset as ProjectFolderDto | ProjectFileDto }}>
+    <AssetContext.Provider
+      value={{ getAssetActions, asset: selectedAsset as ProjectFolderDto | ProjectFileDto, isProjectOwner }}
+    >
       {children}
       <RenameAssetModal
         projectId={projectId}
@@ -185,7 +189,12 @@ export const AssetContextProvider = ({
         isOpen={isArchiveModalOpen}
         onClose={() => setIsArchiveModalOpen(false)}
       />
-      <MoveToModal asset={selectedAsset} isOpen={isMoveToModalOpen} onClose={() => setIsMoveToModalOpen(false)} />
+      <MoveToModal
+        asset={selectedAsset}
+        project={project}
+        isOpen={isMoveToModalOpen}
+        onClose={() => setIsMoveToModalOpen(false)}
+      />
       <DeleteAssetModal
         projectId={projectId}
         asset={selectedAsset}

@@ -1,4 +1,4 @@
-import { Button, Input, Link } from '@nextui-org/react';
+import { Button, Input, Link } from '@heroui/react';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 import React from 'react';

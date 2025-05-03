@@ -1,10 +1,9 @@
-import { Button, Input } from '@nextui-org/react';
+import { addToast, Button, Input } from '@heroui/react';
 import { useQueryClient } from '@tanstack/react-query';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 
 import { VALIDATION_RULES } from '../../../../../constants/validationRules';
-import { useNotifications } from '../../../../../hooks/useNotifications';
 import { usePutProjectId } from '../../../../../services/review-tool/hooks';
 import { getProjectId, getProjects } from '../../../../../services/review-tool/services';
 import { ProjectDto } from '../../../../../services/review-tool/types';
@@ -27,7 +26,6 @@ export const RenameProjectForm = ({ project, onSuccess }: Props) => {
   });
 
   const queryClient = useQueryClient();
-  const { pushNotification } = useNotifications();
   const { mutate, isPending } = usePutProjectId();
 
   const onSubmit = ({ name }: { name: string }) => {
@@ -37,11 +35,11 @@ export const RenameProjectForm = ({ project, onSuccess }: Props) => {
         onSuccess: (data) => {
           queryClient.invalidateQueries({ queryKey: [getProjects.key] });
           queryClient.setQueryData([getProjectId.key, project.id], data);
-          pushNotification({ icon: 'success', color: 'success', message: 'The project was successfully renamed' });
+          addToast({ title: 'The project was successfully renamed', color: 'success', variant: 'flat' });
           onSuccess?.();
         },
         onError: (error) => {
-          pushNotification({ icon: 'error', message: getErrorMessage(error) });
+          addToast({ title: getErrorMessage(error), color: 'danger', variant: 'flat' });
         },
       },
     );

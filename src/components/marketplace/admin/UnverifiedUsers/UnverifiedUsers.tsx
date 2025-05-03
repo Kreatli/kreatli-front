@@ -13,7 +13,7 @@ import {
   TableHeader,
   TableRow,
   User,
-} from '@nextui-org/react';
+} from '@heroui/react';
 import { keepPreviousData, useQuery } from '@tanstack/react-query';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';

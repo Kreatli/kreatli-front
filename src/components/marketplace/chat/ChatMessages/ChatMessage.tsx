@@ -1,4 +1,4 @@
-import { Avatar, Image } from '@nextui-org/react';
+import { Avatar, Image } from '@heroui/react';
 import cx from 'classnames';
 import NextLink from 'next/link';
 import React from 'react';

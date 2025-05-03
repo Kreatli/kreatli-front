@@ -1,4 +1,4 @@
-import { Image } from '@nextui-org/react';
+import { Image } from '@heroui/react';
 import React from 'react';
 
 import { InterfaceImageDto } from '../../../../services/review-tool/types';

@@ -1,4 +1,4 @@
-import { Button, Link, Popover, PopoverContent, PopoverTrigger, Textarea, Tooltip } from '@nextui-org/react';
+import { Button, Link, Popover, PopoverContent, PopoverTrigger, Textarea, Tooltip } from '@heroui/react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import cx from 'classnames';
 import { omit } from 'ramda';

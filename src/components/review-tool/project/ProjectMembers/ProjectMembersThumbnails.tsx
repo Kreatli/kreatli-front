@@ -1,4 +1,4 @@
-import { Avatar, AvatarGroup, Tooltip } from '@nextui-org/react';
+import { Avatar, AvatarGroup, Tooltip } from '@heroui/react';
 import React from 'react';
 
 import { ProjectMemberDto } from '../../../../services/review-tool/types';

@@ -1,6 +1,6 @@
 /* eslint-disable function-paren-newline */
 /* eslint-disable no-confusing-arrow */
-import { Badge, Button, Popover, PopoverContent, PopoverTrigger } from '@nextui-org/react';
+import { Badge, Button, Popover, PopoverContent, PopoverTrigger } from '@heroui/react';
 import React from 'react';
 import { Socket } from 'socket.io-client';
 

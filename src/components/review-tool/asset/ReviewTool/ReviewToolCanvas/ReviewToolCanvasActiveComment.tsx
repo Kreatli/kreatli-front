@@ -1,4 +1,4 @@
-import { Avatar, Button } from '@nextui-org/react';
+import { Avatar, Button } from '@heroui/react';
 import React from 'react';
 
 import { useFileContext } from '../../../../../contexts/review-tool/File';

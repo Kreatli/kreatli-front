@@ -1,9 +1,8 @@
-import { Button, Input } from '@nextui-org/react';
+import { addToast, Button, Input } from '@heroui/react';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 
 import { VALIDATION_RULES } from '../../../../constants/validationRules';
-import { useNotifications } from '../../../../hooks/useNotifications';
 import { getAxiosInstance } from '../../../../services/review-tool/config';
 import { usePostAuthSignUpInvitation } from '../../../../services/review-tool/hooks';
 import { getErrorMessage } from '../../../../utils/review-tool/getErrorMessage';
@@ -15,7 +14,6 @@ interface Props {
 }
 
 export const InvitationSignUpForm = ({ email, token, onSuccess }: Props) => {
-  const { pushNotification } = useNotifications();
   const {
     formState: { errors },
     register,
@@ -40,7 +38,7 @@ export const InvitationSignUpForm = ({ email, token, onSuccess }: Props) => {
           onSuccess();
         },
         onError: (error) => {
-          pushNotification({ icon: 'error', message: getErrorMessage(error) });
+          addToast({ title: getErrorMessage(error), color: 'danger', variant: 'flat' });
         },
       },
     );

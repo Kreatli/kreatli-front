@@ -1,6 +1,6 @@
+import { Button, Popover, PopoverContent, PopoverTrigger } from '@heroui/react';
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext';
 import { mergeRegister } from '@lexical/utils';
-import { Button, Popover, PopoverContent, PopoverTrigger } from '@nextui-org/react';
 import { $getRoot, $getSelection, $isRangeSelection, FORMAT_TEXT_COMMAND, SELECTION_CHANGE_COMMAND } from 'lexical';
 import React from 'react';
 

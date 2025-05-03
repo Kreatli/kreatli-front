@@ -1,4 +1,4 @@
-import { Avatar, Tooltip } from '@nextui-org/react';
+import { Avatar, Tooltip } from '@heroui/react';
 import React from 'react';
 
 import { FileDto } from '../../../../services/review-tool/types';

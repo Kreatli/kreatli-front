@@ -1,4 +1,4 @@
-import { Button, Divider, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader } from '@nextui-org/react';
+import { Button, Divider, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader } from '@heroui/react';
 import React from 'react';
 
 import { BuyPointsCard } from './BuyPointsCard';

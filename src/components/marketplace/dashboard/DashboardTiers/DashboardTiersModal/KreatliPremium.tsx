@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-import { Card, CardBody, Tooltip } from '@nextui-org/react';
+import { Card, CardBody, Tooltip } from '@heroui/react';
 import React from 'react';
 
 import { Icon } from '../../../../various/Icon';

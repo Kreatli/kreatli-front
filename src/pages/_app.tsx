@@ -1,8 +1,8 @@
 import '../styles/globals.scss';
 import 'react-image-crop/dist/ReactCrop.css';
 
+import { addToast, HeroUIProvider, ToastProvider } from '@heroui/react';
 import { GoogleTagManager } from '@next/third-parties/google';
-import { NextUIProvider } from '@nextui-org/react';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import { Query, QueryCache, QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import type { AppProps } from 'next/app';
@@ -15,7 +15,6 @@ import { DashboardTiersModal } from '../components/marketplace/dashboard/Dashboa
 import { Layout as MarketplaceLayout } from '../components/marketplace/layout/Layout';
 import { Layout as ReviewToolLayout } from '../components/review-tool/layout/Layout';
 import { Notifications } from '../components/various/Notifications';
-import { useNotifications } from '../hooks/useNotifications';
 import { getErrorMessage } from '../utils/marketplace/getErrorMessage';
 
 interface QueryErrorMeta {
@@ -24,8 +23,6 @@ interface QueryErrorMeta {
 }
 
 const App = ({ Component, pageProps, router }: AppProps) => {
-  const { pushNotification } = useNotifications();
-
   const AppLayout = router.pathname.startsWith('/marketplace') ? MarketplaceLayout : ReviewToolLayout;
 
   const [queryClient] = React.useState(
@@ -33,7 +30,7 @@ const App = ({ Component, pageProps, router }: AppProps) => {
       new QueryClient({
         defaultOptions: {
           queries: {
-            refetchOnWindowFocus: false,
+            refetchOnWindowFocus: true,
             retry: false,
           },
         },
@@ -43,10 +40,10 @@ const App = ({ Component, pageProps, router }: AppProps) => {
               return;
             }
 
-            pushNotification({
-              message: meta.errorMessage || getErrorMessage(error),
+            addToast({
+              title: meta.errorMessage || getErrorMessage(error),
               color: 'danger',
-              icon: 'error',
+              variant: 'flat',
             });
           },
         }),
@@ -67,13 +64,15 @@ const App = ({ Component, pageProps, router }: AppProps) => {
         <meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1.0, user-scalable=no" />
       </Head>
       <QueryClientProvider client={queryClient}>
-        <NextUIProvider id="nextUiProvider">
+        {/* @ts-ignore */}
+        <HeroUIProvider id="heroUiProvider">
+          <ToastProvider />
           <GoogleOAuthProvider clientId={process.env.GOOGLE_OAUTH_CLIENT_ID as string}>
             <AppLayout>{getLayout(<Component {...pageProps} />)}</AppLayout>
           </GoogleOAuthProvider>
           <Notifications />
           <DashboardTiersModal />
-        </NextUIProvider>
+        </HeroUIProvider>
       </QueryClientProvider>
       {process.env.GTM_ID && <GoogleTagManager gtmId={process.env.GTM_ID} />}
       {process.env.ENABLE_REDDIT_PIXEL === 'true' && (

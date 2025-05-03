@@ -1,4 +1,4 @@
-import { Button, Chip } from '@nextui-org/react';
+import { Button, Chip } from '@heroui/react';
 import Head from 'next/head';
 import NextLink from 'next/link';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';

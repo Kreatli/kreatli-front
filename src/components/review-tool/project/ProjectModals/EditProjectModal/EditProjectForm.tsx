@@ -1,10 +1,9 @@
-import { Button, Textarea } from '@nextui-org/react';
+import { addToast, Button, Textarea } from '@heroui/react';
 import { useQueryClient } from '@tanstack/react-query';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 
 import { VALIDATION_RULES } from '../../../../../constants/validationRules';
-import { useNotifications } from '../../../../../hooks/useNotifications';
 import { usePutProjectId } from '../../../../../services/review-tool/hooks';
 import { getProjectId, getProjects } from '../../../../../services/review-tool/services';
 import { ProjectDto } from '../../../../../services/review-tool/types';
@@ -27,7 +26,6 @@ export const EditProjectForm = ({ project, onSuccess }: Props) => {
   });
 
   const queryClient = useQueryClient();
-  const { pushNotification } = useNotifications();
   const { mutate, isPending } = usePutProjectId();
 
   const onSubmit = ({ description }: { description: string }) => {
@@ -37,15 +35,11 @@ export const EditProjectForm = ({ project, onSuccess }: Props) => {
         onSuccess: (data) => {
           queryClient.setQueryData([getProjectId.key, project.id], data);
           queryClient.invalidateQueries({ queryKey: [getProjects.key] });
-          pushNotification({
-            icon: 'success',
-            color: 'success',
-            message: 'The project description was updated',
-          });
+          addToast({ title: 'The project was successfully updated', color: 'success', variant: 'flat' });
           onSuccess?.();
         },
         onError: (error) => {
-          pushNotification({ icon: 'error', message: getErrorMessage(error) });
+          addToast({ title: getErrorMessage(error), color: 'danger', variant: 'flat' });
         },
       },
     );

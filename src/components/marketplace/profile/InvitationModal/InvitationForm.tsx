@@ -1,4 +1,4 @@
-import { Button, Textarea } from '@nextui-org/react';
+import { Button, Textarea } from '@heroui/react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import React from 'react';
 import { useForm } from 'react-hook-form';

@@ -1,5 +1,5 @@
+import { Button, Card, CardBody } from '@heroui/react';
 import { sendGTMEvent } from '@next/third-parties/google';
-import { Button, Card, CardBody } from '@nextui-org/react';
 import React from 'react';
 
 import { useSession } from '../../../../../hooks/marketplace/useSession';

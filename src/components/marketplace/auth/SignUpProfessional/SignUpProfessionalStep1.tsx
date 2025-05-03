@@ -1,4 +1,4 @@
-import { Input, Select, SelectItem } from '@nextui-org/react';
+import { Input, Select, SelectItem } from '@heroui/react';
 import { useTranslation } from 'next-i18next';
 import React from 'react';
 import { FieldErrors, UseFormRegister } from 'react-hook-form';
@@ -47,9 +47,7 @@ export const SignUpProfessionalStep1 = ({ errors, register }: Props) => {
         {...register('country', VALIDATION_RULES.REQUIRED)}
       >
         {COUNTRIES.map((country) => (
-          <SelectItem key={country.value} value={country.value}>
-            {country.label}
-          </SelectItem>
+          <SelectItem key={country.value}>{country.label}</SelectItem>
         ))}
       </Select>
     </div>

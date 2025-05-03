@@ -1,12 +1,11 @@
-import { Button, Input } from '@nextui-org/react';
+import { addToast, Button, Input } from '@heroui/react';
 import { useQueryClient } from '@tanstack/react-query';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 
 import { VALIDATION_RULES } from '../../../../../constants/validationRules';
-import { useNotifications } from '../../../../../hooks/useNotifications';
 import { usePutProjectIdFileFileId, usePutProjectIdFolderFolderId } from '../../../../../services/review-tool/hooks';
-import { getAssetFolderId, getProjectId } from '../../../../../services/review-tool/services';
+import { getAssetFolderId, getProjectId, getProjectIdAssets } from '../../../../../services/review-tool/services';
 import { ProjectAssetEditDto, ProjectFileDto, ProjectFolderDto } from '../../../../../services/review-tool/types';
 import { getErrorMessage } from '../../../../../utils/marketplace/getErrorMessage';
 
@@ -48,8 +47,6 @@ export const RenameAssetForm = ({ projectId, asset, onSuccess }: Props) => {
   });
 
   const queryClient = useQueryClient();
-  const { pushNotification } = useNotifications();
-
   const { mutate: mutateFile, isPending: isSavingFile } = usePutProjectIdFileFileId();
   const { mutate: mutateFolder, isPending: isSavingFolder } = usePutProjectIdFolderFolderId();
 
@@ -61,12 +58,13 @@ export const RenameAssetForm = ({ projectId, asset, onSuccess }: Props) => {
     }
 
     queryClient.setQueryData([getProjectId.key, projectId], data);
-    pushNotification({ icon: 'success', color: 'success', message: `The ${asset?.type} was successfully renamed` });
+    queryClient.invalidateQueries({ queryKey: [getProjectIdAssets.key, projectId] });
+    addToast({ title: `The ${asset?.type} was successfully renamed`, color: 'success', variant: 'flat' });
     onSuccess?.();
   };
 
   const handleError = (error: unknown) => {
-    pushNotification({ icon: 'error', message: getErrorMessage(error) });
+    addToast({ title: getErrorMessage(error), color: 'danger', variant: 'flat' });
   };
 
   const onSubmit = ({ name }: { name: string }) => {

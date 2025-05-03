@@ -1,4 +1,4 @@
-import { Button, Popover, PopoverContent, PopoverTrigger, Tooltip } from '@nextui-org/react';
+import { Button, Popover, PopoverContent, PopoverTrigger, Tooltip } from '@heroui/react';
 import React from 'react';
 
 import { ProjectMemberDto } from '../../../../../services/review-tool/types';

@@ -1,4 +1,4 @@
-import { Image, Spinner } from '@nextui-org/react';
+import { Image, Spinner } from '@heroui/react';
 import React from 'react';
 
 import { Icon } from '../Icon';

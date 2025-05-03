@@ -1,4 +1,4 @@
-import { Button, Modal, ModalContent, ModalFooter, ModalHeader } from '@nextui-org/react';
+import { Button, Modal, ModalContent, ModalFooter, ModalHeader } from '@heroui/react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import React from 'react';
 

@@ -1,4 +1,4 @@
-import { Card, CardBody } from '@nextui-org/react';
+import { Card, CardBody } from '@heroui/react';
 import Head from 'next/head';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import React from 'react';

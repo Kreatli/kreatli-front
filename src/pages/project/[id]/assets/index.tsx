@@ -3,6 +3,7 @@ import React from 'react';
 
 import { ProjectLayout } from '../../../../components/review-tool/project/Project';
 import { ProjectAssets } from '../../../../components/review-tool/project/ProjectAssets';
+import { ProjectAssetsFilters } from '../../../../components/review-tool/project/ProjectAssets/ProjectAssetsSearch';
 
 export default function ProjectAssetsPage() {
   return (
@@ -15,4 +16,4 @@ export default function ProjectAssetsPage() {
   );
 }
 
-ProjectAssetsPage.getLayout = (page: any) => <ProjectLayout>{page}</ProjectLayout>;
+ProjectAssetsPage.getLayout = (page: any) => <ProjectLayout actions={<ProjectAssetsFilters />}>{page}</ProjectLayout>;

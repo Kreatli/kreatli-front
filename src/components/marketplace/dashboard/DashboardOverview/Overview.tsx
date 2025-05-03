@@ -1,4 +1,4 @@
-import { Avatar, Card, CardBody, Divider, Progress } from '@nextui-org/react';
+import { Avatar, Card, CardBody, Divider, Progress } from '@heroui/react';
 import { useTranslation } from 'next-i18next';
 import React from 'react';
 

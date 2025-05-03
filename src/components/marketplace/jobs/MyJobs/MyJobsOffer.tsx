@@ -8,7 +8,7 @@ import {
   DropdownMenu,
   DropdownTrigger,
   useDisclosure,
-} from '@nextui-org/react';
+} from '@heroui/react';
 import { useMutation } from '@tanstack/react-query';
 import React from 'react';
 

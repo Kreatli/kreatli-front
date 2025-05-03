@@ -1,4 +1,4 @@
-import { Pagination, Tab, Tabs } from '@nextui-org/react';
+import { Pagination, Tab, Tabs } from '@heroui/react';
 import { keepPreviousData, useQuery } from '@tanstack/react-query';
 import cx from 'classnames';
 import React from 'react';

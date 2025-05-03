@@ -1,4 +1,4 @@
-import { Link } from '@nextui-org/react';
+import { Link } from '@heroui/react';
 import { useMutation } from '@tanstack/react-query';
 import NextLink from 'next/link';
 import React from 'react';

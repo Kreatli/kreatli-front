@@ -1,18 +1,26 @@
-import { Button, ButtonGroup, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger, Link } from '@nextui-org/react';
+import {
+  addToast,
+  Button,
+  ButtonGroup,
+  Dropdown,
+  DropdownItem,
+  DropdownMenu,
+  DropdownTrigger,
+  Link,
+} from '@heroui/react';
 import { useQueryClient } from '@tanstack/react-query';
 import NextLink from 'next/link';
 import React from 'react';
 
-import { useFolderContext } from '../../../../../contexts/review-tool/Folder';
 import { useProjectContext } from '../../../../../contexts/review-tool/Project';
-import { useNotifications } from '../../../../../hooks/useNotifications';
 import { useGetAssetFolderId, usePostProjectIdFile } from '../../../../../services/review-tool/hooks';
-import { getAssetFolderId, getProjectId } from '../../../../../services/review-tool/services';
+import { getAssetFolderId, getProjectId, getProjectIdAssets } from '../../../../../services/review-tool/services';
 import { getErrorMessage } from '../../../../../utils/review-tool/getErrorMessage';
 import { Icon } from '../../../../various/Icon';
 import { CreateFolderModal } from '../../../asset/AssetModals/CreateFolderModal';
 import { ProjectBreadcrumbs } from '../../Project/ProjectBreadcrumbs';
 import { ProjectFolderAssetsList } from './ProjectFolderAssetsList';
+import { ProjectFolderAssetsLoading } from './ProjectFolderAssetsLoading';
 
 interface Props {
   folderId: string;
@@ -20,11 +28,9 @@ interface Props {
 
 export const ProjectFolderAssets = ({ folderId }: Props) => {
   const queryClient = useQueryClient();
-  const { project } = useProjectContext();
-  const { data: folder } = useGetAssetFolderId(folderId);
+  const { project, setUploadingFiles } = useProjectContext();
+  const { data: folder, isLoading } = useGetAssetFolderId(folderId);
   const { mutateAsync } = usePostProjectIdFile();
-  const { pushNotification } = useNotifications();
-  const { setUploadingFiles } = useFolderContext();
 
   const inputRef = React.useRef<HTMLInputElement>(null);
   const [isFolderModalOpen, setIsFolderModalOpen] = React.useState(false);
@@ -46,19 +52,35 @@ export const ProjectFolderAssets = ({ folderId }: Props) => {
 
     // eslint-disable-next-line no-restricted-syntax
     for (const file of files) {
-      try {
-        // eslint-disable-next-line no-await-in-loop
-        const { project: projectData, parent: folderData } = await mutateAsync({
-          id: project.id,
-          requestBody: { file, parentId: folderId },
+      const promise = mutateAsync({
+        id: project.id,
+        requestBody: { file, parentId: folderId },
+      });
+      addToast({
+        title: file.name,
+        description: 'Uploading file...',
+        promise,
+        timeout: 1,
+        classNames: {
+          base: 'overflow-hidden',
+          content: 'overflow-hidden',
+          wrapper: 'overflow-hidden',
+          title: 'break-words',
+        },
+        hideCloseButton: true,
+      });
+
+      promise
+        .then(({ project: projectData, parent: folderData }) => {
+          setUploadingFiles((uploadingFiles) => uploadingFiles.filter((f) => f !== file));
+          queryClient.setQueryData([getProjectId.key, project.id], projectData);
+          queryClient.setQueryData([getAssetFolderId.key, folderId], folderData);
+          queryClient.invalidateQueries({ queryKey: [getProjectIdAssets.key, project.id] });
+        })
+        .catch((error) => {
+          addToast({ title: getErrorMessage(error), color: 'danger', variant: 'flat' });
+          setUploadingFiles((uploadingFiles) => uploadingFiles.filter((f) => f !== file));
         });
-        setUploadingFiles((uploadingFiles) => uploadingFiles.filter((f) => f !== file));
-        queryClient.setQueryData([getProjectId.key, project.id], projectData);
-        queryClient.setQueryData([getAssetFolderId.key, folderId], folderData);
-      } catch (error) {
-        pushNotification({ icon: 'error', message: getErrorMessage(error) });
-        setUploadingFiles((uploadingFiles) => uploadingFiles.filter((f) => f !== file));
-      }
     }
   };
 
@@ -83,6 +105,10 @@ export const ProjectFolderAssets = ({ folderId }: Props) => {
 
     return { name: folder.parent.name, href: `/project/${project.id}/assets/folder/${folder?.parent?.id}` };
   }, [folder?.parent, project.id, project.name]);
+
+  if (isLoading) {
+    return <ProjectFolderAssetsLoading />;
+  }
 
   return (
     <div>
@@ -112,10 +138,11 @@ export const ProjectFolderAssets = ({ folderId }: Props) => {
                   </Button>
                 </DropdownTrigger>
                 <DropdownMenu variant="flat">
-                  <DropdownItem startContent={<Icon icon="upload" size={18} />} onPress={uploadAssets}>
+                  <DropdownItem key="upload" startContent={<Icon icon="upload" size={18} />} onPress={uploadAssets}>
                     Upload files
                   </DropdownItem>
                   <DropdownItem
+                    key="create-folder"
                     startContent={<Icon icon="plus" size={16} />}
                     onPress={() => setIsFolderModalOpen(true)}
                   >
@@ -127,7 +154,6 @@ export const ProjectFolderAssets = ({ folderId }: Props) => {
             <input ref={inputRef} multiple type="file" className="sr-only" onChange={handleInputChange} />
           </div>
         </div>
-        {/* TODO: add loading state */}
         {folder && <ProjectFolderAssetsList project={project} folder={folder} />}
         <CreateFolderModal
           isOpen={isFolderModalOpen}

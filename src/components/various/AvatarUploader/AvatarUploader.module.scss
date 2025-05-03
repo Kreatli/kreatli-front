@@ -5,10 +5,10 @@
   width: 6.25rem;
   height: 6.25rem;
   flex: 0 0 6.25rem;
-  background-color: hsl(var(--nextui-foreground-100));
-  color: hsl(var(--nextui-foreground-500));
+  background-color: hsl(var(--heroui-foreground-100));
+  color: hsl(var(--heroui-foreground-500));
   border-radius: 50%;
-  border: 2px dashed hsl(var(--nextui-foreground-100));
+  border: 2px dashed hsl(var(--heroui-foreground-100));
   cursor: pointer;
 
   &:active {
@@ -17,7 +17,7 @@
 
   &.dragActive {
     background-color: transparent;
-    border-color: hsl(var(--nextui-foreground-500));
+    border-color: hsl(var(--heroui-foreground-500));
   }
 }
 
@@ -28,7 +28,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: hsl(var(--nextui-foreground-100));
+  background-color: hsl(var(--heroui-foreground-100));
   transition: 0.3s ease-in-out opacity;
 }
 
@@ -75,10 +75,10 @@
 }
 
 .wrapper.error {
-  border-color: hsl(var(--nextui-danger-50));
+  border-color: hsl(var(--heroui-danger-50));
 
   .placeholder {
-    background-color: hsl(var(--nextui-danger-50));
-    color: hsl(var(--nextui-danger));
+    background-color: hsl(var(--heroui-danger-50));
+    color: hsl(var(--heroui-danger));
   }
 }

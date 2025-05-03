@@ -1,11 +1,10 @@
-import { Button, Input, Link } from '@nextui-org/react';
+import { addToast, Button, Input, Link } from '@heroui/react';
 import { useGoogleLogin } from '@react-oauth/google';
 import NextLink from 'next/link';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 
 import { VALIDATION_RULES } from '../../../../constants/validationRules';
-import { useNotifications } from '../../../../hooks/useNotifications';
 import { getAxiosInstance } from '../../../../services/review-tool/config';
 import { usePostAuthSignIn, usePostAuthSsoGoogle } from '../../../../services/review-tool/hooks';
 import { getErrorMessage } from '../../../../utils/review-tool/getErrorMessage';
@@ -32,7 +31,6 @@ export const SignInForm = ({ email, showSignUpLink = true, onSuccess }: Props) =
     mode: 'onTouched',
   });
 
-  const { pushNotification } = useNotifications();
   const { mutate: signIn, isPending } = usePostAuthSignIn();
   const { mutate: ssoSignIn } = usePostAuthSsoGoogle();
 
@@ -46,7 +44,7 @@ export const SignInForm = ({ email, showSignUpLink = true, onSuccess }: Props) =
           onSuccess();
         },
         onError: (error) => {
-          pushNotification({ icon: 'error', message: getErrorMessage(error) });
+          addToast({ title: getErrorMessage(error), color: 'danger', variant: 'flat' });
         },
       },
     );
@@ -63,16 +61,16 @@ export const SignInForm = ({ email, showSignUpLink = true, onSuccess }: Props) =
             onSuccess();
           },
           onError: (error) => {
-            pushNotification({ icon: 'error', message: getErrorMessage(error) });
+            addToast({ title: getErrorMessage(error), color: 'danger', variant: 'flat' });
           },
         },
       );
     },
     onError: () => {
-      pushNotification({
-        message: 'Failed to sign in with Google. Please try again later.',
+      addToast({
+        title: 'Failed to sign in with Google. Please try again later.',
         color: 'danger',
-        icon: 'error',
+        variant: 'flat',
       });
     },
   });

@@ -1,4 +1,4 @@
-import { Modal, ModalBody, ModalContent, ModalHeader } from '@nextui-org/react';
+import { Modal, ModalBody, ModalContent, ModalHeader } from '@heroui/react';
 import React from 'react';
 
 import { ProjectDto } from '../../../../../services/review-tool/types';

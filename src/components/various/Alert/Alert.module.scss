@@ -1,11 +1,11 @@
-@use "../../../styles/breakpoints.scss" as *;
+@use '../../../styles/breakpoints.scss' as *;
 
 .alert {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
   padding: 0.75rem 1.25rem;
-  background-color: hsl(var(--nextui-foreground-100));
+  background-color: hsl(var(--heroui-foreground-100));
   border-radius: 20px;
 
   &.auto {
@@ -22,7 +22,7 @@
 
 .icon {
   flex: 0 0 20px;
-  color: hsl(var(--nextui-secondary));
+  color: hsl(var(--heroui-secondary));
   margin-right: 0.25rem;
 }
 
@@ -32,7 +32,7 @@
   justify-content: center;
 }
 
-@include screen-min("sm") {
+@include screen-min('sm') {
   .alert {
     flex-direction: row;
     gap: 1.25rem;

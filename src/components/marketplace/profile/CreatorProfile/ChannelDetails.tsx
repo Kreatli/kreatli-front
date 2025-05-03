@@ -1,4 +1,4 @@
-import { Button, Card, CardBody, CardFooter, CardHeader, Image, Link, Tooltip, User } from '@nextui-org/react';
+import { Button, Card, CardBody, CardFooter, CardHeader, Image, Link, Tooltip, User } from '@heroui/react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import NextLink from 'next/link';
 import React from 'react';

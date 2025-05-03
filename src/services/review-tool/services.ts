@@ -25,6 +25,7 @@ import type {
   ProjectDto,
   ProjectEditBodyDto,
   ProjectInvitationDto,
+  ProjectAssetsResponseDto,
   ProjectCoverDto,
   ProjectStatusBodyDto,
   ProjectMemberBodyDto,
@@ -41,6 +42,7 @@ import type {
   ChatBodyDto,
   ChatDto,
   ProjectLogsDto,
+  AssetMoveBodyDto,
   ProjectsResponseDto,
   ChatResponseDto,
   ChatEditBodyDto,
@@ -274,6 +276,22 @@ export const getProjectId = (id: string, configOverride?: AxiosRequestConfig): P
 
 /** Key is end point string without base url */
 getProjectId.key = '/project/{id}';
+
+export const getProjectIdAssets = (
+  id: string,
+  configOverride?: AxiosRequestConfig,
+): Promise<SwaggerResponse<ProjectAssetsResponseDto>> => {
+  return Http.getRequest(
+    template(getProjectIdAssets.key, { id }),
+    undefined,
+    undefined,
+    undefined,
+    overrideConfig(_CONSTANT0, configOverride),
+  );
+};
+
+/** Key is end point string without base url */
+getProjectIdAssets.key = '/project/{id}/assets';
 
 export const getProjectIdAssetsArchived = (
   id: string,
@@ -523,6 +541,23 @@ export const postProjectIdAssetsArchive = (
 
 /** Key is end point string without base url */
 postProjectIdAssetsArchive.key = '/project/{id}/assets/archive';
+
+export const postProjectIdAssetsMove = (
+  id: string,
+  requestBody: AssetMoveBodyDto,
+  configOverride?: AxiosRequestConfig,
+): Promise<SwaggerResponse<ProjectDto>> => {
+  return Http.postRequest(
+    template(postProjectIdAssetsMove.key, { id }),
+    undefined,
+    requestBody,
+    undefined,
+    overrideConfig(_CONSTANT0, configOverride),
+  );
+};
+
+/** Key is end point string without base url */
+postProjectIdAssetsMove.key = '/project/{id}/assets/move';
 
 export const postProjectIdAssetsRestore = (
   id: string,

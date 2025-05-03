@@ -1,4 +1,4 @@
-import { ThemeColors } from '@nextui-org/react';
+import { ThemeColors } from '@heroui/react';
 
 import { IconType } from '../../components/various/Icon';
 

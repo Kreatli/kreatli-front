@@ -1,4 +1,4 @@
-import { Button, Tooltip } from '@nextui-org/react';
+import { Button, Tooltip } from '@heroui/react';
 import React from 'react';
 
 import { useReviewToolCanvasShapesContext, useReviewToolContext } from '../../../../contexts/review-tool/ReviewTool';

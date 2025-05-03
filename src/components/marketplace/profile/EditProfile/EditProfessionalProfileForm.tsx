@@ -10,7 +10,7 @@ import {
   Tab,
   Tabs,
   Textarea,
-} from '@nextui-org/react';
+} from '@heroui/react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useTranslation } from 'next-i18next';
 import { omit } from 'ramda';
@@ -123,7 +123,7 @@ export const EditProfessionalProfileForm = ({ user, onCancel, onSuccess }: Props
   };
 
   return (
-    <ModalContent as="form" noValidate onSubmit={handleSubmit(onSubmit)}>
+    <ModalContent as="form" onSubmit={handleSubmit(onSubmit)}>
       <ModalHeader>Edit Profile</ModalHeader>
       <ModalBody>
         <Tabs variant="light" className="max-w-full" selectedKey={selectedTab} onSelectionChange={handleTabChange}>
@@ -153,9 +153,7 @@ export const EditProfessionalProfileForm = ({ user, onCancel, onSuccess }: Props
                   {...register('country', VALIDATION_RULES.REQUIRED)}
                 >
                   {COUNTRIES.map((country) => (
-                    <SelectItem key={country.value} value={country.value}>
-                      {country.label}
-                    </SelectItem>
+                    <SelectItem key={country.value}>{country.label}</SelectItem>
                   ))}
                 </Select>
               </div>

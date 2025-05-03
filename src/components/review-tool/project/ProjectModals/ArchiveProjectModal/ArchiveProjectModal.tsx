@@ -1,8 +1,7 @@
-import { Button, Modal, ModalBody, ModalContent, ModalHeader } from '@nextui-org/react';
+import { addToast, Button, Modal, ModalBody, ModalContent, ModalHeader } from '@heroui/react';
 import { useQueryClient } from '@tanstack/react-query';
 import React from 'react';
 
-import { useNotifications } from '../../../../../hooks/useNotifications';
 import { usePutProjectIdStatus } from '../../../../../services/review-tool/hooks';
 import { getProjectId, getProjects } from '../../../../../services/review-tool/services';
 import { ProjectDto } from '../../../../../services/review-tool/types';
@@ -17,7 +16,6 @@ interface Props {
 export const ArchiveProjectModal = ({ project, isOpen, onClose }: Props) => {
   const queryClient = useQueryClient();
   const { mutate, isPending } = usePutProjectIdStatus();
-  const { pushNotification } = useNotifications();
 
   const handleArchive = () => {
     if (!project) {
@@ -30,11 +28,11 @@ export const ArchiveProjectModal = ({ project, isOpen, onClose }: Props) => {
         onSuccess: (data) => {
           queryClient.invalidateQueries({ queryKey: [getProjects.key] });
           queryClient.setQueryData([getProjectId.key, project.id], data);
-          pushNotification({ icon: 'success', color: 'success', message: 'The project was moved to Archived' });
+          addToast({ title: 'The project was moved to Archived', color: 'success', variant: 'flat' });
           onClose();
         },
         onError: (error) => {
-          pushNotification({ icon: 'error', message: getErrorMessage(error) });
+          addToast({ title: getErrorMessage(error), color: 'danger', variant: 'flat' });
         },
       },
     );

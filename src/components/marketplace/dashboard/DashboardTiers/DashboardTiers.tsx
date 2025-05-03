@@ -1,4 +1,4 @@
-import { Card, CardBody, Divider, Tooltip } from '@nextui-org/react';
+import { Card, CardBody, Divider, Tooltip } from '@heroui/react';
 import React from 'react';
 
 import { DashboardContext } from '../../../../contexts/marketplace/Dashboard';

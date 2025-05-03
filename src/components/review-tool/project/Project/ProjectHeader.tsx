@@ -1,4 +1,5 @@
 import {
+  addToast,
   Avatar,
   Button,
   ButtonGroup,
@@ -7,21 +8,21 @@ import {
   DropdownMenu,
   DropdownTrigger,
   Link,
-} from '@nextui-org/react';
+} from '@heroui/react';
 import { useQueryClient } from '@tanstack/react-query';
 import NextLink from 'next/link';
 import React from 'react';
 
 import { useProjectContext } from '../../../../contexts/review-tool/Project';
-import { useNotifications } from '../../../../hooks/useNotifications';
 import { usePostProjectIdFile } from '../../../../services/review-tool/hooks';
-import { getProjectId } from '../../../../services/review-tool/services';
+import { getProjectId, getProjectIdAssets } from '../../../../services/review-tool/services';
 import { ProjectDto } from '../../../../services/review-tool/types';
 import { getErrorMessage } from '../../../../utils/review-tool/getErrorMessage';
 import { Icon } from '../../../various/Icon';
 import { CreateFolderModal } from '../../asset/AssetModals/CreateFolderModal';
 import { ProjectMembersModal, ProjectMembersThumbnails } from '../ProjectMembers';
 import { ProjectBreadcrumbs } from './ProjectBreadcrumbs';
+import { ProjectDescriptionModal } from './ProjectDescriptionModal';
 
 interface Props {
   project: ProjectDto;
@@ -32,10 +33,10 @@ export const ProjectHeader = ({ project }: Props) => {
   const queryClient = useQueryClient();
   const { mutateAsync } = usePostProjectIdFile();
   const { getProjectActions, setUploadingFiles } = useProjectContext();
-  const { pushNotification } = useNotifications();
 
   const [isMembersModalOpen, setIsMembersModalOpen] = React.useState(false);
   const [isFolderModalOpen, setIsFolderModalOpen] = React.useState(false);
+  const [isDescriptionModalOpen, setIsDescriptionModalOpen] = React.useState(false);
 
   const inputRef = React.useRef<HTMLInputElement>(null);
 
@@ -56,15 +57,31 @@ export const ProjectHeader = ({ project }: Props) => {
 
     // eslint-disable-next-line no-restricted-syntax
     for (const file of files) {
-      try {
-        // eslint-disable-next-line no-await-in-loop
-        const { project: data } = await mutateAsync({ id: project.id, requestBody: { file } });
-        setUploadingFiles((uploadingFiles) => uploadingFiles.filter((f) => f !== file));
-        queryClient.setQueryData([getProjectId.key, project.id], data);
-      } catch (error) {
-        pushNotification({ icon: 'error', message: getErrorMessage(error) });
-        setUploadingFiles((uploadingFiles) => uploadingFiles.filter((f) => f !== file));
-      }
+      const promise = mutateAsync({ id: project.id, requestBody: { file } });
+      addToast({
+        title: file.name,
+        description: 'Uploading file...',
+        promise,
+        timeout: 1,
+        classNames: {
+          base: 'overflow-hidden',
+          content: 'overflow-hidden',
+          wrapper: 'overflow-hidden',
+          title: 'break-words',
+        },
+        hideCloseButton: true,
+      });
+
+      promise
+        .then(({ project: data }) => {
+          setUploadingFiles((uploadingFiles) => uploadingFiles.filter((f) => f !== file));
+          queryClient.setQueryData([getProjectId.key, project.id], data);
+          queryClient.invalidateQueries({ queryKey: [getProjectIdAssets.key, project.id] });
+        })
+        .catch((error) => {
+          addToast({ title: getErrorMessage(error), color: 'danger', variant: 'flat' });
+          setUploadingFiles((uploadingFiles) => uploadingFiles.filter((f) => f !== file));
+        });
     }
   };
 
@@ -84,28 +101,33 @@ export const ProjectHeader = ({ project }: Props) => {
           totalFileSize={project.totalFileSize}
           path={[{ name: project.name, url: '#' }]}
         >
-          {projectActions.length > 0 && (
-            <Dropdown>
-              <DropdownTrigger>
-                <Button isIconOnly size="sm" variant="light" radius="full">
-                  <Icon icon="dots" />
-                </Button>
-              </DropdownTrigger>
-              <DropdownMenu variant="flat">
-                {projectActions.map((action) => (
-                  <DropdownItem
-                    key={action.label}
-                    color={action.color}
-                    showDivider={action.showDivider}
-                    startContent={<Icon icon={action.icon} size={16} />}
-                    onPress={action.onClick}
-                  >
-                    {action.label}
-                  </DropdownItem>
-                ))}
-              </DropdownMenu>
-            </Dropdown>
-          )}
+          <div className="flex gap-2 -ml-1">
+            <Button isIconOnly size="sm" variant="light" radius="full" onClick={() => setIsDescriptionModalOpen(true)}>
+              <Icon icon="helpCircle" size={20} />
+            </Button>
+            {projectActions.length > 0 && (
+              <Dropdown placement="bottom-start">
+                <DropdownTrigger>
+                  <Button isIconOnly size="sm" variant="flat" radius="full">
+                    <Icon icon="dots" />
+                  </Button>
+                </DropdownTrigger>
+                <DropdownMenu variant="flat">
+                  {projectActions.map((action) => (
+                    <DropdownItem
+                      key={action.label}
+                      color={action.color}
+                      showDivider={action.showDivider}
+                      startContent={<Icon icon={action.icon} size={16} />}
+                      onPress={action.onClick}
+                    >
+                      {action.label}
+                    </DropdownItem>
+                  ))}
+                </DropdownMenu>
+              </Dropdown>
+            )}
+          </div>
         </ProjectBreadcrumbs>
         <div className="flex gap-4">
           <div className="p-1">
@@ -142,10 +164,11 @@ export const ProjectHeader = ({ project }: Props) => {
                   </Button>
                 </DropdownTrigger>
                 <DropdownMenu variant="flat">
-                  <DropdownItem startContent={<Icon icon="upload" size={18} />} onPress={uploadAssets}>
+                  <DropdownItem key="upload" startContent={<Icon icon="upload" size={18} />} onPress={uploadAssets}>
                     Upload files
                   </DropdownItem>
                   <DropdownItem
+                    key="create-folder"
                     startContent={<Icon icon="plus" size={16} />}
                     onPress={() => setIsFolderModalOpen(true)}
                   >
@@ -166,6 +189,11 @@ export const ProjectHeader = ({ project }: Props) => {
           isOpen={isFolderModalOpen}
           projectId={project.id}
           onClose={() => setIsFolderModalOpen(false)}
+        />
+        <ProjectDescriptionModal
+          isOpen={isDescriptionModalOpen}
+          project={project}
+          onClose={() => setIsDescriptionModalOpen(false)}
         />
       </div>
     </div>

@@ -1,4 +1,4 @@
-import { Card, CardBody, Divider } from '@nextui-org/react';
+import { Card, CardBody, Divider } from '@heroui/react';
 import React from 'react';
 
 import { Icon } from '../../../../various/Icon';

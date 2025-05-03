@@ -1,4 +1,4 @@
-import { Avatar, Card, CardBody } from '@nextui-org/react';
+import { Avatar, Card, CardBody } from '@heroui/react';
 import cx from 'classnames';
 import Link from 'next/link';
 import { useRouter } from 'next/router';

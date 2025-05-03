@@ -1,4 +1,4 @@
-import { Button, Radio, RadioGroup, Textarea } from '@nextui-org/react';
+import { Button, Radio, RadioGroup, Textarea } from '@heroui/react';
 import { useMutation } from '@tanstack/react-query';
 import React from 'react';
 import { useForm } from 'react-hook-form';

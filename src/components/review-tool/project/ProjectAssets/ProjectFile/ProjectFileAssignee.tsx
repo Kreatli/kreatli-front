@@ -1,8 +1,7 @@
-import { Avatar, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger, Selection } from '@nextui-org/react';
+import { addToast, Avatar, cn, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger, Selection } from '@heroui/react';
 import React from 'react';
 
 import { useSession } from '../../../../../hooks/review-tool/useSession';
-import { useNotifications } from '../../../../../hooks/useNotifications';
 import { usePutProjectIdFileFileId } from '../../../../../services/review-tool/hooks';
 import { ProjectFileDto, ProjectMemberDto } from '../../../../../services/review-tool/types';
 import { getErrorMessage } from '../../../../../utils/review-tool/getErrorMessage';
@@ -13,9 +12,10 @@ interface Props {
   projectId: string;
   file: ProjectFileDto;
   members: ProjectMemberDto[];
+  isDisabled?: boolean;
 }
 
-export const ProjectFileAssignee = ({ projectId, file, members }: Props) => {
+export const ProjectFileAssignee = ({ projectId, file, members, isDisabled }: Props) => {
   const [assigneeId, setAssigneeId] = React.useState<string | null>(file.assignee?.id ?? null);
 
   const { user } = useSession();
@@ -25,7 +25,6 @@ export const ProjectFileAssignee = ({ projectId, file, members }: Props) => {
   const { assignee } = file;
 
   const { mutate } = usePutProjectIdFileFileId();
-  const { pushNotification } = useNotifications();
 
   React.useEffect(() => {
     setAssigneeId(assignee?.id ?? null);
@@ -35,7 +34,7 @@ export const ProjectFileAssignee = ({ projectId, file, members }: Props) => {
     if (keys !== 'all') {
       const newAssigneeId = keys.values().next().value ?? null;
 
-      setAssigneeId(newAssigneeId);
+      setAssigneeId(newAssigneeId as string | null);
       mutate(
         {
           id: projectId,
@@ -47,7 +46,7 @@ export const ProjectFileAssignee = ({ projectId, file, members }: Props) => {
             setAssigneeId(updatedFile?.assignee?.id ?? null);
           },
           onError: (error) => {
-            pushNotification({ icon: 'error', message: getErrorMessage(error) });
+            addToast({ title: getErrorMessage(error), color: 'danger', variant: 'flat' });
           },
         },
       );
@@ -59,10 +58,11 @@ export const ProjectFileAssignee = ({ projectId, file, members }: Props) => {
   const avatar = (
     <Avatar
       as="button"
-      name=""
       src={selectedMember?.user?.avatar?.url ?? ''}
       size="sm"
       isBordered
+      isDisabled={isDisabled}
+      className={cn({ 'cursor-default': !isEditable })}
       fallback={
         selectedMember ? (
           <div className="text-lg text-foreground-500 select-none">{getProjectMemberLetter(selectedMember)}</div>
@@ -91,7 +91,7 @@ export const ProjectFileAssignee = ({ projectId, file, members }: Props) => {
           .filter((member) => member.user)
           .filter((member) => member.status === 'joined')
           .map((member) => (
-            <DropdownItem key={member.user?.id}>
+            <DropdownItem key={member.user?.id ?? member.id}>
               <div className="flex items-center gap-3">
                 <Avatar
                   size="sm"

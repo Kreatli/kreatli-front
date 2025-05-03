@@ -1,4 +1,4 @@
-import { Button, Modal, ModalBody, ModalContent, ModalFooter } from '@nextui-org/react';
+import { Button, Modal, ModalBody, ModalContent, ModalFooter } from '@heroui/react';
 import NextLink from 'next/link';
 import React from 'react';
 

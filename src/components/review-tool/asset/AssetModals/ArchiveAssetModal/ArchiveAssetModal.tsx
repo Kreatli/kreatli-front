@@ -1,10 +1,9 @@
-import { Button, Modal, ModalBody, ModalContent, ModalHeader } from '@nextui-org/react';
+import { addToast, Button, Modal, ModalBody, ModalContent, ModalHeader } from '@heroui/react';
 import { useQueryClient } from '@tanstack/react-query';
 import React from 'react';
 
-import { useNotifications } from '../../../../../hooks/useNotifications';
 import { usePostProjectIdAssetsArchive } from '../../../../../services/review-tool/hooks';
-import { getAssetFolderId, getProjectId } from '../../../../../services/review-tool/services';
+import { getAssetFolderId, getProjectId, getProjectIdAssets } from '../../../../../services/review-tool/services';
 import { ProjectFileDto, ProjectFolderDto } from '../../../../../services/review-tool/types';
 import { getErrorMessage } from '../../../../../utils/review-tool/getErrorMessage';
 
@@ -17,28 +16,33 @@ interface Props {
 
 export const ArchiveAssetModal = ({ projectId, asset, isOpen, onClose }: Props) => {
   const queryClient = useQueryClient();
-  const { mutate, isPending } = usePostProjectIdAssetsArchive();
-  const { pushNotification } = useNotifications();
+  const [isLoading, setIsLoading] = React.useState(false);
+  const { mutate } = usePostProjectIdAssetsArchive();
 
   const handleArchive = () => {
     if (!asset) {
       return;
     }
 
+    setIsLoading(true);
+
     mutate(
       { id: projectId, requestBody: { assetIds: [asset.id] } },
       {
-        onSuccess: ({ project, parent }) => {
+        onSuccess: async ({ project, parent }) => {
           if (parent) {
             queryClient.setQueryData([getAssetFolderId.key, parent.id], parent);
           }
 
           queryClient.setQueryData([getProjectId.key, projectId], project);
-          pushNotification({ icon: 'success', color: 'success', message: 'This asset was moved to Archived' });
+          await queryClient.invalidateQueries({ queryKey: [getProjectIdAssets.key, projectId] });
+          addToast({ title: 'This asset was moved to Archived', color: 'success', variant: 'flat' });
           onClose();
+          setIsLoading(false);
         },
         onError: (error) => {
-          pushNotification({ icon: 'error', message: getErrorMessage(error) });
+          setIsLoading(false);
+          addToast({ title: getErrorMessage(error), color: 'danger', variant: 'flat' });
         },
       },
     );
@@ -54,10 +58,10 @@ export const ArchiveAssetModal = ({ projectId, asset, isOpen, onClose }: Props) 
               Are you sure you want to archive <span className="font-semibold">&quot;{asset?.name}&quot;</span>?
             </div>
             <div className="flex gap-2 justify-end">
-              <Button variant="light" isDisabled={isPending} onClick={onClose}>
+              <Button variant="light" isDisabled={isLoading} onClick={onClose}>
                 Cancel
               </Button>
-              <Button color="danger" variant="flat" isLoading={isPending} onClick={handleArchive}>
+              <Button color="danger" variant="flat" isLoading={isLoading} onClick={handleArchive}>
                 Archive
               </Button>
             </div>

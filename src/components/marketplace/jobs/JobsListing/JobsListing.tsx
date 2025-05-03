@@ -1,5 +1,5 @@
+import { Button, Input, Tooltip } from '@heroui/react';
 import { sendGTMEvent } from '@next/third-parties/google';
-import { Button, Input, Tooltip } from '@nextui-org/react';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import NextLink from 'next/link';
 import React from 'react';

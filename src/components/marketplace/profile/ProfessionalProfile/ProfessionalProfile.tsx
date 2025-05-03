@@ -1,4 +1,4 @@
-import { Badge, Link, Skeleton } from '@nextui-org/react';
+import { Badge, Link, Skeleton } from '@heroui/react';
 import React from 'react';
 
 import { SKILL_LABELS_FOR_PROFESSIONAL, SKILL_LEVEL_LABELS } from '../../../../constants/marketplace/skills';

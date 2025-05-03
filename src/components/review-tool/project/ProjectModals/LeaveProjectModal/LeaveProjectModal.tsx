@@ -1,8 +1,7 @@
-import { Button, Modal, ModalBody, ModalContent, ModalHeader } from '@nextui-org/react';
+import { addToast, Button, Modal, ModalBody, ModalContent, ModalHeader } from '@heroui/react';
 import { useRouter } from 'next/router';
 import React from 'react';
 
-import { useNotifications } from '../../../../../hooks/useNotifications';
 import { useDeleteProjectIdMember } from '../../../../../services/review-tool/hooks';
 import { ProjectDto } from '../../../../../services/review-tool/types';
 import { getErrorMessage } from '../../../../../utils/review-tool/getErrorMessage';
@@ -15,7 +14,6 @@ interface Props {
 
 export const LeaveProjectModal = ({ project, isOpen, onClose }: Props) => {
   const { mutate, isPending } = useDeleteProjectIdMember();
-  const { pushNotification } = useNotifications();
   const router = useRouter();
 
   const handleLeave = () => {
@@ -28,10 +26,10 @@ export const LeaveProjectModal = ({ project, isOpen, onClose }: Props) => {
       {
         onSuccess: () => {
           router.push('/');
-          pushNotification({ icon: 'success', color: 'success', message: 'You were removed from the project' });
+          addToast({ title: 'You were removed from the project', color: 'success', variant: 'flat' });
         },
         onError: (error) => {
-          pushNotification({ icon: 'error', message: getErrorMessage(error) });
+          addToast({ title: getErrorMessage(error), color: 'danger', variant: 'flat' });
         },
       },
     );

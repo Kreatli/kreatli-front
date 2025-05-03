@@ -1,4 +1,4 @@
-import { Tab, Tabs } from '@nextui-org/react';
+import { Tab, Tabs } from '@heroui/react';
 import { useSearchParams } from 'next/navigation';
 import { useRouter } from 'next/router';
 import React from 'react';

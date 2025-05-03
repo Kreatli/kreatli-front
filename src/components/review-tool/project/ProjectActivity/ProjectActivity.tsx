@@ -1,4 +1,4 @@
-import { Avatar, Pagination, Table, TableBody, TableCell, TableColumn, TableHeader, TableRow } from '@nextui-org/react';
+import { Avatar, Pagination, Table, TableBody, TableCell, TableColumn, TableHeader, TableRow } from '@heroui/react';
 import React from 'react';
 
 import { ProjectLogsDto } from '../../../../services/review-tool/types';

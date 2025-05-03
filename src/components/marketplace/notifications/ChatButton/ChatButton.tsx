@@ -1,4 +1,4 @@
-import { Badge, Button } from '@nextui-org/react';
+import { Badge, Button } from '@heroui/react';
 import NextLink from 'next/link';
 import React from 'react';
 import { Socket } from 'socket.io-client';

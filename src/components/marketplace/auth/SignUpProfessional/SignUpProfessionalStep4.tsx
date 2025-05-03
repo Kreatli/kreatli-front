@@ -1,4 +1,4 @@
-import { Button, Input, Textarea } from '@nextui-org/react';
+import { Button, Input, Textarea } from '@heroui/react';
 import { nanoid } from 'nanoid';
 import React from 'react';
 import { Control, FieldErrors, useFieldArray } from 'react-hook-form';

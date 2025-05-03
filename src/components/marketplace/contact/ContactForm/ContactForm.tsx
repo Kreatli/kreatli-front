@@ -1,4 +1,4 @@
-import { Button, Input, Textarea } from '@nextui-org/react';
+import { Button, Input, Textarea } from '@heroui/react';
 import { useMutation } from '@tanstack/react-query';
 import { useTranslation } from 'next-i18next';
 import React from 'react';

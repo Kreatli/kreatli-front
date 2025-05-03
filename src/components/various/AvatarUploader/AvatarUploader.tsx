@@ -1,4 +1,4 @@
-import { Button, Modal, ModalContent, Spinner, useDisclosure } from '@nextui-org/react';
+import { Button, Modal, ModalContent, Spinner, useDisclosure } from '@heroui/react';
 import { useMutation } from '@tanstack/react-query';
 import cx from 'classnames';
 import Image from 'next/image';

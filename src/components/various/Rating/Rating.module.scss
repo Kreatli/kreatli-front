@@ -7,7 +7,7 @@
 .star {
   padding: 0 0.125rem;
   transition: 0.1s;
-  color: hsl(var(--nextui-foreground-300));
+  color: hsl(var(--heroui-foreground-300));
   cursor: pointer;
 
   &.readOnly {
@@ -15,7 +15,7 @@
   }
 
   &.invalid {
-    color: hsl(var(--nextui-danger-300));
+    color: hsl(var(--heroui-danger-300));
   }
 }
 
@@ -31,7 +31,7 @@
 .star:hover:not(.readOnly),
 .star.checked ~ .star,
 .star:hover:not(.readOnly) ~ .star {
-  color: hsl(var(--nextui-warning-400));
+  color: hsl(var(--heroui-warning-400));
 }
 
 .input {
@@ -40,7 +40,7 @@
   height: 0;
 
   &:focus-visible + .icon {
-    outline: 2px solid hsl(var(--nextui-primary));
+    outline: 2px solid hsl(var(--heroui-primary));
   }
 }
 

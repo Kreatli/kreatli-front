@@ -1,4 +1,4 @@
-import { Select, SelectItem } from '@nextui-org/react';
+import { Select, SelectItem } from '@heroui/react';
 import React from 'react';
 import { Control, FieldErrors, useController, UseFormRegister } from 'react-hook-form';
 
@@ -25,9 +25,7 @@ export const JobsCreationStep4 = ({ control, register, errors }: Props) => {
         {...register('availability', VALIDATION_RULES.REQUIRED)}
       >
         {AVAILABILITY_OPTIONS.map((option) => (
-          <SelectItem key={option.value} value={option.value}>
-            {option.label}
-          </SelectItem>
+          <SelectItem key={option.value}>{option.label}</SelectItem>
         ))}
       </Select>
       {availabilityField.value === 'project-base' && (
@@ -38,9 +36,7 @@ export const JobsCreationStep4 = ({ control, register, errors }: Props) => {
           {...register('availabilityDuration', VALIDATION_RULES.REQUIRED)}
         >
           {DURATION_OPTIONS.map((option) => (
-            <SelectItem key={option.value} value={option.value}>
-              {option.label}
-            </SelectItem>
+            <SelectItem key={option.value}>{option.label}</SelectItem>
           ))}
         </Select>
       )}
@@ -52,9 +48,7 @@ export const JobsCreationStep4 = ({ control, register, errors }: Props) => {
           {...register('location', VALIDATION_RULES.REQUIRED)}
         >
           {LOCATION_OPTIONS.map((option) => (
-            <SelectItem key={option.value} value={option.value}>
-              {option.label}
-            </SelectItem>
+            <SelectItem key={option.value}>{option.label}</SelectItem>
           ))}
         </Select>
       </div>

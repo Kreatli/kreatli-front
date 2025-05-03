@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/indent */
+import { Button, Pagination, Tab, Tabs, Tooltip } from '@heroui/react';
 import { sendGTMEvent } from '@next/third-parties/google';
-import { Button, Pagination, Tab, Tabs, Tooltip } from '@nextui-org/react';
 import { keepPreviousData, useQuery } from '@tanstack/react-query';
 import cx from 'classnames';
 import NextLink from 'next/link';

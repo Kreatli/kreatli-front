@@ -1,11 +1,8 @@
-import { Chip, Image, Spinner } from '@nextui-org/react';
+import { Chip, Image, Spinner } from '@heroui/react';
 import React from 'react';
 
-import { useProjectContext } from '../../../../../contexts/review-tool/Project';
-import { useSession } from '../../../../../hooks/review-tool/useSession';
 import { ProjectFileDto } from '../../../../../services/review-tool/types';
 import { formatBytes } from '../../../../../utils/formatBytes';
-import { ProjectFileStatus } from './ProjectFileStatus';
 
 interface Props {
   file: ProjectFileDto;
@@ -13,11 +10,6 @@ interface Props {
 }
 
 export const ProjectFileCover = ({ file, isLoading = false }: Props) => {
-  const { project } = useProjectContext();
-
-  const { user } = useSession();
-  const memberRole = project.members.find((member) => member.user?.id === user?.id)?.role;
-
   const previewUrl = file.metadata.thumbnailUrl ?? file.url;
 
   return (
@@ -30,7 +22,6 @@ export const ProjectFileCover = ({ file, isLoading = false }: Props) => {
         draggable={false}
         alt={file.name}
       />
-      <ProjectFileStatus projectId={project.id} file={file} memberRole={memberRole} />
       <Chip size="sm" variant="faded" className="absolute border-1 bottom-2 right-2 z-10">
         <span className="font-medium text-foreground-700">{formatBytes(file.fileSize)}</span>
       </Chip>

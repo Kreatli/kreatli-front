@@ -1,10 +1,9 @@
-import { Button, cn, Image } from '@nextui-org/react';
+import { addToast, Button, cn, Image } from '@heroui/react';
 import { useQueryClient } from '@tanstack/react-query';
 import React from 'react';
 import { useDropzone } from 'react-dropzone';
 import { useForm } from 'react-hook-form';
 
-import { useNotifications } from '../../../../../hooks/useNotifications';
 import { usePostProjectIdCover } from '../../../../../services/review-tool/hooks';
 import { getProjectId, getProjects } from '../../../../../services/review-tool/services';
 import { ProjectDto } from '../../../../../services/review-tool/types';
@@ -32,7 +31,6 @@ export const ChangeProjectCoverForm = ({ project, onSuccess }: Props) => {
 
   const queryClient = useQueryClient();
   const isTouchScreen = getIsTouchScreen();
-  const { pushNotification } = useNotifications();
   const { mutate, isPending } = usePostProjectIdCover();
 
   const onSubmit = ({ cover }: FormData) => {
@@ -42,11 +40,11 @@ export const ChangeProjectCoverForm = ({ project, onSuccess }: Props) => {
         onSuccess: (data) => {
           queryClient.invalidateQueries({ queryKey: [getProjects.key] });
           queryClient.setQueryData([getProjectId.key, project.id], data);
-          pushNotification({ icon: 'success', color: 'success', message: 'Cover image was successfully updated' });
+          addToast({ title: 'Cover image was successfully updated', color: 'success', variant: 'flat' });
           onSuccess?.();
         },
         onError: (error) => {
-          pushNotification({ icon: 'error', message: getErrorMessage(error) });
+          addToast({ title: getErrorMessage(error), color: 'danger', variant: 'flat' });
         },
       },
     );
@@ -66,10 +64,10 @@ export const ChangeProjectCoverForm = ({ project, onSuccess }: Props) => {
       }
 
       if (file.size / (1024 * 1024) >= 5) {
-        pushNotification({
+        addToast({
+          title: 'The file size should be less than 5MB',
           color: 'danger',
-          icon: 'error',
-          message: 'The maximum file size is 5 MB',
+          variant: 'flat',
         });
 
         return;
@@ -78,7 +76,7 @@ export const ChangeProjectCoverForm = ({ project, onSuccess }: Props) => {
       setValue('cover', file);
       setPreviewUrl(URL.createObjectURL(file));
     },
-    [pushNotification, setValue],
+    [addToast, setValue],
   );
 
   const { isDragActive, isDragAccept, getRootProps, getInputProps } = useDropzone({

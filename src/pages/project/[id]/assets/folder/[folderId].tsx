@@ -4,7 +4,6 @@ import React from 'react';
 
 import { ProjectLayout } from '../../../../../components/review-tool/project/Project';
 import { ProjectFolderAssets } from '../../../../../components/review-tool/project/ProjectAssets/ProjectFolderAssets';
-import { FolderContextProvider } from '../../../../../contexts/review-tool/Folder';
 
 export default function ProjectAssetsPage() {
   const router = useRouter();
@@ -18,9 +17,7 @@ export default function ProjectAssetsPage() {
       <Head>
         <meta name="description" content="Kreatli" />
       </Head>
-      <FolderContextProvider>
-        <ProjectFolderAssets folderId={router.query.folderId as string} />
-      </FolderContextProvider>
+      <ProjectFolderAssets folderId={router.query.folderId as string} />
     </>
   );
 }

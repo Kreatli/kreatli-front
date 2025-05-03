@@ -1,4 +1,4 @@
-import { Progress } from '@nextui-org/react';
+import { Progress } from '@heroui/react';
 import React from 'react';
 
 import { TASK_COLOR_BY_TYPE, TASK_ICON_BY_TYPE } from '../../../../constants/marketplace/tasks';

@@ -1,4 +1,4 @@
-import { Selection } from '@nextui-org/react';
+import { Selection } from '@heroui/react';
 import React from 'react';
 
 import { Common } from '../../typings/common';

@@ -1,10 +1,14 @@
-import { Button } from '@nextui-org/react';
+import { Button, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger } from '@heroui/react';
 import NextLink from 'next/link';
 import React, { useMemo } from 'react';
 
+import { useAssetContext } from '../../../../contexts/review-tool/Asset';
+import { useSession } from '../../../../hooks/review-tool/useSession';
 import { FileDto, ProjectDto } from '../../../../services/review-tool/types';
 import { formatBytes } from '../../../../utils/formatBytes';
 import { Icon } from '../../../various/Icon';
+import { ProjectFileAssignee } from '../../project/ProjectAssets/ProjectFile/ProjectFileAssignee';
+import { ProjectFileStatus } from '../../project/ProjectAssets/ProjectFile/ProjectFileStatus';
 
 interface Props {
   file: FileDto;
@@ -12,6 +16,10 @@ interface Props {
 }
 
 export const ReviewToolHeader = ({ file, project }: Props) => {
+  const { getAssetActions } = useAssetContext();
+  const { user } = useSession();
+  const actions = useMemo(() => getAssetActions(file), [file, getAssetActions]);
+
   const parentPath = useMemo(() => {
     if (!file.parent) {
       return `/project/${project.id}`;
@@ -24,9 +32,13 @@ export const ReviewToolHeader = ({ file, project }: Props) => {
     return [project.name, ...file.path.map((folder) => folder.name)];
   }, [file.path, project.name]);
 
+  const memberRole = useMemo(() => {
+    return project.members.find((member) => member.user?.id === user?.id)?.role;
+  }, [project.members, user?.id]);
+
   return (
     <div className="flex items-center gap-4 bg-foreground-50 p-3 pr-0">
-      <div className="flex-1 flex items-center gap-1">
+      <div className="flex-1 flex items-center gap-2">
         <Button
           as={NextLink}
           href={parentPath}
@@ -36,7 +48,8 @@ export const ReviewToolHeader = ({ file, project }: Props) => {
           startContent={<Icon icon="chevronDown" className="rotate-90" size={20} />}
           isIconOnly
         />
-        <div>
+        <ProjectFileAssignee projectId={project.id} file={file} members={project.members} />
+        <div className="ml-2">
           <div className="flex items-center gap-2">
             <span className="font-semibold">{file.name}</span>
             <span className="text-sm text-foreground-500">{formatBytes(file.fileSize)}</span>
@@ -51,9 +64,25 @@ export const ReviewToolHeader = ({ file, project }: Props) => {
           </div>
         </div>
       </div>
-      <div>{file.status ?? 'No status'}</div>
+      <ProjectFileStatus projectId={project.id} file={file} memberRole={memberRole} />
       <div>
-        <Button startContent={<Icon icon="dots" />} isIconOnly />
+        <Dropdown placement="bottom-end">
+          <DropdownTrigger>
+            <Button startContent={<Icon icon="dots" />} radius="full" isIconOnly variant="flat" />
+          </DropdownTrigger>
+          <DropdownMenu aria-label="File actions" variant="flat">
+            {actions.map((action, index) => (
+              <DropdownItem
+                key={index}
+                startContent={<Icon icon={action.icon} size={16} />}
+                color={action.color}
+                onPress={action.onClick}
+              >
+                {action.label}
+              </DropdownItem>
+            ))}
+          </DropdownMenu>
+        </Dropdown>
       </div>
     </div>
   );

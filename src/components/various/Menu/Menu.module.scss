@@ -40,31 +40,31 @@
   cursor: pointer;
 
   &.active {
-    background-color: hsl(var(--nextui-foreground-100));
+    background-color: hsl(var(--heroui-foreground-100));
   }
 
   &.selected {
-    background-color: hsl(var(--nextui-secondary-50));
+    background-color: hsl(var(--heroui-secondary-50));
 
     .icon {
-      background-color: hsl(var(--nextui-secondary-50));
-      color: hsl(var(--nextui-secondary));
+      background-color: hsl(var(--heroui-secondary-50));
+      color: hsl(var(--heroui-secondary));
     }
   }
 
   .clearButton:hover + &,
   &:hover {
-    box-shadow: 0 0 10px hsl(var(--nextui-foreground-300));
+    box-shadow: 0 0 10px hsl(var(--heroui-foreground-300));
     transform: scale(1.01);
   }
 
   .clearButton:hover + &,
   &.selected:hover.cancelable {
-    background: hsl(var(--nextui-danger-50));
+    background: hsl(var(--heroui-danger-50));
 
     .icon {
-      background-color: hsl(var(--nextui-danger-50));
-      color: hsl(var(--nextui-danger));
+      background-color: hsl(var(--heroui-danger-50));
+      color: hsl(var(--heroui-danger));
     }
 
     .check {
@@ -85,7 +85,7 @@
   height: 36px;
   border-radius: 4px;
   font-size: 1rem;
-  background-color: hsl(var(--nextui-foreground-100));
+  background-color: hsl(var(--heroui-foreground-100));
 }
 
 .content {
@@ -103,12 +103,12 @@
 }
 
 .check {
-  fill: hsl(var(--nextui-secondary));
+  fill: hsl(var(--heroui-secondary));
 }
 
 .cross {
   display: none;
-  fill: hsl(var(--nextui-danger));
+  fill: hsl(var(--heroui-danger));
 }
 
 .moreButton {

@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/indent */
-import { MenuItemProps } from '@nextui-org/react';
+import { MenuItemProps } from '@heroui/react';
 import { useRouter } from 'next/router';
 import React from 'react';
 
@@ -16,14 +16,26 @@ import { IconType } from '../../../components/various/Icon';
 import { useSession } from '../../../hooks/review-tool/useSession';
 import { ProjectDto } from '../../../services/review-tool/types';
 
+export interface ProjectAssetsFilters {
+  status?: string;
+  assignee?: string;
+  sizeFrom?: number;
+  sizeTo?: number;
+}
+
 interface Context {
   getProjectActions: (project: ProjectDto) => {
     label: string;
     icon: IconType;
     showDivider?: boolean;
+    hideInCard?: boolean;
     color?: MenuItemProps['color'];
     onClick: () => void;
   }[];
+  search: string;
+  setSearch: (search: string) => void;
+  filters: ProjectAssetsFilters;
+  setFilters: (filters: ProjectAssetsFilters) => void;
   isProjectOwner: boolean;
   uploadingFiles: File[];
   setUploadingFiles: React.Dispatch<React.SetStateAction<File[]>>;
@@ -63,6 +75,8 @@ export const ProjectContextProvider = ({
   const [isLeaveModalOpen, setIsLeaveModalOpen] = React.useState(false);
 
   const [uploadingFiles, setUploadingFiles] = React.useState<File[]>([]);
+  const [search, setSearch] = React.useState('');
+  const [filters, setFilters] = React.useState<ProjectAssetsFilters>({});
   const { user } = useSession();
   const router = useRouter();
 
@@ -107,6 +121,7 @@ export const ProjectContextProvider = ({
             {
               label: 'Edit description',
               icon: 'file' as const,
+              hideInCard: true,
               onClick: () => {
                 setSelectedProjectId?.(project.id);
                 setIsEditModalOpen(true);
@@ -121,19 +136,20 @@ export const ProjectContextProvider = ({
               },
             },
             {
-              label: 'Invite member',
-              icon: 'userPlus' as const,
+              label: 'Archived media',
+              icon: 'trash' as const,
+              hideInCard: true,
               onClick: () => {
-                setSelectedProjectId?.(project.id);
-                setIsMembersModalOpen(true);
+                router.push(`/project/${project.id}/assets/archived`);
               },
             },
             {
-              label: 'Archived media',
-              icon: 'trash' as const,
+              label: 'Invite member',
+              icon: 'userPlus' as const,
               showDivider: true,
               onClick: () => {
-                router.push(`/project/${project.id}/assets/archived`);
+                setSelectedProjectId?.(project.id);
+                setIsMembersModalOpen(true);
               },
             },
             {
@@ -209,6 +225,10 @@ export const ProjectContextProvider = ({
         uploadingFiles,
         setUploadingFiles,
         isProjectOwner,
+        search,
+        setSearch,
+        filters,
+        setFilters,
       }}
     >
       {children}

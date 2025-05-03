@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-import { Button, Card, CardBody, CardFooter, CardHeader, Chip, Image, Link } from '@nextui-org/react';
+import { Button, Card, CardBody, CardFooter, CardHeader, Chip, Image, Link } from '@heroui/react';
 import NextLink from 'next/link';
 import React from 'react';
 

@@ -186,6 +186,32 @@
         }
       }
     },
+    "/project/{id}/assets": {
+      "get": {
+        "operationId": "ProjectController_getProjectAssets",
+        "parameters": [{ "name": "id", "required": true, "in": "path", "schema": { "type": "string" } }],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": { "application/json": { "schema": { "$ref": "#/components/schemas/ProjectAssetsResponseDto" } } }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "ProjectController_removeAssets",
+        "parameters": [{ "name": "id", "required": true, "in": "path", "schema": { "type": "string" } }],
+        "requestBody": {
+          "required": true,
+          "content": { "application/json": { "schema": { "$ref": "#/components/schemas/AssetRemoveBodyDto" } } }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": { "application/json": { "schema": { "$ref": "#/components/schemas/ProjectDto" } } }
+          }
+        }
+      }
+    },
     "/project/{id}/cover": {
       "post": {
         "operationId": "ProjectController_updateProjectCover",
@@ -403,22 +429,6 @@
         }
       }
     },
-    "/project/{id}/assets": {
-      "delete": {
-        "operationId": "ProjectController_removeAssets",
-        "parameters": [{ "name": "id", "required": true, "in": "path", "schema": { "type": "string" } }],
-        "requestBody": {
-          "required": true,
-          "content": { "application/json": { "schema": { "$ref": "#/components/schemas/AssetRemoveBodyDto" } } }
-        },
-        "responses": {
-          "200": {
-            "description": "",
-            "content": { "application/json": { "schema": { "$ref": "#/components/schemas/ProjectDto" } } }
-          }
-        }
-      }
-    },
     "/project/{id}/chat": {
       "post": {
         "operationId": "ProjectController_createChat",
@@ -464,6 +474,22 @@
           "200": {
             "description": "",
             "content": { "application/json": { "schema": { "$ref": "#/components/schemas/ProjectLogsDto" } } }
+          }
+        }
+      }
+    },
+    "/project/{id}/assets/move": {
+      "post": {
+        "operationId": "ProjectController_moveAssets",
+        "parameters": [{ "name": "id", "required": true, "in": "path", "schema": { "type": "string" } }],
+        "requestBody": {
+          "required": true,
+          "content": { "application/json": { "schema": { "$ref": "#/components/schemas/AssetMoveBodyDto" } } }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": { "application/json": { "schema": { "$ref": "#/components/schemas/ProjectDto" } } }
           }
         }
       }
@@ -679,6 +705,7 @@
           "description": { "type": "string" },
           "createdAt": { "type": "string" },
           "createdBy": { "nullable": true, "allOf": [{ "$ref": "#/components/schemas/UserDto" }] },
+          "commentsCount": { "type": "number", "default": 0 },
           "status": {
             "type": "string",
             "enum": ["review-needed", "in-progress", "changes-required", "approved"],
@@ -699,6 +726,7 @@
           "description",
           "createdAt",
           "createdBy",
+          "commentsCount",
           "status",
           "assignee",
           "fileSize",
@@ -819,6 +847,22 @@
           "projectCover": { "$ref": "#/components/schemas/InterfaceImageDto" }
         },
         "required": ["email", "projectId", "projectName"]
+      },
+      "ProjectAssetsResponseDto": {
+        "type": "object",
+        "properties": {
+          "assets": {
+            "type": "array",
+            "items": {
+              "oneOf": [
+                { "$ref": "#/components/schemas/ProjectFolderDto" },
+                { "$ref": "#/components/schemas/ProjectFileDto" }
+              ]
+            },
+            "description": "An array of assets which can be folders or files."
+          }
+        },
+        "required": ["assets"]
       },
       "Blob": { "type": "object", "properties": {} },
       "ProjectCoverDto": {
@@ -1426,6 +1470,15 @@
         },
         "required": ["logs", "logsCount"]
       },
+      "AssetMoveBodyDto": {
+        "type": "object",
+        "properties": {
+          "assetIds": { "type": "array", "items": { "type": "string" } },
+          "fromId": { "type": "string", "nullable": true },
+          "toId": { "type": "string", "nullable": true }
+        },
+        "required": ["assetIds", "fromId", "toId"]
+      },
       "ProjectTotals": {
         "type": "object",
         "properties": {
@@ -1462,6 +1515,7 @@
           "description": { "type": "string" },
           "createdAt": { "type": "string" },
           "createdBy": { "nullable": true, "allOf": [{ "$ref": "#/components/schemas/UserDto" }] },
+          "commentsCount": { "type": "number", "default": 0 },
           "parent": { "nullable": true, "allOf": [{ "$ref": "#/components/schemas/FolderDto" }] },
           "path": { "type": "array", "items": { "$ref": "#/components/schemas/FolderDto" } },
           "status": {
@@ -1483,6 +1537,7 @@
           "description",
           "createdAt",
           "createdBy",
+          "commentsCount",
           "parent",
           "path",
           "status",

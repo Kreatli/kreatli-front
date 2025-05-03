@@ -1,7 +1,7 @@
 .tag {
   display: inline-flex;
-  background-color: hsl(var(--nextui-foreground-100));
-  color: hsl(var(--nextui-foreground-500));
+  background-color: hsl(var(--heroui-foreground-100));
+  color: hsl(var(--heroui-foreground-500));
   font-weight: 500;
   padding: 0.25rem 0.75rem;
   border-radius: 50px;
@@ -13,21 +13,21 @@
   }
 
   &.checked {
-    background-color: hsl(var(--nextui-secondary-100));
-    color: hsl(var(--nextui-secondary));
+    background-color: hsl(var(--heroui-secondary-100));
+    color: hsl(var(--heroui-secondary));
   }
 
   &.danger {
-    color: hsl(var(--nextui-danger));
+    color: hsl(var(--heroui-danger));
   }
 
   &.danger {
-    background-color: hsl(var(--nextui-danger-50));
+    background-color: hsl(var(--heroui-danger-50));
   }
 
   &.danger.checked {
-    background-color: hsl(var(--nextui-danger-200));
-    color: hsl(var(--nextui-danger-600));
+    background-color: hsl(var(--heroui-danger-200));
+    color: hsl(var(--heroui-danger-600));
   }
 }
 

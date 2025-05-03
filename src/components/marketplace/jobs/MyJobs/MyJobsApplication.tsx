@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/indent */
-import { Button, Chip, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger, useDisclosure } from '@nextui-org/react';
+import { Button, Chip, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger, useDisclosure } from '@heroui/react';
 import { useMutation } from '@tanstack/react-query';
 import React from 'react';
 

@@ -1,4 +1,4 @@
-import { Skeleton } from '@nextui-org/react';
+import { Skeleton } from '@heroui/react';
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 

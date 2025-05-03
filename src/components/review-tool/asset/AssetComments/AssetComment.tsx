@@ -1,8 +1,8 @@
-import { Avatar, Button, Checkbox, cn, Tooltip } from '@nextui-org/react';
+import { addToast, Avatar, Button, Checkbox, cn, Tooltip } from '@heroui/react';
 import React, { useEffect, useState } from 'react';
 
 import { useFileContext } from '../../../../contexts/review-tool/File';
-import { useNotifications } from '../../../../hooks/useNotifications';
+import { useSession } from '../../../../hooks/review-tool/useSession';
 import {
   useDeleteAssetFileIdCommentCommentId,
   usePatchAssetFileIdCommentCommentId,
@@ -22,17 +22,20 @@ interface Props {
 }
 
 export const AssetComment = ({ fileId, comment, isResolvable = true, onUpdate, onRemove, ...rest }: Props) => {
+  const { user } = useSession();
   const { createdBy, id, message, createdAt, timestamp, canvas } = comment;
-  const { pushNotification } = useNotifications();
   const { mutate: updateComment, isPending: isUpdatingComment } = usePatchAssetFileIdCommentCommentId();
   const { mutate: removeComment, isPending: isRemoving } = useDeleteAssetFileIdCommentCommentId();
-  const { activeComment, replyingComment, setActiveComment, setReplyingComment } = useFileContext();
+  const { activeComment, replyingComment, project, setActiveComment, setReplyingComment } = useFileContext();
 
   const [isResolved, setIsResolved] = useState(comment.isResolved || (rest.isResolved ?? false));
 
   useEffect(() => {
     setIsResolved(comment.isResolved || (rest.isResolved ?? false));
   }, [comment.isResolved, rest.isResolved]);
+
+  const isProjectOwner = project?.createdBy?.id === user?.id;
+  const isRemovable = user?.id === createdBy.id || isProjectOwner;
 
   const handleRemove = () => {
     if (replyingComment === comment) {
@@ -48,7 +51,7 @@ export const AssetComment = ({ fileId, comment, isResolvable = true, onUpdate, o
       {
         onSuccess: onRemove,
         onError: () => {
-          pushNotification({ message: 'Failed to remove the comment', icon: 'error' });
+          addToast({ title: 'Failed to remove the comment', color: 'danger', variant: 'flat' });
         },
       },
     );
@@ -101,11 +104,13 @@ export const AssetComment = ({ fileId, comment, isResolvable = true, onUpdate, o
           <div className="text-xs">{createdBy.name}</div>
         </div>
         <div className="flex items-center gap-1 z-10">
-          <Tooltip content="Delete comment">
-            <Button variant="light" radius="full" size="sm" isLoading={isRemoving} isIconOnly onClick={handleRemove}>
-              <Icon icon="trash" size={16} />
-            </Button>
-          </Tooltip>
+          {isRemovable && (
+            <Tooltip content="Delete comment">
+              <Button variant="light" radius="full" size="sm" isLoading={isRemoving} isIconOnly onClick={handleRemove}>
+                <Icon icon="trash" size={16} />
+              </Button>
+            </Tooltip>
+          )}
           {isResolvable && (
             <Tooltip content={isResolved ? 'Unresolve comment' : 'Resolve comment'} offset={20}>
               <Checkbox

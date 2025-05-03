@@ -1,4 +1,4 @@
-import { Button } from '@nextui-org/react';
+import { Button } from '@heroui/react';
 import { useMutation } from '@tanstack/react-query';
 import React from 'react';
 import { useDropzone } from 'react-dropzone';

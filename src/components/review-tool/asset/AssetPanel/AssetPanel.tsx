@@ -4,6 +4,7 @@ import { useFileContext } from '../../../../contexts/review-tool/File';
 import { AssetComments } from '../AssetComments';
 import { AssetDescription } from '../AssetDescription';
 import { AssetPanelHeader } from './AssetPanelHeader';
+import { AssetPanelLoading } from './AssetPanelLoading';
 
 export const AssetPanel = () => {
   const { file, isLoading, commentsRef } = useFileContext();
@@ -12,7 +13,7 @@ export const AssetPanel = () => {
     <div className="overflow-hidden flex flex-col">
       <AssetPanelHeader />
       <div ref={commentsRef} className="overflow-auto">
-        {isLoading || !file ? 'Loading...' : <AssetDescription file={file} />}
+        {isLoading || !file ? <AssetPanelLoading /> : <AssetDescription file={file} />}
         {file && <AssetComments fileId={file.id} />}
       </div>
     </div>

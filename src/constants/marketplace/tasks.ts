@@ -1,4 +1,4 @@
-import { ProgressProps } from '@nextui-org/react';
+import { ProgressProps } from '@heroui/react';
 
 import { IconType } from '../../components/various/Icon';
 import { Tasks } from '../../typings/marketplace/tasks';

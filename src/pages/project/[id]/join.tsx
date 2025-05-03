@@ -1,4 +1,4 @@
-import { Button } from '@nextui-org/react';
+import { addToast, Button } from '@heroui/react';
 import Head from 'next/head';
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
@@ -7,7 +7,6 @@ import React from 'react';
 import { SignInForm } from '../../../components/review-tool/auth/SignInForm';
 import { StartPageLayout } from '../../../components/review-tool/layout/StartPageLayout';
 import { useReviewToolLoader } from '../../../hooks/review-tool/useReviewToolLoader';
-import { useNotifications } from '../../../hooks/useNotifications';
 import { useGetProject, useGetUser, usePutProjectIdMember } from '../../../services/review-tool/hooks';
 import { getErrorMessage } from '../../../utils/review-tool/getErrorMessage';
 import { getHasToken } from '../../../utils/token';
@@ -26,7 +25,6 @@ export default function JoinProject() {
 
   const isLoading = useReviewToolLoader((state) => state.isLoading);
   const setIsLoading = useReviewToolLoader((state) => state.setIsLoading);
-  const { pushNotification } = useNotifications();
   const { data } = useGetProject({ enabled: !!token }, { headers: { Authorization: token } });
   const { mutate, isPending: isJoining } = usePutProjectIdMember();
 
@@ -58,7 +56,7 @@ export default function JoinProject() {
           router.push(`/project/${data.projectId}`);
         },
         onError: (error) => {
-          pushNotification({ icon: 'error', message: getErrorMessage(error) });
+          addToast({ title: getErrorMessage(error), color: 'danger', variant: 'flat' });
         },
       },
     );

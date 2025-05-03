@@ -1,4 +1,4 @@
-import { Card, CardBody, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger, Link } from '@nextui-org/react';
+import { Card, CardBody, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger, Link } from '@heroui/react';
 import { useSearchParams } from 'next/navigation';
 import { useRouter } from 'next/router';
 import React from 'react';

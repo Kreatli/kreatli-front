@@ -1,10 +1,9 @@
-import { Button, Input, Link, Textarea } from '@nextui-org/react';
+import { addToast, Button, Input, Link, Textarea } from '@heroui/react';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { useFieldArray, useForm } from 'react-hook-form';
 
 import { VALIDATION_RULES } from '../../../../../constants/validationRules';
-import { useNotifications } from '../../../../../hooks/useNotifications';
 import { usePostProject } from '../../../../../services/review-tool/hooks';
 import { getErrorMessage } from '../../../../../utils/review-tool/getErrorMessage';
 import { Icon } from '../../../../various/Icon';
@@ -26,7 +25,6 @@ export const CreateProjectForm = () => {
   const { fields, append, remove } = useFieldArray({ control, name: 'members' });
 
   const [isAddingMembers, setIsAddingMembers] = React.useState(false);
-  const { pushNotification } = useNotifications();
   const { mutate, isPending } = usePostProject();
 
   const onSubmit = ({ members, ...data }: typeof DEFAULT_VALUES) => {
@@ -37,7 +35,7 @@ export const CreateProjectForm = () => {
           router.push(`/project/${response.id}`);
         },
         onError: (error) => {
-          pushNotification({ icon: 'error', message: getErrorMessage(error) });
+          addToast({ title: getErrorMessage(error), color: 'danger', variant: 'flat' });
         },
       },
     );

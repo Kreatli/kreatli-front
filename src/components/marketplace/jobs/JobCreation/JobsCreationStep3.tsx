@@ -1,4 +1,4 @@
-import { Input, Select, SelectItem } from '@nextui-org/react';
+import { Input, Select, SelectItem } from '@heroui/react';
 import React from 'react';
 import { Control, Controller, FieldErrors, useController, UseFormRegister } from 'react-hook-form';
 import { NumericFormat } from 'react-number-format';
@@ -36,9 +36,7 @@ export const JobsCreationStep3 = ({ control, errors, register }: Props) => {
         {...register('paymentType', VALIDATION_RULES.REQUIRED)}
       >
         {PAYMENT_TYPE_OPTIONS.map((paymentType) => (
-          <SelectItem key={paymentType.value} value={paymentType.value}>
-            {paymentType.label}
-          </SelectItem>
+          <SelectItem key={paymentType.value}>{paymentType.label}</SelectItem>
         ))}
       </Select>
       <Select
@@ -49,9 +47,7 @@ export const JobsCreationStep3 = ({ control, errors, register }: Props) => {
         onChange={handlePaymentPreferencesChange}
       >
         {PAYMENT_PREFERENCE_OPTIONS.map((paymentPreference) => (
-          <SelectItem key={paymentPreference.value} value={paymentPreference.value}>
-            {paymentPreference.label}
-          </SelectItem>
+          <SelectItem key={paymentPreference.value}>{paymentPreference.label}</SelectItem>
         ))}
       </Select>
       <Controller

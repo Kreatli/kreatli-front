@@ -1,4 +1,4 @@
-import { Accordion, AccordionItem, Button, Progress, Selection } from '@nextui-org/react';
+import { Accordion, AccordionItem, Button, Progress, Selection } from '@heroui/react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';

@@ -1,4 +1,4 @@
-import { Card, CardBody, CardHeader, Input } from '@nextui-org/react';
+import { Card, CardBody, CardHeader, Input } from '@heroui/react';
 import React from 'react';
 
 import { ChatContext } from '../../../../contexts/marketplace/Chat';

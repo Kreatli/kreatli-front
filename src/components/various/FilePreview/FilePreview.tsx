@@ -1,4 +1,4 @@
-import { Spinner, Tooltip } from '@nextui-org/react';
+import { Spinner, Tooltip } from '@heroui/react';
 import React from 'react';
 
 import { iconsByFileFormat } from '../../../utils/marketplace/icons';

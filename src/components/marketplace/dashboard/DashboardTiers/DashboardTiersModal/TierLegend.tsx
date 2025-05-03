@@ -1,4 +1,4 @@
-import { Card, CardBody } from '@nextui-org/react';
+import { Card, CardBody } from '@heroui/react';
 import cx from 'classnames';
 import React from 'react';
 

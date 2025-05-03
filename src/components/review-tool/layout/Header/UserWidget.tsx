@@ -1,4 +1,4 @@
-import { Avatar, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger } from '@nextui-org/react';
+import { Avatar, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger } from '@heroui/react';
 import NextLink from 'next/link';
 import React from 'react';
 
@@ -29,10 +29,12 @@ export const UserWidget = () => {
         />
       </DropdownTrigger>
       <DropdownMenu variant="flat">
-        <DropdownItem as={NextLink} href="/marketplace">
+        <DropdownItem as={NextLink} href="/marketplace" key="marketplace">
           Kreatli marketplace
         </DropdownItem>
-        <DropdownItem onClick={handleLogoutClick}>Log out</DropdownItem>
+        <DropdownItem key="log-out" onClick={handleLogoutClick}>
+          Log out
+        </DropdownItem>
       </DropdownMenu>
     </Dropdown>
   );

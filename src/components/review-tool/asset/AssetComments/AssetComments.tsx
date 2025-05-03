@@ -1,4 +1,4 @@
-import { Tab, Tabs } from '@nextui-org/react';
+import { Tab, Tabs } from '@heroui/react';
 import { useQueryClient } from '@tanstack/react-query';
 import React, { useState } from 'react';
 
@@ -6,6 +6,8 @@ import { useGetAssetFileIdComments } from '../../../../services/review-tool/hook
 import { getAssetFileIdComments } from '../../../../services/review-tool/services';
 import { AssetCommentsResponse } from '../../../../services/review-tool/types';
 import { AssetComment } from './AssetComment';
+import { AssetCommentsEmptyState } from './AssetCommentsEmptyState';
+import { AssetCommentsLoading } from './AssetCommentsLoading';
 
 type CommentsStatus = 'all' | 'unresolved' | 'resolved';
 
@@ -33,7 +35,7 @@ export const AssetComments = ({ fileId }: Props) => {
   }, [commentsStatus, comments]);
 
   if (isPending) {
-    return 'Loading...';
+    return <AssetCommentsLoading />;
   }
 
   if (isError) {
@@ -74,6 +76,7 @@ export const AssetComments = ({ fileId }: Props) => {
         <Tab key="all" title={`All (${comments.length})`} />
       </Tabs>
       <div className="flex flex-col gap-2">
+        {commentsToShow.length === 0 && <AssetCommentsEmptyState />}
         {commentsToShow.map((comment) => (
           <div key={comment.id}>
             <AssetComment

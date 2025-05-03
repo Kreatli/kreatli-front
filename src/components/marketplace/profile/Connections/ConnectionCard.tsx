@@ -1,13 +1,4 @@
-import {
-  Avatar,
-  Button,
-  Card,
-  CardBody,
-  Dropdown,
-  DropdownItem,
-  DropdownMenu,
-  DropdownTrigger,
-} from '@nextui-org/react';
+import { Avatar, Button, Card, CardBody, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger } from '@heroui/react';
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
@@ -30,7 +21,7 @@ export const ConnectionCard = ({ user, isMyAccount }: Props) => {
   };
 
   return (
-    <Card isHoverable>
+    <Card>
       {isMyAccount && (
         <Dropdown>
           <DropdownTrigger>
@@ -39,7 +30,9 @@ export const ConnectionCard = ({ user, isMyAccount }: Props) => {
             </Button>
           </DropdownTrigger>
           <DropdownMenu variant="flat" onAction={handleAction}>
-            <DropdownItem startContent={<Icon icon="chat" size={18} />}>Message</DropdownItem>
+            <DropdownItem key="message" startContent={<Icon icon="chat" size={18} />}>
+              Message
+            </DropdownItem>
           </DropdownMenu>
         </Dropdown>
       )}

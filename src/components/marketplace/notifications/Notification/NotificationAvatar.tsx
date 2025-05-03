@@ -1,4 +1,4 @@
-import { Avatar, Badge } from '@nextui-org/react';
+import { Avatar, Badge } from '@heroui/react';
 import cx from 'classnames';
 import React from 'react';
 

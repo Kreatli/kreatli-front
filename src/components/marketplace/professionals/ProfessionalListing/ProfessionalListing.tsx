@@ -1,5 +1,5 @@
 /* eslint-disable no-confusing-arrow */
-import { Button, Input } from '@nextui-org/react';
+import { Button, Input } from '@heroui/react';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import React from 'react';
 

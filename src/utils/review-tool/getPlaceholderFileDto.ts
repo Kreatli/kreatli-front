@@ -10,6 +10,7 @@ export const getPlaceholderFileDto = (file: File) => ({
   metadata: {
     isUploading: true,
   },
+  commentsCount: 0,
   name: file.name,
   type: 'file' as const,
   url: URL.createObjectURL(file),

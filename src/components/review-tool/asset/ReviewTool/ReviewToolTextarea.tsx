@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/indent */
-import { Avatar, Button, Textarea } from '@nextui-org/react';
+import { Avatar, Button, Textarea } from '@heroui/react';
 import { useQueryClient } from '@tanstack/react-query';
 import { nanoid } from 'nanoid';
 import React, { useRef, useState } from 'react';
