@@ -1,19 +1,14 @@
 export const NOTIFICATION_TYPE = {
-  TASK_COMPLETION: 'task-completion',
-  INVITATION: 'invitation',
-  INVITATION_ACCEPT: 'invitation-accept',
-  NEW_TIER: 'new-tier',
-  POST_LIKE: 'post-like',
-  POST_COMMENT: 'post-comment',
-  PROFILE_VERIFICATION: 'profile-verification',
-  NEW_JOB_APPLICATION: 'new-job-application',
-  JOB_APPLICATION_ACCEPT: 'job-application-accept',
-  JOB_APPLICATION_REJECT: 'job-application-reject',
-  COLLABORATION_COMPLETED: 'collaboration-completed',
-  FEEDBACK_RECEIVED: 'feedback-received',
-  POINTS_PURCHASE: 'points-purchase',
-  JOB_APPLICATION_LIMIT: 'job-application-limit',
-  JOB_OFFER_LIMIT: 'job-offer-limit',
-  INVITATION_LIMIT: 'invitation-limit',
-  DAILY_POINTS_LIMIT: 'daily-points-limit',
+  FILE_ASSIGNED: 'FILE_ASSIGNED',
+  FILE_STATUS_CHANGED: 'FILE_STATUS_CHANGED',
+  FILE_COMMENT_ADDED: 'FILE_COMMENT_ADDED',
+  FILE_COMMENT_REPLIED: 'FILE_COMMENT_REPLIED',
+  CHAT_MESSAGE: 'CHAT_MESSAGE',
+  PROJECT_INVITATION: 'PROJECT_INVITATION',
+  PROJECT_ROLE_CHANGED: 'PROJECT_ROLE_CHANGED',
+} as const;
+
+export const NOTIFICATION_RECIPIENT = {
+  PROJECT_OWNER: 'PROJECT_OWNER',
+  INVITED_USER: 'INVITED_USER',
 } as const;

@@ -32,6 +32,14 @@ const put = <T extends Api.Put>(path: T, data: Api.PutPayload[T], params?: any) 
   });
 };
 
+const patch = <T extends Api.Put>(path: T, data: Api.PutPayload[T], params?: any) => {
+  // @ts-ignore
+  return axios.patch<Api.PutResponse[T]>(`${process.env.MARKETPLACE_API_URL}${path}`, data, {
+    params,
+    headers: getHeaders(),
+  });
+};
+
 const axiosDelete = <T extends Api.Delete>(path: T, params?: any) => {
   return axios.delete<Api.DeleteResponse[T]>(`${process.env.MARKETPLACE_API_URL}${path}`, {
     params,
@@ -43,5 +51,6 @@ export const api = {
   get,
   post,
   put,
+  patch,
   delete: axiosDelete,
 };

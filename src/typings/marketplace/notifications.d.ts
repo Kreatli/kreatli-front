@@ -1,135 +1,108 @@
-import { Common } from '../common';
-import { Job } from './job';
-import { Tasks } from './tasks';
-import { User } from './user';
-
 export namespace Notifications {
-  interface NotificationBase {
-    _id: Common.Id;
+  export enum NotificationType {
+    FILE_ASSIGNED = 'FILE_ASSIGNED',
+    FILE_STATUS_CHANGED = 'FILE_STATUS_CHANGED',
+    FILE_COMMENT_ADDED = 'FILE_COMMENT_ADDED',
+    FILE_COMMENT_REPLIED = 'FILE_COMMENT_REPLIED',
+    CHAT_MESSAGE = 'CHAT_MESSAGE',
+    PROJECT_INVITATION = 'PROJECT_INVITATION',
+    PROJECT_ROLE_CHANGED = 'PROJECT_ROLE_CHANGED',
+  }
+
+  export enum NotificationRecipient {
+    PROJECT_OWNER = 'PROJECT_OWNER',
+    INVITED_USER = 'INVITED_USER',
+  }
+
+  export interface NotificationBase {
+    _id: string;
+    type: NotificationType;
+    recipient: NotificationRecipient;
+    userId: string;
+    title: string;
+    message: string;
+    data: Record<string, string | number | boolean>;
     isRead: boolean;
-    creationDate: Date;
+    createdAt: string;
+    updatedAt: string;
   }
 
-  export interface TaskNotification extends NotificationBase {
-    type: 'task-completion';
+  export interface FileAssignedNotification extends NotificationBase {
+    type: NotificationType.FILE_ASSIGNED;
     data: {
-      task: Tasks.Task;
+      fileId: string;
+      fileName: string;
+      assignerName: string;
+      projectId: string;
     };
   }
 
-  export interface InvitationNotification extends NotificationBase {
-    type: 'invitation';
+  export interface FileStatusChangedNotification extends NotificationBase {
+    type: NotificationType.FILE_STATUS_CHANGED;
     data: {
-      user: User.ShortInfo;
+      fileId: string;
+      fileName: string;
+      updaterName: string;
+      newStatus: string;
+      projectId: string;
     };
   }
 
-  export interface InvitationAcceptNotification extends NotificationBase {
-    type: 'invitation-accept';
+  export interface FileCommentAddedNotification extends NotificationBase {
+    type: NotificationType.FILE_COMMENT_ADDED;
     data: {
-      user: User.ShortInfo;
+      fileId: string;
+      fileName: string;
+      commenterName: string;
+      commentText: string;
+      projectId: string;
     };
   }
 
-  export interface TierNotification extends NotificationBase {
-    type: 'new-tier';
+  export interface FileCommentRepliedNotification extends NotificationBase {
+    type: NotificationType.FILE_COMMENT_REPLIED;
     data: {
-      tier: 1 | 2 | 3 | 4;
+      fileId: string;
+      fileName: string;
+      replierName: string;
+      replyText: string;
+      projectId: string;
     };
   }
 
-  export interface PostLikeNotification extends NotificationBase {
-    type: 'post-like';
+  export interface ChatMessageNotification extends NotificationBase {
+    type: NotificationType.CHAT_MESSAGE;
     data: {
-      user: User.ShortInfo;
+      senderName: string;
+      messageText: string;
+      projectId: string;
     };
   }
 
-  export interface PostCommentNotification extends NotificationBase {
-    type: 'post-comment';
+  export interface ProjectInvitationNotification extends NotificationBase {
+    type: NotificationType.PROJECT_INVITATION;
     data: {
-      user: User.ShortInfo;
+      projectId: string;
+      projectName: string;
+      inviterName: string;
     };
   }
 
-  export interface ProfileVerificationNotification extends NotificationBase {
-    type: 'profile-verification';
-  }
-
-  export interface NewJobApplication extends NotificationBase {
-    type: 'new-job-application';
+  export interface ProjectRoleChangedNotification extends NotificationBase {
+    type: NotificationType.PROJECT_ROLE_CHANGED;
     data: {
-      jobOffer: Job.Offer;
-      user: User.ShortInfo;
+      projectId: string;
+      projectName: string;
+      newRole: string;
     };
-  }
-
-  export interface JobApplicationAcceptNotification extends NotificationBase {
-    type: 'job-application-accept';
-    data: {
-      jobOffer: Job.Offer;
-    };
-  }
-
-  export interface JobApplicationRejectNotification extends NotificationBase {
-    type: 'job-application-reject';
-    data: {
-      jobOffer: Job.Offer;
-    };
-  }
-
-  export interface CollaborationCompletedNotification extends NotificationBase {
-    type: 'collaboration-completed';
-    data: {
-      jobOffer: Job.Offer;
-      user: User.ShortInfo;
-    };
-  }
-
-  export interface FeedbackReceivedNotification extends NotificationBase {
-    type: 'feedback-received';
-    data: {
-      jobOffer: Job.Offer;
-      user: User.ShortInfo;
-    };
-  }
-
-  export interface PointsPurchaseNotification extends NotificationBase {
-    type: 'points-purchase';
-  }
-
-  export interface JobApplicationLimitNotification extends NotificationBase {
-    type: 'job-application-limit';
-  }
-
-  export interface JobOfferLimitNotification extends NotificationBase {
-    type: 'job-offer-limit';
-  }
-
-  export interface InvitationLimitNotification extends NotificationBase {
-    type: 'invitation-limit';
-  }
-
-  export interface DailyPointsLimitNotification extends NotificationBase {
-    type: 'daily-points-limit';
   }
 
   export type Notification =
-    | TaskNotification
-    | InvitationNotification
-    | InvitationAcceptNotification
-    | TierNotification
-    | PointsPurchaseNotification
-    | PostLikeNotification
-    | PostCommentNotification
-    | FeedbackReceivedNotification
-    | ProfileVerificationNotification
-    | CollaborationCompletedNotification
-    | NewJobApplication
-    | JobApplicationAcceptNotification
-    | JobApplicationRejectNotification
-    | JobApplicationLimitNotification
-    | JobOfferLimitNotification
-    | InvitationLimitNotification
-    | DailyPointsLimitNotification;
+    | FileAssignedNotification
+    | FileStatusChangedNotification
+    | FileCommentAddedNotification
+    | FileCommentRepliedNotification
+    | ChatMessageNotification
+    | ProjectInvitationNotification
+    | ProjectRoleChangedNotification;
 }

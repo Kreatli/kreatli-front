@@ -2,7 +2,7 @@ import { Link } from '@heroui/react';
 import { useMutation } from '@tanstack/react-query';
 import React from 'react';
 
-import { requestNotificationsMarkAsRead } from '../../../../services/marketplace/notifications';
+import { notificationService } from '../../../../services/marketplace/notifications';
 import { Notifications as NotificationsI } from '../../../../typings/marketplace/notifications';
 import { Icon } from '../../../various/Icon';
 import { LazyList } from '../../../various/LazyList';
@@ -24,7 +24,7 @@ export const Notifications = (props: Props) => {
   const hasMoreNotifications = notifications.length < totalCount;
 
   const { mutate, isPending: isDisabled } = useMutation({
-    mutationFn: requestNotificationsMarkAsRead,
+    mutationFn: notificationService.markAllAsRead,
     onSuccess: onReadAll,
   });
 

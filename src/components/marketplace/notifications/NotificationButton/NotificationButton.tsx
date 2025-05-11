@@ -5,7 +5,7 @@ import React from 'react';
 import { Socket } from 'socket.io-client';
 
 import { useNotificationsPopoverVisibility } from '../../../../hooks/marketplace/useNotificationsPopoverVisibility';
-import { requestNotifications } from '../../../../services/marketplace/notifications';
+import { notificationService } from '../../../../services/marketplace/notifications';
 import { Notifications as NotificationsI } from '../../../../typings/marketplace/notifications';
 import { Icon } from '../../../various/Icon';
 import { Notifications } from '../Notifications';
@@ -27,11 +27,12 @@ export const NotificationButton = ({ socket }: Props) => {
   const loadInitialNotifications = () => {
     setIsLoading(true);
     setOffset(0);
-    requestNotifications({ offset: 0, limit: NOTIFICATIONS_LIMIT })
+    notificationService
+      .getNotifications()
       .then((data) => {
-        setNotifications(data.notifications);
-        setTotalCount(data.notificationsCount);
-        setUnreadCount(data.unreadNotificationsCount);
+        setNotifications(data);
+        setTotalCount(data.length);
+        setUnreadCount(data.filter((notification) => !notification.isRead).length);
       })
       .finally(() => {
         setIsLoading(false);
@@ -41,11 +42,12 @@ export const NotificationButton = ({ socket }: Props) => {
   const loadMoreNotifications = () => {
     setIsLoading(true);
     setOffset(offset + NOTIFICATIONS_LIMIT);
-    requestNotifications({ offset: offset + NOTIFICATIONS_LIMIT, limit: NOTIFICATIONS_LIMIT })
+    notificationService
+      .getNotifications()
       .then((data) => {
-        setNotifications((currentNotifications) => [...currentNotifications, ...data.notifications]);
-        setUnreadCount(data.unreadNotificationsCount);
-        setTotalCount(data.notificationsCount);
+        setNotifications((currentNotifications) => [...currentNotifications, ...data]);
+        setUnreadCount(data.filter((notification) => !notification.isRead).length);
+        setTotalCount(data.length);
       })
       .finally(() => {
         setIsLoading(false);

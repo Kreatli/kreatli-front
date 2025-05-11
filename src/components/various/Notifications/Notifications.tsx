@@ -6,16 +6,20 @@ import { Icon } from '../Icon';
 import styles from './Notifications.module.scss';
 
 export const Notifications = () => {
-  const notifications = useNotifications((state) => state.notifications);
+  const { notifications } = useNotifications();
+
+  if (!notifications?.length) {
+    return null;
+  }
 
   return (
     <div className={styles.wrapper}>
-      {notifications.map(({ id, message, color = 'danger', icon }) => (
-        <Card key={id} className={`${styles.card} text-${color} bg-${color}-50`}>
+      {notifications.map((notification) => (
+        <Card key={notification._id} className={`${styles.card} text-foreground bg-background`}>
           <CardBody className="p-5">
             <div className={styles.content}>
-              {icon && <Icon icon={icon} />}
-              {message}
+              <Icon icon="bell" />
+              {notification.message}
             </div>
           </CardBody>
         </Card>

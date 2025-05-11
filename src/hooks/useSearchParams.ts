@@ -8,7 +8,7 @@ export const useSearchParams = <T extends object>() => {
   const router = useRouter();
 
   const setSearchParam = (key: string, value: string, replace = false) => {
-    const currentSearchParams = new URLSearchParams(Array.from(searchParams.entries()));
+    const currentSearchParams = new URLSearchParams(Array.from(searchParams?.entries() ?? []));
 
     currentSearchParams.set(key, value.toString());
 
@@ -43,7 +43,7 @@ export const useSearchParams = <T extends object>() => {
   };
 
   const searchParamsAsObject = React.useMemo(() => {
-    return Array.from(searchParams.entries()).reduce<T>(
+    return Array.from(searchParams?.entries() ?? []).reduce<T>(
       (acc, [key, value]) => ({
         ...acc,
         ...(value && value.toString().length > 0

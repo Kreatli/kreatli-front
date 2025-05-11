@@ -8,24 +8,14 @@ interface Props {
 }
 
 const NOTIFICATION_TITLES = {
-  [NOTIFICATION_TYPE.PROFILE_VERIFICATION]: 'Profile Active!',
-  [NOTIFICATION_TYPE.TASK_COMPLETION]: 'New Task Completed!',
-  [NOTIFICATION_TYPE.NEW_TIER]: 'Tier Triumph!',
-  [NOTIFICATION_TYPE.INVITATION]: 'New Connection Request!',
-  [NOTIFICATION_TYPE.INVITATION_ACCEPT]: 'Connection Established!',
-  [NOTIFICATION_TYPE.POST_LIKE]: 'Post Praise!',
-  [NOTIFICATION_TYPE.POST_COMMENT]: 'Join the Conversation!',
-  [NOTIFICATION_TYPE.NEW_JOB_APPLICATION]: 'Job Application Received!',
-  [NOTIFICATION_TYPE.JOB_APPLICATION_ACCEPT]: "You've Been Hired!",
-  [NOTIFICATION_TYPE.JOB_APPLICATION_REJECT]: 'Keep Exploring Opportunities!',
-  [NOTIFICATION_TYPE.COLLABORATION_COMPLETED]: 'Collaboration Success!',
-  [NOTIFICATION_TYPE.FEEDBACK_RECEIVED]: 'Collaboration Feedback Shared!',
-  [NOTIFICATION_TYPE.POINTS_PURCHASE]: 'Points Power-Up!',
-  [NOTIFICATION_TYPE.JOB_APPLICATION_LIMIT]: 'Unlock More Opportunities!',
-  [NOTIFICATION_TYPE.JOB_OFFER_LIMIT]: 'Elevate Your Job Posts!',
-  [NOTIFICATION_TYPE.INVITATION_LIMIT]: 'Expand Your Network!',
-  [NOTIFICATION_TYPE.DAILY_POINTS_LIMIT]: 'Daily Points Limit Reached!',
-};
+  [NOTIFICATION_TYPE.FILE_ASSIGNED]: 'File Assigned',
+  [NOTIFICATION_TYPE.FILE_STATUS_CHANGED]: 'File Status Updated',
+  [NOTIFICATION_TYPE.FILE_COMMENT_ADDED]: 'New Comment',
+  [NOTIFICATION_TYPE.FILE_COMMENT_REPLIED]: 'Comment Reply',
+  [NOTIFICATION_TYPE.CHAT_MESSAGE]: 'New Message',
+  [NOTIFICATION_TYPE.PROJECT_INVITATION]: 'Project Invitation',
+  [NOTIFICATION_TYPE.PROJECT_ROLE_CHANGED]: 'Role Updated',
+} as const;
 
 export const NotificationTitle = ({ notification }: Props) => {
   const { type } = notification;

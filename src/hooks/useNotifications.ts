@@ -1,26 +1,105 @@
-import { nanoid } from 'nanoid';
-import { create } from 'zustand';
+import { useCallback, useEffect, useState } from 'react';
+import { Notifications } from '../typings/marketplace/notifications';
+import { notificationService } from '@/services/marketplace/notifications';
+import { useSocket } from './useSocket';
 
-import { Notification, NotificationWithId } from '../typings/components/notification';
+export const useNotifications = () => {
+  const [notifications, setNotifications] = useState<Notifications.Notification[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<Error | null>(null);
+  const socket = useSocket();
 
-interface State {
-  notifications: NotificationWithId[];
-  pushNotification: (notification: Notification) => void;
-}
+  const fetchNotifications = useCallback(async () => {
+    try {
+      setIsLoading(true);
+      const data = await notificationService.getNotifications();
+      setNotifications(data);
+      setError(null);
+    } catch (err) {
+      setError(err instanceof Error ? err : new Error('Failed to fetch notifications'));
+    } finally {
+      setIsLoading(false);
+    }
+  }, []);
 
-export const useNotifications = create<State>((set) => ({
-  notifications: [],
-  pushNotification: (notification) => {
-    const id = nanoid();
+  const markAsRead = useCallback(async (notificationId: string) => {
+    try {
+      await notificationService.markAsRead(notificationId);
+      setNotifications((prev) =>
+        prev.map((notification) =>
+          notification._id === notificationId ? { ...notification, isRead: true } : notification,
+        ),
+      );
+    } catch (err) {
+      setError(err instanceof Error ? err : new Error('Failed to mark notification as read'));
+    }
+  }, []);
 
-    set((state) => ({
-      notifications: [...state.notifications, { id, ...notification }],
-    }));
+  const markAllAsRead = useCallback(async () => {
+    try {
+      await notificationService.markAllAsRead();
+      setNotifications((prev) => prev.map((notification) => ({ ...notification, isRead: true })));
+    } catch (err) {
+      setError(err instanceof Error ? err : new Error('Failed to mark all notifications as read'));
+    }
+  }, []);
 
-    setTimeout(() => {
-      set((state) => ({
-        notifications: state.notifications.filter(({ id: notificationId }) => notificationId !== id),
-      }));
-    }, 5000);
-  },
-}));
+  const deleteNotification = useCallback(async (notificationId: string) => {
+    try {
+      await notificationService.deleteNotification(notificationId);
+      setNotifications((prev) => prev.filter((notification) => notification._id !== notificationId));
+    } catch (err) {
+      setError(err instanceof Error ? err : new Error('Failed to delete notification'));
+    }
+  }, []);
+
+  const deleteAllNotifications = useCallback(async () => {
+    try {
+      await notificationService.deleteAllNotifications();
+      setNotifications([]);
+    } catch (err) {
+      setError(err instanceof Error ? err : new Error('Failed to delete all notifications'));
+    }
+  }, []);
+
+  useEffect(() => {
+    fetchNotifications();
+
+    if (socket) {
+      socket.on('notification', (notification: Notifications.Notification) => {
+        setNotifications((prev) => [notification, ...prev]);
+      });
+
+      socket.on('notification:deleted', (notificationId: string) => {
+        setNotifications((prev) => prev.filter((notification) => notification._id !== notificationId));
+      });
+
+      socket.on('notification:read', (notificationId: string) => {
+        setNotifications((prev) =>
+          prev.map((notification) =>
+            notification._id === notificationId ? { ...notification, isRead: true } : notification,
+          ),
+        );
+      });
+    }
+
+    return () => {
+      if (socket) {
+        socket.off('notification');
+        socket.off('notification:deleted');
+        socket.off('notification:read');
+      }
+    };
+  }, [socket, fetchNotifications]);
+
+  return {
+    notifications,
+    isLoading,
+    error,
+    markAsRead,
+    markAllAsRead,
+    deleteNotification,
+    deleteAllNotifications,
+    refreshNotifications: fetchNotifications,
+  };
+};

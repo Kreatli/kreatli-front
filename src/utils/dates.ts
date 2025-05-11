@@ -76,7 +76,7 @@ export const formChatMessagesGroupDate = (dateString: Date | string) => {
   return dateToCompare.toLocaleDateString('en', { day: 'numeric', month: 'long', year: 'numeric' });
 };
 
-export const formatNotificationTime = (dateString: Date) => {
+export const formatNotificationTime = (dateString: Date | string) => {
   const currentDate = new Date();
   const dateToCompare = new Date(dateString);
 

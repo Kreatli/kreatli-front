@@ -103,7 +103,7 @@ export namespace Api {
 
   export type Put = '/post/:id' | '/chat/:id' | '/notification/:id' | '/user';
 
-  export type Delete = '/user/:id';
+  export type Delete = '/user/:id' | '/notification/:id' | '/notifications';
 
   export interface GetParams {
     '/professionals': {
@@ -382,5 +382,7 @@ export namespace Api {
 
   export interface DeleteResponse {
     '/user/:id': User.Type;
+    '/notification/:id': Notifications.Notification;
+    '/notifications': { message: string };
   }
 }
