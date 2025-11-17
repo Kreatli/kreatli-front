@@ -79,8 +79,8 @@ export const Home = () => {
         <DesktopFrame>
           <Video
             sources={[
-              { src: 'https://d13dfrcfnxyv50.cloudfront.net/videos/chat.webm', type: 'video/webm' },
-              { src: 'https://d13dfrcfnxyv50.cloudfront.net/videos/chat.mp4', type: 'video/mp4' },
+              { src: 'https://kreatli-marketplace-landing.s3.eu-central-1.amazonaws.com/chat.webm', type: 'video/webm' },
+              { src: 'https://kreatli-marketplace-landing.s3.eu-central-1.amazonaws.com/chat.mp4', type: 'video/mp4' },
             ]}
             className="scale-85 w-full aspect-[4/3]"
           />
@@ -90,8 +90,8 @@ export const Home = () => {
         <DesktopFrame>
           <Video
             sources={[
-              { src: 'https://d13dfrcfnxyv50.cloudfront.net/videos/feed.webm', type: 'video/webm' },
-              { src: 'https://d13dfrcfnxyv50.cloudfront.net/videos/feed.mp4', type: 'video/mp4' },
+              { src: 'https://kreatli-marketplace-landing.s3.eu-central-1.amazonaws.com/feed.webm', type: 'video/webm' },
+              { src: 'https://kreatli-marketplace-landing.s3.eu-central-1.amazonaws.com/feed.mp4', type: 'video/mp4' },
             ]}
             className="w-full aspect-[4/3]"
           />
@@ -128,8 +128,8 @@ export const Home = () => {
         <DesktopFrame>
           <Video
             sources={[
-              { src: 'https://d13dfrcfnxyv50.cloudfront.net/videos/dashboard.webm', type: 'video/webm' },
-              { src: 'https://d13dfrcfnxyv50.cloudfront.net/videos/dashboard.mp4', type: 'video/mp4' },
+              { src: 'https://kreatli-marketplace-landing.s3.eu-central-1.amazonaws.com/dashboard.webm', type: 'video/webm' },
+              { src: 'https://kreatli-marketplace-landing.s3.eu-central-1.amazonaws.com/dashboard.mp4', type: 'video/mp4' },
             ]}
             className="scale-[1.01] w-full aspect-[4/3]"
           />

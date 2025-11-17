@@ -66,8 +66,8 @@ export const Hero = () => {
             <DesktopFrame>
               <Video
                 sources={[
-                  { src: 'https://d13dfrcfnxyv50.cloudfront.net/videos/job-offers.webm', type: 'video/webm' },
-                  { src: 'https://d13dfrcfnxyv50.cloudfront.net/videos/job-offers.mp4', type: 'video/mp4' },
+                  { src: 'https://kreatli-marketplace-landing.s3.eu-central-1.amazonaws.com/job-offers.webm', type: 'video/webm' },
+                  { src: 'https://kreatli-marketplace-landing.s3.eu-central-1.amazonaws.com/job-offers.mp4', type: 'video/mp4' },
                 ]}
                 className="scale-110 w-full aspect-[4/3]"
               />
@@ -76,8 +76,8 @@ export const Hero = () => {
               <MobileFrame>
                 <Video
                   sources={[
-                    { src: 'https://d13dfrcfnxyv50.cloudfront.net/videos/chat-mobile.webm', type: 'video/webm' },
-                    { src: 'https://d13dfrcfnxyv50.cloudfront.net/videos/chat-mobile.mp4', type: 'video/mp4' },
+                    { src: 'https://kreatli-marketplace-landing.s3.eu-central-1.amazonaws.com/chat-mobile.webm', type: 'video/webm' },
+                    { src: 'https://kreatli-marketplace-landing.s3.eu-central-1.amazonaws.com/chat-mobile.mp4', type: 'video/mp4' },
                   ]}
                   className="w-36 rounded-2xl aspect-[9/20]"
                 />
