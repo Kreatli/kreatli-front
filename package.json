@@ -10,7 +10,7 @@
     "tsc": "tsc"
   },
   "engines": {
-    "node": "18.*"
+    "node": "22.*"
   },
   "dependencies": {
     "@emoji-mart/data": "^1.1.2",
