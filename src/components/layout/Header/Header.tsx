@@ -77,6 +77,12 @@ export const Header = () => {
   const commonItems = [
     {
       as: NextLink,
+      href: '/blog',
+      label: 'Blog',
+      key: 'blog',
+    },
+    {
+      as: NextLink,
       href: '/faq',
       label: 'FAQ',
       key: 'faq',

@@ -22,18 +22,18 @@ export const Home = () => {
   const creatorFeatures = [
     {
       icon: 'certification' as const,
-      title: 'Only Pre-Vetted \nProfessionals',
-      text: 'We meticulously verify every profile and portfolio to ensure professionals deliver top-notch quality.',
+      title: 'Only Pre-Vetted \nClippers',
+      text: 'We meticulously verify every clipper profile and portfolio to ensure they deliver top-notch clip quality and editing expertise.',
     },
     {
       icon: 'medal' as const,
       title: 'Quality Over \nQuantity',
-      text: 'We prioritize quality work over budget options, educating clients about the advantages of collaborating with skilled professionals.',
+      text: 'We prioritize quality clip creation over budget options, educating creators about the advantages of working with skilled clippers who understand your content vision.',
     },
     {
       icon: 'conversation' as const,
       title: 'Unified Platform: Secure Communication \nand No-Bot Policy',
-      text: 'Our platform offers secure and efficient communication tools, free from spam and bots, promoting authentic interactions between clients and professionals.',
+      text: 'Our platform offers secure and efficient communication tools, free from spam and bots, promoting authentic interactions between creators and clippers.',
     },
   ];
 
@@ -45,7 +45,7 @@ export const Home = () => {
           Why us
         </Chip>
         <h2 className="text-4xl font-semibold leading-tight max-w-lg mx-auto mb-8 sm:mb-16">
-          Why should <TextLinear>YouTube Creators</TextLinear> choose Kreatli?
+          Why should <TextLinear>Creators</TextLinear> choose Kreatli for clipping?
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-x-20 gap-y-12">
           {creatorFeatures.map((feature) => (
@@ -64,16 +64,14 @@ export const Home = () => {
       <section className="grid grid-cols-1 sm:grid-cols-2 gap-x-20 gap-y-8 items-center container max-w-screen-xl mx-auto px-6 mb-20 sm:mb-40">
         <div className="flex flex-col gap-4 max-w-[480px]">
           <Chip variant="flat" color="secondary" classNames={{ content: 'font-semibold' }}>
-            Job search
+            Clipping campaigns
           </Chip>
           <h2 className="text-4xl font-semibold leading-tight">
-            <TextLinear>Collaborate</TextLinear> <br />
-            Seamlessly
+            Post Campaigns or <br />
+            <TextLinear>Browse Services</TextLinear>
           </h2>
           <p className="text-lg text-foreground-500 max-w-[480px]">
-            Explore a world of exciting job opportunities with Kreatli&apos;s powerful job search feature. Designed for
-            seamless collaboration, it connects professionals and YouTube creators, making it effortless to find the
-            perfect match for your next venture.
+            Post clipping campaigns and let clippers apply, or browse clipper service listings. Kreatli&apos;s dual marketplace model gives you flexibility—find the perfect clipper whether you need a specific project or ongoing services.
           </p>
         </div>
         <DesktopFrame>
@@ -83,6 +81,7 @@ export const Home = () => {
               { src: 'https://kreatli-marketplace-landing.s3.eu-central-1.amazonaws.com/chat.mp4', type: 'video/mp4' },
             ]}
             className="scale-85 w-full aspect-[4/3]"
+            aria-label="Demo showing how creators post clipping campaigns and communicate with clippers"
           />
         </DesktopFrame>
       </section>
@@ -94,6 +93,7 @@ export const Home = () => {
               { src: 'https://kreatli-marketplace-landing.s3.eu-central-1.amazonaws.com/feed.mp4', type: 'video/mp4' },
             ]}
             className="w-full aspect-[4/3]"
+            aria-label="Demo showing the Kreatli feed with clipping trends, successful clips, and community updates"
           />
         </DesktopFrame>
         <div className="-order-1 sm:order-1 flex flex-col gap-4 max-w-[480px] sm:ml-auto">
@@ -105,8 +105,7 @@ export const Home = () => {
             <TextLinear>Creativity</TextLinear>
           </h2>
           <p className="text-lg text-foreground-500">
-            Immerse yourself in our vibrant community. The Kreatli Feed keeps you in the loop on the latest trends,
-            collaborations, and opportunities. Stay inspired and informed about the buzzing activities within Kreatli.
+            Immerse yourself in our vibrant clipping community. The Kreatli Feed keeps you in the loop on the latest clip trends, successful collaborations, and clipping opportunities. Stay inspired and informed about the buzzing activities within Kreatli.
           </p>
         </div>
       </section>
@@ -120,9 +119,7 @@ export const Home = () => {
             <TextLinear>Progress</TextLinear>
           </h2>
           <p className="text-lg text-foreground-500 max-w-[480px]">
-            Explore a world of exciting job opportunities with Kreatli&apos;s powerful job search feature. Designed for
-            seamless collaboration, it connects professionals and YouTube creators, making it effortless to find the
-            perfect match for your next venture.
+            Track your growth and achievements in the clipping marketplace. The Kreatli Tier System rewards quality work, active participation, and successful collaborations. Level up to unlock exclusive benefits and gain recognition in the clipper community.
           </p>
         </div>
         <DesktopFrame>
@@ -132,6 +129,7 @@ export const Home = () => {
               { src: 'https://kreatli-marketplace-landing.s3.eu-central-1.amazonaws.com/dashboard.mp4', type: 'video/mp4' },
             ]}
             className="scale-[1.01] w-full aspect-[4/3]"
+            aria-label="Demo showing the tier system dashboard tracking progress and achievements in the clipping marketplace"
           />
         </DesktopFrame>
       </section>
@@ -150,21 +148,20 @@ export const Home = () => {
             <Card className="col-start-1 col-end-5 sm:col-end-3 xl:col-end-2">
               <CardHeader className="block p-8">
                 <span className="text-lg font-semibold">For</span>
-                <h3 className="text-4xl font-semibold text-secondary">YouTube Creators</h3>
+                <h3 className="text-4xl font-semibold text-secondary">Creators</h3>
               </CardHeader>
               <CardBody className="p-8 pt-0">
                 <ul className="flex flex-col gap-2 list-disc list-outside pl-4 marker:text-secondary xl:max-w-[250px] text-foreground-500">
-                  <li>Discover the right talent with ease.</li>
-                  <li>Collaborate with experts effortlessly.</li>
+                  <li>Post clipping campaigns and find skilled clippers.</li>
+                  <li>Browse clipper service listings to discover talent.</li>
                   <li>
-                    Simplify your hiring process by easily finding, evaluating, and hiring the perfect professionals for
-                    your job.
+                    Simplify your hiring process by easily finding, evaluating, and hiring the perfect clippers for your video clip needs.
                   </li>
                 </ul>
               </CardBody>
               <CardFooter className="p-8">
                 <Button color="secondary" radius="full" onClick={openSignUpCreatorModal}>
-                  Join as YouTube Creator
+                  Join as Creator
                 </Button>
               </CardFooter>
             </Card>
@@ -175,18 +172,18 @@ export const Home = () => {
             <Card className="col-start-1 col-end-5 sm:col-start-3 xl:col-end-4 sm:row-start-1">
               <CardHeader className="block p-8">
                 <span className="text-lg font-semibold">For</span>
-                <h3 className="text-4xl font-semibold text-secondary">Professionals</h3>
+                <h3 className="text-4xl font-semibold text-secondary">Clippers</h3>
               </CardHeader>
               <CardBody className="p-8 pt-0">
                 <ul className="flex flex-col gap-2 list-disc list-outside pl-4 marker:text-secondary xl:max-w-[250px] text-foreground-500">
-                  <li>Grow your professional network and connect with enthusiastic creators.</li>
-                  <li>Unleash your creativity by collaborating with talented creators.</li>
-                  <li>Showcase your amazing skills effectively to potential clients. </li>
+                  <li>Apply to clipping campaigns posted by creators.</li>
+                  <li>Offer your clipping services proactively to creators.</li>
+                  <li>Showcase your clip portfolio and editing skills effectively to potential clients.</li>
                 </ul>
               </CardBody>
               <CardFooter className="p-8">
                 <Button as={NextLink} href="/signup/professional" color="secondary" radius="full">
-                  Join as Professional
+                  Join as Clipper
                 </Button>
               </CardFooter>
             </Card>
@@ -194,7 +191,7 @@ export const Home = () => {
               <div className="absolute inset-0 z-20 bg-gradient-to-bl from-secondary/20 to-black/60" />
               <Image
                 src={professionalsImage.src}
-                alt="Professionals"
+                alt="Clippers"
                 removeWrapper
                 className="w-full h-full object-cover"
               />
@@ -209,7 +206,7 @@ export const Home = () => {
             radius="none"
             src={backgroundImage.src}
             removeWrapper
-            alt="Professional in action"
+            alt="Clipper in action"
             className="absolute inset-0 w-full h-full object-cover"
           />
           <div className="absolute inset-0 z-20 bg-gradient-to-bl from-secondary/20 to-black/60" />
@@ -219,31 +216,28 @@ export const Home = () => {
             Why us
           </Chip>
           <h2 className="text-4xl font-semibold leading-tight mb-12">
-            Why Should <TextLinear>Professionals</TextLinear>
+            Why Should <TextLinear>Clippers</TextLinear>
             <br /> Choose Kreatli?
           </h2>
           <article className="mb-6">
             <div className="text-6xl font-bold text-secondary mb-2">1</div>
-            <h3 className="text-xl font-semibold mb-2">Unified Platform</h3>
+            <h3 className="text-xl font-semibold mb-2">Unified Clipping Marketplace</h3>
             <p className="text-lg text-foreground-500 max-w-[500px]">
-              End the endless search across Reddit, Twitter, Discord, Fiverr, or Upwork. Find jobs and opportunities,
-              all in one convenient place.
+              End the endless search across Reddit, Twitter, Discord, Fiverr, or Upwork. Find clipping campaigns and offer your services, all in one convenient place built specifically for video clip creation.
             </p>
           </article>
           <article className="mb-6">
             <div className="text-6xl font-bold text-secondary mb-2">2</div>
-            <h3 className="text-xl font-semibold mb-2">Community Engagement</h3>
+            <h3 className="text-xl font-semibold mb-2">Clipper Community</h3>
             <p className="text-lg text-foreground-500 max-w-[500px]">
-              Join a network of like-minded professionals, share experiences, receive valuable feedback, and collaborate
-              on creative projects.
+              Join a network of like-minded clippers, share experiences, receive valuable feedback, and collaborate on clipping projects with creators who value quality work.
             </p>
           </article>
           <article>
             <div className="text-6xl font-bold text-secondary mb-2">3</div>
             <h3 className="text-xl font-semibold mb-2">Compete Fairly</h3>
             <p className="text-lg text-foreground-500 max-w-[500px]">
-              Bid farewell to battles with bots. Here you compete with other human professionals, ensuring a level
-              playing field.
+              Bid farewell to battles with bots. Here you compete with other human clippers, ensuring a level playing field in the clipping marketplace.
             </p>
           </article>
         </div>

@@ -28,12 +28,11 @@ export const Hero = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-8 gap-y-16">
           <div className="flex flex-col gap-6">
             <h1 className="text-5xl sm:text-6xl font-semibold max-w-lg">
-              <TextLinear>Connecting</TextLinear> YouTube Creators and Professionals
+              The Premier <TextLinear>Clipper</TextLinear> Marketplace
             </h1>
             <p className="text-lg text-foreground-500 sm:w-11/12">
               {/* eslint-disable-next-line max-len */}
-              Kreatli brings YouTube Creators and Professionals together, empowering their collaboration and success in
-              a vibrant community designed for growth and creativity
+              Kreatli connects creators with skilled clippers. Post clipping campaigns or browse clipper services. Find the perfect match for your video clip creation needs in a vibrant community built for quality and growth.
             </p>
             <div className="flex gap-4">
               <Dropdown>
@@ -44,9 +43,9 @@ export const Hero = () => {
                   </Button>
                 </DropdownTrigger>
                 <DropdownMenu aria-label="Sign up" variant="flat" color="secondary" onAction={handleSignUpAction}>
-                  <DropdownItem key="creator">As YouTube Creator</DropdownItem>
+                  <DropdownItem key="creator">As Creator</DropdownItem>
                   <DropdownItem as={NextLink} href="/signup/professional" key="professional">
-                    As Professional
+                    As Clipper
                   </DropdownItem>
                 </DropdownMenu>
               </Dropdown>
@@ -70,6 +69,7 @@ export const Hero = () => {
                   { src: 'https://kreatli-marketplace-landing.s3.eu-central-1.amazonaws.com/job-offers.mp4', type: 'video/mp4' },
                 ]}
                 className="scale-110 w-full aspect-[4/3]"
+                aria-label="Demo showing clipping campaigns and clipper service listings on Kreatli marketplace"
               />
             </DesktopFrame>
             <div className="absolute -bottom-16 right-0 hidden lg:block">
@@ -80,6 +80,7 @@ export const Hero = () => {
                     { src: 'https://kreatli-marketplace-landing.s3.eu-central-1.amazonaws.com/chat-mobile.mp4', type: 'video/mp4' },
                   ]}
                   className="w-36 rounded-2xl aspect-[9/20]"
+                  aria-label="Demo showing communication between creators and clippers on mobile"
                 />
               </MobileFrame>
             </div>
