@@ -5,6 +5,7 @@ interface Props {
   height?: number;
   className?: string;
   sources: { src: string; type: string }[];
+  'aria-label'?: string;
 }
 
 const observerOptions = {
@@ -12,7 +13,7 @@ const observerOptions = {
   threshold: 0,
 };
 
-export const Video = ({ sources = [], className, height, width }: Props) => {
+export const Video = ({ sources = [], className, height, width, 'aria-label': ariaLabel }: Props) => {
   const videoRef = React.useRef<HTMLVideoElement>(null);
 
   React.useEffect(() => {
@@ -36,7 +37,17 @@ export const Video = ({ sources = [], className, height, width }: Props) => {
   }, []);
 
   return (
-    <video ref={videoRef} width={width} height={height} className={className} playsInline loop muted controls={false}>
+    <video
+      ref={videoRef}
+      width={width}
+      height={height}
+      className={className}
+      playsInline
+      loop
+      muted
+      controls={false}
+      aria-label={ariaLabel}
+    >
       {sources.map((source) => (
         <source key={source.src} src={source.src} type={source.type} />
       ))}

@@ -12,8 +12,8 @@ export default function HomePage() {
   return (
     <>
       <Head>
-        <title>Professional social media platform for YouTube | Kreatli</title>
-        <meta name="description" content="Kreatli" />
+        <title>Clipper Marketplace for YouTube Creators | Kreatli</title>
+        <meta name="description" content="Connect with skilled clippers on Kreatli. Post clipping campaigns or browse clipper services. The premier marketplace for video clip creation." />
       </Head>
       {isSignedIn ? <Feed /> : <Home />}
     </>
