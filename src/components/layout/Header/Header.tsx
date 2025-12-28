@@ -17,19 +17,19 @@ import {
   NavbarMenuItem,
   NavbarMenuToggle,
   useDisclosure,
-} from '@nextui-org/react';
-import NextLink from 'next/link';
-import { useRouter } from 'next/router';
-import React from 'react';
+} from "@nextui-org/react";
+import NextLink from "next/link";
+import { useRouter } from "next/router";
+import React from "react";
 
-import LogoIcon from '../../../assets/images/logo.svg';
-import { useLocalStorage } from '../../../hooks/useLocalStorage';
-import { useSession } from '../../../hooks/useSession';
-import { useSignUpCreatorModal } from '../../../hooks/useSignUpCreatorModal';
-import { Layout } from '../../../typings/layout';
-import { SignInModal } from '../../auth/SignInModal';
-import { Icon } from '../../various/Icon';
-import { HeaderNotificationsButtons } from './HeaderNotificationsButtons';
+import LogoIcon from "../../../assets/images/logo.svg";
+import { useLocalStorage } from "../../../hooks/useLocalStorage";
+import { useSession } from "../../../hooks/useSession";
+import { useSignUpCreatorModal } from "../../../hooks/useSignUpCreatorModal";
+import { Layout } from "../../../typings/layout";
+import { SignInModal } from "../../auth/SignInModal";
+import { Icon } from "../../various/Icon";
+import { HeaderNotificationsButtons } from "./HeaderNotificationsButtons";
 
 export const Header = () => {
   const router = useRouter();
@@ -37,36 +37,46 @@ export const Header = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { isSignedIn, currentUser, signOut } = useSession();
   const { open: openSignUpCreatorModal } = useSignUpCreatorModal();
-  const [theme, setTheme] = useLocalStorage<Layout.Theme>({ key: 'theme', defaultValue: 'light' });
+  const [theme, setTheme] = useLocalStorage<Layout.Theme>({
+    key: "theme",
+    defaultValue: "light",
+  });
 
   React.useEffect(() => {
     setIsNavbarOpen(false);
   }, [router.pathname]);
 
-  const navigationItems = [
+  type NavItem = {
+    label: string;
+    href: string;
+    key?: string;
+    as?: typeof NextLink;
+  };
+
+  const navigationItems: NavItem[] = [
     ...(isSignedIn
       ? [
           {
-            label: 'Feed',
-            href: '/',
+            label: "Feed",
+            href: "/",
           },
           {
-            label: 'Jobs',
-            href: '/jobs',
+            label: "Jobs",
+            href: "/jobs",
           },
           {
-            label: 'Professionals',
-            href: '/professionals',
+            label: "Professionals",
+            href: "/professionals",
           },
           {
-            label: 'Dashboard',
-            href: '/dashboard',
+            label: "Dashboard",
+            href: "/dashboard",
           },
-          ...(currentUser?.role === 'admin'
+          ...(currentUser?.role === "admin"
             ? [
                 {
-                  label: 'Admin panel',
-                  href: '/admin',
+                  label: "Admin panel",
+                  href: "/admin",
                 },
               ]
             : []),
@@ -74,32 +84,36 @@ export const Header = () => {
       : []),
   ];
 
-  const commonItems = [
+  const commonItems: NavItem[] = [
     {
       as: NextLink,
-      href: '/blog',
-      label: 'Blog',
-      key: 'blog',
+      href: "/blog",
+      label: "Blog",
+      key: "blog",
     },
     {
       as: NextLink,
-      href: '/faq',
-      label: 'FAQ',
-      key: 'faq',
+      href: "/faq",
+      label: "FAQ",
+      key: "faq",
     },
     {
       as: NextLink,
-      href: '/contact',
-      label: 'Contact',
-      key: 'contact',
+      href: "/contact",
+      label: "Contact",
+      key: "contact",
     },
   ];
+
+  const primaryNavigationItems = isSignedIn
+    ? [...navigationItems, ...commonItems]
+    : commonItems;
 
   const anonymousSections = [
     [
       {
-        label: 'Sign in',
-        key: 'signIn',
+        label: "Sign in",
+        key: "signIn",
       },
       ...commonItems,
     ],
@@ -110,48 +124,48 @@ export const Header = () => {
       {
         as: NextLink,
         href: `/profile/${currentUser?._id}`,
-        label: 'My profile',
-        key: 'myProfile',
+        label: "My profile",
+        key: "myProfile",
       },
       {
         as: NextLink,
-        href: '/dashboard',
-        label: 'Dashboard',
-        key: 'dashboard',
+        href: "/dashboard",
+        label: "Dashboard",
+        key: "dashboard",
       },
     ],
     [
       {
         as: NextLink,
         href: `/profile/${currentUser?._id}/jobs`,
-        label: 'My jobs',
-        key: 'myJobs',
+        label: "My jobs",
+        key: "myJobs",
       },
       {
         as: NextLink,
-        href: '/chat',
-        label: 'Messages',
-        key: 'messages',
+        href: "/chat",
+        label: "Messages",
+        key: "messages",
       },
       {
         as: NextLink,
         href: `/profile/${currentUser?._id}/connections`,
-        label: 'Connections',
-        key: 'connections',
+        label: "Connections",
+        key: "connections",
       },
     ],
     [
       {
-        label: 'Kreatli Premium',
-        key: 'kreatli-premium',
-        description: 'Coming soon',
+        label: "Kreatli Premium",
+        key: "kreatli-premium",
+        description: "Coming soon",
       },
       ...commonItems,
       {
-        label: 'Sign out',
-        key: 'signOut',
-        className: 'text-danger',
-        color: 'danger' as const,
+        label: "Sign out",
+        key: "signOut",
+        className: "text-danger",
+        color: "danger" as const,
       },
     ],
   ];
@@ -170,7 +184,7 @@ export const Header = () => {
   };
 
   const handleSignUpAction = (key: React.Key) => {
-    if (key === 'creator') {
+    if (key === "creator") {
       openSignUpCreatorModal();
 
       return;
@@ -180,7 +194,7 @@ export const Header = () => {
   };
 
   const toggleTheme = () => {
-    setTheme(theme === 'light' ? 'dark' : 'light');
+    setTheme(theme === "light" ? "dark" : "light");
   };
 
   return (
@@ -192,13 +206,18 @@ export const Header = () => {
       onMenuOpenChange={setIsNavbarOpen}
     >
       <NavbarContent>
-        {isSignedIn && <NavbarMenuToggle className="sm:hidden" aria-label="Toggle navigation" />}
+        {isSignedIn && (
+          <NavbarMenuToggle
+            className="sm:hidden"
+            aria-label="Toggle navigation"
+          />
+        )}
         <NavbarItem>
           <NavbarBrand>
             <NextLink href="/" aria-label="Kreatli">
               <LogoIcon viewBox="0 0 90 22" />
             </NextLink>
-            {currentUser?.role === 'admin' && (
+            {currentUser?.role === "admin" && (
               <Badge content="admin" size="sm" color="secondary" variant="flat">
                 <div className="opacity-0">__</div>
               </Badge>
@@ -206,10 +225,13 @@ export const Header = () => {
           </NavbarBrand>
         </NavbarItem>
       </NavbarContent>
-      {navigationItems.length > 0 && (
+      {primaryNavigationItems.length > 0 && (
         <NavbarContent justify="center" className="hidden sm:flex">
-          {navigationItems.map(({ label, ...rest }) => (
-            <NavbarItem key={label} isActive={router.pathname === rest.href}>
+          {primaryNavigationItems.map(({ label, key, ...rest }) => (
+            <NavbarItem
+              key={key ?? label}
+              isActive={router.pathname === rest.href}
+            >
               <Link as={NextLink} color="foreground" {...rest}>
                 {label}
               </Link>
@@ -240,7 +262,12 @@ export const Header = () => {
                   Sign up
                 </Button>
               </DropdownTrigger>
-              <DropdownMenu aria-label="Sign up" variant="flat" color="secondary" onAction={handleSignUpAction}>
+              <DropdownMenu
+                aria-label="Sign up"
+                variant="flat"
+                color="secondary"
+                onAction={handleSignUpAction}
+              >
                 <DropdownItem key="creator">As YouTube Creator</DropdownItem>
                 <DropdownItem key="professional">As Professional</DropdownItem>
               </DropdownMenu>
@@ -261,12 +288,15 @@ export const Header = () => {
             </DropdownTrigger>
             <DropdownMenu
               aria-label="User menu"
-              disabledKeys={['kreatli-premium']}
+              disabledKeys={["kreatli-premium"]}
               variant="flat"
               onAction={handleUserMenuAction}
             >
               {userWidgetSections.map((section, index) => (
-                <DropdownSection key={index} showDivider={userWidgetSections.length - 1 !== index}>
+                <DropdownSection
+                  key={index}
+                  showDivider={userWidgetSections.length - 1 !== index}
+                >
                   {section.map(({ label, ...rest }) => (
                     <DropdownItem {...rest}>{label}</DropdownItem>
                   ))}
@@ -277,9 +307,15 @@ export const Header = () => {
         </NavbarItem>
       </NavbarContent>
       <NavbarMenu className="pt-4">
-        {navigationItems.map(({ label, ...rest }) => (
-          <NavbarMenuItem key={label}>
-            <Link as={NextLink} color="foreground" {...rest} className="w-full" size="lg">
+        {primaryNavigationItems.map(({ label, key, ...rest }) => (
+          <NavbarMenuItem key={key ?? label}>
+            <Link
+              as={NextLink}
+              color="foreground"
+              {...rest}
+              className="w-full"
+              size="lg"
+            >
               {label}
             </Link>
           </NavbarMenuItem>
