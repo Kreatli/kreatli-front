@@ -1,5 +1,5 @@
-import { Button } from "@nextui-org/react";
-import React from "react";
+import { Button } from '@nextui-org/react';
+import React from 'react';
 
 interface TableOfContentsItem {
   id: string;
@@ -14,9 +14,9 @@ interface TableOfContentsProps {
 
 export const TableOfContents: React.FC<TableOfContentsProps> = ({
   items,
-  className = "",
+  className = '',
 }) => {
-  const [activeId, setActiveId] = React.useState<string>("");
+  const [activeId, setActiveId] = React.useState<string>('');
 
   React.useEffect(() => {
     const handleScroll = () => {
@@ -31,10 +31,10 @@ export const TableOfContents: React.FC<TableOfContentsProps> = ({
       }
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener('scroll', handleScroll);
     handleScroll();
 
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, [items]);
 
   const scrollToSection = (id: string) => {
@@ -46,7 +46,7 @@ export const TableOfContents: React.FC<TableOfContentsProps> = ({
 
       window.scrollTo({
         top: offsetPosition,
-        behavior: "smooth",
+        behavior: 'smooth',
       });
     }
   };
@@ -68,7 +68,7 @@ export const TableOfContents: React.FC<TableOfContentsProps> = ({
           {items.map((item) => {
             const isActive = activeId === item.id;
             const level = item.level || 1;
-            const paddingLeft = level > 1 ? `${(level - 1) * 12}px` : "0";
+            const paddingLeft = level > 1 ? `${(level - 1) * 12}px` : '0';
 
             return (
               <li key={item.id} style={{ paddingLeft }}>
@@ -77,8 +77,8 @@ export const TableOfContents: React.FC<TableOfContentsProps> = ({
                   onClick={() => scrollToSection(item.id)}
                   className={`text-sm transition-colors justify-start h-auto p-0 min-w-0 ${
                     isActive
-                      ? "text-secondary font-semibold"
-                      : "text-foreground-500 hover:text-foreground"
+                      ? 'text-secondary font-semibold'
+                      : 'text-foreground-500 hover:text-foreground'
                   }`}
                 >
                   {item.title}
