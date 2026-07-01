@@ -1,7 +1,7 @@
-import { Link } from "@nextui-org/react";
-import Head from "next/head";
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import React from "react";
+import { Link } from '@nextui-org/react';
+import Head from 'next/head';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import React from 'react';
 
 export default function HomePage() {
   return (
@@ -22,7 +22,7 @@ export default function HomePage() {
           protects You.
         </p>
         <p className="text-foreground-500 mb-2">
-          We use your Personal data to provide and improve the Service. By using
+          We use Your Personal Data to provide and improve the Service. By using
           the Service, You agree to the collection and use of information in
           accordance with this Privacy Policy.
         </p>
@@ -92,7 +92,7 @@ export default function HomePage() {
           <li>
             <span className="font-semibold">
               Third-party Social Media Service
-            </span>{" "}
+            </span>{' '}
             refers to any website or any social network website through which a
             User can log in or create an account to use the Service.
           </li>
@@ -104,7 +104,7 @@ export default function HomePage() {
           </li>
           <li>
             <span className="font-semibold">Website</span> refers to Kreatli,
-            accessible from{" "}
+            accessible from{' '}
             <Link
               href="https://kreatli.com/"
               rel="external nofollow noopener noreferrer"
@@ -196,14 +196,14 @@ export default function HomePage() {
           Cookies can be &quot;Persistent&quot; or &quot;Session&quot; Cookies.
           Persistent Cookies remain on Your personal computer or mobile device
           when You go offline, while Session Cookies are deleted as soon as You
-          close Your web browser. You can learn more about cookies on{" "}
+          close Your web browser. You can learn more about cookies on{' '}
           <Link
             href="https://www.termsfeed.com/blog/cookies/#What_Are_Cookies"
             target="_blank"
             rel="noreferrer"
           >
             TermsFeed website
-          </Link>{" "}
+          </Link>{' '}
           article.
         </p>
         <p className="text-foreground-500 mb-2">
@@ -276,7 +276,7 @@ export default function HomePage() {
           <li>
             <span className="font-semibold">
               For the performance of a contract:
-            </span>{" "}
+            </span>{' '}
             the development, compliance and undertaking of the purchase contract
             for the products, items or services You have purchased or of any
             other contract with Us through the Service.
@@ -527,7 +527,7 @@ export default function HomePage() {
         </h2>
         <p className="text-foreground-500 mb-2">
           Kreatli&apos;s use and transfer to any other app of information
-          received from Google Accounts will adhere to{" "}
+          received from Google Accounts will adhere to{' '}
           <Link
             href="https://developers.google.com/terms/api-services-user-data-policy#additional_requirements_for_specific_api_scopes"
             target="_blank"
@@ -553,7 +553,7 @@ export default function HomePage() {
 export async function getStaticProps({ locale }: { locale: string }) {
   return {
     props: {
-      ...(await serverSideTranslations(locale, ["common", "signIn", "signUp"])),
+      ...(await serverSideTranslations(locale, ['common', 'signIn', 'signUp'])),
     },
   };
 }
