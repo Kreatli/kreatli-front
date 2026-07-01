@@ -11,6 +11,7 @@ import {
   SEO_PAGE_TYPES,
   SEO_SECTION_PATHS,
 } from '../../../content/seo/utils';
+import { useSession } from '../../../hooks/useSession';
 
 const miscLinks = [
   { href: '/blog', label: 'Blog' },
@@ -30,92 +31,100 @@ const seoSections = SEO_PAGE_TYPES.map((type) => ({
   pages: getPublishedPagesByType(type),
 }));
 
-export const Footer = () => (
-  <footer className="shadow-medium border-t border-default-100 mt-auto">
-    <div className="max-w-screen-xl mx-auto px-6 py-10 flex flex-col gap-8">
-      <div className="flex flex-col gap-8 lg:flex-row lg:justify-between">
-        <NextLink href="/" aria-label={BRAND_NAME} className="shrink-0">
-          <LogoIcon className="block h-[22px] w-[90px]" viewBox="0 0 90 22" />
-        </NextLink>
+export const Footer = () => {
+  const { isSignedIn } = useSession();
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 flex-1 lg:max-w-4xl">
-          {seoSections.map(({ type, label, href, pages }) => (
-            <div key={type}>
+  if (isSignedIn) {
+    return null;
+  }
+
+  return (
+    <footer className="shadow-medium border-t border-default-100 mt-auto">
+      <div className="max-w-screen-xl mx-auto px-6 py-10 flex flex-col gap-8">
+        <div className="flex flex-col gap-8 lg:flex-row lg:justify-between">
+          <NextLink href="/" aria-label={BRAND_NAME} className="shrink-0">
+            <LogoIcon viewBox="0 0 90 22" />
+          </NextLink>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 flex-1 lg:max-w-4xl">
+            {seoSections.map(({ type, label, href, pages }) => (
+              <div key={type}>
+                <Link
+                  as={NextLink}
+                  href={href}
+                  size="sm"
+                  className="text-foreground-700 font-semibold mb-2 inline-block"
+                  underline="hover"
+                >
+                  {label}
+                </Link>
+                {pages.length > 0 ? (
+                  <ul className="flex flex-col gap-1">
+                    {pages.map((page) => (
+                      <li key={page.slug}>
+                        <Link
+                          as={NextLink}
+                          href={getPageUrl(page.type, page.slug)}
+                          size="sm"
+                          className="text-foreground-500"
+                          underline="hover"
+                        >
+                          {page.title}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <p className="text-sm text-foreground-400">Coming soon</p>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pt-4 border-t border-default-100">
+          <div className="flex flex-wrap gap-x-4 gap-y-1">
+            {miscLinks.map(({ href, label }) => (
               <Link
+                key={href}
                 as={NextLink}
                 href={href}
                 size="sm"
-                className="text-foreground-700 font-semibold mb-2 inline-block"
+                className="text-foreground-500"
                 underline="hover"
               >
                 {label}
               </Link>
-              {pages.length > 0 ? (
-                <ul className="flex flex-col gap-1">
-                  {pages.map((page) => (
-                    <li key={page.slug}>
-                      <Link
-                        as={NextLink}
-                        href={getPageUrl(page.type, page.slug)}
-                        size="sm"
-                        className="text-foreground-500"
-                        underline="hover"
-                      >
-                        {page.title}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              ) : (
-                <p className="text-sm text-foreground-400">Coming soon</p>
-              )}
-            </div>
-          ))}
-        </div>
-      </div>
-
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pt-4 border-t border-default-100">
-        <div className="flex flex-wrap gap-x-4 gap-y-1">
-          {miscLinks.map(({ href, label }) => (
+            ))}
+          </div>
+          <div className="flex flex-wrap gap-x-4 gap-y-1">
+            {legalLinks.map(({ href, label }) => (
+              <Link
+                key={href}
+                as={NextLink}
+                href={href}
+                size="sm"
+                className="text-foreground-500"
+                underline="hover"
+              >
+                {label}
+              </Link>
+            ))}
             <Link
-              key={href}
-              as={NextLink}
-              href={href}
+              href="mailto:support@kreatli.com"
               size="sm"
               className="text-foreground-500"
               underline="hover"
             >
-              {label}
+              support@kreatli.com
             </Link>
-          ))}
+          </div>
         </div>
-        <div className="flex flex-wrap gap-x-4 gap-y-1">
-          {legalLinks.map(({ href, label }) => (
-            <Link
-              key={href}
-              as={NextLink}
-              href={href}
-              size="sm"
-              className="text-foreground-500"
-              underline="hover"
-            >
-              {label}
-            </Link>
-          ))}
-          <Link
-            href="mailto:support@kreatli.com"
-            size="sm"
-            className="text-foreground-500"
-            underline="hover"
-          >
-            support@kreatli.com
-          </Link>
-        </div>
-      </div>
 
-      <span className="text-sm text-foreground-500">
-        © {BRAND_NAME} 2026. All rights reserved.
-      </span>
-    </div>
-  </footer>
-);
+        <span className="text-sm text-foreground-500">
+          © {BRAND_NAME} 2026. All rights reserved.
+        </span>
+      </div>
+    </footer>
+  );
+};
