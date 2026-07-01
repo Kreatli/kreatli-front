@@ -10,7 +10,7 @@ const BuildingClipperPortfolio = () => {
   return (
     <>
       <Head>
-        <title>Building Your Clipper Portfolio: Showcase Your Best Work | Kreatli Blog</title>
+        <title>Building Your Clipper Portfolio: Showcase Your Best Work | Kreatli Marketplace Blog</title>
         <meta
           name="description"
           content="Learn how to create a standout portfolio that attracts creators. Tips on selecting clips, writing descriptions, and positioning yourself in the marketplace."
@@ -36,9 +36,9 @@ const BuildingClipperPortfolio = () => {
 
         <div className="prose prose-lg max-w-none text-foreground-700">
           <p className="text-xl text-foreground-600 mb-6">
-            Your portfolio is your storefront on Kreatli. A well-crafted portfolio showcases your skills, attracts the
-            right creators, and helps you stand out in a competitive marketplace. Here&apos;s how to build one that
-            works.
+            Your portfolio is your storefront on Kreatli Marketplace. A well-crafted portfolio showcases your skills,
+            attracts the right creators, and helps you stand out in a competitive marketplace. Here&apos;s how to
+            build one that works.
           </p>
 
           <h2 className="text-3xl font-semibold mt-8 mb-4">1. Quality Over Quantity</h2>
@@ -107,16 +107,16 @@ const BuildingClipperPortfolio = () => {
 
           <h2 className="text-3xl font-semibold mt-8 mb-4">10. Make It Easy to Contact You</h2>
           <p className="mb-4">
-            Ensure your portfolio clearly shows how creators can reach you. On Kreatli, your profile should be complete
-            with contact information and availability. Make it as easy as possible for interested creators to start a
-            conversation about potential projects.
+            Ensure your portfolio clearly shows how creators can reach you. On Kreatli Marketplace, your profile
+            should be complete with contact information and availability. Make it as easy as possible for interested
+            creators to start a conversation about potential projects.
           </p>
 
           <div className="mt-12 p-6 bg-secondary-50 dark:bg-secondary-900/20 rounded-lg">
             <p className="text-lg font-semibold mb-2">Ready to build your portfolio?</p>
             <p className="mb-4">
-              Start showcasing your best work on Kreatli. A strong portfolio is your ticket to connecting with creators
-              who value quality clipping services.
+              Start showcasing your best work on Kreatli Marketplace. A strong portfolio is your ticket to connecting
+              with creators who value quality clipping services.
             </p>
             <Link as={NextLink} href="/signup/professional" color="secondary" underline="hover">
               Create Your Profile →

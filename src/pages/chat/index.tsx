@@ -10,8 +10,8 @@ const Chat = () => {
   return (
     <>
       <Head>
-        <title>Messages | Kreatli</title>
-        <meta name="description" content="Kreatli" />
+        <title>Messages | Kreatli Marketplace</title>
+        <meta name="description" content="Kreatli Marketplace" />
       </Head>
       <Card className="flex-1">
         <CardBody className="p-5">

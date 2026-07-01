@@ -24,7 +24,7 @@ const EARNING_POINTS_ACTIVITIES = [
   },
   {
     title: 'Platform Activities',
-    text: 'Involve essential interactions within Kreatli, such as profile verification, daily visits, and tier progression. Users can earn points to enhance their profiles, get rewards, and climb tiers for exclusive benefits',
+    text: 'Involve essential interactions within Kreatli Marketplace, such as profile verification, daily visits, and tier progression. Users can earn points to enhance their profiles, get rewards, and climb tiers for exclusive benefits',
     icon: 'taskGrow' as const,
     color: 'success',
   },
@@ -37,7 +37,7 @@ export const EarningPoints = () => {
         <h3 className="text-medium font-semibold mb-4">Earning Points</h3>
         <p className="text-sm text-default-500">Users can earn a maximum of 200 points daily.</p>
         <Divider className="my-4" />
-        <p className="text-sm font-semibold text-default-500">Users can earn points by completing activities on Kreatli:</p>
+        <p className="text-sm font-semibold text-default-500">Users can earn points by completing activities on Kreatli Marketplace:</p>
         <div className="flex flex-col gap-2 mt-2">
           {EARNING_POINTS_ACTIVITIES.map(({ title, text, icon, color }) => (
             <div key={title} className="flex gap-3">

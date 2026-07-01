@@ -60,8 +60,8 @@ const AccountActivation = () => {
   return (
     <>
       <Head>
-        <title>Activate your account | Kreatli</title>
-        <meta name="description" content="Kreatli" />
+        <title>Activate your account | Kreatli Marketplace</title>
+        <meta name="description" content="Kreatli Marketplace" />
       </Head>
       <div className="container max-w-screen-xl mx-auto px-6 text-center">
         <Spinner size="lg" color="secondary" />

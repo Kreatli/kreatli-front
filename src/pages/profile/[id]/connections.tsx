@@ -18,13 +18,13 @@ const ConnectionsPage = () => {
     return null;
   }
 
-  const pageTitle = `Connections | ${user?.name ?? ''} | Kreatli`;
+  const pageTitle = `Connections | ${user?.name ?? ''} | Kreatli Marketplace`;
 
   return (
     <>
       <Head>
         <title>{pageTitle}</title>
-        <meta name="description" content="Kreatli" />
+        <meta name="description" content="Kreatli Marketplace" />
       </Head>
       <Connections userId={userId} />
     </>

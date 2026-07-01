@@ -10,9 +10,9 @@ interface Props {
 
 export const HirePageCta = ({ page }: Props) => (
   <div className="mt-12 p-8 bg-secondary-50 dark:bg-secondary-900/20 rounded-lg text-center">
-    <h2 className="text-2xl font-semibold mb-3">Find the right editor on Kreatli</h2>
+    <h2 className="text-2xl font-semibold mb-3">Find the right editor on Kreatli Marketplace</h2>
     <p className="text-foreground-600 mb-6 max-w-xl mx-auto">
-      Post a job describing your niche, clip style, and turnaround needs. Kreatli connects you with editors
+      Post a job describing your niche, clip style, and turnaround needs. Kreatli Marketplace connects you with editors
       who specialize in short-form content — no Discord hunting required.
     </p>
     <div className="flex flex-col sm:flex-row gap-3 justify-center">

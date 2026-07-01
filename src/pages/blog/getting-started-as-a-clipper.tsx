@@ -10,10 +10,10 @@ const GettingStartedAsClipper = () => {
   return (
     <>
       <Head>
-        <title>Getting Started as a Clipper: Your Complete Guide | Kreatli Blog</title>
+        <title>Getting Started as a Clipper: Your Complete Guide | Kreatli Marketplace Blog</title>
         <meta
           name="description"
-          content="Learn the fundamentals of becoming a successful clipper on Kreatli. From setting up your profile to landing your first clipping project."
+          content="Learn the fundamentals of becoming a successful clipper on Kreatli Marketplace. From setting up your profile to landing your first clipping project."
         />
       </Head>
       <article className="container max-w-screen-md mx-auto px-6 py-12">
@@ -36,8 +36,8 @@ const GettingStartedAsClipper = () => {
 
         <div className="prose prose-lg max-w-none text-foreground-700">
           <p className="text-xl text-foreground-600 mb-6">
-            Welcome to Kreatli! If you&apos;re new to the clipping marketplace, this guide will help you get started on
-            your journey as a professional clipper.
+            Welcome to Kreatli Marketplace! If you&apos;re new to clipping, this guide will help you get started
+            on your journey as a professional clipper.
           </p>
 
           <h2 className="text-3xl font-semibold mt-8 mb-4">1. Create Your Profile</h2>
@@ -56,10 +56,10 @@ const GettingStartedAsClipper = () => {
 
           <h2 className="text-3xl font-semibold mt-8 mb-4">3. Understand the Marketplace</h2>
           <p className="mb-4">
-            Kreatli offers two ways to find work: applying to clipping campaigns posted by creators, or proactively
-            offering your services through service listings. Both approaches have their advantages—campaigns let you
-            respond to specific needs, while service listings allow you to showcase your expertise and attract creators
-            looking for ongoing partnerships.
+            Kreatli Marketplace offers two ways to find work: applying to campaigns posted by creators, or
+            proactively offering your services through service listings. Both approaches have their advantages—
+            campaigns let you respond to specific needs, while service listings allow you to showcase your expertise
+            and attract creators looking for ongoing partnerships.
           </p>
 
           <h2 className="text-3xl font-semibold mt-8 mb-4">4. Set Your Rates</h2>
@@ -85,17 +85,18 @@ const GettingStartedAsClipper = () => {
 
           <h2 className="text-3xl font-semibold mt-8 mb-4">7. Build Your Reputation</h2>
           <p className="mb-4">
-            Every successful project helps build your reputation on Kreatli. Focus on delivering consistent quality,
-            meeting deadlines, and maintaining professional relationships. As your reputation grows, so will your
+            Every successful project helps build your reputation on Kreatli Marketplace. Focus on delivering
+            consistent quality, meeting deadlines, and maintaining professional relationships. As your reputation grows,
+            so will your
             opportunities in the marketplace.
           </p>
 
           <div className="mt-12 p-6 bg-secondary-50 dark:bg-secondary-900/20 rounded-lg">
             <p className="text-lg font-semibold mb-2">Ready to start?</p>
             <p className="mb-4">
-              Join Kreatli today and start connecting with creators who need your clipping expertise. Whether
-              you&apos;re just starting out or looking to expand your client base, the marketplace offers opportunities
-              for clippers at every level.
+              Join Kreatli Marketplace today and start connecting with creators who need your clipping expertise.
+              Whether you&apos;re just starting out or looking to expand your client base, the marketplace offers
+              opportunities for clippers at every level.
             </p>
             <Link as={NextLink} href="/signup/professional" color="secondary" underline="hover">
               Sign up as a Clipper →

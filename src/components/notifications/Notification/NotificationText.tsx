@@ -56,7 +56,11 @@ export const NotificationText = ({ notification }: Props) => {
 
   if (type === NOTIFICATION_TYPE.POINTS_PURCHASE) {
     return (
-      <>Your points purchase was a success. Check your updated balance now and discover the possibilities on Kreatli.</>
+      <>
+        Your points purchase was a success. Check your updated balance now and discover the possibilities on
+        {' '}
+        Kreatli Marketplace.
+      </>
     );
   }
 
@@ -92,7 +96,7 @@ export const NotificationText = ({ notification }: Props) => {
     return (
       <>
         Your profile has been successfully verified and now is active. Explore the platform, showcase your skills, and
-        connect with others in the Kreatli community.
+        connect with others in the Kreatli Marketplace community.
       </>
     );
   }

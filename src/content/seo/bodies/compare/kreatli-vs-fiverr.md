@@ -1,12 +1,12 @@
-# Kreatli vs. Fiverr for Hiring a Video Editor
+# Kreatli Marketplace vs. Fiverr for Hiring a Video Editor
 
 Fiverr is one of the first places creators search when they need a video editor. It is broad, fast to browse, and packed with gigs. But for **short-form clipping work** — turning podcasts, streams, and long videos into TikToks, Reels, and Shorts — the experience often breaks down.
 
-This page compares **Kreatli vs. Fiverr** so you can decide which platform fits your clipping workflow.
+This page compares **Kreatli Marketplace vs. Fiverr** so you can decide which platform fits your clipping workflow.
 
 ## Quick comparison
 
-| Factor | Kreatli | Fiverr |
+| Factor | Kreatli Marketplace | Fiverr |
 | --- | --- | --- |
 | Focus | Clipping-first marketplace | General freelance gigs |
 | Buyer experience | Post jobs, review clipper profiles | Browse pre-packaged gigs |
@@ -31,9 +31,9 @@ Clipping is different from buying a one-time gig:
 
 For creators hiring clip editors repeatedly, the gig model starts to feel like patching together a team one transaction at a time.
 
-## How Kreatli is different
+## How Kreatli Marketplace is different
 
-Kreatli is built specifically for the **creator ↔ clipper** relationship:
+Kreatli Marketplace is built specifically for the **creator ↔ clipper** relationship:
 
 1. **Post clipping jobs** describing your niche, style, and turnaround — not just "I need an edit."
 2. **Review clipper profiles** focused on short-form work instead of generic "video editing" gigs.
@@ -44,8 +44,8 @@ Kreatli is built specifically for the **creator ↔ clipper** relationship:
 
 **Choose Fiverr** if you need a single, low-commitment edit and want to browse fixed-price packages today.
 
-**Choose Kreatli** if you are a creator building a Shorts/Reels pipeline and want a clipper who understands hooks, retention, and your content niche.
+**Choose Kreatli Marketplace** if you are a creator building a Shorts/Reels pipeline and want a clipper who understands hooks, retention, and your content niche.
 
 ## Verdict
 
-Fiverr is a generalist marketplace. Kreatli is a **clipping specialist marketplace**. If your goal is consistent short-form output from long-form content, Kreatli is the better long-term fit.
+Fiverr is a generalist marketplace. Kreatli Marketplace is a **clipping specialist marketplace**. If your goal is consistent short-form output from long-form content, Kreatli Marketplace is the better long-term fit.

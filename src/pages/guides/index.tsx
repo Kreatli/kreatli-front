@@ -15,8 +15,8 @@ const GuidesIndexPage = ({ pages }: Props) => (
   <>
     <SeoIndexHead
       section="guide"
-      title="Guides | Kreatli"
-      description="How-to guides for hiring video editors and building a clipping career on Kreatli."
+      title="Guides | Kreatli Marketplace"
+      description="How-to guides for hiring video editors and building a clipping career on Kreatli Marketplace."
     />
     <SeoSectionIndex
       type="guide"

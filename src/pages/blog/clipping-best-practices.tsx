@@ -10,7 +10,7 @@ const ClippingBestPractices = () => {
   return (
     <>
       <Head>
-        <title>Clipping Best Practices: Creating Engaging Short-Form Content | Kreatli Blog</title>
+        <title>Clipping Best Practices: Creating Engaging Short-Form Content | Kreatli Marketplace Blog</title>
         <meta
           name="description"
           content="Master the art of creating compelling video clips. Explore techniques for identifying key moments and optimizing clips for maximum engagement."
@@ -114,8 +114,8 @@ const ClippingBestPractices = () => {
           <div className="mt-12 p-6 bg-secondary-50 dark:bg-secondary-900/20 rounded-lg">
             <p className="text-lg font-semibold mb-2">Ready to create better clips?</p>
             <p className="mb-4">
-              Whether you&apos;re a creator looking to clip your own content or a clipper refining your craft, Kreatli
-              connects you with the tools and community to create engaging short-form content.
+              Whether you&apos;re a creator looking to clip your own content or a clipper refining your craft,
+              Kreatli Marketplace connects you with the tools and community to create engaging short-form content.
             </p>
             <Link as={NextLink} href="/blog" color="secondary" underline="hover">
               Explore More Resources →

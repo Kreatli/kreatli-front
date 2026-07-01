@@ -1,6 +1,6 @@
-# Kreatli vs. Whop Clips (Content Rewards)
+# Kreatli Marketplace vs. Whop Clips (Content Rewards)
 
-**Whop Clips** and similar **content rewards** programs pay clippers based on views, CPM, or campaign performance. **Kreatli** pays editors for the **editing work itself** — fixed project or job-based compensation.
+**Whop Clips** and similar **content rewards** programs pay clippers based on views, CPM, or campaign performance. **Kreatli Marketplace** pays editors for the **editing work itself** — fixed project or job-based compensation.
 
 They are not direct substitutes. They are two different ways money flows in the clipping economy.
 
@@ -13,7 +13,7 @@ They are not direct substitutes. They are two different ways money flows in the 
 - Income is **variable** — a clip can flop or go viral
 - Risk sits heavily on the **clipper**
 
-### Kreatli marketplace
+### Kreatli Marketplace marketplace
 
 - Creator posts a **job** with defined deliverables
 - Clipper is hired to **produce edits** for agreed pay
@@ -22,7 +22,7 @@ They are not direct substitutes. They are two different ways money flows in the 
 
 ## Quick comparison
 
-| Factor | Kreatli (hire an editor) | Whop Clips (content rewards) |
+| Factor | Kreatli Marketplace (hire an editor) | Whop Clips (content rewards) |
 | --- | --- | --- |
 | Payment basis | Fixed price / per project | Views / CPM / campaign rules |
 | Income predictability | High for completed work | Low — performance-dependent |
@@ -40,9 +40,9 @@ Content rewards programs can work when:
 
 Think affiliate-style clipping at volume.
 
-## When hiring on Kreatli makes sense
+## When hiring on Kreatli Marketplace makes sense
 
-Hire on Kreatli when:
+Hire on Kreatli Marketplace when:
 
 - You need a **consistent editor** who learns your style
 - You want clips delivered to **your channels**, not scattered across random poster accounts
@@ -51,8 +51,8 @@ Hire on Kreatli when:
 
 ## Can you use both?
 
-Yes. Some creators run content rewards for reach while hiring a core editor on Kreatli for owned-channel clips. The models solve different problems.
+Yes. Some creators run content rewards for reach while hiring a core editor on Kreatli Marketplace for owned-channel clips. The models solve different problems.
 
 ## Verdict
 
-Whop Clips pays for **performance**. Kreatli pays for **editing**. If you are a creator who needs dependable short-form output, hiring an editor beats hoping a reward pool attracts the right talent. If you are a clipper who wants predictable freelance income, project pay beats CPM volatility.
+Whop Clips pays for **performance**. Kreatli Marketplace pays for **editing**. If you are a creator who needs dependable short-form output, hiring an editor beats hoping a reward pool attracts the right talent. If you are a clipper who wants predictable freelance income, project pay beats CPM volatility.

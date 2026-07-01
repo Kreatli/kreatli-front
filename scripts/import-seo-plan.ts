@@ -10,6 +10,8 @@ import path from 'path';
 
 import * as XLSX from 'xlsx';
 
+const BRAND_NAME = 'Kreatli Marketplace';
+
 const TYPE_MAP: Record<string, string> = {
   Compare: 'compare',
   Glossary: 'glossary',
@@ -66,7 +68,7 @@ const pages = rows
       funnelSide: FUNNEL_MAP[String(row['Funnel Side'] ?? '')] ?? 'both',
       slug,
       title,
-      metaDescription: `${title}. Learn how Kreatli helps creators and clippers in the video editing marketplace.`,
+      metaDescription: `${title}. Learn how ${BRAND_NAME} helps creators and clippers in the video editing marketplace.`,
       primaryKeyword: String(row['Primary Target Keyword'] ?? ''),
       searchIntent: INTENT_MAP[String(row['Search Intent'] ?? '')] ?? 'informational',
       wave,

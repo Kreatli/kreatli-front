@@ -22,8 +22,8 @@ const JobsCreate = () => {
   return (
     <>
       <Head>
-        <title>Create a job posting | Kreatli</title>
-        <meta name="description" content="Kreatli" />
+        <title>Create a job posting | Kreatli Marketplace</title>
+        <meta name="description" content="Kreatli Marketplace" />
       </Head>
       <div className="container max-w-screen-lg mx-auto px-6">
         <JobsCreation />

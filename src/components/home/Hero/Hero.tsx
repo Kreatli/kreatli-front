@@ -32,14 +32,14 @@ export const Hero = () => {
             </h1>
             <p className="text-lg text-foreground-500 sm:w-11/12">
               {/* eslint-disable-next-line max-len */}
-              Kreatli connects creators with skilled clippers. Post clipping campaigns or browse clipper services. Find the perfect match for your video clip creation needs in a vibrant community built for quality and growth.
+              Kreatli Marketplace connects creators with skilled clippers. Post clipping campaigns or browse clipper services. Find the perfect match for your video clip creation needs in a vibrant community built for quality and growth.
             </p>
             <div className="flex gap-4">
               <Dropdown>
                 <DropdownTrigger>
                   <Button color="secondary" radius="full" className="group pr-8" size="lg">
                     <Icon icon="logo" size={20} />
-                    Join Kreatli
+                    Join Kreatli Marketplace
                   </Button>
                 </DropdownTrigger>
                 <DropdownMenu aria-label="Sign up" variant="flat" color="secondary" onAction={handleSignUpAction}>
@@ -69,7 +69,7 @@ export const Hero = () => {
                   { src: 'https://kreatli-marketplace-landing.s3.eu-central-1.amazonaws.com/job-offers.mp4', type: 'video/mp4' },
                 ]}
                 className="scale-110 w-full aspect-[4/3]"
-                aria-label="Demo showing clipping campaigns and clipper service listings on Kreatli marketplace"
+                aria-label="Demo showing clipping campaigns and clipper service listings on Kreatli Marketplace marketplace"
               />
             </DesktopFrame>
             <div className="absolute -bottom-16 right-0 hidden lg:block">

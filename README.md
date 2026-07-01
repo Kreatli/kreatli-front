@@ -1,4 +1,4 @@
-# Kreatli - Frontend
+# Kreatli Marketplace - Frontend
 
 ## Getting Started
 

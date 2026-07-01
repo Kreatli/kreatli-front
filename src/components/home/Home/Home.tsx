@@ -44,7 +44,7 @@ export const Home = () => {
           Why us
         </Chip>
         <h2 className="text-4xl font-semibold leading-tight max-w-lg mx-auto mb-8 sm:mb-16">
-          Why should <TextLinear>Creators</TextLinear> choose Kreatli for clipping?
+          Why should <TextLinear>Creators</TextLinear> choose Kreatli Marketplace for clipping?
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-x-20 gap-y-12">
           {creatorFeatures.map((feature) => (
@@ -57,7 +57,7 @@ export const Home = () => {
           Features
         </Chip>
         <h2 className="text-4xl font-semibold leading-tight max-w-lg mx-auto">
-          <TextLinear>Glimpse into Kreatli</TextLinear> — a unified platform
+          <TextLinear>Glimpse into Kreatli Marketplace</TextLinear> — a unified platform
         </h2>
       </section>
       <section className="grid grid-cols-1 sm:grid-cols-2 gap-x-20 gap-y-8 items-center container max-w-screen-xl mx-auto px-6 mb-20 sm:mb-40">
@@ -70,7 +70,7 @@ export const Home = () => {
             <TextLinear>Browse Services</TextLinear>
           </h2>
           <p className="text-lg text-foreground-500 max-w-[480px]">
-            Post clipping campaigns and let clippers apply, or browse clipper service listings. Kreatli&apos;s dual marketplace model gives you flexibility—find the perfect clipper whether you need a specific project or ongoing services.
+            Post clipping campaigns and let clippers apply, or browse clipper service listings. Kreatli Marketplace&apos;s dual marketplace model gives you flexibility—find the perfect clipper whether you need a specific project or ongoing services.
           </p>
         </div>
         <DesktopFrame>
@@ -92,19 +92,19 @@ export const Home = () => {
               { src: 'https://kreatli-marketplace-landing.s3.eu-central-1.amazonaws.com/feed.mp4', type: 'video/mp4' },
             ]}
             className="w-full aspect-[4/3]"
-            aria-label="Demo showing the Kreatli feed with clipping trends, successful clips, and community updates"
+            aria-label="Demo showing the Kreatli Marketplace feed with clipping trends, successful clips, and community updates"
           />
         </DesktopFrame>
         <div className="-order-1 sm:order-1 flex flex-col gap-4 max-w-[480px] sm:ml-auto">
           <Chip variant="flat" color="secondary" classNames={{ content: 'font-semibold' }}>
-            Kreatli feed
+            Kreatli Marketplace feed
           </Chip>
           <h2 className="text-4xl font-semibold leading-tight">
             Fuel Your <br />
             <TextLinear>Creativity</TextLinear>
           </h2>
           <p className="text-lg text-foreground-500">
-            Immerse yourself in our vibrant clipping community. The Kreatli Feed keeps you in the loop on the latest clip trends, successful collaborations, and clipping opportunities. Stay inspired and informed about the buzzing activities within Kreatli.
+            Immerse yourself in our vibrant clipping community. The Kreatli Marketplace Feed keeps you in the loop on the latest clip trends, successful collaborations, and clipping opportunities. Stay inspired and informed about the buzzing activities within Kreatli Marketplace.
           </p>
         </div>
       </section>
@@ -118,7 +118,7 @@ export const Home = () => {
             <TextLinear>Progress</TextLinear>
           </h2>
           <p className="text-lg text-foreground-500 max-w-[480px]">
-            Track your growth and achievements in the clipping marketplace. The Kreatli Tier System rewards quality work, active participation, and successful collaborations. Level up to unlock exclusive benefits and gain recognition in the clipper community.
+            Track your growth and achievements in the clipping marketplace. The Kreatli Marketplace Tier System rewards quality work, active participation, and successful collaborations. Level up to unlock exclusive benefits and gain recognition in the clipper community.
           </p>
         </div>
         <DesktopFrame>
@@ -216,7 +216,7 @@ export const Home = () => {
           </Chip>
           <h2 className="text-4xl font-semibold leading-tight mb-12">
             Why Should <TextLinear>Clippers</TextLinear>
-            <br /> Choose Kreatli?
+            <br /> Choose Kreatli Marketplace?
           </h2>
           <article className="mb-6">
             <div className="text-6xl font-bold text-secondary mb-2">1</div>

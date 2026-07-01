@@ -17,6 +17,7 @@ import { DashboardTiersModal } from '../components/dashboard/DashboardTiers';
 import { Footer } from '../components/layout/Footer';
 import { Header } from '../components/layout/Header';
 import { Notifications } from '../components/various/Notifications';
+import { BRAND_NAME, DEFAULT_META_DESCRIPTION } from '../constants/brand';
 import { useNotifications } from '../hooks/useNotifications';
 import { getErrorMessage } from '../utils/getErrorMessage';
 
@@ -59,11 +60,8 @@ const App = ({ Component, pageProps }: AppProps) => {
   return (
     <>
       <Head>
-        <title>Kreatli</title>
-        <meta
-          name="description"
-          content="Kreatli is a place where Editors, Designers, and Producers find YouTube Creators to work with and build a professional network."
-        />
+        <title>{BRAND_NAME}</title>
+        <meta name="description" content={DEFAULT_META_DESCRIPTION} />
         <meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1.0, user-scalable=no" />
       </Head>
       <QueryClientProvider client={queryClient}>

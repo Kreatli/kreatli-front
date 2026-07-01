@@ -10,10 +10,10 @@ const HowToFindPerfectClipper = () => {
   return (
     <>
       <Head>
-        <title>How to Find the Perfect Clipper for Your Content | Kreatli Blog</title>
+        <title>How to Find the Perfect Clipper for Your Content | Kreatli Marketplace Blog</title>
         <meta
           name="description"
-          content="Discover strategies for creators to identify and hire the right clipper for their video projects on Kreatli."
+          content="Discover strategies for creators to identify and hire the right clipper for their video projects on Kreatli Marketplace."
         />
       </Head>
       <article className="container max-w-screen-md mx-auto px-6 py-12">
@@ -37,7 +37,7 @@ const HowToFindPerfectClipper = () => {
         <div className="prose prose-lg max-w-none text-foreground-700">
           <p className="text-xl text-foreground-600 mb-6">
             Finding the right clipper can make all the difference in your content strategy. Here&apos;s how to identify
-            and hire the perfect clipper for your video projects on Kreatli.
+            and hire the perfect clipper for your video projects on Kreatli Marketplace.
           </p>
 
           <h2 className="text-3xl font-semibold mt-8 mb-4">1. Define Your Needs</h2>
@@ -100,8 +100,8 @@ const HowToFindPerfectClipper = () => {
           <div className="mt-12 p-6 bg-secondary-50 dark:bg-secondary-900/20 rounded-lg">
             <p className="text-lg font-semibold mb-2">Ready to find your perfect clipper?</p>
             <p className="mb-4">
-              Post a clipping campaign or browse clipper services on Kreatli. Our verified clippers are ready to help
-              you create engaging short-form content that grows your audience.
+              Post a clipping campaign or browse clipper services on Kreatli Marketplace. Our verified clippers are
+              ready to help you create engaging short-form content that grows your audience.
             </p>
             <Link as={NextLink} href="/" color="secondary" underline="hover">
               Explore the Marketplace →

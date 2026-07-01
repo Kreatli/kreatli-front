@@ -18,13 +18,13 @@ const JobsPage = () => {
     return null;
   }
 
-  const pageTitle = `My jobs | ${user?.name ?? ''} | Kreatli`;
+  const pageTitle = `My jobs | ${user?.name ?? ''} | Kreatli Marketplace`;
 
   return (
     <>
       <Head>
         <title>{pageTitle}</title>
-        <meta name="description" content="Kreatli" />
+        <meta name="description" content="Kreatli Marketplace" />
       </Head>
       {user && (
         <div className="container max-w-screen-lg mx-auto px-6">

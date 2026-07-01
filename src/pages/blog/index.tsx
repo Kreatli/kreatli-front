@@ -19,7 +19,7 @@ const blogPosts: BlogPost[] = [
   {
     slug: 'getting-started-as-a-clipper',
     title: 'Getting Started as a Clipper: Your Complete Guide',
-    excerpt: 'Learn the fundamentals of becoming a successful clipper on Kreatli. From setting up your profile to landing your first clipping project, this guide covers everything you need to know.',
+    excerpt: 'Learn the fundamentals of becoming a successful clipper on Kreatli Marketplace. From setting up your profile to landing your first clipping project, this guide covers everything you need to know.',
     date: '2024-01-15',
     readTime: '5 min read',
     category: 'For Clippers',
@@ -54,8 +54,11 @@ const BlogPage = () => {
   return (
     <>
       <Head>
-        <title>Blog | Kreatli</title>
-        <meta name="description" content="Read the latest tips, guides, and insights about clipping, video editing, and the Kreatli marketplace." />
+        <title>Blog | Kreatli Marketplace</title>
+        <meta
+          name="description"
+          content="Read the latest tips, guides, and insights about clipping, video editing, and Kreatli Marketplace."
+        />
       </Head>
       <div className="container max-w-screen-xl mx-auto px-6 py-12">
         <div className="text-center mb-12">
@@ -63,7 +66,7 @@ const BlogPage = () => {
             Blog
           </Chip>
           <h1 className="text-5xl font-semibold mt-4 mb-4">
-            <TextLinear>Kreatli Blog</TextLinear>
+            <TextLinear>Kreatli Marketplace Blog</TextLinear>
           </h1>
           <p className="text-lg text-foreground-500 max-w-2xl mx-auto">
             Tips, guides, and insights for creators and clippers in the video clip marketplace

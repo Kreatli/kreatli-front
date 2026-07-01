@@ -6,13 +6,13 @@ export default function HomePage() {
   return (
     <>
       <Head>
-        <title>Terms and conditions | Kreatli</title>
-        <meta name="description" content="Kreatli" />
+        <title>Terms and conditions | Kreatli Marketplace</title>
+        <meta name="description" content="Kreatli Marketplace" />
       </Head>
       <div className="max-w-screen-lg mx-auto px-6">
         <h1 className="text-2xl font-semibold mb-2">Terms and Conditions</h1>
 
-        <p className="text-foreground-500 mb-2">Welcome to Kreatli!</p>
+        <p className="text-foreground-500 mb-2">Welcome to Kreatli Marketplace!</p>
 
         <p className="text-foreground-500 mb-2">
           These terms and conditions outline the rules and regulations for the use of kreatli.com&apos;s Website,
@@ -20,8 +20,8 @@ export default function HomePage() {
         </p>
 
         <p className="text-foreground-500 mb-2">
-          By accessing this website we assume you accept these terms and conditions. Do not continue to use Kreatli if
-          you do not agree to take all of the terms and conditions stated on this page.
+          By accessing this website we assume you accept these terms and conditions. Do not continue to use
+          Kreatli Marketplace if you do not agree to take all of the terms and conditions stated on this page.
         </p>
 
         <p className="text-foreground-500 mb-2">
@@ -40,8 +40,8 @@ export default function HomePage() {
         <h2 className="text-xl font-semibold mt-4 mb-2">Cookies</h2>
 
         <p className="text-foreground-500 mb-2">
-          We employ the use of cookies. By accessing Kreatli, you agreed to use cookies in agreement with the
-          kreatli.com&apos;s Privacy Policy.{' '}
+          We employ the use of cookies. By accessing Kreatli Marketplace, you agreed to use cookies in agreement
+          with the kreatli.com&apos;s Privacy Policy.{' '}
         </p>
 
         <p className="text-foreground-500 mb-2">
@@ -54,16 +54,16 @@ export default function HomePage() {
 
         <p className="text-foreground-500 mb-2">
           Unless otherwise stated, kreatli.com and/or its licensors own the intellectual property rights for all
-          material on Kreatli. All intellectual property rights are reserved. You may access this from Kreatli for your
-          own personal use subjected to restrictions set in these terms and conditions.
+          material on Kreatli Marketplace. All intellectual property rights are reserved. You may access this from
+          Kreatli Marketplace for your own personal use subjected to restrictions set in these terms and conditions.
         </p>
 
         <p className="text-foreground-500 mb-2">You must not:</p>
         <ul className="list-disc list-inside mb-2 text-foreground-500">
-          <li>Republish material from Kreatli</li>
-          <li>Sell, rent or sub-license material from Kreatli</li>
-          <li>Reproduce, duplicate or copy material from Kreatli</li>
-          <li>Redistribute content from Kreatli</li>
+          <li>Republish material from Kreatli Marketplace</li>
+          <li>Sell, rent or sub-license material from Kreatli Marketplace</li>
+          <li>Reproduce, duplicate or copy material from Kreatli Marketplace</li>
+          <li>Redistribute content from Kreatli Marketplace</li>
         </ul>
 
         <p className="text-foreground-500 mb-2">

@@ -15,7 +15,7 @@ const GlossaryIndexPage = ({ pages }: Props) => (
   <>
     <SeoIndexHead
       section="glossary"
-      title="Glossary | Kreatli"
+      title="Glossary | Kreatli Marketplace"
       description="Definitions for clipping, short-form video, and freelance marketplace terms."
     />
     <SeoSectionIndex

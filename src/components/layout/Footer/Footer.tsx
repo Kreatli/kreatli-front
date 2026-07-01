@@ -3,8 +3,14 @@ import NextLink from 'next/link';
 import React from 'react';
 
 import LogoIcon from '../../../assets/images/logo.svg';
+import { BRAND_NAME } from '../../../constants/brand';
 import { SEO_SECTION_LABELS } from '../../../content/seo/types';
-import { SEO_PAGE_TYPES, SEO_SECTION_PATHS, getPageUrl, getPublishedPagesByType } from '../../../content/seo/utils';
+import {
+  getPageUrl,
+  getPublishedPagesByType,
+  SEO_PAGE_TYPES,
+  SEO_SECTION_PATHS,
+} from '../../../content/seo/utils';
 
 const miscLinks = [
   { href: '/blog', label: 'Blog' },
@@ -28,7 +34,7 @@ export const Footer = () => (
   <footer className="shadow-medium border-t border-default-100 mt-auto">
     <div className="max-w-screen-xl mx-auto px-6 py-10 flex flex-col gap-8">
       <div className="flex flex-col gap-8 lg:flex-row lg:justify-between">
-        <NextLink href="/" aria-label="Kreatli" className="shrink-0">
+        <NextLink href="/" aria-label={BRAND_NAME} className="shrink-0">
           <LogoIcon viewBox="0 0 90 22" />
         </NextLink>
 
@@ -71,24 +77,45 @@ export const Footer = () => (
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pt-4 border-t border-default-100">
         <div className="flex flex-wrap gap-x-4 gap-y-1">
           {miscLinks.map(({ href, label }) => (
-            <Link key={href} as={NextLink} href={href} size="sm" className="text-foreground-500" underline="hover">
+            <Link
+              key={href}
+              as={NextLink}
+              href={href}
+              size="sm"
+              className="text-foreground-500"
+              underline="hover"
+            >
               {label}
             </Link>
           ))}
         </div>
         <div className="flex flex-wrap gap-x-4 gap-y-1">
           {legalLinks.map(({ href, label }) => (
-            <Link key={href} as={NextLink} href={href} size="sm" className="text-foreground-500" underline="hover">
+            <Link
+              key={href}
+              as={NextLink}
+              href={href}
+              size="sm"
+              className="text-foreground-500"
+              underline="hover"
+            >
               {label}
             </Link>
           ))}
-          <Link href="mailto:support@kreatli.com" size="sm" className="text-foreground-500" underline="hover">
+          <Link
+            href="mailto:support@kreatli.com"
+            size="sm"
+            className="text-foreground-500"
+            underline="hover"
+          >
             support@kreatli.com
           </Link>
         </div>
       </div>
 
-      <span className="text-sm text-foreground-500">© Kreatli 2024. All rights reserved.</span>
+      <span className="text-sm text-foreground-500">
+        © {BRAND_NAME} 2026. All rights reserved.
+      </span>
     </div>
   </footer>
 );

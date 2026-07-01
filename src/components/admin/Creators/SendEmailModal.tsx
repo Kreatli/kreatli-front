@@ -14,7 +14,7 @@ interface Props {
 }
 
 export const SendEmailModal = ({ userId, isOpen, onClose }: Props) => {
-  const [subject, setSubject] = React.useState('Kreatli - ');
+  const [subject, setSubject] = React.useState('Kreatli Marketplace - ');
   const [message, setMessage] = React.useState('');
 
   const { pushNotification } = useNotifications();

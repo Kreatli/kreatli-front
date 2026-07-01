@@ -164,7 +164,7 @@ export const EditProfessionalProfileForm = ({ user, onCancel, onSuccess }: Props
           <Tab key="profile-details" title="Profile Details">
             <h2 className="text-medium font-semibold">Profile Details</h2>
             <p className="text-small text-foreground-400 mb-2">
-              Introduce yourself to the Kreatli community. {/* eslint-disable-next-line max-len */}
+              Introduce yourself to the Kreatli Marketplace community. {/* eslint-disable-next-line max-len */}
               This information helps you stand out and make great connections especially with YouTube creators looking
               to hire professionals
             </p>

@@ -23,8 +23,8 @@ const Professional = () => {
   return (
     <>
       <Head>
-        <title>Sign up | Kreatli</title>
-        <meta name="description" content="Kreatli" />
+        <title>Sign up | Kreatli Marketplace</title>
+        <meta name="description" content="Kreatli Marketplace" />
       </Head>
       <SignUpProfessional />
     </>

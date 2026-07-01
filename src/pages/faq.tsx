@@ -10,8 +10,8 @@ const FaqPage = () => {
   return (
     <>
       <Head>
-        <title>FAQ | Kreatli</title>
-        <meta name="description" content="Kreatli" />
+        <title>FAQ | Kreatli Marketplace</title>
+        <meta name="description" content="Kreatli Marketplace" />
       </Head>
       <div className="container max-w-screen-md text-center mx-auto px-6">
         <Chip variant="flat" color="secondary" classNames={{ content: 'font-semibold' }}>

@@ -164,7 +164,7 @@ export const Header = () => {
     ],
     [
       {
-        label: 'Kreatli Premium',
+        label: 'Kreatli Marketplace Premium',
         key: 'kreatli-premium',
         description: 'Coming soon',
       },
@@ -217,7 +217,7 @@ export const Header = () => {
         {isSignedIn && <NavbarMenuToggle className="sm:hidden" aria-label="Toggle navigation" />}
         <NavbarItem>
           <NavbarBrand>
-            <NextLink href="/" aria-label="Kreatli">
+            <NextLink href="/" aria-label="Kreatli Marketplace">
               <LogoIcon viewBox="0 0 90 22" />
             </NextLink>
             {currentUser?.role === 'admin' && (

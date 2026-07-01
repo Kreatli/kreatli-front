@@ -7,8 +7,8 @@ export default function HomePage() {
   return (
     <>
       <Head>
-        <title>Privacy policy | Kreatli</title>
-        <meta name="description" content="Kreatli" />
+        <title>Privacy policy | Kreatli Marketplace</title>
+        <meta name="description" content="Kreatli Marketplace" />
       </Head>
       <div className="max-w-screen-lg mx-auto px-6">
         <h1 className="text-2xl font-semibold mb-2">Privacy Policy</h1>
@@ -56,7 +56,7 @@ export default function HomePage() {
           <li>
             <span className="font-semibold">Company</span> (referred to as
             either &quot;the Company&quot;, &quot;We&quot;, &quot;Us&quot; or
-            &quot;Our&quot; in this Agreement) refers to Kreatli.
+            &quot;Our&quot; in this Agreement) refers to Kreatli Marketplace.
           </li>
           <li>
             <span className="font-semibold">Cookies</span> are small files that
@@ -103,7 +103,7 @@ export default function HomePage() {
             of a page visit).
           </li>
           <li>
-            <span className="font-semibold">Website</span> refers to Kreatli,
+            <span className="font-semibold">Website</span> refers to Kreatli Marketplace,
             accessible from{' '}
             <Link
               href="https://kreatli.com/"
@@ -526,7 +526,7 @@ export default function HomePage() {
           Google API Services User Data Policy
         </h2>
         <p className="text-foreground-500 mb-2">
-          Kreatli&apos;s use and transfer to any other app of information
+          Kreatli Marketplace&apos;s use and transfer to any other app of information
           received from Google Accounts will adhere to{' '}
           <Link
             href="https://developers.google.com/terms/api-services-user-data-policy#additional_requirements_for_specific_api_scopes"

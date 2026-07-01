@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import React from 'react';
 
+import { BRAND_NAME, getPageTitle } from '../../constants/brand';
 import { SeoPage, SeoPageType } from '../../content/seo/types';
 import { getPageUrl, SITE_URL } from '../../content/seo/utils';
 
@@ -43,7 +44,7 @@ const getJsonLd = (page: SeoPage, url: string) => {
 export const SeoHead = ({ page, pathOverride }: Props) => {
   const path = pathOverride ?? getPageUrl(page.type, page.slug);
   const canonical = `${SITE_URL}${path}`;
-  const title = `${page.title} | Kreatli`;
+  const title = getPageTitle(page.title);
   const jsonLd = getJsonLd(page, canonical);
 
   return (
@@ -56,7 +57,7 @@ export const SeoHead = ({ page, pathOverride }: Props) => {
       <meta property="og:title" content={title} />
       <meta property="og:description" content={page.metaDescription} />
       <meta property="og:url" content={canonical} />
-      <meta property="og:site_name" content="Kreatli" />
+      <meta property="og:site_name" content={BRAND_NAME} />
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={page.metaDescription} />

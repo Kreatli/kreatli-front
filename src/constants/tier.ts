@@ -130,7 +130,7 @@ export const TIER_FEATURES = {
       text: '“Expert” visibility badge',
     },
     {
-      text: 'Dedicated Support: subscribers receive dedicated support from the Kreatli team, ensuring a personalized and prompt response to their queries, concerns, and technical assistance needs',
+      text: 'Dedicated Support: subscribers receive dedicated support from the Kreatli Marketplace team, ensuring a personalized and prompt response to their queries, concerns, and technical assistance needs',
     },
     {
       text: 'Maximum Connection Requests: Unlimited',

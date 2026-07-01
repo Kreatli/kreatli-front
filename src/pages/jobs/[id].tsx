@@ -34,13 +34,13 @@ const JobOffer = () => {
     return null;
   }
 
-  const pageTitle = `${data?.title ?? ''} | Kreatli`;
+  const pageTitle = `${data?.title ?? ''} | Kreatli Marketplace`;
 
   return (
     <>
       <Head>
         <title>{pageTitle}</title>
-        <meta name="description" content="Kreatli" />
+        <meta name="description" content="Kreatli Marketplace" />
       </Head>
       <div className="container max-w-screen-lg mx-auto px-6 flex-1 flex flex-col justify-between">
         {data && <JobPage {...data} />}

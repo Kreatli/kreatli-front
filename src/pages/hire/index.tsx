@@ -15,8 +15,8 @@ const HireIndexPage = ({ pages }: Props) => (
   <>
     <SeoIndexHead
       section="hire"
-      title="Hire Editors | Kreatli"
-      description="Hire niche video editors for podcasts, gaming, Shorts, TikTok, and more on Kreatli."
+      title="Hire Editors | Kreatli Marketplace"
+      description="Hire niche video editors for podcasts, gaming, Shorts, TikTok, and more on Kreatli Marketplace."
     />
     <SeoSectionIndex
       type="hire"

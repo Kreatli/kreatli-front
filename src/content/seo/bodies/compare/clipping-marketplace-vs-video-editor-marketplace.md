@@ -37,8 +37,8 @@ Choose a **clipping marketplace** when your main goal is to publish more short-f
 
 Many creators use both over time: a general editor for flagship content, and clippers for daily short-form output.
 
-## Where Kreatli fits
+## Where Kreatli Marketplace fits
 
-[Kreatli](https://kreatli.com) is built as a **clipping-first marketplace** for creators and clippers. You can post clipping jobs, review editor profiles, and hire for short-form workflows without hunting across Discord servers, Fiverr gigs, or scattered DMs.
+[Kreatli Marketplace](https://kreatli.com) is built as a **clipping-first marketplace** for creators and clippers. You can post clipping jobs, review editor profiles, and hire for short-form workflows without hunting across Discord servers, Fiverr gigs, or scattered DMs.
 
 If you are comparing options, start with the job you need done today: one polished long edit, or a steady pipeline of clips. That answer usually tells you which marketplace type is the better fit.

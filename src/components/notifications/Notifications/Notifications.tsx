@@ -55,7 +55,7 @@ export const Notifications = (props: Props) => {
         )}
         {shouldShowEmptyState && (
           <div className="px-4">
-            <EmptyState title="No New Notifications" text="You're all caught up! Check back later for updates, or explore more of Kreatli in the meantime." />
+            <EmptyState title="No New Notifications" text="You're all caught up! Check back later for updates, or explore more of Kreatli Marketplace in the meantime." />
           </div>
         )}
       </div>

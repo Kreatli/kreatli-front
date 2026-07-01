@@ -15,8 +15,8 @@ const DashboardPage = () => {
   return (
     <>
       <Head>
-        <title>Dashboard | Kreatli</title>
-        <meta name="description" content="Kreatli" />
+        <title>Dashboard | Kreatli Marketplace</title>
+        <meta name="description" content="Kreatli Marketplace" />
       </Head>
       <div className="container max-w-screen-xl mx-auto px-6">
         <Dashboard />

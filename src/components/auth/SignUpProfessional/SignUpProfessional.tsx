@@ -108,7 +108,7 @@ export const SignUpProfessional = () => {
     {
       title: 'Step 2 - Creating a Profile',
       subtitle:
-        'Introduce yourself to the Kreatli community. This information helps you stand out and make great connections especially with YouTube creators looking to hire professionals',
+        'Introduce yourself to the Kreatli Marketplace community. This information helps you stand out and make great connections especially with YouTube creators looking to hire professionals',
       render: <SignUpProfessionalStep2 control={control} register={register} errors={errors} />,
     },
     {
@@ -132,7 +132,7 @@ export const SignUpProfessional = () => {
   ];
 
   const description =
-    'Kreatli will help you find the best YouTube creators to collaborate and network with. The registration process only takes 7 minutes, so join today and become a part of our community';
+    'Kreatli Marketplace will help you find the best YouTube creators to collaborate and network with. The registration process only takes 7 minutes, so join today and become a part of our community';
   const disabledKeys = new Set(
     steps
       .map((_, index) => index)

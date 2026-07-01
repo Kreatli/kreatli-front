@@ -1,12 +1,12 @@
-# Kreatli vs. Upwork for Video Editing Work
+# Kreatli Marketplace vs. Upwork for Video Editing Work
 
 Upwork is the default answer when businesses say "hire a freelancer." For video editing — and especially **clipping** — the platform can work, but the friction often surprises creators used to posting content daily.
 
-Here is how **Kreatli vs. Upwork** compare for hiring clip editors.
+Here is how **Kreatli Marketplace vs. Upwork** compare for hiring clip editors.
 
 ## Quick comparison
 
-| Factor | Kreatli | Upwork |
+| Factor | Kreatli Marketplace | Upwork |
 | --- | --- | --- |
 | Focus | Short-form clipping marketplace | General freelance platform |
 | Hiring model | Post clipping jobs | Post jobs + buy Connects to apply |
@@ -33,9 +33,9 @@ Upwork is strong when you need:
 
 For a six-month editor retainer on mixed production work, Upwork remains a credible option.
 
-## How Kreatli approaches clipping differently
+## How Kreatli Marketplace approaches clipping differently
 
-Kreatli narrows the problem on purpose:
+Kreatli Marketplace narrows the problem on purpose:
 
 - **Creators post clipping jobs** with niche context (gaming, podcast, faceless channel, etc.)
 - **Clippers apply** without paying per proposal
@@ -48,8 +48,8 @@ You are not hiring "a video editor." You are hiring someone who clips **your** c
 
 Upwork projects often start with a multi-day hiring cycle: write a brief, wait for proposals, interview, negotiate, onboard.
 
-Kreatli is optimized for creators who need clips **this week**, not after a two-week hiring sprint. Shorter path from job post to first delivery is the point.
+Kreatli Marketplace is optimized for creators who need clips **this week**, not after a two-week hiring sprint. Shorter path from job post to first delivery is the point.
 
 ## Verdict
 
-Upwork is a general freelance OS. Kreatli is a **clipping hiring lane**. If your bottleneck is turning long-form recordings into short-form distribution, Kreatli removes the Connects tax and the guesswork.
+Upwork is a general freelance OS. Kreatli Marketplace is a **clipping hiring lane**. If your bottleneck is turning long-form recordings into short-form distribution, Kreatli Marketplace removes the Connects tax and the guesswork.

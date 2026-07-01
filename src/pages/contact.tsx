@@ -10,8 +10,8 @@ const Contact = () => {
   return (
     <>
       <Head>
-        <title>Contact | Kreatli</title>
-        <meta name="description" content="Kreatli" />
+        <title>Contact | Kreatli Marketplace</title>
+        <meta name="description" content="Kreatli Marketplace" />
       </Head>
       <div className="container max-w-screen-lg mx-auto px-6 text-center">
         <Chip variant="flat" color="secondary" classNames={{ content: 'font-semibold' }}>

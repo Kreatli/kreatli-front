@@ -1,8 +1,8 @@
-# Kreatli vs. Discord Clipping Communities
+# Kreatli Marketplace vs. Discord Clipping Communities
 
 Many creators and clippers still find each other in **Discord servers** — clipping communities, editor Hubs, and creator networking channels. It feels free, fast, and social. It also comes with real risks.
 
-This page compares **hiring through Discord vs. using Kreatli** as a clipping marketplace.
+This page compares **hiring through Discord vs. using Kreatli Marketplace** as a clipping marketplace.
 
 ## Why Discord clipping communities are popular
 
@@ -33,16 +33,16 @@ Job details live in scattered messages. Revision rounds, file handoff, and deadl
 
 Discord works for one editor you trust. It breaks when you need backup editors, multiple niches, or a reliable weekly clip pipeline.
 
-## How Kreatli replaces the Discord hunt
+## How Kreatli Marketplace replaces the Discord hunt
 
-| Discord community | Kreatli |
+| Discord community | Kreatli Marketplace |
 | --- | --- |
 | Jobs posted in chat scroll | Jobs posted to a searchable marketplace |
 | Portfolio = random channel links | Structured clipper profiles |
 | Payment trust = vibes | Project-based hiring with clear scope |
 | Finding editors = networking luck | Finding editors = search + filters |
 
-Kreatli keeps the **community angle** — clippers and creators in the same ecosystem — without forcing every deal through a chaotic group chat.
+Kreatli Marketplace keeps the **community angle** — clippers and creators in the same ecosystem — without forcing every deal through a chaotic group chat.
 
 ## When to still use Discord
 
@@ -56,4 +56,4 @@ But for **repeatable hiring**, a marketplace beats hoping the right editor is on
 
 ## Verdict
 
-Discord clipping communities are a starting point, not a system. Kreatli gives creators and clippers the **trust, structure, and discoverability** that DMs cannot — without losing the clipping-first focus.
+Discord clipping communities are a starting point, not a system. Kreatli Marketplace gives creators and clippers the **trust, structure, and discoverability** that DMs cannot — without losing the clipping-first focus.

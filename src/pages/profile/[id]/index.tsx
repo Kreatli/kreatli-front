@@ -20,7 +20,7 @@ const Profile = () => {
     return null;
   }
 
-  const pageTitle = `${user?.name ?? ''} | Kreatli`;
+  const pageTitle = `${user?.name ?? ''} | Kreatli Marketplace`;
 
   // TODO: profile posts at the end of the page
 
@@ -28,7 +28,7 @@ const Profile = () => {
     <>
       <Head>
         <title>{pageTitle}</title>
-        <meta name="description" content="Kreatli" />
+        <meta name="description" content="Kreatli Marketplace" />
       </Head>
       {user?.role === 'creator' && <CreatorProfile userId={userId} />}
       {user?.role === 'professional' && <ProfessionalProfile userId={userId} />}

@@ -8,8 +8,8 @@ const NotFound = () => {
   return (
     <>
       <Head>
-        <title>Page not found | Kreatli</title>
-        <meta name="description" content="Kreatli" />
+        <title>Page not found | Kreatli Marketplace</title>
+        <meta name="description" content="Kreatli Marketplace" />
       </Head>
       <div className="container max-w-screen-lg mx-auto px-6 text-center">
         <Chip variant="flat" color="secondary" classNames={{ content: 'font-semibold' }}>
