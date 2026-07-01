@@ -35,7 +35,7 @@ export const Footer = () => (
     <div className="max-w-screen-xl mx-auto px-6 py-10 flex flex-col gap-8">
       <div className="flex flex-col gap-8 lg:flex-row lg:justify-between">
         <NextLink href="/" aria-label={BRAND_NAME} className="shrink-0">
-          <LogoIcon viewBox="0 0 90 22" />
+          <LogoIcon className="block h-[22px] w-[90px]" viewBox="0 0 90 22" />
         </NextLink>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 flex-1 lg:max-w-4xl">

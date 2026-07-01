@@ -17,12 +17,21 @@ Implement 66 SEO pages from the marketplace plan spreadsheet using data-driven d
 
 ## Current Status / Progress Tracking
 
-Infrastructure complete. One page published: `/compare/clipping-marketplace-vs-video-editor-marketplace`.
+Infrastructure complete. **10 compare pages published** (Wave 1 compare section complete).
 
-To publish more pages:
-1. Add markdown to `src/content/seo/bodies/{type}/{slug}.md`
-2. Set `status: 'published'` in `src/content/seo/registry.ts` (or re-import spreadsheet with Drafted status)
-3. Run `npm run build`
+Published URLs:
+- `/compare/clipping-marketplace-vs-video-editor-marketplace`
+- `/compare/kreatli-vs-fiverr`
+- `/compare/kreatli-vs-upwork`
+- `/compare/kreatli-vs-discord-clipping-communities`
+- `/compare/kreatli-vs-whop-clips`
+- `/compare/kreatli-vs-vyro` (new)
+- `/compare/kreatli-vs-clipaffiliates` (new)
+- `/compare/kreatli-vs-ai-clipping-tools` (new)
+- `/compare/kreatli-vs-hiring-in-house-editor` (new)
+- `/compare/kreatli-vs-video-editing-agency` (new)
+
+Next batch: glossary pages (#11–#30).
 
 Hire pages (Wave 2/3) remain `draft` until manually published when listing density is met.
 
