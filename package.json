@@ -8,7 +8,10 @@
     "start": "next start",
     "lint": "next lint",
     "tsc": "tsc",
-    "import-seo-plan": "npx tsx scripts/import-seo-plan.ts"
+    "import-seo-plan": "npx tsx scripts/import-seo-plan.ts",
+    "seo-pages:list": "npx tsx scripts/seo-pages-agent.ts list",
+    "seo-pages:next": "npx tsx scripts/seo-pages-agent.ts next",
+    "seo-pages:stats": "npx tsx scripts/seo-pages-agent.ts stats"
   },
   "engines": {
     "node": "22.*"
