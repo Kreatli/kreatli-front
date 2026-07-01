@@ -37,13 +37,23 @@ export const Header = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { isSignedIn, currentUser, signOut } = useSession();
   const { open: openSignUpCreatorModal } = useSignUpCreatorModal();
-  const [theme, setTheme] = useLocalStorage<Layout.Theme>({ key: 'theme', defaultValue: 'light' });
+  const [theme, setTheme] = useLocalStorage<Layout.Theme>({
+    key: 'theme',
+    defaultValue: 'light',
+  });
 
   React.useEffect(() => {
     setIsNavbarOpen(false);
   }, [router.pathname]);
 
-  const navigationItems = [
+  type NavItem = {
+    label: string;
+    href: string;
+    key?: string;
+    as?: typeof NextLink;
+  };
+
+  const navigationItems: NavItem[] = [
     ...(isSignedIn
       ? [
           {
@@ -74,7 +84,7 @@ export const Header = () => {
       : []),
   ];
 
-  const commonItems = [
+  const commonItems: NavItem[] = [
     {
       as: NextLink,
       href: '/blog',
@@ -94,6 +104,10 @@ export const Header = () => {
       key: 'contact',
     },
   ];
+
+  const primaryNavigationItems = isSignedIn
+    ? [...navigationItems, ...commonItems]
+    : commonItems;
 
   const anonymousSections = [
     [
@@ -192,7 +206,12 @@ export const Header = () => {
       onMenuOpenChange={setIsNavbarOpen}
     >
       <NavbarContent>
-        {isSignedIn && <NavbarMenuToggle className="sm:hidden" aria-label="Toggle navigation" />}
+        {isSignedIn && (
+          <NavbarMenuToggle
+            className="sm:hidden"
+            aria-label="Toggle navigation"
+          />
+        )}
         <NavbarItem>
           <NavbarBrand>
             <NextLink href="/" aria-label="Kreatli">
@@ -206,10 +225,13 @@ export const Header = () => {
           </NavbarBrand>
         </NavbarItem>
       </NavbarContent>
-      {navigationItems.length > 0 && (
+      {primaryNavigationItems.length > 0 && (
         <NavbarContent justify="center" className="hidden sm:flex">
-          {navigationItems.map(({ label, ...rest }) => (
-            <NavbarItem key={label} isActive={router.pathname === rest.href}>
+          {primaryNavigationItems.map(({ label, key, ...rest }) => (
+            <NavbarItem
+              key={key ?? label}
+              isActive={router.pathname === rest.href}
+            >
               <Link as={NextLink} color="foreground" {...rest}>
                 {label}
               </Link>
@@ -240,7 +262,12 @@ export const Header = () => {
                   Sign up
                 </Button>
               </DropdownTrigger>
-              <DropdownMenu aria-label="Sign up" variant="flat" color="secondary" onAction={handleSignUpAction}>
+              <DropdownMenu
+                aria-label="Sign up"
+                variant="flat"
+                color="secondary"
+                onAction={handleSignUpAction}
+              >
                 <DropdownItem key="creator">As YouTube Creator</DropdownItem>
                 <DropdownItem key="professional">As Professional</DropdownItem>
               </DropdownMenu>
@@ -266,7 +293,10 @@ export const Header = () => {
               onAction={handleUserMenuAction}
             >
               {userWidgetSections.map((section, index) => (
-                <DropdownSection key={index} showDivider={userWidgetSections.length - 1 !== index}>
+                <DropdownSection
+                  key={index}
+                  showDivider={userWidgetSections.length - 1 !== index}
+                >
                   {section.map(({ label, ...rest }) => (
                     <DropdownItem {...rest}>{label}</DropdownItem>
                   ))}
@@ -277,9 +307,15 @@ export const Header = () => {
         </NavbarItem>
       </NavbarContent>
       <NavbarMenu className="pt-4">
-        {navigationItems.map(({ label, ...rest }) => (
-          <NavbarMenuItem key={label}>
-            <Link as={NextLink} color="foreground" {...rest} className="w-full" size="lg">
+        {primaryNavigationItems.map(({ label, key, ...rest }) => (
+          <NavbarMenuItem key={key ?? label}>
+            <Link
+              as={NextLink}
+              color="foreground"
+              {...rest}
+              className="w-full"
+              size="lg"
+            >
               {label}
             </Link>
           </NavbarMenuItem>
