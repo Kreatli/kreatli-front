@@ -91,8 +91,6 @@ Target 800–1500 words.
 
 ## Hire page template
 
-Only publish when wave gate cleared (wave 1 hire pages don't exist in plan — wave 2+ only).
-
 ```
 # Hire a [Niche] Editor
 
@@ -128,7 +126,6 @@ Differentiation per niche: deliverable format, session cadence, platform destina
 ## E-E-A-T
 
 - Do not fabricate listing counts or social proof.
-- Do not publish empty hire niches.
 - No near-duplicate hire pages for the same keyword cluster.
 - Competitor mentions: factual, not dismissive.
 
@@ -159,12 +156,12 @@ Use these as voice/structure references when writing new pages of the same type.
 
 ---
 
-## Wave gating (registry)
+## Wave ordering (registry)
 
-| Wave | Pages | Gate |
-|------|-------|------|
-| 1 | compare, glossary, guide | None — publish when body ready |
-| 2 | 8 hire niches | ≥5 active niche listings |
-| 3 | 12 hire niches | Validated demand + ≥5 listings |
+| Wave | Pages | Notes |
+|------|-------|-------|
+| 1 | compare, glossary, guide | Publish when body is ready |
+| 2 | 8 hire niches | Publish when body is ready |
+| 3 | 12 hire niches | Publish when body is ready |
 
-Hire entries have `minListingsRequired: 5` and `ctaHref: '/jobs/create'`.
+Hire entries use `ctaHref: '/jobs/create'`.

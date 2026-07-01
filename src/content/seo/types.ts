@@ -22,7 +22,6 @@ export interface SeoPage {
   status: SeoPageStatus;
   notes?: string;
   relatedSlugs?: string[];
-  minListingsRequired?: number;
   ctaHref?: string;
 }
 

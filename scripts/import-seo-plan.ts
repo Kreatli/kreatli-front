@@ -75,7 +75,6 @@ const pages = rows
       dependency: dep,
       status,
       notes: row.Notes ? String(row.Notes) : undefined,
-      minListingsRequired: pageType === 'hire' ? 5 : undefined,
       ctaHref: pageType === 'hire' ? '/jobs/create' : undefined,
     };
   });
@@ -106,9 +105,6 @@ pages.forEach((page) => {
   lines.push(`    status: ${sq(page.status)},`);
   if (page.notes) {
     lines.push(`    notes: ${sq(page.notes)},`);
-  }
-  if (page.minListingsRequired) {
-    lines.push(`    minListingsRequired: ${page.minListingsRequired},`);
   }
   if (page.ctaHref) {
     lines.push(`    ctaHref: ${sq(page.ctaHref)},`);

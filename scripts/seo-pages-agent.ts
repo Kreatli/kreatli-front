@@ -46,10 +46,9 @@ const parseArgs = () => {
 const formatPage = (page: SeoPage) => {
   const url = `/${page.type === 'guide' ? 'guides' : page.type}/${page.slug}`;
   const hasBody = bodyExists(page.type, page.slug);
-  const gate = page.type === 'hire' && page.wave > 1 ? ' [HIRE GATE]' : '';
 
   return [
-    `#${page.id} ${page.type.padEnd(8)} wave=${page.wave}${gate}`,
+    `#${page.id} ${page.type.padEnd(8)} wave=${page.wave}`,
     `  url:      ${url}`,
     `  title:    ${page.title}`,
     `  keyword:  ${page.primaryKeyword}`,
@@ -86,12 +85,10 @@ const run = () => {
   }
 
   if (command === 'next') {
-    const recommended = drafts
-      .filter((page) => page.type !== 'hire' || page.wave === 1)
-      .slice(0, count);
+    const recommended = drafts.slice(0, count);
 
     if (recommended.length === 0) {
-      console.log('No draft pages available (hire wave 2/3 excluded — confirm gate before publishing).');
+      console.log('No draft pages available.');
       return;
     }
 

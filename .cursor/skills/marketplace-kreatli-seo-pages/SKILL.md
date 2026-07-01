@@ -25,7 +25,7 @@ The user will specify how many pages to create (e.g. "publish the next 3 glossar
    - Add `relatedSlugs` (2–3 published siblings in same or adjacent section)
    - Improve `metaDescription` if the auto-generated one is weak (keep under ~160 chars, include primary keyword)
 6. **Verify** — `npm run build` must pass. Footer auto-lists published pages (no footer edit needed).
-7. **Report** — list new URLs (`/{type}/{slug}` or `/guides/{slug}`), target keywords, and any pages skipped (hire wave 2/3 gated).
+7. **Report** — list new URLs (`/{type}/{slug}` or `/guides/{slug}`), target keywords, and any pages skipped.
 
 ## Codebase map (Pages Router — not App Router)
 
@@ -51,7 +51,6 @@ The user will specify how many pages to create (e.g. "publish the next 3 glossar
 - **Never** imply Kreatli Marketplace pays per view or runs content-rewards/CPM campaigns.
 - **Never** mention AniDachi or Blou in marketing copy.
 - **Brand:** always **Kreatli Marketplace** in user-facing copy (`BRAND_NAME` in `src/constants/brand.ts`).
-- **Hire pages (wave 2/3):** do not publish until user confirms listing density gate is met (`minListingsRequired: 5`).
 
 ## CTAs (this codebase)
 
@@ -77,7 +76,7 @@ Required sections: Quick comparison table (include **Payment model** row), direc
 
 ### Hire (`type: 'hire'`)
 
-Transactional landing only (no live listings embed — auth-gated). Hero copy, what to expect, how it works (4–5 steps), FAQ (≥3 niche-specific questions). Use `HirePageCta`. Only publish when wave gate allows.
+Transactional landing only (no live listings embed — auth-gated). Hero copy, what to expect, how it works (4–5 steps), FAQ (≥3 niche-specific questions). Use `HirePageCta`.
 
 ## Markdown conventions
 
@@ -101,7 +100,6 @@ When publishing, set `relatedSlugs` in registry to build clusters:
 - [ ] `relatedSlugs` set (2–3 entries)
 - [ ] Copy uses **Kreatli Marketplace**; CPM vs fixed-price distinction honoured on compare pages
 - [ ] `npm run build` passes
-- [ ] No hire wave 2/3 pages published without explicit user approval
 
 ## Additional resources
 

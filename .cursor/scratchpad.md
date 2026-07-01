@@ -17,23 +17,16 @@ Implement 66 SEO pages from the marketplace plan spreadsheet using data-driven d
 
 ## Current Status / Progress Tracking
 
-Infrastructure complete. **10 compare pages published** (Wave 1 compare section complete).
+Infrastructure complete. **10 compare + 5 glossary pages published**.
 
-Published URLs:
-- `/compare/clipping-marketplace-vs-video-editor-marketplace`
-- `/compare/kreatli-vs-fiverr`
-- `/compare/kreatli-vs-upwork`
-- `/compare/kreatli-vs-discord-clipping-communities`
-- `/compare/kreatli-vs-whop-clips`
-- `/compare/kreatli-vs-vyro` (new)
-- `/compare/kreatli-vs-clipaffiliates` (new)
-- `/compare/kreatli-vs-ai-clipping-tools` (new)
-- `/compare/kreatli-vs-hiring-in-house-editor` (new)
-- `/compare/kreatli-vs-video-editing-agency` (new)
+Published glossary (new):
+- `/glossary/what-is-a-clipper`
+- `/glossary/what-is-a-clipping-marketplace`
+- `/glossary/cpm-meaning-clipping`
+- `/glossary/what-is-b-roll`
+- `/glossary/jump-cut-definition`
 
-Next batch: glossary pages (#11–#30).
-
-Hire pages (Wave 2/3) remain `draft` until manually published when listing density is met.
+Next batch: glossary pages #16–#30, then guides, then hire.
 
 ## Executor's Feedback or Assistance Requests
 
