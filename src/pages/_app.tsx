@@ -14,6 +14,7 @@ import React from 'react';
 import { ApplicationLoader } from '../components/app/ApplicationLoader';
 import { SignUpCreatorModal } from '../components/auth/SignUpCreator';
 import { DashboardTiersModal } from '../components/dashboard/DashboardTiers';
+import { Footer } from '../components/layout/Footer';
 import { Header } from '../components/layout/Header';
 import { Notifications } from '../components/various/Notifications';
 import { useNotifications } from '../hooks/useNotifications';
@@ -71,7 +72,7 @@ const App = ({ Component, pageProps }: AppProps) => {
             <GoogleOAuthProvider clientId={process.env.GOOGLE_OAUTH_CLIENT_ID as string}>
               <Header />
               <main>{getLayout(<Component {...pageProps} />)}</main>
-              <footer />
+              <Footer />
               <Notifications />
               <SignUpCreatorModal />
             </GoogleOAuthProvider>

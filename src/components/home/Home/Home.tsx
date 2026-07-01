@@ -1,9 +1,8 @@
 /* eslint-disable max-len */
-import { Button, Card, CardBody, CardFooter, CardHeader, Chip, Image, Link } from '@nextui-org/react';
+import { Button, Card, CardBody, CardFooter, CardHeader, Chip, Image } from '@nextui-org/react';
 import NextLink from 'next/link';
 import React from 'react';
 
-import LogoIcon from '../../../assets/images/logo.svg';
 import { useSignUpCreatorModal } from '../../../hooks/useSignUpCreatorModal';
 import { ContactForm } from '../../contact/ContactForm';
 import { Faq } from '../../contact/Faq';
@@ -264,23 +263,6 @@ export const Home = () => {
           <ContactForm />
         </div>
       </section>
-      <footer className="shadow-medium -mb-8">
-        <div className="max-w-screen-xl mx-auto px-6 py-10 flex justify-between">
-          <LogoIcon viewBox="0 0 90 22" />
-          <div className="flex flex-col sm:flex-row items-end gap-1">
-            <span className="text-sm text-foreground-500">© Kreatli 2024. All rights reserved.</span>
-            <Link as={NextLink} href="/privacy-policy" size="sm" className="text-foreground-500" underline="hover">
-              Privacy policy
-            </Link>
-            <Link as={NextLink} href="terms-and-conditions" size="sm" className="text-foreground-500" underline="hover">
-              Terms and conditions
-            </Link>
-            <Link href="mailto:support@kreatli.com" size="sm" className="text-foreground-500" underline="hover">
-              support@kreatli.com
-            </Link>
-          </div>
-        </div>
-      </footer>
     </>
   );
 };

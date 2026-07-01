@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "tsc": "tsc"
+    "tsc": "tsc",
+    "import-seo-plan": "npx tsx scripts/import-seo-plan.ts"
   },
   "engines": {
     "node": "22.*"
@@ -21,6 +22,7 @@
     "@next/third-parties": "^14.1.0",
     "@nextui-org/react": "^2.4.0",
     "@react-oauth/google": "^0.12.1",
+    "@tailwindcss/typography": "^0.5.20",
     "@tanstack/react-query": "^5.32.0",
     "axios": "^1.5.1",
     "classnames": "^2.3.2",
@@ -30,6 +32,7 @@
     "framer-motion": "^10.16.4",
     "i18next": "^23.11.2",
     "lexical": "^0.12.2",
+    "marked": "^18.0.5",
     "nanoid": "^5.0.1",
     "next": "^14.2.3",
     "next-i18next": "^15.3.0",
@@ -59,6 +62,8 @@
     "eslint-plugin-simple-import-sort": "^10.0.0",
     "postcss": "^8.4.31",
     "tailwindcss": "^3.3.3",
-    "typescript": "^5.2.2"
+    "tsx": "^4.22.4",
+    "typescript": "^5.2.2",
+    "xlsx": "^0.18.5"
   }
 }

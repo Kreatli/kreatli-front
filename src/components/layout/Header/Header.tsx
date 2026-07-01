@@ -74,6 +74,27 @@ export const Header = () => {
       : []),
   ];
 
+  const resourceItems = [
+    {
+      as: NextLink,
+      href: '/guides',
+      label: 'Guides',
+      key: 'guides',
+    },
+    {
+      as: NextLink,
+      href: '/compare',
+      label: 'Compare',
+      key: 'compare',
+    },
+    {
+      as: NextLink,
+      href: '/glossary',
+      label: 'Glossary',
+      key: 'glossary',
+    },
+  ];
+
   const commonItems = [
     {
       as: NextLink,
@@ -81,6 +102,7 @@ export const Header = () => {
       label: 'Blog',
       key: 'blog',
     },
+    ...resourceItems,
     {
       as: NextLink,
       href: '/faq',
