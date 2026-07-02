@@ -11,6 +11,7 @@ import Script from 'next/script';
 import { appWithTranslation } from 'next-i18next';
 import React from 'react';
 
+import { AmplitudeInit } from '../components/app/AmplitudeInit';
 import { ApplicationLoader } from '../components/app/ApplicationLoader';
 import { SignUpCreatorModal } from '../components/auth/SignUpCreator';
 import { DashboardTiersModal } from '../components/dashboard/DashboardTiers';
@@ -59,6 +60,7 @@ const App = ({ Component, pageProps }: AppProps) => {
 
   return (
     <>
+      <AmplitudeInit />
       <Head>
         <title>{BRAND_NAME}</title>
         <meta name="description" content={DEFAULT_META_DESCRIPTION} />
