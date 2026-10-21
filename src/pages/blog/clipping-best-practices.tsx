@@ -1,21 +1,35 @@
 import { Chip, Link } from '@nextui-org/react';
-import Head from 'next/head';
 import NextLink from 'next/link';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import React from 'react';
 
 import { TextLinear } from '../../components/home/TextLinear';
+import { PageHead } from '../../components/seo/PageHead';
+import { RelatedLinks } from '../../components/seo/RelatedLinks';
+import { articleSchema, breadcrumbSchema } from '../../content/seo/schema';
 
 const ClippingBestPractices = () => {
   return (
     <>
-      <Head>
-        <title>Clipping Best Practices: Creating Engaging Short-Form Content | Kreatli Marketplace Blog</title>
-        <meta
-          name="description"
-          content="Master the art of creating compelling video clips. Explore techniques for identifying key moments and optimizing clips for maximum engagement."
-        />
-      </Head>
+      <PageHead
+        title="Clipping Best Practices for Short-Form Video | Kreatli"
+        description="Master the art of creating compelling video clips. Explore techniques for identifying key moments and optimizing clips for maximum engagement."
+        path="/blog/clipping-best-practices"
+        ogType="article"
+        ogImageTitle="Clipping Best Practices for Short-Form Video"
+        jsonLd={[
+          articleSchema({
+            headline: 'Clipping Best Practices for Short-Form Video',
+            description: 'Master the art of creating compelling video clips. Explore techniques for identifying key moments and optimizing clips for maximum engagement.',
+            path: '/blog/clipping-best-practices',
+            datePublished: '2024-01-05',
+          }),
+          breadcrumbSchema([
+            { name: 'Blog', path: '/blog' },
+            { name: 'Clipping Best Practices for Short-Form Video', path: '/blog/clipping-best-practices' },
+          ]),
+        ]}
+      />
       <article className="container max-w-screen-md mx-auto px-6 py-12">
         <div className="mb-8">
           <Link as={NextLink} href="/blog" color="secondary" underline="hover" className="mb-4 inline-block">
@@ -110,6 +124,16 @@ const ClippingBestPractices = () => {
             approaches, lengths, and styles. What works for one creator or content type may not work for another. Use
             analytics to guide your clipping strategy.
           </p>
+
+          <RelatedLinks
+            title="Keep reading"
+            links={[
+              { href: '/glossary/video-hook-first-3-seconds', label: 'Video hooks: why the first 3 seconds matter' },
+              { href: '/glossary/burned-in-captions-meaning', label: 'What are burned-in captions?' },
+              { href: '/glossary/jump-cut-definition', label: 'What is a jump cut?' },
+              { href: '/guides/best-video-editing-software-for-clippers', label: 'Best video editing software for clippers' },
+            ]}
+          />
 
           <div className="mt-12 p-6 bg-secondary-50 dark:bg-secondary-900/20 rounded-lg">
             <p className="text-lg font-semibold mb-2">Ready to create better clips?</p>

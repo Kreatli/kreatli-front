@@ -1,13 +1,14 @@
 import { Card, CardBody, CardFooter, CardHeader, Chip, Link } from '@nextui-org/react';
-import Head from 'next/head';
 import NextLink from 'next/link';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import React from 'react';
 
 import { TextLinear } from '../../components/home/TextLinear';
+import { PageHead } from '../../components/seo/PageHead';
+import { breadcrumbSchema } from '../../content/seo/schema';
 
 interface BlogPost {
-  slug: string;
+  href: string;
   title: string;
   excerpt: string;
   date: string;
@@ -17,23 +18,23 @@ interface BlogPost {
 
 const blogPosts: BlogPost[] = [
   {
-    slug: 'getting-started-as-a-clipper',
-    title: 'Getting Started as a Clipper: Your Complete Guide',
-    excerpt: 'Learn the fundamentals of becoming a successful clipper on Kreatli Marketplace. From setting up your profile to landing your first clipping project, this guide covers everything you need to know.',
-    date: '2024-01-15',
-    readTime: '5 min read',
-    category: 'For Clippers',
+    href: '/guides/how-to-become-a-clipper',
+    title: 'How to Become a Clipper: The 2026 Step-by-Step Guide',
+    excerpt: 'The skills and software you need, how to build samples, and how to find fixed-pay clipping jobs or CPM campaigns.',
+    date: '2026-10-21',
+    readTime: '8 min read',
+    category: 'Guide for clippers',
   },
   {
-    slug: 'how-to-find-the-perfect-clipper',
-    title: 'How to Find the Perfect Clipper for Your Content',
-    excerpt: 'Discover strategies for creators to identify and hire the right clipper for their video projects. Learn what to look for in portfolios, how to evaluate skills, and make informed hiring decisions.',
-    date: '2024-01-10',
-    readTime: '6 min read',
-    category: 'For Creators',
+    href: '/guides/how-to-hire-a-clipper',
+    title: 'How to Hire a Clipper: A Step-by-Step Guide for Creators',
+    excerpt: 'Choose a pay model, write the job post, vet portfolios, run a paid test clip and onboard a clipper who learns your style.',
+    date: '2026-10-21',
+    readTime: '7 min read',
+    category: 'Guide for creators',
   },
   {
-    slug: 'clipping-best-practices',
+    href: '/blog/clipping-best-practices',
     title: 'Clipping Best Practices: Creating Engaging Short-Form Content',
     excerpt: 'Master the art of creating compelling video clips. Explore techniques for identifying key moments, maintaining narrative flow, and optimizing clips for maximum engagement.',
     date: '2024-01-05',
@@ -41,25 +42,24 @@ const blogPosts: BlogPost[] = [
     category: 'Tips & Tricks',
   },
   {
-    slug: 'building-your-clipper-portfolio',
-    title: 'Building Your Clipper Portfolio: Showcase Your Best Work',
-    excerpt: 'Learn how to create a standout portfolio that attracts creators. Tips on selecting your best clips, writing compelling descriptions, and positioning yourself in the marketplace.',
-    date: '2024-01-01',
-    readTime: '5 min read',
-    category: 'For Clippers',
+    href: '/guides/video-editing-portfolio-no-clients',
+    title: 'How to Build a Portfolio Before You Have Clients',
+    excerpt: 'What samples to make, which niches to pick, and how to present a clipping portfolio before you have paid clients.',
+    date: '2026-07-09',
+    readTime: '6 min read',
+    category: 'Guide for clippers',
   },
 ];
 
 const BlogPage = () => {
   return (
     <>
-      <Head>
-        <title>Blog | Kreatli Marketplace</title>
-        <meta
-          name="description"
-          content="Read the latest tips, guides, and insights about clipping, video editing, and Kreatli Marketplace."
-        />
-      </Head>
+      <PageHead
+        title="Clipping Blog: Tips for Clippers and Creators | Kreatli"
+        description="Tips for clippers and creators: getting started as a clipper, building a portfolio, clipping best practices and finding the right clipper for your content."
+        path="/blog"
+        jsonLd={breadcrumbSchema([{ name: 'Blog', path: '/blog' }])}
+      />
       <div className="container max-w-screen-xl mx-auto px-6 py-12">
         <div className="text-center mb-12">
           <Chip variant="flat" color="secondary" classNames={{ content: 'font-semibold' }}>
@@ -75,7 +75,7 @@ const BlogPage = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
           {blogPosts.map((post) => (
-            <Card key={post.slug} className="hover:shadow-lg transition-shadow">
+            <Card key={post.href} className="hover:shadow-lg transition-shadow">
               <CardHeader className="flex flex-col items-start gap-2">
                 <Chip variant="flat" color="secondary" size="sm" classNames={{ content: 'font-semibold' }}>
                   {post.category}
@@ -91,7 +91,7 @@ const BlogPage = () => {
                 </div>
               </CardBody>
               <CardFooter>
-                <Link as={NextLink} href={`/blog/${post.slug}`} color="secondary" underline="hover">
+                <Link as={NextLink} href={post.href} color="secondary" underline="hover">
                   Read more →
                 </Link>
               </CardFooter>

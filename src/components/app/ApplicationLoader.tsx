@@ -14,8 +14,16 @@ interface Props {
 
 export const ApplicationLoader = ({ children }: Props) => {
   const isLoading = useApplicationLoader((state) => state.isLoading);
+  const setIsLoading = useApplicationLoader((state) => state.setIsLoading);
 
   const [theme] = useLocalStorage<Layout.Theme>({ key: 'theme', defaultValue: 'light' });
+
+  React.useEffect(() => {
+    // Signed-out visitors have nothing to wait for.
+    if (document.documentElement.dataset.session === 'none') {
+      setIsLoading(false);
+    }
+  }, [setIsLoading]);
 
   React.useEffect(() => {
     if (theme === 'dark') {

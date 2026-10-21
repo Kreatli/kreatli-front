@@ -15,8 +15,8 @@ const GlossaryIndexPage = ({ pages }: Props) => (
   <>
     <SeoIndexHead
       section="glossary"
-      title="Glossary | Kreatli Marketplace"
-      description="Definitions for clipping, short-form video, and freelance marketplace terms."
+      title="Clipping and Short-Form Video Glossary | Kreatli"
+      description="Plain-English definitions of clipping terms: CPM, clipping campaigns, payout caps, verified views, hooks, jump cuts, 9:16 video and more."
     />
     <SeoSectionIndex
       type="glossary"

@@ -3,7 +3,7 @@ import NextLink from 'next/link';
 import React from 'react';
 
 import { useSignUpCreatorModal } from '../../../hooks/useSignUpCreatorModal';
-import { SignInModal } from '../../auth/SignInModal';
+import { LazySignInModal } from '../../auth/SignInModal/LazySignInModal';
 import { Icon } from '../../various/Icon';
 import { Video } from '../../various/Video';
 import { DesktopFrame, MobileFrame } from '../Frames';
@@ -28,11 +28,11 @@ export const Hero = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-8 gap-y-16">
           <div className="flex flex-col gap-6">
             <h1 className="text-5xl sm:text-6xl font-semibold max-w-lg">
-              The Premier <TextLinear>Clipper</TextLinear> Marketplace
+              Hire <TextLinear>Clippers</TextLinear> or Find Clipping Jobs
             </h1>
             <p className="text-lg text-foreground-500 sm:w-11/12">
               {/* eslint-disable-next-line max-len */}
-              Kreatli Marketplace connects creators with skilled clippers. Post clipping campaigns or browse clipper services. Find the perfect match for your video clip creation needs in a vibrant community built for quality and growth.
+              Kreatli Marketplace is the clipper marketplace for YouTubers, streamers and podcasters. Post a clipping job and hire vetted clippers for fixed project pay, or join as a clipper and get hired to turn long videos into Shorts, TikToks and Reels.
             </p>
             <div className="flex gap-4">
               <Dropdown>
@@ -86,7 +86,7 @@ export const Hero = () => {
             </div>
           </div>
         </div>
-        <SignInModal isOpen={isSignedInModalOpen} onClose={() => setIsSignedInModalOpen(false)} />
+        <LazySignInModal isOpen={isSignedInModalOpen} onClose={() => setIsSignedInModalOpen(false)} />
       </div>
     </div>
   );

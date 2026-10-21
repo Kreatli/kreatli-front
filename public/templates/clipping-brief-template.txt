@@ -1,0 +1,47 @@
+Free template from Kreatli Marketplace (https://marketplace.kreatli.com)
+
+CLIPPING BRIEF
+
+Creator / channel: [name + links to your channels]
+Batch name: [e.g. Episode 42 / Stream 2026-10-18]
+
+1. GOAL
+What these clips should achieve: [grow Shorts reach / drive full-episode views / test hooks]
+Primary platform: [TikTok / Reels / YouTube Shorts / all]
+
+2. AUDIENCE
+Who watches: [age range, interests, what they already know about you]
+
+3. SOURCE
+Footage link: [folder or VOD link]
+Length: [e.g. 62 minutes]
+Transcript: [link or "none"]
+Timestamps to clip: [00:04:10-00:05:20, 00:18:45-00:19:30, ... or "clipper picks"]
+Sections to avoid: [sponsor reads, private comments, off-topic tangents]
+Names and spellings: [speakers, brands, products]
+
+4. DELIVERABLES
+Number of clips: [e.g. 8]
+Length per clip: [e.g. 30-60 seconds]
+Aspect ratio: [9:16 vertical]
+Export: [MP4, 1080x1920, 30fps]
+Platform versions: [one master / separate TikTok, Reels, Shorts versions]
+Extras: [title ideas / cover frames / caption text / none]
+
+5. STYLE
+Pacing reference: [link + what you like about it]
+Caption reference: [link + font, size, color, highlight style]
+What to avoid: [link + why]
+Hook rule: [open on the strongest line, no intros or logos]
+Music and SFX: [royalty-free only / my licensed library / none]
+Brand assets: [logo, fonts, colors link]
+
+6. RULES
+Must include: [captions, CTA end card, watermark]
+Never include: [words, topics, effects, copyrighted audio]
+
+7. REVIEW
+Deadline: [date and time zone]
+Revision rounds: [1 or 2]
+Feedback format: [timecoded notes in a shared doc / chat]
+Approval: [send first 2 clips for style check before finishing the batch]

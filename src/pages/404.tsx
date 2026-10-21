@@ -1,21 +1,23 @@
 import { Button, Chip } from '@nextui-org/react';
-import Head from 'next/head';
 import NextLink from 'next/link';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import React from 'react';
 
+import { PageHead } from '../components/seo/PageHead';
+
 const NotFound = () => {
   return (
     <>
-      <Head>
-        <title>Page not found | Kreatli Marketplace</title>
-        <meta name="description" content="Kreatli Marketplace" />
-      </Head>
+      <PageHead
+        title="Page not found | Kreatli Marketplace"
+        description="The page you were looking for could not be found."
+        noindex
+      />
       <div className="container max-w-screen-lg mx-auto px-6 text-center">
         <Chip variant="flat" color="secondary" classNames={{ content: 'font-semibold' }}>
           404
         </Chip>
-        <h2 className="text-4xl font-semibold my-2">Page not found</h2>
+        <h1 className="text-4xl font-semibold my-2">Page not found</h1>
         <p className="mb-8 text-large text-foreground-500">
           Sorry, but the page you were looking for could not be found 😢
         </p>

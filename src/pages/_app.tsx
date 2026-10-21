@@ -6,21 +6,28 @@ import { NextUIProvider } from '@nextui-org/react';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import { Query, QueryCache, QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import type { AppProps } from 'next/app';
-import Head from 'next/head';
+import { Source_Sans_3 as SourceSans3 } from 'next/font/google';
 import Script from 'next/script';
 import { appWithTranslation } from 'next-i18next';
 import React from 'react';
 
 import { AmplitudeInit } from '../components/app/AmplitudeInit';
 import { ApplicationLoader } from '../components/app/ApplicationLoader';
-import { SignUpCreatorModal } from '../components/auth/SignUpCreator';
-import { DashboardTiersModal } from '../components/dashboard/DashboardTiers';
+import { LazyDashboardTiersModal, LazySignUpCreatorModal } from '../components/app/LazyAppModals';
 import { Footer } from '../components/layout/Footer';
 import { Header } from '../components/layout/Header';
+import { DefaultHead } from '../components/seo/DefaultHead';
 import { Notifications } from '../components/various/Notifications';
-import { BRAND_NAME, DEFAULT_META_DESCRIPTION } from '../constants/brand';
 import { useNotifications } from '../hooks/useNotifications';
 import { getErrorMessage } from '../utils/getErrorMessage';
+
+// Self-hosted by next/font: no render-blocking request to Google Fonts and no layout shift on swap.
+const sourceSans = SourceSans3({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  style: ['normal', 'italic'],
+  display: 'swap',
+});
 
 interface QueryErrorMeta {
   showErrorNotification?: boolean;
@@ -61,11 +68,15 @@ const App = ({ Component, pageProps }: AppProps) => {
   return (
     <>
       <AmplitudeInit />
-      <Head>
-        <title>{BRAND_NAME}</title>
-        <meta name="description" content={DEFAULT_META_DESCRIPTION} />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1.0, user-scalable=no" />
-      </Head>
+      <DefaultHead />
+      {/* eslint-disable-next-line react/no-unknown-property */}
+      <style jsx global>
+        {`
+          html {
+            font-family: ${sourceSans.style.fontFamily};
+          }
+        `}
+      </style>
       <QueryClientProvider client={queryClient}>
         <NextUIProvider id="nextUiProvider">
           <ApplicationLoader>
@@ -74,10 +85,10 @@ const App = ({ Component, pageProps }: AppProps) => {
               <main>{getLayout(<Component {...pageProps} />)}</main>
               <Footer />
               <Notifications />
-              <SignUpCreatorModal />
+              <LazySignUpCreatorModal />
             </GoogleOAuthProvider>
           </ApplicationLoader>
-          <DashboardTiersModal />
+          <LazyDashboardTiersModal />
         </NextUIProvider>
       </QueryClientProvider>
       {process.env.GTM_ID && <GoogleTagManager gtmId={process.env.GTM_ID} />}

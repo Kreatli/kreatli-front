@@ -32,6 +32,8 @@ Ranges assume **9:16 vertical**, burned-in captions, client publishes on their c
 
 **Volume discounts:** 20+ clips/week → reduce per-clip 10–20% but lock minimum weekly pay.
 
+To see what these rates add up to per month, run your numbers through the [clipping earnings calculator](/tools/clipping-earnings-calculator) or read [how much clippers make](/guides/how-much-do-clippers-make).
+
 ## Retainer math that protects you
 
 Example: creator wants **20 clips/week**, mid-complexity podcast style.
@@ -56,7 +58,7 @@ Never offer "unlimited clips" for a flat fee unless you enjoy losing money.
 | Software | Premiere, CapCut Pro, After Effects — amortise monthly |
 | Music/stock | Royalty-free subscriptions |
 | Storage | Cloud drives for client footage |
-| Taxes & fees | Platform cuts vary — [Fiverr vs Upwork vs Kreatli](/guides/fiverr-vs-upwork-for-video-editors) |
+| Taxes & fees | Platform cuts vary — [Fiverr vs Upwork vs Kreatli](/guides/fiverr-vs-upwork-for-clippers) |
 | Revision buffer | 15–20% of time is admin and fixes |
 
 If you net $18/clip after fees and 2 hours of work, you are earning $9/hr — raise rates or tighten scope.
@@ -80,7 +82,7 @@ On Kreatli you **apply to clipping jobs** with stated budgets or propose milesto
 - **Project pay** aligned with clipping — not view-chasing CPM models
 - Less race-to-bottom than anonymous $5 gigs
 
-Still read each job brief. Decline misaligned work instead of underbidding.
+Still read each job brief. Decline misaligned work instead of underbidding. You can browse current [clipping jobs](/clipping-jobs) to see how creators scope and budget their work.
 
 ## Step-by-step: quote your next job
 
@@ -103,7 +105,7 @@ No. Those gigs rarely sustain quality clipping at volume. Compete on niche sampl
 
 ### Do content-rewards programs pay more than project clipping?
 
-They pay **per views** with high variance — some weeks great, many weeks near zero. Project clipping on Kreatli Marketplace trades viral lottery for **agreed deliverable pay**.
+They pay **per views** with high variance — some weeks great, many weeks near zero (see [CPM meaning in clipping](/glossary/cpm-meaning-clipping)). Project clipping on Kreatli Marketplace trades viral lottery for **agreed deliverable pay**.
 
 ### How do I price AI-assisted workflows?
 

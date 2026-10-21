@@ -15,8 +15,8 @@ const CompareIndexPage = ({ pages }: Props) => (
   <>
     <SeoIndexHead
       section="compare"
-      title="Compare | Kreatli Marketplace"
-      description="Compare Kreatli Marketplace with Fiverr, Upwork, AI clipping tools, and other ways to hire video editors."
+      title="Compare Clipping Platforms and Marketplaces | Kreatli"
+      description="Compare Kreatli Marketplace with Fiverr, Upwork, Whop, Vyro, Discord servers, AI clipping tools and agencies for hiring clippers or finding clip work."
     />
     <SeoSectionIndex
       type="compare"

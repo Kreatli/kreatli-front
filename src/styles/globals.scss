@@ -9,7 +9,8 @@
 }
 
 html {
-  font-family: "Source Sans 3", sans-serif;
+  // The actual font face comes from next/font in _app.tsx.
+  font-family: sans-serif;
   letter-spacing: 0.25px;
 }
 

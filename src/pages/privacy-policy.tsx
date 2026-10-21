@@ -1,15 +1,17 @@
 import { Link } from '@nextui-org/react';
-import Head from 'next/head';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import React from 'react';
+
+import { PageHead } from '../components/seo/PageHead';
 
 export default function HomePage() {
   return (
     <>
-      <Head>
-        <title>Privacy policy | Kreatli Marketplace</title>
-        <meta name="description" content="Kreatli Marketplace" />
-      </Head>
+      <PageHead
+        title="Privacy Policy | Kreatli"
+        description="How Kreatli Marketplace collects, uses and protects personal data for creators and clippers, and the privacy rights you have when using the service."
+        path="/privacy-policy"
+      />
       <div className="max-w-screen-lg mx-auto px-6">
         <h1 className="text-2xl font-semibold mb-2">Privacy Policy</h1>
         <p className="text-foreground-500 mb-2">
@@ -105,12 +107,8 @@ export default function HomePage() {
           <li>
             <span className="font-semibold">Website</span> refers to Kreatli Marketplace,
             accessible from{' '}
-            <Link
-              href="https://kreatli.com/"
-              rel="external nofollow noopener noreferrer"
-              target="_blank"
-            >
-              https://kreatli.com/
+            <Link href="https://marketplace.kreatli.com/">
+              https://marketplace.kreatli.com/
             </Link>
           </li>
           <li>

@@ -1,7 +1,7 @@
 import { Accordion, AccordionItem } from '@nextui-org/react';
 import React from 'react';
 
-const faqItems = [
+export const faqItems = [
   {
     question: 'How do I join Kreatli Marketplace?',
     answer: 'Joining Kreatli Marketplace is easy. Simply sign up as a creator or a clipper, complete your profile, and start exploring clipping campaigns or offering your clipping services.',
@@ -43,14 +43,15 @@ const faqItems = [
 export const Faq = () => {
   return (
     <div className="w-full text-left">
-      <Accordion>
+      {/* keepContentMounted keeps collapsed answers in the server-rendered HTML for search engines */}
+      <Accordion keepContentMounted>
         {faqItems.map(({ question, answer }) => (
           <AccordionItem
             key={question}
             title={question}
             aria-label={question}
           >
-            <span className="text-foreground-500">{answer}</span>
+            <p className="text-foreground-500">{answer}</p>
           </AccordionItem>
         ))}
       </Accordion>

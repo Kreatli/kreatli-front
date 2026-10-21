@@ -18,6 +18,7 @@ import {
   NavbarMenuToggle,
   useDisclosure,
 } from '@nextui-org/react';
+import dynamic from 'next/dynamic';
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
@@ -27,9 +28,14 @@ import { useLocalStorage } from '../../../hooks/useLocalStorage';
 import { useSession } from '../../../hooks/useSession';
 import { useSignUpCreatorModal } from '../../../hooks/useSignUpCreatorModal';
 import { Layout } from '../../../typings/layout';
-import { SignInModal } from '../../auth/SignInModal';
+import { LazySignInModal } from '../../auth/SignInModal/LazySignInModal';
 import { Icon } from '../../various/Icon';
-import { HeaderNotificationsButtons } from './HeaderNotificationsButtons';
+
+// Signed-in only; keeps the real-time socket client out of the bundle for visitors.
+const HeaderNotificationsButtons = dynamic(
+  () => import('./HeaderNotificationsButtons').then((mod) => mod.HeaderNotificationsButtons),
+  { ssr: false },
+);
 
 export const Header = () => {
   const router = useRouter();
@@ -71,7 +77,25 @@ export const Header = () => {
               ]
             : []),
         ]
-      : []),
+      : [
+          // Server-rendered links for signed-out visitors (and crawlers) to the main public hubs.
+          {
+            label: 'Hire clippers',
+            href: '/hire',
+          },
+          {
+            label: 'Clipping jobs',
+            href: '/clipping-jobs',
+          },
+          {
+            label: 'Guides',
+            href: '/guides',
+          },
+          {
+            label: 'Free tools',
+            href: '/tools',
+          },
+        ]),
   ];
 
   const resourceItems = [
@@ -92,6 +116,12 @@ export const Header = () => {
       href: '/glossary',
       label: 'Glossary',
       key: 'glossary',
+    },
+    {
+      as: NextLink,
+      href: '/tools',
+      label: 'Free tools',
+      key: 'tools',
     },
   ];
 
@@ -214,7 +244,7 @@ export const Header = () => {
       onMenuOpenChange={setIsNavbarOpen}
     >
       <NavbarContent>
-        {isSignedIn && <NavbarMenuToggle className="sm:hidden" aria-label="Toggle navigation" />}
+        <NavbarMenuToggle className="sm:hidden" aria-label="Toggle navigation" />
         <NavbarItem>
           <NavbarBrand>
             <NextLink href="/" aria-label="Kreatli Marketplace">
@@ -307,7 +337,7 @@ export const Header = () => {
           </NavbarMenuItem>
         ))}
       </NavbarMenu>
-      <SignInModal isOpen={isOpen} onClose={onClose} />
+      <LazySignInModal isOpen={isOpen} onClose={onClose} />
     </Navbar>
   );
 };

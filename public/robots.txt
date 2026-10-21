@@ -1,4 +1,8 @@
+# robots.txt for marketplace.kreatli.com
+# Private app pages (dashboard, chat, profiles, jobs) send a noindex meta tag instead of being
+# blocked here, so crawlers can still see the noindex.
+
 User-agent: *
 Allow: /
 
-Sitemap: https://kreatli.com/sitemap.xml
+Sitemap: https://marketplace.kreatli.com/sitemap.xml

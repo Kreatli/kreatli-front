@@ -43,6 +43,7 @@ export const Video = ({ sources = [], className, height, width, 'aria-label': ar
       height={height}
       className={className}
       playsInline
+      preload="none"
       loop
       muted
       controls={false}

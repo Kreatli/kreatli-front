@@ -17,13 +17,13 @@ interface Props {
 
 export const SeoContentPage = ({ page, relatedPages }: Props) => (
   <>
-    <SeoHead page={page} />
+    <SeoHead page={page} faqs={page.faqs} />
     <ContentPageLayout
       type={page.type}
-      slug={page.slug}
       title={page.title}
       funnelSide={page.funnelSide}
       readTimeMinutes={page.readTimeMinutes}
+      updatedAt={page.updatedAt ?? page.publishedAt}
     >
       <ContentBody html={page.body} />
       {page.type === 'hire' ? <HirePageCta page={page} /> : <ContentCta type={page.type} funnelSide={page.funnelSide} />}

@@ -13,7 +13,7 @@ import path from 'path';
 import { SEO_PAGES } from '../src/content/seo/registry';
 import { SeoPage, SeoPageType } from '../src/content/seo/types';
 
-const TYPE_PRIORITY: SeoPageType[] = ['compare', 'glossary', 'guide', 'hire'];
+const TYPE_PRIORITY: SeoPageType[] = ['compare', 'glossary', 'guide', 'hire', 'alternatives'];
 
 const bodyExists = (type: SeoPageType, slug: string) =>
   fs.existsSync(path.join(process.cwd(), 'src/content/seo/bodies', type, `${slug}.md`));

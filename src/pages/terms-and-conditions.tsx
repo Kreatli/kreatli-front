@@ -1,22 +1,24 @@
-import Head from 'next/head';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import React from 'react';
+
+import { PageHead } from '../components/seo/PageHead';
 
 export default function HomePage() {
   return (
     <>
-      <Head>
-        <title>Terms and conditions | Kreatli Marketplace</title>
-        <meta name="description" content="Kreatli Marketplace" />
-      </Head>
+      <PageHead
+        title="Terms and Conditions | Kreatli"
+        description="The terms and conditions for using Kreatli Marketplace, the platform that connects creators with freelance clippers for short-form video work."
+        path="/terms-and-conditions"
+      />
       <div className="max-w-screen-lg mx-auto px-6">
         <h1 className="text-2xl font-semibold mb-2">Terms and Conditions</h1>
 
         <p className="text-foreground-500 mb-2">Welcome to Kreatli Marketplace!</p>
 
         <p className="text-foreground-500 mb-2">
-          These terms and conditions outline the rules and regulations for the use of kreatli.com&apos;s Website,
-          located at kreatli.com
+          These terms and conditions outline the rules and regulations for the use of the Kreatli Marketplace
+          website, located at marketplace.kreatli.com
         </p>
 
         <p className="text-foreground-500 mb-2">

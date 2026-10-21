@@ -1,66 +1,108 @@
-# Kreatli Marketplace vs. Vyro: Two Different Ways to Get Paid for Clips
+# Vyro vs Kreatli: Clipping Campaigns or Hiring a Clipper?
 
-**Vyro** is a content-rewards platform where clippers earn based on views and campaign performance. **Kreatli Marketplace** is a freelance marketplace where creators hire editors for fixed project pay. They solve different problems — one rewards distribution, the other pays for editing labour.
+**Vyro vs Kreatli** is a choice between two clipping models. Vyro pays clippers per 1,000 eligible views on clips they post to their own accounts, while Kreatli Marketplace lets creators hire a clipper for agreed pay to deliver finished clips for the creator's own channels.
 
-If you are searching for a **Vyro alternative for editors** who want predictable income, or a creator who needs reliable clip output on your own channels, this comparison clarifies which model fits.
+This page compares the two head to head. If you want the full list of other options, see [Vyro alternatives](/alternatives/vyro-alternatives).
 
-## Quick comparison
+## What Vyro is
 
-| Factor | Kreatli Marketplace | Vyro |
+Vyro is a clipping platform unveiled by MrBeast in October 2025, with MrBeast and Mark Rober among the first creators asking for clips. Creators and brands post campaigns, and clippers earn on the views their clips generate.
+
+Per Vyro's own site, as of 2026:
+
+- Each campaign lists a **pay rate per 1,000 views**. Some listings show the rate per million views instead.
+- Clippers **link a social account**, post a clip to their own Instagram, TikTok, YouTube Shorts, or X account, and **submit the post link**.
+- Views count from submission, but earnings start only once the post is **approved** and passes a **minimum view threshold** set for the campaign.
+- Earnings stay **pending** while the campaign runs. After it ends, Vyro runs a **final view verification** and moves funds to your available balance.
+- Clippers earn on eligible views **until the campaign budget runs out**.
+- Withdrawals start at a **$10 minimum**, once per week, through Stripe or PayPal depending on location.
+
+Vyro does not publish brand-side pricing or fees on its main pages, so creators running a campaign should confirm costs with Vyro directly.
+
+## What Kreatli Marketplace is
+
+**Kreatli Marketplace** is a clipping marketplace where creators hire clippers directly instead of funding a view pool.
+
+- Creators post a **clipping job** with deliverables, skills, availability, and a pay type: **per project, hourly, monthly, or yearly**.
+- Clippers apply with a cover letter or list their services. Clipper profiles are reviewed by the Kreatli team.
+- The clipper delivers **finished files**, and the creator posts them on their own channels.
+- Pay is agreed before work starts and **does not depend on views**.
+- Kreatli **does not process payments or hold escrow**. Jobs list payment preferences such as PayPal, bank transfer, or crypto, and the two sides settle directly.
+
+Joining and posting jobs is free. Clippers can boost visibility with an optional Premium subscription or points.
+
+## Vyro vs Kreatli at a glance
+
+| Factor | Vyro | Kreatli Marketplace |
 | --- | --- | --- |
-| Core model | Hire an editor for agreed project pay | Clippers earn via content rewards / CPM |
-| Payment model | Fixed price per job or milestone | Variable — tied to views and campaign rules |
-| Income predictability | High for completed deliverables | Low — performance-dependent |
-| Vetting | Clipping-specialist profiles and job matching | Open campaign participation |
-| Deliverable | Finished clips to the creator's channel | Clips posted for metrics and rewards |
-| Best for creators | Owned-channel clip pipelines | Distributed promotion at scale |
+| Model | CPM clipping campaigns | Hiring a clipper for agreed pay |
+| Clipper earns | Per 1,000 eligible views | Per project, hour, month, or year |
+| Where clips live | Clipper's own social accounts | Creator's own channels |
+| Who decides what counts | Campaign approval, view threshold, and final verification | Creator and clipper agree deliverables upfront |
+| When clippers get paid | After the campaign ends and views are verified, then weekly withdrawals | On the schedule creator and clipper agree |
+| How money moves | Through Vyro (Stripe or PayPal) | Directly between creator and clipper |
+| Follower requirement | None to start, but posting reach drives earnings | None; portfolio and samples matter |
+| Best for | Reach across many accounts; clippers who want upside | Steady clips on owned channels; clippers who want a floor |
 
-## What is Vyro?
+## The clipper's view
 
-Vyro connects creators and brands with clippers who edit short-form content and post it to earn rewards. Payment typically depends on **views, CPM rates, or campaign-specific rules** — not a fixed fee for the editing work itself.
+Vyro is open: you do not need followers to start, and a clip that takes off on a campaign with budget left can pay well. The catches are structural, not about Vyro specifically:
 
-The model works like affiliate-style clipping: many clippers compete for reach, and income fluctuates with performance. A clip that underperforms may earn little or nothing, while a viral hit can pay well above average.
+- **Income tracks views, not effort.** A well-cut clip that lands in a slow week may barely clear the threshold.
+- **Timing matters.** Popular campaigns can spend their budget quickly, so late submissions earn less.
+- **Cash flow waits.** Earnings stay pending until a campaign ends and the final verification runs.
+- **Account strength wins.** The clippers with the strongest posting accounts tend to earn the most.
 
-## Where Vyro works well
+On Kreatli, the agreed rate is paid whether a clip goes viral or not, and you do not have to build posting accounts. You do have to win jobs, agree payment terms in writing, and give up viral upside. Freelance clips typically pay **$15 to $35** for simple talking-head edits and **$50 to $75 or more** for complex gaming or motion work. Browse open [clipping jobs](/clipping-jobs) to see what creators are posting.
 
-Vyro and similar content-rewards platforms make sense when:
+Many clippers run both: a fixed-pay client or two for a floor, and a few Vyro campaigns for upside.
 
-- A brand wants **many clippers posting** the same campaign across social accounts
-- The primary goal is **reach and views**, not a single trusted editor relationship
-- The creator accepts **variable ROI** on the reward pool
+## The creator's view
 
-Think distribution play, not production pipeline.
+If you are a creator deciding between running a Vyro campaign and hiring, ask one question first: **where should the clips live?**
 
-## Where Vyro falls short for clipping
+A Vyro campaign spreads your content across many clippers' accounts. You pay for views you did not have to post yourself, which suits launches, sponsor pushes, and broad awareness. You do not choose who clips, and the number and style of clips depend on who joins.
 
-For creators building consistent Shorts, Reels, or TikTok output from long-form content, the content-rewards model has limits:
+Hiring on Kreatli puts clips on **your** channels, so subscribers, followers, and analytics stay with you. You choose the clipper, set the weekly volume, and give feedback directly. The cost is a known rate per clip or per month rather than a CPM. For a step-by-step process, read [how to hire a clipper](/guides/how-to-hire-a-clipper).
 
-- **No guaranteed output.** You are funding a pool, not hiring someone to deliver 15 clips this week.
-- **Clips land on poster accounts**, not necessarily your owned channels.
-- **Quality varies wildly** because participation is open and incentive is views, not craft.
-- **Editors face CPM volatility** — strong work can still earn poorly if the algorithm does not cooperate.
+## How views are checked
 
-If you need a dependable editor who learns your hooks and brand voice, project-based hiring is the better fit.
+View verification is where CPM platforms differ most. Vyro counts views from submission and runs a final verification after a campaign ends before paying. Any CPM campaign has to decide which views count, which is why [verified views](/glossary/verified-views-meaning) and thresholds matter so much to clipper income.
 
-## How Kreatli Marketplace is different
+On a hired job, views do not set pay, so verification is not part of the deal. You can still share performance with your clipper so they learn which hooks work.
 
-Kreatli Marketplace is built for the **creator ↔ clip editor** freelance relationship:
+## Choose Vyro if
 
-1. **Post a clipping job** with deliverables, niche, style, and turnaround — not a reward pool.
-2. **Review vetted clipper profiles** focused on short-form editing, not open campaign sign-ups.
-3. **Agree fixed pay** before work starts — classic freelance economics, not CPM gambling.
-4. **Receive finished clips** for your channels, with a relationship you can scale week over week.
+- You want clips posted across **many outside accounts** for reach.
+- You are comfortable paying per view and accepting variable output.
+- As a clipper, your accounts already pull consistent views.
 
-For editors, Kreatli Marketplace offers **guaranteed project pay** instead of hoping a clip hits view thresholds.
+## Choose Kreatli if
 
-## Who should use which?
+- You want **consistent clips on your own channels** at a set volume.
+- You want one clipper who learns your hooks and voice.
+- As a clipper, you want **predictable pay** and repeat clients.
 
-**Choose Vyro** if you are a creator or brand running a content-rewards campaign for distributed reach, and you accept variable performance on your spend.
+Ready to compare in practice? Creators can [post a clipping job](/jobs/create) for free and review applications before committing.
 
-**Choose Kreatli Marketplace** if you are a creator who needs consistent short-form clips on your own channels, or a clip editor who wants stable freelance income for editing work.
+## FAQ
 
-**Choose both** only if you deliberately split goals: content rewards for reach, hired editors for owned-channel production.
+### Is Vyro or Kreatli better for clippers?
 
-## Verdict
+It depends on your accounts and your appetite for risk. Vyro can pay more on clips that take off but pays nothing below a campaign's view threshold. Kreatli pays the agreed rate for each job regardless of views, which suits clippers who want steady income.
 
-Vyro pays clippers for **performance**. Kreatli Marketplace pays editors for **editing**. They are not interchangeable. Creators building a clip pipeline should hire; clippers who want predictable pay should look beyond CPM-only platforms. For the full model breakdown, see [clipping marketplace vs. video editor marketplace](/compare/clipping-marketplace-vs-video-editor-marketplace).
+### When does Vyro pay clippers?
+
+Per Vyro's site as of 2026, earnings stay pending while a campaign runs, then a final view verification happens after it ends and funds move to your available balance. You can withdraw once per week from a $10 minimum through Stripe or PayPal, depending on location.
+
+### Does Kreatli handle payments like Vyro does?
+
+No. Kreatli does not process payments or hold escrow. Creators list payment preferences such as PayPal, bank transfer, or crypto on the job, and creator and clipper agree amounts and timing directly before work starts.
+
+### Can a creator use Vyro and hire a clipper on Kreatli?
+
+Yes. The two models solve different problems: a Vyro campaign buys reach on other accounts, while a hired clipper feeds your own channels. Some creators run both, using campaigns for launches and a hired clipper for weekly output.
+
+### Is Vyro legit?
+
+Vyro is a real platform unveiled by MrBeast in October 2025, and it publishes its campaign rates and payout rules on its site. As with any view-based platform, read each campaign's terms before you put in hours. For broader context, see [is clipping legit](/guides/is-clipping-legit).

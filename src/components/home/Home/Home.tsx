@@ -7,6 +7,7 @@ import { useSignUpCreatorModal } from '../../../hooks/useSignUpCreatorModal';
 import { ContactForm } from '../../contact/ContactForm';
 import { Faq } from '../../contact/Faq';
 import { Video } from '../../various/Video';
+import { ExploreLinks } from '../ExploreLinks';
 import { Feature } from '../Feature';
 import { DesktopFrame } from '../Frames';
 import { Hero } from '../Hero';
@@ -241,6 +242,7 @@ export const Home = () => {
           </article>
         </div>
       </section>
+      <ExploreLinks />
       <section className="relative flex flex-col gap-2 items-center container max-w-screen-md mx-auto px-6 text-center mb-32">
         <Chip variant="flat" color="secondary" classNames={{ content: 'font-semibold' }}>
           FAQ
