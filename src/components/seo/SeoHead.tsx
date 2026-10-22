@@ -1,74 +1,26 @@
-import Head from 'next/head';
 import React from 'react';
 
-import { BRAND_NAME, getPageTitle } from '../../constants/brand';
-import { SeoPage, SeoPageType } from '../../content/seo/types';
-import { getPageUrl, SITE_URL } from '../../content/seo/utils';
+import { getPageTitle } from '../../constants/brand';
+import { breadcrumbSchema, getSeoPageSchemas } from '../../content/seo/schema';
+import { SEO_SECTION_LABELS, SeoFaq, SeoPage, SeoPageType } from '../../content/seo/types';
+import { getPageUrl, SEO_SECTION_PATHS } from '../../content/seo/utils';
+import { PageHead } from './PageHead';
 
 interface Props {
   page: SeoPage;
-  pathOverride?: string;
+  faqs?: SeoFaq[];
 }
 
-const getJsonLd = (page: SeoPage, url: string) => {
-  if (page.type === 'glossary') {
-    return {
-      '@context': 'https://schema.org',
-      '@type': 'DefinedTerm',
-      name: page.title,
-      description: page.metaDescription,
-      url,
-    };
-  }
-
-  if (page.type === 'hire') {
-    return {
-      '@context': 'https://schema.org',
-      '@type': 'WebPage',
-      name: page.title,
-      description: page.metaDescription,
-      url,
-    };
-  }
-
-  return {
-    '@context': 'https://schema.org',
-    '@type': 'Article',
-    headline: page.title,
-    description: page.metaDescription,
-    url,
-    keywords: page.primaryKeyword,
-  };
-};
-
-export const SeoHead = ({ page, pathOverride }: Props) => {
-  const path = pathOverride ?? getPageUrl(page.type, page.slug);
-  const canonical = `${SITE_URL}${path}`;
-  const title = getPageTitle(page.title);
-  const jsonLd = getJsonLd(page, canonical);
-
-  return (
-    <Head>
-      <title>{title}</title>
-      <meta name="description" content={page.metaDescription} />
-      <meta name="keywords" content={page.primaryKeyword} />
-      <link rel="canonical" href={canonical} />
-      <meta property="og:type" content="article" />
-      <meta property="og:title" content={title} />
-      <meta property="og:description" content={page.metaDescription} />
-      <meta property="og:url" content={canonical} />
-      <meta property="og:site_name" content={BRAND_NAME} />
-      <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:title" content={title} />
-      <meta name="twitter:description" content={page.metaDescription} />
-      <script
-        type="application/ld+json"
-        // eslint-disable-next-line react/no-danger
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
-    </Head>
-  );
-};
+export const SeoHead = ({ page, faqs }: Props) => (
+  <PageHead
+    title={getPageTitle(page.seoTitle ?? page.title)}
+    description={page.metaDescription}
+    path={getPageUrl(page.type, page.slug)}
+    ogType="article"
+    ogImageTitle={page.title}
+    jsonLd={getSeoPageSchemas(page, faqs)}
+  />
+);
 
 export const SeoIndexHead = ({
   section,
@@ -79,17 +31,14 @@ export const SeoIndexHead = ({
   title: string;
   description: string;
 }) => {
-  const path = section === 'guide' ? '/guides' : `/${section}`;
-  const canonical = `${SITE_URL}${path}`;
+  const path = SEO_SECTION_PATHS[section];
 
   return (
-    <Head>
-      <title>{title}</title>
-      <meta name="description" content={description} />
-      <link rel="canonical" href={canonical} />
-      <meta property="og:title" content={title} />
-      <meta property="og:description" content={description} />
-      <meta property="og:url" content={canonical} />
-    </Head>
+    <PageHead
+      title={title}
+      description={description}
+      path={path}
+      jsonLd={breadcrumbSchema([{ name: SEO_SECTION_LABELS[section], path }])}
+    />
   );
 };

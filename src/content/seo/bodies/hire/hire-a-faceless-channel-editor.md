@@ -2,7 +2,7 @@
 
 Faceless channels live or die on editing. Without an on-camera host, the pacing, visuals, captions, voiceover timing, and B-roll have to carry the story. **Kreatli Marketplace** helps creators hire faceless channel editors for YouTube, Shorts, TikTok, and Reels workflows.
 
-Whether you run education, finance, history, true crime, motivation, AI news, sports, or list-style content, the right editor can turn scripts and voiceovers into videos that feel deliberate instead of assembled from random stock footage.
+Whether you run education, finance, history, true crime, motivation, AI news, sports, or list-style content, the right editor can turn scripts and voiceovers into videos that feel deliberate instead of assembled from random stock footage. If you are new to the format, see [what a faceless channel is](/glossary/faceless-channel-meaning).
 
 ## What does a faceless channel editor do?
 
@@ -46,7 +46,7 @@ Faceless editing ranges widely because the editor may need to source every visua
 | AI-assisted video | Prompting, cleanup, consistency |
 | Monthly channel package | Scripts, voiceovers, edits, thumbnails, clips |
 
-Simple Shorts from provided assets may cost **$25-$60 per clip**. Long-form faceless videos often cost more because sourcing, pacing, graphics, and revisions take time. If you provide script, voiceover, brand assets, and approved footage sources, editors can quote more accurately.
+Simple Shorts from provided assets may cost **$25-$60 per clip**. Long-form faceless videos often cost more because sourcing, pacing, graphics, and revisions take time. If you provide script, voiceover, brand assets, and approved footage sources, editors can quote more accurately. For short-form benchmarks, see [how much to pay clippers](/guides/how-much-to-pay-clippers), or estimate a monthly budget with the [clipping campaign cost calculator](/tools/clipping-campaign-cost-calculator).
 
 ## What to prepare before you hire
 
@@ -103,7 +103,7 @@ Give the editor:
 - Export specs
 - One revision round
 
-Then judge the result on clarity, visual relevance, retention, and how well the editor followed instructions.
+Then judge the result on clarity, visual relevance, retention, and how well the editor followed instructions. The [guide to hiring a clipper](/guides/how-to-hire-a-clipper) walks through trials, vetting, and ongoing workflows in more detail.
 
 ## FAQ
 
@@ -121,4 +121,4 @@ Provide script length, voiceover length, niche, example channels, asset sources,
 
 ### Where should I hire?
 
-Post a faceless channel editing job on Kreatli Marketplace with a small paid trial. The clearer your asset and licensing rules, the better the applicants can quote.
+Post a faceless channel editing job on Kreatli Marketplace with a small paid trial, or browse the [hire clippers hub](/hire). The clearer your asset and licensing rules, the better the applicants can quote.

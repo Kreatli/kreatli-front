@@ -1,24 +1,13 @@
 import { SEO_PAGES } from './registry';
 import { SeoPage, SeoPageType } from './types';
 
-export const SITE_URL = 'https://kreatli.com';
-
-export const getPageUrl = (type: SeoPageType, slug: string) => `/${type === 'guide' ? 'guides' : type}/${slug}`;
+export { getAbsoluteUrl, getPageUrl, SEO_PAGE_TYPES, SEO_SECTION_PATHS, SITE_URL } from './paths';
 
 export const getPageBySlug = (type: SeoPageType, slug: string): SeoPage | undefined =>
   SEO_PAGES.find((page) => page.type === type && page.slug === slug);
 
 export const getPublishedPagesByType = (type: SeoPageType): SeoPage[] =>
   SEO_PAGES.filter((page) => page.type === type && page.status === 'published');
-
-export const SEO_SECTION_PATHS: Record<SeoPageType, string> = {
-  compare: '/compare',
-  glossary: '/glossary',
-  guide: '/guides',
-  hire: '/hire',
-};
-
-export const SEO_PAGE_TYPES: SeoPageType[] = ['compare', 'glossary', 'guide', 'hire'];
 
 export const getRelatedPages = (page: SeoPage, limit = 3): SeoPage[] => {
   if (page.relatedSlugs?.length) {
@@ -44,11 +33,12 @@ export const estimateReadTimeMinutes = (body: string): number => {
 
 export const STATIC_SITE_PATHS = [
   '/',
+  '/clipping-jobs',
+  '/tools',
+  '/tools/clipping-earnings-calculator',
+  '/tools/clipping-campaign-cost-calculator',
   '/blog',
-  '/blog/getting-started-as-a-clipper',
-  '/blog/how-to-find-the-perfect-clipper',
   '/blog/clipping-best-practices',
-  '/blog/building-your-clipper-portfolio',
   '/faq',
   '/contact',
   '/privacy-policy',
@@ -57,4 +47,5 @@ export const STATIC_SITE_PATHS = [
   '/glossary',
   '/guides',
   '/hire',
+  '/alternatives',
 ];

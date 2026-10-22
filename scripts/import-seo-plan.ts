@@ -1,5 +1,9 @@
 /**
- * Regenerates src/content/seo/registry.ts from the marketplace SEO plan spreadsheet.
+ * Appends new pages from the marketplace SEO plan spreadsheet to src/content/seo/registry.ts.
+ *
+ * The registry is maintained by hand after import (titles, meta descriptions, related pages, dates),
+ * so this script never overwrites an existing page: rows whose id or slug is already in the registry
+ * are skipped, and new rows are added as drafts.
  *
  * Usage: npm run import-seo-plan [path-to-xlsx]
  * Default xlsx: ../marketplace-kreatli-50-page-plan (1).xlsx (relative to project root parent)
@@ -7,8 +11,11 @@
 
 import fs from 'fs';
 import path from 'path';
-
 import * as XLSX from 'xlsx';
+
+import { SEO_PAGES } from '../src/content/seo/registry';
+import { SeoPage } from '../src/content/seo/types';
+import { writeRegistry } from './lib/writeRegistry';
 
 const BRAND_NAME = 'Kreatli Marketplace';
 
@@ -37,7 +44,6 @@ const defaultXlsx = path.resolve(
 );
 
 const xlsxPath = process.argv[2] ? path.resolve(process.argv[2]) : defaultXlsx;
-const outputPath = path.resolve(process.cwd(), 'src/content/seo/registry.ts');
 
 if (!fs.existsSync(xlsxPath)) {
   console.error(`Spreadsheet not found: ${xlsxPath}`);
@@ -56,8 +62,6 @@ const pages = rows
     const pageType = TYPE_MAP[String(row['Page Type'] ?? '')] ?? 'guide';
     const waveMatch = String(row.Wave ?? '1').match(/\d+/);
     const wave = waveMatch ? Number(waveMatch[0]) : 1;
-    const statusRaw = String(row.Status ?? 'Not started');
-    const status = statusRaw === 'Drafted' ? 'published' : 'draft';
     const title = String(row['Page Title (H1)'] ?? '');
     const dependency = row['Dependency / Gate'];
     const dep = dependency && dependency !== 'None' ? String(dependency) : undefined;
@@ -73,46 +77,26 @@ const pages = rows
       searchIntent: INTENT_MAP[String(row['Search Intent'] ?? '')] ?? 'informational',
       wave,
       dependency: dep,
-      status,
+      status: 'draft',
       notes: row.Notes ? String(row.Notes) : undefined,
       ctaHref: pageType === 'hire' ? '/jobs/create' : undefined,
     };
   });
 
-const lines: string[] = [
-  "import { SeoPage } from './types';",
-  '',
-  '// Auto-generated from marketplace SEO plan spreadsheet. Re-run: npm run import-seo-plan',
-  'export const SEO_PAGES: SeoPage[] = [',
-];
+// Match on type + slug: registry ids beyond the spreadsheet's rows were assigned by hand, so a new
+// row's spreadsheet number may already be taken. New rows get the next free ids instead.
+const existingSlugs = new Set(SEO_PAGES.map((page) => `${page.type}/${page.slug}`));
+const firstNewId = Math.max(...SEO_PAGES.map((page) => page.id)) + 1;
 
-pages.forEach((page) => {
-  const sq = (value: string) => `'${value.replace(/'/g, "\\'")}'`;
+const newPages = pages
+  .filter((page) => !existingSlugs.has(`${page.type}/${page.slug}`))
+  .map((page, index) => ({ ...page, id: firstNewId + index })) as SeoPage[];
 
-  lines.push('  {');
-  lines.push(`    id: ${page.id},`);
-  lines.push(`    type: ${sq(page.type)},`);
-  lines.push(`    funnelSide: ${sq(page.funnelSide)},`);
-  lines.push(`    slug: ${sq(page.slug)},`);
-  lines.push(`    title: ${sq(page.title)},`);
-  lines.push(`    metaDescription: ${sq(page.metaDescription)},`);
-  lines.push(`    primaryKeyword: ${sq(page.primaryKeyword)},`);
-  lines.push(`    searchIntent: ${sq(page.searchIntent)},`);
-  lines.push(`    wave: ${page.wave},`);
-  if (page.dependency) {
-    lines.push(`    dependency: ${sq(page.dependency)},`);
-  }
-  lines.push(`    status: ${sq(page.status)},`);
-  if (page.notes) {
-    lines.push(`    notes: ${sq(page.notes)},`);
-  }
-  if (page.ctaHref) {
-    lines.push(`    ctaHref: ${sq(page.ctaHref)},`);
-  }
-  lines.push('  },');
-});
+if (newPages.length === 0) {
+  console.log(`No new pages: all ${pages.length} spreadsheet rows are already in the registry.`);
+  process.exit(0);
+}
 
-lines.push('];', '');
-
-fs.writeFileSync(outputPath, lines.join('\n'));
-console.log(`Wrote ${pages.length} pages to ${outputPath}`);
+writeRegistry([...SEO_PAGES, ...newPages]);
+console.log(`Added ${newPages.length} draft page(s): ${newPages.map((page) => page.slug).join(', ')}`);
+console.log('Write a unique metaDescription for each before publishing; the imported one is a placeholder.');

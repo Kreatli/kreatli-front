@@ -1,103 +1,137 @@
 # How to Become a Freelance Video Editor With No Experience
 
-You can become a freelance video editor without formal training or agency experience by **learning short-form clipping first**, building 3–5 vertical samples, and applying to project-based jobs where creators pay fixed rates per deliverable. The fastest path in 2026 is not a generic "video editing" brand — it is **podcast clips, Shorts, or gaming highlights** with obvious hook and caption skill.
+You can **become a freelance video editor with no experience** by picking one type of editing to start with, building a few samples that prove you can do it, choosing a pricing model clients understand, and treating every early client as a source of repeat work and referrals. Formal training helps less than you might think. Clients hire samples, reliability, and judgment.
 
-**Kreatli Marketplace** connects new clip editors with creators who post clipping jobs — **project pay** for finished files, not CPM view-chasing on your personal TikTok.
+This guide covers the career and business side of freelance editing: which niche to pick, short-form vs long-form work, how to price, how to keep clients, and how to grow into higher-paid editing over time.
 
-## Be honest: this is work, not passive income
+**Only interested in clipping?** If you want to turn streams, podcasts, and videos into Shorts, TikToks, and Reels, the step-by-step [guide to becoming a clipper](/guides/how-to-become-a-clipper) covers that path in detail, including CPM campaigns. This page is about the wider freelance editing career.
 
-Freelance clipping offers flexible hours and remote work — but clients expect deadlines, revisions, and consistent style. Content-rewards programs promise viral upside; project clipping promises **predictable pay per clip** if you deliver.
+## What freelance video editors actually do
 
-Choose the model deliberately: [what is a clipper](/glossary/what-is-a-clipper) explains both paths.
+"Video editor" covers several different businesses. The main lanes for freelancers:
 
-## Step 1: Learn clipping skills (not every editing discipline)
-
-Start narrow:
-
-| Skill | Why it matters |
-| --- | --- |
-| 9:16 reframing | Every clip job is vertical |
-| Jump cuts & pacing | Talking-head retention |
-| Burned-in captions | Most views are muted |
-| Hook-first structure | Payoff in first 2 seconds |
-| File export hygiene | Correct resolution, no black bars |
-
-Defer colour grading mastery and long-form storytelling until you have paying clip clients.
-
-Free practice sources: public talks, Creative Commons interviews, your own screen recordings.
-
-## Step 2: Pick software you will actually use
-
-Common 2026 stack for clippers:
-
-- **CapCut / Premiere / DaVinci** — pick one, learn deeply
-- **Auto-caption tools** — speed up first pass; always manual polish
-- **Cloud storage** — Google Drive or Dropbox for client handoff
-
-Tool does not matter as much as **output quality**. Ship samples, not gear debates.
-
-## Step 3: Build a portfolio without clients
-
-1. Create **3–5 vertical clips** from spec footage
-2. Show **variety within one niche** — three podcast styles, not wedding + gaming + podcast
-3. Host on YouTube unlisted, Google Drive, or profile portfolio
-4. Label spec work honestly — clients respect transparency
-
-One great niche sample beats ten mediocre general edits.
-
-## Step 4: Learn the business basics
-
-- **Pricing** — start $12–$25/simple clip; read [2026 rate guide](/guides/how-to-price-video-editing-services)
-- **Contracts** — scope, revisions, payment timing in writing
-- **Taxes** — track income from day one
-- **Communication** — respond within hours, not days
-
-Editors who ghost lose careers faster than editors with average colour grades.
-
-## Step 5: Land your first paid gig
-
-1. **Join Kreatli Marketplace** as a clipper — complete profile with vertical samples
-2. **Apply only to matching jobs** — podcast clipping if that is your portfolio
-3. **Write specific proposals** — reference their show and turnaround
-4. **Over-deliver on client #1** — early reliability becomes referrals
-
-See [find your first clip editing client](/guides/find-first-video-editing-client) for outreach detail.
-
-## Step 6: Specialise and raise rates
-
-After 3–5 happy clients:
-
-- Narrow tagline: "Podcast clip editor for interview shows"
-- Raise rates 15–25%
-- Pursue **weekly retainers** — stable income beats one-off gigs
-
-Generalists stay crowded. Specialists get repeat bookings.
-
-## Clipper vs content-rewards clipping
-
-| | Project clipping (Kreatli) | Content-rewards CPM |
+| Lane | Typical work | What clients care about |
 | --- | --- | --- |
-| Pay | Fixed per deliverable | Per views, variable |
-| Where clips post | Client's channel | Often your account |
-| Skill focus | Editing quality | Volume + distribution |
-| Income predictability | Higher | Lower |
+| **Short-form clipping** | Vertical clips from long videos, streams, and podcasts | Hooks, captions, speed, volume |
+| **Long-form YouTube editing** | 8–30 minute videos for a creator's main channel | Story structure, pacing, retention across the whole video |
+| **Full podcast episodes** | Multi-camera cuts, audio cleanup, chapters | Clean audio, consistency, reliable weekly delivery |
+| **Brand and business video** | Ads, product videos, explainers, testimonials | Brand guidelines, approvals, polish |
+| **Events and weddings** | Highlight films and full-length edits | Storytelling, color, emotional tone |
+| **Motion graphics** | Animated text, explainers, title packages | Design skill and software depth |
 
-Many editors prefer project work while building skills — then optionally experiment with rewards programs separately.
+Each lane has different clients and skills. Selling all of them at once makes your portfolio confusing.
+
+## Choose a starting niche
+
+Pick a lane based on three things: what you already watch, what you can practice on legally, and how quickly you can show results.
+
+- **If you live on YouTube,** long-form creator editing or clipping will feel natural.
+- **If you know a specific industry,** such as fitness, finance, or real estate, brand video in that industry gives you an edge in understanding the audience.
+- **If you like design,** motion graphics can be a strong specialty, but it takes longer to learn.
+
+Then narrow further. "Podcast editor for interview shows" is easier to hire than "video editor." You can broaden later, once you have proof.
+
+## Short-form vs long-form: pros and tradeoffs
+
+Most new editors weigh these two first.
+
+**Short-form (clipping)**
+
+- Faster to learn the basics and build samples
+- Lots of demand from streamers, podcasters, and YouTubers
+- Each clip is small, so you get feedback quickly
+- Income depends on volume; simple clips typically pay **$15–$35** and complex gaming or motion clips **$50–$75+**
+
+**Long-form**
+
+- Each project pays more because it takes much longer
+- Requires stronger storytelling: structure, pacing, and holding attention for minutes, not seconds
+- Fewer projects, so each client relationship matters more
+- Harder to break into without samples that show a full video
+
+A common path is to start with short-form to learn fast feedback loops and client communication, then add long-form once you have a client who trusts you.
+
+## Build skills and samples without clients
+
+You do not need paid work to prove you can edit. Use footage you are allowed to use: your own recordings, Creative Commons material, or creators who openly invite editors. Build three to five samples in your chosen lane, and label spec work honestly.
+
+Pick one editing tool and learn it properly. The tool matters less than what you deliver. For a full walkthrough on building samples, read [how to build a portfolio before you have clients](/guides/video-editing-portfolio-no-clients).
+
+## Pricing models for freelance editors
+
+How you charge shapes the clients you attract. The common models:
+
+- **Per deliverable:** per clip, per video, or per episode. Clear for clients and rewards you for getting faster.
+- **Per project:** a fixed price for a defined batch, such as a podcast season or a launch campaign.
+- **Hourly:** useful for open-ended work like organizing a back catalog, but it can penalize you as you get quicker.
+- **Monthly retainer:** a set price for a set volume each month. The most stable option once a client trusts you.
+
+Every quote should state what is included: number of revisions, turnaround, file formats, and what counts as extra work. The [2026 rate guide](/guides/how-to-price-video-editing-services) goes deeper on setting numbers and raising them.
+
+## Land your first clients
+
+Early clients come from a mix of channels:
+
+- **Marketplaces** where buyers post jobs, including clipping-specific ones for short-form work
+- **Direct outreach** to creators or businesses whose content you can clearly improve
+- **Your network,** including friends with small businesses, local organizations, and online communities
+- **Referrals** from anyone you have already done good work for
+
+Keep pitches short and specific: what you noticed about their content, one relevant sample, and a clear offer. See [how to find your first client](/guides/find-first-video-editing-client) for outreach templates.
+
+## Turn first clients into repeat clients
+
+Repeat clients are what make freelancing sustainable. The habits that earn them:
+
+- **Reply quickly.** Clients forgive average editing faster than slow communication.
+- **Hit every deadline,** and warn early if something slips.
+- **Keep a style guide** for each client so your work stays consistent.
+- **Suggest improvements** based on what performed well.
+- **Offer a recurring arrangement** once you have delivered a few projects, such as a weekly batch or monthly retainer.
+
+## Grow from clipping into higher-paid editing
+
+Many editors start with clips and move up as they build trust and skill. Ways to grow:
+
+- **Add long-form edits** for a clipping client who already likes your work
+- **Take on packaging work,** such as titles, hooks, or thumbnail concepts, if you have the skill
+- **Specialize deeply** in one niche so you can charge more than generalists
+- **Offer full-service retainers** that cover a creator's long-form video and its clips
+- **Build a small team** once your own process is documented and stable
+
+For realistic short-form income ranges, see [how much clippers make](/guides/how-much-do-clippers-make).
+
+## Handle the business basics
+
+Freelancing is a business from day one:
+
+- **Put scope, revisions, and payment timing in writing** for every job
+- **Track income and expenses** from your first payment, and set money aside for taxes
+- **Use reliable file sharing** and a clear folder system for every client
+- **Back up project files** until the client confirms final delivery
+
+## Get started
+
+Pick your lane, build three to five samples, and start pitching. If short-form is your entry point, [create a free clipper profile on Kreatli](/signup/professional) and apply to creators who are hiring for clips now.
 
 ## FAQ
 
-### Do I need a film degree?
+### Do I need a degree to become a freelance video editor?
 
-No. Clients hire **samples and reliability**. Degrees rarely appear in clipping job posts.
+No. Clients hire based on samples and reliability. A degree or course can speed up learning, but job posts rarely ask for one.
 
-### How long until I can go full-time?
+### Should I start with short-form or long-form editing?
 
-Depends on rates and hours. At $25/clip × 40 clips/week = $1,000/week gross — minus taxes, software, slow weeks. Most editors go part-time → full-time over **6–18 months**.
+Short-form is usually easier to start with, because samples are quick to make and clients give fast feedback. Long-form pays more per project but needs stronger storytelling and a portfolio of full videos. Many editors start with clips and add long-form later.
 
-### Should I start on Fiverr or Upwork?
+### How long does it take to go full-time?
 
-You can, but open gig marketplaces skew toward race-to-bottom pricing. A clipping-focused marketplace reduces mismatched buyers. Compare [Fiverr vs Upwork vs Kreatli](/guides/fiverr-vs-upwork-for-video-editors).
+It depends on your rates, hours, and how many repeat clients you keep. As a simple example, 40 clips a week at $25 each is $1,000 a week before taxes, software, and slow weeks. Most people build up part-time before making the switch.
 
-### Can AI replace new clip editors?
+### What is the difference between a freelance video editor and a clipper?
 
-AI speeds transcript cuts; clients still pay humans for **hook judgment, brand voice, and polish**. Learn AI-assisted workflows — do not compete on manual labour alone.
+A clipper is a freelance editor who specializes in short vertical clips from longer content. Freelance video editing is the wider field, including long-form, brand, and event work. If clipping is all you want to do, follow the [guide to becoming a clipper](/guides/how-to-become-a-clipper).
+
+### Can AI replace freelance video editors?
+
+AI tools speed up tasks like transcription, rough cuts, and captions. Clients still pay people for judgment: choosing moments, structuring a story, and matching a creator's voice. Learning to use AI in your workflow makes you faster, not redundant.

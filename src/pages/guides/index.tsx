@@ -15,13 +15,13 @@ const GuidesIndexPage = ({ pages }: Props) => (
   <>
     <SeoIndexHead
       section="guide"
-      title="Guides | Kreatli Marketplace"
-      description="How-to guides for hiring video editors and building a clipping career on Kreatli Marketplace."
+      title="Clipping Guides for Creators and Clippers | Kreatli"
+      description="How to hire clippers, what to pay them, and how to become a clipper and get paid to clip streams and videos. Practical guides from Kreatli Marketplace."
     />
     <SeoSectionIndex
       type="guide"
       pages={pages}
-      description="Practical guides for creators hiring editors and clippers growing their careers."
+      description="Practical guides for creators hiring clippers and for clippers growing their careers."
     />
   </>
 );

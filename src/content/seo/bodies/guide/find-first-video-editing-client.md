@@ -22,7 +22,7 @@ Generalist editors compete with thousands of low-cost gigs. Clip specialists win
 - "I cut Twitch highlights with meme timing and SFX"
 - "I repurpose coaching webinars into TikTok hooks"
 
-One niche → faster portfolio → clearer job applications. See [niche specialization](/guides/become-a-freelance-video-editor) paths in our companion guide.
+One niche → faster portfolio → clearer job applications. See [niche specialization](/guides/become-a-freelance-video-editor) paths in our companion guide, or start from scratch with [how to become a clipper](/guides/how-to-become-a-clipper).
 
 ## Step 2: Build 3–5 vertical samples before pitching
 
@@ -44,13 +44,13 @@ First-client pricing is about **proof**, not maximum margin:
 | Gaming highlight | $20–$35 | $35–$55 |
 | Weekly retainer (15 clips) | $400–$700 | $800–$1,400 |
 
-Underpricing forever burns you out. Plan a **rate review after 30 days** once delivery is smooth.
+Underpricing forever burns you out. Plan a **rate review after 30 days** once delivery is smooth. For income benchmarks, see [how much clippers make](/guides/how-much-do-clippers-make).
 
 ## Step 4: Hunt where creators post jobs
 
 | Channel | Approach |
 | --- | --- |
-| **Kreatli Marketplace** | Complete profile, apply to jobs matching your niche |
+| **Kreatli Marketplace** | Complete profile, apply to [open clipping jobs](/clipping-jobs) matching your niche |
 | **Creator DMs** | Short pitch + 1 relevant sample link — no walls of text |
 | **Communities** | Help first in Discord/Reddit threads; pitch when someone asks for editors |
 | **Referrals** | Ask first client for intro to another podcaster |

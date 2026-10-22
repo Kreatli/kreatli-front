@@ -1,0 +1,19 @@
+Free template from Kreatli Marketplace (https://marketplace.kreatli.com)
+
+Hi [Streamer name],
+
+I'm [Your name], a short-form clip editor. I'd like to clip moments from your streams and post them as vertical clips. Here's what I'm proposing:
+
+- Content: clips from your [Twitch / Kick / YouTube] streams and VODs
+- Where they'll be posted: [your channel / my accounts: list handles]
+- Credit: your name and channel link in every caption
+- Music: I'll mute or replace any copyrighted music
+- Off-limits: I'll skip anything you tell me to avoid, plus private or sponsor-sensitive moments
+- Monetization: [I won't monetize these clips / revenue terms we agree]
+- Removal: I'll take down any clip within 48 hours if you ask
+- Duration: this permission lasts until either of us ends it in writing
+
+Could you reply "I agree" if this works for you? Here's a sample clip from your recent stream: [link]
+
+Thanks,
+[Your name]

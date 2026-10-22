@@ -1,23 +1,31 @@
 import { GetServerSideProps } from 'next';
 
 import { SEO_PAGES } from '../content/seo/registry';
-import { getPageUrl, SITE_URL, STATIC_SITE_PATHS } from '../content/seo/utils';
+import { getAbsoluteUrl, getPageUrl, STATIC_SITE_PATHS } from '../content/seo/utils';
+
+interface SitemapEntry {
+  path: string;
+  lastmod?: string;
+}
 
 const generateSitemap = () => {
-  const publishedSeoPaths = SEO_PAGES.filter((page) => page.status === 'published').map((page) => getPageUrl(page.type, page.slug));
+  const seoEntries: SitemapEntry[] = SEO_PAGES.filter((page) => page.status === 'published').map((page) => ({
+    path: getPageUrl(page.type, page.slug),
+    lastmod: page.updatedAt ?? page.publishedAt,
+  }));
 
-  const allPaths = [...STATIC_SITE_PATHS, ...publishedSeoPaths];
-  const lastmod = new Date().toISOString().split('T')[0];
+  const entries: SitemapEntry[] = [...STATIC_SITE_PATHS.map((path) => ({ path })), ...seoEntries];
 
-  const urls = allPaths
-    .map(
-      (path) => `  <url>
-    <loc>${SITE_URL}${path}</loc>
-    <lastmod>${lastmod}</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>${path === '/' ? '1.0' : '0.7'}</priority>
-  </url>`,
-    )
+  // lastmod is only emitted when we know the real content date; a date that changes on every
+  // request tells search engines nothing.
+  const urls = entries
+    .map(({ path, lastmod }) =>
+      [
+        '  <url>',
+        `    <loc>${getAbsoluteUrl(path)}</loc>`,
+        ...(lastmod ? [`    <lastmod>${lastmod}</lastmod>`] : []),
+        '  </url>',
+      ].join('\n'))
     .join('\n');
 
   return `<?xml version="1.0" encoding="UTF-8"?>
@@ -32,6 +40,7 @@ export const getServerSideProps: GetServerSideProps = async ({ res }) => {
   const sitemap = generateSitemap();
 
   res.setHeader('Content-Type', 'text/xml');
+  res.setHeader('Cache-Control', 'public, s-maxage=3600, stale-while-revalidate=86400');
   res.write(sitemap);
   res.end();
 
