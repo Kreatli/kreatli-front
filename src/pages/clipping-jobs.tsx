@@ -35,6 +35,16 @@ const JOB_TYPES = [
     description: 'Edit gameplay moments with timing, captions, sound effects and memes that work for viewers who missed the stream.',
     links: [{ href: '/hire/hire-a-gaming-clipper', label: 'What creators look for in gaming clippers' }],
   },
+  {
+    title: 'TikTok clipping',
+    description: 'Make TikTok-native clips with fast hooks, burned-in captions and safe-zone framing for a creator’s account.',
+    links: [{ href: '/guides/tiktok-clipping', label: 'How TikTok clipping works and pays' }],
+  },
+  {
+    title: 'Faceless and explainer channels',
+    description: 'Cut narrated, gameplay or story videos into short clips that grow channels without an on-camera host.',
+    links: [{ href: '/glossary/faceless-channel-meaning', label: 'What a faceless channel is' }],
+  },
 ];
 
 const STEPS = [
@@ -58,6 +68,11 @@ const STEPS = [
 
 const FAQS = [
   {
+    question: 'How do you get paid to clip videos?',
+    answer:
+      'There are two ways. A creator can hire you to edit clips for their own channels at an agreed rate per clip, project or month, which is how clipping jobs on Kreatli Marketplace work. Or you can join a CPM campaign and earn per 1,000 views on clips you post on your own accounts. Clipping jobs pay whether or not a clip goes viral; campaigns depend on views.',
+  },
+  {
     question: 'What are clipping jobs?',
     answer:
       'Clipping jobs pay you to turn a creator’s long videos, streams or podcasts into short vertical clips for TikTok, YouTube Shorts and Instagram Reels. On Kreatli Marketplace the creator pays you for the editing work and posts the clips on their own channels.',
@@ -66,6 +81,11 @@ const FAQS = [
     question: 'How do clipping jobs pay?',
     answer:
       'Creators on Kreatli Marketplace set project, hourly, monthly or yearly pay when they post a job, so your income does not depend on how many views a clip gets. Freelance clippers typically charge $15 to $35 for a simple clip and $50 to $75 or more for complex gaming or motion graphics work.',
+  },
+  {
+    question: 'Are clipping jobs legit?',
+    answer:
+      'Yes, real creators pay clippers to edit their videos. Be careful with offers that ask you to pay upfront, keep asking for unpaid test edits, or change payout rules after you post. On Kreatli Marketplace, creators state the pay and deliverables when they post a job.',
   },
   {
     question: 'Are clipping jobs remote?',
@@ -106,8 +126,16 @@ const ClippingJobsPage = () => (
         <>
           <p>
             Kreatli Marketplace is where streamers, YouTubers and podcasters post clipping jobs and hire clippers to
-            turn their long videos into Shorts, TikToks and Reels. You get paid for the editing work at a rate agreed
-            up front, not per view.
+            turn their long videos into Shorts, TikToks and Reels. You get paid to clip at a rate agreed up front, not
+            per view. New to this?{' '}
+            <Link as={NextLink} href="/glossary/what-is-a-clipper" color="secondary" underline="hover">
+              Here is what a clipper does
+            </Link>
+            , and{' '}
+            <Link as={NextLink} href="/guides/clipper-pay-rates" color="secondary" underline="hover">
+              what clipping jobs typically pay
+            </Link>
+            .
           </p>
           <div className="flex flex-wrap gap-3">
             <Button as={NextLink} href="/signup/professional" color="secondary" size="lg">
@@ -124,6 +152,8 @@ const ClippingJobsPage = () => (
       relatedLinks={[
         { href: '/guides/how-to-become-a-clipper', label: 'How to become a clipper' },
         { href: '/guides/how-much-do-clippers-make', label: 'How much do clippers make?' },
+        { href: '/guides/clipper-pay-rates', label: 'Clipper pay rates in 2026' },
+        { href: '/guides/tiktok-clipping', label: 'TikTok clipping: how it works and pays' },
         { href: '/tools/clipping-earnings-calculator', label: 'Clipping earnings calculator' },
         { href: '/guides/is-clipping-legit', label: 'Is clipping legit? How to spot scams' },
         { href: '/guides/do-you-need-permission-to-clip-streams', label: 'Do you need permission to clip streams?' },
