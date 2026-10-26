@@ -65,7 +65,7 @@ npm run seo:qa -- <type>/<slug>
 - Commit message `feat(seo): <what changed> (<TICKET-ID>)`, with the repo's co-author trailer.
 - PR body: link the Linear ticket, why (data from the ticket), what changed, QA output summary, and after-merge
   steps (Request indexing for the URL in Search Console).
-- Comment on the Linear ticket with the PR link and move it to **In Review**.
+- Attach the PR to the Linear ticket as a link, comment with a one-line summary, and keep it **In Progress** (the SEO team has no "In Review" status: Backlog, Todo, In Progress, Done, Canceled).
 
 ## 7. After merge (if asked, or on the next run)
 

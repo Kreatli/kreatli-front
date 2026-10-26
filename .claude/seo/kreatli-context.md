@@ -62,3 +62,11 @@ Use the figures in these pages and link to them. Don't invent new ones:
 - 2026-10-25: pages changed in the last 28 days were held from the audit, because their Search Console data
   still reflects the old content. Keep doing this.
 - 2026-10-25: generic film terms (b-roll, jump cut) rank 55+ and don't convert. Prefer short-form angles.
+- 2026-10-26: short-form versions of film terms ("b roll for tiktok", "jump cut tiktok") have ~0 to 10 searches a
+  month. Leave the generic glossary pages alone rather than repositioning them (SEO-9 closed).
+- 2026-10-26: check demand before merging or redirecting a page. become-a-freelance-video-editor looked like
+  overlap but owns "freelance video editor" (1,300/mo), so it was kept and cross-linked (SEO-8).
+- 2026-10-26: keep figures consistent across pages. The old CPM page said "$1 to $10+ CPM" while the pay guide
+  said $0.50 to $3. When a page quotes a rate, use the pay guide's numbers and link to it.
+- The SEO Linear team's statuses are Backlog, Todo, In Progress, Done and Canceled (no "In Review"). A ticket
+  with an open PR stays In Progress with the PR attached as a link.

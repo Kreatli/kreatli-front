@@ -18,8 +18,11 @@ export const keywordTerms = (text: string) =>
     .toLowerCase()
     .replace(/[^a-z0-9:\s-]/g, ' ')
     .split(/[\s-]+/)
+    // Keep colons inside terms like "9:16", but not trailing ones from "Keyword: subtitle" titles.
+    .map((term) => term.replace(/^:+|:+$/g, ''))
     .filter((term) => term && !KEYWORD_STOPWORDS.has(term))
-    .map((term) => term.replace(/(ies)$/, 'y').replace(/(?<!s)s$/, ''));
+    .map((term) => term.replace(/(ies)$/, 'y').replace(/(?<!s)s$/, ''))
+    .filter(Boolean);
 
 /** Share of the keyword's topic words that appear in the text, plus the ones that are missing. */
 export const keywordCoverage = (keyword: string, text: string) => {
