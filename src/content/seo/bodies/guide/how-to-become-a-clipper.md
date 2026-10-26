@@ -86,7 +86,7 @@ Browse [clipping jobs on Kreatli Marketplace](/clipping-jobs) where creators lis
 
 ### Join campaigns, selectively
 
-CPM campaigns are open to most people and can be a good way to practice volume. Read the rules on view minimums, payout caps, and how views are verified before you post anything.
+CPM campaigns are open to most people and can be a good way to practice volume. Read the rules on view minimums, payout caps, and how views are verified before you post anything. If TikTok is your main platform, [TikTok clipping](/guides/tiktok-clipping) covers both pay models there.
 
 ### Reach out directly
 
