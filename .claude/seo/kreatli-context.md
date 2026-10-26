@@ -53,6 +53,7 @@ Use the figures in these pages and link to them. Don't invent new ones:
 - URL sections: `guide` → `/guides`, `glossary`, `compare`, `hire`, `alternatives`
 - Renamed slugs and merges: the `redirects()` in `next.config.js`
 - Scripts: `npm run seo:qa`, `npm run seo:audit`, `npm run seo:keywords`, `npm run seo-pages:next`
+- Publishing: commit straight to `main` and push. That deploys to production. No branches or PRs.
 - Tickets: Linear workspace **seo-automation-blog**, team **SEO**, project **Marketplace SEO**, labels
   `new-page` / `rewrite` / `technical`. Use the Linear connector whose `get_workspace` returns "SEO-automation".
   Other Linear connectors in this app point at different workspaces.
@@ -68,5 +69,6 @@ Use the figures in these pages and link to them. Don't invent new ones:
   overlap but owns "freelance video editor" (1,300/mo), so it was kept and cross-linked (SEO-8).
 - 2026-10-26: keep figures consistent across pages. The old CPM page said "$1 to $10+ CPM" while the pay guide
   said $0.50 to $3. When a page quotes a rate, use the pay guide's numbers and link to it.
-- The SEO Linear team's statuses are Backlog, Todo, In Progress, Done and Canceled (no "In Review"). A ticket
-  with an open PR stays In Progress with the PR attached as a link.
+- The SEO Linear team's statuses are Backlog, Todo, In Progress, Done and Canceled (no "In Review").
+- 2026-10-26: publishing is a direct commit to `main`, with no PRs (the owner's choice). A push deploys to production
+  via Vercel, so the QA gate is the only review. One ticket per commit, so a bad page can be reverted on its own.

@@ -1,6 +1,6 @@
 ---
 name: seo-qa
-description: Quality gate for marketplace.kreatli.com SEO pages. Runs `npm run seo:qa` plus a manual review of claims, accuracy, usefulness and tone, and returns PASS or a list of fixes. Use before publishing any SEO page, when reviewing an SEO PR, or when asked to "QA" a page.
+description: Quality gate for marketplace.kreatli.com SEO pages. Runs `npm run seo:qa` plus a manual review of claims, accuracy, usefulness and tone, and returns PASS or a list of fixes. Use before publishing any SEO page, when reviewing an SEO commit, or when asked to "QA" a page.
 ---
 
 # SEO QA

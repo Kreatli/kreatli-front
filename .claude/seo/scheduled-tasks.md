@@ -1,13 +1,13 @@
 # Scheduled tasks for the SEO loop
 
 Create these in the Claude desktop app (sidebar → Scheduled → New task), or ask Claude to create them and
-approve the prompt. They run locally while the app is open, because the Keyword Planner token only exists in the
+approve the prompt. They run locally while the app is open (both are saved in Auto mode), because the Keyword Planner token only exists in the
 anidachi repo on this Mac.
 
 | Task | Schedule | What it does |
 |---|---|---|
 | `kreatli-seo-weekly-audit-research` | Mondays 09:00 (`0 9 * * 1`) | Audit + keyword research, then files Linear tickets. No code changes. |
-| `kreatli-seo-writer` | Tue and Thu 10:00 (`0 10 * * 2,4`) | Writes the top ticket and opens a PR. Never merges. |
+| `kreatli-seo-writer` | Tue and Thu 10:00 (`0 10 * * 2,4`) | Writes the top ticket and commits it straight to main, which deploys to production. |
 | `kreatli-seo5-indexing-check` | Once, 2026-11-01 10:00 (already created) | Sitemap/indexing check for SEO-5. |
 
 After creating a task, open it and click **Run now** once to pre-approve the tools it uses (Composio, Linear, `gh`).
@@ -44,7 +44,7 @@ Report: a table of tickets filed or updated (ID, page/keyword, label, priority, 
 ## kreatli-seo-writer
 
 ```
-SEO writing run for Kreatli Marketplace (https://marketplace.kreatli.com). Work in the repo at /Users/macgeorge/Downloads/Kreatli/kreatli-front.
+SEO writing run for Kreatli Marketplace (https://marketplace.kreatli.com). It publishes straight to main, which deploys to production. Work in the repo at /Users/macgeorge/Downloads/Kreatli/kreatli-front.
 
 1. Prepare the repo
    - `git status --porcelain --untracked-files=no`. If any tracked file is modified, stop and report. Do not stash or discard anything.
@@ -53,17 +53,17 @@ SEO writing run for Kreatli Marketplace (https://marketplace.kreatli.com). Work 
 
 2. Pick ONE ticket
    - Use the Linear connector whose `get_workspace` returns "SEO-automation" (seo-automation-blog), team SEO, project "Marketplace SEO".
-   - Take the highest-priority Backlog/Todo issue labelled `rewrite` or `new-page` with no open PR and no future due date. Check `gh pr list --search "SEO-"` too.
+   - Take the highest-priority Backlog/Todo issue labelled `rewrite` or `new-page` with no future due date (skip anything already In Progress).
 
 3. Write the page and registry entry. Loop on `npm run seo:qa -- <type>/<slug>` until there are no FAILs, do the manual review, and run `npx tsc --noEmit`.
 
-4. Ship for review
-   - Branch `seo/<ticket-id-lowercase>-<slug>`. Commit `feat(seo): ... (<TICKET-ID>)` ending with "Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>".
-   - Open a PR against main whose body ends with "🤖 Generated with [Claude Code](https://claude.com/claude-code)".
-   - Attach the PR to the ticket as a link, comment with a summary, and keep it In Progress (the SEO team has no "In Review" status).
-   - NEVER merge.
+4. Publish on main (there are no PRs; a push to main deploys to production)
+   - `git pull --ff-only`. Commit only this ticket's files as ONE commit `feat(seo): ... (<TICKET-ID>)`, ending with "Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>".
+   - `git push origin main`. Never force-push.
+   - Wait for the Vercel deploy and confirm the page is live (`curl -s <url> | grep -o '<title>[^<]*'`). If the deploy fails or the page is wrong, `git revert` the commit, push, and report.
+   - Comment on the Linear ticket with the commit link and QA result, move it to Done, and add a check-back date 8 weeks out.
 
-5. Housekeeping: for In Progress tickets whose linked PR has merged, confirm the page is live, move them to Done, and comment with a check-back date 8 weeks out.
+5. Housekeeping: list every URL published this run so someone can Request indexing in the Search Console UI.
 
-If nothing is eligible, say so and stop. Report: the ticket, PR link, QA result, and anything left unverified.
+If nothing is eligible, say so and stop. Report: the ticket, commit link, live URL, QA result, and anything left unverified.
 ```

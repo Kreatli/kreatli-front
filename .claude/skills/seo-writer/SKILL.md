@@ -1,16 +1,16 @@
 ---
 name: seo-writer
-description: Writes or rewrites a marketplace.kreatli.com SEO page from a Linear ticket (new-page or rewrite), runs the QA gate until it passes, and opens a PR linked to the ticket. Use when asked to "pick up an SEO ticket", "write the next page", or to work on a specific SEO-123 ticket.
+description: Writes or rewrites a marketplace.kreatli.com SEO page from a Linear ticket (new-page or rewrite), runs the QA gate until it passes, and commits it straight to main, which deploys it to production. Use when asked to "pick up an SEO ticket", "write the next page", or to work on a specific SEO-123 ticket.
 ---
 
 # SEO writer
 
-One ticket → one branch → one PR. The PR is the publish step: a human merges it, and merging deploys the page.
+One ticket → one commit on `main`. There is no PR or human review: pushing to `main` deploys the page to production through Vercel. That makes the QA gate the only safeguard, so never skip or weaken it.
 
 ## 1. Pick the ticket
 
 - If the user named a ticket, use it. Otherwise, in Linear (**seo-automation-blog** workspace, project
-  **Marketplace SEO**), take the highest-priority `new-page` or `rewrite` issue in Backlog/Todo with no open PR.
+  **Marketplace SEO**), take the highest-priority `new-page` or `rewrite` issue in Backlog/Todo (skip anything already In Progress).
   Skip tickets with a future due date.
 - Move it to **In Progress**.
 - Read `.claude/seo/kreatli-context.md` and the whole ticket.
@@ -59,15 +59,16 @@ npm run seo:qa -- <type>/<slug>
 - Only after both pass: for a new page, set `status: 'published'` and run QA once more.
 - Run `npx tsc --noEmit` before committing.
 
-## 6. Open the PR
+## 6. Commit to main and publish
 
-- Branch: `seo/<ticket-id-lowercase>-<slug>` (e.g. `seo/seo-7-cpm-meaning-clipping`).
-- Commit message `feat(seo): <what changed> (<TICKET-ID>)`, with the repo's co-author trailer.
-- PR body: link the Linear ticket, why (data from the ticket), what changed, QA output summary, and after-merge
-  steps (Request indexing for the URL in Search Console).
-- Attach the PR to the Linear ticket as a link, comment with a one-line summary, and keep it **In Progress** (the SEO team has no "In Review" status: Backlog, Todo, In Progress, Done, Canceled).
+- Work on `main`. Run `git pull --ff-only` before you start editing and again just before you commit. If the working tree has changes you didn't make, stop and report instead of committing them.
+- Commit only the files for this ticket (the body, the registry entry, any link-back edits and redirects), as **one commit**: `feat(seo): <what changed> (<TICKET-ID>)`, with the repo's co-author trailer. Keep it to one ticket per commit so it's easy to revert.
+- Push with `git push origin main`. Never force-push.
+- After pushing, wait for the Vercel deployment and confirm the page is live (`curl -s <url> | grep -o '<title>[^<]*'`). If the deploy fails, or the page 404s or shows the old title, revert your commit (`git revert <sha>` and push), then report what happened.
+- Comment on the Linear ticket with the commit link, a one-line summary and the QA result, then move it to **Done**. Include the check-back date (8 weeks out) and the baseline numbers. The SEO team's statuses are Backlog, Todo, In Progress, Done and Canceled.
+- In Search Console, Request indexing can only be done by hand in the UI. List the URL in your report so someone can do it.
 
-## 7. After merge (if asked, or on the next run)
+## 7. If something goes wrong after publishing
 
-- Confirm the page is live (`curl -s <url> | grep -o '<title>[^<]*'`).
-- Move the ticket to **Done**, and comment with the check-back date (8 weeks out) and the baseline numbers.
+- A fact, figure or claim turns out wrong: fix it in a new commit on `main` (don't rewrite history), and note it on the ticket.
+- The page breaks the site (build error, broken layout): `git revert` the commit, push, and reopen the ticket as In Progress with the reason.
