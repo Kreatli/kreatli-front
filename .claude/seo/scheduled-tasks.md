@@ -6,8 +6,8 @@ anidachi repo on this Mac.
 
 | Task | Schedule | What it does |
 |---|---|---|
-| `kreatli-seo-weekly-audit-research` | Mondays 09:00 (`0 9 * * 1`) | Audit + keyword research, then files Linear tickets. No code changes. |
-| `kreatli-seo-writer` | Tue and Thu 10:00 (`0 10 * * 2,4`) | Writes the top ticket and opens a PR. Never merges. |
+| `kreatli-seo-weekly-audit-research` | Mondays 09:00 (`0 9 * * 1`), created 2026-10-26 | Audit + keyword research, then files Linear tickets. No code changes. |
+| `kreatli-seo-writer` | Tue and Thu 10:00 (`0 10 * * 2,4`), created 2026-10-26 | Writes the top ticket and opens a PR. Never merges. |
 | `kreatli-seo5-indexing-check` | Once, 2026-11-01 10:00 (already created) | Sitemap/indexing check for SEO-5. |
 
 After creating a task, open it and click **Run now** once to pre-approve the tools it uses (Composio, Linear, `gh`).
@@ -55,11 +55,11 @@ SEO writing run for Kreatli Marketplace (https://marketplace.kreatli.com). Work 
    - Use the Linear connector whose `get_workspace` returns "SEO-automation" (seo-automation-blog), team SEO, project "Marketplace SEO".
    - Take the highest-priority Backlog/Todo issue labelled `rewrite` or `new-page` with no open PR and no future due date. Check `gh pr list --search "SEO-"` too.
 
-3. Write the page and registry entry. Loop on `npm run seo:qa -- <type>/<slug>` until there are no FAILs, do the manual review, and run `npx tsc --noEmit`.
+3. Write the page and registry entry. For a new page, use the next registry id not already used on main or in an open PR, and insert the entry next to pages of the same type (not at the end of the file) so parallel PRs don't conflict. Loop on `npm run seo:qa -- <type>/<slug>` until there are no FAILs, do the manual review, and run `npx tsc --noEmit`.
 
 4. Ship for review
    - Branch `seo/<ticket-id-lowercase>-<slug>`. Commit `feat(seo): ... (<TICKET-ID>)` ending with "Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>".
-   - Open a PR against main whose body ends with "🤖 Generated with [Claude Code](https://claude.com/claude-code)".
+   - Open a PR against main with `gh pr create --body-file <file>` (not inline). The body ends with "🤖 Generated with [Claude Code](https://claude.com/claude-code)".
    - Attach the PR to the ticket as a link, comment with a summary, and keep it In Progress (the SEO team has no "In Review" status).
    - NEVER merge.
 
