@@ -5,6 +5,7 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 
 import { useNotifications } from '../../../hooks/useNotifications';
+import { trackConversion } from '../../../lib/analytics';
 import { requestSignUpProfessional } from '../../../services/auth';
 import { getErrorMessage } from '../../../utils/getErrorMessage';
 import { Icon } from '../../various/Icon';
@@ -78,6 +79,7 @@ export const SignUpProfessional = () => {
       });
       handleNext();
       window.rdt?.('track', 'SignUp');
+      trackConversion('signup_completed', { role: 'professional', method: 'email' });
     },
     onError: (error) => {
       pushNotification({

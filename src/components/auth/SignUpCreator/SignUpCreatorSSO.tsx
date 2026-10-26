@@ -6,6 +6,7 @@ import { useTranslation } from 'next-i18next';
 import React from 'react';
 
 import { useNotifications } from '../../../hooks/useNotifications';
+import { identifyUser, trackConversion } from '../../../lib/analytics';
 import { requestSsoCreator } from '../../../services/auth';
 import { getErrorMessage } from '../../../utils/getErrorMessage';
 import { consumePostAuthRedirect } from '../../../utils/postAuthRedirect';
@@ -25,6 +26,8 @@ export const SignUpCreatorSSO = ({ onSuccess }: Props) => {
     mutationFn: requestSsoCreator,
     onSuccess: ({ token, user }) => {
       onSuccess();
+      identifyUser(user);
+      trackConversion('signup_completed', { role: 'creator', method: 'youtube' });
       localStorage.setItem('token', token);
       queryClient.setQueryData(['user'], user);
       router.push(consumePostAuthRedirect(user.role, `/profile/${user._id}`));

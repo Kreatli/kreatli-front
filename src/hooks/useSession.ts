@@ -2,6 +2,7 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useRouter } from 'next/router';
 import React from 'react';
 
+import { identifyUser } from '../lib/analytics';
 import { requestSignIn } from '../services/auth';
 import { requestCurrentUser } from '../services/user';
 import { useApplicationLoader } from './useApplicationLoader';
@@ -36,6 +37,10 @@ export const useSession = () => {
       setIsLoading(false);
     }
   }, [data, isLoading, setIsLoading]);
+
+  React.useEffect(() => {
+    identifyUser(data);
+  }, [data]);
 
   React.useEffect(() => {
     if (isError) {
