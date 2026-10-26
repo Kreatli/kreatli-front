@@ -1,112 +1,125 @@
-# How to Price Your Video Editing Services (2026 Rate Guide)
+# How Much to Charge for Video Editing: A Clipper's Pricing Guide (2026)
 
-Pricing video editing services in 2026 means charging for **deliverables and turnaround**, not hours spent fumbling in Premiere, especially for clip work where clients buy 10–30 vertical videos per week. Strong clip editors use per-clip, per-batch, or retainer models with **fixed project pay** so income is predictable.
+How much should you charge for video editing? **For short-form clip editing in 2026, charge about $15 to $35 per simple clip, $30 to $50 for mid-level clips and $50 to $75 or more for complex edits.** Regular clients usually move to a weekly or monthly retainer. Price the finished clips and the turnaround, not the hours you spend. Fast, skilled editors earn less when they bill by the hour.
 
-This guide covers 2026 rate benchmarks for short-form clipping, how to raise prices without losing clients, and how **Kreatli Marketplace** fits project-based workflows.
+This guide shows how to turn those ranges into a quote: which pricing model to use, what to add for rush work and extra costs, how to set up a retainer, and when to raise your rates. For the full rate tables and campaign rates, see [clipper pay rates](/guides/clipper-pay-rates).
 
-## Price on outcomes, not time
+## Choose a pricing model
 
-Clients hiring clippers care about:
+| Model | How it works | Best for |
+| --- | --- | --- |
+| Per clip | A set price for each finished clip | New clients, one-off batches |
+| Per batch | One price for a set of clips, such as 10 clips per episode | Podcasts and weekly shows |
+| Retainer | A monthly fee for an agreed weekly volume | Regular clients you work with every week |
+| Hourly | You bill the time spent | Unclear, exploratory or long-form projects |
 
-- Clips delivered on deadline
-- Hook quality and caption readability
-- Consistent brand week over week
+Clients hiring clippers care about clips delivered on time, strong hooks, readable captions and a consistent style. They don't care whether a clip took you 20 minutes or 45. That's why per-clip and per-batch pricing usually works better than hourly for short-form work.
 
-They do not care whether you spent 20 or 45 minutes per clip, unless you let scope creep. Quote **per clip**, **per episode batch**, or **weekly retainer**.
+## Rates to start from
 
-Hourly pricing suits exploratory long-form projects. It punishes fast, skilled clippers.
+These ranges assume vertical 9:16 clips with burned-in captions, delivered for the client to post on their own channels:
 
-## 2026 per-clip benchmarks (clipping)
-
-Ranges assume **9:16 vertical**, burned-in captions, client publishes on their channel:
-
-| Niche / complexity | Low | Mid | High |
-| --- | --- | --- | --- |
-| Talking-head podcast clip | $15 | $25 | $40 |
-| YouTube Shorts repurposed | $12 | $22 | $35 |
-| TikTok native (fast hooks) | $18 | $28 | $45 |
-| Gaming highlight | $25 | $40 | $65 |
-| Motion graphics / data viz | $40 | $60 | $90+ |
-
-**Rush fees:** +25–50% for under-24-hour turnaround.
-
-**Volume discounts:** 20+ clips/week → reduce per-clip 10–20% but lock minimum weekly pay.
-
-To see what these rates add up to per month, run your numbers through the [clipping earnings calculator](/tools/clipping-earnings-calculator) or read [how much clippers make](/guides/how-much-do-clippers-make).
-
-## Retainer math that protects you
-
-Example: creator wants **20 clips/week**, mid-complexity podcast style.
-
-- Per-clip mid rate: $28
-- Weekly at sticker price: $560
-- Retainer offer: **$480/week** (14% volume discount) with 1 revision round per clip included
-
-Define:
-
-- Max clip length (e.g. 90 sec)
-- Included revisions (1–2)
-- Overtime policy for extra clips
-- Payment cadence (weekly in arrears vs upfront milestone)
-
-Never offer "unlimited clips" for a flat fee unless you enjoy losing money.
-
-## Costs to bake into your rate
-
-| Cost | Notes |
+| Clip type | Typical rate |
 | --- | --- |
-| Software | Premiere, CapCut Pro, After Effects (amortise monthly) |
-| Music/stock | Royalty-free subscriptions |
+| Simple: talking head, podcast, captions | $15 to $35 per clip |
+| Mid-level: B-roll, zooms, branded captions | $30 to $50 per clip |
+| Complex: gaming sound effects, memes, motion | $50 to $75+ per clip |
+| Monthly retainer | About $800 to $3,500+ |
+
+Where you land in each range depends on your samples, your niche and how fast you deliver. To see what a rate adds up to per month, try the [clipping earnings calculator](/tools/clipping-earnings-calculator) or read [how much clippers make](/guides/how-much-do-clippers-make).
+
+## Hourly and per-minute rates
+
+Some clients ask for an hourly rate or a price per finished minute. You can still work from your per-clip price:
+
+- **Hourly:** if a $25 clip takes you 30 minutes, including review and export, you're earning $50 an hour. If it takes 90 minutes because the client sends unmarked four-hour streams, you're earning about $17 an hour.
+- **Per finished minute:** short clips are hard to price this way, because a 30-second clip can take as long as a 60-second one. If a client insists, set a minimum per clip.
+
+The real cost is often finding the moments, not the edit. If the client doesn't send timestamps, charge for the time you spend watching the source.
+
+**Long-form editing** is priced differently. A 10 to 20 minute YouTube video, an ad or a course module takes much longer per finished minute, and editors often quote it per project or by the hour. If you want to move into that work, see [how to become a freelance video editor](/guides/become-a-freelance-video-editor).
+
+## Add-ons and costs to build in
+
+**Rush fees:** add 25% to 50% for delivery in under 24 hours.
+
+**Volume discounts:** for 20 or more clips a week, you can drop the per-clip price by 10% to 20%, but set a minimum weekly fee.
+
+**Your own costs:**
+
+| Cost | What to include |
+| --- | --- |
+| Software | Premiere, CapCut Pro or After Effects, spread over the month |
+| Music and stock | Royalty-free subscriptions |
 | Storage | Cloud drives for client footage |
-| Taxes & fees | Platform cuts vary (see [Fiverr vs Upwork vs Kreatli](/guides/fiverr-vs-upwork-for-clippers)) |
-| Revision buffer | 15–20% of time is admin and fixes |
+| Fees and taxes | Platform cuts vary (see [Fiverr vs Upwork for clippers](/guides/fiverr-vs-upwork-for-clippers)) |
+| Admin and fixes | About 15% to 20% of your time goes to messages and revisions |
 
-If you net $18/clip after fees and 2 hours of work, you are earning $9/hr. Raise rates or tighten scope.
+If you net $18 a clip after fees and each clip takes 2 hours, you're earning $9 an hour. Raise your rate or cut the scope.
 
-## When to raise prices
+## Set up a retainer
 
-Raise after:
+Say a creator wants **20 podcast clips a week** at a mid-level style:
 
-- **3 repeat clients** without churn
-- Waitlist or turning away work
-- Niche reputation (finance, medical compliance editing)
-- Faster delivery with same quality (you got faster, so charge for the skill)
+- Per-clip rate: $28
+- Weekly at that rate: $560
+- Retainer offer: **$480 a week**, about 14% off, with one round of revisions per clip
 
-Give existing retainers **30-day notice**. Sudden jumps erode trust.
+Write these down before you start:
 
-## Pricing on Kreatli Marketplace vs open gig sites
+- The longest a clip can be (for example, 90 seconds)
+- How many revision rounds are included (usually one or two)
+- The price for extra clips beyond the weekly number
+- When you get paid (for example, weekly after delivery, or upfront for each batch)
 
-On Kreatli you **apply to clipping jobs** with stated budgets or propose milestones. Advantages for clip editors:
+Never offer unlimited clips for a flat fee.
 
-- Buyers expect **short-form deliverables**, so there is less scope confusion
-- **Project pay** aligned with clipping, not view-chasing CPM models
-- Less race-to-bottom than anonymous $5 gigs
+## Quote your next job in 6 steps
 
-Still read each job brief. Decline misaligned work instead of underbidding. You can browse current [clipping jobs](/clipping-jobs) to see how creators scope and budget their work.
+1. **Count the work:** how many clips, how long, and for which platforms
+2. **Estimate your time,** including source review and revisions
+3. **Pick a model:** per clip, per batch or retainer
+4. **Add any rush or complexity fee**
+5. **List what's not included,** such as licensed music, thumbnails or uploading
+6. **Send one clear total,** for example: "$420 for 15 clips, delivered by Friday, with one round of revisions"
 
-## Step-by-step: quote your next job
+## When to raise your rates
 
-1. **Count deliverables**: clips, length, platforms
-2. **Estimate hours**: include revisions
-3. **Pick model**: per clip vs weekly retainer
-4. **Add rush or complexity premium**
-5. **State what is excluded**: licensed music, thumbnails, uploading
-6. **Send clear total**: "$420 for 15 clips, delivered by Friday, one revision round"
+It's time to charge more when:
+
+- You have **3 repeat clients** who keep coming back
+- You're turning work away
+- You're known in a niche, such as finance or medical content
+- You deliver faster at the same quality
+
+Give clients on a retainer **30 days' notice** before a price change. Sudden jumps damage trust.
+
+## Pricing on Kreatli Marketplace
+
+On Kreatli Marketplace, creators post [clipping jobs](/clipping-jobs) and set the pay when they post, and you apply to the ones that fit. Clients there are already looking for short-form clips, so there's less confusion about scope than on general gig sites, and the pay is agreed upfront instead of depending on views. Read each job brief and skip the ones that don't match your rates, instead of underbidding.
 
 ## FAQ
 
-### What should beginners charge?
+### How much should I charge for video editing as a beginner?
 
-**$12–$20 per simple clip** for first 3 clients if samples are strong. Raise them within 30 days. Do not stay at beginner rates after proof.
+With strong samples, $12 to $20 per simple clip is a fair start for your first few clients. Raise your rate within about a month, once you have repeat work and feedback to show.
+
+### How much do video editors charge per clip?
+
+For short-form clips in 2026, typical rates are $15 to $35 for simple clips, $30 to $50 for mid-level edits and $50 to $75 or more for complex work such as gaming or motion graphics.
+
+### Should I charge hourly or per clip?
+
+For short-form clips, per clip or per batch usually works better. Clients pay for finished clips, and you aren't penalized for getting faster. Hourly makes more sense for long-form or unclear projects.
 
 ### Should I match Fiverr's $5 gigs?
 
-No. Those gigs rarely sustain quality clipping at volume. Compete on niche samples and reliability, not lowest price.
+No. Very low gig prices rarely pay for good clipping at volume. Compete on niche samples and reliability, not on the lowest price.
 
-### Do content-rewards programs pay more than project clipping?
+### Do CPM campaigns pay more than charging per clip?
 
-They pay **per views** with high variance: some weeks are great, many are near zero (see [CPM meaning in clipping](/glossary/cpm-meaning-clipping)). Project clipping on Kreatli Marketplace trades viral lottery for **agreed deliverable pay**.
+Sometimes, but not reliably. CPM campaigns pay per 1,000 views, so some weeks are great and many are close to zero. See [CPM meaning in clipping](/glossary/cpm-meaning-clipping). Fixed pay per clip gives you income you can plan around.
 
-### How do I price AI-assisted workflows?
+### How do I price AI-assisted editing?
 
-If AI cuts your time 40%, you can handle more volume, not necessarily slash rates 40%. Charge for **curated output** clients publish under their brand.
+If AI tools cut your editing time, take on more clips instead of cutting your rate by the same amount. Clients pay for the finished clips they post under their name, not your minutes.
