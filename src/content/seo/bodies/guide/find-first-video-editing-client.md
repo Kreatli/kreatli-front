@@ -1,8 +1,8 @@
 # How to Find Your First Clip Editing Client
 
-Your first clip editing client usually comes from a **narrow niche, visible samples, and direct outreach** — not from waiting on a profile to rank. Clip editing is competitive, but creators with weekly podcast or Shorts pipelines constantly need editors who understand hooks, captions, and 9:16 delivery.
+Your first clip editing client usually comes from a **narrow niche, visible samples, and direct outreach**, not from waiting on a profile to rank. Clip editing is competitive, but creators with weekly podcast or Shorts pipelines constantly need editors who understand hooks, captions, and 9:16 delivery.
 
-On **Kreatli Marketplace**, you join as a clipper, apply to posted jobs, and earn **fixed project pay** for deliverables — not per-view gambling on content-rewards campaigns.
+On **Kreatli Marketplace**, you join as a clipper, apply to posted jobs, and earn **fixed project pay** for deliverables, not per-view gambling on content-rewards campaigns.
 
 ## Why the first client is the hardest
 
@@ -12,7 +12,7 @@ Before anyone pays you, they risk:
 - Missed publishing deadlines
 - Revision loops with an untested editor
 
-Your job is to **reduce that risk** with niche-specific samples and a small paid trial mindset — even if your first gig is modestly priced.
+Your job is to **reduce that risk** with niche-specific samples and a small paid trial mindset, even if your first gig is modestly priced.
 
 ## Step 1: Pick a clipping niche (not "all video editing")
 
@@ -28,8 +28,8 @@ One niche → faster portfolio → clearer job applications. See [niche speciali
 
 You do not need paying clients to show skill:
 
-1. **Clip public domain or Creative Commons** long-form (documentary, talks) — label as spec work in your portfolio
-2. **Offer one free or discounted batch** to a micro-creator friend — get a testimonial
+1. **Clip public domain or Creative Commons** long-form (documentaries, talks) and label it as spec work in your portfolio
+2. **Offer one free or discounted batch** to a micro-creator friend in exchange for a testimonial
 3. **Re-edit your own old projects** into 9:16 with modern caption style
 
 Every sample should show **hook in first 2 seconds**, burned-in captions, and clean 9:16 framing.
@@ -51,17 +51,17 @@ Underpricing forever burns you out. Plan a **rate review after 30 days** once de
 | Channel | Approach |
 | --- | --- |
 | **Kreatli Marketplace** | Complete profile, apply to [open clipping jobs](/clipping-jobs) matching your niche |
-| **Creator DMs** | Short pitch + 1 relevant sample link — no walls of text |
+| **Creator DMs** | Short pitch + 1 relevant sample link, no walls of text |
 | **Communities** | Help first in Discord/Reddit threads; pitch when someone asks for editors |
 | **Referrals** | Ask first client for intro to another podcaster |
 
-Avoid spamming "hire me" posts without samples — creators ignore them.
+Avoid spamming "hire me" posts without samples. Creators ignore them.
 
 ## Step 5: Write proposals that sound like a clipper
 
 Bad: "I am a professional video editor with 5 years experience."
 
-Good: "I clipped 3 samples from your latest episode style — hook-first, keyword captions, 45 sec vertical. I can deliver 10 clips per episode every Friday at $28/clip."
+Good: "I clipped 3 samples from your latest episode style: hook-first, keyword captions, 45 sec vertical. I can deliver 10 clips per episode every Friday at $28/clip."
 
 Reference their **content**, **cadence**, and **deliverable format**.
 
@@ -78,12 +78,12 @@ Repeat hires come from reliability more than cinematic flair.
 
 ## Kreatli Marketplace workflow for clippers
 
-1. **Join as a clipper** — build a profile with vertical samples
-2. **Browse clipping jobs** — podcast, Shorts, TikTok, gaming niches
-3. **Apply with niche proof** — link samples, confirm turnaround
-4. **Deliver milestones** — fixed project pay, predictable scope
+1. **Join as a clipper**: build a profile with vertical samples
+2. **Browse clipping jobs**: podcast, Shorts, TikTok, gaming niches
+3. **Apply with niche proof**: link samples, confirm turnaround
+4. **Deliver milestones**: fixed project pay, predictable scope
 
-This is **labour hire** — you edit, they publish. Different from CPM clipping where you post on your account for views. Read [what is a clipper](/glossary/what-is-a-clipper) if models blur together.
+This is **labour hire**: you edit, they publish. Different from CPM clipping where you post on your account for views. Read [what is a clipper](/glossary/what-is-a-clipper) if models blur together.
 
 ## FAQ
 
@@ -101,4 +101,4 @@ Content-rewards programs (view-based pay) have lower **sales** friction but unpr
 
 ### What if I only have horizontal edits in my portfolio?
 
-Re-cut 3 pieces into vertical shorts before applying. Creators hiring clippers need 9:16 proof — horizontal reels alone rarely convert.
+Re-cut 3 pieces into vertical shorts before applying. Creators hiring clippers need 9:16 proof. Horizontal reels alone rarely convert.
