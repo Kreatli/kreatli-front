@@ -34,3 +34,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# SEO audit and keyword reports (scripts/seo-audit.ts, scripts/seo-keywords.ts)
+/.seo-reports/
