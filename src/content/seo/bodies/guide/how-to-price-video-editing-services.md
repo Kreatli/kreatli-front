@@ -1,6 +1,6 @@
 # How to Price Your Video Editing Services (2026 Rate Guide)
 
-Pricing video editing services in 2026 means charging for **deliverables and turnaround**, not hours spent fumbling in Premiere — especially for clip work where clients buy 10–30 vertical videos per week. Strong clip editors use per-clip, per-batch, or retainer models with **fixed project pay** so income is predictable.
+Pricing video editing services in 2026 means charging for **deliverables and turnaround**, not hours spent fumbling in Premiere, especially for clip work where clients buy 10–30 vertical videos per week. Strong clip editors use per-clip, per-batch, or retainer models with **fixed project pay** so income is predictable.
 
 This guide covers 2026 rate benchmarks for short-form clipping, how to raise prices without losing clients, and how **Kreatli Marketplace** fits project-based workflows.
 
@@ -12,7 +12,7 @@ Clients hiring clippers care about:
 - Hook quality and caption readability
 - Consistent brand week over week
 
-They do not care whether you spent 20 or 45 minutes per clip — unless you let scope creep. Quote **per clip**, **per episode batch**, or **weekly retainer**.
+They do not care whether you spent 20 or 45 minutes per clip, unless you let scope creep. Quote **per clip**, **per episode batch**, or **weekly retainer**.
 
 Hourly pricing suits exploratory long-form projects. It punishes fast, skilled clippers.
 
@@ -55,13 +55,13 @@ Never offer "unlimited clips" for a flat fee unless you enjoy losing money.
 
 | Cost | Notes |
 | --- | --- |
-| Software | Premiere, CapCut Pro, After Effects — amortise monthly |
+| Software | Premiere, CapCut Pro, After Effects (amortise monthly) |
 | Music/stock | Royalty-free subscriptions |
 | Storage | Cloud drives for client footage |
-| Taxes & fees | Platform cuts vary — [Fiverr vs Upwork vs Kreatli](/guides/fiverr-vs-upwork-for-clippers) |
+| Taxes & fees | Platform cuts vary (see [Fiverr vs Upwork vs Kreatli](/guides/fiverr-vs-upwork-for-clippers)) |
 | Revision buffer | 15–20% of time is admin and fixes |
 
-If you net $18/clip after fees and 2 hours of work, you are earning $9/hr — raise rates or tighten scope.
+If you net $18/clip after fees and 2 hours of work, you are earning $9/hr. Raise rates or tighten scope.
 
 ## When to raise prices
 
@@ -70,34 +70,34 @@ Raise after:
 - **3 repeat clients** without churn
 - Waitlist or turning away work
 - Niche reputation (finance, medical compliance editing)
-- Faster delivery with same quality (you got efficient — charge for skill)
+- Faster delivery with same quality (you got faster, so charge for the skill)
 
-Give existing retainers **30-day notice** — sudden jumps erode trust.
+Give existing retainers **30-day notice**. Sudden jumps erode trust.
 
 ## Pricing on Kreatli Marketplace vs open gig sites
 
 On Kreatli you **apply to clipping jobs** with stated budgets or propose milestones. Advantages for clip editors:
 
-- Buyers expect **short-form deliverables** — less scope confusion
-- **Project pay** aligned with clipping — not view-chasing CPM models
+- Buyers expect **short-form deliverables**, so there is less scope confusion
+- **Project pay** aligned with clipping, not view-chasing CPM models
 - Less race-to-bottom than anonymous $5 gigs
 
 Still read each job brief. Decline misaligned work instead of underbidding. You can browse current [clipping jobs](/clipping-jobs) to see how creators scope and budget their work.
 
 ## Step-by-step: quote your next job
 
-1. **Count deliverables** — clips, length, platforms
-2. **Estimate hours** — include revisions
-3. **Pick model** — per clip vs weekly retainer
+1. **Count deliverables**: clips, length, platforms
+2. **Estimate hours**: include revisions
+3. **Pick model**: per clip vs weekly retainer
 4. **Add rush or complexity premium**
-5. **State what is excluded** — licensed music, thumbnails, uploading
-6. **Send clear total** — "$420 for 15 clips, delivered by Friday, one revision round"
+5. **State what is excluded**: licensed music, thumbnails, uploading
+6. **Send clear total**: "$420 for 15 clips, delivered by Friday, one revision round"
 
 ## FAQ
 
 ### What should beginners charge?
 
-**$12–$20 per simple clip** for first 3 clients if samples are strong — raise within 30 days. Do not stay at beginner rates after proof.
+**$12–$20 per simple clip** for first 3 clients if samples are strong. Raise them within 30 days. Do not stay at beginner rates after proof.
 
 ### Should I match Fiverr's $5 gigs?
 
@@ -105,8 +105,8 @@ No. Those gigs rarely sustain quality clipping at volume. Compete on niche sampl
 
 ### Do content-rewards programs pay more than project clipping?
 
-They pay **per views** with high variance — some weeks great, many weeks near zero (see [CPM meaning in clipping](/glossary/cpm-meaning-clipping)). Project clipping on Kreatli Marketplace trades viral lottery for **agreed deliverable pay**.
+They pay **per views** with high variance: some weeks are great, many are near zero (see [CPM meaning in clipping](/glossary/cpm-meaning-clipping)). Project clipping on Kreatli Marketplace trades viral lottery for **agreed deliverable pay**.
 
 ### How do I price AI-assisted workflows?
 
-If AI cuts your time 40%, you can handle more volume — not necessarily slash rates 40%. Charge for **curated output** clients publish under their brand.
+If AI cuts your time 40%, you can handle more volume, not necessarily slash rates 40%. Charge for **curated output** clients publish under their brand.

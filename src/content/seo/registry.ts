@@ -205,6 +205,7 @@ export const SEO_PAGES: SeoPage[] = [
     notes: 'Short, definitional — target featured snippet',
     relatedSlugs: ['what-is-a-clipper', 'cpm-meaning-clipping', 'clipping-marketplace-vs-video-editor-marketplace'],
     publishedAt: '2026-07-01',
+    updatedAt: '2026-10-26',
   },
   {
     id: 13,
@@ -401,6 +402,7 @@ export const SEO_PAGES: SeoPage[] = [
     notes: 'Short, definitional — target featured snippet',
     relatedSlugs: ['podcast-clipping-meaning', 'vertical-video-9-16-aspect-ratio', 'what-is-a-clipper'],
     publishedAt: '2026-10-21',
+    updatedAt: '2026-10-26',
   },
   {
     id: 26,
@@ -416,6 +418,7 @@ export const SEO_PAGES: SeoPage[] = [
     notes: 'Short, definitional — target featured snippet',
     relatedSlugs: ['what-is-b-roll', 'repurposing-content-meaning', 'motion-graphics-short-form-video'],
     publishedAt: '2026-10-21',
+    updatedAt: '2026-10-26',
   },
   {
     id: 27,
@@ -1036,6 +1039,7 @@ export const SEO_PAGES: SeoPage[] = [
     funnelSide: 'clipper',
     slug: 'get-paid-to-clip-youtube-videos',
     title: 'How to Get Paid to Clip YouTube Videos',
+    seoTitle: 'Get Paid to Clip YouTube Videos: YouTube Clipper Jobs',
     metaDescription: 'How to get paid to clip YouTube videos: find YouTube clipper jobs, what creators expect from Shorts edits, and how fixed pay compares with campaigns.',
     primaryKeyword: 'YouTube clipper jobs',
     searchIntent: 'commercial',
