@@ -8,6 +8,7 @@ import React from 'react';
 import { useNotifications } from '../../../hooks/useNotifications';
 import { requestSsoCreator } from '../../../services/auth';
 import { getErrorMessage } from '../../../utils/getErrorMessage';
+import { consumePostAuthRedirect } from '../../../utils/postAuthRedirect';
 import { Icon } from '../../various/Icon';
 
 interface Props {
@@ -26,7 +27,7 @@ export const SignUpCreatorSSO = ({ onSuccess }: Props) => {
       onSuccess();
       localStorage.setItem('token', token);
       queryClient.setQueryData(['user'], user);
-      router.push(`/profile/${user._id}`);
+      router.push(consumePostAuthRedirect(user.role, `/profile/${user._id}`));
     },
     onError: (error) => {
       pushNotification({

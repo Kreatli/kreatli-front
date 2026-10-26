@@ -9,6 +9,7 @@ import { useNotifications } from '../../hooks/useNotifications';
 import { useSession } from '../../hooks/useSession';
 import { requestUserActivation } from '../../services/auth';
 import { getErrorMessage } from '../../utils/getErrorMessage';
+import { getPostAuthRedirect } from '../../utils/postAuthRedirect';
 
 const AccountActivation = () => {
   const router = useRouter();
@@ -18,7 +19,10 @@ const AccountActivation = () => {
   const { mutate } = useMutation({
     mutationFn: requestUserActivation,
     onSuccess: () => {
-      router.push('/');
+      // If they signed up from a page like "Post a clipping job", go back there and prompt sign-in.
+      const redirect = getPostAuthRedirect();
+
+      router.push(redirect ? { pathname: redirect, query: { signin: '1' } } : '/');
       pushNotification({
         message: 'Your account has been activated! You can sign in now.',
         color: 'success',

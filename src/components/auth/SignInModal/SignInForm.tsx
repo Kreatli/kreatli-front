@@ -8,6 +8,7 @@ import { VALIDATION_RULES } from '../../../constants/validationRules';
 import { useNotifications } from '../../../hooks/useNotifications';
 import { useSession } from '../../../hooks/useSession';
 import { getErrorMessage } from '../../../utils/getErrorMessage';
+import { consumePostAuthRedirect } from '../../../utils/postAuthRedirect';
 import { InputPassword } from '../../various/InputPassword';
 import { SignInCreatorSSO } from './SignInCreatorSSO';
 
@@ -42,7 +43,7 @@ export const SignInForm = ({ onClick, onSuccess }: Props) => {
     mutate(data, {
       onSuccess: ({ user }) => {
         onSuccess();
-        router.push(`/profile/${user._id}`);
+        router.push(consumePostAuthRedirect(user.role, `/profile/${user._id}`));
       },
       onError: (error: any) => {
         const status = error?.response?.status;
