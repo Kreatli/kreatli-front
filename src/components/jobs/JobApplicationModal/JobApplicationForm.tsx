@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form';
 
 import { VALIDATION_RULES } from '../../../constants/validationRules';
 import { useNotifications } from '../../../hooks/useNotifications';
+import { trackConversion } from '../../../lib/analytics';
 import { requestJobApplicationCreation } from '../../../services/job';
 import { Common } from '../../../typings/common';
 import { getErrorMessage } from '../../../utils/getErrorMessage';
@@ -38,6 +39,7 @@ export const JobApplicationForm = ({ jobOfferId, onCancel, onSuccess }: Props) =
         color: 'success',
         icon: 'success',
       });
+      trackConversion('clipper_applied', { job_offer_id: jobOfferId });
       queryClient.refetchQueries({ queryKey: ['user'] });
       queryClient.invalidateQueries({ queryKey: ['job-offers'] });
       queryClient.setQueryData(['job-offer', jobOfferId], jobOffer);

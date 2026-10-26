@@ -7,6 +7,7 @@ import React from 'react';
 
 import { useNotifications } from '../../hooks/useNotifications';
 import { useSession } from '../../hooks/useSession';
+import { trackConversion } from '../../lib/analytics';
 import { requestUserActivation } from '../../services/auth';
 import { getErrorMessage } from '../../utils/getErrorMessage';
 import { getPostAuthRedirect } from '../../utils/postAuthRedirect';
@@ -19,6 +20,7 @@ const AccountActivation = () => {
   const { mutate } = useMutation({
     mutationFn: requestUserActivation,
     onSuccess: () => {
+      trackConversion('account_activated');
       // If they signed up from a page like "Post a clipping job", go back there and prompt sign-in.
       const redirect = getPostAuthRedirect();
 

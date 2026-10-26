@@ -8,6 +8,7 @@ import { useForm } from 'react-hook-form';
 
 import { useNotifications } from '../../../hooks/useNotifications';
 import { useSession } from '../../../hooks/useSession';
+import { trackConversion } from '../../../lib/analytics';
 import { requestJobOfferCreation } from '../../../services/job';
 import { getErrorMessage } from '../../../utils/getErrorMessage';
 import { Icon } from '../../various/Icon';
@@ -77,6 +78,7 @@ export const JobsCreation = () => {
         color: 'success',
         icon: 'success',
       });
+      trackConversion('job_created');
       queryClient.refetchQueries({ queryKey: ['user'] });
       router.push(`/profile/${currentUserId}/jobs`);
     },

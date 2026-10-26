@@ -6,6 +6,7 @@ import { useForm } from 'react-hook-form';
 
 import { VALIDATION_RULES } from '../../../constants/validationRules';
 import { useNotifications } from '../../../hooks/useNotifications';
+import { trackConversion } from '../../../lib/analytics';
 import { requestSignUpCreator } from '../../../services/auth';
 import { getErrorMessage } from '../../../utils/getErrorMessage';
 import { InputPassword } from '../../various/InputPassword';
@@ -46,6 +47,7 @@ export const SignUpCreatorForm = ({ onSuccess }: Props) => {
       });
       onSuccess?.();
       window.rdt?.('track', 'Purchase');
+      trackConversion('signup_completed', { role: 'creator', method: 'email' });
     },
     onError: (error) => {
       pushNotification({
