@@ -120,7 +120,7 @@ Decide where clips should live. CPM campaigns spread them across other people's 
 
 ## Find fixed-pay clipping work
 
-If you want pay that does not depend on views, browse open [clipping jobs](/clipping-jobs) or [join Kreatli as a clipper](/signup/professional). It is free, and creators state the pay when they post.
+If you want pay that does not depend on views, browse open [clipping jobs](/clipping-jobs) or [join Kreatli as a clipper](/signup/professional). It is free, and creators state the pay when they post. Clipping mainly for TikTok? See [TikTok clipping](/guides/tiktok-clipping) for how both pay models work there.
 
 ## FAQ
 

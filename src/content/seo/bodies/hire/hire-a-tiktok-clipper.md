@@ -14,7 +14,7 @@ A TikTok clipper turns your raw footage (UGC, podcast video, product demos, life
 - **Loop-friendly endings**: cuts that encourage rewatches
 - **Batch variation**: the same source cut with multiple hooks for testing
 
-This role differs from a "TikTok manager" who might also handle strategy and posting. On Kreatli Marketplace, you are hiring **clipping and editing work**, so say clearly in your brief if you also need upload or scheduling help.
+This role differs from a "TikTok manager" who might also handle strategy and posting. On Kreatli Marketplace, you are hiring **clipping and editing work**, so say clearly in your brief if you also need upload or scheduling help. (Looking for TikTok clipping work yourself? Read [TikTok clipping](/guides/tiktok-clipping).)
 
 ## What to expect from TikTok clipping
 
