@@ -70,5 +70,9 @@ Use the figures in these pages and link to them. Don't invent new ones:
 - 2026-10-26: keep figures consistent across pages. The old CPM page said "$1 to $10+ CPM" while the pay guide
   said $0.50 to $3. When a page quotes a rate, use the pay guide's numbers and link to it.
 - The SEO Linear team's statuses are Backlog, Todo, In Progress, Done and Canceled (no "In Review").
+- 2026-10-26: check the search results page before targeting a big keyword. "clipper jobs" (1,600/mo) is fin-clipper,
+  Clipper Logistics and Clipper Vacations jobs. "best clipping software" (880/mo) and "clipping software" (3,600/mo)
+  mean gaming clip-capture apps (Medal, ShadowPlay). "clipping agency" is mostly press clipping. None of them fit.
+  Good fit: "short form video editor" (job posts plus freelancer profiles), which is now a hire page.
 - 2026-10-26: publishing is a direct commit to `main`, with no PRs (the owner's choice). A push deploys to production
   via Vercel, so the QA gate is the only review. One ticket per commit, so a bad page can be reverted on its own.
