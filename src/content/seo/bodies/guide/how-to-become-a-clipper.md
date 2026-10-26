@@ -102,7 +102,7 @@ Start with clear per-clip or per-batch pricing, not hourly, so clients know what
 - **Gaming, heavy captions, sound design, or motion graphics:** $50–$75+ per clip
 - **Retainers:** a monthly price for a fixed number of clips per week
 
-Include the number of revisions and your turnaround in every quote. Raise rates once you have steady clients and testimonials.
+Include the number of revisions and your turnaround in every quote. Raise rates once you have steady clients and testimonials. For retainers, rush fees and a step-by-step way to quote, see [how much to charge for video editing](/guides/how-to-price-video-editing-services).
 
 ## Step 7: Scale beyond your first client
 
@@ -114,7 +114,7 @@ Once you have one or two reliable clients:
 - **Collect reviews** after each completed job, which helps you win the next one
 - **Specialize further** if one niche brings most of your work
 
-Some clippers eventually hire other clippers and run small teams. Get your own process stable before you try that.
+Some clippers eventually hire other clippers and run small teams. Get your own process stable before you try that. Others grow into long-form editing for YouTube, ads or courses: see [how to become a freelance video editor](/guides/become-a-freelance-video-editor) for that path.
 
 ## Get started
 
