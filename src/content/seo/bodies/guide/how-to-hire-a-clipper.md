@@ -111,7 +111,9 @@ If volume grows past what one person can handle, add a second clipper for a sepa
 
 Different content needs different specialists. These pages cover format-specific hiring:
 
+- [Hire a short-form video editor](/hire/hire-a-short-form-video-editor) for clips across TikTok, Reels and Shorts
 - [Hire a YouTube Shorts editor](/hire/hire-a-youtube-clipper)
+- [Hire a TikTok clipper](/hire/hire-a-tiktok-clipper)
 - [Hire a podcast clip editor](/hire/hire-a-podcast-clipper)
 - [Hire a Twitch VOD editor](/hire/hire-a-twitch-clipper)
 

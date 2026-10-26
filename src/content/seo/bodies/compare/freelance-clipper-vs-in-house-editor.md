@@ -93,7 +93,7 @@ If you are weighing a team rather than one person, see the [Kreatli vs. video ed
 4. **Review applications** from clippers whose profiles show short-form samples.
 5. **Run a paid test clip**, then hire your best fit.
 
-The full walkthrough is in [how to hire a clipper](/guides/how-to-hire-a-clipper). When you are ready, [post a clipping job](/jobs/create).
+The full walkthrough is in [how to hire a clipper](/guides/how-to-hire-a-clipper), and [hire a short-form video editor](/hire/hire-a-short-form-video-editor) covers what to put in your brief and typical rates. When you are ready, [post a clipping job](/jobs/create).
 
 ## FAQ
 
