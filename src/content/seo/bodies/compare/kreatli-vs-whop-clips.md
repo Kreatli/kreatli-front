@@ -2,7 +2,7 @@
 
 **Whop clipping vs Kreatli** comes down to what you pay for. Whop Content Rewards pays clippers per 1,000 views on clips they post to their own accounts, while Kreatli Marketplace lets creators hire a clipper at an agreed rate to deliver finished clips for the creator's own channels.
 
-This page is a direct two-way comparison. For the wider field, including other CPM platforms, Discord servers, and agencies, see [Whop Content Rewards alternatives](/alternatives/whop-content-rewards-alternatives).
+This page is a direct two-way comparison. For the wider field, including other CPM platforms, Discord servers, and agencies, see [Whop Content Rewards alternatives](/alternatives/whop-content-rewards-alternatives). If you're a clipper wanting the step-by-step, read [how Whop clipping works](/guides/whop-clipping).
 
 ## How Whop Content Rewards works
 

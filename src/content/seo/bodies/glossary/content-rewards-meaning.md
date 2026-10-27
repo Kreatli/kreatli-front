@@ -1,6 +1,6 @@
 # What Are Content Rewards in Clipping?
 
-**Content rewards** are view-based payments that a brand, creator, or app offers to people who make and post short videos about it. In **content rewards clipping**, a sponsor funds a budget, clippers cut clips and post them on their own accounts, and each approved clip earns a set rate per 1,000 views. The term is closely tied to **Whop Content Rewards**, one of the best-known platforms for this model.
+**Content rewards** are view-based payments that a brand, creator, or app offers to people who make and post short videos about it. In **content rewards clipping**, a sponsor funds a budget, clippers cut clips and post them on their own accounts, and each approved clip earns a set rate per 1,000 views. The term is closely tied to **Whop Content Rewards**, one of the best-known platforms for this model. For a hands-on walkthrough, see [how Whop clipping works](/guides/whop-clipping).
 
 ## Why it matters
 

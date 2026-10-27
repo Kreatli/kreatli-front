@@ -8,7 +8,7 @@ This page explains how each option works as of 2026, who it suits, and how to ch
 
 Whop's own documentation describes Content Rewards as a campaign the business funds with a budget. The business sets **how much creators earn per 1,000 views**, can add an optional flat fee per approved submission, and can set a **minimum payout** per video (which controls what enters the review queue) and a **maximum payout** per video. Clippers post to their own social accounts, the business approves or rejects each submission against its stated requirements, and Whop pays out based on views after approval. As of 2026, Whop's Content Rewards terms set a **10% fee paid by the business** on amounts paid out to clippers; clippers are paid without that deduction. Check Whop's current terms before relying on any of these details.
 
-It is a legitimate model with real upside. A clip that takes off can pay far more than a flat editing fee. It also carries volatility, campaign budgets that run out, and a review step before money moves. For the full mechanics, see [what a clipping campaign is](/glossary/what-is-a-clipping-campaign).
+It is a legitimate model with real upside. A clip that takes off can pay far more than a flat editing fee. It also carries volatility, campaign budgets that run out, and a review step before money moves. For the full mechanics, see [what a clipping campaign is](/glossary/what-is-a-clipping-campaign). For a clipper's step-by-step, see [how Whop clipping works](/guides/whop-clipping).
 
 ## Who looks for alternatives, and why
 
