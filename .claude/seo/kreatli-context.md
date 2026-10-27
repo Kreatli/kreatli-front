@@ -76,3 +76,11 @@ Use the figures in these pages and link to them. Don't invent new ones:
   Good fit: "short form video editor" (job posts plus freelancer profiles), which is now a hire page.
 - 2026-10-26: publishing is a direct commit to `main`, with no PRs (the owner's choice). A push deploys to production
   via Vercel, so the QA gate is the only review. One ticket per commit, so a bad page can be reverted on its own.
+- 2026-10-27: "stream clips" (590/mo) is developer docs (Livepeer, Gcore, Mux) and Twitch clip charts. "youtube shorts
+  editor" (390/mo) is YouTube's built-in editor and editing apps. "twitch clipper" (210/mo) is mostly "how to clip on
+  Twitch" tutorials. "clipping service" (260/mo) is press clipping. None fit. "hire video editor for youtube" (140/mo)
+  means long-form editing, which isn't the marketplace's model.
+- 2026-10-27: "whop clipping" (2,900/mo) is clipper-side how-to intent. The creator-side compare page gets 0 impressions
+  for it, so a separate clipper guide (SEO-19) owns it and the compare page keeps the "vs" angle.
+- 2026-10-27: if the best match for a keyword is a page still in its 28-day hold, file a `rewrite` ticket due when the
+  hold ends rather than a new page (SEO-21).
