@@ -37,7 +37,7 @@ Some clients ask for an hourly rate or a price per finished minute. You can stil
 
 The real cost is often finding the moments, not the edit. If the client doesn't send timestamps, charge for the time you spend watching the source.
 
-**Long-form editing** is priced differently. A 10 to 20 minute YouTube video, an ad or a course module takes much longer per finished minute, and editors often quote it per project or by the hour. If you want to move into that work, see [how to become a freelance video editor](/guides/become-a-freelance-video-editor).
+**Long-form editing** is priced differently. A 10 to 20 minute YouTube video, an ad or a course module takes much longer per finished minute, and editors often quote it per project or by the hour. If you want to move into that work, see [how to become a freelance video editor](/guides/become-a-freelance-video-editor). To see what buyers expect to pay, read [how much video editing costs](/guides/cost-to-hire-a-video-editor).
 
 ## Add-ons and costs to build in
 

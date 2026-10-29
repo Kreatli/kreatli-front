@@ -61,7 +61,7 @@ The [clipper job post template](/guides/how-to-write-a-clipper-job-post) gives y
 | Complex clip: gaming sound effects, memes, motion graphics | $50 to $75+ per clip |
 | Ongoing weekly volume | Monthly retainer, about $800 to $3,500+ |
 
-You'll pay less when your source is predictable and you send timestamps. You'll pay more for rush delivery, heavy motion graphics, or long streams the editor has to watch in full. See [how much to pay clippers](/guides/how-much-to-pay-clippers) for budgets and examples.
+You'll pay less when your source is predictable and you send timestamps. You'll pay more for rush delivery, heavy motion graphics, or long streams the editor has to watch in full. See [how much to pay clippers](/guides/how-much-to-pay-clippers) for budgets and examples, or [how much video editing costs](/guides/cost-to-hire-a-video-editor) to compare with long-form rates.
 
 ## How to hire a short-form video editor
 

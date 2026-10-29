@@ -38,7 +38,6 @@ const nextConfig = {
     // Pages merged into stronger guides (kept as permanent redirects so old links and bookmarks still work).
     return [
       ...renamedSlugs.map(([source, destination]) => ({ source, destination, permanent: true })),
-      { source: '/guides/cost-to-hire-a-video-editor', destination: '/guides/how-much-to-pay-clippers', permanent: true },
       { source: '/blog/getting-started-as-a-clipper', destination: '/guides/how-to-become-a-clipper', permanent: true },
       { source: '/blog/how-to-find-the-perfect-clipper', destination: '/guides/how-to-hire-a-clipper', permanent: true },
       {
