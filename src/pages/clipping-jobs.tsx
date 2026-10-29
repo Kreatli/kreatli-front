@@ -23,7 +23,10 @@ const JOB_TYPES = [
   {
     title: 'YouTube clipping',
     description: 'Cut long-form uploads and livestreams into hook-first YouTube Shorts and vertical clips.',
-    links: [{ href: '/guides/get-paid-to-clip-youtube-videos', label: 'YouTube clipper jobs explained' }],
+    links: [
+      { href: '/guides/get-paid-to-clip-youtube-videos', label: 'YouTube clipper jobs explained' },
+      { href: '/guides/how-to-clip-a-youtube-video', label: 'How to clip a YouTube video' },
+    ],
   },
   {
     title: 'Podcast clipping',

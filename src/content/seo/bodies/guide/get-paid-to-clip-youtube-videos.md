@@ -82,7 +82,7 @@ Retainers are the goal. They make your income predictable and let you build temp
 - **Platform awareness.** Small adjustments for TikTok and Reels when the creator cross-posts.
 - **Reliability.** Creators keep clippers who deliver on time every week, even over more flashy editors.
 
-If you are just getting started, follow the steps in [how to become a clipper](/guides/how-to-become-a-clipper), and use our guide to a [video editing portfolio with no clients](/guides/video-editing-portfolio-no-clients) to build your first samples.
+If you are just getting started, learn the basic workflow in [how to clip a YouTube video](/guides/how-to-clip-a-youtube-video), follow the steps in [how to become a clipper](/guides/how-to-become-a-clipper), and use our guide to a [video editing portfolio with no clients](/guides/video-editing-portfolio-no-clients) to build your first samples.
 
 ## Permission
 
