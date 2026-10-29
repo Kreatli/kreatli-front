@@ -101,7 +101,7 @@ These are **illustrative examples**, not data about what clippers actually earn.
 | Intermediate | 2 clients, 25 clips/week × $25 = $2,500/mo | 40 clips, a few qualify, ~$200 | ~$2,700 |
 | Pro | 3 clients, 30 clips/week at a $40 average = $4,800/mo | Selective campaigns, ~$500 | ~$5,300 |
 
-Notice the pattern: in these examples, fixed pay forms the **predictable base** and CPM adds **variable upside**. Many clippers run both for exactly that reason. Your real numbers depend on your speed, niche, and how many hours you work.
+Notice the pattern: in these examples, fixed pay forms the **predictable base** and CPM adds **variable upside**. Many clippers run both for exactly that reason. Your real numbers depend on your speed, niche, and how many hours you work. If you're weighing clipping against other part-time work, see [is clipping a good side hustle](/guides/is-clipping-a-good-side-hustle).
 
 ## How to raise what you earn
 
