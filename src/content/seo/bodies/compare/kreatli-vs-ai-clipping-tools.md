@@ -14,7 +14,7 @@ AI clipping tools take a long video, such as a podcast, stream VOD, webinar, or 
 - **Brand templates** for consistent caption styles and layouts
 - **Direct posting** to YouTube Shorts, TikTok, and Instagram on paid plans, with more platforms and a scheduler on higher tiers
 
-OpusClip lists a **free plan**, **Starter at $15 per month**, **Pro at $29 per month**, and a custom **Business** tier as of 2026, with usage limited by monthly processing credits. Similar tools, such as Vizard, follow the same pattern of self-serve software priced by usage. Comparing a specific app? See [Nexus Clips alternatives](/alternatives/nexus-clips-alternatives).
+OpusClip lists a **free plan**, **Starter at $15 per month**, **Pro at $29 per month**, and a custom **Business** tier as of 2026, with usage limited by monthly processing credits. Similar tools, such as Vizard, follow the same pattern of self-serve software priced by usage. Comparing a specific app? See [Opus Clip alternatives](/alternatives/opus-clip-alternatives) or [Nexus Clips alternatives](/alternatives/nexus-clips-alternatives).
 
 ## What a human clipper does
 

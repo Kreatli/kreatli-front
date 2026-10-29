@@ -96,4 +96,4 @@ It depends on what you need. Nexus Clips is faster and cheaper per clip. A human
 
 ### What is the best Nexus Clips alternative?
 
-If you want another AI app with public pricing, OpusClip is the best-known option. If you want finished clips that match your brand, hire a human clipper. If you want both speed and quality, use an AI app to find moments and a clipper to finish them.
+If you want another AI app with public pricing, OpusClip is the best-known option. See [Opus Clip alternatives](/alternatives/opus-clip-alternatives) for its plans and how it compares. If you want finished clips that match your brand, hire a human clipper. If you want both speed and quality, use an AI app to find moments and a clipper to finish them.

@@ -116,7 +116,7 @@ Medium. The magnetic timeline feels different from other editors at first.
 
 ## AI first-pass clipping tools
 
-AI clipping tools such as **OpusClip** take a long video, suggest moments that could work as clips, reframe them to vertical, and add automatic captions. Most offer a free tier plus paid plans.
+AI clipping tools such as **OpusClip** take a long video, suggest moments that could work as clips, reframe them to vertical, and add automatic captions. Most offer a free tier plus paid plans. For OpusClip's current plans and the apps people compare it with, see [Opus Clip alternatives](/alternatives/opus-clip-alternatives).
 
 ### Strengths
 
