@@ -8,7 +8,6 @@ anidachi repo on this Mac.
 |---|---|---|
 | `kreatli-seo-weekly-audit-research` | Mondays 09:00 (`0 9 * * 1`) | Audit + keyword research, then files Linear tickets. No code changes. |
 | `kreatli-seo-writer` | Tue and Thu 10:00 (`0 10 * * 2,4`) | Writes the top ticket and commits it straight to main, which deploys to production. |
-| `kreatli-seo5-indexing-check` | Once, 2026-11-01 10:00 (already created) | Sitemap/indexing check for SEO-5. |
 
 After creating a task, open it and click **Run now** once to pre-approve the tools it uses (Composio, Linear, `gh`).
 Later runs then won't stop on permission prompts.
@@ -26,7 +25,7 @@ Weekly SEO run for Kreatli Marketplace (https://marketplace.kreatli.com). Work i
 2. Audit: follow `.claude/skills/seo-audit/SKILL.md` exactly
    - Run `npm run seo:audit -- --inspect`, then read `.seo-reports/audit-<today>.md`.
    - File one Linear ticket per page (label `rewrite` or `technical`, team SEO, project "Marketplace SEO").
-   - Use the Linear connector whose `get_workspace` returns "SEO-automation" (workspace seo-automation-blog), never another one.
+   - Use Linear only through Composio (`composio execute LINEAR_RUN_QUERY_OR_MUTATION --account marketplace-kreatli-seo`), as described under "Tickets" in the context file. Never use the Linear MCP connectors.
    - Check open tickets first. If a page already has one, comment with the new numbers instead of filing a duplicate.
 
 3. Keyword research: follow `.claude/skills/seo-keyword-research/SKILL.md` exactly
@@ -36,7 +35,7 @@ Weekly SEO run for Kreatli Marketplace (https://marketplace.kreatli.com). Work i
 
 4. Conversions: once Amplitude has `signup_completed` / `job_created` / `clipper_applied` events with `first_landing_type` / `first_landing_path`, use the page types that convert to set ticket priorities. If you can't reach the data, say so.
 
-Rules: never edit page content, commit, push or merge in this task. If Composio or the Keyword Planner script fails, report the exact error and stop that step. Never invent numbers. Add new lessons to `.claude/seo/kreatli-context.md` without committing it.
+Rules: never edit page content in this task. If Composio or the Keyword Planner script fails, report the exact error and stop that step. Never invent numbers. If the run learned something new, add it to "Lessons from past runs" in `.claude/seo/kreatli-context.md`, then `git pull --ff-only`, commit only that file as one `docs(seo): ...` commit ending with "Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>", and `git push origin main`. Never leave it uncommitted: the writer task stops when a tracked file is modified.
 
 Report: a table of tickets filed or updated (ID, page/keyword, label, priority, reason), the pages held as too fresh, and any errors.
 ```
@@ -52,7 +51,7 @@ SEO writing run for Kreatli Marketplace (https://marketplace.kreatli.com). It pu
    - Read `.claude/seo/kreatli-context.md`, then follow `.claude/skills/seo-writer/SKILL.md` exactly. Use `.claude/skills/seo-qa/SKILL.md` for QA.
 
 2. Pick ONE ticket
-   - Use the Linear connector whose `get_workspace` returns "SEO-automation" (seo-automation-blog), team SEO, project "Marketplace SEO".
+   - Use Linear only through Composio (`composio execute LINEAR_RUN_QUERY_OR_MUTATION --account marketplace-kreatli-seo`), project "Marketplace SEO", as described under "Tickets" in the context file. Never use the Linear MCP connectors.
    - Take the highest-priority Backlog/Todo issue labelled `rewrite` or `new-page` with no future due date (skip anything already In Progress).
 
 3. Write the page and registry entry. Loop on `npm run seo:qa -- <type>/<slug>` until there are no FAILs, do the manual review, and run `npx tsc --noEmit`.
