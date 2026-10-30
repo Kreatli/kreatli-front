@@ -84,3 +84,20 @@ Use the figures in these pages and link to them. Don't invent new ones:
   for it, so a separate clipper guide (SEO-19) owns it and the compare page keeps the "vs" angle.
 - 2026-10-27: if the best match for a keyword is a page still in its 28-day hold, file a `rewrite` ticket due when the
   hold ends rather than a new page (SEO-21).
+- 2026-10-28: a 301 merge can strand demand. The old `/guides/cost-to-hire-a-video-editor` queries ("video editing
+  cost/rates/prices", ~320/mo each) still sit at positions 65 to 75 with 0 clicks after it was redirected into the clipper
+  pay guide, whose intent is different. Before redirecting, check the merged page's queries match the target page (SEO-23).
+- 2026-10-28: "clipper contract" (720/mo) is Clipper Logistics and Bay Area transit, "clipping program" (390/mo) is
+  graphics algorithms, and "clipping meaning" (480/mo) is dictionaries. None fit. "how to clip a youtube video" (4,400/mo)
+  is mostly the YouTube Clip button, but clipping platforms (contentrewards, luminaclippers) rank with clipper-side guides,
+  so it was filed with a clipper angle (SEO-24).
+- 2026-10-28: the Amplitude project that Composio reaches has none of the PR #8 events (`signup_completed`, `job_created`,
+  `clipper_applied`), only autocapture plus `app_store_badge_click`, so it looks like a different app. Conversion-based
+  priorities wait until the Kreatli Marketplace project is connected.
+- 2026-10-30: "video editor jobs remote" (4,400/mo) and "remote video editor" (590/mo) are owned by job boards (FlexJobs,
+  Jobgether) with live listings. Without public job listings we can't compete, so they were dropped. "clip editor",
+  "clip maker", "youtube clip maker" (1,000 to 1,300/mo) are editing-software searches. "content creator for hire" /
+  "hire ugc creators" mean UGC creators who make original content, not clippers. None fit.
+- 2026-10-30: "how to get clips for edits" (1,300/mo) and "where to get clips for edits" (590/mo) are mostly fan
+  editors, but a clipping platform (Lumina Clippers) ranks on page 1, so it was filed as a clipper guide with a
+  legal-sources angle (SEO-26). Never give downloader instructions for other people's videos on these pages.
