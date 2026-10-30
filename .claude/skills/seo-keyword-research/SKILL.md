@@ -46,7 +46,7 @@ Aim for 3 to 6 tickets a week. Quality beats volume.
 
 ## 4. Check Linear for duplicates
 
-Use the Linear connector for **seo-automation-blog** (`get_workspace` returns "SEO-automation").
+Use Linear through Composio as described under "Tickets" in the context file (`--account marketplace-kreatli-seo`).
 List open issues in project **Marketplace SEO** and skip any keyword that already has a ticket.
 
 ## 5. File one ticket per page

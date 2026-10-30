@@ -33,8 +33,8 @@ Read the markdown report.
 ## 3. Turn findings into tickets
 
 - **Group by page:** one ticket per page, even when it triggers several rules.
-- **Check Linear first.** Use the connector for **seo-automation-blog** (`get_workspace` returns
-  "SEO-automation"). If an open ticket in **Marketplace SEO** already covers the page, add a comment with the new
+- **Check Linear first.** Use Linear through Composio as described under "Tickets" in the context
+  file (`--account marketplace-kreatli-seo`). If an open ticket in **Marketplace SEO** already covers the page, add a comment with the new
   numbers instead of filing a duplicate.
 - **Look up volumes** for the page's main queries (`cd "$KEYWORD_PLANNER_DIR" && pnpm -s google-ads:keywords -- "<query>"`)
   so the ticket's priority reflects demand, not just impressions.

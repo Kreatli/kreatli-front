@@ -9,7 +9,7 @@ One ticket → one commit on `main`. There is no PR or human review: pushing to 
 
 ## 1. Pick the ticket
 
-- If the user named a ticket, use it. Otherwise, in Linear (**seo-automation-blog** workspace, project
+- If the user named a ticket, use it. Otherwise, in Linear (Composio account `marketplace-kreatli-seo`, see "Tickets" in the context file; project
   **Marketplace SEO**), take the highest-priority `new-page` or `rewrite` issue in Backlog/Todo (skip anything already In Progress).
   Skip tickets with a future due date.
 - Move it to **In Progress**.

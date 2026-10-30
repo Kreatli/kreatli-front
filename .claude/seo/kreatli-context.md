@@ -54,9 +54,16 @@ Use the figures in these pages and link to them. Don't invent new ones:
 - Renamed slugs and merges: the `redirects()` in `next.config.js`
 - Scripts: `npm run seo:qa`, `npm run seo:audit`, `npm run seo:keywords`, `npm run seo-pages:next`
 - Publishing: commit straight to `main` and push. That deploys to production. No branches or PRs.
-- Tickets: Linear workspace **seo-automation-blog**, team **SEO**, project **Marketplace SEO**, labels
-  `new-page` / `rewrite` / `technical`. Use the Linear connector whose `get_workspace` returns "SEO-automation".
-  Other Linear connectors in this app point at different workspaces.
+- Tickets: Linear workspace **marketplace-kreatli-seo** (https://linear.app/marketplace-kreatli-seo), team
+  **Marketplace(Kreatli)-SEO-automation** (keys `SEO-*`), project **Marketplace SEO**, labels `new-page` / `rewrite` /
+  `technical`. Since 2026-10-29, reach it **only through Composio**:
+  `composio execute LINEAR_RUN_QUERY_OR_MUTATION --account marketplace-kreatli-seo -d '{"query_or_mutation":"..."}'`
+  (GraphQL; e.g. `issueCreate`, `issueUpdate`, `commentCreate`). The Linear MCP connectors in this app point at other
+  workspaces: never file marketplace SEO tickets through them. IDs: team `5dc8358a-6142-445a-ac8a-afa9e381928e`,
+  project `6310d9de-4a3d-477d-8223-55ff181314c7`; labels new-page `223e6a5e-34d5-459e-a8f9-e648b34ef68d`, rewrite
+  `3610b60e-a005-4f20-8eb4-630fb17d3f80`, technical `54364161-4699-4b67-adf5-4e5f15695de3`; states Backlog
+  `45ab9db9-70a4-4fb9-865b-4c5ca7e077da`, Todo `e42a9eda-53c4-4130-8034-1db1a1add409`, In Progress
+  `4e853413-7939-4a2e-bb4c-46af9b4aa2f2`, Done `812ef1a7-9059-428f-b4ec-21b13744771f`.
 
 ## Lessons from past runs
 
