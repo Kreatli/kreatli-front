@@ -17,7 +17,6 @@ export const SignUpProfessionalStep4 = ({ control, errors }: Props) => {
   const { fields, append, remove } = useFieldArray({
     control,
     name: 'experiences',
-    rules: VALIDATION_RULES.REQUIRED,
   });
 
   const handleAddMore = () => {
@@ -30,6 +29,12 @@ export const SignUpProfessionalStep4 = ({ control, errors }: Props) => {
 
   return (
     <div className="flex flex-col gap-8">
+      {fields.length === 0 && (
+        <p className="text-foreground-500">
+          No paid clipping work yet? That&apos;s fine, you can leave this empty. A portfolio link with a few practice
+          clips works too.
+        </p>
+      )}
       {fields.map(({ id }, index) => (
         <div key={id} className="flex gap-4">
           <div className="flex-1 grid grid-cols-[auto_1fr] gap-4">
@@ -73,7 +78,6 @@ export const SignUpProfessionalStep4 = ({ control, errors }: Props) => {
               color="danger"
               size="sm"
               aria-label="Delete experience"
-              isDisabled={index === 0}
               onClick={handleRemove(index)}
             >
               <Icon icon="trash" size={18} />
@@ -90,7 +94,7 @@ export const SignUpProfessionalStep4 = ({ control, errors }: Props) => {
           startContent={<Icon icon="plus" size={18} />}
           onClick={handleAddMore}
         >
-          Add more
+          {fields.length === 0 ? 'Add experience' : 'Add more'}
         </Button>
       </div>
     </div>

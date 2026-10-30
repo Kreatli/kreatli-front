@@ -66,7 +66,7 @@ export const SignUpProfessional = () => {
   const progressValue = React.useMemo(() => {
     const filledStepsLength = isFilledByStep.reduce((acc, isFilled) => acc + Number(isFilled), 0);
 
-    return ((filledStepsLength + 1) / 4) * 100;
+    return Math.min(((filledStepsLength + 1) / FIELDS_BY_STEP.length) * 100, 100);
   }, [isFilledByStep]);
 
   const { mutate, isPending, isSuccess } = useMutation({
@@ -120,9 +120,9 @@ export const SignUpProfessional = () => {
       render: <SignUpProfessionalStep3 control={control} register={register} errors={errors} />,
     },
     {
-      title: 'Step 4 - Experience',
+      title: 'Step 4 - Experience (optional)',
       subtitle:
-        "Provide details about your relevant work experience, including past projects and clients you've worked with. Be sure to highlight your most impressive work to attract potential clients",
+        'Add past projects and clients if you have them. New to clipping? Skip this step and let your portfolio do the talking',
       render: <SignUpProfessionalStep4 control={control} errors={errors} />,
     },
     {
@@ -134,7 +134,7 @@ export const SignUpProfessional = () => {
   ];
 
   const description =
-    'Kreatli Marketplace will help you find the best YouTube creators to collaborate and network with. The registration process only takes 7 minutes, so join today and become a part of our community';
+    'Join Kreatli Marketplace as a clipper and get hired by streamers, YouTubers and podcasters to turn their long videos into Shorts, TikToks and Reels. No paid experience needed: a photo, a short bio and a few sample clips are enough to start.';
   const disabledKeys = new Set(
     steps
       .map((_, index) => index)

@@ -35,7 +35,8 @@ export const DEFAULT_VALUES = {
   skills: [] as Skill[],
   skillLevels: {} as Partial<Record<Skill, SkillLevel>>,
   // Step 4
-  experiences: [DEFAULT_EXPERIENCE],
+  // Optional: beginners without paid work can skip this step (the API doesn't require it).
+  experiences: [] as typeof DEFAULT_EXPERIENCE[],
   // Step 5
   certificates: [] as typeof DEFAULT_CERTIFICATE[],
 };

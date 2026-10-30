@@ -68,6 +68,7 @@ export const ProfessionalProfile = ({ userId }: Props) => {
       </h3>
       <div className="flex flex-col gap-4">
         {!user && <Skeleton className="rounded-xl w-full h-36" />}
+        {user && user.experiences.length === 0 && <p className="text-foreground-500">No experience added yet.</p>}
         {user?.experiences.map((experience) => (
           <ExperienceCard
             key={experience._id}
