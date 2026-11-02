@@ -108,3 +108,11 @@ Use the figures in these pages and link to them. Don't invent new ones:
 - 2026-10-30: "how to get clips for edits" (1,300/mo) and "where to get clips for edits" (590/mo) are mostly fan
   editors, but a clipping platform (Lumina Clippers) ranks on page 1, so it was filed as a clipper guide with a
   legal-sources angle (SEO-26). Never give downloader instructions for other people's videos on these pages.
+- 2026-11-02: b-roll and jump-cut glossary pages keep tripping `poor-fit` (position 50 to 60, 0 clicks). SEO-9 was
+  cancelled on purpose, so don't refile. Only revisit if they start getting clicks or a short-form angle gains demand.
+- 2026-11-02: most remaining Search Console candidates are the video-editing cost cluster, which belongs to the restored
+  `/guides/cost-to-hire-a-video-editor` (SEO-23, held until about Nov 26). New ideas came from seeds instead:
+  "how much do youtube editors make" (SEO-29), "youtube reused content policy" (SEO-30), "clipping streamers" (SEO-31).
+  "how to add clips to twitch" / "how to clip a twitch stream" are Twitch tutorials, not a fit.
+- 2026-11-02: Amplitude via Composio still shows no `signup_completed` / `job_created` / `clipper_applied` events (only
+  autocapture, `cta_click`, `faq_expand`, `guide_scroll_75`, `outbound_click`, scroll and session events).
