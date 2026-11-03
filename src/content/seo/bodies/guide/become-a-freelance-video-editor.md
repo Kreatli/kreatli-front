@@ -66,7 +66,7 @@ How you charge shapes the clients you attract. The common models:
 - **Hourly:** useful for open-ended work like organizing a back catalog, but it can penalize you as you get quicker.
 - **Monthly retainer:** a set price for a set volume each month. The most stable option once a client trusts you.
 
-Every quote should state what is included: number of revisions, turnaround, file formats, and what counts as extra work. The [2026 rate guide](/guides/how-to-price-video-editing-services) goes deeper on setting numbers and raising them.
+Every quote should state what is included: number of revisions, turnaround, file formats, and what counts as extra work. The [2026 rate guide](/guides/how-to-price-video-editing-services) goes deeper on setting numbers and raising them. For typical earnings by type of work, see [how much YouTube editors make](/guides/how-much-do-youtube-editors-make).
 
 ## Land your first clients
 

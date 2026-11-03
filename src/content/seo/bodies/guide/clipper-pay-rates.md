@@ -99,7 +99,7 @@ A $3 rate with a low cap can pay less than a $1 rate with a high cap. Compare th
 - **Cap and threshold:** these often matter more than the headline rate
 - **Competition:** popular campaigns attract many clippers posting similar moments
 
-For where each rate type is available, see [the best clipping platforms](/guides/best-clipping-platforms).
+For where each rate type is available, see [the best clipping platforms](/guides/best-clipping-platforms). For how clip pay compares with salaried and long-form YouTube editing, see [how much YouTube editors make](/guides/how-much-do-youtube-editors-make).
 
 ## Put these rates to work
 
