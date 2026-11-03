@@ -35,7 +35,7 @@ These accounts repost a creator's content without permission. Some survive becau
 
 A clip channel posts someone else's footage, so permission comes first. Our guide on [whether you need permission to clip streams](/guides/do-you-need-permission-to-clip-streams) covers copyright, music, and a permission template.
 
-Platform monetization rules matter too. As of 2026, YouTube's **reused content** policy covers clips and compilations. YouTube says reused material can be monetized only when there is a meaningful difference between the original and the new video, such as added commentary or a storyline. Copyright rules still apply even when a video meets that bar. Channels that only repost raw moments with captions may struggle to monetize, even with permission.
+Platform monetization rules matter too. As of 2026, YouTube's **reused content** policy covers clips and compilations. YouTube says reused material can be monetized only when there is a meaningful difference between the original and the new video, such as added commentary or a storyline. Copyright rules still apply even when a video meets that bar. Channels that only repost raw moments with captions may struggle to monetize, even with permission. See our guide to the [YouTube reused content policy for clips](/guides/youtube-reused-content-policy-for-clips).
 
 Mass-posting low-effort clips across many accounts is often called [clip farming](/glossary/what-is-clip-farming), and platforms tend to treat it with suspicion.
 

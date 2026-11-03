@@ -39,7 +39,7 @@ If you want to clip a streamer independently, ask. A short written agreement, ev
 Each platform has its own rules, and they change. As of 2026, keep these general points in mind and read each platform's current terms:
 
 - **Streaming platforms** such as Twitch, Kick, and YouTube have terms covering who owns uploaded content and how their built-in clip tools can be used. A clip created with a platform's tool lives on that platform. That does not automatically give you the right to download it and repost it elsewhere.
-- **Posting platforms** such as TikTok, YouTube Shorts, and Instagram Reels have their own copyright, reused-content, and originality rules. Clips that are straight reuploads with little added value may be limited or demonetized even when you have permission.
+- **Posting platforms** such as TikTok, YouTube Shorts, and Instagram Reels have their own copyright, reused-content, and originality rules. Clips that are straight reuploads with little added value may be limited or demonetized even when you have permission. On YouTube, this is the [reused content policy](/guides/youtube-reused-content-policy-for-clips).
 - **Automated systems** like YouTube's Content ID can claim clips that contain matched audio or video, regardless of whether you meant to infringe.
 
 ## Game footage

@@ -62,7 +62,7 @@ Avoid streamers whose content you would not want in your portfolio, and be caref
 
 Clipping a stream and posting it is using someone else's work. The safest ways to have permission are to be hired by the streamer, to join an official campaign they run, or to get their written permission. Giving credit is not the same as having permission.
 
-Platform rules apply too. Streams often contain music, game footage and other people, each with their own rights. If you plan to run your own clip channel, read about [clip channels](/glossary/clip-channel-meaning) and how platforms treat reused content.
+Platform rules apply too. Streams often contain music, game footage and other people, each with their own rights. If you plan to run your own clip channel, read about [clip channels](/glossary/clip-channel-meaning) and the [YouTube reused content policy](/guides/youtube-reused-content-policy-for-clips).
 
 Our guide on [whether you need permission to clip streams](/guides/do-you-need-permission-to-clip-streams) covers this in detail and includes a free permission request template. It is general information, not legal advice.
 

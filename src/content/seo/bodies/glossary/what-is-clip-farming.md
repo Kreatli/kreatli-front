@@ -77,4 +77,4 @@ A clip farmer is someone who produces clips at high volume mainly to collect vie
 
 ### Is clip farming allowed on TikTok and YouTube?
 
-Posting clips is allowed, but platforms have rules on reused or unoriginal content, and monetization programs may exclude it. Rules change, so check each platform's current policies. Adding real editing, captions, and context generally helps.
+Posting clips is allowed, but platforms have rules on reused or unoriginal content, and monetization programs may exclude it. Rules change, so check each platform's current policies. Adding real editing, captions, and context generally helps. On YouTube, see the [reused content policy for clips](/guides/youtube-reused-content-policy-for-clips).
