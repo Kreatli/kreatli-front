@@ -18,6 +18,7 @@ const JOB_TYPES = [
     links: [
       { href: '/guides/get-paid-to-clip-twitch-streams', label: 'Get paid to clip Twitch streams' },
       { href: '/guides/get-paid-to-clip-kick-streams', label: 'Get paid to clip on Kick' },
+      { href: '/guides/how-to-make-money-clipping-streamers', label: 'How clipping streamers pays' },
     ],
   },
   {

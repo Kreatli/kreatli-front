@@ -2,7 +2,7 @@
 
 You can get paid to clip streams on Twitch in two main ways: a streamer hires you to turn their VODs into Shorts, TikToks, and Reels for fixed pay, or you join a clipping campaign that pays per 1,000 views on clips you post yourself. Either way, the work is the same at its core: find the moments that make sense to someone who was not watching live, cut them tight, caption them, and deliver fast.
 
-This guide covers how to find streamers who need clippers, a VOD workflow that does not waste hours, when to use Twitch's clip tool versus a full VOD edit, and how pay works.
+This guide covers how to find streamers who need clippers, a VOD workflow that does not waste hours, when to use Twitch's clip tool versus a full VOD edit, and how pay works. For how clipping streamers works across platforms, see [how to make money clipping streamers](/guides/how-to-make-money-clipping-streamers).
 
 ## Who pays Twitch clippers
 

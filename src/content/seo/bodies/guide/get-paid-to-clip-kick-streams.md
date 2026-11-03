@@ -1,6 +1,6 @@
 # How to Get Paid to Clip Kick Streams
 
-You can get paid to clip on Kick in two ways: join a view-based clipping campaign for a Kick streamer, or get hired by a streamer to edit their VODs into Shorts, TikToks, and Reels for fixed pay. Kick has become one of the most clip-heavy streaming platforms, with large streamers running big clipper programs. Before you join one, it helps to know what is officially from Kick, what is run by individual streamers, and how each pays.
+You can get paid to clip on Kick in two ways: join a view-based clipping campaign for a Kick streamer, or get hired by a streamer to edit their VODs into Shorts, TikToks, and Reels for fixed pay. Kick has become one of the most clip-heavy streaming platforms, with large streamers running big clipper programs. Before you join one, it helps to know what is officially from Kick, what is run by individual streamers, and how each pays. For a comparison of fixed pay and CPM across all platforms, see [how to make money clipping streamers](/guides/how-to-make-money-clipping-streamers).
 
 ## What is publicly known about Kick clipping programs (as of 2026)
 
