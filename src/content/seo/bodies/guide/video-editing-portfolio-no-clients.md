@@ -44,7 +44,7 @@ Options include:
 - Create a screen-recorded tutorial
 - Use practice footage from editing communities if licensing allows portfolio use
 
-Always keep a note of where footage came from. If a creator asks whether the work was paid client work, be honest. "Practice sample built to show podcast clipping style" is perfectly acceptable when the edit is strong.
+Always keep a note of where footage came from. If a creator asks whether the work was paid client work, be honest. "Practice sample built to show podcast clipping style" is perfectly acceptable when the edit is strong. For a full list of safe sources and what each license allows, see [how to get clips for edits](/guides/how-to-get-clips-for-edits).
 
 ## Build samples around buyer intent
 

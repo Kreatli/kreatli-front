@@ -51,7 +51,7 @@ This is the workflow clippers use when a YouTuber or podcaster hires them.
 
 ### 1. Get the source file and permission
 
-Clippers work from the original file, sent by the creator they work for, or from their own videos. This gives the best quality and makes it clear you're allowed to use it. Don't rip other people's videos with downloaders. See [do you need permission to clip streams](/guides/do-you-need-permission-to-clip-streams).
+Clippers work from the original file, sent by the creator they work for, or from their own videos. This gives the best quality and makes it clear you're allowed to use it. Don't rip other people's videos with downloaders. See [do you need permission to clip streams](/guides/do-you-need-permission-to-clip-streams), and [how to get clips for edits](/guides/how-to-get-clips-for-edits) for footage you can practice on.
 
 ### 2. Find the moments
 
