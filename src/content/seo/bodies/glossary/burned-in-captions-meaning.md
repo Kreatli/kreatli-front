@@ -53,7 +53,7 @@ Many creators use both: burned-in captions for style and muted viewing, and an u
 
 Captions take time to do well, especially proofreading and timing. Clips with custom caption styling typically still fall in the **$15 to $35** range for simple talking-head work, with complex animated styles priced higher. Include a reference clip of your preferred caption style when you post a job, and ask for corrections to names and terms.
 
-On **Kreatli Marketplace**, you can describe your caption style in the job post and review applicants' portfolios for it. If you are posting on Instagram, you can also [hire an Instagram Reels editor](/hire/hire-an-instagram-reels-clipper) who already knows the format. For tool options, see [best video editing software for clippers](/guides/best-video-editing-software-for-clippers), and for why captions help early viewing, see [the hook and the first 3 seconds](/glossary/video-hook-first-3-seconds).
+On **Kreatli Marketplace**, you can describe your caption style in the job post and review applicants' portfolios for it. If you are posting on Instagram, you can also [hire an Instagram Reels editor](/hire/hire-an-instagram-reels-clipper) who already knows the format. For tool options, see [best video editing software for clippers](/guides/best-video-editing-software-for-clippers) or [Submagic alternatives](/alternatives/submagic-alternatives), and for why captions help early viewing, see [the hook and the first 3 seconds](/glossary/video-hook-first-3-seconds).
 
 ## FAQ
 

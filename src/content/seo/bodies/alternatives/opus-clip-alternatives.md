@@ -45,7 +45,7 @@ OpusClip works well for many creators. These are the most common reasons people 
 
 These apps work like OpusClip: a subscription, and software that does the first pass. Switching can help if you want a different caption style or workflow, but the limits above mostly stay the same.
 
-- **Submagic:** best known for animated captions and quick edits on short videos.
+- **Submagic:** best known for animated captions and quick edits on short videos. See [Submagic alternatives](/alternatives/submagic-alternatives).
 - **Vizard:** turns long videos into draft clips, similar to OpusClip.
 - **Klap:** turns YouTube videos into shorts automatically.
 - **CapCut:** a free editor with auto captions. You pick and cut the moments yourself, so it takes more time but gives you full control.
