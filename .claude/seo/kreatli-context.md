@@ -116,3 +116,11 @@ Use the figures in these pages and link to them. Don't invent new ones:
   "how to add clips to twitch" / "how to clip a twitch stream" are Twitch tutorials, not a fit.
 - 2026-11-02: Amplitude via Composio still shows no `signup_completed` / `job_created` / `clipper_applied` events (only
   autocapture, `cta_click`, `faq_expand`, `guide_scroll_75`, `outbound_click`, scroll and session events).
+- 2026-11-09: seed ideas are drying up. Seeds like "klap alternatives", "munch alternatives", "hire clippers", "freelance
+  clipper", "video clipping jobs" return 0 to 50/mo, and the Search Console candidates are all the video-editing cost
+  cluster (SEO-23, held) or already covered. "clip farming" is 5,400/mo, but it has a page (held until about Nov 26) that
+  shows only 12 impressions at position 4.7, so check its SERP before filing a rewrite. Don't force 3 to 6 new-page tickets.
+- 2026-11-09: `no-impressions` pages at 19 days: "Discovered/Crawled - currently not indexed" get a `technical` ticket
+  (SEO-32, SEO-33); pages already "Submitted and indexed" (royalty-free-music-for-clips, best-video-editing-software-for-clippers)
+  are too early to judge, so re-check next week.
+- 2026-11-09: `composio execute AMPLITUDE_LIST_EVENTS` needs `-d '{}'`. Conversion events are still absent.
