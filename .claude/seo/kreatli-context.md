@@ -124,3 +124,9 @@ Use the figures in these pages and link to them. Don't invent new ones:
   (SEO-32, SEO-33); pages already "Submitted and indexed" (royalty-free-music-for-clips, best-video-editing-software-for-clippers)
   are too early to judge, so re-check next week.
 - 2026-11-09: `composio execute AMPLITUDE_LIST_EVENTS` needs `-d '{}'`. Conversion events are still absent.
+- 2026-11-16: keyword run found nothing new. Search Console candidates are the held cost cluster (SEO-23), b-roll variants
+  ("broll meaning" 720/mo, don't refile per SEO-9), job-board and UGC terms. Seeds "podcast clipper" (40), "youtube shorts
+  clipper" (50), "how to find clippers" (10) are too small, so 0 new-page tickets were filed. Don't force them.
+- 2026-11-16: `no-impressions` at 18 to 26 days: "URL is unknown to Google" pages get a `technical` ticket (SEO-34, SEO-35),
+  because SEO-32's page moved from "Discovered" to "Submitted and indexed" within a week, so recheck "Submitted and indexed" pages
+  before acting. A glossary rewrite ticket (SEO-21) is pointless until its page is indexed.
