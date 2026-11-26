@@ -65,6 +65,24 @@ Use the figures in these pages and link to them. Don't invent new ones:
   `45ab9db9-70a4-4fb9-865b-4c5ca7e077da`, Todo `e42a9eda-53c4-4130-8034-1db1a1add409`, In Progress
   `4e853413-7939-4a2e-bb4c-46af9b4aa2f2`, Done `812ef1a7-9059-428f-b4ec-21b13744771f`.
 
+## Accounts: the marketplace's own, never kreatli.com's
+
+The marketplace and kreatli.com (the review tool, repo `kreatli-review-tool-front`) are separate businesses with
+separate routines. Every data source below is pinned; always pass the account or property named here, never rely on a
+default, and never touch kreatli.com's.
+
+| Source | Marketplace (use) | kreatli.com (never use here) |
+|---|---|---|
+| Linear | Composio `--account marketplace-kreatli-seo` (workspace `marketplace-kreatli-seo`) | `linear-kreatli-com`, `kreatli-reviewtool-seo` (workspace `kreatli-reviewtool-seo`, `KRE-*`) |
+| Amplitude | Composio `--account kreatli-com`: despite the name, this is the **marketplace** project (`signup_completed`, `job_created`, `clipper_applied`, with `first_landing_type` / `first_landing_path`). `kreatli-all` is the same project. | `amplitude-kreatli-site` (`account_signup_completed`) |
+| Search Console | `sc-domain:marketplace.kreatli.com` | `sc-domain:kreatli.com`, `https://kreatli.com/` |
+| GA4 | `properties/424099578` (marketplace.kreatli.com) | `properties/497375961` (kreatli.com) |
+| IndexNow | key `379261fdcb0dcbf2e5a3cf207855594c` (`public/`) | kreatli.com's key |
+| Repo, publishing | `kreatli-front`, straight to `main` | `kreatli-review-tool-front`, one PR per ticket |
+
+`composio execute AMPLITUDE_...` with no `--account` reaches an unrelated project: never call it that way. If a
+pinned account fails, report it and skip the step rather than trying another account.
+
 ## Lessons from past runs
 
 - 2026-10-25: pages changed in the last 28 days were held from the audit, because their Search Console data
@@ -131,3 +149,6 @@ Use the figures in these pages and link to them. Don't invent new ones:
   because SEO-32's page moved from "Discovered" to "Submitted and indexed" within a week, so recheck "Submitted and indexed" pages
   before acting. A glossary rewrite ticket (SEO-21) is pointless until its page is indexed.
 - 2026-11-23 prep (run of 2026-11-16 audit): b-roll and jump-cut `poor-fit` findings recur weekly and were skipped again (SEO-9). Indexing tickets get a comment, not a new ticket, when status is unchanged or improved (SEO-32 now indexed, SEO-35 moved from "unknown" to "Discovered"). The keyword report's new rows are the held cost cluster, press-clipping and UGC terms, so 0 new-page tickets again.
+- 2026-11-26: the "no conversion events" notes from 28 Oct to 9 Nov were wrong account, not missing data. `AMPLITUDE_*` with no
+  `--account` reaches an unrelated project. The marketplace project is Composio `--account kreatli-com` (also `kreatli-all`):
+  105 `signup_completed` from 29 Oct to 25 Nov, with `first_landing_type`. Always pin accounts (see "Accounts").

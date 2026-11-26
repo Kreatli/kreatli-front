@@ -40,7 +40,7 @@ Keep a candidate only if all of these hold:
 - **Isn't covered:** check `src/content/seo/registry.ts`, including drafts. If an existing page is close,
   file a `rewrite` ticket for that page instead of a new page. Two pages must never share a primary keyword.
 - **Is winnable:** prefer LOW/MEDIUM competition, and queries where we already rank on pages 2 to 5.
-- **Converts:** once Amplitude landing-page attribution exists, prioritise the page types that drive sign-ups.
+- **Converts:** prioritise the page types that drive sign-ups (Amplitude `--account kreatli-com`, the marketplace project: `signup_completed` grouped by `first_landing_type`).
 
 Aim for 3 to 6 tickets a week. Quality beats volume.
 

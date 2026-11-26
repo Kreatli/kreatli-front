@@ -7,7 +7,7 @@ anidachi repo on this Mac.
 | Task | Schedule | What it does |
 |---|---|---|
 | `kreatli-seo-weekly-audit-research` | Mondays 09:00 (`0 9 * * 1`) | Audit + keyword research, then files Linear tickets. No code changes. |
-| `kreatli-seo-writer` | Tue and Thu 10:00 (`0 10 * * 2,4`) | Writes the top ticket and commits it straight to main, which deploys to production. |
+| `kreatli-seo-writer` | Tue and Thu 12:00 (`0 12 * * 2,4`) | Writes the top ticket and commits it straight to main, which deploys to production. |
 
 After creating a task, open it and click **Run now** once to pre-approve the tools it uses (Composio, Linear, `gh`).
 Later runs then won't stop on permission prompts.
@@ -35,7 +35,8 @@ Weekly SEO run for Kreatli Marketplace (https://marketplace.kreatli.com). Work i
 
 4. IndexNow catch-up: follow step 4 of the audit skill (`npm run seo:indexnow -- --changed-since <7 days ago> --submit`).
 
-5. Conversions: once Amplitude has `signup_completed` / `job_created` / `clipper_applied` events with `first_landing_type` / `first_landing_path`, use the page types that convert to set ticket priorities. If you can't reach the data, say so.
+5. Conversions:
+   - Amplitude is Composio `--account kreatli-com` (the marketplace project, despite the name; see "Accounts" in the context file). Never call AMPLITUDE_ tools without `--account`, and never use `amplitude-kreatli-site` (kreatli.com). Use `AMPLITUDE_GET_EVENT_SEGMENTATION` on `signup_completed`, `job_created` and `clipper_applied`, grouped by `first_landing_type` / `first_landing_path`, to see which page types convert, and use that to set ticket priorities. If the account fails, say so in the report and skip this step.
 
 Rules: never edit page content in this task. If Composio or the Keyword Planner script fails, report the exact error and stop that step. Never invent numbers. If the run learned something new, add it to "Lessons from past runs" in `.claude/seo/kreatli-context.md`, then `git pull --ff-only`, commit only that file as one `docs(seo): ...` commit ending with "Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>", and `git push origin main`. Never leave it uncommitted: the writer task stops when a tracked file is modified.
 
