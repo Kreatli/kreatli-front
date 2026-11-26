@@ -33,11 +33,13 @@ Weekly SEO run for Kreatli Marketplace (https://marketplace.kreatli.com). Work i
    - File 3 to 6 `new-page` tickets with full briefs. Skip off-funnel, already-covered or already-ticketed keywords.
    - Volumes: `cd /Users/macgeorge/Downloads/VibeProjects/anidachi-LP/anidachi/apps/web && pnpm -s google-ads:keywords -- "<seed>"`.
 
-4. Conversions: once Amplitude has `signup_completed` / `job_created` / `clipper_applied` events with `first_landing_type` / `first_landing_path`, use the page types that convert to set ticket priorities. If you can't reach the data, say so.
+4. IndexNow catch-up: follow step 4 of the audit skill (`npm run seo:indexnow -- --changed-since <7 days ago> --submit`).
+
+5. Conversions: once Amplitude has `signup_completed` / `job_created` / `clipper_applied` events with `first_landing_type` / `first_landing_path`, use the page types that convert to set ticket priorities. If you can't reach the data, say so.
 
 Rules: never edit page content in this task. If Composio or the Keyword Planner script fails, report the exact error and stop that step. Never invent numbers. If the run learned something new, add it to "Lessons from past runs" in `.claude/seo/kreatli-context.md`, then `git pull --ff-only`, commit only that file as one `docs(seo): ...` commit ending with "Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>", and `git push origin main`. Never leave it uncommitted: the writer task stops when a tracked file is modified.
 
-Report: a table of tickets filed or updated (ID, page/keyword, label, priority, reason), the pages held as too fresh, and any errors.
+Report: a table of tickets filed or updated (ID, page/keyword, label, priority, reason), the pages held as too fresh, the IndexNow result, and any errors.
 ```
 
 ## kreatli-seo-writer
@@ -60,7 +62,8 @@ SEO writing run for Kreatli Marketplace (https://marketplace.kreatli.com). It pu
    - `git pull --ff-only`. Commit only this ticket's files as ONE commit `feat(seo): ... (<TICKET-ID>)`, ending with "Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>".
    - `git push origin main`. Never force-push.
    - Wait for the Vercel deploy and confirm the page is live (`curl -s <url> | grep -o '<title>[^<]*'`). If the deploy fails or the page is wrong, `git revert` the commit, push, and report.
-   - Comment on the Linear ticket with the commit link and QA result, move it to Done, and add a check-back date 8 weeks out.
+   - Submit the live URL to Bing and Yandex: `npm run seo:indexnow -- <path> --submit`.
+   - Comment on the Linear ticket with the commit link, QA result and IndexNow result, move it to Done, and add a check-back date 8 weeks out.
 
 5. Housekeeping: list every URL published this run so someone can Request indexing in the Search Console UI.
 

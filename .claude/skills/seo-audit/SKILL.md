@@ -53,7 +53,21 @@ add or cut, links), and a measurable success criterion with a check-back date.
 For section index pages or non-registry pages in "Other pages with traffic" (e.g. `/hire`, `/guides`), file a
 `technical` ticket only when the numbers point to a clear fix.
 
-## 4. Report
+## 4. Tell Bing and Yandex (IndexNow)
+
+Weekly catch-up for pages the writer didn't submit (it submits each page right after publishing). Submit the SEO
+pages published or updated in the last 7 days. Google doesn't use IndexNow; it gets the Request indexing list instead.
+
+```bash
+npm run seo:indexnow -- --changed-since <date 7 days ago>            # dry run: check the list
+npm run seo:indexnow -- --changed-since <date 7 days ago> --submit
+```
+
+Only pages that changed, once each: repeated pings for unchanged pages can get the key throttled. 200 or 202 from
+both engines is success. Any other answer: report it, and don't retry in a loop.
+
+## 5. Report
 
 Reply with a table of tickets filed or updated (ID, page, rule, priority), plus the list of held pages and when
-they leave the hold. Add any new lesson to the context file's "Lessons from past runs".
+they leave the hold, and the IndexNow result (URLs sent, status from Bing and Yandex). Add any new lesson to the
+context file's "Lessons from past runs".

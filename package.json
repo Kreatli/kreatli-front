@@ -14,7 +14,8 @@
     "seo-pages:stats": "npx tsx scripts/seo-pages-agent.ts stats",
     "seo:qa": "npx tsx scripts/seo-qa.ts",
     "seo:audit": "npx tsx scripts/seo-audit.ts",
-    "seo:keywords": "npx tsx scripts/seo-keywords.ts"
+    "seo:keywords": "npx tsx scripts/seo-keywords.ts",
+    "seo:indexnow": "npx tsx scripts/seo-indexnow.ts"
   },
   "engines": {
     "node": "22.*"

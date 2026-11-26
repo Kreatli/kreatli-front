@@ -65,7 +65,10 @@ npm run seo:qa -- <type>/<slug>
 - Commit only the files for this ticket (the body, the registry entry, any link-back edits and redirects), as **one commit**: `feat(seo): <what changed> (<TICKET-ID>)`, with the repo's co-author trailer. Keep it to one ticket per commit so it's easy to revert.
 - Push with `git push origin main`. Never force-push.
 - After pushing, wait for the Vercel deployment and confirm the page is live (`curl -s <url> | grep -o '<title>[^<]*'`). If the deploy fails, or the page 404s or shows the old title, revert your commit (`git revert <sha>` and push), then report what happened.
-- Comment on the Linear ticket with the commit link, a one-line summary and the QA result, then move it to **Done**. Include the check-back date (8 weeks out) and the baseline numbers. The SEO team's statuses are Backlog, Todo, In Progress, Done and Canceled.
+- Once the page is live, tell Bing and Yandex: `npm run seo:indexnow -- <path> --submit` (plus any page you edited
+  for link-backs). 200 or 202 from both is success. Any other answer: note it in the report and on the ticket, don't
+  retry in a loop; the Monday audit's catch-up sends it again.
+- Comment on the Linear ticket with the commit link, a one-line summary, the QA result and the IndexNow result, then move it to **Done**. Include the check-back date (8 weeks out) and the baseline numbers. The SEO team's statuses are Backlog, Todo, In Progress, Done and Canceled.
 - In Search Console, Request indexing can only be done by hand in the UI. List the URL in your report so someone can do it.
 
 ## 7. If something goes wrong after publishing

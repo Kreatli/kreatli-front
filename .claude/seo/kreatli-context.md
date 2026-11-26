@@ -52,7 +52,7 @@ Use the figures in these pages and link to them. Don't invent new ones:
 - Page registry: `src/content/seo/registry.ts`. Bodies: `src/content/seo/bodies/<type>/<slug>.md`
 - URL sections: `guide` → `/guides`, `glossary`, `compare`, `hire`, `alternatives`
 - Renamed slugs and merges: the `redirects()` in `next.config.js`
-- Scripts: `npm run seo:qa`, `npm run seo:audit`, `npm run seo:keywords`, `npm run seo-pages:next`
+- Scripts: `npm run seo:qa`, `npm run seo:audit`, `npm run seo:keywords`, `npm run seo:indexnow` (Bing and Yandex), `npm run seo-pages:next`
 - Publishing: commit straight to `main` and push. That deploys to production. No branches or PRs.
 - Tickets: Linear workspace **marketplace-kreatli-seo** (https://linear.app/marketplace-kreatli-seo), team
   **Marketplace(Kreatli)-SEO-automation** (keys `SEO-*`), project **Marketplace SEO**, labels `new-page` / `rewrite` /
