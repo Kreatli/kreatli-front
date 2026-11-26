@@ -130,3 +130,4 @@ Use the figures in these pages and link to them. Don't invent new ones:
 - 2026-11-16: `no-impressions` at 18 to 26 days: "URL is unknown to Google" pages get a `technical` ticket (SEO-34, SEO-35),
   because SEO-32's page moved from "Discovered" to "Submitted and indexed" within a week, so recheck "Submitted and indexed" pages
   before acting. A glossary rewrite ticket (SEO-21) is pointless until its page is indexed.
+- 2026-11-23 prep (run of 2026-11-16 audit): b-roll and jump-cut `poor-fit` findings recur weekly and were skipped again (SEO-9). Indexing tickets get a comment, not a new ticket, when status is unchanged or improved (SEO-32 now indexed, SEO-35 moved from "unknown" to "Discovered"). The keyword report's new rows are the held cost cluster, press-clipping and UGC terms, so 0 new-page tickets again.
