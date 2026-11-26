@@ -1,8 +1,20 @@
 # How to Become a Clipper: The 2026 Step-by-Step Guide
 
-To become a clipper, you learn to turn long videos and streams into short vertical clips, build a small portfolio of samples, then find paid work either as a **fixed-pay freelance clip editor** or through **CPM campaigns** that pay per 1,000 views. You do not need a degree or expensive gear. You need a reliable editing workflow, a sense for what makes a moment worth posting, and a few samples that prove it.
+To become a clipper (or start clipping), you learn to turn long videos and streams into short vertical clips, build a small portfolio of samples, then find paid work either as a **fixed-pay freelance clip editor** or through **CPM campaigns** that pay per 1,000 views. Becoming a clipper and starting to clip are the same path. You do not need a degree, a following or expensive gear. You need a reliable editing workflow, a sense for what makes a moment worth posting, and a few samples that prove it.
 
 This guide covers both earning models, the skills and software that matter, how to land your first client, and how to grow from a few clips a week into steady income.
+
+## How to start clipping in 7 steps
+
+1. Learn the core clipping skills: moment selection, pacing, captions and hooks.
+2. Pick one editor and learn it well.
+3. Choose a niche you already understand.
+4. Build a portfolio of 5 to 10 vertical clips.
+5. Find your first paid work through jobs, campaigns or direct outreach.
+6. Price your clips per clip or per batch.
+7. Scale to retainers once you have a client or two.
+
+Each step is covered below.
 
 ## What does a clipper actually do?
 
@@ -125,6 +137,10 @@ If you want predictable, project-based income, [join Kreatli as a clipper](/sign
 ### How do I become a clipper with no experience?
 
 Learn one editor, practice on footage you are allowed to use, and build 5 to 10 vertical sample clips in a single niche. Then apply to beginner-friendly clipping jobs or join a campaign to practice. Most clients care more about your samples than your background.
+
+### How do I start clipping with no followers?
+
+For fixed-pay work you do not need followers. The creator posts the clip on their own channel, so they judge your samples, not your audience. For CPM campaigns your own account's reach matters, because you earn from views on your posts. With no audience, start with fixed-pay jobs and build samples first. See [how much clippers make](/guides/how-much-do-clippers-make) for what each route pays.
 
 ### Do clippers need permission to clip someone's content?
 
