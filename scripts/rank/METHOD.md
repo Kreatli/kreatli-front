@@ -1,6 +1,8 @@
 # marketplace.kreatli.com weekly ranking check: locked method
 
-**Version v4, 27 Nov 2026 (SEO-46, owner-approved).** v4 = v3 with two primaries switched to match their pages' H1s: the
+**Version v5, 27 Nov 2026 (SEO-25/SEO-45, owner-approved).** v5 = v4 plus the app pages with targets
+(`src/content/seo/appPages.ts`): `/clipping-jobs`, `/hire` and the campaign cost calculator, the marketplace's top
+converting pages. The numbers are computed the same way. v4 = v3 with two primaries switched to match their pages' H1s: the
 Whop alternatives page targets "whop content rewards alternatives" and the YouTube guide "get paid to clip youtube
 videos" (the old primaries are kept as secondaries). v3 = v2 with the keyword map rebuilt after targets batch 2: 21
 clipper-side and glossary pages added (47 pages, 144 searches). v2 (SEO-40) rebuilt the map after the cannibalization
@@ -13,7 +15,7 @@ decision: no Serper, no live rank checks.
 ## What it measures
 
 Every search in `keyword-map.json`. The map is built from the registry's `targets` (`src/content/seo/registry.ts`)
-by `build-map.mjs`: 47 pages and 144 searches on 27 Nov 2026 (v3). The marketplace has no brand targets yet, so there's no
+and the app pages' targets (`src/content/seo/appPages.ts`) by `build-map.mjs`: 50 pages on 27 Nov 2026 (v5). The marketplace has no brand targets yet, so there's no
 brand section.
 
 - **Matching:** a Search Console query counts for a search when it equals the label or one of its variants. Case,

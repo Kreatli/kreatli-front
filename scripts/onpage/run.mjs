@@ -5,6 +5,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
+import { APP_PAGE_TARGETS } from '../../src/content/seo/appPages.ts';
 import { getPageUrl } from '../../src/content/seo/paths.ts';
 import { SEO_PAGES } from '../../src/content/seo/registry.ts';
 import { dateWindow, querySearchAnalytics, urlPath } from '../lib/gsc.ts';
@@ -22,15 +23,19 @@ const REQUEST_TIMEOUT_MS = 30_000;
 // Compare and alternatives pages quote prices and competitor facts, so they should show when facts were checked.
 const BUYER_TYPES = new Set(['compare', 'alternatives']);
 
-/** Every registry page with `targets`, keyed by path, in the shape the rules read. */
+/** Every registry page with `targets`, plus the app pages with targets, keyed by path, in the shape the rules read. */
 export const loadTargets = async () =>
-  new Map(
-    SEO_PAGES.filter((page) => page.targets).map((page) => {
+  new Map([
+    ...SEO_PAGES.filter((page) => page.targets).map((page) => {
       const pagePath = getPageUrl(page.type, page.slug);
       const kind = BUYER_TYPES.has(page.type) ? 'buyer' : 'content';
       return [pagePath, { ...toPageTargets(pagePath, { ...page.targets, kind }), page }];
     }),
-  );
+    ...Object.entries(APP_PAGE_TARGETS).map(([pagePath, targets]) => [
+      pagePath,
+      { ...toPageTargets(pagePath, { ...targets, kind: 'content' }), page: null },
+    ]),
+  ]);
 
 export const readBaseline = (file = BASELINE_FILE) => {
   try {

@@ -11,7 +11,8 @@ import test from 'node:test';
 import { loadPublishedPage } from '../src/content/seo/loadPage';
 import { getPageUrl } from '../src/content/seo/paths';
 import { SEO_PAGES } from '../src/content/seo/registry';
-import { SEO_APP_PAGE_OWNERS, SeoPage, SeoPageTargets, SeoSearchGroup } from '../src/content/seo/types';
+import { APP_PAGE_TARGETS, SEO_APP_PAGE_OWNERS } from '../src/content/seo/appPages';
+import { SeoPage, SeoPageTargets, SeoSearchGroup } from '../src/content/seo/types';
 
 const norm = (text: string) =>
   text
@@ -70,9 +71,26 @@ test('searches owned elsewhere point at the page that targets them', () => {
   });
 });
 
+// Registry pages and app pages, as [path, targets].
+const allTargets = (): [string, SeoPageTargets][] => [
+  ...targeted.map((page): [string, SeoPageTargets] => [pathOf(page), page.targets]),
+  ...Object.entries(APP_PAGE_TARGETS),
+];
+
+test('app pages own their searches and point at real owners', () => {
+  Object.entries(APP_PAGE_TARGETS).forEach(([path, targets]) => {
+    assert.ok(!pageByPath.has(path), `${path} is a registry page; put its targets in the registry instead`);
+    targets.ownedElsewhere.forEach(({ query, owner }) => {
+      const ownerPage = pageByPath.get(owner);
+      const ownerSearches = ownerPage ? searchesOf(ownerPage) : (SEO_APP_PAGE_OWNERS[owner] ?? []).map(norm);
+      assert.ok(ownerSearches.includes(norm(query)), `${path}: "${query}" -> ${owner}, but the owner doesn't target it`);
+    });
+  });
+});
+
 test('entries are well formed', () => {
-  targeted.forEach((page) => {
-    const where = pathOf(page);
+  allTargets().forEach(([where, targets]) => {
+    const page = { targets };
     groupsOf(page.targets).forEach((group) => {
       const validVolume = group.volume === null || (Number.isInteger(group.volume) && group.volume >= 0);
       assert.ok(validVolume, `${where}: ${group.query}`);

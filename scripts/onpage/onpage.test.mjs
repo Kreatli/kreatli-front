@@ -52,6 +52,10 @@ describe('matcher', () => {
     assert.equal(countExact('fps converter. An fps converter! fps', ['fps converter']), 2);
   });
 
+  it('counts variants that stem to the same words once (SEO-25)', () => {
+    assert.equal(countExact('Clipping jobs pay. A clipping job is remote.', ['clipping jobs', 'clipping job']), 2);
+  });
+
   it('scores near-duplicate text', () => {
     const a = 'one two three four five six seven eight nine ten';
     assert.equal(similarity(a, a), 1);

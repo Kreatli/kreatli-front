@@ -28,6 +28,7 @@ import crypto from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
 
+import { APP_PAGE_TARGETS } from '../../src/content/seo/appPages.ts';
 import { SEO_PAGES } from '../../src/content/seo/registry.ts';
 import { GSC_SITE, runComposio } from '../lib/gsc.ts';
 import { normalize } from '../onpage/text.mjs';
@@ -498,7 +499,7 @@ const run = async () => {
   const show = mondays.slice(-6);
 
   // Sync check: the locked map against today's registry targets (reported, never fixed here).
-  const live = JSON.stringify(mapFromRegistry(SEO_PAGES));
+  const live = JSON.stringify(mapFromRegistry(SEO_PAGES, APP_PAGE_TARGETS));
   const syncNote =
     live === JSON.stringify(map.sections)
       ? null

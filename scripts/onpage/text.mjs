@@ -155,7 +155,9 @@ export const standsAlone = (text, ownedPhrases, ownPhrases) => {
 export const countExact = (text, phrases) => {
   const hay = tokens(text);
   let count = 0;
-  for (const phrase of phrases) {
+  // Variants that stem to the same words ("clipping job", "clipping jobs") are one phrase, counted once (SEO-25).
+  const unique = [...new Map(phrases.map((phrase) => [tokens(phrase).join(' '), phrase])).values()];
+  for (const phrase of unique) {
     const needle = tokens(phrase);
     if (needle.length === 0) continue;
     for (let i = 0; i + needle.length <= hay.length; ) {

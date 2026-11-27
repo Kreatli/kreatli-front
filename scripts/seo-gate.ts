@@ -7,6 +7,7 @@
  *   npm run seo:gate -- hire/hire-a-kick-clipper                 # the page(s) this ticket changed
  *   npm run seo:gate -- hire/hire-a-kick-clipper --all           # plus every published page
  *   npm run seo:gate -- hire/hire-a-kick-clipper --skip-build    # reuse a build you just made
+ *   npm run seo:gate -- /clipping-jobs --all                     # an app page with targets
  */
 
 import { ChildProcess, spawn, spawnSync } from 'child_process';

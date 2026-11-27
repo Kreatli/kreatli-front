@@ -9,6 +9,7 @@
  *   npm run seo:qa -- --all                      # every published page, summary only
  *   npm run seo:qa -- what-is-a-clipper --json   # machine-readable output
  *   npm run seo:qa -- what-is-a-clipper --base https://marketplace.kreatli.com   # check another server
+ *   npm run seo:qa -- /clipping-jobs             # an app page with targets (on-page check only)
  *
  * Pages with `targets` also get the on-page SEO check (SEO-39) on the rendered page, from a local production build
  * by default (`npm run build && npm run start`, http://localhost:3000). A must-fix finding that isn't in
@@ -22,6 +23,7 @@ import fs from 'fs';
 import path from 'path';
 
 import { getPageTitle } from '../src/constants/brand';
+import { APP_PAGE_TARGETS } from '../src/content/seo/appPages';
 import { extractFaqs, loadPageBody } from '../src/content/seo/loadPage';
 import { getPageUrl, SEO_SECTION_PATHS } from '../src/content/seo/paths';
 import { SEO_PAGES } from '../src/content/seo/registry';
@@ -256,8 +258,13 @@ const ICON: Record<Level, string> = { pass: 'PASS', warn: 'WARN', fail: 'FAIL' }
 type OnpageModule = any;
 
 /** On-page findings on the rendered page, as QA results. Info-level advice is left to `npm run seo:onpage`. */
-const checkOnpage = async (page: SeoPage, base: string, onpage: OnpageModule, allTargets: Map<string, unknown>) => {
-  const pagePath = getPageUrl(page.type, page.slug);
+const checkOnpage = async (
+  pagePath: string,
+  published: boolean,
+  base: string,
+  onpage: OnpageModule,
+  allTargets: Map<string, unknown>,
+) => {
   const targets = allTargets.get(pagePath);
   if (!targets) {
     return [
@@ -268,7 +275,7 @@ const checkOnpage = async (page: SeoPage, base: string, onpage: OnpageModule, al
       },
     ];
   }
-  if (page.status !== 'published') {
+  if (!published) {
     return [
       {
         name: 'on-page check',
@@ -315,13 +322,19 @@ const run = async () => {
   const baseIndex = args.indexOf('--base');
   const base = (baseIndex >= 0 ? args[baseIndex + 1] : 'http://localhost:3000').replace(/\/$/, '');
   const targets = args.filter((arg, index) => !arg.startsWith('--') && (baseIndex < 0 || index !== baseIndex + 1));
+  // App pages (built in src/pages, targets in src/content/seo/appPages.ts) are given as paths: /clipping-jobs.
+  const appPaths = checkAll ? Object.keys(APP_PAGE_TARGETS) : targets.filter((arg) => arg.startsWith('/'));
+  const unknownApp = appPaths.filter((pagePath) => !APP_PAGE_TARGETS[pagePath]);
+  if (unknownApp.length) throw new Error(`No app page targets for ${unknownApp.join(', ')} (src/content/seo/appPages.ts)`);
 
   if (!checkAll && targets.length === 0) {
-    console.error('Usage: npm run seo:qa -- <slug | type/slug> [--json]   or   npm run seo:qa -- --all');
+    console.error('Usage: npm run seo:qa -- <slug | type/slug | /app-page> [--json]   or   npm run seo:qa -- --all');
     process.exit(1);
   }
 
-  const pages = checkAll ? SEO_PAGES.filter((page) => page.status === 'published') : targets.map(resolvePage);
+  const pages = checkAll
+    ? SEO_PAGES.filter((page) => page.status === 'published')
+    : targets.filter((arg) => !arg.startsWith('/')).map(resolvePage);
   // The on-page check is plain .mjs, ported as is from kreatli.com; tsx loads it.
   // eslint-disable-next-line import/extensions
   const onpage: OnpageModule = await import('./onpage/run.mjs');
@@ -331,8 +344,20 @@ const run = async () => {
   // eslint-disable-next-line no-restricted-syntax
   for (const page of pages) {
     // eslint-disable-next-line no-await-in-loop
-    const onpageResults = await checkOnpage(page, base, onpage, allTargets);
+    const onpageResults = await checkOnpage(
+      getPageUrl(page.type, page.slug),
+      page.status === 'published',
+      base,
+      onpage,
+      allTargets,
+    );
     report.push({ page: `${page.type}/${page.slug}`, results: [...checkPage(page), ...onpageResults] });
+  }
+  // App pages have no markdown, so only the on-page check applies.
+  // eslint-disable-next-line no-restricted-syntax
+  for (const pagePath of appPaths) {
+    // eslint-disable-next-line no-await-in-loop
+    report.push({ page: pagePath, results: await checkOnpage(pagePath, true, base, onpage, allTargets) });
   }
   const failed = report.filter(({ results }) => results.some((r) => r.level === 'fail'));
 

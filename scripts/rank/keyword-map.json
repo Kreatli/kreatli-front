@@ -1,5 +1,5 @@
 {
- "about": "marketplace.kreatli.com weekly ranking check keyword map (SEO-41). Built from the registry targets. Each query: [label, [variants that share one search], monthly volume (exact Keyword Planner, worldwide English)]. Locked with the method; change it only with the owner's OK and a new lock version.",
+ "about": "marketplace.kreatli.com weekly ranking check keyword map (SEO-41). Built from the registry and app page targets. Each query: [label, [variants that share one search], monthly volume (exact Keyword Planner, worldwide English)]. Locked with the method; change it only with the owner's OK and a new lock version.",
  "market": {
   "label": "Worldwide, English",
   "market": "worldwide",
@@ -1521,6 +1521,118 @@
       "is submagic free"
      ],
      170
+    ]
+   ]
+  },
+  {
+   "key": "/clipping-jobs",
+   "title": "/clipping-jobs",
+   "target": "/clipping-jobs",
+   "kind": "content",
+   "queries": [
+    [
+     "clipping jobs",
+     [
+      "clipping jobs",
+      "clipping job"
+     ],
+     480
+    ],
+    [
+     "get paid for clipping",
+     [
+      "get paid for clipping"
+     ],
+     390
+    ],
+    [
+     "get paid to clip",
+     [
+      "get paid to clip"
+     ],
+     320
+    ],
+    [
+     "get paid to clip streamers",
+     [
+      "get paid to clip streamers"
+     ],
+     210
+    ],
+    [
+     "clipping jobs online",
+     [
+      "clipping jobs online"
+     ],
+     110
+    ],
+    [
+     "short form video editing jobs",
+     [
+      "short form video editing jobs"
+     ],
+     90
+    ],
+    [
+     "clipper jobs for streamers",
+     [
+      "clipper jobs for streamers"
+     ],
+     30
+    ]
+   ]
+  },
+  {
+   "key": "/hire",
+   "title": "/hire",
+   "target": "/hire",
+   "kind": "content",
+   "queries": [
+    [
+     "hire clippers",
+     [
+      "hire clippers",
+      "hire clipper"
+     ],
+     140
+    ],
+    [
+     "clippers for hire",
+     [
+      "clippers for hire",
+      "clipper for hire"
+     ],
+     50
+    ],
+    [
+     "hire a clipper",
+     [
+      "hire a clipper"
+     ],
+     30
+    ]
+   ]
+  },
+  {
+   "key": "/tools/clipping-campaign-cost-calculator",
+   "title": "/tools/clipping-campaign-cost-calculator",
+   "target": "/tools/clipping-campaign-cost-calculator",
+   "kind": "content",
+   "queries": [
+    [
+     "clipping campaign cost calculator",
+     [
+      "clipping campaign cost calculator",
+      "clipping campaign calculator"
+     ],
+     null
+    ],
+    [
+     "how much does a clipping campaign cost",
+     [
+      "how much does a clipping campaign cost"
+     ],
+     null
     ]
    ]
   }
