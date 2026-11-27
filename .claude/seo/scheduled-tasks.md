@@ -1,13 +1,26 @@
 # Scheduled tasks for the SEO loop
 
 Create these in the Claude desktop app (sidebar → Scheduled → New task), or ask Claude to create them and
-approve the prompt. They run locally while the app is open (both are saved in Auto mode), because the Keyword Planner token only exists in the
-anidachi repo on this Mac.
+approve the prompt. They run locally on this Mac while the app is open (saved in Auto mode), because the Keyword
+Planner token only exists in the anidachi repo here.
 
-| Task | Schedule | What it does |
+**One account runs them.** Since 27 Nov 2026 the marketplace routines run only in **George's** Claude account, next to
+kreatli.com's routines. The copies in Vlad's account (`kreatli-seo-weekly-audit-research`, `kreatli-seo-writer`) are
+paused; keep them paused, or each slot runs twice. Each task's prompt lives in `~/.claude/scheduled-tasks/<name>/`.
+Keep the routine logic in this repo (skills, context file, scripts), so every run picks it up with `git pull`.
+
+| Task (George's account) | Schedule | What it does |
 |---|---|---|
-| `kreatli-seo-weekly-audit-research` | Mondays 09:00 (`0 9 * * 1`) | Audit + keyword research, then files Linear tickets. No code changes. |
-| `kreatli-seo-writer` | Tue and Thu 12:00 (`0 12 * * 2,4`) | Writes the top ticket and commits it straight to main, which deploys to production. |
+| `marketplace-seo-weekly` | Mondays ~09:00 | Audit + keyword research, IndexNow catch-up, conversions; files Linear tickets. No page edits. |
+| `marketplace-seo-ranking` | Tuesdays 08:30 (`30 8 * * 2`) | Weekly ranking check (`npm run seo:rank -- --post`, locked method); posts to SEO-41 and the rewritten pages' tickets. No code changes. |
+| `marketplace-seo-writer` | Tue and Thu ~10:00 | Writes the top ticket, passes `seo:gate`, commits straight to main (deploys to production), IndexNow on publish. |
+
+kreatli.com's routines run Mondays 11:00 and Wed and Fri 10:30, and AniDachi's ranking check Tuesdays 09:10, so these
+slots don't overlap them. The ranking check runs before the writer on Tuesday, so the week's numbers are posted
+before any page changes.
+
+The sections below are the prompts as first written. The live prompts in `~/.claude/scheduled-tasks/` have since been
+updated (seo:linear, seo:volumes, seo:gate, IndexNow); when they differ, the live prompt and the skills win.
 
 After creating a task, open it and click **Run now** once to pre-approve the tools it uses (Composio, Linear, `gh`).
 Later runs then won't stop on permission prompts.
@@ -70,3 +83,10 @@ SEO writing run for Kreatli Marketplace (https://marketplace.kreatli.com). It pu
 
 If nothing is eligible, say so and stop. Report: the ticket, commit link, live URL, QA result, and anything left unverified.
 ```
+
+## marketplace-seo-ranking
+
+The live prompt is `~/.claude/scheduled-tasks/marketplace-seo-ranking/SKILL.md`. In short: check the tree is clean,
+`git checkout main && git pull --ff-only`, `npm run seo:rank -- --verify` (stop on drift), then
+`npm run seo:rank -- --post` once. Never `--repost` and never re-run a posting command to see its output. Report the
+week, the lock version, alerts, confirmed moves, sign-ups by landing page, and which tickets got a comment.
