@@ -9,7 +9,7 @@ import { TextLinear } from '../home/TextLinear';
 interface Props {
   type: SeoPageType;
   pages: SeoPage[];
-  description: string;
+  description: React.ReactNode;
 }
 
 export const SeoSectionIndex = ({ type, pages, description }: Props) => {

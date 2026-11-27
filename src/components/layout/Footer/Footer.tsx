@@ -11,7 +11,6 @@ import { useSession } from '../../../hooks/useSession';
 const miscLinks = [
   { href: '/clipping-jobs', label: 'Clipping jobs' },
   { href: '/tools', label: 'Free tools' },
-  { href: '/blog', label: 'Blog' },
   { href: '/faq', label: 'FAQ' },
   { href: '/contact', label: 'Contact' },
 ];

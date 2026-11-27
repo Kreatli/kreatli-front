@@ -1,4 +1,6 @@
+import { Link } from '@nextui-org/react';
 import { GetStaticProps } from 'next';
+import NextLink from 'next/link';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import React from 'react';
 
@@ -21,7 +23,16 @@ const GuidesIndexPage = ({ pages }: Props) => (
     <SeoSectionIndex
       type="guide"
       pages={pages}
-      description="Practical guides for creators hiring clippers and for clippers growing their careers."
+      description={
+        <>
+          Practical guides for creators hiring clippers and for clippers growing their careers. For editing technique,
+          see{' '}
+          <Link as={NextLink} href="/blog/clipping-best-practices" color="secondary" underline="hover">
+            clipping best practices
+          </Link>
+          .
+        </>
+      }
     />
   </>
 );

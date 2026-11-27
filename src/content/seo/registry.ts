@@ -164,7 +164,7 @@ export const SEO_PAGES: SeoPage[] = [
           headingPhrases: ['clipaffiliates a way to hire a clipper'],
         },
       ],
-      ownedElsewhere: [{ query: 'how much does a clipping campaign cost', owner: '/guides/how-much-to-pay-clippers' }],
+      ownedElsewhere: [{ query: 'how much does a clipping campaign cost', owner: '/tools/clipping-campaign-cost-calculator' }],
       exceptions: [],
     },
   },
@@ -418,7 +418,13 @@ export const SEO_PAGES: SeoPage[] = [
         },
       ],
       ownedElsewhere: [],
-      exceptions: [],
+      exceptions: [
+        {
+          rule: 'intro-primary',
+          reason: 'Glossary "what is" page: the opening answer defines B-roll ("B-roll is ..."), which answers the search',
+          ticket: 'SEO-40',
+        },
+      ],
     },
   },
   {
@@ -428,7 +434,7 @@ export const SEO_PAGES: SeoPage[] = [
     slug: 'jump-cut-definition',
     title: 'What Is a Jump Cut?',
     metaDescription: 'A jump cut removes time from a continuous shot. Why jump cuts are the default edit for talking-head clips and how to use them without feeling choppy.',
-    primaryKeyword: 'jump cut definition',
+    primaryKeyword: 'what is a jump cut',
     searchIntent: 'informational',
     wave: 1,
     status: 'published',
@@ -436,9 +442,9 @@ export const SEO_PAGES: SeoPage[] = [
     relatedSlugs: ['what-is-b-roll', 'what-is-a-clipper', 'video-hook-first-3-seconds'],
     publishedAt: '2026-07-01',
     targets: {
-      primary: { query: 'jump cut definition', volume: 1300 },
+      primary: { query: 'what is a jump cut', variants: ['what are jump cuts'], volume: 2400 },
       secondary: [
-        { query: 'what is a jump cut', variants: ['what are jump cuts'], volume: 2400 },
+        { query: 'jump cut definition', volume: 1300 },
         { query: 'jump cut', variants: ['jump cuts'], volume: 22200 },
         { query: 'jump cut example', variants: ['jump cut examples'], volume: 720 },
       ],
@@ -452,7 +458,13 @@ export const SEO_PAGES: SeoPage[] = [
         },
       ],
       ownedElsewhere: [],
-      exceptions: [],
+      exceptions: [
+        {
+          rule: 'intro-primary',
+          reason: 'Glossary "what is" page: the opening answer defines a jump cut ("A jump cut is ..."), which answers the search',
+          ticket: 'SEO-40',
+        },
+      ],
     },
   },
   {
@@ -783,7 +795,7 @@ export const SEO_PAGES: SeoPage[] = [
     title: 'How to Become a Freelance Video Editor With No Experience',
     seoTitle: 'Become a Freelance Video Editor',
     metaDescription: 'How to become a freelance video editor with no experience: choose a niche, compare short-form and long-form, set pricing, and win repeat clients.',
-    primaryKeyword: 'become a freelance video editor with no experience',
+    primaryKeyword: 'how to become a freelance video editor',
     searchIntent: 'informational',
     wave: 1,
     status: 'published',
@@ -792,21 +804,18 @@ export const SEO_PAGES: SeoPage[] = [
     updatedAt: '2026-10-21',
     targets: {
       primary: {
-        query: 'become a freelance video editor with no experience',
-        variants: ['how to become a freelance video editor with no experience'],
-        volume: null,
+        query: 'how to become a freelance video editor',
+        variants: [
+          'how to become freelance video editor',
+          'becoming a freelance video editor',
+          'how to be a freelance video editor',
+          'become a freelance video editor with no experience',
+          'how to become a freelance video editor with no experience',
+        ],
+        volume: 90,
       },
       secondary: [
         { query: 'freelance video editor', variants: ['freelancer video editor'], volume: 8100 },
-        {
-          query: 'how to become a freelance video editor',
-          variants: [
-            'how to become freelance video editor',
-            'becoming a freelance video editor',
-            'how to be a freelance video editor',
-          ],
-          volume: 90,
-        },
         {
           query: 'how to start freelance video editing',
           variants: ['how to start as a freelance video editor'],
@@ -1641,16 +1650,15 @@ export const SEO_PAGES: SeoPage[] = [
     title: 'How to Hire a Clipper: A Step-by-Step Guide for Creators',
     seoTitle: 'How to Hire a Clipper for Your Videos (Step by Step)',
     metaDescription: 'How to hire a clipper: choose a pay model, write the job post, vet portfolios, run a paid test clip and onboard a clipper who learns your style.',
-    primaryKeyword: 'hire a clipper',
+    primaryKeyword: 'how to hire a clipper',
     searchIntent: 'transactional',
     wave: 1,
     status: 'published',
     relatedSlugs: ['how-much-to-pay-clippers', 'how-to-write-a-clipper-job-post', 'how-to-vet-a-clipper'],
     publishedAt: '2026-10-21',
     targets: {
-      primary: { query: 'hire a clipper', volume: 30 },
+      primary: { query: 'how to hire a clipper', variants: ['how to hire clippers'], volume: null },
       secondary: [
-        { query: 'how to hire a clipper', variants: ['how to hire clippers'], volume: null },
         { query: 'where to hire clippers', variants: ['where can i hire a clipper'], volume: 10 },
         { query: 'how to find clippers', variants: ['how to find a clipper'], volume: 20 },
       ],
@@ -1673,6 +1681,7 @@ export const SEO_PAGES: SeoPage[] = [
         },
       ],
       ownedElsewhere: [
+        { query: 'hire a clipper', owner: '/hire' },
         { query: 'hire clippers', owner: '/hire' },
         { query: 'clipper job description', owner: '/guides/how-to-write-a-clipper-job-post' },
         { query: 'vet a clipper', owner: '/guides/how-to-vet-a-clipper' },
@@ -1695,7 +1704,7 @@ export const SEO_PAGES: SeoPage[] = [
     publishedAt: '2026-10-21',
     targets: {
       primary: { query: 'how much to pay clippers', variants: ['how much to pay a clipper'], volume: null },
-      secondary: [{ query: 'how much does a clipping campaign cost', volume: null }],
+      secondary: [],
       questions: [
         {
           id: 'per-clip',
@@ -1719,6 +1728,7 @@ export const SEO_PAGES: SeoPage[] = [
         },
       ],
       ownedElsewhere: [
+        { query: 'how much does a clipping campaign cost', owner: '/tools/clipping-campaign-cost-calculator' },
         { query: 'clipping agency pricing', owner: '/compare/clipping-agency-vs-clipping-marketplace' },
         { query: 'clipper pay rates', owner: '/guides/clipper-pay-rates' },
         { query: 'how much do clippers make', owner: '/guides/how-much-do-clippers-make' },

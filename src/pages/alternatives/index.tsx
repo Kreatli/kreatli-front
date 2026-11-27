@@ -1,4 +1,6 @@
+import { Link } from '@nextui-org/react';
 import { GetStaticProps } from 'next';
+import NextLink from 'next/link';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import React from 'react';
 
@@ -21,7 +23,16 @@ const AlternativesIndexPage = ({ pages }: Props) => (
     <SeoSectionIndex
       type="alternatives"
       pages={pages}
-      description="Honest overviews of the other ways to earn from clipping or get clips made, and when each one is the better fit."
+      description={
+        <>
+          Honest overviews of the other ways to earn from clipping or get clips made, and when each one is the better
+          fit. Want a team to run it for you? Compare a{' '}
+          <Link as={NextLink} href="/compare/clipping-agency-vs-clipping-marketplace" color="secondary" underline="hover">
+            clipping agency
+          </Link>{' '}
+          with a clipping marketplace.
+        </>
+      }
     />
   </>
 );

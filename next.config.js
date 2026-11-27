@@ -38,6 +38,8 @@ const nextConfig = {
     // Pages merged into stronger guides (kept as permanent redirects so old links and bookmarks still work).
     return [
       ...renamedSlugs.map(([source, destination]) => ({ source, destination, permanent: true })),
+      // The /blog index listed three guides and one post, and competed with them in Google (SEO-40).
+      { source: '/blog', destination: '/guides', permanent: true },
       { source: '/blog/getting-started-as-a-clipper', destination: '/guides/how-to-become-a-clipper', permanent: true },
       { source: '/blog/how-to-find-the-perfect-clipper', destination: '/guides/how-to-hire-a-clipper', permanent: true },
       {

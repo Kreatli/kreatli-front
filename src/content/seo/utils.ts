@@ -46,7 +46,6 @@ export const STATIC_SITE_PATHS = [
   '/tools',
   '/tools/clipping-earnings-calculator',
   '/tools/clipping-campaign-cost-calculator',
-  '/blog',
   '/blog/clipping-best-practices',
   '/faq',
   '/contact',

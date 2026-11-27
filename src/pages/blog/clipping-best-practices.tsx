@@ -25,15 +25,15 @@ const ClippingBestPractices = () => {
             datePublished: '2024-01-05',
           }),
           breadcrumbSchema([
-            { name: 'Blog', path: '/blog' },
+            { name: 'Guides', path: '/guides' },
             { name: 'Clipping Best Practices for Short-Form Video', path: '/blog/clipping-best-practices' },
           ]),
         ]}
       />
       <article className="container max-w-screen-md mx-auto px-6 py-12">
         <div className="mb-8">
-          <Link as={NextLink} href="/blog" color="secondary" underline="hover" className="mb-4 inline-block">
-            ← Back to Blog
+          <Link as={NextLink} href="/guides" color="secondary" underline="hover" className="mb-4 inline-block">
+            ← Back to Guides
           </Link>
           <Chip variant="flat" color="secondary" classNames={{ content: 'font-semibold' }} className="mb-4">
             Tips & Tricks
@@ -141,7 +141,7 @@ const ClippingBestPractices = () => {
               Whether you&apos;re a creator looking to clip your own content or a clipper refining your craft,
               Kreatli Marketplace connects you with the tools and community to create engaging short-form content.
             </p>
-            <Link as={NextLink} href="/blog" color="secondary" underline="hover">
+            <Link as={NextLink} href="/guides" color="secondary" underline="hover">
               Explore More Resources →
             </Link>
           </div>

@@ -126,12 +126,6 @@ export const Header = () => {
   ];
 
   const commonItems = [
-    {
-      as: NextLink,
-      href: '/blog',
-      label: 'Blog',
-      key: 'blog',
-    },
     ...resourceItems,
     {
       as: NextLink,

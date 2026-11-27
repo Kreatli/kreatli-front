@@ -2,7 +2,7 @@
 
 **How much to pay clippers** depends on the model you choose. If you hire a freelance clipper to edit clips for your own channel, you will typically pay **$15–$35 per clip** for simple talking-head or podcast edits and **$50–$75+ per clip** for complex gaming or motion graphics work. If you run a CPM campaign where clippers post on their own accounts, campaigns commonly pay roughly **$0.50–$3 per 1,000 views**, with caps and minimum view thresholds.
 
-This guide covers each pricing structure, what moves rates up or down, and sample budgets. To model your own numbers, try the [clipping campaign cost calculator](/tools/clipping-campaign-cost-calculator). Hiring an editor for long videos too? See [how much video editing costs](/guides/cost-to-hire-a-video-editor).
+This guide covers each pricing structure, what moves rates up or down, and sample budgets. To see how much a clipping campaign costs with your own numbers, try the [clipping campaign cost calculator](/tools/clipping-campaign-cost-calculator). Hiring an editor for long videos too? See [how much video editing costs](/guides/cost-to-hire-a-video-editor).
 
 ## Choose your model first
 
@@ -98,7 +98,7 @@ These are illustrative budgets, not benchmarks.
 - **Source file access.** A tidy Dropbox or Google Drive folder saves your clipper time; a messy library costs you.
 - **Music licensing.** Royalty-free music is standard; premium tracks may be a separate line item. See [royalty-free music for clips](/glossary/royalty-free-music-for-clips).
 - **Platform fees.** Generalist gig sites take a cut from one or both sides. Compare total cost in [Kreatli vs. Fiverr](/compare/kreatli-vs-fiverr) and [Kreatli vs. Upwork](/compare/kreatli-vs-upwork).
-- **Scaling up.** Past about 30 clips a week, compare freelancers with a [full-time in-house editor](/compare/freelance-clipper-vs-in-house-editor) or a [clipping agency](/compare/clipping-agency-vs-clipping-marketplace).
+- **Scaling up.** Past about 30 clips a week, compare freelancers with a [full-time in-house editor](/compare/freelance-clipper-vs-in-house-editor) or an agency (see [clipping agency pricing](/compare/clipping-agency-vs-clipping-marketplace)).
 
 ## How to pay fairly and avoid disputes
 
