@@ -1,6 +1,6 @@
 # What Is a Clipper? The Job, the Pay, and How to Start
 
-A **clipper** is a person who turns long videos, such as streams, podcasts and YouTube uploads, into short vertical clips for TikTok, YouTube Shorts and Instagram Reels. Clippers find the best moments, cut them down to under a minute, and add captions and a strong hook. They get paid in one of two ways: a **fixed fee per clip** from the creator who hires them, or **pay per 1,000 views** when they post clips on their own accounts in a CPM campaign.
+A **clipper** is a person who turns long videos, such as streams, podcasts and YouTube uploads, into short vertical clips for TikTok, YouTube Shorts and Instagram Reels. Clippers find the best moments, cut them down to under a minute, and add captions and a strong hook. They get paid in one of two ways: a **fixed fee per clip** from the creator who hires them, or **pay per 1,000 views** when they post clips on their own accounts in a CPM campaign. That is the clipper meaning in the creator world; it has nothing to do with hair clippers.
 
 ## What does a clipper do?
 

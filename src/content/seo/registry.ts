@@ -328,7 +328,8 @@ export const SEO_PAGES: SeoPage[] = [
     slug: 'what-is-a-clipper',
     title: 'What Is a Clipper? The Job, the Pay, and How to Start',
     seoTitle: 'What Is a Clipper? Job, Pay and How to Start',
-    metaDescription: 'A clipper turns long videos into short clips for TikTok, Shorts and Reels. What clippers do, how they get paid per clip or per view, and how to start.',
+    metaDescription:
+      'What is a clipper? The clipper meaning: someone who turns long videos into short clips for TikTok, Shorts and Reels, paid per clip or per view.',
     primaryKeyword: 'what is a clipper',
     searchIntent: 'informational',
     wave: 1,
@@ -474,7 +475,8 @@ export const SEO_PAGES: SeoPage[] = [
     funnelSide: 'both',
     slug: 'what-is-b-roll',
     title: 'What Is B-Roll?',
-    metaDescription: 'B-roll is footage cut over or between your main shot. How clippers use B-roll in short-form video to add context, hide jump cuts and hold attention.',
+    metaDescription:
+      'What is B-roll? The B-roll meaning: footage cut over or between your main shot. How clippers use it in short-form video to hide jump cuts.',
     primaryKeyword: 'what is b-roll',
     searchIntent: 'informational',
     wave: 1,
@@ -2274,7 +2276,8 @@ export const SEO_PAGES: SeoPage[] = [
     slug: 'what-is-a-vod',
     title: 'What Is a VOD? (Video on Demand for Streamers and Clippers)',
     seoTitle: 'What Is a VOD? Video on Demand for Streamers',
-    metaDescription: 'What is a VOD? Learn what video on demand means for Twitch and YouTube streams, how long VODs last, and how clippers turn them into Shorts.',
+    metaDescription:
+      'What is a VOD? The VOD meaning (video on demand) for Twitch and YouTube streams, how long VODs last, and how clippers turn them into Shorts.',
     primaryKeyword: 'what is a VOD',
     searchIntent: 'informational',
     wave: 1,

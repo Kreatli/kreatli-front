@@ -1,6 +1,6 @@
 # What Is a VOD? (Video on Demand for Streamers and Clippers)
 
-A **VOD**, short for *video on demand*, is a recorded video that people can watch whenever they choose instead of at a scheduled time. If you are asking **what is a VOD** in streaming, it usually means the saved recording of a past livestream, which Twitch calls a **past broadcast**. For clippers, the VOD is the raw footage that clips, highlights, and Shorts are cut from.
+A **VOD**, short for *video on demand*, is a recorded video that people can watch whenever they choose instead of at a scheduled time. If you are asking **what is a VOD** in streaming, it usually means the saved recording of a past livestream, which Twitch calls a **past broadcast**. For clippers, the VOD meaning is practical: it is the raw footage that clips, highlights, and Shorts are cut from.
 
 ## Why VODs matter
 

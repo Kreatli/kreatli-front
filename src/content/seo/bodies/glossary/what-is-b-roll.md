@@ -2,6 +2,8 @@
 
 **B-roll** is supplementary footage cut over or between primary footage (called **A-roll**) to add visual interest, context, or pacing. In short-form clips, B-roll covers talking-head moments, illustrates a point, or hides jump cuts, often in the first three seconds to stop the scroll.
 
+Put simply, the B-roll meaning is any shot that supports the main one. A shorter B-roll definition: B-roll footage is what you cut away to while the main audio keeps playing.
+
 Clip editors on **Kreatli Marketplace** use B-roll daily when turning podcasts, tutorials, and streams into vertical shorts that hold attention without a static frame.
 
 ## Why it matters for creators and clippers
