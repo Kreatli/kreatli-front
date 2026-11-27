@@ -1,6 +1,8 @@
 # marketplace.kreatli.com weekly ranking check: locked method
 
-**Version v5, 27 Nov 2026 (SEO-25/SEO-45, owner-approved).** v5 = v4 plus the app pages with targets
+**Version v6, 27 Nov 2026 (SEO-45, owner decision).** v6 = v5 with the homepage `/` owning "hire clippers" and
+"hire a clipper" instead of `/hire`, which is now a hub with no targets. The numbers are computed the same way.
+**v5 (SEO-25/SEO-45, owner-approved).** v5 = v4 plus the app pages with targets
 (`src/content/seo/appPages.ts`): `/clipping-jobs`, `/hire` and the campaign cost calculator, the marketplace's top
 converting pages. The numbers are computed the same way. v4 = v3 with two primaries switched to match their pages' H1s: the
 Whop alternatives page targets "whop content rewards alternatives" and the YouTube guide "get paid to clip youtube

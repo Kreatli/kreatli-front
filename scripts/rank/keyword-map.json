@@ -1583,26 +1583,20 @@
    ]
   },
   {
-   "key": "/hire",
-   "title": "/hire",
-   "target": "/hire",
+   "key": "/",
+   "title": "/",
+   "target": "/",
    "kind": "content",
    "queries": [
     [
      "hire clippers",
      [
       "hire clippers",
-      "hire clipper"
-     ],
-     140
-    ],
-    [
-     "clippers for hire",
-     [
+      "hire clipper",
       "clippers for hire",
       "clipper for hire"
      ],
-     50
+     140
     ],
     [
      "hire a clipper",

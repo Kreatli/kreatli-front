@@ -34,26 +34,17 @@ export const APP_PAGE_TARGETS: Record<string, SeoPageTargets> = {
     ],
     exceptions: [],
   },
-  '/hire': {
-    primary: { query: 'hire clippers', variants: ['hire clipper'], volume: 140 },
-    secondary: [
-      { query: 'clippers for hire', variants: ['clipper for hire'], volume: 50 },
-      { query: 'hire a clipper', volume: 30 },
-    ],
-    questions: [
-      { id: 'how', label: 'How do I hire a clipper?', headingPhrases: ['how do i hire a clipper', 'how hiring a clipper works'] },
-      {
-        id: 'cost',
-        label: 'How much does it cost to hire a clipper?',
-        headingPhrases: ['cost to hire a clipper', 'what clippers cost'],
-      },
-      { id: 'free', label: 'Is it free to post a clipping job?', headingPhrases: ['free to post a clipping job'] },
-      {
-        id: 'vs-cpm',
-        label: 'Hire a clipper or run a CPM clipping campaign?',
-        headingPhrases: ['clipping campaigns', 'cpm clipping campaign'],
-      },
-    ],
+  // The homepage owns the hire searches (owner decision, SEO-45, 27 Nov 2026): its title and H1 are
+  // "Hire Clippers ...", and Google already shows it for them. /hire is a hub for the platform pages, with no
+  // targets of its own.
+  '/': {
+    primary: {
+      query: 'hire clippers',
+      variants: ['hire clipper', 'clippers for hire', 'clipper for hire'],
+      volume: 140,
+    },
+    secondary: [{ query: 'hire a clipper', volume: 30 }],
+    questions: [],
     ownedElsewhere: [
       { query: 'how to hire a clipper', owner: '/guides/how-to-hire-a-clipper' },
       { query: 'how much to pay clippers', owner: '/guides/how-much-to-pay-clippers' },

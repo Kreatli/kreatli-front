@@ -15,7 +15,7 @@ export default function HomePage() {
     <>
       <PageHead
         title="Hire Clippers & Find Clipping Jobs | Kreatli Marketplace"
-        description="Kreatli Marketplace connects YouTubers, streamers and podcasters with vetted clippers. Post a clipping job for fixed pay, or join as a clipper and get hired."
+        description="Hire clippers for your YouTube, Twitch and podcast content: post a clipping job to hire a clipper for fixed pay, or join Kreatli Marketplace as a clipper."
         path="/"
         ogImageTitle="Hire clippers. Find clipping jobs."
         jsonLd={[organizationSchema(), websiteSchema(), faqSchema(faqItems)]}
