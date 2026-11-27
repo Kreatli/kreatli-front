@@ -67,10 +67,11 @@ export const tokens = (text) => {
   return normalized ? normalized.split(' ').map(stem) : [];
 };
 
+// Small words are filtered before stemming: stemmed, "does" becomes "doe" and would no longer be recognised (SEO-40).
 const contentTokens = (phrase) => {
-  const all = tokens(phrase);
-  const content = all.filter((token) => !STOPWORDS.has(token));
-  return content.length > 0 ? content : all;
+  const words = normalize(phrase).split(' ').filter(Boolean);
+  const content = words.filter((word) => !STOPWORDS.has(word)).map(stem);
+  return content.length > 0 ? content : words.map(stem);
 };
 
 /**

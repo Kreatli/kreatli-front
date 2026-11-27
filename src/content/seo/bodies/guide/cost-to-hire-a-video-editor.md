@@ -1,6 +1,6 @@
 # How Much Does Video Editing Cost? Rates by Video Type in 2026
 
-**Video editing typically costs $15 to $75 or more per short clip for TikTok, Shorts and Reels, and about $300 to $1,500 for a 10 to 20 minute YouTube video.** Freelance editors usually charge about $25 to $150 an hour, and agencies charge more. The price depends on what kind of video you need, how long the raw footage is, how fast you need it, and how much polish it takes. For ongoing short-form work, most creators pay a monthly retainer of about $800 to $3,500 or more.
+**How much video editing costs depends on the video: typically $15 to $75 or more per short clip for TikTok, Shorts and Reels, and about $300 to $1,500 for a 10 to 20 minute YouTube video.** Freelance editors usually charge about $25 to $150 an hour, and agencies charge more. The price depends on what kind of video you need, how long the raw footage is, how fast you need it, and how much polish it takes. For ongoing short-form work, most creators pay a monthly retainer of about $800 to $3,500 or more.
 
 This guide is for people hiring an editor: typical video editing prices by video type, and what video editing services cost from freelancers, agencies and in-house teams. If you're an editor setting your own prices, see [how much to charge for video editing](/guides/how-to-price-video-editing-services).
 

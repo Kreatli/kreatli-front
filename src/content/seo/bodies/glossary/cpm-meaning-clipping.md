@@ -1,6 +1,6 @@
 # CPM Meaning in Clipping (and on Whop): Pay per 1,000 Views
 
-**CPM in clipping means how much you earn for every 1,000 views your clip gets.** A $1 CPM pays $1 per 1,000 views, so a clip with 50,000 views earns $50. CPM stands for *cost per mille*, Latin for "per thousand." Clipping campaigns on Whop and similar platforms commonly advertise about **$0.50 to $3 per 1,000 views**.
+**The CPM meaning in clipping is how much you earn for every 1,000 views your clip gets.** A $1 CPM pays $1 per 1,000 views, so a clip with 50,000 views earns $50. CPM stands for *cost per mille*, Latin for "per thousand." Clipping campaigns on Whop and similar platforms commonly advertise about **$0.50 to $3 per 1,000 views**.
 
 CPM pay is tied to views, not to the editing work. That is the opposite of hiring a freelance clipper on **Kreatli Marketplace**, where the pay is agreed before the work starts and doesn't change with views.
 

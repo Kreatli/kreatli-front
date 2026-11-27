@@ -1,6 +1,6 @@
 # Nexus Clips Alternatives and Pricing: Other AI Apps or a Human Clipper
 
-**Nexus Clips doesn't publish its prices. As of November 2026, its website shows a free account that needs no card and two paid plans, Clips and Creator, billed monthly or yearly, and you only see the price once you sign in.** The main alternatives are other AI clipping apps with public pricing, such as OpusClip, or hiring a human clipper who picks the moments and edits each clip in your style. Many creators combine the two.
+**Nexus Clips doesn't publish its prices. As of November 2026, its website shows a free account that needs no card and two paid plans, Clips and Creator, billed monthly or yearly, and you only see the price once you sign in.** The main Nexus Clips alternatives are other AI clipping apps with public pricing, such as OpusClip, or hiring a human clipper who picks the moments and edits each clip in your style. Many creators combine the two.
 
 ## How much does Nexus Clips cost?
 

@@ -29,6 +29,11 @@ describe('matcher', () => {
     assert.equal(matchPhrase('Custom approval statuses', 'approval status'), 'exact');
   });
 
+  it('treats "does" and "is" as small words, not stemmed into required ones (SEO-40)', () => {
+    const text = 'How much video editing costs depends on the video: typically $15 to $75 per clip.';
+    assert.equal(matchPhrase(text, 'how much does video editing cost'), 'near');
+  });
+
   it('does not match words scattered far apart', () => {
     const text =
       'Review your cut. Many other things happen here, and much later on, far along, software shows up for video.';
