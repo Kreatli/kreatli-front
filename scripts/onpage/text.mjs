@@ -130,11 +130,20 @@ export const queryMatches = (query, phrases) => {
  */
 export const standsAlone = (text, ownedPhrases, ownPhrases) => {
   const hay = tokens(text);
+  // Words that are part of one of the page's own phrases ("how to hire a clipper" contains "hire a clipper").
+  const own = new Set();
+  ownPhrases.forEach((phrase) => {
+    const ownNeedle = tokens(phrase);
+    for (let i = 0; i + ownNeedle.length <= hay.length; i += 1) {
+      if (ownNeedle.every((token, j) => hay[i + j] === token)) ownNeedle.forEach((_, j) => own.add(i + j));
+    }
+  });
   return ownedPhrases.some((phrase) => {
     const needle = tokens(phrase);
     const qualifiers = new Set(ownPhrases.flatMap(contentTokens).filter((token) => !needle.includes(token)));
     for (let i = 0; i + needle.length <= hay.length; i += 1) {
       if (!needle.every((token, j) => hay[i + j] === token)) continue;
+      if (needle.every((_, j) => own.has(i + j))) continue;
       if (!qualifiers.has(hay[i - 1]) && !qualifiers.has(hay[i + needle.length])) return true;
     }
     return false;

@@ -58,6 +58,12 @@ describe('matcher', () => {
     assert.equal(standsAlone('TikTok safe zone checker', ['safe zone checker'], own), false);
     assert.equal(standsAlone('Safe zone checker for TikTok', ['safe zone checker'], own), true);
   });
+
+  it("doesn't count an owned search inside the page's own longer search (SEO-40)", () => {
+    const own = ['how to hire a clipper'];
+    assert.equal(standsAlone('How to Hire a Clipper: A Step-by-Step Guide', ['hire a clipper'], own), false);
+    assert.equal(standsAlone('Hire a Clipper Fast: How to Hire a Clipper', ['hire a clipper'], own), true);
+  });
 });
 
 describe('search query matching', () => {

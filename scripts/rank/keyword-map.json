@@ -250,19 +250,19 @@
    "kind": "content",
    "queries": [
     [
-     "jump cut definition",
-     [
-      "jump cut definition"
-     ],
-     1300
-    ],
-    [
      "what is a jump cut",
      [
       "what is a jump cut",
       "what are jump cuts"
      ],
      2400
+    ],
+    [
+     "jump cut definition",
+     [
+      "jump cut definition"
+     ],
+     1300
     ],
     [
      "jump cut",
@@ -289,12 +289,16 @@
    "kind": "content",
    "queries": [
     [
-     "become a freelance video editor with no experience",
+     "how to become a freelance video editor",
      [
+      "how to become a freelance video editor",
+      "how to become freelance video editor",
+      "becoming a freelance video editor",
+      "how to be a freelance video editor",
       "become a freelance video editor with no experience",
       "how to become a freelance video editor with no experience"
      ],
-     null
+     90
     ],
     [
      "freelance video editor",
@@ -303,16 +307,6 @@
       "freelancer video editor"
      ],
      8100
-    ],
-    [
-     "how to become a freelance video editor",
-     [
-      "how to become a freelance video editor",
-      "how to become freelance video editor",
-      "becoming a freelance video editor",
-      "how to be a freelance video editor"
-     ],
-     90
     ],
     [
      "how to start freelance video editing",
@@ -630,13 +624,6 @@
    "kind": "content",
    "queries": [
     [
-     "hire a clipper",
-     [
-      "hire a clipper"
-     ],
-     30
-    ],
-    [
      "how to hire a clipper",
      [
       "how to hire a clipper",
@@ -673,13 +660,6 @@
      [
       "how much to pay clippers",
       "how much to pay a clipper"
-     ],
-     null
-    ],
-    [
-     "how much does a clipping campaign cost",
-     [
-      "how much does a clipping campaign cost"
      ],
      null
     ]
