@@ -1,6 +1,7 @@
 # marketplace.kreatli.com weekly ranking check: locked method
 
-**Version v2, 27 Nov 2026 (SEO-40, owner-approved).** v2 = v1 with the keyword map rebuilt after the cannibalization
+**Version v3, 27 Nov 2026 (SEO-46, owner-approved).** v3 = v2 with the keyword map rebuilt after targets batch 2: 21
+clipper-side and glossary pages added (47 pages, 144 searches). v2 (SEO-40) rebuilt the map after the cannibalization
 sweep: "hire a clipper" moves to `/hire` (the hire guide now targets "how to hire a clipper"), "how much does a
 clipping campaign cost" moves to the campaign cost calculator, the jump cut page's primary is "what is a jump cut", and
 the freelance editor guide's is "how to become a freelance video editor". The numbers are computed the same way.
@@ -10,7 +11,7 @@ decision: no Serper, no live rank checks.
 ## What it measures
 
 Every search in `keyword-map.json`. The map is built from the registry's `targets` (`src/content/seo/registry.ts`)
-by `build-map.mjs`: 26 pages on 27 Nov 2026 (v2). The marketplace has no brand targets yet, so there's no
+by `build-map.mjs`: 47 pages and 144 searches on 27 Nov 2026 (v3). The marketplace has no brand targets yet, so there's no
 brand section.
 
 - **Matching:** a Search Console query counts for a search when it equals the label or one of its variants. Case,

@@ -81,7 +81,7 @@ export const SEO_TARGETS_MARKET = {
 /** Pages outside the registry that own a search, so other pages can point at them in `ownedElsewhere`. */
 export const SEO_APP_PAGE_OWNERS: Record<string, string[]> = {
   '/hire': ['hire clippers', 'hire a clipper'],
-  '/clipping-jobs': ['clipping jobs'],
+  '/clipping-jobs': ['clipping jobs', 'get paid to clip', 'get paid to clip streamers', 'get paid for clipping'],
   '/tools/clipping-campaign-cost-calculator': ['how much does a clipping campaign cost'],
 };
 

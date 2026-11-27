@@ -107,6 +107,28 @@ export const SEO_PAGES: SeoPage[] = [
     relatedSlugs: ['kreatli-vs-discord-clipping-communities', 'clipping-marketplace-vs-video-editor-marketplace'],
     publishedAt: '2026-07-01',
     updatedAt: '2026-10-21',
+    targets: {
+      primary: { query: 'whop clipping vs kreatli', variants: ['kreatli vs whop clipping'], volume: null },
+      secondary: [],
+      questions: [
+        {
+          id: 'better',
+          label: 'Is Whop clipping better than hiring a clipper?',
+          headingPhrases: ['whop clipping better than hiring a clipper'],
+        },
+        {
+          id: 'fee',
+          label: 'Who pays the Whop Content Rewards fee?',
+          headingPhrases: ['who pays the whop content rewards fee'],
+        },
+        { id: 'both', label: 'Can you use both?', headingPhrases: ['can you use both'] },
+      ],
+      ownedElsewhere: [
+        { query: 'whop clipping alternatives', owner: '/alternatives/whop-content-rewards-alternatives' },
+        { query: 'whop clipping', owner: '/guides/whop-clipping' },
+      ],
+      exceptions: [],
+    },
   },
   {
     id: 6,
@@ -315,6 +337,42 @@ export const SEO_PAGES: SeoPage[] = [
     relatedSlugs: ['how-to-become-a-clipper', 'how-much-do-clippers-make', 'cpm-meaning-clipping'],
     publishedAt: '2026-07-01',
     updatedAt: '2026-10-25',
+    targets: {
+      primary: { query: 'what is a clipper', variants: ['what are clippers', 'what is clipper'], volume: 5400 },
+      secondary: [
+        { query: 'clipper meaning', variants: ['clipper work meaning'], volume: 3600 },
+        {
+          query: 'what is a clipper in video editing',
+          variants: ['what is clipper in video editing'],
+          volume: 20,
+        },
+      ],
+      questions: [
+        { id: 'does', label: 'What does a clipper do?', headingPhrases: ['what does a clipper do'] },
+        {
+          id: 'paid',
+          label: 'How do clippers get paid?',
+          headingPhrases: ['how do clippers get paid', 'do clippers get paid'],
+        },
+        { id: 'job', label: 'What is a clipper job?', headingPhrases: ['what is a clipper job'] },
+        {
+          id: 'vs-editor',
+          label: 'Is a clipper the same as a video editor?',
+          headingPhrases: ['same as a video editor'],
+        },
+      ],
+      ownedElsewhere: [
+        { query: 'clipping jobs', owner: '/clipping-jobs' },
+        { query: 'how to become a clipper', owner: '/guides/how-to-become-a-clipper' },
+      ],
+      exceptions: [
+        {
+          rule: 'intro-primary',
+          reason: 'Glossary "what is" page: the opening answer defines a clipper ("A clipper is ..."), which answers the search',
+          ticket: 'SEO-40',
+        },
+      ],
+    },
   },
   {
     id: 12,
@@ -331,6 +389,38 @@ export const SEO_PAGES: SeoPage[] = [
     relatedSlugs: ['what-is-a-clipper', 'cpm-meaning-clipping', 'clipping-marketplace-vs-video-editor-marketplace'],
     publishedAt: '2026-07-01',
     updatedAt: '2026-10-26',
+    targets: {
+      primary: { query: 'what is a clipping marketplace', volume: null },
+      secondary: [],
+      questions: [
+        {
+          id: 'fiverr',
+          label: 'Is Fiverr a clipping marketplace?',
+          headingPhrases: ['is fiverr a clipping marketplace'],
+        },
+        {
+          id: 'both',
+          label: 'Can one marketplace do both models?',
+          headingPhrases: ['can one marketplace do both models'],
+        },
+        {
+          id: 'kreatli',
+          label: 'How does Kreatli Marketplace fit?',
+          headingPhrases: ['how kreatli marketplace fits'],
+        },
+      ],
+      ownedElsewhere: [
+        { query: 'clipping marketplace', owner: '/compare/clipping-marketplace-vs-video-editor-marketplace' },
+        { query: 'what is a clipping agency', owner: '/compare/clipping-agency-vs-clipping-marketplace' },
+      ],
+      exceptions: [
+        {
+          rule: 'intro-primary',
+          reason: 'Glossary "what is" page: the opening answer defines a clipping marketplace ("A clipping marketplace is ..."), which answers the search',
+          ticket: 'SEO-40',
+        },
+      ],
+    },
   },
   {
     id: 13,
@@ -1553,6 +1643,45 @@ export const SEO_PAGES: SeoPage[] = [
     relatedSlugs: ['how-much-do-clippers-make', 'get-paid-to-clip-twitch-streams', 'is-clipping-legit'],
     publishedAt: '2026-10-21',
     updatedAt: '2026-11-26',
+    targets: {
+      primary: {
+        query: 'how to become a clipper',
+        variants: ['how to become a clipper with no experience'],
+        volume: 880,
+      },
+      secondary: [
+        { query: 'how to start clipping', volume: 1000 },
+        { query: 'how to make money clipping videos', volume: 390 },
+        { query: 'how to make money as a clipper', volume: 70 },
+      ],
+      questions: [
+        {
+          id: 'no-experience',
+          label: 'How do I become a clipper with no experience?',
+          headingPhrases: ['become a clipper with no experience'],
+        },
+        {
+          id: 'no-followers',
+          label: 'How do I start clipping with no followers?',
+          headingPhrases: ['start clipping with no followers'],
+        },
+        {
+          id: 'software',
+          label: 'What software do clippers use?',
+          headingPhrases: ['what software do clippers use', 'pick your software'],
+        },
+        {
+          id: 'living',
+          label: 'Can you make a living as a clipper?',
+          headingPhrases: ['make a living as a clipper'],
+        },
+      ],
+      ownedElsewhere: [
+        { query: 'get paid to clip', owner: '/clipping-jobs' },
+        { query: 'get paid to clip streamers', owner: '/clipping-jobs' },
+      ],
+      exceptions: [],
+    },
   },
   {
     id: 68,
@@ -1568,6 +1697,38 @@ export const SEO_PAGES: SeoPage[] = [
     status: 'published',
     relatedSlugs: ['how-to-become-a-clipper', 'cpm-meaning-clipping', 'how-to-price-video-editing-services'],
     publishedAt: '2026-10-21',
+    targets: {
+      primary: {
+        query: 'how much do clippers make',
+        variants: ['how much can clippers make', 'how much do clippers earn'],
+        volume: 390,
+      },
+      secondary: [{ query: 'how do clippers get paid', variants: ['how do clippers make money'], volume: 50 }],
+      questions: [
+        {
+          id: 'per-clip',
+          label: 'How much do clippers make per clip?',
+          headingPhrases: ['how much do clippers make per clip'],
+        },
+        {
+          id: 'per-1000',
+          label: 'How much do clippers make per 1,000 views?',
+          headingPhrases: ['per 1,000 views'],
+        },
+        {
+          id: 'full-time',
+          label: 'Can you make a full-time income from clipping?',
+          headingPhrases: ['full-time income from clipping'],
+        },
+        {
+          id: 'calculate',
+          label: 'How do I calculate my clipping income?',
+          headingPhrases: ['calculate my clipping income'],
+        },
+      ],
+      ownedElsewhere: [{ query: 'clipper pay rates', owner: '/guides/clipper-pay-rates' }],
+      exceptions: [],
+    },
   },
   {
     id: 69,
@@ -1582,6 +1743,37 @@ export const SEO_PAGES: SeoPage[] = [
     status: 'published',
     relatedSlugs: ['get-paid-to-clip-kick-streams', 'do-you-need-permission-to-clip-streams', 'how-much-do-clippers-make'],
     publishedAt: '2026-10-21',
+    targets: {
+      primary: {
+        query: 'get paid to clip twitch streams',
+        variants: ['how to get paid to clip twitch streams'],
+        volume: null,
+      },
+      secondary: [],
+      questions: [
+        { id: 'who-pays', label: 'Who pays Twitch clippers?', headingPhrases: ['who pays twitch clippers'] },
+        {
+          id: 'any-streamer',
+          label: 'Can I clip any Twitch streamer and post it?',
+          headingPhrases: ['clip any twitch streamer'],
+        },
+        {
+          id: 'earn',
+          label: 'How much do Twitch clippers make?',
+          headingPhrases: ['how much do twitch clippers make'],
+        },
+        {
+          id: 'software',
+          label: 'What software do Twitch clippers use?',
+          headingPhrases: ['what software do twitch clippers use'],
+        },
+      ],
+      ownedElsewhere: [
+        { query: 'twitch clipper', owner: '/hire/hire-a-twitch-clipper' },
+        { query: 'get paid to clip streamers', owner: '/clipping-jobs' },
+      ],
+      exceptions: [],
+    },
   },
   {
     id: 70,
@@ -1596,6 +1788,42 @@ export const SEO_PAGES: SeoPage[] = [
     status: 'published',
     relatedSlugs: ['get-paid-to-clip-twitch-streams', 'is-clipping-legit', 'payout-cap-meaning'],
     publishedAt: '2026-10-21',
+    targets: {
+      primary: {
+        query: 'get paid to clip on kick',
+        variants: ['get paid to clip kick streams', 'how to get paid to clip kick streams'],
+        volume: 10,
+      },
+      secondary: [
+        { query: 'kick clipping program', variants: ['kick clipping programs'], volume: 1300 },
+        { query: 'kick clipping', variants: ['clipping kick'], volume: 1000 },
+        { query: 'how much do kick clippers make', volume: 20 },
+      ],
+      questions: [
+        {
+          id: 'kick-pays',
+          label: 'Does Kick pay clippers directly?',
+          headingPhrases: ['does kick pay clippers directly'],
+        },
+        {
+          id: 'earn',
+          label: 'How much do Kick clippers make?',
+          headingPhrases: ['how much do kick clippers make'],
+        },
+        {
+          id: 'join',
+          label: 'How do I join a Kick clipping campaign?',
+          headingPhrases: ['join a kick clipping campaign'],
+        },
+        {
+          id: 'gambling',
+          label: 'Is clipping gambling streams risky?',
+          headingPhrases: ['clipping gambling streams'],
+        },
+      ],
+      ownedElsewhere: [{ query: 'kick clipper', owner: '/hire/hire-a-kick-clipper' }],
+      exceptions: [],
+    },
   },
   {
     id: 71,
@@ -1611,6 +1839,35 @@ export const SEO_PAGES: SeoPage[] = [
     status: 'published',
     relatedSlugs: ['how-to-become-a-clipper', 'get-paid-to-clip-twitch-streams', 'how-much-do-clippers-make'],
     publishedAt: '2026-10-21',
+    targets: {
+      primary: { query: 'youtube clipper jobs', variants: ['youtube clipping jobs'], volume: 20 },
+      secondary: [
+        {
+          query: 'get paid to clip youtube videos',
+          variants: ['how to get paid to clip youtube videos'],
+          volume: null,
+        },
+      ],
+      questions: [
+        {
+          id: 'find',
+          label: 'How do I get YouTube clipper jobs?',
+          headingPhrases: ['how do i get youtube clipper jobs'],
+        },
+        {
+          id: 'pay',
+          label: 'How much do YouTube clippers get paid?',
+          headingPhrases: ['how much do youtube clippers get paid'],
+        },
+        {
+          id: 'shorts-per-video',
+          label: 'How many Shorts can you get from one YouTube video?',
+          headingPhrases: ['how many shorts can you get'],
+        },
+      ],
+      ownedElsewhere: [],
+      exceptions: [],
+    },
   },
   {
     id: 72,
@@ -1778,6 +2035,44 @@ export const SEO_PAGES: SeoPage[] = [
     status: 'published',
     relatedSlugs: ['cpm-meaning-clipping', 'payout-cap-meaning', 'verified-views-meaning'],
     publishedAt: '2026-10-21',
+    targets: {
+      primary: { query: 'what is a clipping campaign', volume: 90 },
+      secondary: [
+        { query: 'clipping campaigns', variants: ['clipping campaign'], volume: 3600 },
+        { query: 'clipping marketing', variants: ['clip marketing'], volume: 480 },
+        { query: 'paid clipping campaigns', volume: 40 },
+      ],
+      questions: [
+        {
+          id: 'how',
+          label: 'How does a clipping campaign work?',
+          headingPhrases: ['how a clipping campaign works'],
+        },
+        {
+          id: 'pay',
+          label: 'How do clipping campaigns pay clippers?',
+          headingPhrases: ['how do clipping campaigns pay clippers'],
+        },
+        {
+          id: 'legit',
+          label: 'Are clipping campaigns legit?',
+          headingPhrases: ['are clipping campaigns legit'],
+        },
+        {
+          id: 'vs-hiring',
+          label: 'Clipping campaign vs hiring a clipper',
+          headingPhrases: ['clipping campaign vs. hiring a clipper'],
+        },
+      ],
+      ownedElsewhere: [
+        { query: 'what is a clipping agency', owner: '/compare/clipping-agency-vs-clipping-marketplace' },
+        {
+          query: 'how much does a clipping campaign cost',
+          owner: '/tools/clipping-campaign-cost-calculator',
+        },
+      ],
+      exceptions: [],
+    },
   },
   {
     id: 79,
@@ -1792,6 +2087,29 @@ export const SEO_PAGES: SeoPage[] = [
     status: 'published',
     relatedSlugs: ['what-is-a-clipping-campaign', 'what-is-a-clipper', 'verified-views-meaning'],
     publishedAt: '2026-10-21',
+    targets: {
+      primary: { query: 'what is clip farming', variants: ['what does clip farming mean'], volume: 3600 },
+      secondary: [
+        { query: 'clip farming', variants: ['clip farmer', 'clip farm'], volume: 14800 },
+        { query: 'clip farming meaning', variants: ['clip farm meaning'], volume: 4400 },
+      ],
+      questions: [
+        { id: 'bad', label: 'Is clip farming bad?', headingPhrases: ['is clip farming bad'] },
+        {
+          id: 'money',
+          label: 'Can you make money clip farming?',
+          headingPhrases: ['make money clip farming'],
+        },
+        { id: 'farmer', label: 'What is a clip farmer?', headingPhrases: ['what is a clip farmer'] },
+        {
+          id: 'allowed',
+          label: 'Is clip farming allowed on TikTok and YouTube?',
+          headingPhrases: ['clip farming allowed'],
+        },
+      ],
+      ownedElsewhere: [],
+      exceptions: [],
+    },
   },
   {
     id: 80,
@@ -1835,6 +2153,41 @@ export const SEO_PAGES: SeoPage[] = [
     status: 'published',
     relatedSlugs: ['vyro-alternatives', 'kreatli-vs-whop-clips', 'what-is-a-clipping-campaign'],
     publishedAt: '2026-10-21',
+    targets: {
+      primary: { query: 'whop clipping alternatives', variants: ['whop clipping alternative'], volume: 10 },
+      secondary: [
+        { query: 'whop alternative for clipping', variants: ['clipping website like whop'], volume: 140 },
+        {
+          query: 'content rewards alternative',
+          variants: ['content rewards alternatives', 'whop content rewards alternative'],
+          volume: 50,
+        },
+      ],
+      questions: [
+        {
+          id: 'per-clip',
+          label: 'Is there a Whop alternative that pays per clip?',
+          headingPhrases: ['pays per clip instead of per view'],
+        },
+        {
+          id: 'both',
+          label: 'Can I use Whop Content Rewards and Kreatli at the same time?',
+          headingPhrases: ['at the same time'],
+        },
+        {
+          id: 'beginners',
+          label: 'What is the best Whop clipping alternative for beginners?',
+          headingPhrases: ['best whop clipping alternative for beginners'],
+        },
+        {
+          id: 'pay-more',
+          label: 'Do Whop alternatives pay more?',
+          headingPhrases: ['do whop alternatives pay more'],
+        },
+      ],
+      ownedElsewhere: [{ query: 'whop clipping', owner: '/guides/whop-clipping' }],
+      exceptions: [],
+    },
   },
   {
     id: 83,
@@ -1849,6 +2202,29 @@ export const SEO_PAGES: SeoPage[] = [
     status: 'published',
     relatedSlugs: ['whop-content-rewards-alternatives', 'kreatli-vs-vyro', 'how-much-do-clippers-make'],
     publishedAt: '2026-10-21',
+    targets: {
+      primary: {
+        query: 'vyro alternatives',
+        variants: ['vyro alternative', 'my-vyro.com alternatives', 'vyroclips alternatives'],
+        volume: null,
+      },
+      secondary: [{ query: 'websites like vyro', volume: 10 }],
+      questions: [
+        { id: 'legit', label: 'Is Vyro legit?', headingPhrases: ['is vyro legit'] },
+        {
+          id: 'no-followers',
+          label: 'Best Vyro alternative for clippers without followers?',
+          headingPhrases: ['clippers without followers'],
+        },
+        {
+          id: 'pay',
+          label: 'How much does Vyro pay compared with freelance clipping?',
+          headingPhrases: ['how much does vyro pay'],
+        },
+      ],
+      ownedElsewhere: [],
+      exceptions: [],
+    },
   },
   {
     id: 84,
@@ -1907,6 +2283,30 @@ export const SEO_PAGES: SeoPage[] = [
     status: 'published',
     relatedSlugs: ['highlight-reel-meaning', 'clip-channel-meaning', 'what-is-a-clipper'],
     publishedAt: '2026-10-21',
+    targets: {
+      primary: { query: 'what is a vod', variants: ['what is vod'], volume: 4400 },
+      secondary: [
+        { query: 'vod meaning', variants: ['what does vod mean'], volume: 18100 },
+        { query: 'what does vod stand for', volume: 3600 },
+        { query: 'what does vod mean on twitch', variants: ['what does vod stand for twitch'], volume: 110 },
+      ],
+      questions: [
+        { id: 'stand-for', label: 'What does VOD stand for?', headingPhrases: ['what does vod stand for'] },
+        {
+          id: 'twitch-length',
+          label: 'How long do Twitch VODs last?',
+          headingPhrases: ['how long do twitch vods last'],
+        },
+        { id: 'vs-clip', label: 'VOD vs clip vs highlight', headingPhrases: ['vod vs. clip vs. highlight'] },
+        {
+          id: 'clip-others',
+          label: 'Can I clip someone else\'s VOD?',
+          headingPhrases: ['clip someone else'],
+        },
+      ],
+      ownedElsewhere: [],
+      exceptions: [],
+    },
   },
   {
     id: 86,
@@ -1963,6 +2363,38 @@ export const SEO_PAGES: SeoPage[] = [
     status: 'published',
     relatedSlugs: ['vertical-video-9-16-aspect-ratio', 'burned-in-captions-meaning', 'video-hook-first-3-seconds'],
     publishedAt: '2026-10-21',
+    targets: {
+      primary: { query: 'safe zone tiktok reels shorts', variants: ['safe zones tiktok reels shorts'], volume: null },
+      secondary: [
+        {
+          query: 'tiktok safe zone',
+          variants: ['tiktok safe zones', 'safe zones tiktok', 'tiktok safety zone'],
+          volume: 9900,
+        },
+        { query: 'instagram reels safe zone', variants: ['reels safe zone'], volume: 9900 },
+        { query: 'youtube shorts safe zone', variants: ['yt short safe zone'], volume: 1300 },
+        { query: 'tiktok safe area', variants: ['tiktok text safe area'], volume: 1000 },
+      ],
+      questions: [
+        {
+          id: 'tiktok',
+          label: 'What is the safe zone on TikTok?',
+          headingPhrases: ['what is the safe zone on tiktok'],
+        },
+        {
+          id: 'same',
+          label: 'Are safe zones the same on TikTok, Reels and Shorts?',
+          headingPhrases: ['same on tiktok, reels, and shorts'],
+        },
+        {
+          id: 'captions',
+          label: 'Where should captions go in a vertical video?',
+          headingPhrases: ['where should captions go'],
+        },
+      ],
+      ownedElsewhere: [],
+      exceptions: [],
+    },
   },
   {
     id: 90,
@@ -2023,6 +2455,37 @@ export const SEO_PAGES: SeoPage[] = [
     status: 'published',
     relatedSlugs: ['clipper-pay-rates', 'whop-content-rewards-alternatives', 'how-to-become-a-clipper'],
     publishedAt: '2026-10-21',
+    targets: {
+      primary: { query: 'best clipping platforms', variants: ['best clipping platform'], volume: 320 },
+      secondary: [
+        { query: 'clipping platforms', variants: ['clipping platform'], volume: 1600 },
+        { query: 'clipping websites that pay', variants: ['clipping sites that pay'], volume: 90 },
+      ],
+      questions: [
+        {
+          id: 'beginners',
+          label: 'What is the best clipping platform for beginners?',
+          headingPhrases: ['best clipping platform for beginners'],
+        },
+        {
+          id: 'pays-most',
+          label: 'Which clipping platform pays the most?',
+          headingPhrases: ['which clipping platform pays the most'],
+        },
+        {
+          id: 'fees',
+          label: 'Do clipping platforms charge clippers fees?',
+          headingPhrases: ['charge clippers fees'],
+        },
+        {
+          id: 'how-pay',
+          label: 'How do clipping platforms pay?',
+          headingPhrases: ['how clipping platforms pay'],
+        },
+      ],
+      ownedElsewhere: [{ query: 'get paid to clip', owner: '/clipping-jobs' }],
+      exceptions: [],
+    },
   },
   {
     id: 94,
@@ -2235,6 +2698,34 @@ export const SEO_PAGES: SeoPage[] = [
     notes: 'SEO-20: clipping side hustle (50/mo), is clipping worth it (30/mo), how to get clipping clients (10/mo). Figures from the pay and earnings guides only',
     relatedSlugs: ['how-much-do-clippers-make', 'is-clipping-legit', 'how-to-become-a-clipper'],
     publishedAt: '2026-10-29',
+    targets: {
+      primary: { query: 'clipping side hustle', volume: 210 },
+      secondary: [
+        { query: 'is clipping a good side hustle', volume: 140 },
+        { query: 'is clipping worth it', volume: 170 },
+        { query: 'does clipping make money', variants: ['does clipping actually make money'], volume: 170 },
+      ],
+      questions: [
+        { id: 'worth', label: 'Is clipping worth it in 2026?', headingPhrases: ['is clipping worth it'] },
+        {
+          id: 'side-pay',
+          label: 'How much can you make clipping on the side?',
+          headingPhrases: ['make clipping on the side'],
+        },
+        {
+          id: 'hours',
+          label: 'How many hours a week does clipping take?',
+          headingPhrases: ['how many hours a week'],
+        },
+        {
+          id: 'passive',
+          label: 'Is clipping passive income?',
+          headingPhrases: ['is clipping passive income'],
+        },
+      ],
+      ownedElsewhere: [],
+      exceptions: [],
+    },
   },
   {
     id: 95,
@@ -2250,6 +2741,29 @@ export const SEO_PAGES: SeoPage[] = [
     status: 'published',
     relatedSlugs: ['how-much-do-clippers-make', 'how-much-to-pay-clippers', 'best-clipping-platforms'],
     publishedAt: '2026-10-21',
+    targets: {
+      primary: { query: 'clipper pay rates', variants: ['clipping pay rates'], volume: null },
+      secondary: [{ query: 'clipper rates', volume: 10 }],
+      questions: [
+        {
+          id: 'per-clip',
+          label: 'What is a good per-clip rate for a clipper?',
+          headingPhrases: ['good per-clip rate'],
+        },
+        {
+          id: 'cpm',
+          label: 'How much do clipping campaigns pay per 1,000 views?',
+          headingPhrases: ['pay per 1,000 views'],
+        },
+        {
+          id: 'retainer',
+          label: 'What is a typical monthly retainer for a clipper?',
+          headingPhrases: ['typical monthly retainer'],
+        },
+      ],
+      ownedElsewhere: [{ query: 'how much do clippers make', owner: '/guides/how-much-do-clippers-make' }],
+      exceptions: [],
+    },
   },
   {
     id: 96,
@@ -2265,6 +2779,41 @@ export const SEO_PAGES: SeoPage[] = [
     notes: 'SEO-11: "tiktok clipping" 480/mo LOW; secondary how to clip on tiktok (70), clipping on tiktok (30)',
     relatedSlugs: ['how-to-become-a-clipper', 'clipper-pay-rates', 'best-clipping-platforms'],
     publishedAt: '2026-10-26',
+    targets: {
+      primary: { query: 'tiktok clipping', variants: ['tik tok clipping'], volume: 2900 },
+      secondary: [
+        { query: 'clipping tiktok', volume: 1900 },
+        { query: 'how to start clipping on tiktok', volume: 320 },
+        { query: 'how to become a clipper on tiktok', volume: 170 },
+      ],
+      questions: [
+        {
+          id: 'paid',
+          label: 'Can you get paid to clip on TikTok?',
+          headingPhrases: ['get paid to clip on tiktok', 'get paid for tiktok clipping'],
+        },
+        {
+          id: 'pay',
+          label: 'How much does TikTok clipping pay?',
+          headingPhrases: ['how much does tiktok clipping pay'],
+        },
+        {
+          id: 'permission',
+          label: 'Do you need permission to clip videos for TikTok?',
+          headingPhrases: ['need permission to clip videos for tiktok'],
+        },
+        {
+          id: 'app',
+          label: 'What app do TikTok clippers use?',
+          headingPhrases: ['what app do tiktok clippers use'],
+        },
+      ],
+      ownedElsewhere: [
+        { query: 'tiktok clipper', owner: '/hire/hire-a-tiktok-clipper' },
+        { query: 'hire clippers for tiktok', owner: '/hire/hire-a-tiktok-clipper' },
+      ],
+      exceptions: [],
+    },
   },
   {
     id: 99,
@@ -2281,6 +2830,36 @@ export const SEO_PAGES: SeoPage[] = [
     notes: 'SEO-19: "whop clipping" 2,900/mo LOW; secondary whop clipping legit (30), how does whop clipping work (20), cpm meaning in whop (10)',
     relatedSlugs: ['kreatli-vs-whop-clips', 'content-rewards-meaning', 'clipper-pay-rates'],
     publishedAt: '2026-10-27',
+    targets: {
+      primary: { query: 'whop clipping', volume: 33100 },
+      secondary: [
+        { query: 'whop content rewards', variants: ['whop content rewards clipping'], volume: 22200 },
+        {
+          query: 'is whop clipping legit',
+          variants: ['is whop content rewards legit', 'whop clipping is real or fake'],
+          volume: 1300,
+        },
+      ],
+      questions: [
+        { id: 'how', label: 'How does Whop clipping work?', headingPhrases: ['how whop clipping works'] },
+        {
+          id: 'pays',
+          label: 'How much does Whop clipping pay?',
+          headingPhrases: ['what whop clipping pays', 'how much does whop clipping pay'],
+        },
+        { id: 'followers', label: 'Do you need followers?', headingPhrases: ['do you need followers'] },
+        {
+          id: 'rejected',
+          label: 'Why was my Whop clip rejected?',
+          headingPhrases: ['why was my whop clip rejected'],
+        },
+      ],
+      ownedElsewhere: [
+        { query: 'cpm meaning whop', owner: '/glossary/cpm-meaning-clipping' },
+        { query: 'whop clipping alternatives', owner: '/alternatives/whop-content-rewards-alternatives' },
+      ],
+      exceptions: [],
+    },
   },
   {
     id: 104,
@@ -2313,6 +2892,33 @@ export const SEO_PAGES: SeoPage[] = [
     notes: 'SEO-29: how much do youtube editors make (320/mo) cluster ~540/mo. Salary from Salary.com (as of 2026-11-01, checked 2026-11-03); long-form and hourly ranges reuse cost-to-hire-a-video-editor; clip figures from clipper-pay-rates',
     relatedSlugs: ['clipper-pay-rates', 'how-much-do-clippers-make', 'become-a-freelance-video-editor'],
     publishedAt: '2026-11-03',
+    targets: {
+      primary: {
+        query: 'how much do youtube editors make',
+        variants: ['how much do youtube video editors make'],
+        volume: 390,
+      },
+      secondary: [{ query: 'youtube editor salary', variants: ['youtube video editor salary'], volume: 110 }],
+      questions: [
+        {
+          id: 'per-video',
+          label: 'Do YouTube editors get paid per video or per hour?',
+          headingPhrases: ['paid per video or per hour'],
+        },
+        {
+          id: 'shorts',
+          label: 'How much do YouTube Shorts editors make?',
+          headingPhrases: ['how much do youtube shorts editors make'],
+        },
+        {
+          id: 'full-time',
+          label: 'Is editing for YouTube a full-time job?',
+          headingPhrases: ['full-time job'],
+        },
+      ],
+      ownedElsewhere: [],
+      exceptions: [],
+    },
   },
   {
     id: 106,
@@ -2329,6 +2935,33 @@ export const SEO_PAGES: SeoPage[] = [
     notes: 'SEO-31: clipping streamers (110/mo) cluster ~300/mo. Platform-neutral hub; Twitch/Kick/YouTube guides keep their platform keywords. Figures from clipper-pay-rates',
     relatedSlugs: ['get-paid-to-clip-twitch-streams', 'clipper-pay-rates', 'do-you-need-permission-to-clip-streams'],
     publishedAt: '2026-11-03',
+    targets: {
+      primary: { query: 'clipping streamers', volume: 390 },
+      secondary: [
+        { query: 'how to make money clipping streamers', volume: 170 },
+        { query: 'clip streamers for money', volume: 40 },
+      ],
+      questions: [
+        { id: 'pay', label: 'Do streamers pay clippers?', headingPhrases: ['do streamers pay clippers'] },
+        {
+          id: 'earn',
+          label: 'How much do you make clipping streamers?',
+          headingPhrases: ['how much do you make clipping streamers'],
+        },
+        {
+          id: 'permission',
+          label: 'Do you need permission to clip streamers?',
+          headingPhrases: ['need permission to clip streamers'],
+        },
+        {
+          id: 'platform',
+          label: 'Which platform is best for clipping streamers?',
+          headingPhrases: ['which platform is best for clipping streamers'],
+        },
+      ],
+      ownedElsewhere: [{ query: 'get paid to clip streamers', owner: '/clipping-jobs' }],
+      exceptions: [],
+    },
   },
   {
     id: 107,

@@ -31,6 +31,22 @@
    ]
   },
   {
+   "key": "/compare/kreatli-vs-whop-clips",
+   "title": "/compare/kreatli-vs-whop-clips",
+   "target": "/compare/kreatli-vs-whop-clips",
+   "kind": "buyer",
+   "queries": [
+    [
+     "whop clipping vs kreatli",
+     [
+      "whop clipping vs kreatli",
+      "kreatli vs whop clipping"
+     ],
+     null
+    ]
+   ]
+  },
+  {
    "key": "/compare/kreatli-vs-clipaffiliates",
    "title": "/compare/kreatli-vs-clipaffiliates",
    "target": "/compare/kreatli-vs-clipaffiliates",
@@ -151,6 +167,54 @@
      "clipping agency reviews",
      [
       "clipping agency reviews"
+     ],
+     null
+    ]
+   ]
+  },
+  {
+   "key": "/glossary/what-is-a-clipper",
+   "title": "/glossary/what-is-a-clipper",
+   "target": "/glossary/what-is-a-clipper",
+   "kind": "content",
+   "queries": [
+    [
+     "what is a clipper",
+     [
+      "what is a clipper",
+      "what are clippers",
+      "what is clipper"
+     ],
+     5400
+    ],
+    [
+     "clipper meaning",
+     [
+      "clipper meaning",
+      "clipper work meaning"
+     ],
+     3600
+    ],
+    [
+     "what is a clipper in video editing",
+     [
+      "what is a clipper in video editing",
+      "what is clipper in video editing"
+     ],
+     20
+    ]
+   ]
+  },
+  {
+   "key": "/glossary/what-is-a-clipping-marketplace",
+   "title": "/glossary/what-is-a-clipping-marketplace",
+   "target": "/glossary/what-is-a-clipping-marketplace",
+   "kind": "content",
+   "queries": [
+    [
+     "what is a clipping marketplace",
+     [
+      "what is a clipping marketplace"
      ],
      null
     ]
@@ -618,6 +682,148 @@
    ]
   },
   {
+   "key": "/guides/how-to-become-a-clipper",
+   "title": "/guides/how-to-become-a-clipper",
+   "target": "/guides/how-to-become-a-clipper",
+   "kind": "content",
+   "queries": [
+    [
+     "how to become a clipper",
+     [
+      "how to become a clipper",
+      "how to become a clipper with no experience"
+     ],
+     880
+    ],
+    [
+     "how to start clipping",
+     [
+      "how to start clipping"
+     ],
+     1000
+    ],
+    [
+     "how to make money clipping videos",
+     [
+      "how to make money clipping videos"
+     ],
+     390
+    ],
+    [
+     "how to make money as a clipper",
+     [
+      "how to make money as a clipper"
+     ],
+     70
+    ]
+   ]
+  },
+  {
+   "key": "/guides/how-much-do-clippers-make",
+   "title": "/guides/how-much-do-clippers-make",
+   "target": "/guides/how-much-do-clippers-make",
+   "kind": "content",
+   "queries": [
+    [
+     "how much do clippers make",
+     [
+      "how much do clippers make",
+      "how much can clippers make",
+      "how much do clippers earn"
+     ],
+     390
+    ],
+    [
+     "how do clippers get paid",
+     [
+      "how do clippers get paid",
+      "how do clippers make money"
+     ],
+     50
+    ]
+   ]
+  },
+  {
+   "key": "/guides/get-paid-to-clip-twitch-streams",
+   "title": "/guides/get-paid-to-clip-twitch-streams",
+   "target": "/guides/get-paid-to-clip-twitch-streams",
+   "kind": "content",
+   "queries": [
+    [
+     "get paid to clip twitch streams",
+     [
+      "get paid to clip twitch streams",
+      "how to get paid to clip twitch streams"
+     ],
+     null
+    ]
+   ]
+  },
+  {
+   "key": "/guides/get-paid-to-clip-kick-streams",
+   "title": "/guides/get-paid-to-clip-kick-streams",
+   "target": "/guides/get-paid-to-clip-kick-streams",
+   "kind": "content",
+   "queries": [
+    [
+     "get paid to clip on kick",
+     [
+      "get paid to clip on kick",
+      "get paid to clip kick streams",
+      "how to get paid to clip kick streams"
+     ],
+     10
+    ],
+    [
+     "kick clipping program",
+     [
+      "kick clipping program",
+      "kick clipping programs"
+     ],
+     1300
+    ],
+    [
+     "kick clipping",
+     [
+      "kick clipping",
+      "clipping kick"
+     ],
+     1000
+    ],
+    [
+     "how much do kick clippers make",
+     [
+      "how much do kick clippers make"
+     ],
+     20
+    ]
+   ]
+  },
+  {
+   "key": "/guides/get-paid-to-clip-youtube-videos",
+   "title": "/guides/get-paid-to-clip-youtube-videos",
+   "target": "/guides/get-paid-to-clip-youtube-videos",
+   "kind": "content",
+   "queries": [
+    [
+     "youtube clipper jobs",
+     [
+      "youtube clipper jobs",
+      "youtube clipping jobs"
+     ],
+     20
+    ],
+    [
+     "get paid to clip youtube videos",
+     [
+      "get paid to clip youtube videos",
+      "how to get paid to clip youtube videos"
+     ],
+     null
+    ]
+   ]
+  },
+  {
    "key": "/guides/how-to-hire-a-clipper",
    "title": "/guides/how-to-hire-a-clipper",
    "target": "/guides/how-to-hire-a-clipper",
@@ -666,6 +872,135 @@
    ]
   },
   {
+   "key": "/glossary/what-is-a-clipping-campaign",
+   "title": "/glossary/what-is-a-clipping-campaign",
+   "target": "/glossary/what-is-a-clipping-campaign",
+   "kind": "content",
+   "queries": [
+    [
+     "what is a clipping campaign",
+     [
+      "what is a clipping campaign"
+     ],
+     90
+    ],
+    [
+     "clipping campaigns",
+     [
+      "clipping campaigns",
+      "clipping campaign"
+     ],
+     3600
+    ],
+    [
+     "clipping marketing",
+     [
+      "clipping marketing",
+      "clip marketing"
+     ],
+     480
+    ],
+    [
+     "paid clipping campaigns",
+     [
+      "paid clipping campaigns"
+     ],
+     40
+    ]
+   ]
+  },
+  {
+   "key": "/glossary/what-is-clip-farming",
+   "title": "/glossary/what-is-clip-farming",
+   "target": "/glossary/what-is-clip-farming",
+   "kind": "content",
+   "queries": [
+    [
+     "what is clip farming",
+     [
+      "what is clip farming",
+      "what does clip farming mean"
+     ],
+     3600
+    ],
+    [
+     "clip farming",
+     [
+      "clip farming",
+      "clip farmer",
+      "clip farm"
+     ],
+     14800
+    ],
+    [
+     "clip farming meaning",
+     [
+      "clip farming meaning",
+      "clip farm meaning"
+     ],
+     4400
+    ]
+   ]
+  },
+  {
+   "key": "/alternatives/whop-content-rewards-alternatives",
+   "title": "/alternatives/whop-content-rewards-alternatives",
+   "target": "/alternatives/whop-content-rewards-alternatives",
+   "kind": "buyer",
+   "queries": [
+    [
+     "whop clipping alternatives",
+     [
+      "whop clipping alternatives",
+      "whop clipping alternative"
+     ],
+     10
+    ],
+    [
+     "whop alternative for clipping",
+     [
+      "whop alternative for clipping",
+      "clipping website like whop"
+     ],
+     140
+    ],
+    [
+     "content rewards alternative",
+     [
+      "content rewards alternative",
+      "content rewards alternatives",
+      "whop content rewards alternative"
+     ],
+     50
+    ]
+   ]
+  },
+  {
+   "key": "/alternatives/vyro-alternatives",
+   "title": "/alternatives/vyro-alternatives",
+   "target": "/alternatives/vyro-alternatives",
+   "kind": "buyer",
+   "queries": [
+    [
+     "vyro alternatives",
+     [
+      "vyro alternatives",
+      "vyro alternative",
+      "my-vyro.com alternatives",
+      "vyroclips alternatives"
+     ],
+     null
+    ],
+    [
+     "websites like vyro",
+     [
+      "websites like vyro"
+     ],
+     10
+    ]
+   ]
+  },
+  {
    "key": "/hire/hire-a-kick-clipper",
    "title": "/hire/hire-a-kick-clipper",
    "target": "/hire/hire-a-kick-clipper",
@@ -685,6 +1020,127 @@
       "kick clippers"
      ],
      320
+    ]
+   ]
+  },
+  {
+   "key": "/glossary/what-is-a-vod",
+   "title": "/glossary/what-is-a-vod",
+   "target": "/glossary/what-is-a-vod",
+   "kind": "content",
+   "queries": [
+    [
+     "what is a vod",
+     [
+      "what is a vod",
+      "what is vod"
+     ],
+     4400
+    ],
+    [
+     "vod meaning",
+     [
+      "vod meaning",
+      "what does vod mean"
+     ],
+     18100
+    ],
+    [
+     "what does vod stand for",
+     [
+      "what does vod stand for"
+     ],
+     3600
+    ],
+    [
+     "what does vod mean on twitch",
+     [
+      "what does vod mean on twitch",
+      "what does vod stand for twitch"
+     ],
+     110
+    ]
+   ]
+  },
+  {
+   "key": "/glossary/short-form-video-safe-zones",
+   "title": "/glossary/short-form-video-safe-zones",
+   "target": "/glossary/short-form-video-safe-zones",
+   "kind": "content",
+   "queries": [
+    [
+     "safe zone tiktok reels shorts",
+     [
+      "safe zone tiktok reels shorts",
+      "safe zones tiktok reels shorts"
+     ],
+     null
+    ],
+    [
+     "tiktok safe zone",
+     [
+      "tiktok safe zone",
+      "tiktok safe zones",
+      "safe zones tiktok",
+      "tiktok safety zone"
+     ],
+     9900
+    ],
+    [
+     "instagram reels safe zone",
+     [
+      "instagram reels safe zone",
+      "reels safe zone"
+     ],
+     9900
+    ],
+    [
+     "youtube shorts safe zone",
+     [
+      "youtube shorts safe zone",
+      "yt short safe zone"
+     ],
+     1300
+    ],
+    [
+     "tiktok safe area",
+     [
+      "tiktok safe area",
+      "tiktok text safe area"
+     ],
+     1000
+    ]
+   ]
+  },
+  {
+   "key": "/guides/best-clipping-platforms",
+   "title": "/guides/best-clipping-platforms",
+   "target": "/guides/best-clipping-platforms",
+   "kind": "content",
+   "queries": [
+    [
+     "best clipping platforms",
+     [
+      "best clipping platforms",
+      "best clipping platform"
+     ],
+     320
+    ],
+    [
+     "clipping platforms",
+     [
+      "clipping platforms",
+      "clipping platform"
+     ],
+     1600
+    ],
+    [
+     "clipping websites that pay",
+     [
+      "clipping websites that pay",
+      "clipping sites that pay"
+     ],
+     90
     ]
    ]
   },
@@ -837,6 +1293,188 @@
       "video editing services cost"
      ],
      20
+    ]
+   ]
+  },
+  {
+   "key": "/guides/is-clipping-a-good-side-hustle",
+   "title": "/guides/is-clipping-a-good-side-hustle",
+   "target": "/guides/is-clipping-a-good-side-hustle",
+   "kind": "content",
+   "queries": [
+    [
+     "clipping side hustle",
+     [
+      "clipping side hustle"
+     ],
+     210
+    ],
+    [
+     "is clipping a good side hustle",
+     [
+      "is clipping a good side hustle"
+     ],
+     140
+    ],
+    [
+     "is clipping worth it",
+     [
+      "is clipping worth it"
+     ],
+     170
+    ],
+    [
+     "does clipping make money",
+     [
+      "does clipping make money",
+      "does clipping actually make money"
+     ],
+     170
+    ]
+   ]
+  },
+  {
+   "key": "/guides/clipper-pay-rates",
+   "title": "/guides/clipper-pay-rates",
+   "target": "/guides/clipper-pay-rates",
+   "kind": "content",
+   "queries": [
+    [
+     "clipper pay rates",
+     [
+      "clipper pay rates",
+      "clipping pay rates"
+     ],
+     null
+    ],
+    [
+     "clipper rates",
+     [
+      "clipper rates"
+     ],
+     10
+    ]
+   ]
+  },
+  {
+   "key": "/guides/tiktok-clipping",
+   "title": "/guides/tiktok-clipping",
+   "target": "/guides/tiktok-clipping",
+   "kind": "content",
+   "queries": [
+    [
+     "tiktok clipping",
+     [
+      "tiktok clipping",
+      "tik tok clipping"
+     ],
+     2900
+    ],
+    [
+     "clipping tiktok",
+     [
+      "clipping tiktok"
+     ],
+     1900
+    ],
+    [
+     "how to start clipping on tiktok",
+     [
+      "how to start clipping on tiktok"
+     ],
+     320
+    ],
+    [
+     "how to become a clipper on tiktok",
+     [
+      "how to become a clipper on tiktok"
+     ],
+     170
+    ]
+   ]
+  },
+  {
+   "key": "/guides/whop-clipping",
+   "title": "/guides/whop-clipping",
+   "target": "/guides/whop-clipping",
+   "kind": "content",
+   "queries": [
+    [
+     "whop clipping",
+     [
+      "whop clipping"
+     ],
+     33100
+    ],
+    [
+     "whop content rewards",
+     [
+      "whop content rewards",
+      "whop content rewards clipping"
+     ],
+     22200
+    ],
+    [
+     "is whop clipping legit",
+     [
+      "is whop clipping legit",
+      "is whop content rewards legit",
+      "whop clipping is real or fake"
+     ],
+     1300
+    ]
+   ]
+  },
+  {
+   "key": "/guides/how-much-do-youtube-editors-make",
+   "title": "/guides/how-much-do-youtube-editors-make",
+   "target": "/guides/how-much-do-youtube-editors-make",
+   "kind": "content",
+   "queries": [
+    [
+     "how much do youtube editors make",
+     [
+      "how much do youtube editors make",
+      "how much do youtube video editors make"
+     ],
+     390
+    ],
+    [
+     "youtube editor salary",
+     [
+      "youtube editor salary",
+      "youtube video editor salary"
+     ],
+     110
+    ]
+   ]
+  },
+  {
+   "key": "/guides/how-to-make-money-clipping-streamers",
+   "title": "/guides/how-to-make-money-clipping-streamers",
+   "target": "/guides/how-to-make-money-clipping-streamers",
+   "kind": "content",
+   "queries": [
+    [
+     "clipping streamers",
+     [
+      "clipping streamers"
+     ],
+     390
+    ],
+    [
+     "how to make money clipping streamers",
+     [
+      "how to make money clipping streamers"
+     ],
+     170
+    ],
+    [
+     "clip streamers for money",
+     [
+      "clip streamers for money"
+     ],
+     40
     ]
    ]
   },
