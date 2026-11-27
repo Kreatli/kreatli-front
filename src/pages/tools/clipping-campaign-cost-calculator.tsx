@@ -62,8 +62,9 @@ const ClippingCampaignCostCalculatorPage = () => (
       titleHighlight="Cost Calculator"
       intro={
         <p>
-          Work out what clipping will cost you. Price a fixed-pay clipper for your own channels, price a CPM campaign
-          that pays per 1,000 views, and compare the two. Defaults use the typical rates from our guide on{' '}
+          Use this clipping campaign cost calculator to see how much a clipping campaign costs and what a fixed-pay
+          clipper costs for your own channels. Price a CPM campaign that pays per 1,000 views, price a clipper, and
+          compare the two. Defaults use the typical rates from our guide on{' '}
           <Link as={NextLink} href="/guides/how-much-to-pay-clippers" color="secondary" underline="hover" className="text-lg">
             how much to pay clippers
           </Link>

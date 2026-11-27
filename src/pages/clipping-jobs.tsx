@@ -14,7 +14,9 @@ const BREADCRUMBS = [{ name: 'Clipping jobs', path: PATH }];
 const JOB_TYPES = [
   {
     title: 'Twitch and Kick stream clipping',
-    description: 'Turn stream VODs into Shorts, TikToks, Reels and highlight videos for the streamer’s own channels.',
+    description:
+      'The most common clipper jobs for streamers: turn stream VODs into Shorts, TikToks, Reels and highlight videos ' +
+      'for the streamer’s own channels.',
     links: [
       { href: '/guides/get-paid-to-clip-twitch-streams', label: 'Get paid to clip Twitch streams' },
       { href: '/guides/get-paid-to-clip-kick-streams', label: 'Get paid to clip on Kick' },
@@ -61,7 +63,7 @@ const STEPS = [
     description: 'Three to five vertical clips in your target niche do more than a long general reel.',
   },
   {
-    title: 'Apply to clipping jobs',
+    title: 'Apply to the jobs that fit you',
     description: 'Creators post jobs with the pay type, deliverables and availability they need. Apply with a short, specific cover letter.',
   },
   {
@@ -74,12 +76,12 @@ const FAQS = [
   {
     question: 'How do you get paid to clip videos?',
     answer:
-      'There are two ways. A creator can hire you to edit clips for their own channels at an agreed rate per clip, project or month, which is how clipping jobs on Kreatli Marketplace work. Or you can join a CPM campaign and earn per 1,000 views on clips you post on your own accounts. Clipping jobs pay whether or not a clip goes viral; campaigns depend on views.',
+      'There are two ways. A creator can hire you to edit clips for their own channels at an agreed rate per clip, project or month, which is how work on Kreatli Marketplace is paid. Or you can join a CPM campaign and earn per 1,000 views on clips you post on your own accounts. Hired work pays whether or not a clip goes viral; campaigns depend on views.',
   },
   {
     question: 'What are clipping jobs?',
     answer:
-      'Clipping jobs pay you to turn a creator’s long videos, streams or podcasts into short vertical clips for TikTok, YouTube Shorts and Instagram Reels. On Kreatli Marketplace the creator pays you for the editing work and posts the clips on their own channels.',
+      'They are short-form video editing jobs: a creator pays you to turn their long videos, streams or podcasts into short vertical clips for TikTok, YouTube Shorts and Instagram Reels. On Kreatli Marketplace the creator pays you for the editing work and posts the clips on their own channels.',
   },
   {
     question: 'How do clipping jobs pay?',
@@ -93,7 +95,7 @@ const FAQS = [
   },
   {
     question: 'Are clipping jobs remote?',
-    answer: 'Most clipping jobs are remote. Creators share footage online and you deliver finished files, so you can work with creators anywhere.',
+    answer: 'Almost all of them are. Creators share footage online and you deliver finished files, so you can work with creators anywhere.',
   },
   {
     question: 'Do I need experience to get clipping jobs?',
@@ -103,12 +105,12 @@ const FAQS = [
   {
     question: 'Is it free to join Kreatli Marketplace as a clipper?',
     answer:
-      'Yes. Creating a clipper profile and applying to clipping jobs is free. Premium and points are optional extras that boost your visibility.',
+      'Yes. Creating a clipper profile and applying to jobs is free. Premium and points are optional extras that boost your visibility.',
   },
   {
     question: 'What is the difference between clipping jobs and clipping campaigns?',
     answer:
-      'In a clipping job you are hired to edit clips for a creator at an agreed rate. In a CPM clipping campaign you post clips on your own accounts and are paid per 1,000 views, often with view minimums and payout caps.',
+      'When you take a job, you are hired to edit clips for a creator at an agreed rate. In a CPM clipping campaign you post clips on your own accounts and are paid per 1,000 views, often with view minimums and payout caps.',
   },
 ];
 
@@ -116,7 +118,7 @@ const ClippingJobsPage = () => (
   <>
     <PageHead
       title="Clipping Jobs: Get Paid to Clip Streams & Videos | Kreatli"
-      description="Find remote clipping jobs from streamers, YouTubers and podcasters. Get paid per project, hour or month to clip Twitch, Kick and YouTube videos."
+      description="Find remote clipping jobs from streamers, YouTubers and podcasters. Get paid for clipping per project, hour or month to clip Twitch, Kick and YouTube videos."
       path={PATH}
       ogImageTitle="Clipping jobs: get paid to clip streams and videos"
       jsonLd={[breadcrumbSchema(BREADCRUMBS), faqSchema(FAQS)]}
@@ -129,15 +131,15 @@ const ClippingJobsPage = () => (
       intro={
         <>
           <p>
-            Kreatli Marketplace is where streamers, YouTubers and podcasters post clipping jobs and hire clippers to
-            turn their long videos into Shorts, TikToks and Reels. You get paid to clip at a rate agreed up front, not
-            per view. New to this?{' '}
+            Kreatli Marketplace is where streamers, YouTubers and podcasters post clipping jobs online and hire clippers
+            to turn their long videos into Shorts, TikToks and Reels. You get paid to clip at a rate agreed up front,
+            not per view. New to this?{' '}
             <Link as={NextLink} href="/glossary/what-is-a-clipper" color="secondary" underline="hover">
               Here is what a clipper does
             </Link>
             , and{' '}
             <Link as={NextLink} href="/guides/clipper-pay-rates" color="secondary" underline="hover">
-              what clipping jobs typically pay
+              what the work typically pays
             </Link>
             .
           </p>
@@ -206,8 +208,8 @@ const ClippingJobsPage = () => (
       <section className="mt-12 flex flex-col gap-4 text-foreground-600">
         <h2 className="text-3xl font-semibold text-foreground">Clipping jobs vs. CPM clipping campaigns</h2>
         <p>
-          In a <strong>clipping job</strong>, a creator hires you to edit clips for their channels and pays per project,
-          hour or month. In a{' '}
+          When you are <strong>hired</strong>, a creator pays you to edit clips for their channels per project, hour or
+          month. In a{' '}
           <Link as={NextLink} href="/glossary/what-is-a-clipping-campaign" color="secondary" underline="hover">
             clipping campaign
           </Link>
