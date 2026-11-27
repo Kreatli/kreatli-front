@@ -295,7 +295,6 @@ export const SEO_PAGES: SeoPage[] = [
     targets: {
       primary: { query: 'clipping agency', variants: ['clipping agencies'], volume: 6600 },
       secondary: [
-        { query: 'what is a clipping agency', volume: 110 },
         { query: 'best clipping agency', variants: ['best clipping agencies'], volume: 90 },
         { query: 'clipping agency pricing', variants: ['clipping agency cost'], volume: null },
         { query: 'clipping agency reviews', volume: null },
@@ -317,7 +316,7 @@ export const SEO_PAGES: SeoPage[] = [
           headingPhrases: ['better than hiring a clipper directly'],
         },
       ],
-      ownedElsewhere: [],
+      ownedElsewhere: [{ query: 'what is a clipping agency', owner: '/glossary/what-is-a-clipping-marketplace' }],
       exceptions: [],
     },
   },
@@ -391,7 +390,7 @@ export const SEO_PAGES: SeoPage[] = [
     updatedAt: '2026-10-26',
     targets: {
       primary: { query: 'what is a clipping marketplace', volume: null },
-      secondary: [],
+      secondary: [{ query: 'what is a clipping agency', volume: 110 }],
       questions: [
         {
           id: 'fiverr',
@@ -411,7 +410,6 @@ export const SEO_PAGES: SeoPage[] = [
       ],
       ownedElsewhere: [
         { query: 'clipping marketplace', owner: '/compare/clipping-marketplace-vs-video-editor-marketplace' },
-        { query: 'what is a clipping agency', owner: '/compare/clipping-agency-vs-clipping-marketplace' },
       ],
       exceptions: [
         {
@@ -2063,7 +2061,7 @@ export const SEO_PAGES: SeoPage[] = [
         },
       ],
       ownedElsewhere: [
-        { query: 'what is a clipping agency', owner: '/compare/clipping-agency-vs-clipping-marketplace' },
+        { query: 'what is a clipping agency', owner: '/glossary/what-is-a-clipping-marketplace' },
         {
           query: 'how much does a clipping campaign cost',
           owner: '/tools/clipping-campaign-cost-calculator',
@@ -2445,7 +2443,7 @@ export const SEO_PAGES: SeoPage[] = [
     type: 'guide',
     funnelSide: 'clipper',
     slug: 'best-clipping-platforms',
-    title: 'Best Clipping Platforms in 2026: Where to Get Paid to Clip',
+    title: 'Best Clipping Platforms in 2026: Pay, Fees and Models Compared',
     seoTitle: 'Best Clipping Platforms in 2026',
     metaDescription: 'Compare the best clipping platforms of 2026: Whop, Vyro, ClipFarm, ClipAffiliates, Fiverr, Upwork and Kreatli. How each pays, fees, pros and cons.',
     primaryKeyword: 'best clipping platforms',

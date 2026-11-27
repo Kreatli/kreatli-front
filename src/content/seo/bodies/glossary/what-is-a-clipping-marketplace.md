@@ -50,6 +50,10 @@ Fiverr is a **general freelance marketplace** with video editing gigs, including
 
 Some companies offer both, but the way **pay works** stays different. Content rewards pay for views. Editor marketplaces pay for the editing work. Mixing up the terms causes confusion, so always check whether you are hiring an editor or funding a pay-per-view campaign.
 
+### What is a clipping agency?
+
+A clipping agency is a company that manages clipping for you: it sources clippers, runs the brief and review, and reports results, usually for a campaign budget or retainer. A clipping marketplace skips that layer, so you hire a clipper directly and manage the work yourself. For costs and when each fits, see [clipping agency vs. clipping marketplace](/compare/clipping-agency-vs-clipping-marketplace).
+
 ### How do I hire a clipper on an editor marketplace?
 
 Post a job that says what you need: the source (podcast, stream, course), how many clips, the format (usually vertical 9:16), the caption style, the deadline and your budget. Review editor profiles, agree on a price and receive finished clips. On Kreatli Marketplace, start at [/jobs/create](/jobs/create).

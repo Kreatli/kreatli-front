@@ -64,7 +64,7 @@ Kick clipping is usually priced by clip or by batch, because review time is the 
 
 Simple talking-head or reaction clips typically run around **$15-$35 per clip**. Gaming edits with sound design, memes, or motion graphics often land at **$50-$75+ per clip**. For benchmarks, see [how much to pay clippers](/guides/how-much-to-pay-clippers).
 
-Kreatli is built for fixed-pay hiring: you pay for the work delivered, not for views. If you are weighing a view-based campaign instead, the clipper-side guide on [getting paid to clip Kick streams](/guides/get-paid-to-clip-kick-streams) explains how those programs work.
+Kreatli is built for fixed-pay hiring: you pay for the work delivered, not for views. If you are weighing a view-based campaign instead, the clipper-side guide to [Kick clipping programs](/guides/get-paid-to-clip-kick-streams) explains how they work.
 
 ## How to evaluate Kick clipper samples
 

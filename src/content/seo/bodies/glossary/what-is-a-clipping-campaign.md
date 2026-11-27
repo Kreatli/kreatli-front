@@ -62,7 +62,7 @@ On **Kreatli Marketplace**, creators post a job, hire a clipper, and receive fin
 - [What is clip farming?](/glossary/what-is-clip-farming) for the broader practice of mass-producing clips
 - [How to run a clipping campaign](/guides/how-to-run-a-clipping-campaign) for setting budgets and rules
 - [Kreatli Marketplace vs. Whop Clips](/compare/kreatli-vs-whop-clips) for a model-by-model comparison
-- [What is a clipping agency?](/compare/clipping-agency-vs-clipping-marketplace) for a team that runs clipping for you, compared with a marketplace
+- [What is a clipping agency?](/glossary/what-is-a-clipping-marketplace) for a team that runs clipping for you, compared with a marketplace
 
 ## FAQ
 
