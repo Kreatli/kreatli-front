@@ -1,7 +1,7 @@
 {
   "note": "Known on-page findings (SEO-39). Only must-fix findings not listed here fail the gate. Never add keys to pass the gate; regenerate on production with npm run seo:onpage -- --gsc --links --update-baseline.",
-  "generatedAt": "2026-11-27T12:05:13.704Z",
-  "base": "http://localhost:3000",
+  "generatedAt": "2026-11-27T12:38:34.374Z",
+  "base": "https://marketplace.kreatli.com",
   "keys": [
     "/alternatives/nexus-clips-alternatives|cannibalization|nexus clips pricing",
     "/alternatives/nexus-clips-alternatives|h1-lines",
