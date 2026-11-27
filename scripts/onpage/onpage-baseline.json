@@ -1,6 +1,6 @@
 {
   "note": "Known on-page findings (SEO-39). Only must-fix findings not listed here fail the gate. Never add keys to pass the gate; regenerate on production with npm run seo:onpage -- --gsc --links --update-baseline.",
-  "generatedAt": "2026-11-27T17:37:35.754Z",
+  "generatedAt": "2026-11-27T17:43:47.707Z",
   "base": "https://marketplace.kreatli.com",
   "keys": [
     "/alternatives/nexus-clips-alternatives|cannibalization|nexus clips pricing",
@@ -88,8 +88,9 @@
     "/hire/hire-a-short-form-video-editor|repetition|short form video editor",
     "/hire/hire-a-short-form-video-editor|secondary-missing|short form video editing service",
     "/hire/hire-a-youtube-clipper|meta-secondary",
-    "/hire|cannibalization|hire a clipper",
-    "/hire|cannibalization|hire clippers",
-    "/tools/clipping-campaign-cost-calculator|meta-secondary"
+    "/tools/clipping-campaign-cost-calculator|meta-secondary",
+    "/|anchor-match",
+    "/|h2-lines|why should creators choose kreatli marketplace for clipping",
+    "/|headings-no-secondary"
   ]
 }
