@@ -1,6 +1,6 @@
 {
   "note": "Known on-page findings (SEO-39). Only must-fix findings not listed here fail the gate. Never add keys to pass the gate; regenerate on production with npm run seo:onpage -- --gsc --links --update-baseline.",
-  "generatedAt": "2026-11-27T17:14:19.280Z",
+  "generatedAt": "2026-11-27T17:21:14.001Z",
   "base": "https://marketplace.kreatli.com",
   "keys": [
     "/alternatives/nexus-clips-alternatives|cannibalization|nexus clips pricing",
@@ -16,8 +16,6 @@
     "/alternatives/vyro-alternatives|headings-no-secondary",
     "/alternatives/vyro-alternatives|meta-secondary",
     "/alternatives/vyro-alternatives|secondary-missing|websites like vyro",
-    "/alternatives/whop-content-rewards-alternatives|h1-primary",
-    "/alternatives/whop-content-rewards-alternatives|meta-primary",
     "/compare/clipping-agency-vs-clipping-marketplace|h1-lines",
     "/compare/clipping-agency-vs-clipping-marketplace|meta-secondary",
     "/compare/clipping-agency-vs-clipping-marketplace|repetition|clipping agency",
@@ -66,9 +64,6 @@
     "/guides/cost-to-hire-a-video-editor|secondary-missing|video editing services pricing",
     "/guides/get-paid-to-clip-kick-streams|cannibalization|kick clipping",
     "/guides/get-paid-to-clip-kick-streams|cannibalization|kick clipping program",
-    "/guides/get-paid-to-clip-youtube-videos|h1-primary",
-    "/guides/get-paid-to-clip-youtube-videos|headings-no-secondary",
-    "/guides/get-paid-to-clip-youtube-videos|secondary-missing|get paid to clip youtube videos",
     "/guides/how-much-do-clippers-make|h1-lines",
     "/guides/how-much-do-clippers-make|meta-secondary",
     "/guides/how-much-do-youtube-editors-make|headings-no-secondary",
