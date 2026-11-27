@@ -1,6 +1,6 @@
 {
   "note": "Known on-page findings (SEO-39). Only must-fix findings not listed here fail the gate. Never add keys to pass the gate; regenerate on production with npm run seo:onpage -- --gsc --links --update-baseline.",
-  "generatedAt": "2026-11-27T17:21:14.001Z",
+  "generatedAt": "2026-11-27T17:37:35.754Z",
   "base": "https://marketplace.kreatli.com",
   "keys": [
     "/alternatives/nexus-clips-alternatives|cannibalization|nexus clips pricing",
@@ -18,14 +18,12 @@
     "/alternatives/vyro-alternatives|secondary-missing|websites like vyro",
     "/compare/clipping-agency-vs-clipping-marketplace|h1-lines",
     "/compare/clipping-agency-vs-clipping-marketplace|meta-secondary",
-    "/compare/clipping-agency-vs-clipping-marketplace|repetition|clipping agency",
     "/compare/clipping-agency-vs-clipping-marketplace|secondary-missing|best clipping agency",
     "/compare/clipping-agency-vs-clipping-marketplace|secondary-missing|clipping agency reviews",
     "/compare/freelance-clipper-vs-in-house-editor|h1-lines",
     "/compare/freelance-clipper-vs-in-house-editor|headings-no-secondary",
     "/compare/freelance-clipper-vs-in-house-editor|meta-secondary",
     "/compare/freelance-clipper-vs-in-house-editor|secondary-missing|in-house video editor vs freelance",
-    "/compare/kreatli-vs-ai-clipping-tools|repetition|ai clipping tools",
     "/compare/kreatli-vs-whop-clips|h1-lines",
     "/glossary/cpm-meaning-clipping|meta-primary",
     "/glossary/jump-cut-definition|meta-primary",
@@ -37,7 +35,6 @@
     "/glossary/what-is-a-clipper|meta-secondary",
     "/glossary/what-is-a-clipper|secondary-missing|clipper meaning",
     "/glossary/what-is-a-clipping-campaign|meta-primary",
-    "/glossary/what-is-a-clipping-campaign|repetition|clipping campaigns",
     "/glossary/what-is-a-clipping-campaign|secondary-missing|clipping marketing",
     "/glossary/what-is-a-clipping-marketplace|meta-primary",
     "/glossary/what-is-a-vod|h1-lines",
@@ -87,14 +84,12 @@
     "/guides/tiktok-clipping|secondary-missing|how to become a clipper on tiktok",
     "/guides/whop-clipping|cannibalization|whop clipping",
     "/hire/hire-a-faceless-channel-editor|headings-no-secondary",
-    "/hire/hire-a-kick-clipper|repetition|kick clipper",
-    "/hire/hire-a-podcast-clipper|repetition|podcast clipper",
     "/hire/hire-a-podcast-clipper|secondary-missing|podcast clipping agency",
     "/hire/hire-a-short-form-video-editor|repetition|short form video editor",
     "/hire/hire-a-short-form-video-editor|secondary-missing|short form video editing service",
-    "/hire/hire-a-stream-clipper|repetition|stream clipper",
-    "/hire/hire-a-tiktok-clipper|repetition|tiktok clipper",
-    "/hire/hire-a-twitch-clipper|repetition|twitch clipper",
-    "/hire/hire-a-youtube-clipper|meta-secondary"
+    "/hire/hire-a-youtube-clipper|meta-secondary",
+    "/hire|cannibalization|hire a clipper",
+    "/hire|cannibalization|hire clippers",
+    "/tools/clipping-campaign-cost-calculator|meta-secondary"
   ]
 }
