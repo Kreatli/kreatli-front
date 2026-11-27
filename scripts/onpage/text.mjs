@@ -126,6 +126,14 @@ export const queryMatches = (query, phrases) => {
 };
 
 /**
+ * How specific the best match of a query to a search group is: the word count of the longest matching phrase, or 0.
+ * A query counts only toward its most specific target ("whop clipping alternatives" belongs to that search, not to
+ * "whop clipping"), the rule the SEO-40 sweep used.
+ */
+export const matchSpecificity = (query, phrases) =>
+  Math.max(0, ...phrases.filter((phrase) => queryMatches(query, [phrase])).map((phrase) => tokens(phrase).length));
+
+/**
  * Is an owned search named on its own in the text? An exact occurrence doesn't count when a word next to it is one
  * of the page's own topic words: "TikTok safe zone checker" is its own search, not the hub's "safe zone checker".
  */

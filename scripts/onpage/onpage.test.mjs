@@ -265,4 +265,14 @@ describe('rules', () => {
     const finding = auditGsc(targets, page, rows).find((f) => f.rule === 'cannibalization');
     assert.match(finding.message, /get-paid-to-clip-kick-streams more for "kick clipper".*60 vs 10/);
   });
+
+  it('counts a query only toward its most specific target (SEO-40 rule)', () => {
+    const page = extractPage(html('Hire a Kick Clipper | Kreatli', '<h1>Hire a Kick Clipper</h1>'));
+    // "kick clipper rates" belongs to a more specific search on another page (specificity 3 > "kick clipper" 2).
+    const rows = [
+      { query: 'kick clipper rates', page: '/guides/clipper-pay-rates', impressions: 90, clicks: 0, position: 20, specificity: 3 },
+      { query: 'kick clipper', page: targets.path, impressions: 10, clicks: 0, position: 30, specificity: 2 },
+    ];
+    assert.equal(auditGsc(targets, page, rows).find((f) => f.rule === 'cannibalization'), undefined);
+  });
 });

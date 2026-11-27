@@ -12,6 +12,7 @@ import { dateWindow, querySearchAnalytics, urlPath } from '../lib/gsc.ts';
 import { loadRedirects } from '../lib/redirects.ts';
 import { auditDuplicates, auditGsc, auditLinks, auditPage, pathOf, toPageTargets } from './checks.mjs';
 import { extractPage } from './page.mjs';
+import { matchSpecificity } from './text.mjs';
 
 const ROOT = process.cwd();
 export const BASELINE_FILE = path.join(ROOT, 'scripts/onpage/onpage-baseline.json');
@@ -171,6 +172,17 @@ export const runOnpage = async ({ base, paths, gsc, links, log = () => {} }) => 
   if (gsc) {
     log('Fetching Search Console query x page rows (90 days)...');
     ({ rows: gscRows, window: gscWindow } = await loadGscRows());
+    // Each query counts only toward its most specific target across every page.
+    const allPhrases = Array.from(allTargets.values()).flatMap((t) =>
+      [t.primary, ...t.secondary].map((group) => group.phrases),
+    );
+    const cache = new Map();
+    gscRows = gscRows.map((row) => {
+      if (!cache.has(row.query)) {
+        cache.set(row.query, Math.max(0, ...allPhrases.map((phrases) => matchSpecificity(row.query, phrases))));
+      }
+      return { ...row, specificity: cache.get(row.query) };
+    });
   }
   let crawl = null;
   if (links) {

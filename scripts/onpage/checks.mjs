@@ -8,6 +8,7 @@ import {
   countExact,
   firstWords,
   matchGroup,
+  matchSpecificity,
   normalize,
   queryMatches,
   similarity,
@@ -492,7 +493,9 @@ export const auditDuplicates = (pages) => {
 
 /**
  * Search Console rules. `rows`: { query, page (path), impressions, clicks, position }, query x page, marketplace only.
- * Cannibalization: another of our pages gets at least 1.5 times this page's impressions for a target search.
+ * Cannibalization: another of our pages gets at least 1.5 times this page's impressions for a target search. A row
+ * counts for a search only when no other target matches it more specifically (`row.specificity`, set by run.mjs
+ * from every page's targets; without it every match counts).
  */
 export const auditGsc = (targets, page, rows) => {
   const out = [];
@@ -502,8 +505,9 @@ export const auditGsc = (targets, page, rows) => {
   [targets.primary, ...targets.secondary].forEach((group) => {
     const impressions = new Map();
     ours.forEach((row) => {
-      if (queryMatches(row.query, group.phrases))
-        impressions.set(row.page, (impressions.get(row.page) ?? 0) + row.impressions);
+      const mine = matchSpecificity(row.query, group.phrases);
+      if (mine === 0 || (row.specificity !== undefined && mine < row.specificity)) return;
+      impressions.set(row.page, (impressions.get(row.page) ?? 0) + row.impressions);
     });
     const mine = impressions.get(targets.path) ?? 0;
     const [topPath, topImpressions] = [...impressions.entries()].sort((a, b) => b[1] - a[1])[0] ?? ['', 0];
