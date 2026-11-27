@@ -46,13 +46,13 @@ Aim for 3 to 6 tickets a week. Quality beats volume.
 
 ## 4. Check Linear for duplicates
 
-Use Linear through Composio as described under "Tickets" in the context file (`--account marketplace-kreatli-seo`).
-List open issues in project **Marketplace SEO** and skip any keyword that already has a ticket.
+Use Linear only through `npm run seo:linear` (see "Tickets" in the context file). Run `-- list` for open tickets and
+`-- search "<keyword>"` for any state, and skip any keyword that already has a ticket.
 
 ## 5. File one ticket per page
 
-`save_issue` with team `SEO`, project `Marketplace SEO`, label `new-page`, and a priority from volume × fit
-(High = 500+/mo and on-funnel). The description must include:
+`npm run seo:linear -- create --title "..." --label new-page --priority <1-4> --file <brief.md>`, with a priority
+from volume × fit (2 High = 500+/mo and on-funnel). The description must include:
 
 - **Target keyword**, volume, competition, and the 3 to 8 secondary queries to cover (with volumes)
 - **Page type and slug**, following the registry's conventions: `hire/hire-a-<niche>-clipper`,

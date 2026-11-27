@@ -52,18 +52,18 @@ Use the figures in these pages and link to them. Don't invent new ones:
 - Page registry: `src/content/seo/registry.ts`. Bodies: `src/content/seo/bodies/<type>/<slug>.md`
 - URL sections: `guide` → `/guides`, `glossary`, `compare`, `hire`, `alternatives`
 - Renamed slugs and merges: the `redirects()` in `next.config.js`
-- Scripts: `npm run seo:qa`, `npm run seo:audit`, `npm run seo:keywords`, `npm run seo:indexnow` (Bing and Yandex), `npm run seo-pages:next`
+- Scripts: `npm run seo:qa`, `npm run seo:audit`, `npm run seo:keywords`, `npm run seo:indexnow` (Bing and Yandex),
+  `npm run seo:linear` (tickets), `npm run seo-pages:next`
 - Publishing: commit straight to `main` and push. That deploys to production. No branches or PRs.
 - Tickets: Linear workspace **marketplace-kreatli-seo** (https://linear.app/marketplace-kreatli-seo), team
-  **Marketplace(Kreatli)-SEO-automation** (keys `SEO-*`), project **Marketplace SEO**, labels `new-page` / `rewrite` /
-  `technical`. Since 2026-10-29, reach it **only through Composio**:
-  `composio execute LINEAR_RUN_QUERY_OR_MUTATION --account marketplace-kreatli-seo -d '{"query_or_mutation":"..."}'`
-  (GraphQL; e.g. `issueCreate`, `issueUpdate`, `commentCreate`). The Linear MCP connectors in this app point at other
-  workspaces: never file marketplace SEO tickets through them. IDs: team `5dc8358a-6142-445a-ac8a-afa9e381928e`,
-  project `6310d9de-4a3d-477d-8223-55ff181314c7`; labels new-page `223e6a5e-34d5-459e-a8f9-e648b34ef68d`, rewrite
-  `3610b60e-a005-4f20-8eb4-630fb17d3f80`, technical `54364161-4699-4b67-adf5-4e5f15695de3`; states Backlog
-  `45ab9db9-70a4-4fb9-865b-4c5ca7e077da`, Todo `e42a9eda-53c4-4130-8034-1db1a1add409`, In Progress
-  `4e853413-7939-4a2e-bb4c-46af9b4aa2f2`, Done `812ef1a7-9059-428f-b4ec-21b13744771f`.
+  **Marketplace(Kreatli)-SEO-automation** (key `SEO`, tickets `SEO-*`), project **Marketplace SEO**, labels `new-page` /
+  `rewrite` / `technical`, statuses Backlog, Todo, In Progress, Done, Canceled. Use it **only through
+  `npm run seo:linear`** (settings in `.claude/seo/linear.json`): `list`, `search "<words>"`, `show <ID>`,
+  `create --title ... --label ... --priority 1-4 --file brief.md [--due YYYY-MM-DD]`, `comment <ID> --file note.md`,
+  `move <ID> "<status>"`, `priority <ID> <1-4>`, `due <ID> <YYYY-MM-DD|none>`. It checks the Composio account reaches
+  this workspace before every command and refuses ticket IDs outside the project, so nothing lands in kreatli.com's
+  Linear. Never call Composio's Linear tools or a Linear MCP connector directly. If `seo:linear` fails, report the
+  error and stop that step.
 
 ## Accounts: the marketplace's own, never kreatli.com's
 
@@ -73,7 +73,7 @@ default, and never touch kreatli.com's.
 
 | Source | Marketplace (use) | kreatli.com (never use here) |
 |---|---|---|
-| Linear | Composio `--account marketplace-kreatli-seo` (workspace `marketplace-kreatli-seo`) | `linear-kreatli-com`, `kreatli-reviewtool-seo` (workspace `kreatli-reviewtool-seo`, `KRE-*`) |
+| Linear | `npm run seo:linear` (Composio `--account marketplace-kreatli-seo`, workspace `marketplace-kreatli-seo`) | `linear-kreatli-com`, `kreatli-reviewtool-seo` (workspace `kreatli-reviewtool-seo`, `KRE-*`) |
 | Amplitude | Composio `--account kreatli-com`: despite the name, this is the **marketplace** project (`signup_completed`, `job_created`, `clipper_applied`, with `first_landing_type` / `first_landing_path`). `kreatli-all` is the same project. | `amplitude-kreatli-site` (`account_signup_completed`) |
 | Search Console | `sc-domain:marketplace.kreatli.com` | `sc-domain:kreatli.com`, `https://kreatli.com/` |
 | GA4 | `properties/424099578` (marketplace.kreatli.com) | `properties/497375961` (kreatli.com) |

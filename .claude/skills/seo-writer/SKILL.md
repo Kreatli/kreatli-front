@@ -9,11 +9,13 @@ One ticket → one commit on `main`. There is no PR or human review: pushing to 
 
 ## 1. Pick the ticket
 
-- If the user named a ticket, use it. Otherwise, in Linear (Composio account `marketplace-kreatli-seo`, see "Tickets" in the context file; project
-  **Marketplace SEO**), take the highest-priority `new-page` or `rewrite` issue in Backlog/Todo (skip anything already In Progress).
-  Skip tickets with a future due date.
-- Move it to **In Progress**.
-- Read `.claude/seo/kreatli-context.md` and the whole ticket.
+Use Linear only through `npm run seo:linear` (see "Tickets" in the context file). It refuses any workspace but the
+marketplace's, so never call Composio's Linear tools or a Linear MCP connector directly.
+
+- If the user named a ticket, use it. Otherwise run `npm run seo:linear -- list` and take the highest-priority
+  `new-page` or `rewrite` ticket in Backlog/Todo. Skip anything already In Progress and tickets with a future due date.
+- `npm run seo:linear -- move <ID> "In Progress"`.
+- Read `.claude/seo/kreatli-context.md` and the whole ticket (`npm run seo:linear -- show <ID>`).
 
 ## 2. Research before writing
 
@@ -68,10 +70,13 @@ npm run seo:qa -- <type>/<slug>
 - Once the page is live, tell Bing and Yandex: `npm run seo:indexnow -- <path> --submit` (plus any page you edited
   for link-backs). 200 or 202 from both is success. Any other answer: note it in the report and on the ticket, don't
   retry in a loop; the Monday audit's catch-up sends it again.
-- Comment on the Linear ticket with the commit link, a one-line summary, the QA result and the IndexNow result, then move it to **Done**. Include the check-back date (8 weeks out) and the baseline numbers. The SEO team's statuses are Backlog, Todo, In Progress, Done and Canceled.
+- Comment on the ticket with the commit link, a one-line summary, the QA result and the IndexNow result
+  (`npm run seo:linear -- comment <ID> --file <note.md>`), include the baseline numbers, then
+  `npm run seo:linear -- move <ID> Done` and `npm run seo:linear -- due <ID> <check-back date 8 weeks out>`.
+  The statuses are Backlog, Todo, In Progress, Done and Canceled.
 - In Search Console, Request indexing can only be done by hand in the UI. List the URL in your report so someone can do it.
 
 ## 7. If something goes wrong after publishing
 
 - A fact, figure or claim turns out wrong: fix it in a new commit on `main` (don't rewrite history), and note it on the ticket.
-- The page breaks the site (build error, broken layout): `git revert` the commit, push, and reopen the ticket as In Progress with the reason.
+- The page breaks the site (build error, broken layout): `git revert` the commit, push, and reopen the ticket as In Progress with the reason (`seo:linear -- move` and `-- comment`).

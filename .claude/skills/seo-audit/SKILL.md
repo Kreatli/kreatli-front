@@ -33,9 +33,12 @@ Read the markdown report.
 ## 3. Turn findings into tickets
 
 - **Group by page:** one ticket per page, even when it triggers several rules.
-- **Check Linear first.** Use Linear through Composio as described under "Tickets" in the context
-  file (`--account marketplace-kreatli-seo`). If an open ticket in **Marketplace SEO** already covers the page, add a comment with the new
-  numbers instead of filing a duplicate.
+- **Check Linear first,** only through `npm run seo:linear` (see "Tickets" in the context file): `-- list` for open
+  tickets, `-- search "<slug or keyword>"` for older ones. If an open ticket already covers the page, add a comment with
+  the new numbers (`-- comment <ID> --file <note.md>`) instead of filing a duplicate.
+- **File** with `npm run seo:linear -- create --title "..." --label rewrite|technical --priority 1-4 --file <brief.md>`.
+  A ticket that must wait (for example a page in its 28-day hold) gets `--due <date the hold ends>`, never a date in the
+  title.
 - **Look up volumes** for the page's main queries (`cd "$KEYWORD_PLANNER_DIR" && pnpm -s google-ads:keywords -- "<query>"`)
   so the ticket's priority reflects demand, not just impressions.
 - **Read the page** before writing the brief, so the "why it underperforms" is specific (e.g. "title says CPM

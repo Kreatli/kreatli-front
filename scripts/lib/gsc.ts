@@ -20,8 +20,10 @@ export interface GscRow {
   position: number;
 }
 
-export const runComposio = (slug: string, input: Record<string, unknown>) => {
-  const stdout = execFileSync('composio', ['execute', slug, '-d', JSON.stringify(input)], {
+/** Runs one Composio tool. Pass `account` (a connection alias) whenever the toolkit has more than one connection. */
+export const runComposio = (slug: string, input: Record<string, unknown>, options: { account?: string } = {}) => {
+  const accountArgs = options.account ? ['--account', options.account] : [];
+  const stdout = execFileSync('composio', ['execute', slug, ...accountArgs, '-d', JSON.stringify(input)], {
     encoding: 'utf8',
     maxBuffer: 64 * 1024 * 1024,
     stdio: ['ignore', 'pipe', 'pipe'],

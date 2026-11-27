@@ -25,7 +25,7 @@ Weekly SEO run for Kreatli Marketplace (https://marketplace.kreatli.com). Work i
 2. Audit: follow `.claude/skills/seo-audit/SKILL.md` exactly
    - Run `npm run seo:audit -- --inspect`, then read `.seo-reports/audit-<today>.md`.
    - File one Linear ticket per page (label `rewrite` or `technical`, team SEO, project "Marketplace SEO").
-   - Use Linear only through Composio (`composio execute LINEAR_RUN_QUERY_OR_MUTATION --account marketplace-kreatli-seo`), as described under "Tickets" in the context file. Never use the Linear MCP connectors.
+   - Use Linear only through `npm run seo:linear` (see "Tickets" in the context file). It refuses any workspace but the marketplace's. Never call Composio's Linear tools or a Linear MCP connector directly.
    - Check open tickets first. If a page already has one, comment with the new numbers instead of filing a duplicate.
 
 3. Keyword research: follow `.claude/skills/seo-keyword-research/SKILL.md` exactly
@@ -54,7 +54,7 @@ SEO writing run for Kreatli Marketplace (https://marketplace.kreatli.com). It pu
    - Read `.claude/seo/kreatli-context.md`, then follow `.claude/skills/seo-writer/SKILL.md` exactly. Use `.claude/skills/seo-qa/SKILL.md` for QA.
 
 2. Pick ONE ticket
-   - Use Linear only through Composio (`composio execute LINEAR_RUN_QUERY_OR_MUTATION --account marketplace-kreatli-seo`), project "Marketplace SEO", as described under "Tickets" in the context file. Never use the Linear MCP connectors.
+   - Use Linear only through `npm run seo:linear` (see "Tickets" in the context file). It refuses any workspace but the marketplace's. Never call Composio's Linear tools or a Linear MCP connector directly. Run `npm run seo:linear -- list`.
    - Take the highest-priority Backlog/Todo issue labelled `rewrite` or `new-page` with no future due date (skip anything already In Progress).
 
 3. Write the page and registry entry. Loop on `npm run seo:qa -- <type>/<slug>` until there are no FAILs, do the manual review, and run `npx tsc --noEmit`.
