@@ -56,6 +56,12 @@ export const extractFaqs = (markdown: string): SeoFaq[] => {
     .filter(({ question, answer }) => question && answer);
 };
 
+/**
+ * Marks the opening answer (the first paragraph of the body) with id="answer", exactly once per page. The on-page SEO
+ * check reads it as the page's answer to its primary search (SEO-39). Adds no visible change.
+ */
+export const markAnswer = (html: string) => html.replace(/<p>/, '<p id="answer">');
+
 export const loadPublishedPage = (type: SeoPageType, slug: string): SeoPageWithBody | null => {
   const page = getPageBySlug(type, slug);
 
@@ -70,7 +76,7 @@ export const loadPublishedPage = (type: SeoPageType, slug: string): SeoPageWithB
   }
 
   const markdown = stripLeadingH1(rawBody);
-  const body = marked.parse(markdown, { async: false }) as string;
+  const body = markAnswer(marked.parse(markdown, { async: false }) as string);
 
   return {
     ...toPublicPage(page),

@@ -11,9 +11,17 @@ then run both parts again.
 ## Part 1: automated checks
 
 ```bash
-npm run seo:qa -- <type>/<slug>      # one page, exit code 1 on FAIL
-npm run seo:qa -- --all              # sweep every published page
+npm run seo:gate -- <type>/<slug> --all   # build, serve on :3100, run seo:qa on the rendered page, stop
+npm run seo:qa -- <type>/<slug>           # against a server already running on :3000 (or --base <url>)
+npm run seo:onpage -- <path>              # the on-page check alone, on production by default
 ```
+
+For pages with `targets`, `seo:qa` also runs the **on-page SEO check** (`scripts/onpage/`, ported from kreatli.com)
+on the rendered page: the primary search in the title, H1, opening answer (`id="answer"`) and meta description;
+secondary searches and questions covered; searches owned by other pages kept out of the title and H1; heading
+structure, repetition, structured data, and phone line counts. A must-fix that isn't in
+`scripts/onpage/onpage-baseline.json` is a FAIL; a known one is a WARN. If the page can't be fetched, that's a FAIL.
+Never add baseline keys to pass; exceptions need the owner's OK and a ticket (`targets.exceptions`).
 
 | Check | FAIL when | WARN when |
 |---|---|---|

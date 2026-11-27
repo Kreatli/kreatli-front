@@ -8,6 +8,12 @@
  *   npm run seo:qa -- glossary/what-is-a-clipper # when a slug exists in two sections
  *   npm run seo:qa -- --all                      # every published page, summary only
  *   npm run seo:qa -- what-is-a-clipper --json   # machine-readable output
+ *   npm run seo:qa -- what-is-a-clipper --base https://marketplace.kreatli.com   # check another server
+ *
+ * Pages with `targets` also get the on-page SEO check (SEO-39) on the rendered page, from a local production build
+ * by default (`npm run build && npm run start`, http://localhost:3000). A must-fix finding that isn't in
+ * scripts/onpage/onpage-baseline.json is a FAIL, a known one is a WARN. If the page can't be fetched, that's a FAIL:
+ * the gate never passes without checking the rendered page. Drafts render only once published, so re-run then.
  *
  * Exits with code 1 when any checked page has a FAIL.
  */
@@ -17,7 +23,7 @@ import path from 'path';
 
 import { getPageTitle } from '../src/constants/brand';
 import { extractFaqs, loadPageBody } from '../src/content/seo/loadPage';
-import { SEO_SECTION_PATHS } from '../src/content/seo/paths';
+import { getPageUrl, SEO_SECTION_PATHS } from '../src/content/seo/paths';
 import { SEO_PAGES } from '../src/content/seo/registry';
 import { SeoPage, SeoPageType } from '../src/content/seo/types';
 import { keywordCoverage } from './lib/keywords';
@@ -246,13 +252,69 @@ const resolvePage = (arg: string) => {
 
 const ICON: Record<Level, string> = { pass: 'PASS', warn: 'WARN', fail: 'FAIL' };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type OnpageModule = any;
+
+/** On-page findings on the rendered page, as QA results. Info-level advice is left to `npm run seo:onpage`. */
+const checkOnpage = async (page: SeoPage, base: string, onpage: OnpageModule, allTargets: Map<string, unknown>) => {
+  const pagePath = getPageUrl(page.type, page.slug);
+  const targets = allTargets.get(pagePath);
+  if (!targets) {
+    return [
+      {
+        name: 'on-page targets',
+        level: 'warn' as Level,
+        detail: 'No targets. Add them to the registry entry (see the seo-writer skill) and run npm run seo:test.',
+      },
+    ];
+  }
+  if (page.status !== 'published') {
+    return [
+      {
+        name: 'on-page check',
+        level: 'warn' as Level,
+        detail: "Drafts don't render. Set status 'published', rebuild, and run seo:qa again before committing.",
+      },
+    ];
+  }
+  let fetched;
+  try {
+    fetched = await onpage.fetchPage(base, pagePath);
+  } catch (error) {
+    const detail = error instanceof Error ? error.message : String(error);
+    return [
+      {
+        name: 'on-page check',
+        level: 'fail' as Level,
+        detail: `Couldn't fetch ${base}${pagePath} (${detail}). Start it: npm run build && npm run start.`,
+      },
+    ];
+  }
+  const baseline = onpage.readBaseline();
+  const { findings } = onpage.checkFetched(targets, fetched, base);
+  const results: CheckResult[] = findings
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    .filter((f: any) => f.severity !== 'info' && !f.excepted)
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    .map((f: any) => {
+      const isNew = onpage.classify(f, baseline) === 'new';
+      const failing = f.severity === 'must' && isNew;
+      let tag = 'warning';
+      if (f.severity === 'must') tag = isNew ? 'must-fix, NEW' : 'must-fix, known';
+      return { name: `on-page ${f.rule}`, level: failing ? 'fail' : 'warn', detail: `${f.message} (${tag}) -> ${f.fix}` };
+    });
+  return results.length ? results : [{ name: 'on-page check', level: 'pass' as Level, detail: 'targets in place' }];
+};
+
 const run = async () => {
   redirectSources = new Set((await loadRedirects()).keys());
 
   const args = process.argv.slice(2).filter((arg) => !arg.endsWith('.ts') && arg !== '--');
   const asJson = args.includes('--json');
   const checkAll = args.includes('--all');
-  const targets = args.filter((arg) => !arg.startsWith('--'));
+  const baseIndex = args.indexOf('--base');
+  const base = (baseIndex >= 0 ? args[baseIndex + 1] : 'http://localhost:3000').replace(/\/$/, '');
+  const targets = args.filter((arg, index) => !arg.startsWith('--') && (baseIndex < 0 || index !== baseIndex + 1));
 
   if (!checkAll && targets.length === 0) {
     console.error('Usage: npm run seo:qa -- <slug | type/slug> [--json]   or   npm run seo:qa -- --all');
@@ -260,7 +322,18 @@ const run = async () => {
   }
 
   const pages = checkAll ? SEO_PAGES.filter((page) => page.status === 'published') : targets.map(resolvePage);
-  const report = pages.map((page) => ({ page: `${page.type}/${page.slug}`, results: checkPage(page) }));
+  // The on-page check is plain .mjs, ported as is from kreatli.com; tsx loads it.
+  // eslint-disable-next-line import/extensions
+  const onpage: OnpageModule = await import('./onpage/run.mjs');
+  const allTargets: Map<string, unknown> = await onpage.loadTargets();
+  const report = [];
+  // One page at a time, so the local server isn't flooded.
+  // eslint-disable-next-line no-restricted-syntax
+  for (const page of pages) {
+    // eslint-disable-next-line no-await-in-loop
+    const onpageResults = await checkOnpage(page, base, onpage, allTargets);
+    report.push({ page: `${page.type}/${page.slug}`, results: [...checkPage(page), ...onpageResults] });
+  }
   const failed = report.filter(({ results }) => results.some((r) => r.level === 'fail'));
 
   if (asJson) {

@@ -16,6 +16,8 @@ marketplace's, so never call Composio's Linear tools or a Linear MCP connector d
   `new-page` or `rewrite` ticket in Backlog/Todo. Skip anything already In Progress and tickets with a future due date.
 - `npm run seo:linear -- move <ID> "In Progress"`.
 - Read `.claude/seo/kreatli-context.md` and the whole ticket (`npm run seo:linear -- show <ID>`).
+- **Start from the page's targets** (the `targets` on its registry entry): the primary and secondary searches, the
+  questions it must answer, and the searches other pages own. Those other searches stay out of your title and H1.
 
 ## 2. Research before writing
 
@@ -29,7 +31,8 @@ File: `src/content/seo/bodies/<type>/<slug>.md`
 
 - First line `# <H1>`. The layout renders the H1 from the registry title and strips this line, so keep the two the same.
 - **Opening paragraph:** answer the target question directly in 2 to 4 sentences, written to be quoted as a
-  featured snippet.
+  featured snippet. Use the primary search's words in it. This first paragraph becomes the page's `id="answer"`,
+  which the on-page check reads; don't put anything else (a note, an image) before it.
 - `##` sections that follow the brief's outline. Use tables for rates and comparisons, and worked examples for any maths.
 - **`## FAQ`** with `### Question` subheadings and one-paragraph answers. These become FAQPage schema, so
   each answer must stand on its own. Aim for 4 to 6.
@@ -47,19 +50,38 @@ File: `src/content/seo/bodies/<type>/<slug>.md`
   `status: 'draft'`, `relatedSlugs` (3, published only) and `publishedAt`.
 - **Rewrite:** update `title`/`seoTitle`/`metaDescription`/`relatedSlugs` as needed and set `updatedAt` to today.
 - If the title plus " | Kreatli" is over 60 chars, add a shorter `seoTitle`.
+- **Targets:** every page you write or rewrite needs `targets` (same shape as the pages that have them). For a page
+  without them, add them: primary = `primaryKeyword` in lower case, 2 to 5 secondary searches from the ticket and
+  Search Console, the questions the page answers (each tied to a real heading), and `ownedElsewhere` for close
+  searches another page owns. Volumes come from `npm run seo:volumes` (exact, worldwide; `null` when there's no
+  data). If a new target is wrong for what the page says, fix the target, not the page. Then run `npm run seo:test`:
+  it refuses a search on two pages and a question with no matching heading.
 - **Changing a slug or merging pages:** add a permanent redirect in `next.config.js` (`renamedSlugs` or the
   list below it), and update every body that links to the old URL.
 
-## 5. QA gate
+## 5. QA gate (blocks the push)
+
+Pushing to `main` deploys to production with no review, so this gate is the only check. It runs on the rendered
+page from a local production build, not just the markdown.
 
 ```bash
-npm run seo:qa -- <type>/<slug>
+npm run seo:test                                   # targets and opening answers are well formed
+npm run seo:gate -- <type>/<slug> [<other pages you edited>] --all
 ```
 
-- Any **FAIL** → fix it and re-run. Repeat until it passes. Fix WARNs where you reasonably can.
+`seo:gate` builds the site, starts it on port 3100, runs `seo:qa` (the markdown checks plus the on-page SEO check),
+and stops the server. A draft doesn't render, so for a new page set `status: 'published'` before running it.
+
+- Any **FAIL** (including a **NEW** on-page must-fix) → fix it and re-run. Repeat until the gate passes. **Never
+  commit while it fails.** Fix warnings where you reasonably can, without stuffing keywords: no extra H2s or FAQ
+  entries only to fit wording, and repetition over 2.5% of the words is itself a warning.
+- **Known** must-fix findings (in `scripts/onpage/onpage-baseline.json`) are warnings. Fix them when the ticket
+  touches that part of the page.
+- **Never add keys to the baseline to pass the gate.** An exception needs the owner's OK and a ticket, and goes in
+  the page's `targets.exceptions`.
 - Then run the `seo-qa` skill's manual checks: claims, accuracy, usefulness and tone.
-- Only after both pass: for a new page, set `status: 'published'` and run QA once more.
 - Run `npx tsc --noEmit` before committing.
+- Put the gate result in the commit message (for example "seo:gate PASS, 2 warnings: ...") and in the ticket comment.
 
 ## 6. Commit to main and publish
 

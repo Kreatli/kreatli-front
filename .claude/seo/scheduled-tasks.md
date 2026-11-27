@@ -57,7 +57,7 @@ SEO writing run for Kreatli Marketplace (https://marketplace.kreatli.com). It pu
    - Use Linear only through `npm run seo:linear` (see "Tickets" in the context file). It refuses any workspace but the marketplace's. Never call Composio's Linear tools or a Linear MCP connector directly. Run `npm run seo:linear -- list`.
    - Take the highest-priority Backlog/Todo issue labelled `rewrite` or `new-page` with no future due date (skip anything already In Progress).
 
-3. Write the page and registry entry. Loop on `npm run seo:qa -- <type>/<slug>` until there are no FAILs, do the manual review, and run `npx tsc --noEmit`.
+3. Write the page and registry entry (with its `targets`). Run `npm run seo:test`, then loop on the gate, `npm run seo:gate -- <type>/<slug> --all` (production build, on-page check on the rendered page), until there are no FAILs. Never commit while it fails or add baseline keys to pass it. Do the manual review and run `npx tsc --noEmit`. Put the gate result in the commit message and ticket comment.
 
 4. Publish on main (there are no PRs; a push to main deploys to production)
    - `git pull --ff-only`. Commit only this ticket's files as ONE commit `feat(seo): ... (<TICKET-ID>)`, ending with "Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>".

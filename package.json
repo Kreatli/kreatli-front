@@ -18,7 +18,9 @@
     "seo:indexnow": "npx tsx scripts/seo-indexnow.ts",
     "seo:linear": "npx tsx scripts/seo-linear.ts",
     "seo:volumes": "npx tsx scripts/seo-volumes.ts",
-    "seo:test": "npx tsx --test scripts/seo-targets.test.ts"
+    "seo:onpage": "npx tsx scripts/onpage/cli.mjs",
+    "seo:gate": "npx tsx scripts/seo-gate.ts",
+    "seo:test": "npx tsx --test scripts/seo-targets.test.ts scripts/onpage/onpage.test.mjs"
   },
   "engines": {
     "node": "22.*"
@@ -71,6 +73,7 @@
     "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-simple-import-sort": "^10.0.0",
+    "node-html-parser": "^6.1.13",
     "postcss": "^8.4.31",
     "tailwindcss": "^3.3.3",
     "tsx": "^4.22.4",

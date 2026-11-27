@@ -8,6 +8,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import test from 'node:test';
 
+import { loadPublishedPage } from '../src/content/seo/loadPage';
 import { getPageUrl } from '../src/content/seo/paths';
 import { SEO_PAGES } from '../src/content/seo/registry';
 import { SEO_APP_PAGE_OWNERS, SeoPage, SeoPageTargets, SeoSearchGroup } from '../src/content/seo/types';
@@ -100,5 +101,20 @@ test('every question matches a heading on the page', () => {
       const answered = question.headingPhrases.some(inHeading);
       assert.ok(answered, `${pathOf(page)}: no heading contains any of ${JSON.stringify(question.headingPhrases)}`);
     });
+  });
+});
+
+test('every published page has exactly one opening answer, before the first section', () => {
+  SEO_PAGES.filter((page) => page.status === 'published').forEach((page) => {
+    const loaded = loadPublishedPage(page.type, page.slug);
+    assert.ok(loaded, `${pathOf(page)}: couldn't load`);
+    const html = loaded?.body ?? '';
+    assert.equal(html.split('id="answer"').length - 1, 1, `${pathOf(page)}: needs exactly one id="answer"`);
+    const answerAt = html.indexOf('id="answer"');
+    const firstSection = html.search(/<h2[\s>]/);
+    assert.ok(firstSection === -1 || answerAt < firstSection, `${pathOf(page)}: the answer comes after the first H2`);
+    const answer = html.slice(answerAt).match(/^id="answer">([\s\S]*?)<\/p>/)?.[1] ?? '';
+    const words = answer.replace(/<[^>]+>/g, ' ').split(/\s+/).filter(Boolean).length;
+    assert.ok(words >= 8, `${pathOf(page)}: the opening answer is only ${words} words`);
   });
 });
