@@ -1,6 +1,6 @@
 {
   "note": "Known on-page findings (SEO-39). Only must-fix findings not listed here fail the gate. Never add keys to pass the gate; regenerate on production with npm run seo:onpage -- --gsc --links --update-baseline.",
-  "generatedAt": "2026-11-27T17:43:47.707Z",
+  "generatedAt": "2026-11-27T17:53:26.055Z",
   "base": "https://marketplace.kreatli.com",
   "keys": [
     "/alternatives/nexus-clips-alternatives|cannibalization|nexus clips pricing",
@@ -24,6 +24,7 @@
     "/compare/freelance-clipper-vs-in-house-editor|headings-no-secondary",
     "/compare/freelance-clipper-vs-in-house-editor|meta-secondary",
     "/compare/freelance-clipper-vs-in-house-editor|secondary-missing|in-house video editor vs freelance",
+    "/compare/kreatli-vs-clipaffiliates|headings-no-secondary",
     "/compare/kreatli-vs-whop-clips|h1-lines",
     "/glossary/cpm-meaning-clipping|meta-primary",
     "/glossary/jump-cut-definition|meta-primary",
@@ -37,6 +38,7 @@
     "/glossary/what-is-a-clipping-campaign|meta-primary",
     "/glossary/what-is-a-clipping-campaign|secondary-missing|clipping marketing",
     "/glossary/what-is-a-clipping-marketplace|meta-primary",
+    "/glossary/what-is-a-clipping-marketplace|meta-secondary",
     "/glossary/what-is-a-vod|h1-lines",
     "/glossary/what-is-a-vod|meta-secondary",
     "/glossary/what-is-a-vod|secondary-missing|vod meaning",
@@ -55,7 +57,6 @@
     "/guides/best-clipping-platforms|cannibalization|best clipping platforms",
     "/guides/best-clipping-platforms|cannibalization|clipping platforms",
     "/guides/best-clipping-platforms|cannibalization|clipping websites that pay",
-    "/guides/best-clipping-platforms|owned-elsewhere|get paid to clip",
     "/guides/cost-to-hire-a-video-editor|cannibalization|video editing services pricing",
     "/guides/cost-to-hire-a-video-editor|secondary-missing|freelance video editor rates",
     "/guides/cost-to-hire-a-video-editor|secondary-missing|video editing services pricing",
