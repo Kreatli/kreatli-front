@@ -37,6 +37,25 @@ export const SEO_PAGES: SeoPage[] = [
     relatedSlugs: ['clipping-marketplace-vs-video-editor-marketplace', 'kreatli-vs-upwork'],
     publishedAt: '2026-07-01',
     updatedAt: '2026-10-21',
+    targets: {
+      primary: { query: 'fiverr alternative for hiring clippers', volume: null },
+      secondary: [{ query: 'fiverr clipper', variants: ['fiverr clippers'], volume: 40 }],
+      questions: [
+        {
+          id: 'hire-on-fiverr',
+          label: 'Can I hire a clipper on Fiverr?',
+          headingPhrases: ['hire a clipper on fiverr'],
+        },
+        {
+          id: 'fees',
+          label: 'How much does Fiverr take from each order?',
+          headingPhrases: ['how much does fiverr take'],
+        },
+        { id: 'kreatli-cut', label: 'Does Kreatli take a cut?', headingPhrases: ['take a cut'] },
+      ],
+      ownedElsewhere: [{ query: 'fiverr vs upwork for clippers', owner: '/guides/fiverr-vs-upwork-for-clippers' }],
+      exceptions: [],
+    },
   },
   {
     id: 3,
@@ -122,6 +141,32 @@ export const SEO_PAGES: SeoPage[] = [
     relatedSlugs: ['kreatli-vs-vyro', 'kreatli-vs-whop-clips', 'clipping-marketplace-vs-video-editor-marketplace'],
     publishedAt: '2026-07-01',
     updatedAt: '2026-10-21',
+    targets: {
+      primary: { query: 'clipaffiliates vs kreatli', volume: null },
+      secondary: [
+        { query: 'clipaffiliates', variants: ['clipaffiliate', 'clipaffiliates.com'], volume: 1300 },
+        { query: 'clipaffiliates review', volume: null },
+      ],
+      questions: [
+        {
+          id: 'how-it-works',
+          label: 'How does ClipAffiliates work?',
+          headingPhrases: ['how clipaffiliates works'],
+        },
+        {
+          id: 'campaign-cost',
+          label: 'What does a ClipAffiliates campaign cost?',
+          headingPhrases: ['clipping campaign cost on clipaffiliates', 'what a clipping campaign costs'],
+        },
+        {
+          id: 'hire-clipper',
+          label: 'Is ClipAffiliates a way to hire a clipper?',
+          headingPhrases: ['clipaffiliates a way to hire a clipper'],
+        },
+      ],
+      ownedElsewhere: [{ query: 'how much does a clipping campaign cost', owner: '/guides/how-much-to-pay-clippers' }],
+      exceptions: [],
+    },
   },
   {
     id: 8,
@@ -139,6 +184,21 @@ export const SEO_PAGES: SeoPage[] = [
     relatedSlugs: ['freelance-clipper-vs-in-house-editor', 'clipping-agency-vs-clipping-marketplace', 'clipping-marketplace-vs-video-editor-marketplace'],
     publishedAt: '2026-07-01',
     updatedAt: '2026-10-21',
+    targets: {
+      primary: { query: 'ai clipping tools vs human clipper', volume: null },
+      secondary: [{ query: 'ai clipping tools', variants: ['ai clipping tool'], volume: 2400 }],
+      questions: [
+        {
+          id: 'replace',
+          label: 'Can AI clipping tools replace a human clipper?',
+          headingPhrases: ['replace a human clipper'],
+        },
+        { id: 'cost', label: 'How do the costs compare?', headingPhrases: ['how the costs compare'] },
+        { id: 'both', label: 'Can I use both?', headingPhrases: ['using both'] },
+      ],
+      ownedElsewhere: [{ query: 'opus clip pricing', owner: '/alternatives/opus-clip-alternatives' }],
+      exceptions: [],
+    },
   },
   {
     id: 9,
@@ -156,6 +216,43 @@ export const SEO_PAGES: SeoPage[] = [
     relatedSlugs: ['clipping-agency-vs-clipping-marketplace', 'kreatli-vs-ai-clipping-tools', 'kreatli-vs-fiverr'],
     publishedAt: '2026-07-01',
     updatedAt: '2026-10-21',
+    targets: {
+      primary: {
+        query: 'freelance clipper vs in-house editor',
+        variants: ['freelance clipper vs in house editor'],
+        volume: null,
+      },
+      secondary: [
+        {
+          query: 'in-house video editor vs freelance',
+          variants: [
+            'in house video editor vs freelance',
+            'freelance vs in-house video editor',
+            'freelance vs in house video editor',
+          ],
+          volume: null,
+        },
+      ],
+      questions: [
+        {
+          id: 'cheaper',
+          label: 'Is a freelance clipper or an in-house editor cheaper?',
+          headingPhrases: ['cheaper to hire a freelance clipper or an in-house editor'],
+        },
+        {
+          id: 'in-house-cost',
+          label: 'How much does an in-house video editor cost?',
+          headingPhrases: ['how much does an in-house video editor cost'],
+        },
+        {
+          id: 'switch',
+          label: 'When should I switch to an in-house editor?',
+          headingPhrases: ['switch from a freelance clipper'],
+        },
+      ],
+      ownedElsewhere: [],
+      exceptions: [],
+    },
   },
   {
     id: 10,
@@ -173,6 +270,34 @@ export const SEO_PAGES: SeoPage[] = [
     relatedSlugs: ['freelance-clipper-vs-in-house-editor', 'kreatli-vs-fiverr', 'kreatli-vs-upwork'],
     publishedAt: '2026-07-01',
     updatedAt: '2026-10-21',
+    targets: {
+      primary: { query: 'clipping agency', variants: ['clipping agencies'], volume: 6600 },
+      secondary: [
+        { query: 'what is a clipping agency', volume: 110 },
+        { query: 'best clipping agency', variants: ['best clipping agencies'], volume: 90 },
+        { query: 'clipping agency pricing', variants: ['clipping agency cost'], volume: null },
+        { query: 'clipping agency reviews', volume: null },
+      ],
+      questions: [
+        {
+          id: 'what',
+          label: 'What is a clipping agency?',
+          headingPhrases: ['what is a clipping agency', 'what a clipping agency does'],
+        },
+        {
+          id: 'cost',
+          label: 'How much does a clipping agency cost?',
+          headingPhrases: ['clipping agency cost', 'comparing the costs'],
+        },
+        {
+          id: 'agency-or-direct',
+          label: 'Is an agency better than hiring a clipper directly?',
+          headingPhrases: ['better than hiring a clipper directly'],
+        },
+      ],
+      ownedElsewhere: [],
+      exceptions: [],
+    },
   },
   {
     id: 11,
@@ -222,6 +347,37 @@ export const SEO_PAGES: SeoPage[] = [
     relatedSlugs: ['clipper-pay-rates', 'kreatli-vs-whop-clips', 'payout-cap-meaning'],
     publishedAt: '2026-07-01',
     updatedAt: '2026-10-26',
+    targets: {
+      primary: {
+        query: 'cpm meaning clipping',
+        variants: ['cpm meaning in clipping', 'cpm clipping meaning'],
+        volume: 20,
+      },
+      secondary: [
+        { query: 'what is cpm in clipping', variants: ['what does cpm mean in clipping'], volume: 30 },
+        {
+          query: 'cpm meaning whop',
+          variants: ['cpm meaning in whop', 'what does cpm mean in whop', 'what is cpm in whop'],
+          volume: 20,
+        },
+        { query: 'cpm clipping', variants: ['clipping cpm', 'cpm in clipping'], volume: 20 },
+      ],
+      questions: [
+        {
+          id: 'whop',
+          label: 'What does CPM mean on Whop?',
+          headingPhrases: ['cpm on whop', 'cpm mean on whop'],
+        },
+        { id: 'good-cpm', label: 'Is a $1 CPM good for clipping?', headingPhrases: ['$1 cpm good'] },
+        {
+          id: 'calculate',
+          label: 'How do you calculate CPM earnings?',
+          headingPhrases: ['calculate cpm earnings'],
+        },
+      ],
+      ownedElsewhere: [],
+      exceptions: [],
+    },
   },
   {
     id: 14,
@@ -237,6 +393,33 @@ export const SEO_PAGES: SeoPage[] = [
     notes: 'Short, definitional — target featured snippet',
     relatedSlugs: ['jump-cut-definition', 'what-is-a-clipper', 'podcast-clipping-meaning'],
     publishedAt: '2026-07-01',
+    targets: {
+      primary: { query: 'what is b-roll', variants: ['what is b roll', 'what is a b roll'], volume: 22200 },
+      secondary: [
+        { query: 'b roll meaning', variants: ['b-roll meaning', 'broll meaning'], volume: 22200 },
+        { query: 'b roll definition', variants: ['b-roll definition', 'broll definition'], volume: 22200 },
+        { query: 'what is b roll footage', variants: ['b roll footage meaning'], volume: 4400 },
+      ],
+      questions: [
+        {
+          id: 'a-roll-vs-b-roll',
+          label: 'What is the difference between A-roll and B-roll?',
+          headingPhrases: ['a-roll vs. b-roll'],
+        },
+        {
+          id: 'every-clip',
+          label: 'Does every short-form clip need B-roll?',
+          headingPhrases: ['b-roll in every short-form clip'],
+        },
+        {
+          id: 'copyright',
+          label: 'Can B-roll cause copyright problems?',
+          headingPhrases: ['b-roll cause copyright'],
+        },
+      ],
+      ownedElsewhere: [],
+      exceptions: [],
+    },
   },
   {
     id: 15,
@@ -252,6 +435,25 @@ export const SEO_PAGES: SeoPage[] = [
     notes: 'Short, definitional — target featured snippet',
     relatedSlugs: ['what-is-b-roll', 'what-is-a-clipper', 'video-hook-first-3-seconds'],
     publishedAt: '2026-07-01',
+    targets: {
+      primary: { query: 'jump cut definition', volume: 1300 },
+      secondary: [
+        { query: 'what is a jump cut', variants: ['what are jump cuts'], volume: 2400 },
+        { query: 'jump cut', variants: ['jump cuts'], volume: 22200 },
+        { query: 'jump cut example', variants: ['jump cut examples'], volume: 720 },
+      ],
+      questions: [
+        { id: 'how', label: 'How do jump cuts work?', headingPhrases: ['how jump cuts work'] },
+        { id: 'bad', label: 'Are jump cuts bad editing?', headingPhrases: ['jump cuts bad editing'] },
+        {
+          id: 'vs-other-edits',
+          label: 'How is a jump cut different from other edits?',
+          headingPhrases: ['jump cuts vs. other edits'],
+        },
+      ],
+      ownedElsewhere: [],
+      exceptions: [],
+    },
   },
   {
     id: 16,
@@ -588,6 +790,51 @@ export const SEO_PAGES: SeoPage[] = [
     relatedSlugs: ['how-to-become-a-clipper', 'find-first-video-editing-client', 'video-editing-portfolio-no-clients'],
     publishedAt: '2026-07-02',
     updatedAt: '2026-10-21',
+    targets: {
+      primary: {
+        query: 'become a freelance video editor with no experience',
+        variants: ['how to become a freelance video editor with no experience'],
+        volume: null,
+      },
+      secondary: [
+        { query: 'freelance video editor', variants: ['freelancer video editor'], volume: 8100 },
+        {
+          query: 'how to become a freelance video editor',
+          variants: [
+            'how to become freelance video editor',
+            'becoming a freelance video editor',
+            'how to be a freelance video editor',
+          ],
+          volume: 90,
+        },
+        {
+          query: 'how to start freelance video editing',
+          variants: ['how to start as a freelance video editor'],
+          volume: 40,
+        },
+        { query: 'how to become a video editor without a degree', volume: 70 },
+      ],
+      questions: [
+        { id: 'degree', label: 'Do I need a degree?', headingPhrases: ['need a degree'] },
+        {
+          id: 'short-or-long',
+          label: 'Should I start with short-form or long-form?',
+          headingPhrases: ['short-form vs long-form', 'short-form or long-form'],
+        },
+        {
+          id: 'first-clients',
+          label: 'How do I land my first clients?',
+          headingPhrases: ['land your first clients'],
+        },
+        {
+          id: 'ai',
+          label: 'Can AI replace freelance video editors?',
+          headingPhrases: ['ai replace freelance video editors'],
+        },
+      ],
+      ownedElsewhere: [],
+      exceptions: [],
+    },
   },
   {
     id: 40,
@@ -605,6 +852,43 @@ export const SEO_PAGES: SeoPage[] = [
     relatedSlugs: ['clipper-pay-rates', 'how-much-do-clippers-make', 'find-first-video-editing-client'],
     publishedAt: '2026-07-02',
     updatedAt: '2026-10-26',
+    targets: {
+      primary: {
+        query: 'how much to charge for video editing',
+        variants: ['how much should i charge for video editing', 'how much to charge for editing a video'],
+        volume: 70,
+      },
+      secondary: [
+        { query: 'how to price video editing', volume: 10 },
+        { query: 'video editing rate sheet', volume: 10 },
+      ],
+      questions: [
+        {
+          id: 'beginner',
+          label: 'How much should a beginner charge?',
+          headingPhrases: ['charge for video editing as a beginner'],
+        },
+        {
+          id: 'per-clip',
+          label: 'How much do editors charge per clip?',
+          headingPhrases: ['charge per clip'],
+        },
+        {
+          id: 'hourly-or-clip',
+          label: 'Should I charge hourly or per clip?',
+          headingPhrases: ['hourly or per clip'],
+        },
+        { id: 'retainer', label: 'How do I set up a retainer?', headingPhrases: ['set up a retainer'] },
+      ],
+      ownedElsewhere: [
+        { query: 'video editing prices', owner: '/guides/cost-to-hire-a-video-editor' },
+        { query: 'video editing rates', owner: '/guides/cost-to-hire-a-video-editor' },
+        { query: 'freelance video editor rates', owner: '/guides/cost-to-hire-a-video-editor' },
+        { query: 'video editing services pricing', owner: '/guides/cost-to-hire-a-video-editor' },
+        { query: 'clipping agency pricing', owner: '/compare/clipping-agency-vs-clipping-marketplace' },
+      ],
+      exceptions: [],
+    },
   },
   {
     id: 41,
@@ -708,6 +992,32 @@ export const SEO_PAGES: SeoPage[] = [
     relatedSlugs: ['repurpose-podcast-into-clips', 'how-much-to-pay-clippers', 'what-is-a-clipper'],
     publishedAt: '2026-07-02',
     updatedAt: '2026-10-21',
+    targets: {
+      primary: { query: 'hire a podcast clipper', volume: null },
+      secondary: [
+        { query: 'podcast clipper', variants: ['podcast clippers'], volume: 170 },
+        { query: 'podcast clipping agency', variants: ['clipping agency for podcasts'], volume: 10 },
+      ],
+      questions: [
+        {
+          id: 'does',
+          label: 'What does a podcast clipper do?',
+          headingPhrases: ['what does a podcast clipper do'],
+        },
+        {
+          id: 'how-many',
+          label: 'How many clips per podcast episode?',
+          headingPhrases: ['how many clips should i get per podcast episode'],
+        },
+        {
+          id: 'cost',
+          label: 'How much does a podcast clipper cost?',
+          headingPhrases: ['cost to hire a podcast clipper', 'podcast clipper pricing'],
+        },
+      ],
+      ownedElsewhere: [],
+      exceptions: [],
+    },
   },
   {
     id: 98,
@@ -724,6 +1034,42 @@ export const SEO_PAGES: SeoPage[] = [
     notes: 'SEO-18: short form video editor 210/mo MEDIUM; short form video editing 90, short form editor 50, short form content editor 50',
     relatedSlugs: ['how-to-hire-a-clipper', 'how-much-to-pay-clippers', 'freelance-clipper-vs-in-house-editor'],
     publishedAt: '2026-10-26',
+    targets: {
+      primary: { query: 'short form video editor', variants: ['short-form video editor'], volume: 720 },
+      secondary: [
+        { query: 'short form editor', variants: ['short form content editor'], volume: 210 },
+        {
+          query: 'short form video editing service',
+          variants: ['short form video editing services'],
+          volume: 20,
+        },
+        { query: 'hire short form video editor', variants: ['hire a short form video editor'], volume: null },
+      ],
+      questions: [
+        {
+          id: 'does',
+          label: 'What does a short-form video editor do?',
+          headingPhrases: ['what does a short-form video editor do'],
+        },
+        {
+          id: 'cost',
+          label: 'How much does a short-form video editor cost?',
+          headingPhrases: ['short-form video editor cost'],
+        },
+        {
+          id: 'vs-clipper',
+          label: 'Is a short-form editor the same as a clipper?',
+          headingPhrases: ['same as a clipper'],
+        },
+        {
+          id: 'vs-long-form',
+          label: 'Short-form or long-form editor?',
+          headingPhrases: ['short-form editor vs. long-form editor'],
+        },
+      ],
+      ownedElsewhere: [],
+      exceptions: [],
+    },
   },
   {
     id: 48,
@@ -740,6 +1086,40 @@ export const SEO_PAGES: SeoPage[] = [
     relatedSlugs: ['hire-a-stream-clipper', 'hire-a-kick-clipper', 'hire-a-gaming-clipper'],
     publishedAt: '2026-07-09',
     updatedAt: '2026-10-21',
+    targets: {
+      primary: { query: 'hire a twitch clipper', volume: null },
+      secondary: [
+        { query: 'twitch clipper', variants: ['twitch clippers'], volume: 480 },
+        { query: 'twitch vod editor', variants: ['twitch vod clipper'], volume: 70 },
+      ],
+      questions: [
+        {
+          id: 'does',
+          label: 'What does a Twitch clipper do?',
+          headingPhrases: ['what does a twitch clipper do'],
+        },
+        {
+          id: 'cost',
+          label: 'How much does a Twitch clipper cost?',
+          headingPhrases: ['cost to hire a twitch clipper'],
+        },
+        {
+          id: 'timestamps',
+          label: 'Do I need to provide timestamps?',
+          headingPhrases: ['provide timestamps'],
+        },
+        {
+          id: 'speed',
+          label: 'How fast should VOD clips be delivered?',
+          headingPhrases: ['how fast should vod clips be delivered'],
+        },
+      ],
+      ownedElsewhere: [
+        { query: 'hire clippers', owner: '/hire' },
+        { query: 'kick clipper', owner: '/hire/hire-a-kick-clipper' },
+      ],
+      exceptions: [],
+    },
   },
   {
     id: 49,
@@ -756,6 +1136,29 @@ export const SEO_PAGES: SeoPage[] = [
     relatedSlugs: ['hire-a-tiktok-clipper', 'kreatli-vs-ai-clipping-tools', 'freelance-clipper-vs-in-house-editor'],
     publishedAt: '2026-07-02',
     updatedAt: '2026-10-21',
+    targets: {
+      primary: { query: 'hire a youtube clipper', volume: null },
+      secondary: [{ query: 'youtube shorts clipper', variants: ['youtube shorts clippers'], volume: 210 }],
+      questions: [
+        {
+          id: 'does',
+          label: 'What does a YouTube Shorts clipper do?',
+          headingPhrases: ['what does a youtube shorts clipper do'],
+        },
+        {
+          id: 'cost',
+          label: 'How much do YouTube Shorts clippers cost?',
+          headingPhrases: ['hire clippers for youtube shorts', 'shorts clipper pricing'],
+        },
+        {
+          id: 'vs-ai',
+          label: 'How is a clipper different from AI clipping tools?',
+          headingPhrases: ['different from ai clipping tools'],
+        },
+      ],
+      ownedElsewhere: [{ query: 'hire clippers', owner: '/hire' }],
+      exceptions: [],
+    },
   },
   {
     id: 50,
@@ -772,6 +1175,29 @@ export const SEO_PAGES: SeoPage[] = [
     relatedSlugs: ['hire-a-twitch-clipper', 'hire-a-stream-clipper', 'how-much-to-pay-clippers'],
     publishedAt: '2026-07-09',
     updatedAt: '2026-10-21',
+    targets: {
+      primary: { query: 'hire a gaming clipper', volume: null },
+      secondary: [{ query: 'gaming clipper', variants: ['gaming clippers'], volume: 260 }],
+      questions: [
+        {
+          id: 'does',
+          label: 'What does a gaming clipper do?',
+          headingPhrases: ['what does a gaming clipper do'],
+        },
+        {
+          id: 'pricing',
+          label: 'How much does a gaming clipper cost?',
+          headingPhrases: ['gaming clipper pricing'],
+        },
+        {
+          id: 'vs-rewards',
+          label: 'Gaming clipper or content rewards?',
+          headingPhrases: ['gaming clipper vs content rewards'],
+        },
+      ],
+      ownedElsewhere: [],
+      exceptions: [],
+    },
   },
   {
     id: 51,
@@ -788,6 +1214,35 @@ export const SEO_PAGES: SeoPage[] = [
     relatedSlugs: ['hire-a-youtube-clipper', 'kreatli-vs-fiverr', 'clipping-marketplace-vs-video-editor-marketplace'],
     publishedAt: '2026-07-02',
     updatedAt: '2026-10-21',
+    targets: {
+      primary: { query: 'hire a tiktok clipper', volume: null },
+      secondary: [
+        { query: 'tiktok clipper', variants: ['tiktok clippers'], volume: 590 },
+        { query: 'hire clippers for tiktok', volume: 40 },
+      ],
+      questions: [
+        {
+          id: 'does',
+          label: 'What does a TikTok clipper do?',
+          headingPhrases: ['what does a tiktok clipper do'],
+        },
+        {
+          id: 'cost',
+          label: 'How much does a TikTok clipper cost?',
+          headingPhrases: ['tiktok clipper pricing', 'cost to hire clippers for tiktok'],
+        },
+        {
+          id: 'vs-rewards',
+          label: 'Is this the same as a clipping rewards program?',
+          headingPhrases: ['clipping rewards program'],
+        },
+      ],
+      ownedElsewhere: [
+        { query: 'find a tiktok clipper', owner: '/guides/how-to-find-a-tiktok-clipper' },
+        { query: 'hire clippers', owner: '/hire' },
+      ],
+      exceptions: [],
+    },
   },
   {
     id: 52,
@@ -804,6 +1259,29 @@ export const SEO_PAGES: SeoPage[] = [
     relatedSlugs: ['hire-a-tiktok-clipper', 'how-to-find-a-tiktok-clipper', 'hire-a-youtube-clipper'],
     publishedAt: '2026-07-09',
     updatedAt: '2026-10-21',
+    targets: {
+      primary: { query: 'hire an instagram reels clipper', volume: null },
+      secondary: [],
+      questions: [
+        {
+          id: 'does',
+          label: 'What does a Reels clipper do?',
+          headingPhrases: ['what does a reels clipper do'],
+        },
+        {
+          id: 'when',
+          label: 'When should you hire a Reels clipper?',
+          headingPhrases: ['instead of editing yourself'],
+        },
+        {
+          id: 'vs-other-platforms',
+          label: 'Reels, TikTok or Shorts clipper?',
+          headingPhrases: ['reels clipper vs tiktok clipper'],
+        },
+      ],
+      ownedElsewhere: [],
+      exceptions: [],
+    },
   },
   {
     id: 53,
@@ -820,6 +1298,37 @@ export const SEO_PAGES: SeoPage[] = [
     relatedSlugs: ['what-is-b-roll', 'kreatli-vs-ai-clipping-tools', 'how-much-to-pay-clippers'],
     publishedAt: '2026-07-09',
     updatedAt: '2026-10-21',
+    targets: {
+      primary: { query: 'hire a faceless channel editor', volume: null },
+      secondary: [
+        { query: 'faceless youtube video editor', variants: ['faceless youtube editor'], volume: 20 },
+        { query: 'faceless youtube channel editor', volume: null },
+      ],
+      questions: [
+        {
+          id: 'does',
+          label: 'What does a faceless channel editor do?',
+          headingPhrases: ['what does a faceless channel editor do'],
+        },
+        {
+          id: 'pricing',
+          label: 'How much does a faceless editor cost?',
+          headingPhrases: ['pricing and scope'],
+        },
+        {
+          id: 'stock',
+          label: 'Can a faceless editor source stock footage?',
+          headingPhrases: ['source stock footage'],
+        },
+        {
+          id: 'vs-ai',
+          label: 'Faceless editor or an AI clipping tool?',
+          headingPhrases: ['faceless editor vs ai clipping tool'],
+        },
+      ],
+      ownedElsewhere: [],
+      exceptions: [],
+    },
   },
   {
     id: 54,
@@ -836,6 +1345,33 @@ export const SEO_PAGES: SeoPage[] = [
     relatedSlugs: ['hire-a-twitch-clipper', 'hire-a-kick-clipper', 'hire-a-gaming-clipper'],
     publishedAt: '2026-07-09',
     updatedAt: '2026-10-21',
+    targets: {
+      primary: { query: 'stream clipper for hire', volume: null },
+      secondary: [
+        { query: 'stream clipper', variants: ['stream clippers'], volume: 480 },
+        { query: 'livestream clipper', volume: 50 },
+        { query: 'livestream editor', variants: ['livestream vod editor'], volume: 40 },
+      ],
+      questions: [
+        {
+          id: 'does',
+          label: 'What does a stream clipper do?',
+          headingPhrases: ['what does a stream clipper do'],
+        },
+        {
+          id: 'cost',
+          label: 'How much does a stream clipper cost?',
+          headingPhrases: ['stream clipper cost', 'stream clipper pricing'],
+        },
+        {
+          id: 'when',
+          label: 'When should you hire a stream clipper?',
+          headingPhrases: ['when should you hire a stream clipper'],
+        },
+      ],
+      ownedElsewhere: [],
+      exceptions: [],
+    },
   },
   {
     id: 55,
@@ -1111,6 +1647,38 @@ export const SEO_PAGES: SeoPage[] = [
     status: 'published',
     relatedSlugs: ['how-much-to-pay-clippers', 'how-to-write-a-clipper-job-post', 'how-to-vet-a-clipper'],
     publishedAt: '2026-10-21',
+    targets: {
+      primary: { query: 'hire a clipper', volume: 30 },
+      secondary: [
+        { query: 'how to hire a clipper', variants: ['how to hire clippers'], volume: null },
+        { query: 'where to hire clippers', variants: ['where can i hire a clipper'], volume: 10 },
+        { query: 'how to find clippers', variants: ['how to find a clipper'], volume: 20 },
+      ],
+      questions: [
+        { id: 'where', label: 'Where can I hire a clipper?', headingPhrases: ['where can i hire a clipper'] },
+        {
+          id: 'cost',
+          label: 'How much does it cost to hire a clipper?',
+          headingPhrases: ['how much does it cost to hire a clipper'],
+        },
+        {
+          id: 'test',
+          label: 'Should I give a clipper a test first?',
+          headingPhrases: ['paid test clip', 'give a clipper a test'],
+        },
+        {
+          id: 'job-post',
+          label: 'What goes in a clipper job post?',
+          headingPhrases: ['write the job post', 'clipper job post'],
+        },
+      ],
+      ownedElsewhere: [
+        { query: 'hire clippers', owner: '/hire' },
+        { query: 'clipper job description', owner: '/guides/how-to-write-a-clipper-job-post' },
+        { query: 'vet a clipper', owner: '/guides/how-to-vet-a-clipper' },
+      ],
+      exceptions: [],
+    },
   },
   {
     id: 75,
@@ -1125,6 +1693,38 @@ export const SEO_PAGES: SeoPage[] = [
     status: 'published',
     relatedSlugs: ['how-to-hire-a-clipper', 'how-to-run-a-clipping-campaign'],
     publishedAt: '2026-10-21',
+    targets: {
+      primary: { query: 'how much to pay clippers', variants: ['how much to pay a clipper'], volume: null },
+      secondary: [{ query: 'how much does a clipping campaign cost', volume: null }],
+      questions: [
+        {
+          id: 'per-clip',
+          label: 'How much should I pay a clipper per clip?',
+          headingPhrases: ['pay a clipper per clip', 'per-clip rates'],
+        },
+        {
+          id: 'retainer',
+          label: 'What is a fair retainer for a clipper?',
+          headingPhrases: ['fair retainer', 'retainer rates'],
+        },
+        {
+          id: 'cpm',
+          label: 'What do clipping campaigns pay per 1,000 views?',
+          headingPhrases: ['cpm rates for campaigns'],
+        },
+        {
+          id: 'campaign-vs-hire',
+          label: 'Is it cheaper to hire a clipper or run a CPM campaign?',
+          headingPhrases: ['cheaper to hire a clipper or run a cpm campaign'],
+        },
+      ],
+      ownedElsewhere: [
+        { query: 'clipping agency pricing', owner: '/compare/clipping-agency-vs-clipping-marketplace' },
+        { query: 'clipper pay rates', owner: '/guides/clipper-pay-rates' },
+        { query: 'how much do clippers make', owner: '/guides/how-much-do-clippers-make' },
+      ],
+      exceptions: [],
+    },
   },
   {
     id: 76,
@@ -1254,6 +1854,34 @@ export const SEO_PAGES: SeoPage[] = [
     ctaHref: '/jobs/create',
     relatedSlugs: ['hire-a-twitch-clipper', 'hire-a-stream-clipper', 'hire-a-gaming-clipper'],
     publishedAt: '2026-10-21',
+    targets: {
+      primary: { query: 'hire a kick clipper', volume: null },
+      secondary: [{ query: 'kick clipper', variants: ['kick clippers'], volume: 320 }],
+      questions: [
+        {
+          id: 'does',
+          label: 'What does a Kick clipper do?',
+          headingPhrases: ['what does a kick clipper do'],
+        },
+        {
+          id: 'cost',
+          label: 'How much does a Kick clipper cost?',
+          headingPhrases: ['cost to hire a kick clipper'],
+        },
+        {
+          id: 'posting',
+          label: 'Can a Kick clipper post clips for me?',
+          headingPhrases: ['kick clipper post clips'],
+        },
+        {
+          id: 'vs-twitch',
+          label: 'Kick clipper or Twitch clipper?',
+          headingPhrases: ['kick clipper vs twitch clipper'],
+        },
+      ],
+      ownedElsewhere: [{ query: 'hire clippers', owner: '/hire' }],
+      exceptions: [],
+    },
   },
   {
     id: 85,
@@ -1416,6 +2044,42 @@ export const SEO_PAGES: SeoPage[] = [
     relatedSlugs: ['kreatli-vs-ai-clipping-tools', 'opus-clip-alternatives', 'how-much-to-pay-clippers'],
     publishedAt: '2026-10-26',
     updatedAt: '2026-11-26',
+    targets: {
+      primary: { query: 'nexus clips alternatives', variants: ['nexus clips alternative'], volume: null },
+      secondary: [
+        {
+          query: 'nexus clips pricing',
+          variants: ['how much is nexusclips', 'nexus clips price'],
+          volume: 320,
+        },
+        { query: 'nexus clips free alternative', volume: 30 },
+        { query: 'nexus clips review', volume: 90 },
+      ],
+      questions: [
+        {
+          id: 'cost',
+          label: 'How much does Nexus Clips cost?',
+          headingPhrases: ['how much does nexus clips cost'],
+        },
+        {
+          id: 'free',
+          label: 'Is Nexus Clips free?',
+          headingPhrases: ['is nexus clips free', 'free nexus clips alternatives'],
+        },
+        {
+          id: 'plans',
+          label: 'What is the difference between the Clips and Creator plans?',
+          headingPhrases: ['clips and creator plans'],
+        },
+        {
+          id: 'best',
+          label: 'What is the best Nexus Clips alternative?',
+          headingPhrases: ['best nexus clips alternative'],
+        },
+      ],
+      ownedElsewhere: [],
+      exceptions: [],
+    },
   },
   {
     id: 100,
@@ -1432,6 +2096,39 @@ export const SEO_PAGES: SeoPage[] = [
     notes: 'SEO-22: opus clip alternative (390/mo), opus clip pricing (880/mo), review/free (320/mo each). Prices from opus.pro/pricing, checked 2026-10-29',
     relatedSlugs: ['kreatli-vs-ai-clipping-tools', 'nexus-clips-alternatives', 'how-much-to-pay-clippers'],
     publishedAt: '2026-10-29',
+    targets: {
+      primary: {
+        query: 'opus clip alternative',
+        variants: ['opus clip alternatives', 'opusclip alternative', 'opusclip alternatives'],
+        volume: 1900,
+      },
+      secondary: [
+        { query: 'opus clip free alternative', variants: ['free opus clip alternative'], volume: 480 },
+        { query: 'opus pro alternative', variants: ['opus.pro alternative'], volume: 110 },
+        { query: 'opus clip pricing', variants: ['opusclip pricing'], volume: 1900 },
+        { query: 'opus clip competitors', variants: ['opusclip competitors'], volume: 70 },
+      ],
+      questions: [
+        {
+          id: 'cost',
+          label: 'How much does OpusClip cost?',
+          headingPhrases: ['how much does opusclip cost'],
+        },
+        {
+          id: 'free',
+          label: 'Is OpusClip free?',
+          headingPhrases: ['is opusclip free', 'free opusclip alternative'],
+        },
+        { id: 'worth', label: 'Is OpusClip worth it?', headingPhrases: ['opusclip worth it'] },
+        {
+          id: 'vs-clipper',
+          label: 'Is OpusClip better than hiring a clipper?',
+          headingPhrases: ['opusclip better than hiring a clipper'],
+        },
+      ],
+      ownedElsewhere: [{ query: 'nexus clips free alternative', owner: '/alternatives/nexus-clips-alternatives' }],
+      exceptions: [],
+    },
   },
   {
     id: 101,
@@ -1464,6 +2161,54 @@ export const SEO_PAGES: SeoPage[] = [
     notes: 'SEO-23: restores the old URL (redirect removed) for the buyer-side "video editing cost/rates/prices" cluster. Long-form and hourly ranges from public rate guides checked 2026-10-29',
     relatedSlugs: ['how-much-to-pay-clippers', 'clipper-pay-rates', 'hire-a-short-form-video-editor'],
     publishedAt: '2026-10-29',
+    targets: {
+      primary: {
+        query: 'how much does video editing cost',
+        variants: ['how much does a video editor cost'],
+        volume: 110,
+      },
+      secondary: [
+        { query: 'video editing cost', variants: ['video editing costs'], volume: 1300 },
+        {
+          query: 'video editing prices',
+          variants: ['video editing price', 'video editing pricing'],
+          volume: 1300,
+        },
+        { query: 'video editing rates', variants: ['video editor rates'], volume: 1300 },
+        { query: 'freelance video editor rates', variants: ['video editor freelance rates'], volume: 210 },
+        { query: 'video editing services pricing', volume: 20 },
+        { query: 'video editing services cost', volume: 20 },
+      ],
+      questions: [
+        {
+          id: 'per-minute',
+          label: 'How much does video editing cost per minute?',
+          headingPhrases: ['cost per minute'],
+        },
+        {
+          id: 'hourly',
+          label: 'How much do video editors charge per hour?',
+          headingPhrases: ['charge per hour', 'hourly and per-minute rates'],
+        },
+        {
+          id: 'short-form',
+          label: 'How much does a short-form editor cost?',
+          headingPhrases: ['youtube shorts or tiktok editor cost', 'short-form clips: what they cost'],
+        },
+        {
+          id: 'freelancer-vs-agency',
+          label: 'Is a freelancer or an agency cheaper?',
+          headingPhrases: ['freelancer vs. agency', 'freelancer or an agency'],
+        },
+      ],
+      ownedElsewhere: [
+        {
+          query: 'how much to charge for video editing',
+          owner: '/guides/how-to-price-video-editing-services',
+        },
+      ],
+      exceptions: [],
+    },
   },
   {
     id: 103,
@@ -1606,5 +2351,29 @@ export const SEO_PAGES: SeoPage[] = [
     notes: 'SEO-27: submagic alternative (70/mo), submagic free (10/mo). Prices from submagic.co/pricing, checked 2026-11-05',
     relatedSlugs: ['opus-clip-alternatives', 'kreatli-vs-ai-clipping-tools', 'how-much-to-pay-clippers'],
     publishedAt: '2026-11-05',
+    targets: {
+      primary: { query: 'submagic alternative', variants: ['submagic alternatives'], volume: 320 },
+      secondary: [
+        { query: 'submagic pricing', variants: ['submagic price'], volume: 390 },
+        { query: 'free submagic alternative', variants: ['submagic free alternative'], volume: 10 },
+        { query: 'is submagic free', volume: 170 },
+      ],
+      questions: [
+        {
+          id: 'cost',
+          label: 'How much does Submagic cost?',
+          headingPhrases: ['how much does submagic cost'],
+        },
+        { id: 'free', label: 'Is Submagic free?', headingPhrases: ['is submagic free'] },
+        { id: 'worth', label: 'Is Submagic worth it?', headingPhrases: ['submagic worth it'] },
+        {
+          id: 'vs-clipper',
+          label: 'Is Submagic better than hiring a clipper?',
+          headingPhrases: ['submagic better than hiring a clipper'],
+        },
+      ],
+      ownedElsewhere: [],
+      exceptions: [],
+    },
   },
 ];

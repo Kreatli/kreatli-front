@@ -3,18 +3,25 @@ import { SeoPage, SeoPageType } from './types';
 
 export { getAbsoluteUrl, getPageUrl, SEO_PAGE_TYPES, SEO_SECTION_PATHS, SITE_URL } from './paths';
 
+/**
+ * A registry entry without its search targets. Anything passed to a page as props goes into the HTML, so pages only
+ * get this version: the targets are for the SEO scripts, not for visitors or competitors.
+ */
+export const toPublicPage = ({ targets: _targets, ...page }: SeoPage): SeoPage => page;
+
 export const getPageBySlug = (type: SeoPageType, slug: string): SeoPage | undefined =>
   SEO_PAGES.find((page) => page.type === type && page.slug === slug);
 
 export const getPublishedPagesByType = (type: SeoPageType): SeoPage[] =>
-  SEO_PAGES.filter((page) => page.type === type && page.status === 'published');
+  SEO_PAGES.filter((page) => page.type === type && page.status === 'published').map(toPublicPage);
 
 export const getRelatedPages = (page: SeoPage, limit = 3): SeoPage[] => {
   if (page.relatedSlugs?.length) {
     return page.relatedSlugs
       .map((relatedSlug) => SEO_PAGES.find((entry) => entry.slug === relatedSlug && entry.status === 'published'))
       .filter((entry): entry is SeoPage => Boolean(entry))
-      .slice(0, limit);
+      .slice(0, limit)
+      .map(toPublicPage);
   }
 
   return SEO_PAGES.filter(
@@ -23,7 +30,9 @@ export const getRelatedPages = (page: SeoPage, limit = 3): SeoPage[] => {
       entry.status === 'published' &&
       entry.slug !== page.slug &&
       (entry.funnelSide === page.funnelSide || entry.funnelSide === 'both' || page.funnelSide === 'both'),
-  ).slice(0, limit);
+  )
+    .slice(0, limit)
+    .map(toPublicPage);
 };
 
 export const estimateReadTimeMinutes = (body: string): number => {

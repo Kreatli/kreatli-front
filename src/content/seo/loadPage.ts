@@ -3,7 +3,7 @@ import { marked } from 'marked';
 import path from 'path';
 
 import { SeoFaq, SeoPageType, SeoPageWithBody } from './types';
-import { estimateReadTimeMinutes, getPageBySlug } from './utils';
+import { estimateReadTimeMinutes, getPageBySlug, toPublicPage } from './utils';
 
 const getBodyFilePath = (type: SeoPageType, slug: string) =>
   path.join(process.cwd(), 'src/content/seo/bodies', type, `${slug}.md`);
@@ -73,7 +73,7 @@ export const loadPublishedPage = (type: SeoPageType, slug: string): SeoPageWithB
   const body = marked.parse(markdown, { async: false }) as string;
 
   return {
-    ...page,
+    ...toPublicPage(page),
     body,
     readTimeMinutes: estimateReadTimeMinutes(markdown),
     faqs: extractFaqs(markdown),
