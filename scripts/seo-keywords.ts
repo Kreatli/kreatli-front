@@ -7,6 +7,10 @@
  *   npm run seo:keywords                                  # Search Console opportunities
  *   npm run seo:keywords -- --seed "clipping jobs" --seed "whop clipping"   # plus extra seeds
  *   npm run seo:keywords -- --limit 30                    # how many candidates get volume lookups (default 20)
+ *   npm run seo:keywords -- --market us                   # market for volumes (default worldwide)
+ *
+ * Volumes are exact Keyword Planner lookups for the named market, in one batch. Ideas mode only suggests related
+ * searches; their volumes come from the same exact batch.
  *
  * Needs the Composio CLI (Search Console) and the anidachi Keyword Planner script (KEYWORD_PLANNER_DIR).
  */
@@ -16,7 +20,17 @@ import path from 'path';
 
 import { SEO_PAGES } from '../src/content/seo/registry';
 import { dateWindow, pageForPath, querySearchAnalytics, urlPath } from './lib/gsc';
-import { keywordCoverage, KeywordIdea, keywordTerms, keywordVolume } from './lib/keywords';
+import {
+  DEFAULT_MARKET,
+  isMarket,
+  keywordCoverage,
+  KeywordGroup,
+  keywordIdeas,
+  keywordTerms,
+  keywordVolumes,
+  Market,
+  MARKETS,
+} from './lib/keywords';
 
 const REPORT_DIR = path.join(process.cwd(), '.seo-reports');
 const MIN_IMPRESSIONS = 10;
@@ -38,22 +52,29 @@ interface Candidate {
   closestRegistryPage: string | null;
   volume: number | null;
   competition: string | null;
-  related: KeywordIdea[];
+  closeVariants: string[];
+  related: { text: string; avgMonthlySearches: number }[];
 }
 
 const parseArgs = () => {
   const args = process.argv.slice(2).filter((arg) => !arg.endsWith('.ts') && arg !== '--');
   const seeds: string[] = [];
   let limit = 20;
+  let market: Market = DEFAULT_MARKET;
 
   args.forEach((arg, index) => {
     if (arg === '--seed' && args[index + 1]) seeds.push(args[index + 1]);
     if (arg.startsWith('--seed=')) seeds.push(arg.slice('--seed='.length));
     if (arg === '--limit' && args[index + 1]) limit = Number(args[index + 1]);
     if (arg.startsWith('--limit=')) limit = Number(arg.slice('--limit='.length));
+    if (arg === '--market' && args[index + 1]) {
+      const value = args[index + 1];
+      if (!isMarket(value)) throw new Error(`Unknown market "${value}". Use one of: ${Object.keys(MARKETS).join(', ')}`);
+      market = value;
+    }
   });
 
-  return { seeds, limit: Number.isNaN(limit) ? 20 : limit };
+  return { seeds, limit: Number.isNaN(limit) ? 20 : limit, market };
 };
 
 // A query is covered when some page's primary keyword (or title) contains all of its topic words.
@@ -76,20 +97,54 @@ const closestPage = (query: string): string | null => {
   return scored.reduce((best, current) => (current.score > best.score ? current : best)).page;
 };
 
-const lookUpVolume = (candidate: Candidate): Candidate => {
-  try {
-    const { exact, related } = keywordVolume(candidate.query);
+/** Related-search texts from ideas mode, per candidate. Their volumes are looked up exactly afterwards. */
+const relatedIdeas = (candidates: Candidate[], market: Market) =>
+  new Map(
+    candidates.map((candidate) => {
+      try {
+        const ideas = keywordIdeas([candidate.query], { market })
+          .filter((text) => text.toLowerCase() !== candidate.query.toLowerCase() && !coveringPage(text))
+          .slice(0, 15);
+        return [candidate.query, ideas];
+      } catch (error) {
+        const message = error instanceof Error ? error.message.split('\n')[0] : error;
+        console.warn(`  related-ideas lookup failed for "${candidate.query}": ${message}`);
+        return [candidate.query, [] as string[]];
+      }
+    }),
+  );
+
+/** Adds exact volumes (one batch for candidates and their related ideas) to every candidate. */
+const addVolumes = (candidates: Candidate[], market: Market) => {
+  const ideas = relatedIdeas(candidates, market);
+  const volumes = keywordVolumes([...candidates.map((c) => c.query), ...Array.from(ideas.values()).flat()], {
+    market,
+    onSkip: (keyword, reason) => console.warn(`  no volume for "${keyword}": ${reason}`),
+  });
+  const groupOf = (text: string): KeywordGroup | null => volumes.get(text.toLowerCase()) ?? null;
+
+  return candidates.map((candidate) => {
+    const group = groupOf(candidate.query);
+    // Close variants share one volume: list each group once, and never add them together.
+    const seenGroups = new Set<KeywordGroup | null>([group]);
+    const related = (ideas.get(candidate.query) ?? [])
+      .map((text) => ({ text, group: groupOf(text) }))
+      .filter(({ group: relatedGroup }) => {
+        if (!relatedGroup || seenGroups.has(relatedGroup) || (relatedGroup.avgMonthlySearches ?? 0) < 10) return false;
+        seenGroups.add(relatedGroup);
+        return true;
+      })
+      .map(({ text, group: relatedGroup }) => ({ text, avgMonthlySearches: relatedGroup?.avgMonthlySearches ?? 0 }))
+      .sort((a, b) => b.avgMonthlySearches - a.avgMonthlySearches)
+      .slice(0, 8);
     return {
       ...candidate,
-      volume: exact?.avgMonthlySearches ?? null,
-      competition: exact?.competition ?? null,
-      related: related.filter((idea) => (idea.avgMonthlySearches ?? 0) >= 10 && !coveringPage(idea.text)).slice(0, 8),
+      volume: group?.avgMonthlySearches ?? null,
+      competition: group?.competition ?? null,
+      closeVariants: group ? [group.text, ...group.closeVariants].filter((t) => t !== candidate.query) : [],
+      related,
     };
-  } catch (error) {
-    const message = error instanceof Error ? error.message : error;
-    console.warn(`  volume lookup failed for "${candidate.query}": ${message}`);
-    return candidate;
-  }
+  });
 };
 
 const renderRow = (c: Candidate) =>
@@ -104,7 +159,7 @@ const renderRow = (c: Candidate) =>
   ].join(' | ');
 
 const run = () => {
-  const { seeds, limit } = parseArgs();
+  const { seeds, limit, market } = parseArgs();
   const window = dateWindow(90);
 
   console.log(`Fetching Search Console queries (${window.start} to ${window.end})...`);
@@ -151,6 +206,7 @@ const run = () => {
       closestRegistryPage: closestPage(query),
       volume: null,
       competition: null,
+      closeVariants: [],
       related: [],
     };
   };
@@ -160,10 +216,10 @@ const run = () => {
     ...seeds.map((seed) => toCandidate(seed, 'seed')),
   ];
 
-  console.log(`Looking up Keyword Planner volumes for ${candidates.length} candidates...`);
-  const ranked = candidates
-    .map(lookUpVolume)
-    .sort((a, b) => (b.volume ?? 0) - (a.volume ?? 0) || b.impressions - a.impressions);
+  console.log(`Exact Keyword Planner volumes (${MARKETS[market].label}) for ${candidates.length} candidates...`);
+  const ranked = addVolumes(candidates, market).sort(
+    (a, b) => (b.volume ?? 0) - (a.volume ?? 0) || b.impressions - a.impressions,
+  );
 
   const reportDate = new Date().toISOString().slice(0, 10);
   fs.mkdirSync(REPORT_DIR, { recursive: true });
@@ -171,14 +227,17 @@ const run = () => {
   const mdPath = path.join(REPORT_DIR, `keywords-${reportDate}.md`);
   fs.writeFileSync(
     jsonPath,
-    JSON.stringify({ generatedAt: new Date().toISOString(), window, candidates: ranked }, null, 2),
+    JSON.stringify({ generatedAt: new Date().toISOString(), window, market, candidates: ranked }, null, 2),
   );
 
   const lines = [
     `# Keyword candidates ${reportDate}`,
     '',
     `Search Console queries (${window.start} to ${window.end}) with ${MIN_IMPRESSIONS}+ impressions that no ` +
-      'registry page targets, plus seeds. Volumes from Keyword Planner.',
+      'registry page targets, plus seeds.',
+    '',
+    `Volumes: exact Keyword Planner lookups, ${MARKETS[market].label}. ` +
+      'Close variants share one volume; never add them.',
     '',
     '| Query | Volume/mo | Competition | GSC impr | Best pos | Ranking now | Closest registry page |',
     '|---|---|---|---|---|---|---|',

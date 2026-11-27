@@ -16,7 +16,8 @@
     "seo:audit": "npx tsx scripts/seo-audit.ts",
     "seo:keywords": "npx tsx scripts/seo-keywords.ts",
     "seo:indexnow": "npx tsx scripts/seo-indexnow.ts",
-    "seo:linear": "npx tsx scripts/seo-linear.ts"
+    "seo:linear": "npx tsx scripts/seo-linear.ts",
+    "seo:volumes": "npx tsx scripts/seo-volumes.ts"
   },
   "engines": {
     "node": "22.*"

@@ -39,8 +39,8 @@ Read the markdown report.
 - **File** with `npm run seo:linear -- create --title "..." --label rewrite|technical --priority 1-4 --file <brief.md>`.
   A ticket that must wait (for example a page in its 28-day hold) gets `--due <date the hold ends>`, never a date in the
   title.
-- **Look up volumes** for the page's main queries (`cd "$KEYWORD_PLANNER_DIR" && pnpm -s google-ads:keywords -- "<query>"`)
-  so the ticket's priority reflects demand, not just impressions.
+- **Look up volumes** for the page's main queries in one call, `npm run seo:volumes -- "<query>" "<query>"` (exact,
+  worldwide; write "/mo worldwide" in the ticket), so the ticket's priority reflects demand, not just impressions.
 - **Read the page** before writing the brief, so the "why it underperforms" is specific (e.g. "title says CPM
   Explained, a third of queries are about Whop").
 - **Priority:**

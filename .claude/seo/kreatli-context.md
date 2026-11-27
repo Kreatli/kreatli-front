@@ -53,7 +53,7 @@ Use the figures in these pages and link to them. Don't invent new ones:
 - URL sections: `guide` → `/guides`, `glossary`, `compare`, `hire`, `alternatives`
 - Renamed slugs and merges: the `redirects()` in `next.config.js`
 - Scripts: `npm run seo:qa`, `npm run seo:audit`, `npm run seo:keywords`, `npm run seo:indexnow` (Bing and Yandex),
-  `npm run seo:linear` (tickets), `npm run seo-pages:next`
+  `npm run seo:linear` (tickets), `npm run seo:volumes` (exact volumes, worldwide), `npm run seo-pages:next`
 - Publishing: commit straight to `main` and push. That deploys to production. No branches or PRs.
 - Tickets: Linear workspace **marketplace-kreatli-seo** (https://linear.app/marketplace-kreatli-seo), team
   **Marketplace(Kreatli)-SEO-automation** (key `SEO`, tickets `SEO-*`), project **Marketplace SEO**, labels `new-page` /
@@ -152,3 +152,6 @@ pinned account fails, report it and skip the step rather than trying another acc
 - 2026-11-26: the "no conversion events" notes from 28 Oct to 9 Nov were wrong account, not missing data. `AMPLITUDE_*` with no
   `--account` reaches an unrelated project. The marketplace project is Composio `--account kreatli-com` (also `kreatli-all`):
   105 `signup_completed` from 29 Oct to 25 Nov, with `first_landing_type`. Always pin accounts (see "Accounts").
+- 2026-11-27: volumes are now exact lookups, **worldwide English** (owner decision), via `seo:keywords` and `seo:volumes`.
+  Worldwide is often 3x US for clipping searches ("clip farming" 14,800 vs 5,400; "clipping jobs" 480 vs 110), so
+  volumes in older tickets and lessons above are US-only and not comparable. Say "/mo worldwide" in new tickets.

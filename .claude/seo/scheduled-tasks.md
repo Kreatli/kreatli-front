@@ -31,7 +31,7 @@ Weekly SEO run for Kreatli Marketplace (https://marketplace.kreatli.com). Work i
 3. Keyword research: follow `.claude/skills/seo-keyword-research/SKILL.md` exactly
    - Run `npm run seo:keywords`, then read `.seo-reports/keywords-<today>.md`.
    - File 3 to 6 `new-page` tickets with full briefs. Skip off-funnel, already-covered or already-ticketed keywords.
-   - Volumes: `cd /Users/macgeorge/Downloads/VibeProjects/anidachi-LP/anidachi/apps/web && pnpm -s google-ads:keywords -- "<seed>"`.
+   - Volumes: `npm run seo:volumes -- "<keyword>" "<keyword>" ...` (exact lookups, worldwide; pass all keywords in ONE call; close variants share one volume and are never added together; "no data" stays "no data", never guessed).
 
 4. IndexNow catch-up: follow step 4 of the audit skill (`npm run seo:indexnow -- --changed-since <7 days ago> --submit`).
 

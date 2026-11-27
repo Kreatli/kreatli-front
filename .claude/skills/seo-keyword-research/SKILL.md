@@ -23,11 +23,19 @@ This needs the Composio CLI with Search Console linked, and the anidachi Keyword
 (`KEYWORD_PLANNER_DIR`, which defaults to the anidachi `apps/web` folder). It writes
 `.seo-reports/keywords-<date>.md`. Read that file.
 
-For single lookups while writing briefs:
+**Volumes are exact Keyword Planner lookups, worldwide English** (owner decision, 27 Nov 2026: clipping demand is
+global). The report and `seo:volumes` both name the market. Ideas mode is only for finding related searches; its
+numbers change with the batch, so never quote them. Close variants ("clipping job" and "clipping jobs") share one
+volume: never add them together. Write the market next to every volume in a ticket ("480/mo worldwide").
+
+For lookups while writing briefs, one call for all the keywords:
 
 ```bash
-cd "$KEYWORD_PLANNER_DIR" && pnpm -s google-ads:keywords -- "seed one" "seed two"
+npm run seo:volumes -- "seed one" "seed two"            # worldwide (default); add --market us only to compare
 ```
+
+Volumes in tickets filed before 27 Nov 2026 are US-only and usually lower; re-check them with `seo:volumes` before
+comparing.
 
 ## 3. Choose what to target
 
