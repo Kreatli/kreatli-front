@@ -20,7 +20,8 @@
     "seo:volumes": "npx tsx scripts/seo-volumes.ts",
     "seo:onpage": "npx tsx scripts/onpage/cli.mjs",
     "seo:gate": "npx tsx scripts/seo-gate.ts",
-    "seo:test": "npx tsx --test scripts/seo-targets.test.ts scripts/onpage/onpage.test.mjs"
+    "seo:rank": "npx tsx scripts/rank/report.mjs",
+    "seo:test": "npx tsx --test scripts/seo-targets.test.ts scripts/onpage/onpage.test.mjs scripts/rank/rank.test.mjs"
   },
   "engines": {
     "node": "22.*"
