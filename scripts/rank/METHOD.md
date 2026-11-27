@@ -1,6 +1,8 @@
 # marketplace.kreatli.com weekly ranking check: locked method
 
-**Version v3, 27 Nov 2026 (SEO-46, owner-approved).** v3 = v2 with the keyword map rebuilt after targets batch 2: 21
+**Version v4, 27 Nov 2026 (SEO-46, owner-approved).** v4 = v3 with two primaries switched to match their pages' H1s: the
+Whop alternatives page targets "whop content rewards alternatives" and the YouTube guide "get paid to clip youtube
+videos" (the old primaries are kept as secondaries). v3 = v2 with the keyword map rebuilt after targets batch 2: 21
 clipper-side and glossary pages added (47 pages, 144 searches). v2 (SEO-40) rebuilt the map after the cannibalization
 sweep: "hire a clipper" moves to `/hire` (the hire guide now targets "how to hire a clipper"), "how much does a
 clipping campaign cost" moves to the campaign cost calculator, the jump cut page's primary is "what is a jump cut", and

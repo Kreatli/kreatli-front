@@ -1,6 +1,6 @@
 # How to Get Paid to Clip YouTube Videos
 
-YouTube clipper jobs pay you to turn a creator's long-form videos, podcasts, or livestreams into Shorts, TikToks, and Reels. Most of this work is fixed-pay freelance: a YouTuber sends new uploads, you return a batch of vertical clips, and they post them on their own channels. Some creators also run view-based clipping campaigns. This guide covers both, plus how to find YouTubers who need clippers and what the work typically pays.
+To get paid to clip YouTube videos, you take YouTube clipper jobs: a creator pays you to turn their long-form videos, podcasts, or livestreams into Shorts, TikToks, and Reels. Most of this work is fixed-pay freelance: a YouTuber sends new uploads, you return a batch of vertical clips, and they post them on their own channels. Some creators also run view-based clipping campaigns. This guide covers both, plus how to find YouTubers who need clippers and what the work typically pays.
 
 ## Why YouTubers hire clippers
 

@@ -806,20 +806,20 @@
    "kind": "content",
    "queries": [
     [
-     "youtube clipper jobs",
-     [
-      "youtube clipper jobs",
-      "youtube clipping jobs"
-     ],
-     20
-    ],
-    [
      "get paid to clip youtube videos",
      [
       "get paid to clip youtube videos",
       "how to get paid to clip youtube videos"
      ],
      null
+    ],
+    [
+     "youtube clipper jobs",
+     [
+      "youtube clipper jobs",
+      "youtube clipping jobs"
+     ],
+     20
     ]
    ]
   },
@@ -949,12 +949,12 @@
    "kind": "buyer",
    "queries": [
     [
-     "whop clipping alternatives",
+     "whop content rewards alternatives",
      [
-      "whop clipping alternatives",
-      "whop clipping alternative"
+      "whop content rewards alternatives",
+      "whop content rewards alternative"
      ],
-     10
+     null
     ],
     [
      "whop alternative for clipping",
@@ -968,10 +968,17 @@
      "content rewards alternative",
      [
       "content rewards alternative",
-      "content rewards alternatives",
-      "whop content rewards alternative"
+      "content rewards alternatives"
      ],
      50
+    ],
+    [
+     "whop clipping alternatives",
+     [
+      "whop clipping alternatives",
+      "whop clipping alternative"
+     ],
+     10
     ]
    ]
   },

@@ -1833,21 +1833,19 @@ export const SEO_PAGES: SeoPage[] = [
     title: 'How to Get Paid to Clip YouTube Videos',
     seoTitle: 'Get Paid to Clip YouTube Videos: YouTube Clipper Jobs',
     metaDescription: 'How to get paid to clip YouTube videos: find YouTube clipper jobs, what creators expect from Shorts edits, and how fixed pay compares with campaigns.',
-    primaryKeyword: 'YouTube clipper jobs',
+    primaryKeyword: 'get paid to clip YouTube videos',
     searchIntent: 'commercial',
     wave: 1,
     status: 'published',
     relatedSlugs: ['how-to-become-a-clipper', 'get-paid-to-clip-twitch-streams', 'how-much-do-clippers-make'],
     publishedAt: '2026-10-21',
     targets: {
-      primary: { query: 'youtube clipper jobs', variants: ['youtube clipping jobs'], volume: 20 },
-      secondary: [
-        {
-          query: 'get paid to clip youtube videos',
-          variants: ['how to get paid to clip youtube videos'],
-          volume: null,
-        },
-      ],
+      primary: {
+        query: 'get paid to clip youtube videos',
+        variants: ['how to get paid to clip youtube videos'],
+        volume: null,
+      },
+      secondary: [{ query: 'youtube clipper jobs', variants: ['youtube clipping jobs'], volume: 20 }],
       questions: [
         {
           id: 'find',
@@ -2147,21 +2145,22 @@ export const SEO_PAGES: SeoPage[] = [
     title: 'Whop Content Rewards Alternatives for Clippers and Creators',
     seoTitle: 'Whop Content Rewards Alternatives for Clipping',
     metaDescription: 'Whop Content Rewards alternatives for clippers and creators: other CPM platforms, fixed-pay clipping marketplaces, Discord servers and agencies compared.',
-    primaryKeyword: 'Whop clipping alternatives',
+    primaryKeyword: 'whop content rewards alternatives',
     searchIntent: 'commercial',
     wave: 1,
     status: 'published',
     relatedSlugs: ['vyro-alternatives', 'kreatli-vs-whop-clips', 'what-is-a-clipping-campaign'],
     publishedAt: '2026-10-21',
     targets: {
-      primary: { query: 'whop clipping alternatives', variants: ['whop clipping alternative'], volume: 10 },
+      primary: {
+        query: 'whop content rewards alternatives',
+        variants: ['whop content rewards alternative'],
+        volume: null,
+      },
       secondary: [
         { query: 'whop alternative for clipping', variants: ['clipping website like whop'], volume: 140 },
-        {
-          query: 'content rewards alternative',
-          variants: ['content rewards alternatives', 'whop content rewards alternative'],
-          volume: 50,
-        },
+        { query: 'content rewards alternative', variants: ['content rewards alternatives'], volume: 50 },
+        { query: 'whop clipping alternatives', variants: ['whop clipping alternative'], volume: 10 },
       ],
       questions: [
         {
