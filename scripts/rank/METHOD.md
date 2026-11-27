@@ -1,6 +1,8 @@
 # marketplace.kreatli.com weekly ranking check: locked method
 
-**Version v6, 27 Nov 2026 (SEO-45, owner decision).** v6 = v5 with the homepage `/` owning "hire clippers" and
+**Version v7, 27 Nov 2026 (SEO-46, owner-approved).** v7 = v6 with "what is a clipping agency" moved from the agency
+compare page to the clipping marketplace glossary page. The numbers are computed the same way.
+**v6 (SEO-45, owner decision).** v6 = v5 with the homepage `/` owning "hire clippers" and
 "hire a clipper" instead of `/hire`, which is now a hub with no targets. The numbers are computed the same way.
 **v5 (SEO-25/SEO-45, owner-approved).** v5 = v4 plus the app pages with targets
 (`src/content/seo/appPages.ts`): `/clipping-jobs`, `/hire` and the campaign cost calculator, the marketplace's top
