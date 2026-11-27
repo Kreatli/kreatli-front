@@ -153,20 +153,21 @@ export const SEO_PAGES: SeoPage[] = [
     funnelSide: 'clipper',
     slug: 'kreatli-vs-clipaffiliates',
     title: 'ClipAffiliates vs Kreatli: Two Ways to Hire Clippers',
-    seoTitle: 'ClipAffiliates vs Kreatli: Hire a Clipper',
-    metaDescription: 'ClipAffiliates vs Kreatli: what a CPM clipping campaign costs, including fees, versus hiring one clipper at an agreed rate for your own channels.',
-    primaryKeyword: 'ClipAffiliates vs Kreatli',
+    seoTitle: 'ClipAffiliates: How It Works and What It Costs',
+    metaDescription:
+      'What ClipAffiliates is, how its CPM clipping campaigns work and what they cost in fees, plus ClipAffiliates vs Kreatli for hiring one clipper.',
+    primaryKeyword: 'clipaffiliates',
     searchIntent: 'commercial',
     wave: 1,
     status: 'published',
     notes: 'Smaller search volume — low effort, still worth it',
     relatedSlugs: ['kreatli-vs-vyro', 'kreatli-vs-whop-clips', 'clipping-marketplace-vs-video-editor-marketplace'],
     publishedAt: '2026-07-01',
-    updatedAt: '2026-10-21',
+    updatedAt: '2026-11-27',
     targets: {
-      primary: { query: 'clipaffiliates vs kreatli', volume: null },
+      primary: { query: 'clipaffiliates', variants: ['clipaffiliate', 'clipaffiliates.com'], volume: 1300 },
       secondary: [
-        { query: 'clipaffiliates', variants: ['clipaffiliate', 'clipaffiliates.com'], volume: 1300 },
+        { query: 'clipaffiliates vs kreatli', volume: null },
         { query: 'clipaffiliates review', volume: null },
       ],
       questions: [

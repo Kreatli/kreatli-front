@@ -53,13 +53,6 @@
    "kind": "buyer",
    "queries": [
     [
-     "clipaffiliates vs kreatli",
-     [
-      "clipaffiliates vs kreatli"
-     ],
-     null
-    ],
-    [
      "clipaffiliates",
      [
       "clipaffiliates",
@@ -67,6 +60,13 @@
       "clipaffiliates.com"
      ],
      1300
+    ],
+    [
+     "clipaffiliates vs kreatli",
+     [
+      "clipaffiliates vs kreatli"
+     ],
+     null
     ],
     [
      "clipaffiliates review",
